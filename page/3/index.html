@@ -125,8 +125,36 @@
   
 
 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-83047470-1', 'auto');
+  ga('send', 'pageview');
+</script>
 
 
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?729720b53fc2c18615d4ed229708c999";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=58089160";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
 
 
 
@@ -330,9 +358,15 @@
       
         
           
-            <p>注意：64位系统中或者64位程序调试时eip寄存器的名称为rip</p>
+          注意：64位系统中或者64位程序调试时eip寄存器的名称为rip
 
           
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/11/13/x86-cpu-registers/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -450,117 +484,16 @@
       
         
           
-            <p>这里记录的都是与c/c++不太一样的地方，</p>
-<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><h3 id="值类型"><a href="#值类型" class="headerlink" title="值类型"></a>值类型</h3><p>从类System.ValueType中派生，比较独特的有<code>decimal``sbyte</code>;<br>C#提供了内置类型转换的方法，例如<code>ToBoolean``ToInt32``ToString</code>等等。</p>
-<h3 id="可空类型-Nullable"><a href="#可空类型-Nullable" class="headerlink" title="可空类型(Nullable)"></a>可空类型(Nullable)</h3><p>这个单独列出来了因为很有趣，他是允许值为正常类型范围内或者是null。</p>
-<pre><code>//语法
-&lt;date_type&gt; ? &lt;variable_name&gt; = null;
-int? num1 = null;
-int? num2 = 250;
-</code></pre><p>Null合并运算符<code>??</code>用于定义可空类型和引用类型的默认值；如果第一个操作数的侍卫null则返回第二个操作数，否则返回第一个操作数的值。</p>
-<pre><code>//继续使用上面的num1和num2
-int num3;
-num3 = num1 ?? 10;//num3 = 10;
-num3 = num2 ?? 38;//num3 = 250;
-</code></pre><h3 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h3><p>引用类型不包含储存在变量中的实际数据。内置的引用类型有<code>object``dynamic``string</code></p>
-<ol>
-<li><p>对象(object)类型<br>object类型是c#通用类型系统CTS中所有数据的终极基类，可以分配任何类型的值。一个值类型转换为对象类型时称为<strong>装箱</strong>，反过来称为<strong>拆箱</strong>;</p>
-<pre><code>object obj；
-obj = 100;//装箱
-</code></pre></li>
-<li><p>动态(Dynamic)类型<br>类型检查在运行时发生。</p>
-<pre><code>dynamic a = 20;
-</code></pre></li>
-<li><p>字符串(String)类型<br><code>String</code>是System.String类的别名，从对象类派生。有一个<code>@</code>分配方式（称作逐字字符串）。</p>
-<pre><code>String str1 = &quot;Hello world&quot;;
-String str2 = @&quot;C:\Windows&quot;;//转义字符会当作普通字符看待
-</code></pre></li>
-</ol>
-<p><code>@</code>字符串中所有的换行符缩进符等都计算在字符串长度内。</p>
-<h3 id="指针类型"><a href="#指针类型" class="headerlink" title="指针类型"></a>指针类型</h3><p>与c/c/c++有相同的类型；</p>
-<pre><code>type* identifier;
-</code></pre><h2 id="参数传递"><a href="#参数传递" class="headerlink" title="参数传递"></a>参数传递</h2><p>C#中有三种参数传递方式：值参数、引用参数、输出参数。</p>
-<p>引用参数：使用<code>ref</code>关键字声明引用参数。</p>
-<pre><code>public void swap(ref int x, ref int y)
-{
-    //...
-}
-</code></pre><p>输出参数：这个比较特殊，可以使用这个来从函数中返回多个值，而return只能返回一个值。<br>这个需要一个实例来说明：</p>
-<pre><code>using System;
+          这里记录的都是与c/c++不太一样的地方，
+数据类型值类型从类System.ValueType中派生，比较独特的有decimal``sbyte;C#提供了内置类型转换的方法，例如ToBoolean``ToInt32``ToString等等。
+可空类型(Nullable)这个单独列出来了因为很有趣，他
+          ...
 
-namespace test
-{
-    class NumberTest
-    {
-        public void getValue(out int a,out int b)
-        {
-            int temp = 10;
-            a = temp;
-            b = temp*2;
-        }
-
-        static void Main(string[] args)
-        {
-            NumberTest n = new NummbrTest();
-            int m,n;
-            n.getValue(out m,out n);
-            Console.WriteLine(m);
-            Console.WriteLine(n);
-            Console.Readkey();
-        }
-    }
-}
-</code></pre><h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><h3 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h3><p>数组也是引用类型，使用new来创建数组。</p>
-<pre><code>double[] arr1 = new double[10];
-double[] arr2 = new double[] {1,2,3,4,5};
-double[] arr3 = arr2;//这时arr3与arr2指向相同的内存位置。
-</code></pre><p>可以使用foreach循环来遍历数组元素。</p>
-<pre><code>foreach(double i in arr2)
-{
-    //...
-}
-</code></pre><h3 id="交错数组"><a href="#交错数组" class="headerlink" title="交错数组"></a>交错数组</h3><p>说白了就是数组的数组。与多维数组的区别在于它是不规则的（不知道可不可以这么说）。</p>
-<pre><code>int[][] marr = new int [2][] {new int{1,2,3},new int{4,5,6,7,8}};
-</code></pre><h3 id="参数数组"><a href="#参数数组" class="headerlink" title="参数数组"></a>参数数组</h3><p>如果声明一个方法时不能确定需要传递多少个参数，参数数组就派上了用场。<br>使用数组作为形参时，C#提供了params关键字，使调用数组为形参的方法时既可以传递数组实参也可以直接出传递一组数组。<br>实例：</p>
-<pre><code>//声明
-public int forAverage(params int[] arr)
-{
-    //...
-}
-
-//调用
-object.forAverage(1,2,3,4,5);//也可传递一数组名
-</code></pre><h3 id="动态数组"><a href="#动态数组" class="headerlink" title="动态数组"></a>动态数组</h3><p>动态数组基本上可以替代一个数组。但是动态数组允许使用索引在指定的位置添加和移除项目，动态数组会自动调整大小。也允许在内存中进行动态内存分配、增加、搜索、排序各项。<br>常用属性：</p>
-<blockquote>
-<p>Capacity - 获取或设置ArrayList可以包含的元素个数。<br>count - 获取ArrayList中实际包含的元素个数<br>item - 获取或设置指定索引处的元素</p>
-</blockquote>
-<p>常用方法：</p>
-<blockquote>
-<p>public virtual int Add(object value); 在ArrayList的末尾添加一个对象<br>public virtual void Insert(int index,object value); 在指定索引处插入一个元素<br>public virtual void Clear(); 移除所有元素</p>
-</blockquote>
-<h2 id="特性-Attribute"><a href="#特性-Attribute" class="headerlink" title="特性(Attribute)"></a>特性(Attribute)</h2><p>…</p>
-<h2 id="反射-Reflection"><a href="#反射-Reflection" class="headerlink" title="反射(Reflection)"></a>反射(Reflection)</h2><p>…</p>
-<h2 id="属性-Property"><a href="#属性-Property" class="headerlink" title="属性(Property)"></a>属性(Property)</h2><p>属性是类、结构和接口的命名成员。类或者结构中的成员变量或者方法称为域(Field)，而属性是域的扩展，使用访问器来读写和操作私有域。抽象域也可以有抽象属性。这些属性应该在派生类中被实现。</p>
-<pre><code>private string code=&quot;foobar&quot;;
-
-public string Code
-{
-    get
-    {
-        return code;
-    }
-    set
-    {
-        code = value;
-    }
-}
-</code></pre><h2 id="索引器-Indexer"><a href="#索引器-Indexer" class="headerlink" title="索引器(Indexer)"></a>索引器(Indexer)</h2><p>…</p>
-<h2 id="委托-Delegate"><a href="#委托-Delegate" class="headerlink" title="委托(Delegate)"></a>委托(Delegate)</h2><p>…</p>
-<h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2><p>…</p>
-<h2 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h2><p>…</p>
-<h2 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h2><p>…</p>
-
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/31/c-sharp-notes/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -678,12 +611,14 @@ public string Code
       
         
           
-            <p>刚刚需要往服务器上导入数据库，服务器上的phpmyadmin有上传限制，最大是8192kb，我要导入的数据库压缩完了还有8300多。。不想对服务器配置做啥改动，不能远程登录mysql,脚本也不太好跑。查了一下原来phpmyadmin的上传限制是受php.ini和自己的config控制的，mysql控制台并不受影响。干脆直接从命令行导入好了。</p>
-<pre><code>mysql&gt;use test;
-mysql&gt;set names utf8;
-mysql&gt;source D:/fuck.sql;
-</code></pre>
-          
+          刚刚需要往服务器上导入数据库，服务器上的phpmyadmin有上传限制，最大是8192kb，我要导入的数据库压缩完了还有8300多。。不想对服务器配置做啥改动，不能远程登录mysql,脚本也不太好跑。查了一下原来phpmyadmin的上传限制是受php.ini和自己的config控制的，mysql控
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/29/phpmyadmin-upload-filesize-limit/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -801,61 +736,17 @@ mysql&gt;source D:/fuck.sql;
       
         
           
-            <h2 id="一些基本概念"><a href="#一些基本概念" class="headerlink" title="一些基本概念"></a>一些基本概念</h2><h3 id="MBR分区表"><a href="#MBR分区表" class="headerlink" title="MBR分区表"></a>MBR分区表</h3><blockquote>
-<p>MBR - Master Boot Record 主引导记录/主引导扇区</p>
-</blockquote>
-<p>MBR分区方案中硬盘的每个扇区通过32位二进制数逻辑块地址（LBA）来标识。计算机开机后访问硬盘时要先读取第一个扇区，这个扇区（通常有512bytes）储存着主引导记录MBR（446bytes）和分区表DPT（64bytes）。主引导记录中装有开机管理程序（boot loader），分区表中记录了磁盘分区情况。由于每一条分区记录需要16个字节，因此MBR分区结构只能支持4个主分区，想得到4个以上的分区需要采用扩展分区，注意扩展分区只能有一个，在windows系统中默认划分一个主分区给系统，其余的全部划入扩展分区。扩展分区可以划分出多个逻辑分区。<br><img src="/assets/img/images/2015-10-23-about-booting_1.png" alt="img"></p>
-<p>MBR的局限性在于，分区表大小固定，只能支持4个主分区，而且最大只能支持到2.2TB的分区容量。随着硬盘技术的发展，MBR分区方案有些撑不住了，再加上win8/8.1的催化，GPT分区表逐渐成为主流。</p>
-<h3 id="GPT分区表"><a href="#GPT分区表" class="headerlink" title="GPT分区表"></a>GPT分区表</h3><blockquote>
-<p>GPT - GUID Partition Table 全局唯一标识分区表</p>
-</blockquote>
-<p>有些硬盘厂商注意到了MBR分区方案的容量局限，就把容量较大的产品升级到了4KB的扇区，这样使得MBR可以支持最大到16TB,但同时带来了关于在有较大的块的设备从BIOS启动时，如何最佳的划分分区。GPT分区方案中LBA是64位2进制数，因此对于扇区为512bytes的硬盘，容量可以达到9.4ZB。。。<br>GPT表的最开头，有一块类似MBR的表头，称为PMBR，存有引导程序和一个特殊标识用来表示次硬盘使用GPT分区方式。接下来的LBA1是GPT的分区表头，记录了硬盘的可用空间和分区表项的大小和数目，还有备份分割的位置。GPT有34个LBA区块记录，从LBA2到LBA33每个区块都可以记录4条分区记录，每条记录都达到128bytes。</p>
-<p><img src="/assets/img/images/2015-10-23-about-booting_2.png" alt="img"></p>
-<p>在一些MBR/GPT混合硬盘中，不同系统实现有些不一致，windows系统通常优先使用MBR。<br>再来一张windows的分区类型GUID<br><img src="/assets/img/images/2015-10-23-about-booting_3.png" alt="img"></p>
-<blockquote>
-<p><strong>相关链接</strong><br><a href="https://zh.wikipedia.org/wiki/4K%E5%AF%B9%E9%BD%90" target="_blank" rel="external">4K对齐</a></p>
-</blockquote>
-<h3 id="BIOS"><a href="#BIOS" class="headerlink" title="BIOS"></a>BIOS</h3><blockquote>
-<p>BIOS - Basic Input/Output System 基本输入输出系统</p>
-</blockquote>
-<p>BIOS是一种业界标准的固件接口，用于开机自检以及加载引导程序。BIOSB其实就是一个16位汇编代码，寄存器参数调用方式，静态链接，以及1MB以下内存固定编址形式的程序。现在的BIOS储存在主板上的只读储存器（EEPROM）或者是闪存（flash）中，可以更新也不怕断电了。</p>
-<h3 id="CMOS"><a href="#CMOS" class="headerlink" title="CMOS"></a>CMOS</h3><blockquote>
-<p>CMOS - Complementary Metal Oxide Semiconductor 互补金属氧化物半导体 (-.-)</p>
-</blockquote>
-<p>在计算机领域，CMOS就是一块重要的随机储存器（RAM），BIOS的所有信息都存在这里，最怕被抠电池。。</p>
-<h3 id="EFI-UEFI"><a href="#EFI-UEFI" class="headerlink" title="EFI(UEFI)"></a>EFI(UEFI)</h3><blockquote>
-<p>EFI - Extensible Firmware Interface 可扩展固件接口<br>UEFI - Unified Extensible Firmware Interface 统一可扩展固件接口</p>
-</blockquote>
-<p>UEFI是一种详细描述全新类型接口的标准，是适用于电脑的标准固件接口，旨在代替BIOS。UEFI通过C语言开发，拥有很多BIOS不具备的功能，比如图形化界面、多种多样的操作方式、允许植入硬件驱动程序（.efi）。</p>
-<blockquote>
-<p><strong>相关链接</strong><br><a href="http://www.uefi.org/" target="_blank" rel="external">UEFI官方首页</a><br><a href="http://drops.wooyun.org/binary/4788" target="_blank" rel="external">“暗云”bootkit木马详细技术分析</a></p>
-</blockquote>
-<h2 id="开机方式"><a href="#开机方式" class="headerlink" title="开机方式"></a>开机方式</h2><p>BIOS并不支持GPT，目前主要的开机方式无非BIOS+MBR引导和UEFI+GPT引导</p>
-<h3 id="BIOS-MBR"><a href="#BIOS-MBR" class="headerlink" title="BIOS+MBR"></a>BIOS+MBR</h3><p>这种方式的流程大概为以下几步：</p>
-<ol>
-<li>BIOS加电，初始化芯片组和存储器子系统，将自己解压到系统主存中，读取CMOS中的配置信息，跳转到自检程序对系统进行自检。</li>
-<li>根据CMOS中的储存设备读取顺序，BIOS将读取相应设备中的MBR，启动引导程序。此时BIOS的工作已经完成。</li>
-<li>引导程序接受控制权开始工作。</li>
-</ol>
-<p>引导程序主要任务也不多，提供开机选单、载入核心档案和转交其他的boot loader。硬盘的每个分区都可以有一个开机磁区，boot loader除了可以安装在MBR中外也可以安装到开机磁区中。<br>假设一个采用MBR分区的硬盘装有Windows和Linux双系统，整个流程可以用下图表示：<br><img src="/assets/img/images/2015-10-23-about-booting_4.png" alt="img"></p>
-<blockquote>
-<p><strong>安装Windows/Linux双系统最好先安装Windows的原因</strong></p>
-<ul>
-<li><p>Linux在安装的时候，你可以选择将开机管​​理程式安装在MBR或各别分割槽的开机磁区， 而且Linux的loader可以手动设定选单(就是上图的M1, M2…)<br>，所以你可以在Linux的boot loader里面加入Windows开机的选项；</p>
-</li>
-<li><p>Windows在安装的时候，他的安装程式会主动的覆盖掉MBR以及自己所在分割槽的开机磁区，你没有选择的机会， 而且他没有让我们自己选择选单的功能</p>
-</li>
-</ul>
-</blockquote>
-<h3 id="UEFI-GPT"><a href="#UEFI-GPT" class="headerlink" title="UEFI+GPT"></a>UEFI+GPT</h3><p>UEFI主要是依靠载入各种驱动程序来完成系统自检等工作，读取GPT分区表，载入系统。这楼里又要介绍一个ESP分区的概念。</p>
-<h4 id="ESP分区"><a href="#ESP分区" class="headerlink" title="ESP分区"></a>ESP分区</h4><blockquote>
-<p>ESP - EFI System partition</p>
-</blockquote>
-<p>ESP分区是一个FAT格式的系统分区，在windows系统下是不可见的，独立于操作系统之外。当操作系统被引导之后就不会在使用这个分区。因此一些系统级的维护工具以及数据非常适合存放在这里，比如boot loader，驱动程序，系统备份等等，甚至可以安装一个特殊的操作系统（PE）。</p>
-<p>开机时UEFI将先读取照硬盘的ESP分区，通过这个分区中的引导文件进行系统引导。</p>
-<p>UEFI添加了一个新的安全启动机制（secure boot），这个机制会验证即将启动的系统，通过验证系统才可以正常启动。这个机制为了解决的是黑客常用的rootkit攻击手段，但是同时也导致一些系统（包括Linux）不能正常启动。因此有时可能会需要关闭这个功能。</p>
+          一些基本概念MBR分区表
+MBR - Master Boot Record 主引导记录/主引导扇区
 
-          
+MBR分区方案中硬盘的每个扇区通过32位二进制数逻辑块地址（LBA）来标识。计算机开机后访问硬盘时要先读取第一个扇区，这个扇区（通常有512bytes）储存着主引导记录MBR（446bytes）和分
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/24/about-booting/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -973,14 +864,16 @@ mysql&gt;source D:/fuck.sql;
       
         
           
-            <h2 id="AD"><a href="#AD" class="headerlink" title="AD"></a>AD</h2><p>先扔到这里几个缩写</p>
-<blockquote>
-<p>AD DS - Active Dicretory Domain services<br>DC - Domain Controllers<br>OU -  Organizational Unit<br>GPO - Group Policy Object 组策略对象<br>GC - global catalog 全局编录<br>LDAP - Lightweight Directory Access Protocol 轻型目录访问协议<br>DN - distinguished name 可分辨名称<br>WSH - Windows Scripting Host Windows脚本宿主</p>
-</blockquote>
-<p>计算机在加入域的时候，会自动创建一个计算机账户。默认情况下该账户在Computer容器中，可通过redircmp命令修改这一设置。</p>
-<pre><code>redircmp DN
-</code></pre>
-          
+          AD先扔到这里几个缩写
+
+AD DS - Active Dicretory Domain servicesDC - Domain ControllersOU -  Organizational UnitGPO - Group Policy Object 组策略对象GC - global catalo
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/20/windows-server-2008-r2-notes/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1098,9 +991,15 @@ mysql&gt;source D:/fuck.sql;
       
         
           
-            <p>此文已河蟹。</p>
+          此文已河蟹。
 
           
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/16/a-mess/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1218,12 +1117,16 @@ mysql&gt;source D:/fuck.sql;
       
         
           
-            <p>前几天想要post新博客，照旧在本地测试效果，结果忽然发现jekyll server启动不了了<br><img src="/assets/img/images/2015-10-15-jekyll-server-failed_1.png" alt="img"></p>
-<p>目测是端口被占用，但是啥玩意会占用4000端口呢。。。netstat了下<br><img src="/assets/img/images/2015-10-15-jekyll-server-failed_2.png" alt="img"></p>
-<p>3608号进程在占用，继续查这个3608进程。。<br><img src="/assets/img/images/2015-10-15-jekyll-server-failed_3.png" alt="img"><br>我勒个草，竟然是个福昕的保护程序。。没啥话可说了，现在就是在抉择是杀掉这个进程还是换个jekyll serve端口(&gt;=&lt;)先把这篇提交了再说</p>
-<pre><code>$ jekyll serve --port 4001
-</code></pre>
-          
+          前几天想要post新博客，照旧在本地测试效果，结果忽然发现jekyll server启动不了了
+目测是端口被占用，但是啥玩意会占用4000端口呢。。。netstat了下
+3608号进程在占用，继续查这个3608进程。。我勒个草，竟然是个福昕的保护程序。。没啥话可说了，现在就是在抉择是杀掉这个进程还是
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/15/jekyll-server-failed/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1341,39 +1244,19 @@ mysql&gt;source D:/fuck.sql;
       
         
           
-            <h2 id="使用-SQL-Server-Management-Studio"><a href="#使用-SQL-Server-Management-Studio" class="headerlink" title="使用 SQL Server Management Studio"></a>使用 SQL Server Management Studio</h2><h3 id="更改安全身份验证模式"><a href="#更改安全身份验证模式" class="headerlink" title="更改安全身份验证模式"></a>更改安全身份验证模式</h3><ol>
-<li><p>在 SQL Server Management Studio 的对象资源管理器中，右键单击服务器，再单击“属性”。</p>
-</li>
-<li><p>在“安全性”页上的“服务器身份验证”下，选择新的服务器身份验证模式，再单击“确定”。</p>
-</li>
-<li><p>在 SQL Server Management Studio 对话框中，单击“确定”以确认需要重新启动 SQL Server。</p>
-</li>
-<li><p>在对象资源管理器中，右键单击您的服务器，再单击“重新启动”。如果运行有 SQL Server 代理，则也必须重新启动该代理。</p>
-</li>
-</ol>
-<h3 id="启用-sa-登录名"><a href="#启用-sa-登录名" class="headerlink" title="启用 sa 登录名"></a>启用 sa 登录名</h3><ol>
-<li><p>在对象资源管理器中，依次展开“安全性”、“登录名”，右键单击“sa”，再单击“属性”。</p>
-</li>
-<li><p>在“常规”页上，您可能需要为登录名创建密码并确认该密码。</p>
-</li>
-<li><p>在“状态”页上的“登录”部分，单击“启用”，然后单击“确定”</p>
-</li>
-</ol>
-<h2 id="使用-Transact-SQL"><a href="#使用-Transact-SQL" class="headerlink" title="使用 Transact-SQL"></a>使用 Transact-SQL</h2><h3 id="启用-sa-登录名-1"><a href="#启用-sa-登录名-1" class="headerlink" title="启用 sa 登录名"></a>启用 sa 登录名</h3><ol>
-<li>在“对象资源管理器”中，连接到 数据库引擎的实例。</li>
-<li>在标准菜单栏上，单击“新建查询”。</li>
-<li><p>将以下示例复制并粘贴到查询窗口中，然后单击“执行”。下面的示例启用 sa 登录名并设置一个新密码。</p>
-<pre><code>ALTER LOGIN sa ENABLE ;
-GO
-ALTER LOGIN sa WITH PASSWORD = &apos;&lt;enterStrongPasswordHere&gt;&apos; ;
-GO
-</code></pre></li>
-</ol>
-<blockquote>
-<p><strong>相关链接</strong><br><a href="https://msdn.microsoft.com/zh-cn/library/ms188670(v=sql.120" target="_blank" rel="external">MSDN-管理数据库引擎服务</a>.aspx#Anchor_2)</p>
-</blockquote>
+          使用 SQL Server Management Studio更改安全身份验证模式
+在 SQL Server Management Studio 的对象资源管理器中，右键单击服务器，再单击“属性”。
 
-          
+在“安全性”页上的“服务器身份验证”下，选择新的服务器身份验证模式，再单击“确定”。
+
+在 SQL
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/09/SQL-Server-change-authentication-mode/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1491,67 +1374,14 @@ GO
       
         
           
-            <h2 id="meta"><a href="#meta" class="headerlink" title="meta"></a>meta</h2><p><code>&lt;meta&gt;</code>标签提供了 HTML 文档的元数据(metadate)。元数据不会显示在客户端，而是被浏览器解析。<br>meta元素通常用于指定网页的描述，关键词，的文件的最后修改，作者，和其他元数据。<br>元数据可以被使用浏览器（如何显示内容或重新加载页面），搜索引擎（关键词），或其他 Web 服务调用。</p>
-<p><code>&lt;meta&gt;</code>标签通常位于<code>&lt;head&gt;</code>区域内,有如下几个属性；</p>
-<blockquote>
-<p><strong>charset</strong>-定义文档字符编码，常用值为utf-8<br><strong>http-equiv</strong>-提供了名称/值对中的名称，并指示服务器把名称/值对添加到发送给浏览器的MIME文档头部<br><strong>name</strong>-提供了名称/值对中的名称，通常情况下可自定义对自己和源文档的读者来说富有意义的名称，常用值有<code>keywords``description</code>等<br><strong>content</strong>-定义与<code>http+equiv</code>或<code>name</code>属性相关的元信息，即名称/值对中的值<br><strong>scheme</strong>-定义用于翻译<code>content</code>属性值的格式，html5中已删除此属性</p>
-</blockquote>
-<p>使用<code>http-equiv</code>属性，服务器将把名称/值对添加到发送给浏览器的内容头部，例如：</p>
-<pre><code>&lt;meta http-equiv=&quot;charset&quot; content=&quot;iso-8859-1&quot;&gt;
-&lt;meta http-equiv=&quot;expires&quot; content=&quot;31 Dec 2008&quot;&gt;
-</code></pre><p>浏览器头部就应包含：</p>
-<pre><code>content-type: text/html
-charset:iso-8859-1
-expires:31 Dec 2008
-</code></pre><p>所有服务器都至少要发送一个：<code>content-type:text/html</code>，这将告诉浏览器准备接受一个 HTML 文档。</p>
-<p>其它实例：</p>
-<pre><code>//定义文档关键词，用于搜索引擎
-&lt;meta name=&quot;keywords&quot; content=&quot;HTML, CSS, XML, XHTML, JavaScript&quot;&gt;
-//每30秒刷新页面
-&lt;meta http-equiv=&quot;refresh&quot; content=&quot;30&quot;&gt;
-//声明文档使用的字符编码
-&lt;meta charset=&apos;utf-8&apos;&gt;
-</code></pre><p>还有一种lang属性写法：</p>
-<pre><code>//简体中文
-&lt;html lang=&quot;zh-cmn-Hans&quot;&gt;
-//繁体中文
-&lt;html lang=&quot;zh-cmn-Hant&quot;&gt;
-//英文
-&lt;html lang=&quot;en&quot;&gt;
-</code></pre><p>lang属性的取值应该遵循 <a href="http://tools.ietf.org/html/bcp47" target="_blank" rel="external">BCP 47 - Tags for Identifying Languages</a></p>
-<blockquote>
-<p>详见知乎回答<a href="http://www.zhihu.com/question/20797118?utm_source=weibo&amp;utm_medium=weibo_share&amp;utm_content=share_question&amp;utm_campaign=share_sidebar" target="_blank" rel="external">http://zhi.hu/XyIa</a></p>
-</blockquote>
-<p>另外，meta的巧妙使用可以对网站SEO优化，相关的常用name值有<code>description``keywords``author``robots</code>等。</p>
-<pre><code>//页面描述
-&lt;meta name=&quot;description&quot; content=&quot;不超过150个字符&quot; /&gt;
-//页面关键字
-&lt;meta name=&quot;keywords&quot; content=&quot;&quot;/&gt;
-//网页作者
-&lt;meta name=&quot;author&quot; content=&quot;name, email@gmail.com&quot; /&gt;
-</code></pre><p>robots定义网页搜索引擎索引方式,对应content是一组使用英文逗号分割的值，通常有如下几种取值：<code>none``noindex``nofollow``all``cache``nocache``index``follow</code>等。</p>
-<pre><code>&lt;meta name=&quot;robots&quot; content=&quot;index,follow&quot; /&gt;
-</code></pre><blockquote>
-<p><strong>相关链接</strong><br><a href="https://msdn.microsoft.com/zh-cn/library/ff723998(v=expression.40" target="_blank" rel="external">MSDN文档-搜索引擎优化</a>.aspx)<br>p<a href="https://msdn.microsoft.com/zh-cn/library/ff724037(v=expression.40" target="_blank" rel="external">MSDN文档-<meta name="robots"></a>.aspx)</p>
-</blockquote>
-<p>mete还可以通过name属性的<code>msapplication-TileColor``msapplication-TileImage</code>两个值设置win8磁贴相关样式</p>
-<pre><code>//磁贴颜色
-&lt;meta name=&quot;msapplication-TileColor&quot; content=&quot;#000&quot;/&gt;
-//磁贴图标
-&lt;meta name=&quot;msapplication-TileImage&quot; content=&quot;icon.png&quot;/&gt;
-</code></pre><h2 id="link"><a href="#link" class="headerlink" title="link"></a>link</h2><p>link标签最常见的用途是链接样式表</p>
-<pre><code>&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;style.css&quot;&gt;
-</code></pre><p>link比较常用的属性有<code>rel``href``type</code>：<code>rel</code>属性是必须的，规定当前文档与被链接文档/资源之间的关系，属性较多，详见底下相关链接；href 属性规定外部资源（通常是样式表文件）的位置（URL）；type 属性规定被链接文档/资源的 MIME 类型，只有设置了<code>href</code>属性时才能使用此属性。</p>
-<blockquote>
-<p><strong>相关链接：</strong><br><a href="http://www.w3school.com.cn/tags/att_link_rel.asp" target="_blank" rel="external">HTML <link> 标签的 rel 属性</a><br><a href="http://www.iana.org/assignments/media-types/media-types.xhtml" target="_blank" rel="external">IANA MIME类型</a></p>
-</blockquote>
-<p>两个实例：</p>
-<pre><code>//添加RSS订阅
-&lt;link rel=&quot;alternate&quot; type=&quot;application/rss+xml&quot; title=&quot;RSS&quot; href=&quot;/rss.xml&quot; /&gt;
-//添加favicon icon
-&lt;link rel=&quot;shortcut icon&quot; type=&quot;image/ico&quot; href=&quot;/favicon.ico&quot; /&gt;
-</code></pre>
-          
+          meta&lt;meta&gt;标签提供了 HTML 文档的元数据(metadate)。元数据不会显示在客户端，而是被浏览器解析。meta元素通常用于指定网页的描述，关键词，的文件的最后修改，作者，和其他元数据。元数据可以被使用浏览器（如何显示内容或重新加载页面），搜索引擎（关键词），或其他 Web
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/08/html-head-tags/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1669,290 +1499,17 @@ expires:31 Dec 2008
       
         
           
-            <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>1.从<a href="http://jqury.com" target="_blank" rel="external">jqury.com</a>下载</p>
-<p>2.CDN</p>
-<pre><code>Baidu CDN:http://libs.baidu.com/jquery/1.10.2/jquery.min.js
+          安装1.从jqury.com下载
+2.CDN
+Baidu CDN:http://libs.baidu.com/jquery/1.10.2/jquery.min.js
 又拍云 CDN:http://upcdn.b0.upaiyun.com/libs/jquery/jquery-2.0.2.min.js
-新浪 CDN:http://lib.sinaapp.com/js/jquery/2.0.2/jquery-2.0.2.min.js
-Google CDN:http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js
-Microsoft CDN:http://ajax.htmlnetcdn.com/ajax/jQuery/jquery-1.10.2.min.js
-</code></pre><h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p><strong>基础语法： <code>$(selector).action()</code></strong></p>
-<h3 id="选择器"><a href="#选择器" class="headerlink" title="选择器"></a>选择器</h3><p>jquery选择器基于已存在的css选择器</p>
-<p><code>$(this)</code> - 当前元素<br><code>$(&quot;p&quot;)</code> - 所有 \<p\> 元素<br><code>$(&quot;p:first&quot;)</code> - 选取第一个\<p\>元素<br><code>$(&quot;p .test&quot;)</code> - 所有 class=”test” 的 \<p\> 元素<br><code>$(&quot;.test&quot;)</code> - 所有class=”test”的元素<br><code>$(&quot;#test&quot;)</code> - 所有 id=”test” 的元素<br><code>$(&quot;[href]&quot;)</code> - 带有href属性的元素<br><code>$(&quot;ui li:first&quot;)</code> - 选取第一个\<ul\>的第一个\<li\>元素<br><code>$(&quot;ui li:first-child&quot;)</code> - 选取每个\<ul\>的第一个\<li\>元素<br><code>$(&quot;a[target!=&#39;_blank&#39;]&quot;)</code> - 选取所有target属性值不等于”_blank”的\<a\>元素<br><code>$(&quot;:button&quot;)</code> - 选取所有type=”button”的\<input\>元素和\<button\>元素</button\></input\></a\></li\></ul\></li\></ul\></p\></p\></p\></p>
-<p>还有一些自定义的选择器</p>
-<p><code>$(&quot;tr:even&quot;)</code> - 选取奇数位置的\<tr\>，偶数为<code>:odd</code><br><code>$(&quot;tr:nth-child(odd)&quot;)</code> - 相对于元素的父元素而非当前所选择的元素来选取偶数位置<br><code>$(&quot;td:contains(monkey)&quot;)</code> - 选择含有’monkey’的表格单元</tr\></p>
-<p>注意<code>:nth-child</code>是jquery中唯一从1开始计数的选择符</p>
-<h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2><h3 id="文档就绪事件"><a href="#文档就绪事件" class="headerlink" title="文档就绪事件"></a>文档就绪事件</h3><p>为防止jquery代码在文档未加载完成时就执行，最好将函数封装在document ready函数中：</p>
-<pre><code>$(document).ready(function(){
+          ...
 
-    // jQuery code...
-
-});
-</code></pre><p>简写为：</p>
-<pre><code>$(function(){
-
-    // jQuery code...
-
-    });
-</code></pre><p>或者：</p>
-<pre><code>$().ready(function(){
-
-         //jQuery code...
-
-    })
-</code></pre><h3 id="常见DOM事件"><a href="#常见DOM事件" class="headerlink" title="常见DOM事件"></a>常见DOM事件</h3><p>鼠标事件：<code>click</code> <code>dbclick</code> <code>mouseenter</code> <code>mouseleave</code> <code>mouseup</code> <code>hover</code> <code>mousedown</code><br>键盘事件：<code>keypress</code> <code>keydown</code> <code>keyup</code><br>表单事件：<code>submit</code> <code>change</code> <code>focus</code> <code>blur</code><br>文档/窗口事件：<code>load</code> <code>resize</code> <code>scroll</code> <code>unload</code></p>
-<pre><code>$(&quot;p&quot;).click(function(){
-    $(this).hide();
-    });
-
-$(&quot;input&quot;).focus(function(){
-      $(this).css(&quot;background-color&quot;,&quot;#cccccc&quot;);
-        });
-</code></pre><h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><ol>
-<li><p>显示/隐藏</p>
-<pre><code>//可选参数speed规定变化速度，可取&quot;slow&quot; &quot;fast&quot;或毫秒数
-//可选参数callback为变化完成之后执行的函数
-$(selector).hide(speed,callback);
-$(selector).show(speed,callback);
-//toggle()方法可切换hide()和show()
-$(selector).toggle(speed,callback);
-</code></pre></li>
-<li><p>淡入淡出</p>
-<pre><code>//淡入隐藏的元素
-$(selector).fadeIn(speed,callback);
-//淡出可见元素
-$(selector).fadeOut(speed,callback);
-//在fadeIn()和fadeOut()间进行切换
-$(selector).fadeToggle(speed,callback);
-//渐变为给定的不透明度(opacity)，值介于 0 与 1 之间，speed与opacity为必选参数
-$(selector).fadeTo(speed,opacity,callback);
-</code></pre></li>
-<li><p>滑动</p>
-<pre><code>$(selector).slideDown(speed,callback);
-$(selector).slideUp(speed,callback);
-$(selector).slideToggle(speed,callback);
-</code></pre></li>
-<li><p>动画</p>
-<pre><code>//必需的params定义形成动画的css属性，可同时操作多个属性
-//要使用驼峰式书写属性名，如`paddingLeft`而不是`padding-left`
-$(selector).animate({params},speed,callback);
-
-//停止动画或效果
-//stopAll参数规定是否应该清除动画队列，默认为false，仅停止活动的动画
-//goToEnd参数规定是否立即完成当前动画
-$(selector).stop(stopAll=false,goToEnd=false);
-</code></pre></li>
-</ol>
-<p>实例：</p>
-<pre><code>$(&quot;button&quot;).click(function(){
-  $(&quot;div&quot;).animate({
-    left:&apos;250px&apos;,
-    opacity:&apos;0.5&apos;,
-    height:&apos;150px&apos;,
-    width:&apos;150px&apos;
-      });
-});
-</code></pre><p><strong>注意：对元素位置进行操作，要将元素的css position属性设为<code>absolute``fixed</code>或者<code>relative</code></strong></p>
-<p>jQuery中有一种chanining技术，允许在相同元素上依次执行多条命令</p>
-<pre><code>//可进行换行和缩进以美观
-$(&quot;#p1&quot;).css(&quot;color&quot;,&quot;red&quot;).slideUp(2000).slideDown(2000);
-</code></pre><h2 id="DOM操作"><a href="#DOM操作" class="headerlink" title="DOM操作"></a>DOM操作</h2><h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3><pre><code>//设置或获取文本内容
-$(selector).text();
-//设置或获取转义后的内容
-$(selector).html();
-//设置或获取输入框内容
-$(selector).val();
-//设置或获取属性
-$(selector).attr();
-</code></pre><p><code>text()``html()``val()``attr()</code>拥有回调函数<code>callback(i,origText)</code>,i为当前元素下标，origText为原始值</p>
-<pre><code>//在被选元素的结尾插入一个或多个内容
-$(selector).append();
-//在被选元素的开头插入一个或多个内容
-$(selector).prepend();
-//在被选元素之后插入一个或多个内容
-$(selector).after();
-//在被选元素之前插入一个或多个内容
-$(selector).before();
-</code></pre><p><code>after()/before()</code>与<code>append()/prepend()</code>的区别在于，前者是将内容插入到对象中来，作为元素的子节点，后者是将内容插入到对象的前后，作为元素的兄弟节点。</p>
-<p>jQuery通常使用两种方法删除元素：</p>
-<pre><code>//删除被选元素及其子元素，可选参数selector可对删除元素进行过滤
-$(selector).remove(selector);
-//删除被选元素的子元素
-$(selector)..empty();    
-</code></pre><h3 id="CSS操作"><a href="#CSS操作" class="headerlink" title="CSS操作"></a>CSS操作</h3><pre><code>//添加class属性
-$(selector).addClass(className);
-//删除class属性
-$(selector).removeClass(className);
-//add/remove切换操作
-$(selector).toggleClass(classname);
-</code></pre><p>实例：</p>
-<pre><code>  .important{font-weight:bold;font-size:xx-large;}
-  .blue{color:blue;}
-
-  $(&quot;button&quot;).click(function(){
-$(&quot;h1,h2,p&quot;).addClass(&quot;blue&quot;);
-$(&quot;div&quot;).addClass(&quot;important blue&quot;);
-  });
-</code></pre><p>还有一个更实用的<code>css()</code>方法，设置或返回被选元素的一个或多个样式属性</p>
-<pre><code>//返回首个匹配的值
-$(&quot;p&quot;).css(&quot;background-color&quot;);
-//设置属性值
-$(&quot;p&quot;).css(&quot;background-color&quot;,&quot;yellow&quot;);
-//设置多个属性值
-$(&quot;p&quot;).css({&quot;background-color&quot;:&quot;yellow&quot;,&quot;font-size&quot;:&quot;200%&quot;});
-</code></pre><p>jQuery提供了多个处理尺寸的方法。<br><img src="/assets/img/images/css-size.png" alt="css-size"></p>
-<pre><code>//设置或返回元素的宽度（不包括内边距、边框或外边距）
-$(selector).width();
-//设置或返回元素的高度（不包括内边距、边框或外边距）
-$(selector).height();
-//返回元素的宽度（包括内边距）
-$(selector).innerWidth();
-//返回元素的高度（包括内边距）
-$(selector).innerHeight();
-//返回元素的宽度（包括内边距和边框）
-$(selector).outerWidth();
-//方法返回元素的高度（包括内边距和边框）
-$(selector).outerHeight();
-</code></pre><h3 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h3><ol>
-<li><p>向上遍历</p>
-<pre><code>//返回每个被选元素的直接父元素
-$(selector).parent();
-//返回被选元素的所有祖先，直到文档的根元素&lt;html&gt;,可传入参数制定返回的祖先
-$(selector).parents();
-//返回制定元素之间的祖先元素
-$(selector).parentsUntil(selector)
-</code></pre></li>
-<li><p>向下遍历</p>
-<pre><code>//返回被选元素所有直接子元素，客串如参数指定返回的子元素
-$(selector).children();
-//返回被选元素的所有后代，直到最后一代,注意参数的传递
-$(selector).find(&quot;*&quot;);
-</code></pre></li>
-</ol>
-<p><strong>注意：find()需要传入参数”*”以返回所有后代</strong>，也可以指定子元素。</p>
-<p>实例：</p>
-<pre><code>//返回class=&quot;1&quot;的所有&lt;p&gt;
-$(document).ready(function(){
-  $(&quot;div&quot;).children(&quot;p.1&quot;);
-});
-</code></pre><ol>
-<li><p>水平遍历</p>
-<pre><code>//返回被选元素所有同胞元素，可传入参数指定同胞元素
-$(selector).siblings();
-//返回被选元素下一个/上一个同胞元素    
-$(selector).next();
-$(selector).prev();
-//返回被选元素所有跟随/前面同胞元素
-$(selector).nextAll();
-$(selector).prevAll();
-//返回指定元素之间所有同胞元素
-$(selector).nextUntil(selector);
-$(selector).prevUntil(selector);
-</code></pre></li>
-<li><p>过滤</p>
-<pre><code>//返回被选元素的首个元素
-$(selector).first();
-//返回被选元素的最后一个元素
-$(selector).last();
-//返回被选元素中指定索引的元素
-$(selector).eq(index);
-//返回匹配的元素
-$(selector).filter(selector);
-//返回不匹配的所有元素
-$(selector).not(selector);
-</code></pre></li>
-</ol>
-<p>首个元素的索引号是0。</p>
-<h2 id="jQuery-AJAX"><a href="#jQuery-AJAX" class="headerlink" title="jQuery AJAX"></a>jQuery AJAX</h2><p>jQuery将javascript的AJAX相关函数进一步封装，使用起来非常方便</p>
-<blockquote>
-<p>总是记不住这个单词怎么写<br>AJAX = Asynchronous JavaScript and XML</p>
-</blockquote>
-<p>load()函数从服务器加载数据并把返回的数据放入被选元素中</p>
-<pre><code>//必需的 URL 参数规定您希望加载的 URL。
-//可选的 data 参数规定与请求一同发送的查询字符串键/值对集合。
-$(selector).load(URL,data,callback);
-</code></pre><p><code>callback</code>函数可设置如下参数:</p>
-<blockquote>
-<p><code>responseTxt</code> - 包含调用成功时的结果内容<br><code>statusTXT</code> - 包含调用的状态<br><code>xhr</code> - 包含 XMLHttpRequest 对象</p>
-</blockquote>
-<p>实例：</p>
-<pre><code>    //demo_test.txt内容为
-    //&lt;h2&gt;jQuery and AJAX is FUN!!!&lt;/h2&gt;
-//&lt;p id=&quot;p1&quot;&gt;This is some text in a paragraph.&lt;/p&gt;
-
-    //获取txt中id为p1的元素内容
-    //执行错误返回错误码及错误信息
-    $(&quot;button&quot;).click(function(){
-      $(&quot;#div1&quot;).load(&quot;demo_test.txt #p1&quot;,function(responseTxt,statusTxt,xhr){
-        if(statusTxt==&quot;success&quot;)
-          alert(&quot;External content loaded successfully!&quot;);
-        if(statusTxt==&quot;error&quot;)
-          alert(&quot;Error: &quot;+xhr.status+&quot;: &quot;+xhr.statusText);
-      });
-    });
-</code></pre><p><code>get()</code>和<code>post()</code>方法用于通过 HTTP GET 或 POST 请求从服务器请求数据。</p>
-<blockquote>
-<p>GET 基本上用于从服务器获得（取回）数据。可能返回缓存数据。<br>POST 向指定的资源提交要处理的数据,也可用于从服务器获取数据。不过，POST 方法不会缓存数据，并且常用于连同请求一起发送数据。</p>
-</blockquote>
-<pre><code>//回调函数callback(data,status),第一个参数为请求页面内容，第二个参数为请求状态
-$.get(URL,callback);
-
-//可选的 data 参数规定连同请求发送的数据
-//可选参数callback(data,status)
-$.post(URL,data,callback);
-</code></pre><p>实例：</p>
-<pre><code>$(&quot;button&quot;).click(function(){
-  $.post(&quot;demo_test_post.html&quot;,
-  {
-       name:&quot;Donald Duck&quot;,
-       city:&quot;Duckburg&quot;
-  },
-  function(data,status){
-    alert(&quot;Data: &quot; + data + &quot;nStatus: &quot; + status);
-  });
-});
-</code></pre><h2 id="jQuery-JSONP"><a href="#jQuery-JSONP" class="headerlink" title="jQuery JSONP"></a>jQuery JSONP</h2><p><strong>JSONP(JSON with Padding)</strong> 是 json 的一种”使用模式”，可以让网页跨域读取数据。由于同源策略的存在，AJAX无权限进行跨域请求，为了解决这个头疼的问题，开发人员逐渐完善了JSONP这种非正式传输协议。该协议的要点就是允许用户传递一个callback参数给服务端，服务端返回数据时会将这个callback参数作为函数来封装JSON数据。</p>
-<blockquote>
-<p>同源策略(Same-Origin Policy)：相同domain/ip/端口/协议是为同一个域或源(origin),非同源的脚本不能访问对方的资源，除非得到授权。<br><strong>相关链接：</strong><br><a href="http://www.jianshu.com/p/4e17445d66e2" target="_blank" rel="external">同源策略——浏览器的安全卫士</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/Security/Same-origin_policy" target="_blank" rel="external">JavaScript的同源策略</a><br><a href="http://blog.csdn.net/broadview2006/article/details/8595191" target="_blank" rel="external">浏览器的同源策略</a></p>
-</blockquote>
-<p>jQuery可以很方便的实现JSONP调用，下面贴出一个简单实例。<br>服务端test.php代码：</p>
-<pre><code>&lt;?php
-    header(&apos;Content-type: application/json&apos;);
-    //获取回调函数名
-    $jsoncallback = htmlspecialchars($_REQUEST [&apos;jsoncallback&apos;]);
-    //json数据
-    $json_data = &apos;[&quot;customername1&quot;,&quot;customername2&quot;]&apos;;
-    //输出jsonp格式的数据
-    echo $jsoncallback . &quot;(&quot; . $json_data . &quot;)&quot;;
-?&gt;
-</code></pre><p>客户端实现：</p>
-<pre><code>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-    &lt;title&gt;JSONP 实例&lt;/title&gt;
-    &lt;script src=&quot;http://apps.bdimg.com/libs/jquery/1.8.3/jquery.js&quot;&gt;&lt;/script&gt;    
-&lt;/head&gt;
-&lt;body&gt;
-&lt;div id=&quot;divCustomers&quot;&gt;&lt;/div&gt;
-&lt;script&gt;
-$.getJSON(&quot;test.php?jsoncallback=?&quot;, function(data) {
-
-    var html = &apos;&lt;ul&gt;&apos;;
-    for(var i = 0; i &lt; data.length; i++)
-    {
-        html += &apos;&lt;li&gt;&apos; + data[i] + &apos;&lt;/li&gt;&apos;;
-    }
-    html += &apos;&lt;/ul&gt;&apos;;
-
-    $(&apos;#divCustomers&apos;).html(html);
-});
-&lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre><p>url中的<code>?</code>表示让jQuery自动处理返回的callback数据，也可自定义回调函数名称，默认为jQuery自动生成的随机函数名。</p>
-<p>附上一个说的比较详细的博客：<br><a href="http://www.cnblogs.com/dowinning/archive/2012/04/19/json-jsonp-jquery.html" target="_blank" rel="external">说说JSON和JSONP，也许你会豁然开朗，含jQuery用例</a></p>
-
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/01/jqury-notes/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -2041,7 +1598,7 @@ $.getJSON(&quot;test.php?jsoncallback=?&quot;, function(data) {
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">59</span>
+                <span class="site-state-item-count">60</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -2062,47 +1619,47 @@ $.getJSON(&quot;test.php?jsoncallback=?&quot;, function(data) {
           
             
               <span class="links-of-author-item">
-                <a href="https://github.com/monkeyWzr" target="_blank" title="github">
+                <a href="https://github.com/monkeyWzr" target="_blank" title="GitHub">
                   
-                    <i class="fa fa-fw fa-globe"></i>
+                    <i class="fa fa-fw fa-github"></i>
                   
-                  github
+                  GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
-                <a href="https://twitter.com/wzr119" target="_blank" title="twitter">
+                <a href="https://twitter.com/wzr119" target="_blank" title="Twitter">
                   
-                    <i class="fa fa-fw fa-globe"></i>
+                    <i class="fa fa-fw fa-twitter"></i>
                   
-                  twitter
+                  Twitter
                 </a>
               </span>
             
               <span class="links-of-author-item">
-                <a href="https://www.facebook.com/monkeywzr" target="_blank" title="facebook">
+                <a href="https://www.facebook.com/monkeywzr" target="_blank" title="Facebook">
                   
-                    <i class="fa fa-fw fa-globe"></i>
+                    <i class="fa fa-fw fa-facebook-official"></i>
                   
-                  facebook
+                  Facebook
                 </a>
               </span>
             
               <span class="links-of-author-item">
-                <a href="http://weibo.com/1244449463" target="_blank" title="weibo">
+                <a href="https://plus.google.com/u/0/109706734318766815600" target="_blank" title="Google+">
                   
-                    <i class="fa fa-fw fa-globe"></i>
+                    <i class="fa fa-fw fa-google-plus"></i>
                   
-                  weibo
+                  Google+
                 </a>
               </span>
             
               <span class="links-of-author-item">
-                <a href="https://www.zhihu.com/people/xiao-hui-ji-hui-shang-tian" target="_blank" title="zhihu">
+                <a href="http://weibo.com/1244449463" target="_blank" title="微博">
                   
-                    <i class="fa fa-fw fa-globe"></i>
+                    <i class="fa fa-fw fa-weibo"></i>
                   
-                  zhihu
+                  微博
                 </a>
               </span>
             

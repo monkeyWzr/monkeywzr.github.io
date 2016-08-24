@@ -125,8 +125,36 @@
   
 
 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-83047470-1', 'auto');
+  ga('send', 'pageview');
+</script>
 
 
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?729720b53fc2c18615d4ed229708c999";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=58089160";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
 
 
 
@@ -330,46 +358,25 @@
       
         
           
-            <h2 id="元字符"><a href="#元字符" class="headerlink" title="元字符"></a>元字符</h2><ul>
-<li><code>.</code> 匹配任何单个字符</li>
-<li><code>*</code> 匹配任意长度</li>
-<li><code>+</code> 匹配前面的一个或多个实例</li>
-<li><code>?</code> 匹配前面的0个或多个实例</li>
-<li><code>[...]</code> 匹配方括号内的任意字符</li>
-<li><code>^</code> 匹配字符串开头</li>
-<li><code>$</code> 匹配字符串末尾</li>
-<li><code>{n,m}</code> 匹配前面的字符出现n到m次</li>
-<li><code>{n,}</code> 匹配前面的字符至少出现三次</li>
-</ul>
-<h2 id="修饰符"><a href="#修饰符" class="headerlink" title="修饰符"></a>修饰符</h2><p>修饰符位于结束定界符之后，用来改变正则表达式的行为。</p>
-<ul>
-<li><code>i</code> 不区分大小写</li>
-<li>/s 忽略转义回车</li>
-<li>/U</li>
-</ul>
-<h2 id="匹配字符域"><a href="#匹配字符域" class="headerlink" title="匹配字符域"></a>匹配字符域</h2><ul>
-<li><code>[char list]</code> 匹配方括号内的任意字符集，包括空格。此例即匹配c、h、a、r、空格、l、i、s、t中的任一字符</li>
-<li><code>[^char list]</code> 不匹配方括号内的字符，也可用<code>!</code></li>
-<li><code>[a-z]</code> 匹配字符a-z,</li>
-</ul>
-<p>还有几个–忘了叫啥了的–</p>
-<ul>
-<li><code>\w</code> 相当与[A-Za-z0-9]</li>
-<li><code>\s</code> 匹配空白字符，相当与[\t\r\n]</li>
-<li><code>\d</code> 匹配数字，[0-9]<br><em>注：大写效果与小写相反</em></li>
-</ul>
-<p>实例1：</p>
-<pre><code>//下面两种效果相同
-//匹配由字母数字下划线连字符组成，长度在3-15的用户名
-//注意连字符需要转义
-/^[\w_\-]{3,15}$/
-/^[A-Za-z0-9_\-]{3,15}$/
-</code></pre><p>实例2：</p>
-<pre><code>//匹配email地址
-//本地部分包含A-Za-z0-9等，不包含括号，#@;等
-/^([\w!#@$&amp;&apos;*+\/=?^&apos;{|}~.\-]+)@([\w]+\.)
-</code></pre>
-          
+          元字符
+. 匹配任何单个字符
+* 匹配任意长度
++ 匹配前面的一个或多个实例
+? 匹配前面的0个或多个实例
+[...] 匹配方括号内的任意字符
+^ 匹配字符串开头
+$ 匹配字符串末尾
+{n,m} 匹配前面的字符出现n到m次
+{n,} 匹配前面的字符至少出现三次
+
+修饰符修饰符位于结束定界符之后，用来
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/09/30/regular-expression-notes/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -487,13 +494,14 @@
       
         
           
-            <p>教务系统中的课表以图片形式显示，又不知何故不允许另存，禁用右键也无效（教务使用体验极差，这方面倒是做的细心V.V），以前是用chrome开发者工具翻一下resource就能找到图片，拖下来就成。<br><img src="/img/2015-08-29-get-img-from-base64_1.png" alt="图片"><br>昨天想再把新学期课表存下来发现不行了，直接拖到电脑上不管用，拖到新标签页里一堆乱码<br><img src="/img/2015-08-29-get-img-from-base64_2.png" alt="图片"><br>拖到sublime text里面，直接变成了整齐的编码<br><img src="/img/2015-08-29-get-img-from-base64_3.png" alt="图片"><br>网上查一下之后知道图片经base64编码，我拖下来得到的就是编码后的数据，重现的话写个html就行了</p>
-<pre><code>&lt;span&gt;&lt;img src=&quot;data:image/jpg;base64,编码后的数据&quot;&gt;&lt;/span&gt;
-看出来了吧，上面图里我拖下来的其实是src里的完整格式。
-</code></pre><p>这样就把图片的“文字版”写到html里了，用浏览器访问即可解码出图片，可以随便保存啦。</p>
-<p>这种用base64编码之后传输图片的形式还是比较不错，从别人的博客上摘录下“减少了HTTP请求，某些文件可以避免跨域的问题，没有图片更新要重新上传，还要清理缓存的问题”这些优点。但实际上这种方式并不像想象中那样可以节省流量，文件反而增大约35%，所以大图片就不要用这种方法了。</p>
+          教务系统中的课表以图片形式显示，又不知何故不允许另存，禁用右键也无效（教务使用体验极差，这方面倒是做的细心V.V），以前是用chrome开发者工具翻一下resource就能找到图片，拖下来就成。昨天想再把新学期课表存下来发现不行了，直接拖到电脑上不管用，拖到新标签页里一堆乱码拖到sublime te
+          ...
 
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/08/29/get-img-from-base64/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -611,8 +619,14 @@
       
         
           
-            <h3 id="还没开始写，但是既然大刘已经得奖了，先在这里留个位置"><a href="#还没开始写，但是既然大刘已经得奖了，先在这里留个位置" class="headerlink" title="还没开始写，但是既然大刘已经得奖了，先在这里留个位置"></a>还没开始写，但是既然大刘已经得奖了，先在这里留个位置</h3>
+          还没开始写，但是既然大刘已经得奖了，先在这里留个位置
           
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/08/29/Three-Body-problem/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -730,13 +744,17 @@
       
         
           
-            <p>最近忽然需要截取长图，手头只有windows自带的截图工具和可以忽略的qq截图工具，网上搜了一下之后感觉FSCapture这小工具还不错，官网貌似被墙。</p>
-<blockquote>
-<h3 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a>下载链接</h3><p><a href="http://gsf-cf.softonic.com/239/c7f/1e22dad1b55ee81b02c103678723ce0caa/file?SD_used=0&amp;channel=WEB&amp;fdh=no&amp;id_file=44633&amp;instance=softonic_en&amp;type=PROGRAM&amp;Expires=1439480028&amp;Signature=Z00BEX-HTbfO0aeW77n7rRacarrJz4qmYruoB0nP~aJg4fiG4ae6vtXUHA8VJE57bOSJG3qFG9y2YfrxWxvnlkNz4qGRK6gdM~dtGwrY~j~ynkRLsyvHqlNc0TYtdDYkxEK3BBezm8~oIlcNxQyVKoQZ6mbTFm7~DjmcEMk167Q_&amp;Key-Pair-Id=APKAJUA62FNWTI37JTGQ&amp;filename=FSCaptureSetup69.exe" target="_blank" rel="external">FSCapture6.9</a></p>
-<h3 id="注册码"><a href="#注册码" class="headerlink" title="注册码"></a>注册码</h3><p>企业版序列号<br>name：<code>bluman</code><br>serial/序列号/注册码：<code>VPISCJULXUFGDDXYAUYF</code></p>
-</blockquote>
+          最近忽然需要截取长图，手头只有windows自带的截图工具和可以忽略的qq截图工具，网上搜了一下之后感觉FSCapture这小工具还不错，官网貌似被墙。
 
-          
+下载链接FSCapture6.9
+注册码企业版序列号name：blumanserial/序列号/注册码：VPISCJULXUFGDDXYAUYF
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/08/13/FSCapture-serial/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -854,93 +872,18 @@
       
         
           
-            <h2 id="0-反斜杠"><a href="#0-反斜杠" class="headerlink" title="0. 反斜杠"></a>0. 反斜杠</h2><p>反斜杠可以将在markdown中有特殊意义的字符作为正常字符插入。</p>
-<h2 id="1-标题"><a href="#1-标题" class="headerlink" title="1. 标题"></a>1. 标题</h2><p>类Setext形式<br><code>=</code>和<code>-</code>的数量随意，效果效果是相同的。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">This is H1</div><div class="line">==========</div><div class="line"></div><div class="line">This is H2</div><div class="line">----------</div></pre></td></tr></table></figure>
-<p>类atx形式<br>也可以写成前后对称的形式。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">#  H1</div><div class="line"></div><div class="line">##  H2</div><div class="line"></div><div class="line">######  H6</div></pre></td></tr></table></figure>
-<p>注意在#与标题间必须存在至少一个空格或制表符</p>
-<h2 id="2-引用"><a href="#2-引用" class="headerlink" title="2. 引用"></a>2. 引用</h2><p>>在段落前加<code>&gt;</code>进行引用。<br>    在段落前加<code>&gt;</code>进行引用。<br>    在段落前加<code>&gt;</code>进行引用。</p>
-<p>>或者每行前加<code>&gt;</code>进行引用。<br>>或者每行前加<code>&gt;</code>进行引用。<br>>或者每行前加<code>&gt;</code>进行引用。</p>
-<p>效果相同。</p>
-<blockquote>
-<p>在段落或者每句前加<code>&gt;</code>进行引用<br>在段落或者每行前加<code>&gt;</code>进行引用。<br>在段落或者每行前加<code>&gt;</code>进行引用。</p>
-</blockquote>
-<p>加上不同数量的<code>&gt;</code>实现嵌套引用。</p>
-<h2 id="3-代码区块"><a href="#3-代码区块" class="headerlink" title="3. 代码区块"></a>3. 代码区块</h2><p>代码区块只需一个制表符或者4个空格：</p>
-<p>当你想插入代码区块</p>
-<pre><code>只需4个空格或者1个制表符
-</code></pre><p>标记一小段代码可以用反引号`包起来，在本文随处可见<code>效果</code>。</p>
-<p>也可用<code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"> </div></pre></td></tr></table></figure></code></p>
-<pre><code>代码区块
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">将产生相同效果。但是此种方法并非标准markdown语法，有时可能会解析不正确。</div><div class="line">在代码区块中可以方便的插入HTML原始码，Markdown会自动将`&lt;``&amp;`等转换为HTML实体。</div><div class="line"></div><div class="line"></div><div class="line">## 4. 列表</div><div class="line"></div><div class="line">无序列表</div></pre></td></tr></table></figure>
-</code></pre><ul>
-<li>red</li>
-</ul>
-<ul>
-<li>green</li>
-</ul>
-<ul>
-<li>yellow<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">三种形式等同。</div><div class="line"></div><div class="line">* red</div><div class="line">+ green</div><div class="line">- yellow</div><div class="line"></div><div class="line">有序列表</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<ol>
-<li>吃</li>
-<li>粑粑<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">1. 吃</div><div class="line">2. 粑粑</div><div class="line"></div><div class="line">句点后要有空格。数字是多少都无所谓，产生的效果相同。</div><div class="line"></div><div class="line">列表项下包含段落时，段落必须以1个制表符或4个缩进开头。</div><div class="line">如果列表项下需要引用，`&gt;`需要缩进。</div><div class="line">列表项下包含代码区块时，需要双倍缩进（2个制表符或者8个空格）。</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<ul>
-<li><p>列表项下引用</p>
-<blockquote>
-<p>空行并缩进<br>```</p>
-</blockquote>
-</li>
-<li><p>列表项下引用</p>
-<blockquote>
-<p>空行并缩进</p>
-</blockquote>
-</li>
-</ul>
-<h2 id="5-分割线"><a href="#5-分割线" class="headerlink" title="5. 分割线"></a>5. 分割线</h2><p>以下形式均可产生相同分割线，只要是3个以上的<code>*``+``-</code>即可。</p>
-<pre><code>* * *
-+++
------
-</code></pre><h2 id="6-强调"><a href="#6-强调" class="headerlink" title="6. 强调"></a>6. 强调</h2><p>*red*<br>_red_<br>都会产生 <em>red</em> 的效果。</p>
-<p>**green**<br>__green__<br>都会产生 <strong>green</strong> 的效果。</p>
-<p>强调可以直接插在句子中。</p>
-<h2 id="7-链接"><a href="#7-链接" class="headerlink" title="7. 链接"></a>7. 链接</h2><p>行内式</p>
-<pre>这是[Google](http://google.com)搜索.</pre>   
-这是[Google](http://google.com)搜索.
+          0. 反斜杠反斜杠可以将在markdown中有特殊意义的字符作为正常字符插入。
+1. 标题类Setext形式=和-的数量随意，效果效果是相同的。
+12345This is H1==========This is H2----------
+类atx形式也可以写成前后对称的形式。
+12345#  H1#
+          ...
 
-参考式
-<pre>
-这是[Google][id1]搜索
-这是[Baidu][id2]搜索
-这是[Github][]。
-这是[Twitter][]。
-
-[id1]:https://google.com
-[id2]:https://baidu.com
-[Github]:https://github.com
-[Twitter]:https://twitter.com
-
-</pre>
-
-<p>这是<a href="https://google.com" target="_blank" rel="external">Google</a>搜索<br>这是<a href="https://baidu.com" target="_blank" rel="external">Baidu</a>搜索<br>这是<a href="https://github.com" target="_blank" rel="external">Github</a>。<br>这是<a href="https://twitter.com" target="_blank" rel="external">Twitter</a>。</p>
-<p>Markdown支持以比较简短的自动链接形式来处理网址和电子邮件信箱，只需用&lt;&gt;括起来。<br>    <a href="https://google.com" target="_blank" rel="external">https://google.com</a><br>会自动转换为<br>    <a href="https://google.com/" target="_blank" rel="external">https://google.com/</a></p>
-<h2 id="8-图片"><a href="#8-图片" class="headerlink" title="8. 图片"></a>8. 图片</h2><p>行内式格式为：</p>
-<pre>![图片替代文字](/path/to/img.jpg)</pre>
-
-<p>参考式像这样：</p>
-<pre>
-![Alt text][id]
-[id]: url/to/image "Optional title attribute"  title文字部分可缺省
-</pre>
-
-
-<h2 id="详细内容参见"><a href="#详细内容参见" class="headerlink" title="详细内容参见"></a>详细内容参见</h2><p>点击进入<br><a href="https://gitcafe.com/riku/Markdown-Syntax-CN/blob/master/syntax.md" target="_blank" rel="external">Markdown语法简体中文版</a><br><a href="http://daringfireball.net/projects/markdown/syntax" target="_blank" rel="external">Markdoown官方文档</a></p>
-
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/08/03/markdown-notes/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1058,10 +1001,16 @@
       
         
           
-            <h2 id="我的博客正式开张"><a href="#我的博客正式开张" class="headerlink" title="我的博客正式开张"></a>我的博客正式开张</h2><p>自从有了博客，走起路来都飘。这难道就是传说中的装B?</p>
-<p>借此博客用来记录成长轨迹，分享学习心得，培养所谓人文情操。</p>
+          我的博客正式开张自从有了博客，走起路来都飘。这难道就是传说中的装B?
+借此博客用来记录成长轨迹，分享学习心得，培养所谓人文情操。
 
           
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/08/03/blog-open/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1150,7 +1099,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">59</span>
+                <span class="site-state-item-count">60</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1171,47 +1120,47 @@
           
             
               <span class="links-of-author-item">
-                <a href="https://github.com/monkeyWzr" target="_blank" title="github">
+                <a href="https://github.com/monkeyWzr" target="_blank" title="GitHub">
                   
-                    <i class="fa fa-fw fa-globe"></i>
+                    <i class="fa fa-fw fa-github"></i>
                   
-                  github
+                  GitHub
                 </a>
               </span>
             
               <span class="links-of-author-item">
-                <a href="https://twitter.com/wzr119" target="_blank" title="twitter">
+                <a href="https://twitter.com/wzr119" target="_blank" title="Twitter">
                   
-                    <i class="fa fa-fw fa-globe"></i>
+                    <i class="fa fa-fw fa-twitter"></i>
                   
-                  twitter
+                  Twitter
                 </a>
               </span>
             
               <span class="links-of-author-item">
-                <a href="https://www.facebook.com/monkeywzr" target="_blank" title="facebook">
+                <a href="https://www.facebook.com/monkeywzr" target="_blank" title="Facebook">
                   
-                    <i class="fa fa-fw fa-globe"></i>
+                    <i class="fa fa-fw fa-facebook-official"></i>
                   
-                  facebook
+                  Facebook
                 </a>
               </span>
             
               <span class="links-of-author-item">
-                <a href="http://weibo.com/1244449463" target="_blank" title="weibo">
+                <a href="https://plus.google.com/u/0/109706734318766815600" target="_blank" title="Google+">
                   
-                    <i class="fa fa-fw fa-globe"></i>
+                    <i class="fa fa-fw fa-google-plus"></i>
                   
-                  weibo
+                  Google+
                 </a>
               </span>
             
               <span class="links-of-author-item">
-                <a href="https://www.zhihu.com/people/xiao-hui-ji-hui-shang-tian" target="_blank" title="zhihu">
+                <a href="http://weibo.com/1244449463" target="_blank" title="微博">
                   
-                    <i class="fa fa-fw fa-globe"></i>
+                    <i class="fa fa-fw fa-weibo"></i>
                   
-                  zhihu
+                  微博
                 </a>
               </span>
             
