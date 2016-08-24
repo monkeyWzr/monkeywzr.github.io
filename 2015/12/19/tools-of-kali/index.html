@@ -1,0 +1,765 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Kali,渗透" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="信息收集DNS信息
+host 查询/etc/resolv.conf中指定的DNS服务器 
+dig 可处理文件内的所有DNS指令
+dnsenum 可通过google搜素子域名；课使用字典对子域名进行暴力破解；
+dnsdict6 IPv6子域名枚举
+fierce 能对不连续的IP空间和主机名进行测试
+DMitry 具有DNS分析和路由分析功能，可进行简单端口探测
+Maltego 图形化综合工具
+
+路由">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kali的一些工具">
+<meta property="og:url" content="http://monkeywzr.github.io/2015/12/19/tools-of-kali/index.html">
+<meta property="og:site_name" content="マクロス">
+<meta property="og:description" content="信息收集DNS信息
+host 查询/etc/resolv.conf中指定的DNS服务器 
+dig 可处理文件内的所有DNS指令
+dnsenum 可通过google搜素子域名；课使用字典对子域名进行暴力破解；
+dnsdict6 IPv6子域名枚举
+fierce 能对不连续的IP空间和主机名进行测试
+DMitry 具有DNS分析和路由分析功能，可进行简单端口探测
+Maltego 图形化综合工具
+
+路由">
+<meta property="og:updated_time" content="2016-03-04T14:43:39.151Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kali的一些工具">
+<meta name="twitter:description" content="信息收集DNS信息
+host 查询/etc/resolv.conf中指定的DNS服务器 
+dig 可处理文件内的所有DNS指令
+dnsenum 可通过google搜素子域名；课使用字典对子域名进行暴力破解；
+dnsdict6 IPv6子域名枚举
+fierce 能对不连续的IP空间和主机名进行测试
+DMitry 具有DNS分析和路由分析功能，可进行简单端口探测
+Maltego 图形化综合工具
+
+路由">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://monkeywzr.github.io/2015/12/19/tools-of-kali/"/>
+
+  <title> Kali的一些工具 | マクロス </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">マクロス</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Kali的一些工具
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-12-19T00:00:00+08:00" content="2015-12-19">
+              2015-12-19
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/12/19/tools-of-kali/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/12/19/tools-of-kali/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h2><h3 id="DNS信息"><a href="#DNS信息" class="headerlink" title="DNS信息"></a>DNS信息</h3><ul>
+<li>host 查询/etc/resolv.conf中指定的DNS服务器 </li>
+<li>dig 可处理文件内的所有DNS指令</li>
+<li>dnsenum 可通过google搜素子域名；课使用字典对子域名进行暴力破解；</li>
+<li>dnsdict6 IPv6子域名枚举</li>
+<li>fierce 能对不连续的IP空间和主机名进行测试</li>
+<li>DMitry 具有DNS分析和路由分析功能，可进行简单端口探测</li>
+<li>Maltego 图形化综合工具</li>
+</ul>
+<h3 id="路由信息"><a href="#路由信息" class="headerlink" title="路由信息"></a>路由信息</h3><ul>
+<li>tcptraceroute 利用TCP SYN数据包进行路由信息探测</li>
+<li>tctrace -i<device> -h<targethost></targethost></device></li>
+</ul>
+<h3 id="搜索引擎"><a href="#搜索引擎" class="headerlink" title="搜索引擎"></a>搜索引擎</h3><ul>
+<li>theharvester 通过多个公共资源搜集所需信息（Email、用户名、主机名等）</li>
+<li>Metagoofil 通过google搜索目标域的文件的元数据信息，kali2默认貌似没有安装</li>
+</ul>
+<h2 id="目标识别"><a href="#目标识别" class="headerlink" title="目标识别"></a>目标识别</h2><h3 id="识别主机"><a href="#识别主机" class="headerlink" title="识别主机"></a>识别主机</h3><ul>
+<li>ping 老朋友。。</li>
+<li>ping6 用来ping IPv6</li>
+<li>fping 可同时探测多个主机或者整个网段</li>
+<li>arping 使用ARP请求检测局域网内主机是否在线，IP或者MAC地址都可作为目标</li>
+<li>hping3 端口扫描、防火墙规则检测、IDS检测等，功能强大</li>
+<li>nping 支持多种协议探测模式；可做压力测试、ARP中毒、Dos攻击</li>
+<li>nbtscan 审计局域网内windows系统IP地址、NetBIOS信息等</li>
+</ul>
+<h3 id="识别操作系统"><a href="#识别操作系统" class="headerlink" title="识别操作系统"></a>识别操作系统</h3><ul>
+<li>p0f 被动方式探测目标主机</li>
+<li>nmap 神器之一</li>
+</ul>
+<h2 id="服务枚举"><a href="#服务枚举" class="headerlink" title="服务枚举"></a>服务枚举</h2><h3 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h3><ul>
+<li>nmap 端口扫描；主机探测；服务/版本检测；操作系统检测；网络路由跟踪；脚本引擎<ul>
+<li>-sT TCP连接扫描</li>
+<li>-sS SYN扫描（半开连接扫描）</li>
+<li>-sN NULL扫描（不设置任何控制位）</li>
+<li>-sF FIN扫描</li>
+<li>-sM TCP Maimom扫描，常用于探测BSD衍生出来的操作系统</li>
+<li>-sA TCP ACK扫描，能检测防火墙，确定定被屏蔽端口</li>
+<li>-sW TCP窗口扫描</li>
+<li>-sI 通过僵尸主机发动扫描</li>
+<li>–scanflags 自定义URG、ACK、PSH、RST、SYN、FIN、ECE、CWR、ALL和NONE组合</li>
+<li>-sU UDP扫描</li>
+<li>-sV 服务版识别</li>
+<li>-O 识别操作系统</li>
+<li>-p 指定端口或端口范围</li>
+<li>-F 快速扫描，近扫描常用100个端口</li>
+<li>-r 顺序扫描</li>
+<li>-oN 正常输出</li>
+<li>-oX 将结果生成为XML文件</li>
+<li>-A 强力扫描，相当于 -sV -O -sC –traceroute</li>
+<li>-sC 使用默认类的脚本进行扫描 相当于–script=default</li>
+<li>–script 根据指定文件名、类别名、目录名执行相应脚本</li>
+<li>-f 使用小数据包，避免目标IDS识别</li>
+<li>–mtu 调整数据包大小，必须是8的倍数</li>
+<li>-D 在侦测数据包中掺杂一些假源IP的数据包。</li>
+<li>-g 模拟源端口</li>
+<li>–data-length 改变数据包默认长度</li>
+<li>–scan-delay 控制发送探测数据的时间间隔</li>
+</ul>
+</li>
+<li>Unicornscna 扫描UDP端口性能卓越</li>
+<li>zenmap nmap的图形化扫描工具</li>
+<li>amap 检测指定端口上运行的应用程序信息</li>
+</ul>
+<h3 id="SNMP枚举"><a href="#SNMP枚举" class="headerlink" title="SNMP枚举"></a>SNMP枚举</h3><blockquote>
+<p>SNMP 简单网络管理协议，运行于161端口的应用层协议，用于网络设备运行状态的监控，<br>SNMP协议有三个版本v1/v2/v3</p>
+</blockquote>
+<ul>
+<li>onesixytone 扫描设备是否支持某些特定SNMP字符串</li>
+<li>snmpcheck 差不多</li>
+<li>SNMP Walk 强大的SNMP信息采集工具，可以使用三个版本的协议</li>
+</ul>
+<h3 id="VPN枚举"><a href="#VPN枚举" class="headerlink" title="VPN枚举"></a>VPN枚举</h3><ul>
+<li>ike-scan 探测IPSec VPN系统</li>
+</ul>
+<h2 id="漏洞映射"><a href="#漏洞映射" class="headerlink" title="漏洞映射"></a>漏洞映射</h2><h3 id="模糊分析"><a href="#模糊分析" class="headerlink" title="模糊分析"></a>模糊分析</h3><ul>
+<li>BED 检测缓冲区溢出、格式化字符串漏洞、整数溢出、DoS条件等漏洞，支持多种协议</li>
+<li>JBroFuzz 模拟HTTP/HTTPS请求；XSS、SQl注入、缓冲区溢出、格式字符串错误等测试</li>
+</ul>
+<h3 id="SMB分析"><a href="#SMB分析" class="headerlink" title="SMB分析"></a>SMB分析</h3><blockquote>
+<p>SMB Server Message Block，又称为CIFS（Common Internet File System）协议，作用<br>于应用层，常用于文件与打印机共享服务。NetBIOS是SMB协议的组成部分。DEC<br>/RPC服务程序实现的网络节点间跨进程通信（IPC）也使用SMB协议。</p>
+</blockquote>
+<ul>
+<li>ImpacketSamrdump 列举同一局域网目标主机上所有系统共享、用户账户等信息</li>
+</ul>
+<h3 id="数据库评估"><a href="#数据库评估" class="headerlink" title="数据库评估"></a>数据库评估</h3><ul>
+<li>sqlmap 又一个神器，详情看文档</li>
+<li>sqlninja 专门评估SQL Server的进阶工具，配置较复杂。</li>
+</ul>
+<h3 id="Web应用程序评估"><a href="#Web应用程序评估" class="headerlink" title="Web应用程序评估"></a>Web应用程序评估</h3><ul>
+<li>Burp Suite 还是一神器，完整的攻击框架。</li>
+<li>Nikto2 支持跨平台部署、SSL、多种IDS规避技术</li>
+<li>Paros Proxy 主动/被动评估工具</li>
+<li>W3AF 识别、审计、攻击，有丰富的插件和exploits。</li>
+<li>wafw00f 检测防web防火墙（WAF）的脚本</li>
+<li>webscarab 集成了众多工具，OWASP Project之一，功能强大</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Kali/" rel="tag">#Kali</a>
+          
+            <a href="/tags/渗透/" rel="tag">#渗透</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/12/07/metasploit-on-kali/" rel="next" title="Kali下Metasploit学习笔记">
+                <i class="fa fa-chevron-left"></i> Kali下Metasploit学习笔记
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/04/refresh-old-laptop/" rel="prev" title="超老本子CF-W2安装lubuntu">
+                超老本子CF-W2安装lubuntu <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/img/head.jpg"
+               alt="小灰机灰上天" />
+          <p class="site-author-name" itemprop="name">小灰机灰上天</p>
+          <p class="site-description motion-element" itemprop="description">好想学习。。。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">36</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">59</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#信息收集"><span class="nav-number">1.</span> <span class="nav-text">信息收集</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DNS信息"><span class="nav-number">1.1.</span> <span class="nav-text">DNS信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#路由信息"><span class="nav-number">1.2.</span> <span class="nav-text">路由信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#搜索引擎"><span class="nav-number">1.3.</span> <span class="nav-text">搜索引擎</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目标识别"><span class="nav-number">2.</span> <span class="nav-text">目标识别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#识别主机"><span class="nav-number">2.1.</span> <span class="nav-text">识别主机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#识别操作系统"><span class="nav-number">2.2.</span> <span class="nav-text">识别操作系统</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务枚举"><span class="nav-number">3.</span> <span class="nav-text">服务枚举</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#端口扫描"><span class="nav-number">3.1.</span> <span class="nav-text">端口扫描</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SNMP枚举"><span class="nav-number">3.2.</span> <span class="nav-text">SNMP枚举</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VPN枚举"><span class="nav-number">3.3.</span> <span class="nav-text">VPN枚举</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#漏洞映射"><span class="nav-number">4.</span> <span class="nav-text">漏洞映射</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模糊分析"><span class="nav-number">4.1.</span> <span class="nav-text">模糊分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SMB分析"><span class="nav-number">4.2.</span> <span class="nav-text">SMB分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库评估"><span class="nav-number">4.3.</span> <span class="nav-text">数据库评估</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Web应用程序评估"><span class="nav-number">4.4.</span> <span class="nav-text">Web应用程序评估</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小灰机灰上天</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'monkeywzr';
+      var disqus_identifier = '2015/12/19/tools-of-kali/';
+      var disqus_title = "Kali的一些工具";
+      var disqus_url = 'http://monkeywzr.github.io/2015/12/19/tools-of-kali/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

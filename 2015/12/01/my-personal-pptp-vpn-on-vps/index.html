@@ -1,0 +1,695 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="pptp,vpn,vps,科学上网" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="一直用hosts和goagent的姿势搞学(ke)术(xue)研(shang)究(wang)，苦于两种方式限制颇多不稳定又不安全。不久前咬牙花了5刀开了DO的vps（当然，DO赠送了10刀回来），穷学生一枚的我终于能换换新姿势了，直接动手搭建了vpn。由于本人不太喜欢用额外的客户端，再加上pptp以简单著称，我决定采用pptp server。
+DigitalOcean购买VPS在网上查了大家的经验">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vps搭建私人pptp vpn,新姿势GET！">
+<meta property="og:url" content="http://monkeywzr.github.io/2015/12/01/my-personal-pptp-vpn-on-vps/index.html">
+<meta property="og:site_name" content="マクロス">
+<meta property="og:description" content="一直用hosts和goagent的姿势搞学(ke)术(xue)研(shang)究(wang)，苦于两种方式限制颇多不稳定又不安全。不久前咬牙花了5刀开了DO的vps（当然，DO赠送了10刀回来），穷学生一枚的我终于能换换新姿势了，直接动手搭建了vpn。由于本人不太喜欢用额外的客户端，再加上pptp以简单著称，我决定采用pptp server。
+DigitalOcean购买VPS在网上查了大家的经验">
+<meta property="og:updated_time" content="2016-03-04T14:43:39.189Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vps搭建私人pptp vpn,新姿势GET！">
+<meta name="twitter:description" content="一直用hosts和goagent的姿势搞学(ke)术(xue)研(shang)究(wang)，苦于两种方式限制颇多不稳定又不安全。不久前咬牙花了5刀开了DO的vps（当然，DO赠送了10刀回来），穷学生一枚的我终于能换换新姿势了，直接动手搭建了vpn。由于本人不太喜欢用额外的客户端，再加上pptp以简单著称，我决定采用pptp server。
+DigitalOcean购买VPS在网上查了大家的经验">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://monkeywzr.github.io/2015/12/01/my-personal-pptp-vpn-on-vps/"/>
+
+  <title> vps搭建私人pptp vpn,新姿势GET！ | マクロス </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">マクロス</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                vps搭建私人pptp vpn,新姿势GET！
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-12-01T00:00:00+08:00" content="2015-12-01">
+              2015-12-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/12/01/my-personal-pptp-vpn-on-vps/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/12/01/my-personal-pptp-vpn-on-vps/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>一直用hosts和goagent的姿势搞学(ke)术(xue)研(shang)究(wang)，苦于两种方式限制颇多不稳定又不安全。不久前咬牙花了5刀开了DO的vps（当然，DO赠送了10刀回来），穷学生一枚的我终于能换换新姿势了，直接动手搭建了vpn。由于本人不太喜欢用额外的客户端，再加上pptp以简单著称，我决定采用pptp server。</p>
+<h2 id="DigitalOcean购买VPS"><a href="#DigitalOcean购买VPS" class="headerlink" title="DigitalOcean购买VPS"></a>DigitalOcean购买VPS</h2><p>在网上查了大家的经验攻略，自己看了下DO、搬瓦工、bugdetVM，最后还是选了DO，反正现在感觉速度很不错，挺满意的。</p>
+<p>这个流程很简单，在官网上注册账号，用PayPal下个5刀的订单，DO会赠送10美元回来。Paypal支持银联的卡，我就是用建行的借记卡支付的。支付完成后按照流程创建Droplet，我用的ubuntu14.04 x64,旧金山的服务器，创建过程中添加SSH,用puttyputtygen即可。具体内容在下面相关链接。</p>
+<h2 id="安装pptp和配置"><a href="#安装pptp和配置" class="headerlink" title="安装pptp和配置"></a>安装pptp和配置</h2><p>putty登陆，速度可以，直接开始安装。这期间我试了试DO网站上的console，感觉不好用。还是putty方便。</p>
+<pre><code># sudo apt-get update
+# sudo apt-get install pptpd
+</code></pre><p>事实证明我朝GFW有多坑，服务器在美国的ubuntu从官方源下载速度炒鸡快，瞬间完事儿。</p>
+<h3 id="修改pptp配置"><a href="#修改pptp配置" class="headerlink" title="修改pptp配置"></a>修改pptp配置</h3><p>修改/etc/pptpd.cong文件</p>
+<pre><code># sudo nano /etc/pptpd.conf
+</code></pre><p>在末尾添加server IP 和 client IP</p>
+<pre><code>localip 192.168.0.1
+remoteip 192.168.0.100-200
+</code></pre><p>这里用的是nano编辑器，不熟悉的同学（比如我）可以参见相关链接里面的“Linux下的Nano命令”。其实用不到啥。。就是一个保存和退出而已。。nano还是比较简单的。</p>
+<h3 id="修改DNS配置"><a href="#修改DNS配置" class="headerlink" title="修改DNS配置"></a>修改DNS配置</h3><pre><code># sudo nano /etc/ppp/pptpd-options
+</code></pre><p>添加google的DNS</p>
+<pre><code>ms-dns 8.8.8.8
+ms-dns 8.8.4.4
+</code></pre><p>这个文件里还开启了其他的一些选项，课根据需要开启我从别的大神那里复制来了一些资料：</p>
+<blockquote>
+<p>name pptpd（pptpd服务名，可以随便填写。）<br>refuse-pap（拒绝pap身份认证模式。）<br>refuse-chap（拒绝chap身份认证模式。）<br>refuse-mschap（拒绝mschap身份认证模式。）<br>require-mschap-v2（在端点进行连接握手时需要使用微软的 mschap-v2 进行自身验证。）<br>require-mppe-128（MPPE 模块使用 128 位加密。）<br>ms-dns 8.8.8.8 (ppp 为 Windows 客户端提供 DNS 服务器 IP 地址。)<br>proxyarp (建立 ARP 代理键值。)<br>nodefaultroute（不替换默认路由）<br>debug（开启调试模式，相关信息记录在 /var/logs/message 中。现在默认是被注释掉的。）<br>lock（锁定客户端 PTY 设备文件。）<br>nobsdcomp (禁用 BSD 压缩模式。)</p>
+</blockquote>
+<h3 id="添加VPN用户"><a href="#添加VPN用户" class="headerlink" title="添加VPN用户"></a>添加VPN用户</h3><p>打开chap-secrets文件添加用户</p>
+<pre><code># sudo nano /etc/ppp/chap-secrets
+</code></pre><p>第一行是文件里已经存在的注释</p>
+<pre><code># client        server  secret                  IP addresses
+username * myPassword *
+</code></pre><p>第一段和第三段字符串就不用说了吧，第二段是服务器名称，默认的是pptpd，也就是上面pptpd-options的<code>name</code>选项的值。最后一段是登陆的ip，*即可。</p>
+<p>到这里可以重启下pptpd</p>
+<pre><code># /etc/init.d/pptpd restart
+</code></pre><h3 id="设置路由转发"><a href="#设置路由转发" class="headerlink" title="设置路由转发"></a>设置路由转发</h3><h3 id="开启IPv4转发"><a href="#开启IPv4转发" class="headerlink" title="开启IPv4转发"></a>开启IPv4转发</h3><p>打开sysctl.conf</p>
+<pre><code># sudo nano /etc/sysctl.conf
+</code></pre><p>开启IPv4转发选项，即取消下面语句的注释</p>
+<pre><code>net.ipv4.ip_forward=1
+</code></pre><p>刷新下配置文件</p>
+<pre><code># sudo sysctl -p
+</code></pre><h3 id="设置iptables-NAT转发和MTU"><a href="#设置iptables-NAT转发和MTU" class="headerlink" title="设置iptables NAT转发和MTU"></a>设置iptables NAT转发和MTU</h3><p>打开rc.local</p>
+<pre><code># sudo nano /etc/rc.local
+</code></pre><p>把这两个配置添加到这里可以保证重启有效，否则重启系统之后iptables的配置会重置。注意要添加到<code>exit 0</code>上面</p>
+<pre><code>iptables -t nat -A POSTROUTING -s 192.168.0.0/24 -o eth0 -j MASQUERADE
+iptables -A FORWARD -p tcp --syn -s 192.168.0.0/24 -j TCPMSS --set-mss 1356
+</code></pre><p>第一句话设置NAT转发，我使用了192.168.0网段，这里要根据自己上面的配置修改。<code>eth0</code>就是vps的网卡，如果不确定可以用ifconfig确认。</p>
+<p>第二句话设置MTU包大小，防止有较大包时发生数据丢失。</p>
+<p>到现在所有的配置已经完成了。在自己电脑上连接上vpn，直接上油管测试，视频基本秒开。</p>
+<p>好，接下来就用此姿势玩耍了，麻麻再也不用担心我的那啥了%_%</p>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><blockquote>
+<p><a href="https://help.ubuntu.com/community/PPTPServer" target="_blank" rel="external">ubuntu官网PPTPServer帮助</a><br><a href="http://www.cnblogs.com/haichuan3000/articles/2125943.html" target="_blank" rel="external">Linux下的nano命令</a>&gt;</p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/pptp/" rel="tag">#pptp</a>
+          
+            <a href="/tags/vpn/" rel="tag">#vpn</a>
+          
+            <a href="/tags/vps/" rel="tag">#vps</a>
+          
+            <a href="/tags/科学上网/" rel="tag">#科学上网</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/11/29/website-on-iis/" rel="next" title="asp.net网站搭常见问题">
+                <i class="fa fa-chevron-left"></i> asp.net网站搭常见问题
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/12/05/vim-guide/" rel="prev" title="vi/vim命令简记">
+                vi/vim命令简记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/img/head.jpg"
+               alt="小灰机灰上天" />
+          <p class="site-author-name" itemprop="name">小灰机灰上天</p>
+          <p class="site-description motion-element" itemprop="description">好想学习。。。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">36</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">59</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#DigitalOcean购买VPS"><span class="nav-number">1.</span> <span class="nav-text">DigitalOcean购买VPS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装pptp和配置"><span class="nav-number">2.</span> <span class="nav-text">安装pptp和配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修改pptp配置"><span class="nav-number">2.1.</span> <span class="nav-text">修改pptp配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改DNS配置"><span class="nav-number">2.2.</span> <span class="nav-text">修改DNS配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加VPN用户"><span class="nav-number">2.3.</span> <span class="nav-text">添加VPN用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置路由转发"><span class="nav-number">2.4.</span> <span class="nav-text">设置路由转发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开启IPv4转发"><span class="nav-number">2.5.</span> <span class="nav-text">开启IPv4转发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置iptables-NAT转发和MTU"><span class="nav-number">2.6.</span> <span class="nav-text">设置iptables NAT转发和MTU</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关链接"><span class="nav-number">3.</span> <span class="nav-text">相关链接</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小灰机灰上天</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'monkeywzr';
+      var disqus_identifier = '2015/12/01/my-personal-pptp-vpn-on-vps/';
+      var disqus_title = "vps搭建私人pptp vpn,新姿势GET！";
+      var disqus_url = 'http://monkeywzr.github.io/2015/12/01/my-personal-pptp-vpn-on-vps/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

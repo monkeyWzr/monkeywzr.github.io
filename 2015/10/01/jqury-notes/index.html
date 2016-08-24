@@ -1,0 +1,937 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="jquey,教程" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="安装1.从jqury.com下载
+2.CDN
+Baidu CDN:http://libs.baidu.com/jquery/1.10.2/jquery.min.js
+又拍云 CDN:http://upcdn.b0.upaiyun.com/libs/jquery/jquery-2.0.2.min.js
+新浪 CDN:http://lib.sinaapp.com/js/jquery/2.0.2/jqu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jQury基础笔记">
+<meta property="og:url" content="http://monkeywzr.github.io/2015/10/01/jqury-notes/index.html">
+<meta property="og:site_name" content="マクロス">
+<meta property="og:description" content="安装1.从jqury.com下载
+2.CDN
+Baidu CDN:http://libs.baidu.com/jquery/1.10.2/jquery.min.js
+又拍云 CDN:http://upcdn.b0.upaiyun.com/libs/jquery/jquery-2.0.2.min.js
+新浪 CDN:http://lib.sinaapp.com/js/jquery/2.0.2/jqu">
+<meta property="og:image" content="http://monkeywzr.github.io/assets/img/images/css-size.png">
+<meta property="og:updated_time" content="2016-08-18T07:34:59.193Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="jQury基础笔记">
+<meta name="twitter:description" content="安装1.从jqury.com下载
+2.CDN
+Baidu CDN:http://libs.baidu.com/jquery/1.10.2/jquery.min.js
+又拍云 CDN:http://upcdn.b0.upaiyun.com/libs/jquery/jquery-2.0.2.min.js
+新浪 CDN:http://lib.sinaapp.com/js/jquery/2.0.2/jqu">
+<meta name="twitter:image" content="http://monkeywzr.github.io/assets/img/images/css-size.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://monkeywzr.github.io/2015/10/01/jqury-notes/"/>
+
+  <title> jQury基础笔记 | マクロス </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">マクロス</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                jQury基础笔记
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-10-01T00:00:00+08:00" content="2015-10-01">
+              2015-10-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/10/01/jqury-notes/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/01/jqury-notes/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>1.从<a href="http://jqury.com" target="_blank" rel="external">jqury.com</a>下载</p>
+<p>2.CDN</p>
+<pre><code>Baidu CDN:http://libs.baidu.com/jquery/1.10.2/jquery.min.js
+又拍云 CDN:http://upcdn.b0.upaiyun.com/libs/jquery/jquery-2.0.2.min.js
+新浪 CDN:http://lib.sinaapp.com/js/jquery/2.0.2/jquery-2.0.2.min.js
+Google CDN:http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js
+Microsoft CDN:http://ajax.htmlnetcdn.com/ajax/jQuery/jquery-1.10.2.min.js
+</code></pre><h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p><strong>基础语法： <code>$(selector).action()</code></strong></p>
+<h3 id="选择器"><a href="#选择器" class="headerlink" title="选择器"></a>选择器</h3><p>jquery选择器基于已存在的css选择器</p>
+<p><code>$(this)</code> - 当前元素<br><code>$(&quot;p&quot;)</code> - 所有 \<p\> 元素<br><code>$(&quot;p:first&quot;)</code> - 选取第一个\<p\>元素<br><code>$(&quot;p .test&quot;)</code> - 所有 class=”test” 的 \<p\> 元素<br><code>$(&quot;.test&quot;)</code> - 所有class=”test”的元素<br><code>$(&quot;#test&quot;)</code> - 所有 id=”test” 的元素<br><code>$(&quot;[href]&quot;)</code> - 带有href属性的元素<br><code>$(&quot;ui li:first&quot;)</code> - 选取第一个\<ul\>的第一个\<li\>元素<br><code>$(&quot;ui li:first-child&quot;)</code> - 选取每个\<ul\>的第一个\<li\>元素<br><code>$(&quot;a[target!=&#39;_blank&#39;]&quot;)</code> - 选取所有target属性值不等于”_blank”的\<a\>元素<br><code>$(&quot;:button&quot;)</code> - 选取所有type=”button”的\<input\>元素和\<button\>元素</button\></input\></a\></li\></ul\></li\></ul\></p\></p\></p\></p>
+<p>还有一些自定义的选择器</p>
+<p><code>$(&quot;tr:even&quot;)</code> - 选取奇数位置的\<tr\>，偶数为<code>:odd</code><br><code>$(&quot;tr:nth-child(odd)&quot;)</code> - 相对于元素的父元素而非当前所选择的元素来选取偶数位置<br><code>$(&quot;td:contains(monkey)&quot;)</code> - 选择含有’monkey’的表格单元</tr\></p>
+<p>注意<code>:nth-child</code>是jquery中唯一从1开始计数的选择符</p>
+<h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2><h3 id="文档就绪事件"><a href="#文档就绪事件" class="headerlink" title="文档就绪事件"></a>文档就绪事件</h3><p>为防止jquery代码在文档未加载完成时就执行，最好将函数封装在document ready函数中：</p>
+<pre><code>$(document).ready(function(){
+
+    // jQuery code...
+
+});
+</code></pre><p>简写为：</p>
+<pre><code>$(function(){
+
+    // jQuery code...
+
+    });
+</code></pre><p>或者：</p>
+<pre><code>$().ready(function(){
+
+         //jQuery code...
+
+    })
+</code></pre><h3 id="常见DOM事件"><a href="#常见DOM事件" class="headerlink" title="常见DOM事件"></a>常见DOM事件</h3><p>鼠标事件：<code>click</code> <code>dbclick</code> <code>mouseenter</code> <code>mouseleave</code> <code>mouseup</code> <code>hover</code> <code>mousedown</code><br>键盘事件：<code>keypress</code> <code>keydown</code> <code>keyup</code><br>表单事件：<code>submit</code> <code>change</code> <code>focus</code> <code>blur</code><br>文档/窗口事件：<code>load</code> <code>resize</code> <code>scroll</code> <code>unload</code></p>
+<pre><code>$(&quot;p&quot;).click(function(){
+    $(this).hide();
+    });
+
+$(&quot;input&quot;).focus(function(){
+      $(this).css(&quot;background-color&quot;,&quot;#cccccc&quot;);
+        });
+</code></pre><h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><ol>
+<li><p>显示/隐藏</p>
+<pre><code>//可选参数speed规定变化速度，可取&quot;slow&quot; &quot;fast&quot;或毫秒数
+//可选参数callback为变化完成之后执行的函数
+$(selector).hide(speed,callback);
+$(selector).show(speed,callback);
+//toggle()方法可切换hide()和show()
+$(selector).toggle(speed,callback);
+</code></pre></li>
+<li><p>淡入淡出</p>
+<pre><code>//淡入隐藏的元素
+$(selector).fadeIn(speed,callback);
+//淡出可见元素
+$(selector).fadeOut(speed,callback);
+//在fadeIn()和fadeOut()间进行切换
+$(selector).fadeToggle(speed,callback);
+//渐变为给定的不透明度(opacity)，值介于 0 与 1 之间，speed与opacity为必选参数
+$(selector).fadeTo(speed,opacity,callback);
+</code></pre></li>
+<li><p>滑动</p>
+<pre><code>$(selector).slideDown(speed,callback);
+$(selector).slideUp(speed,callback);
+$(selector).slideToggle(speed,callback);
+</code></pre></li>
+<li><p>动画</p>
+<pre><code>//必需的params定义形成动画的css属性，可同时操作多个属性
+//要使用驼峰式书写属性名，如`paddingLeft`而不是`padding-left`
+$(selector).animate({params},speed,callback);
+
+//停止动画或效果
+//stopAll参数规定是否应该清除动画队列，默认为false，仅停止活动的动画
+//goToEnd参数规定是否立即完成当前动画
+$(selector).stop(stopAll=false,goToEnd=false);
+</code></pre></li>
+</ol>
+<p>实例：</p>
+<pre><code>$(&quot;button&quot;).click(function(){
+  $(&quot;div&quot;).animate({
+    left:&apos;250px&apos;,
+    opacity:&apos;0.5&apos;,
+    height:&apos;150px&apos;,
+    width:&apos;150px&apos;
+      });
+});
+</code></pre><p><strong>注意：对元素位置进行操作，要将元素的css position属性设为<code>absolute``fixed</code>或者<code>relative</code></strong></p>
+<p>jQuery中有一种chanining技术，允许在相同元素上依次执行多条命令</p>
+<pre><code>//可进行换行和缩进以美观
+$(&quot;#p1&quot;).css(&quot;color&quot;,&quot;red&quot;).slideUp(2000).slideDown(2000);
+</code></pre><h2 id="DOM操作"><a href="#DOM操作" class="headerlink" title="DOM操作"></a>DOM操作</h2><h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3><pre><code>//设置或获取文本内容
+$(selector).text();
+//设置或获取转义后的内容
+$(selector).html();
+//设置或获取输入框内容
+$(selector).val();
+//设置或获取属性
+$(selector).attr();
+</code></pre><p><code>text()``html()``val()``attr()</code>拥有回调函数<code>callback(i,origText)</code>,i为当前元素下标，origText为原始值</p>
+<pre><code>//在被选元素的结尾插入一个或多个内容
+$(selector).append();
+//在被选元素的开头插入一个或多个内容
+$(selector).prepend();
+//在被选元素之后插入一个或多个内容
+$(selector).after();
+//在被选元素之前插入一个或多个内容
+$(selector).before();
+</code></pre><p><code>after()/before()</code>与<code>append()/prepend()</code>的区别在于，前者是将内容插入到对象中来，作为元素的子节点，后者是将内容插入到对象的前后，作为元素的兄弟节点。</p>
+<p>jQuery通常使用两种方法删除元素：</p>
+<pre><code>//删除被选元素及其子元素，可选参数selector可对删除元素进行过滤
+$(selector).remove(selector);
+//删除被选元素的子元素
+$(selector)..empty();    
+</code></pre><h3 id="CSS操作"><a href="#CSS操作" class="headerlink" title="CSS操作"></a>CSS操作</h3><pre><code>//添加class属性
+$(selector).addClass(className);
+//删除class属性
+$(selector).removeClass(className);
+//add/remove切换操作
+$(selector).toggleClass(classname);
+</code></pre><p>实例：</p>
+<pre><code>  .important{font-weight:bold;font-size:xx-large;}
+  .blue{color:blue;}
+
+  $(&quot;button&quot;).click(function(){
+$(&quot;h1,h2,p&quot;).addClass(&quot;blue&quot;);
+$(&quot;div&quot;).addClass(&quot;important blue&quot;);
+  });
+</code></pre><p>还有一个更实用的<code>css()</code>方法，设置或返回被选元素的一个或多个样式属性</p>
+<pre><code>//返回首个匹配的值
+$(&quot;p&quot;).css(&quot;background-color&quot;);
+//设置属性值
+$(&quot;p&quot;).css(&quot;background-color&quot;,&quot;yellow&quot;);
+//设置多个属性值
+$(&quot;p&quot;).css({&quot;background-color&quot;:&quot;yellow&quot;,&quot;font-size&quot;:&quot;200%&quot;});
+</code></pre><p>jQuery提供了多个处理尺寸的方法。<br><img src="/assets/img/images/css-size.png" alt="css-size"></p>
+<pre><code>//设置或返回元素的宽度（不包括内边距、边框或外边距）
+$(selector).width();
+//设置或返回元素的高度（不包括内边距、边框或外边距）
+$(selector).height();
+//返回元素的宽度（包括内边距）
+$(selector).innerWidth();
+//返回元素的高度（包括内边距）
+$(selector).innerHeight();
+//返回元素的宽度（包括内边距和边框）
+$(selector).outerWidth();
+//方法返回元素的高度（包括内边距和边框）
+$(selector).outerHeight();
+</code></pre><h3 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h3><ol>
+<li><p>向上遍历</p>
+<pre><code>//返回每个被选元素的直接父元素
+$(selector).parent();
+//返回被选元素的所有祖先，直到文档的根元素&lt;html&gt;,可传入参数制定返回的祖先
+$(selector).parents();
+//返回制定元素之间的祖先元素
+$(selector).parentsUntil(selector)
+</code></pre></li>
+<li><p>向下遍历</p>
+<pre><code>//返回被选元素所有直接子元素，客串如参数指定返回的子元素
+$(selector).children();
+//返回被选元素的所有后代，直到最后一代,注意参数的传递
+$(selector).find(&quot;*&quot;);
+</code></pre></li>
+</ol>
+<p><strong>注意：find()需要传入参数”*”以返回所有后代</strong>，也可以指定子元素。</p>
+<p>实例：</p>
+<pre><code>//返回class=&quot;1&quot;的所有&lt;p&gt;
+$(document).ready(function(){
+  $(&quot;div&quot;).children(&quot;p.1&quot;);
+});
+</code></pre><ol>
+<li><p>水平遍历</p>
+<pre><code>//返回被选元素所有同胞元素，可传入参数指定同胞元素
+$(selector).siblings();
+//返回被选元素下一个/上一个同胞元素    
+$(selector).next();
+$(selector).prev();
+//返回被选元素所有跟随/前面同胞元素
+$(selector).nextAll();
+$(selector).prevAll();
+//返回指定元素之间所有同胞元素
+$(selector).nextUntil(selector);
+$(selector).prevUntil(selector);
+</code></pre></li>
+<li><p>过滤</p>
+<pre><code>//返回被选元素的首个元素
+$(selector).first();
+//返回被选元素的最后一个元素
+$(selector).last();
+//返回被选元素中指定索引的元素
+$(selector).eq(index);
+//返回匹配的元素
+$(selector).filter(selector);
+//返回不匹配的所有元素
+$(selector).not(selector);
+</code></pre></li>
+</ol>
+<p>首个元素的索引号是0。</p>
+<h2 id="jQuery-AJAX"><a href="#jQuery-AJAX" class="headerlink" title="jQuery AJAX"></a>jQuery AJAX</h2><p>jQuery将javascript的AJAX相关函数进一步封装，使用起来非常方便</p>
+<blockquote>
+<p>总是记不住这个单词怎么写<br>AJAX = Asynchronous JavaScript and XML</p>
+</blockquote>
+<p>load()函数从服务器加载数据并把返回的数据放入被选元素中</p>
+<pre><code>//必需的 URL 参数规定您希望加载的 URL。
+//可选的 data 参数规定与请求一同发送的查询字符串键/值对集合。
+$(selector).load(URL,data,callback);
+</code></pre><p><code>callback</code>函数可设置如下参数:</p>
+<blockquote>
+<p><code>responseTxt</code> - 包含调用成功时的结果内容<br><code>statusTXT</code> - 包含调用的状态<br><code>xhr</code> - 包含 XMLHttpRequest 对象</p>
+</blockquote>
+<p>实例：</p>
+<pre><code>    //demo_test.txt内容为
+    //&lt;h2&gt;jQuery and AJAX is FUN!!!&lt;/h2&gt;
+//&lt;p id=&quot;p1&quot;&gt;This is some text in a paragraph.&lt;/p&gt;
+
+    //获取txt中id为p1的元素内容
+    //执行错误返回错误码及错误信息
+    $(&quot;button&quot;).click(function(){
+      $(&quot;#div1&quot;).load(&quot;demo_test.txt #p1&quot;,function(responseTxt,statusTxt,xhr){
+        if(statusTxt==&quot;success&quot;)
+          alert(&quot;External content loaded successfully!&quot;);
+        if(statusTxt==&quot;error&quot;)
+          alert(&quot;Error: &quot;+xhr.status+&quot;: &quot;+xhr.statusText);
+      });
+    });
+</code></pre><p><code>get()</code>和<code>post()</code>方法用于通过 HTTP GET 或 POST 请求从服务器请求数据。</p>
+<blockquote>
+<p>GET 基本上用于从服务器获得（取回）数据。可能返回缓存数据。<br>POST 向指定的资源提交要处理的数据,也可用于从服务器获取数据。不过，POST 方法不会缓存数据，并且常用于连同请求一起发送数据。</p>
+</blockquote>
+<pre><code>//回调函数callback(data,status),第一个参数为请求页面内容，第二个参数为请求状态
+$.get(URL,callback);
+
+//可选的 data 参数规定连同请求发送的数据
+//可选参数callback(data,status)
+$.post(URL,data,callback);
+</code></pre><p>实例：</p>
+<pre><code>$(&quot;button&quot;).click(function(){
+  $.post(&quot;demo_test_post.html&quot;,
+  {
+       name:&quot;Donald Duck&quot;,
+       city:&quot;Duckburg&quot;
+  },
+  function(data,status){
+    alert(&quot;Data: &quot; + data + &quot;nStatus: &quot; + status);
+  });
+});
+</code></pre><h2 id="jQuery-JSONP"><a href="#jQuery-JSONP" class="headerlink" title="jQuery JSONP"></a>jQuery JSONP</h2><p><strong>JSONP(JSON with Padding)</strong> 是 json 的一种”使用模式”，可以让网页跨域读取数据。由于同源策略的存在，AJAX无权限进行跨域请求，为了解决这个头疼的问题，开发人员逐渐完善了JSONP这种非正式传输协议。该协议的要点就是允许用户传递一个callback参数给服务端，服务端返回数据时会将这个callback参数作为函数来封装JSON数据。</p>
+<blockquote>
+<p>同源策略(Same-Origin Policy)：相同domain/ip/端口/协议是为同一个域或源(origin),非同源的脚本不能访问对方的资源，除非得到授权。<br><strong>相关链接：</strong><br><a href="http://www.jianshu.com/p/4e17445d66e2" target="_blank" rel="external">同源策略——浏览器的安全卫士</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/Security/Same-origin_policy" target="_blank" rel="external">JavaScript的同源策略</a><br><a href="http://blog.csdn.net/broadview2006/article/details/8595191" target="_blank" rel="external">浏览器的同源策略</a></p>
+</blockquote>
+<p>jQuery可以很方便的实现JSONP调用，下面贴出一个简单实例。<br>服务端test.php代码：</p>
+<pre><code>&lt;?php
+    header(&apos;Content-type: application/json&apos;);
+    //获取回调函数名
+    $jsoncallback = htmlspecialchars($_REQUEST [&apos;jsoncallback&apos;]);
+    //json数据
+    $json_data = &apos;[&quot;customername1&quot;,&quot;customername2&quot;]&apos;;
+    //输出jsonp格式的数据
+    echo $jsoncallback . &quot;(&quot; . $json_data . &quot;)&quot;;
+?&gt;
+</code></pre><p>客户端实现：</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;JSONP 实例&lt;/title&gt;
+    &lt;script src=&quot;http://apps.bdimg.com/libs/jquery/1.8.3/jquery.js&quot;&gt;&lt;/script&gt;    
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div id=&quot;divCustomers&quot;&gt;&lt;/div&gt;
+&lt;script&gt;
+$.getJSON(&quot;test.php?jsoncallback=?&quot;, function(data) {
+
+    var html = &apos;&lt;ul&gt;&apos;;
+    for(var i = 0; i &lt; data.length; i++)
+    {
+        html += &apos;&lt;li&gt;&apos; + data[i] + &apos;&lt;/li&gt;&apos;;
+    }
+    html += &apos;&lt;/ul&gt;&apos;;
+
+    $(&apos;#divCustomers&apos;).html(html);
+});
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>url中的<code>?</code>表示让jQuery自动处理返回的callback数据，也可自定义回调函数名称，默认为jQuery自动生成的随机函数名。</p>
+<p>附上一个说的比较详细的博客：<br><a href="http://www.cnblogs.com/dowinning/archive/2012/04/19/json-jsonp-jquery.html" target="_blank" rel="external">说说JSON和JSONP，也许你会豁然开朗，含jQuery用例</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/教程/" rel="tag">#教程</a>
+          
+            <a href="/tags/jqury/" rel="tag">#jqury</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/09/30/regular-expression-notes/" rel="next" title="正则表达式笔记">
+                <i class="fa fa-chevron-left"></i> 正则表达式笔记
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/10/08/html-head-tags/" rel="prev" title="HTML常用头标签">
+                HTML常用头标签 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/img/head.jpg"
+               alt="小灰机灰上天" />
+          <p class="site-author-name" itemprop="name">小灰机灰上天</p>
+          <p class="site-description motion-element" itemprop="description">好想学习。。。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">36</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">59</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语法"><span class="nav-number">2.</span> <span class="nav-text">语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#选择器"><span class="nav-number">2.1.</span> <span class="nav-text">选择器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件"><span class="nav-number">3.</span> <span class="nav-text">事件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文档就绪事件"><span class="nav-number">3.1.</span> <span class="nav-text">文档就绪事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常见DOM事件"><span class="nav-number">3.2.</span> <span class="nav-text">常见DOM事件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#效果"><span class="nav-number">4.</span> <span class="nav-text">效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DOM操作"><span class="nav-number">5.</span> <span class="nav-text">DOM操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本操作"><span class="nav-number">5.1.</span> <span class="nav-text">基本操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS操作"><span class="nav-number">5.2.</span> <span class="nav-text">CSS操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#遍历"><span class="nav-number">5.3.</span> <span class="nav-text">遍历</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jQuery-AJAX"><span class="nav-number">6.</span> <span class="nav-text">jQuery AJAX</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jQuery-JSONP"><span class="nav-number">7.</span> <span class="nav-text">jQuery JSONP</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小灰机灰上天</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'monkeywzr';
+      var disqus_identifier = '2015/10/01/jqury-notes/';
+      var disqus_title = "jQury基础笔记";
+      var disqus_url = 'http://monkeywzr.github.io/2015/10/01/jqury-notes/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
