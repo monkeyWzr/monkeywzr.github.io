@@ -89,7 +89,7 @@
 <meta name="description" content="好想学习。。。">
 <meta property="og:type" content="website">
 <meta property="og:title" content="マクロス">
-<meta property="og:url" content="http://www.upwzr.com/tags/Kali/index.html">
+<meta property="og:url" content="http://www.upwzr.com/tags/kali/index.html">
 <meta property="og:site_name" content="マクロス">
 <meta property="og:description" content="好想学习。。。">
 <meta name="twitter:card" content="summary">
@@ -115,9 +115,9 @@
 
 
 
-  <link rel="canonical" href="http://www.upwzr.com/tags/Kali/"/>
+  <link rel="canonical" href="http://www.upwzr.com/tags/kali/"/>
 
-  <title> 标签: Kali | マクロス </title>
+  <title> 标签: kali | マクロス </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -267,7 +267,7 @@
   <div id="posts" class="posts-collapse">
     <div class="collection-title">
       <h2 >
-        Kali
+        kali
         <small>标签</small>
       </h2>
     </div>
@@ -280,9 +280,9 @@
 
       <h1 class="post-title">
         
-            <a class="post-title-link" href="/2015/12/19/tools-of-kali/" itemprop="url">
+            <a class="post-title-link" href="/2016/05/17/phpredis/" itemprop="url">
               
-                <span itemprop="name">Kali的一些工具</span>
+                <span itemprop="name">kali2016下phpredis的使用</span>
               
             </a>
         
@@ -290,9 +290,37 @@
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated"
-              datetime="2015-12-19T00:00:00+08:00"
-              content="2015-12-19" >
-          12-19
+              datetime="2016-05-17T00:00:00+08:00"
+              content="2016-05-17" >
+          05-17
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2015/12/07/metasploit-on-kali/" itemprop="url">
+              
+                <span itemprop="name">Kali下Metasploit学习笔记</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2015-12-07T00:00:00+08:00"
+              content="2015-12-07" >
+          12-07
         </time>
       </div>
 
@@ -547,48 +575,6 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'monkeywzr';
-      var disqus_identifier = 'tags/Kali/index.html';
-      var disqus_title = "";
-      var disqus_url = '';
-
-      function run_disqus_script(disqus_script){
-        var dsq = document.createElement('script');
-        dsq.type = 'text/javascript';
-        dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      }
-
-      run_disqus_script('count.js');
-      
-    </script>
-  
-
-
-
-
-  
-  
-
-  
-
-  
-
-  
-
-</body>
-</html>
-
-
-
-  
-
-
-
-  
-
-    <script type="text/javascript">
-      var disqus_shortname = 'monkeywzr';
       var disqus_identifier = 'tags/kali/index.html';
       var disqus_title = "";
       var disqus_url = '';
@@ -615,6 +601,113 @@
   
 
   
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("3V8uzSVqKpazcBtyRNSENSwV-gzGzoHsz", "jMlbQg8xL9ke21wh9sCAoWGX");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
 
   
 
