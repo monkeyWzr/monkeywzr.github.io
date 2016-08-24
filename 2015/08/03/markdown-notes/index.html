@@ -270,9 +270,39 @@
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'whJiTn1vmzLLzmXfzF6h','2.0.0');
+</script>
+
+
+
+    </div>
   
 </nav>
 
@@ -383,9 +413,9 @@
       
         <h2 id="0-反斜杠"><a href="#0-反斜杠" class="headerlink" title="0. 反斜杠"></a>0. 反斜杠</h2><p>反斜杠可以将在markdown中有特殊意义的字符作为正常字符插入。</p>
 <h2 id="1-标题"><a href="#1-标题" class="headerlink" title="1. 标题"></a>1. 标题</h2><p>类Setext形式<br><code>=</code>和<code>-</code>的数量随意，效果效果是相同的。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">This is H1</div><div class="line">==========</div><div class="line"></div><div class="line">This is H2</div><div class="line">----------</div></pre></td></tr></table></figure>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="section">This is H1</span></div><div class="line">==========</div><div class="line"></div><div class="line"><span class="section">This is H2</span></div><div class="line">----------</div></pre></td></tr></table></figure>
 <p>类atx形式<br>也可以写成前后对称的形式。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">#  H1</div><div class="line"></div><div class="line">##  H2</div><div class="line"></div><div class="line">######  H6</div></pre></td></tr></table></figure>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#  H1</span></div><div class="line"></div><div class="line"><span class="meta">##  H2</span></div><div class="line"></div><div class="line"><span class="meta">######  H6</span></div></pre></td></tr></table></figure>
 <p>注意在#与标题间必须存在至少一个空格或制表符</p>
 <h2 id="2-引用"><a href="#2-引用" class="headerlink" title="2. 引用"></a>2. 引用</h2><p>>在段落前加<code>&gt;</code>进行引用。<br>    在段落前加<code>&gt;</code>进行引用。<br>    在段落前加<code>&gt;</code>进行引用。</p>
 <p>>或者每行前加<code>&gt;</code>进行引用。<br>>或者每行前加<code>&gt;</code>进行引用。<br>>或者每行前加<code>&gt;</code>进行引用。</p>
@@ -400,7 +430,7 @@
 </code></pre><p>标记一小段代码可以用反引号`包起来，在本文随处可见<code>效果</code>。</p>
 <p>也可用<code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"> </div></pre></td></tr></table></figure></code></p>
 <pre><code>代码区块
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">将产生相同效果。但是此种方法并非标准markdown语法，有时可能会解析不正确。</div><div class="line">在代码区块中可以方便的插入HTML原始码，Markdown会自动将`&lt;``&amp;`等转换为HTML实体。</div><div class="line"></div><div class="line"></div><div class="line">## 4. 列表</div><div class="line"></div><div class="line">无序列表</div></pre></td></tr></table></figure>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">将产生相同效果。但是此种方法并非标准markdown语法，有时可能会解析不正确。</div><div class="line">在代码区块中可以方便的插入HTML原始码，Markdown会自动将`&lt;``&amp;`等转换为HTML实体。</div><div class="line"></div><div class="line"></div><div class="line">## <span class="number">4</span>. 列表</div><div class="line"></div><div class="line">无序列表</div></pre></td></tr></table></figure>
 </code></pre><ul>
 <li>red</li>
 </ul>
@@ -408,12 +438,12 @@
 <li>green</li>
 </ul>
 <ul>
-<li>yellow<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">三种形式等同。</div><div class="line"></div><div class="line">* red</div><div class="line">+ green</div><div class="line">- yellow</div><div class="line"></div><div class="line">有序列表</div></pre></td></tr></table></figure>
+<li>yellow<figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">三种形式等同。</div><div class="line"></div><div class="line"><span class="bullet">* </span>red</div><div class="line"><span class="bullet">+ </span>green</div><div class="line"><span class="bullet">- </span>yellow</div><div class="line"></div><div class="line">有序列表</div></pre></td></tr></table></figure>
 </li>
 </ul>
 <ol>
 <li>吃</li>
-<li>粑粑<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">1. 吃</div><div class="line">2. 粑粑</div><div class="line"></div><div class="line">句点后要有空格。数字是多少都无所谓，产生的效果相同。</div><div class="line"></div><div class="line">列表项下包含段落时，段落必须以1个制表符或4个缩进开头。</div><div class="line">如果列表项下需要引用，`&gt;`需要缩进。</div><div class="line">列表项下包含代码区块时，需要双倍缩进（2个制表符或者8个空格）。</div></pre></td></tr></table></figure>
+<li>粑粑<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="number">1.</span> 吃</div><div class="line"><span class="number">2.</span> 粑粑</div><div class="line"></div><div class="line">句点后要有空格。数字是多少都无所谓，产生的效果相同。</div><div class="line"></div><div class="line">列表项下包含段落时，段落必须以<span class="number">1</span>个制表符或<span class="number">4</span>个缩进开头。</div><div class="line">如果列表项下需要引用，`&gt;`需要缩进。</div><div class="line">列表项下包含代码区块时，需要双倍缩进（<span class="number">2</span>个制表符或者<span class="number">8</span>个空格）。</div></pre></td></tr></table></figure>
 </li>
 </ol>
 <ul>
@@ -702,7 +732,7 @@
       <div class="footer-inner">
         <div class="copyright" >
   
-  &copy; 
+  &copy;  2015 - 
   <span itemprop="copyrightYear">2016</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
@@ -828,6 +858,135 @@
 
   
   
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
 
   
 

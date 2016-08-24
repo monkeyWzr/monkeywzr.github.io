@@ -104,6 +104,39 @@ git rm --cache /path/to/file
   </entry>
   
   <entry>
+    <title>暑假越南行</title>
+    <link href="http://www.upwzr.com/2016/06/03/summer-trip-to-Vietnam/"/>
+    <id>http://www.upwzr.com/2016/06/03/summer-trip-to-Vietnam/</id>
+    <published>2016-06-02T16:00:00.000Z</published>
+    <updated>2016-06-03T16:31:21.816Z</updated>
+    
+    <content type="html"><![CDATA[<p>##准备阶段</p>
+<p>2016.6.3</p>
+<h3 id="路线计划："><a href="#路线计划：" class="headerlink" title="路线计划："></a>路线计划：</h3><p>河内 顺化 岘港 会安 芽庄 大叻 美奈 胡志明<br>从长沙出发到南宁，做大巴出关至越南。</p>
+<h3 id="待办："><a href="#待办：" class="headerlink" title="待办："></a>待办：</h3><p>签证 保险 买背包、一双徒步鞋</p>
+<h3 id="要带的东西"><a href="#要带的东西" class="headerlink" title="要带的东西"></a>要带的东西</h3><p>半袖 x2<br>短裤 x2<br>长裤 x1<br>外套 x1<br>拖鞋 x1<br>内裤 x2<br>袜子 x2<br>手电<br>毛巾<br>牙刷<br>洗发露<br>充电器<br>数据线<br>耳机<br>充电宝<br>药品（消炎、退烧、感冒、晕车、藿香正气水）<br>一次性雨衣<br>水杯<br>卫生纸<br>U盘（护照、身份证等照片）<br>墨镜<br>防晒霜<br>花露水<br>剃须刀<br>贴身腰包</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;##准备阶段&lt;/p&gt;
+&lt;p&gt;2016.6.3&lt;/p&gt;
+&lt;h3 id=&quot;路线计划：&quot;&gt;&lt;a href=&quot;#路线计划：&quot; class=&quot;headerlink&quot; title=&quot;路线计划：&quot;&gt;&lt;/a&gt;路线计划：&lt;/h3&gt;&lt;p&gt;河内 顺化 岘港 会安 芽庄 大叻 美奈 胡志明&lt;br&gt;
+    
+    </summary>
+    
+      <category term="生活" scheme="http://www.upwzr.com/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+    
+      <category term="旅行" scheme="http://www.upwzr.com/tags/%E6%97%85%E8%A1%8C/"/>
+    
+      <category term="越南" scheme="http://www.upwzr.com/tags/%E8%B6%8A%E5%8D%97/"/>
+    
+      <category term="穷游" scheme="http://www.upwzr.com/tags/%E7%A9%B7%E6%B8%B8/"/>
+    
+  </entry>
+  
+  <entry>
     <title>jquery实现表单上传图片预览</title>
     <link href="http://www.upwzr.com/2016/06/03/form-image-preview/"/>
     <id>http://www.upwzr.com/2016/06/03/form-image-preview/</id>
@@ -149,39 +182,6 @@ git rm --cache /path/to/file
       <category term="php" scheme="http://www.upwzr.com/tags/php/"/>
     
       <category term="jquery" scheme="http://www.upwzr.com/tags/jquery/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>暑假越南行</title>
-    <link href="http://www.upwzr.com/2016/06/03/summer-trip-to-Vietnam/"/>
-    <id>http://www.upwzr.com/2016/06/03/summer-trip-to-Vietnam/</id>
-    <published>2016-06-02T16:00:00.000Z</published>
-    <updated>2016-06-03T16:31:21.816Z</updated>
-    
-    <content type="html"><![CDATA[<p>##准备阶段</p>
-<p>2016.6.3</p>
-<h3 id="路线计划："><a href="#路线计划：" class="headerlink" title="路线计划："></a>路线计划：</h3><p>河内 顺化 岘港 会安 芽庄 大叻 美奈 胡志明<br>从长沙出发到南宁，做大巴出关至越南。</p>
-<h3 id="待办："><a href="#待办：" class="headerlink" title="待办："></a>待办：</h3><p>签证 保险 买背包、一双徒步鞋</p>
-<h3 id="要带的东西"><a href="#要带的东西" class="headerlink" title="要带的东西"></a>要带的东西</h3><p>半袖 x2<br>短裤 x2<br>长裤 x1<br>外套 x1<br>拖鞋 x1<br>内裤 x2<br>袜子 x2<br>手电<br>毛巾<br>牙刷<br>洗发露<br>充电器<br>数据线<br>耳机<br>充电宝<br>药品（消炎、退烧、感冒、晕车、藿香正气水）<br>一次性雨衣<br>水杯<br>卫生纸<br>U盘（护照、身份证等照片）<br>墨镜<br>防晒霜<br>花露水<br>剃须刀<br>贴身腰包</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;##准备阶段&lt;/p&gt;
-&lt;p&gt;2016.6.3&lt;/p&gt;
-&lt;h3 id=&quot;路线计划：&quot;&gt;&lt;a href=&quot;#路线计划：&quot; class=&quot;headerlink&quot; title=&quot;路线计划：&quot;&gt;&lt;/a&gt;路线计划：&lt;/h3&gt;&lt;p&gt;河内 顺化 岘港 会安 芽庄 大叻 美奈 胡志明&lt;br&gt;
-    
-    </summary>
-    
-      <category term="生活" scheme="http://www.upwzr.com/categories/%E7%94%9F%E6%B4%BB/"/>
-    
-    
-      <category term="旅行" scheme="http://www.upwzr.com/tags/%E6%97%85%E8%A1%8C/"/>
-    
-      <category term="越南" scheme="http://www.upwzr.com/tags/%E8%B6%8A%E5%8D%97/"/>
-    
-      <category term="穷游" scheme="http://www.upwzr.com/tags/%E7%A9%B7%E6%B8%B8/"/>
     
   </entry>
   
@@ -887,28 +887,28 @@ EndSection
     <link href="http://www.upwzr.com/2015/12/06/curl-on-linux-for-autoregistering/"/>
     <id>http://www.upwzr.com/2015/12/06/curl-on-linux-for-autoregistering/</id>
     <published>2015-12-05T16:00:00.000Z</published>
-    <updated>2016-08-24T09:25:33.750Z</updated>
+    <updated>2016-08-24T11:14:08.790Z</updated>
     
     <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>经常去某资源站下载美剧，我很喜欢的的团(ren)队(ren)在运营这个网站，资源很及时也很好。网站要求登录才能看到下载链接。连续登录达到多少天就可以升级并且可以查看更多下载资源。然而我这种人是不可能记着每天都去网站上签到的(-&lt;-)。。。正好最近买了vps，于是决定自己写一个自动登录的脚本。</p>
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>Fiddler抓包发现此网站登陆时url为/User/Login/ajaxLogin，post提交用户名和密码。</p>
-<p><img src="/assets/img/images/2015-12-04-zimuzu-auto-login_1.png" alt="img"></p>
+<p><img src="/img/2015-12-04-zimuzu-auto-login_1.png" alt="img"></p>
 <p>登录成功之后返回JSON字符串</p>
-<p><img src="/assets/img/images/2015-12-04-zimuzu-auto-login_3.png" alt="img"></p>
+<p><img src="/img/2015-12-04-zimuzu-auto-login_3.png" alt="img"></p>
 <p>用户等级等相关信息是通过之后的两个请求<code>hotkeyword``getCurUserTopInfo</code>获取的，用于网站顶部的信息和搜索栏。</p>
-<p><img src="/assets/img/images/2015-12-04-zimuzu-auto-login_4.png" alt="img"></p>
-<p><img src="/assets/img/images/2015-12-04-zimuzu-auto-login_5.png" alt="img"></p>
-<p><img src="/assets/img/images/2015-12-04-zimuzu-auto-login_6.png" alt="img"></p>
+<p><img src="/img/2015-12-04-zimuzu-auto-login_4.png" alt="img"></p>
+<p><img src="/img/2015-12-04-zimuzu-auto-login_5.png" alt="img"></p>
+<p><img src="/img/2015-12-04-zimuzu-auto-login_6.png" alt="img"></p>
 <p>通过我的测试发现这两个请求并不会影响cookie的变化，不模拟也完全没问题。</p>
 <p>签到页面url为/user/sign,签到按钮通过js控制15s后才可以点击，点击后fiddler抓到了/user/sign/dosign的请求，request包里面看起并没有什么新内容，response返回了一个json</p>
-<p><img src="/assets/img/images/2015-12-04-zimuzu-auto-login_7.png" alt="img"></p>
-<p><img src="/assets/img/images/2015-12-04-zimuzu-auto-login_8.png" alt="img"></p>
+<p><img src="/img/2015-12-04-zimuzu-auto-login_7.png" alt="img"></p>
+<p><img src="/img/2015-12-04-zimuzu-auto-login_8.png" alt="img"></p>
 <p>json里面的info表示签到结果，1为成功。data为连续签到天数。</p>
 <h2 id="开搞"><a href="#开搞" class="headerlink" title="开搞"></a>开搞</h2><p>OK！开始祭出杀气<strong>curl</strong>，一开始是用的php，但是向dosign发送请求总是返回错误状态，可能是那里的curl参数配置错了，找个时间再回过头去看一下。。就不说这个了。</p>
 <p>后来决定干脆直接上linux写脚本。我水平比较low。。就是简单的3个请求，存一下cookie，也没搞啥复杂东西。</p>
-<p><img src="/assets/img/images/2015-12-04-zimuzu-auto-login_9.png" alt="img"></p>
+<p><img src="/img/2015-12-04-zimuzu-auto-login_9.png" alt="img"></p>
 <p>先简单在本地测试了一下</p>
-<p><img src="/assets/img/images/2015-12-04-zimuzu-auto-login_10.png" alt="img"></p>
-<p><img src="/assets/img/images/2015-12-04-zimuzu-auto-login_11.png" alt="img"></p>
+<p><img src="/img/2015-12-04-zimuzu-auto-login_10.png" alt="img"></p>
+<p><img src="/img/2015-12-04-zimuzu-auto-login_11.png" alt="img"></p>
 <p>哈哈，大功告成！！</p>
 <p>最后把脚本丢到了vps上跑，crontab添加一条定时任务，每天凌晨啪啪啪~~ 麻麻再也不用担心我的签到~~</p>
 ]]></content>

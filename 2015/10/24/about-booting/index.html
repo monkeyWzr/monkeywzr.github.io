@@ -100,18 +100,18 @@ MBR分区方案中硬盘的每个扇区通过32位二进制数逻辑块地址（
 MBR - Master Boot Record 主引导记录/主引导扇区
 
 MBR分区方案中硬盘的每个扇区通过32位二进制数逻辑块地址（LBA）来标识。计算机开机后访问硬盘时要先读取第一个扇区，这个扇区（通常有512bytes）储存着主引导记录MBR（446bytes）和分区表DPT（64bytes）。主引导记录中装有开机管理程序（boot loader），分区表中记录了">
-<meta property="og:image" content="http://www.upwzr.com/assets/img/images/2015-10-23-about-booting_1.png">
-<meta property="og:image" content="http://www.upwzr.com/assets/img/images/2015-10-23-about-booting_2.png">
-<meta property="og:image" content="http://www.upwzr.com/assets/img/images/2015-10-23-about-booting_3.png">
-<meta property="og:image" content="http://www.upwzr.com/assets/img/images/2015-10-23-about-booting_4.png">
-<meta property="og:updated_time" content="2016-03-04T14:43:39.174Z">
+<meta property="og:image" content="http://www.upwzr.com/img/2015-10-23-about-booting_1.png">
+<meta property="og:image" content="http://www.upwzr.com/img/2015-10-23-about-booting_2.png">
+<meta property="og:image" content="http://www.upwzr.com/img/2015-10-23-about-booting_3.png">
+<meta property="og:image" content="http://www.upwzr.com/img/2015-10-23-about-booting_4.png">
+<meta property="og:updated_time" content="2016-08-24T11:13:10.179Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="开机流程中的事儿">
 <meta name="twitter:description" content="一些基本概念MBR分区表
 MBR - Master Boot Record 主引导记录/主引导扇区
 
 MBR分区方案中硬盘的每个扇区通过32位二进制数逻辑块地址（LBA）来标识。计算机开机后访问硬盘时要先读取第一个扇区，这个扇区（通常有512bytes）储存着主引导记录MBR（446bytes）和分区表DPT（64bytes）。主引导记录中装有开机管理程序（boot loader），分区表中记录了">
-<meta name="twitter:image" content="http://www.upwzr.com/assets/img/images/2015-10-23-about-booting_1.png">
+<meta name="twitter:image" content="http://www.upwzr.com/img/2015-10-23-about-booting_1.png">
 
 
 
@@ -266,9 +266,39 @@ MBR分区方案中硬盘的每个扇区通过32位二进制数逻辑块地址（
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'whJiTn1vmzLLzmXfzF6h','2.0.0');
+</script>
+
+
+
+    </div>
   
 </nav>
 
@@ -380,14 +410,14 @@ MBR分区方案中硬盘的每个扇区通过32位二进制数逻辑块地址（
         <h2 id="一些基本概念"><a href="#一些基本概念" class="headerlink" title="一些基本概念"></a>一些基本概念</h2><h3 id="MBR分区表"><a href="#MBR分区表" class="headerlink" title="MBR分区表"></a>MBR分区表</h3><blockquote>
 <p>MBR - Master Boot Record 主引导记录/主引导扇区</p>
 </blockquote>
-<p>MBR分区方案中硬盘的每个扇区通过32位二进制数逻辑块地址（LBA）来标识。计算机开机后访问硬盘时要先读取第一个扇区，这个扇区（通常有512bytes）储存着主引导记录MBR（446bytes）和分区表DPT（64bytes）。主引导记录中装有开机管理程序（boot loader），分区表中记录了磁盘分区情况。由于每一条分区记录需要16个字节，因此MBR分区结构只能支持4个主分区，想得到4个以上的分区需要采用扩展分区，注意扩展分区只能有一个，在windows系统中默认划分一个主分区给系统，其余的全部划入扩展分区。扩展分区可以划分出多个逻辑分区。<br><img src="/assets/img/images/2015-10-23-about-booting_1.png" alt="img"></p>
+<p>MBR分区方案中硬盘的每个扇区通过32位二进制数逻辑块地址（LBA）来标识。计算机开机后访问硬盘时要先读取第一个扇区，这个扇区（通常有512bytes）储存着主引导记录MBR（446bytes）和分区表DPT（64bytes）。主引导记录中装有开机管理程序（boot loader），分区表中记录了磁盘分区情况。由于每一条分区记录需要16个字节，因此MBR分区结构只能支持4个主分区，想得到4个以上的分区需要采用扩展分区，注意扩展分区只能有一个，在windows系统中默认划分一个主分区给系统，其余的全部划入扩展分区。扩展分区可以划分出多个逻辑分区。<br><img src="/img/2015-10-23-about-booting_1.png" alt="img"></p>
 <p>MBR的局限性在于，分区表大小固定，只能支持4个主分区，而且最大只能支持到2.2TB的分区容量。随着硬盘技术的发展，MBR分区方案有些撑不住了，再加上win8/8.1的催化，GPT分区表逐渐成为主流。</p>
 <h3 id="GPT分区表"><a href="#GPT分区表" class="headerlink" title="GPT分区表"></a>GPT分区表</h3><blockquote>
 <p>GPT - GUID Partition Table 全局唯一标识分区表</p>
 </blockquote>
 <p>有些硬盘厂商注意到了MBR分区方案的容量局限，就把容量较大的产品升级到了4KB的扇区，这样使得MBR可以支持最大到16TB,但同时带来了关于在有较大的块的设备从BIOS启动时，如何最佳的划分分区。GPT分区方案中LBA是64位2进制数，因此对于扇区为512bytes的硬盘，容量可以达到9.4ZB。。。<br>GPT表的最开头，有一块类似MBR的表头，称为PMBR，存有引导程序和一个特殊标识用来表示次硬盘使用GPT分区方式。接下来的LBA1是GPT的分区表头，记录了硬盘的可用空间和分区表项的大小和数目，还有备份分割的位置。GPT有34个LBA区块记录，从LBA2到LBA33每个区块都可以记录4条分区记录，每条记录都达到128bytes。</p>
-<p><img src="/assets/img/images/2015-10-23-about-booting_2.png" alt="img"></p>
-<p>在一些MBR/GPT混合硬盘中，不同系统实现有些不一致，windows系统通常优先使用MBR。<br>再来一张windows的分区类型GUID<br><img src="/assets/img/images/2015-10-23-about-booting_3.png" alt="img"></p>
+<p><img src="/img/2015-10-23-about-booting_2.png" alt="img"></p>
+<p>在一些MBR/GPT混合硬盘中，不同系统实现有些不一致，windows系统通常优先使用MBR。<br>再来一张windows的分区类型GUID<br><img src="/img/2015-10-23-about-booting_3.png" alt="img"></p>
 <blockquote>
 <p><strong>相关链接</strong><br><a href="https://zh.wikipedia.org/wiki/4K%E5%AF%B9%E9%BD%90" target="_blank" rel="external">4K对齐</a></p>
 </blockquote>
@@ -413,7 +443,7 @@ MBR分区方案中硬盘的每个扇区通过32位二进制数逻辑块地址（
 <li>根据CMOS中的储存设备读取顺序，BIOS将读取相应设备中的MBR，启动引导程序。此时BIOS的工作已经完成。</li>
 <li>引导程序接受控制权开始工作。</li>
 </ol>
-<p>引导程序主要任务也不多，提供开机选单、载入核心档案和转交其他的boot loader。硬盘的每个分区都可以有一个开机磁区，boot loader除了可以安装在MBR中外也可以安装到开机磁区中。<br>假设一个采用MBR分区的硬盘装有Windows和Linux双系统，整个流程可以用下图表示：<br><img src="/assets/img/images/2015-10-23-about-booting_4.png" alt="img"></p>
+<p>引导程序主要任务也不多，提供开机选单、载入核心档案和转交其他的boot loader。硬盘的每个分区都可以有一个开机磁区，boot loader除了可以安装在MBR中外也可以安装到开机磁区中。<br>假设一个采用MBR分区的硬盘装有Windows和Linux双系统，整个流程可以用下图表示：<br><img src="/img/2015-10-23-about-booting_4.png" alt="img"></p>
 <blockquote>
 <p><strong>安装Windows/Linux双系统最好先安装Windows的原因</strong></p>
 <ul>
@@ -670,7 +700,7 @@ MBR分区方案中硬盘的每个扇区通过32位二进制数逻辑块地址（
       <div class="footer-inner">
         <div class="copyright" >
   
-  &copy; 
+  &copy;  2015 - 
   <span itemprop="copyrightYear">2016</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
@@ -796,6 +826,135 @@ MBR分区方案中硬盘的每个扇区通过32位二进制数逻辑块地址（
 
   
   
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
 
   
 
