@@ -1429,6 +1429,14 @@ $.getJSON(&quot;test.php?jsoncallback=?&quot;, function(data) {
     </entry>
     
     <entry>
+      <title><![CDATA[开张啦开张啦]]></title>
+      <url>http://www.upwzr.com/2015/08/03/blog-open/</url>
+      <content type="html"><![CDATA[<h2 id="我的博客正式开张"><a href="#我的博客正式开张" class="headerlink" title="我的博客正式开张"></a>我的博客正式开张</h2><p>自从有了博客，走起路来都飘。这难道就是传说中的装B?</p>
+<p>借此博客用来记录成长轨迹，分享学习心得，培养所谓人文情操。</p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[markdown语法简记]]></title>
       <url>http://www.upwzr.com/2015/08/03/markdown-notes/</url>
       <content type="html"><![CDATA[<h2 id="0-反斜杠"><a href="#0-反斜杠" class="headerlink" title="0. 反斜杠"></a>0. 反斜杠</h2><p>反斜杠可以将在markdown中有特殊意义的字符作为正常字符插入。</p>
@@ -1516,14 +1524,6 @@ $.getJSON(&quot;test.php?jsoncallback=?&quot;, function(data) {
 
 
 <h2 id="详细内容参见"><a href="#详细内容参见" class="headerlink" title="详细内容参见"></a>详细内容参见</h2><p>点击进入<br><a href="https://gitcafe.com/riku/Markdown-Syntax-CN/blob/master/syntax.md" target="_blank" rel="external">Markdown语法简体中文版</a><br><a href="http://daringfireball.net/projects/markdown/syntax" target="_blank" rel="external">Markdoown官方文档</a></p>
-]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[开张啦开张啦]]></title>
-      <url>http://www.upwzr.com/2015/08/03/blog-open/</url>
-      <content type="html"><![CDATA[<h2 id="我的博客正式开张"><a href="#我的博客正式开张" class="headerlink" title="我的博客正式开张"></a>我的博客正式开张</h2><p>自从有了博客，走起路来都飘。这难道就是传说中的装B?</p>
-<p>借此博客用来记录成长轨迹，分享学习心得，培养所谓人文情操。</p>
 ]]></content>
     </entry>
     
