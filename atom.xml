@@ -1,0 +1,1160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>マクロス</title>
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://www.upwzr.com/"/>
+  <updated>2016-03-04T14:43:39.144Z</updated>
+  <id>http://www.upwzr.com/</id>
+  
+  <author>
+    <name>小灰机灰上天</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ADO学习笔记</title>
+    <link href="http://www.upwzr.com/2016/08/24/2015-11-9-ADO-notes/"/>
+    <id>http://www.upwzr.com/2016/08/24/2015-11-9-ADO-notes/</id>
+    <published>2016-08-24T06:41:49.442Z</published>
+    <updated>2016-03-04T14:43:39.144Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>ADO - ActiveX Data Objects</p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;ADO - ActiveX Data Objects&lt;/p&gt;
+&lt;/blockquote&gt;
+
+    
+    </summary>
+    
+      <category term="学习笔记" scheme="http://www.upwzr.com/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="ADO" scheme="http://www.upwzr.com/tags/ADO/"/>
+    
+      <category term="C#" scheme="http://www.upwzr.com/tags/C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>git日常使用心得</title>
+    <link href="http://www.upwzr.com/2016/07/05/git-notes/"/>
+    <id>http://www.upwzr.com/2016/07/05/git-notes/</id>
+    <published>2016-07-04T16:00:00.000Z</published>
+    <updated>2016-07-05T13:13:25.649Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="忽略文件"><a href="#忽略文件" class="headerlink" title="忽略文件"></a>忽略文件</h2><h3 id="忽略文件或文件夹只在本地需要使用"><a href="#忽略文件或文件夹只在本地需要使用" class="headerlink" title="忽略文件或文件夹只在本地需要使用"></a>忽略文件或文件夹只在本地需要使用</h3><p>此种情况为，文件或文件夹只在本地需要，不应该出现在远程仓库时。<br>在将忽略文件或路径更新到<code>.gitignore</code>后，若对于已经trace的文件，需要让git不再跟踪，执行下列命令：</p>
+<pre><code>//目标为文件夹则需加入-r参数
+git rm --cache /path/to/file
+</code></pre><h3 id="文件或文件夹的改动不需要提交"><a href="#文件或文件夹的改动不需要提交" class="headerlink" title="文件或文件夹的改动不需要提交"></a>文件或文件夹的改动不需要提交</h3><p>有些文件或文件夹的改动不需要提交，则在更新<code>.gitignore</code>的同时也要执行执行：</p>
+<pre><code>git update-index --assume-unchanged logs/*.log
+</code></pre><p>此种情况下需要每位成员都在自己的本地仓库执行上述命令。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;忽略文件&quot;&gt;&lt;a href=&quot;#忽略文件&quot; class=&quot;headerlink&quot; title=&quot;忽略文件&quot;&gt;&lt;/a&gt;忽略文件&lt;/h2&gt;&lt;h3 id=&quot;忽略文件或文件夹只在本地需要使用&quot;&gt;&lt;a href=&quot;#忽略文件或文件夹只在本地需要使用&quot; class=&quot;head
+    
+    </summary>
+    
+      <category term="学习笔记" scheme="http://www.upwzr.com/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="git" scheme="http://www.upwzr.com/tags/git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>文件上传组件Web Uploader</title>
+    <link href="http://www.upwzr.com/2016/06/03/webuploader/"/>
+    <id>http://www.upwzr.com/2016/06/03/webuploader/</id>
+    <published>2016-06-02T16:00:00.000Z</published>
+    <updated>2016-06-03T14:10:08.394Z</updated>
+    
+    <content type="html"><![CDATA[<p>WebUploader是由Baidu WebFE(FEX)团队开发的一个简单的以HTML5为主，FLASH为辅的现代文件上传组件。感觉对于实现图片上传预览，截屏等效功能会很方便。虽然我并没有用过。。</p>
+<blockquote>
+<p><a href="http://fex.baidu.com/webuploader/" target="_blank" rel="external">http://fex.baidu.com/webuploader/</a><br><a href="https://github.com/fex-team/webuploader/" target="_blank" rel="external">https://github.com/fex-team/webuploader/</a></p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;WebUploader是由Baidu WebFE(FEX)团队开发的一个简单的以HTML5为主，FLASH为辅的现代文件上传组件。感觉对于实现图片上传预览，截屏等效功能会很方便。虽然我并没有用过。。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;http://f
+    
+    </summary>
+    
+      <category term="资料" scheme="http://www.upwzr.com/categories/%E8%B5%84%E6%96%99/"/>
+    
+    
+      <category term="api" scheme="http://www.upwzr.com/tags/api/"/>
+    
+      <category term="library" scheme="http://www.upwzr.com/tags/library/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>暑假越南行</title>
+    <link href="http://www.upwzr.com/2016/06/03/summer-trip-to-Vietnam/"/>
+    <id>http://www.upwzr.com/2016/06/03/summer-trip-to-Vietnam/</id>
+    <published>2016-06-02T16:00:00.000Z</published>
+    <updated>2016-06-03T16:31:21.816Z</updated>
+    
+    <content type="html"><![CDATA[<p>##准备阶段</p>
+<p>2016.6.3</p>
+<h3 id="路线计划："><a href="#路线计划：" class="headerlink" title="路线计划："></a>路线计划：</h3><p>河内 顺化 岘港 会安 芽庄 大叻 美奈 胡志明<br>从长沙出发到南宁，做大巴出关至越南。</p>
+<h3 id="待办："><a href="#待办：" class="headerlink" title="待办："></a>待办：</h3><p>签证 保险 买背包、一双徒步鞋</p>
+<h3 id="要带的东西"><a href="#要带的东西" class="headerlink" title="要带的东西"></a>要带的东西</h3><p>半袖 x2<br>短裤 x2<br>长裤 x1<br>外套 x1<br>拖鞋 x1<br>内裤 x2<br>袜子 x2<br>手电<br>毛巾<br>牙刷<br>洗发露<br>充电器<br>数据线<br>耳机<br>充电宝<br>药品（消炎、退烧、感冒、晕车、藿香正气水）<br>一次性雨衣<br>水杯<br>卫生纸<br>U盘（护照、身份证等照片）<br>墨镜<br>防晒霜<br>花露水<br>剃须刀<br>贴身腰包</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;##准备阶段&lt;/p&gt;
+&lt;p&gt;2016.6.3&lt;/p&gt;
+&lt;h3 id=&quot;路线计划：&quot;&gt;&lt;a href=&quot;#路线计划：&quot; class=&quot;headerlink&quot; title=&quot;路线计划：&quot;&gt;&lt;/a&gt;路线计划：&lt;/h3&gt;&lt;p&gt;河内 顺化 岘港 会安 芽庄 大叻 美奈 胡志明&lt;br&gt;
+    
+    </summary>
+    
+      <category term="生活" scheme="http://www.upwzr.com/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+    
+      <category term="旅行" scheme="http://www.upwzr.com/tags/%E6%97%85%E8%A1%8C/"/>
+    
+      <category term="越南" scheme="http://www.upwzr.com/tags/%E8%B6%8A%E5%8D%97/"/>
+    
+      <category term="穷游" scheme="http://www.upwzr.com/tags/%E7%A9%B7%E6%B8%B8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>jquery实现表单上传图片预览</title>
+    <link href="http://www.upwzr.com/2016/06/03/form-image-preview/"/>
+    <id>http://www.upwzr.com/2016/06/03/form-image-preview/</id>
+    <published>2016-06-02T16:00:00.000Z</published>
+    <updated>2016-06-03T13:26:33.650Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近有个小页面需要实现图片上传预览，自己还不擅长javascript，迷茫的看了好久文档之后算是利用File API实现了这个事情。<br>js代码：</p>
+<pre><code>&lt;script&gt;
+    function preview(files){
+      for (var i = 0; i &lt; files.length; i++) {
+        var file = files[i];
+        var reader = new FileReader();
+        reader.onload = (function(aImg) { 
+          return function(e) { 
+            //假设页面上的img元素id为showimg
+            $(&apos;#showimg&apos;) . attr(&apos;src&apos;, e.target.result);
+          }; 
+        })();
+        reader.readAsDataURL(file);
+      }
+    }
+&lt;/script&gt;
+</code></pre><p>调用只要在input元素上加上<code>onchange=&quot;preview(this.files)&quot;</code>。</p>
+<blockquote>
+<p>相关链接<br><a href="https://developer.mozilla.org/zh-CN/docs/Using_files_from_web_applications#%E4%BE%8B%E5%AD%90%EF%BC%9A%E6%98%BE%E7%A4%BA%E7%94%A8%E6%88%B7%E6%89%80%E9%80%89%E5%9B%BE%E7%89%87%E7%9A%84%E7%BC%A9%E7%95%A5%E5%9B%BE" target="_blank" rel="external">在web应用中使用文件 – Mozilla 文档</a><br>来自百度的一个上传组件<a href="http://fex.baidu.com/webuploader/" target="_blank" rel="external">http://fex.baidu.com/webuploader/</a></p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近有个小页面需要实现图片上传预览，自己还不擅长javascript，迷茫的看了好久文档之后算是利用File API实现了这个事情。&lt;br&gt;js代码：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;script&amp;gt;
+    function preview(files){
+  
+    
+    </summary>
+    
+      <category term="技术" scheme="http://www.upwzr.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="html" scheme="http://www.upwzr.com/tags/html/"/>
+    
+      <category term="php" scheme="http://www.upwzr.com/tags/php/"/>
+    
+      <category term="jquery" scheme="http://www.upwzr.com/tags/jquery/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>kali2016下phpredis的使用</title>
+    <link href="http://www.upwzr.com/2016/05/17/phpredis/"/>
+    <id>http://www.upwzr.com/2016/05/17/phpredis/</id>
+    <published>2016-05-16T16:00:00.000Z</published>
+    <updated>2016-06-03T14:01:16.606Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="phpredis安装"><a href="#phpredis安装" class="headerlink" title="phpredis安装"></a>phpredis安装</h2><p>安装phpredis非常的简单，github上文档写的很详细。<br>在源码根目录执行：</p>
+<pre><code>phpize
+./configure [--enable-redis-igbinary]
+sudo make &amp;&amp; sudo make install
+</code></pre><p>对于没有安装phpize的情况，可以apt-get安装dev包</p>
+<pre><code>sudo apt-get install php5-dev
+</code></pre><p>如果用的是php7，记得要使用php7分支，或者终端下载：</p>
+<pre><code>git clone -b php7 https://github.com/phpredis/phpredis.git
+</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;phpredis安装&quot;&gt;&lt;a href=&quot;#phpredis安装&quot; class=&quot;headerlink&quot; title=&quot;phpredis安装&quot;&gt;&lt;/a&gt;phpredis安装&lt;/h2&gt;&lt;p&gt;安装phpredis非常的简单，github上文档写的很详细。&lt;br&gt;在源码
+    
+    </summary>
+    
+      <category term="学习笔记" scheme="http://www.upwzr.com/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="kali" scheme="http://www.upwzr.com/tags/kali/"/>
+    
+      <category term="redis" scheme="http://www.upwzr.com/tags/redis/"/>
+    
+      <category term="phpredis" scheme="http://www.upwzr.com/tags/phpredis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>简记oath2.0</title>
+    <link href="http://www.upwzr.com/2016/04/22/understanding-oauth2/"/>
+    <id>http://www.upwzr.com/2016/04/22/understanding-oauth2/</id>
+    <published>2016-04-21T16:00:00.000Z</published>
+    <updated>2016-08-24T05:57:51.287Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>OAuth2就是第三方应用获取授权的一套开放网络标准。它在客户端和服务端提供了一层中间授权层，客户端提供登录信息给授权层，登录成功后会拿到一张自己的通行令牌（token），客户端凭借此令牌别可以得到相行的服务端访问权限。</p>
+<h3 id="授权流程"><a href="#授权流程" class="headerlink" title="授权流程"></a>授权流程</h3><p><img src="/img/2016-04-13-understanding-oauth2_1.png" alt="img"></p>
+<ul>
+<li>客户端向用户提示授权</li>
+<li>用户同意授权，向客户端提供授权许可（grant）</li>
+<li>客户端向认证服务器发送认证请求，请求中包含用户提供的授权许可</li>
+<li>认证成功后认证服务器向客户端发放令牌（token）</li>
+<li>客户端使用令牌向服务器端请求资源</li>
+<li>资源服务器验证令牌有效，答复请求</li>
+</ul>
+<h2 id="授权许可方式"><a href="#授权许可方式" class="headerlink" title="授权许可方式"></a>授权许可方式</h2><p>在用户向客户端提供授权许可这一环节，OAuth2定义了四种类型：授权码模式（authorization code）、简化模式（implicit）、密码模式（resource owner password credentials）、客户端模式（client credentials）。</p>
+<h3 id="授权码（authorization-code）"><a href="#授权码（authorization-code）" class="headerlink" title="授权码（authorization code）"></a>授权码（authorization code）</h3><p>这种模式中，客户端将用户引导到授权服务器上，用户同意授权后授权服务器将会令用户重定向至客户端指定的回调地址，并带有授权码。客户端收到授权码后便会自行请求认证服务器，认证服务器核对无误即会返回给客户端访问令牌和更新令牌。整个流程中用户实际上只是跟认证服务器提交了认证，并未与客户端分享任何登录信息。</p>
+<h3 id="简化模式（implicit）"><a href="#简化模式（implicit）" class="headerlink" title="简化模式（implicit）"></a>简化模式（implicit）</h3><p>（懒得简化了，先贴出来放在这=。=）<br>The implicit grant is a simplified authorization code flow optimized<br>for clients implemented in a browser using a scripting language such<br>as JavaScript.  In the implicit flow, instead of issuing the client<br>an authorization code, the client is issued an access token directly<br>(as the result of the resource owner authorization).  The grant type<br>is implicit, as no intermediate credentials (such as an authorization<br>code) are issued (and later used to obtain an access token).<br>When issuing an access token during the implicit grant flow, the<br>authorization server does not authenticate the client.  In some<br>cases, the client identity can be verified via the redirection URI<br>used to deliver the access token to the client.  The access token may<br>be exposed to the resource owner or other applications with access to<br>the resource owner’s user-agent.<br>Implicit grants improve the responsiveness and efficiency of some<br>clients (such as a client implemented as an in-browser application),<br>since it reduces the number of round trips required to obtain an<br>access token.  However, this convenience should be weighed against<br>the security implications of using implicit grants, such as those<br>described in Sections 10.3 and 10.16, especially when the<br>authorization code grant type is available.</p>
+<h3 id="密码凭证（resource-owner-password-credentials）"><a href="#密码凭证（resource-owner-password-credentials）" class="headerlink" title="密码凭证（resource owner password credentials）"></a>密码凭证（resource owner password credentials）</h3><p>这种授权模式适用于客户端具有高可信度的情况。用户将会给客户端提供自己的的登录信息（如用户名和密码），客户端使用这些信息向认证服务器发送请求获取令牌。原则上客户端是不允许存储这些登录信息的，但是客户端有没有真的遵守就不知道了。。。</p>
+<h3 id="客户端凭证（client-credentials）"><a href="#客户端凭证（client-credentials）" class="headerlink" title="客户端凭证（client credentials）"></a>客户端凭证（client credentials）</h3><p>这种模式下用户并没有与认证服务器进行交流，而是在客户端进行注册或登录，登录成功后客户端会以自己的名义去请求认证服务器获取令牌。也就是说认证服务器是看在客户端的面子上给用户提供了相应的权限。</p>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><p>this is a deep hole。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;p&gt;OAuth2就是第三方应用获取授权的一套开放网络标准。它在客户端和服务端提供了一层中间授权层，客户端提供登录信息给授权层，登录成功后会拿到一
+    
+    </summary>
+    
+      <category term="学习笔记" scheme="http://www.upwzr.com/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="oauth2" scheme="http://www.upwzr.com/tags/oauth2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>php几种设计模式</title>
+    <link href="http://www.upwzr.com/2016/04/18/php-moshi/"/>
+    <id>http://www.upwzr.com/2016/04/18/php-moshi/</id>
+    <published>2016-04-17T16:00:00.000Z</published>
+    <updated>2016-06-03T16:33:18.404Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="php设计模式"><a href="#php设计模式" class="headerlink" title="php设计模式"></a>php设计模式</h2><h3 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h3><h3 id="多例模式"><a href="#多例模式" class="headerlink" title="多例模式"></a>多例模式</h3><h3 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h3><p>代理模式实际上就是解决了在有些不适合继承的情况下使用方法的问题。在proxy类中实现__call()方法调用被代理类的方法。</p>
+<h3 id="外观模式（facade）"><a href="#外观模式（facade）" class="headerlink" title="外观模式（facade）"></a>外观模式（facade）</h3><h3 id="装饰者模式-decorator"><a href="#装饰者模式-decorator" class="headerlink" title="装饰者模式(decorator)"></a>装饰者模式(decorator)</h3><h3 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h3><h3 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h3><h3 id="发布者-订阅者模式"><a href="#发布者-订阅者模式" class="headerlink" title="发布者/订阅者模式"></a>发布者/订阅者模式</h3>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;php设计模式&quot;&gt;&lt;a href=&quot;#php设计模式&quot; class=&quot;headerlink&quot; title=&quot;php设计模式&quot;&gt;&lt;/a&gt;php设计模式&lt;/h2&gt;&lt;h3 id=&quot;单例模式&quot;&gt;&lt;a href=&quot;#单例模式&quot; class=&quot;headerlink&quot; titl
+    
+    </summary>
+    
+      <category term="学习笔记" scheme="http://www.upwzr.com/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="php" scheme="http://www.upwzr.com/tags/php/"/>
+    
+      <category term="设计模式" scheme="http://www.upwzr.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ubuntu server 搭建apache/mysql/php7</title>
+    <link href="http://www.upwzr.com/2016/04/01/ubuntu-server-lamp/"/>
+    <id>http://www.upwzr.com/2016/04/01/ubuntu-server-lamp/</id>
+    <published>2016-03-31T16:00:00.000Z</published>
+    <updated>2016-07-04T13:40:31.837Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="先安装php的情况"><a href="#先安装php的情况" class="headerlink" title="先安装php的情况"></a>先安装php的情况</h2><p>如果安装php的时候还没有安装apache，那么安装好apache后需要安装一个模块：</p>
+<pre><code>$ sudo apt-get install libapache2-mod-php7.0
+//如果安装的是php5则安装下面的包
+$ sudo apt-get install libapache2-mod-php
+</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;先安装php的情况&quot;&gt;&lt;a href=&quot;#先安装php的情况&quot; class=&quot;headerlink&quot; title=&quot;先安装php的情况&quot;&gt;&lt;/a&gt;先安装php的情况&lt;/h2&gt;&lt;p&gt;如果安装php的时候还没有安装apache，那么安装好apache后需要安装一个模块
+    
+    </summary>
+    
+      <category term="技术" scheme="http://www.upwzr.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="mysql" scheme="http://www.upwzr.com/tags/mysql/"/>
+    
+      <category term="linux" scheme="http://www.upwzr.com/tags/linux/"/>
+    
+      <category term="lamp" scheme="http://www.upwzr.com/tags/lamp/"/>
+    
+      <category term="apache" scheme="http://www.upwzr.com/tags/apache/"/>
+    
+      <category term="php" scheme="http://www.upwzr.com/tags/php/"/>
+    
+      <category term="php7" scheme="http://www.upwzr.com/tags/php7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Django常用命令</title>
+    <link href="http://www.upwzr.com/2016/03/29/django-commands/"/>
+    <id>http://www.upwzr.com/2016/03/29/django-commands/</id>
+    <published>2016-03-28T16:00:00.000Z</published>
+    <updated>2016-06-03T13:22:25.211Z</updated>
+    
+    <content type="html"><![CDATA[<ul>
+<li><code>makemigrations</code> 创建迁移信息</li>
+<li><code>sqlmigrate</code> 输出生成的sql语句</li>
+<li><code>migrate</code> 同步所有未应用的改动</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;ul&gt;
+&lt;li&gt;&lt;code&gt;makemigrations&lt;/code&gt; 创建迁移信息&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sqlmigrate&lt;/code&gt; 输出生成的sql语句&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;migrate&lt;/code&gt; 同步所有未应用的改动&lt;/li&gt;
+&lt;/ul&gt;
+
+    
+    </summary>
+    
+      <category term="学习笔记" scheme="http://www.upwzr.com/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="Django" scheme="http://www.upwzr.com/tags/Django/"/>
+    
+      <category term="python" scheme="http://www.upwzr.com/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>docker基础简记</title>
+    <link href="http://www.upwzr.com/2016/03/09/docker-guide/"/>
+    <id>http://www.upwzr.com/2016/03/09/docker-guide/</id>
+    <published>2016-03-08T16:00:00.000Z</published>
+    <updated>2016-03-12T02:44:01.144Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Docker是什么"><a href="#Docker是什么" class="headerlink" title="Docker是什么"></a>Docker是什么</h2><blockquote>
+<p>Docker allows you to package an application with all of its dependencies into a standardized unit for software development.<br>            <em>—-<a href="https://www.docker.com/what-docker#/copy1" target="_blank" rel="external">What is Docker?</a></em></p>
+</blockquote>
+<p>Docker是近几年兴起的发展非常快速的开源项目，可用来创建非常轻量的“虚拟机”。在这里重要的两个概念是 <strong>镜像</strong> 和 <strong>容器</strong> 。</p>
+<h2 id="docker命令简记"><a href="#docker命令简记" class="headerlink" title="docker命令简记"></a>docker命令简记</h2><ul>
+<li><code>run</code> 启动<ul>
+<li>-t 在容器内指定一个终端</li>
+<li>-i 允许对容器内的STDIN进行交互</li>
+<li>-d 在容器内已后台进程模式运行</li>
+<li>-P 将容器内部使用的网络端口随机映射到主机高端口上</li>
+<li>-p 指定要绑定的端口，具体用法见文档</li>
+<li>-e <em>KEY=value</em> 设置环境变量</li>
+<li>–name _container_name_ 为容器命名</li>
+<li>–rm 创建临时容器，停止后删除</li>
+</ul>
+</li>
+<li><code>ps</code> 查看正在运行的容器<ul>
+<li>-l 显示最后启动容器的详细信息</li>
+<li>-a 显示所有容器，包括已经停止的</li>
+</ul>
+</li>
+<li><code>logs</code> _container_name_ 查看容器内的标准输出<ul>
+<li>-f 保持活动状态，动态显示新添加的信息</li>
+</ul>
+</li>
+<li><code>stop</code> 停止正在工作的容器</li>
+<li><code>version</code> 返回Docker 客户端和进程的版本信息</li>
+<li><code>port</code> _container_name_</li>
+<li><code>top</code> 查看容器内部运行的进程</li>
+<li><code>inspect</code> 查看容器的底层信息（配置和状态），JSON格式<ul>
+<li>-f ‘<em>‘</em> 显示指定的信息</li>
+</ul>
+</li>
+<li><code>search</code> 搜索镜像</li>
+<li><code>tag</code> 为镜像添加标签</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Docker是什么&quot;&gt;&lt;a href=&quot;#Docker是什么&quot; class=&quot;headerlink&quot; title=&quot;Docker是什么&quot;&gt;&lt;/a&gt;Docker是什么&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;Docker allows you to package 
+    
+    </summary>
+    
+      <category term="学习笔记" scheme="http://www.upwzr.com/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="docker" scheme="http://www.upwzr.com/tags/docker/"/>
+    
+      <category term="基础" scheme="http://www.upwzr.com/tags/%E5%9F%BA%E7%A1%80/"/>
+    
+      <category term="命令" scheme="http://www.upwzr.com/tags/%E5%91%BD%E4%BB%A4/"/>
+    
+      <category term="原理" scheme="http://www.upwzr.com/tags/%E5%8E%9F%E7%90%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>基本的bash shell命令</title>
+    <link href="http://www.upwzr.com/2016/03/05/bash-shell/"/>
+    <id>http://www.upwzr.com/2016/03/05/bash-shell/</id>
+    <published>2016-03-04T16:00:00.000Z</published>
+    <updated>2016-07-22T17:21:50.098Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="基本的bash-shell命令"><a href="#基本的bash-shell命令" class="headerlink" title="基本的bash shell命令"></a>基本的bash shell命令</h2><h3 id="处理文件和目录"><a href="#处理文件和目录" class="headerlink" title="处理文件和目录"></a>处理文件和目录</h3><ul>
+<li><code>ls</code> 输出目录<ul>
+<li>-s 显示文件大小</li>
+<li>-a 输出隐藏文件</li>
+<li>-i 显示文件的索引值</li>
+<li>-l 产生长列表的输出</li>
+<li>-R 递归列出子目录内容</li>
+</ul>
+</li>
+<li><code>touch</code> 创建新文件或者改变访问/修改时间<ul>
+<li>-a 只改变访问时间</li>
+<li>-m 只改变修改时间</li>
+<li>-t 指定时间戳</li>
+</ul>
+</li>
+<li><code>cp</code> 复制文件<ul>
+<li>-f 强制覆盖不提示</li>
+<li>-i 覆盖前提示</li>
+<li>-r 递归的复制文件</li>
+<li>-R 递归的复制目录</li>
+<li>-l 创建文件链接（硬链接）</li>
+<li>-s 创建符号链接（软连接）</li>
+<li>-v 详细模式</li>
+</ul>
+</li>
+<li><code>mv</code> 移动文件（重命名）</li>
+<li><code>rm</code> 删除文件<ul>
+<li>-i 删除前提示</li>
+<li>-f 强制删除不提示</li>
+<li>-r 递归删除非空目录</li>
+</ul>
+</li>
+<li><code>mkdir</code> 创建目录</li>
+<li><code>stat</code> 提供文件的所有状态信息</li>
+<li><code>file</code> 查看文件类型</li>
+<li><code>cat</code> 显示文本数据<ul>
+<li>-n 给所有行加上行号</li>
+<li>-b 给有文本的行加上行号</li>
+<li>-s 多个空白行压缩为一行</li>
+<li>-T 用^I替换制表符</li>
+</ul>
+</li>
+<li><code>more</code> 分页显示<ul>
+<li>空格 显示下一屏</li>
+<li>ENTER 显示下一行</li>
+<li>/expression 查找</li>
+<li>n 查找下一处匹配的内容</li>
+<li>‘ 调到匹配的第一处内容</li>
+<li>!cmd 执行shell</li>
+<li>v 在当前行启动vi</li>
+<li>= 显示当前行号</li>
+<li>. 执行前一条命令</li>
+</ul>
+</li>
+<li><code>sort</code> 读文本文件中的数据行排序<ul>
+<li>-n 数字识别为数字</li>
+<li>-M 按月排序（常用于日志文件）</li>
+<li>-r 反序</li>
+<li>-b 忽略起始的空白</li>
+<li>-t 指定字段分隔符</li>
+<li>-k 指定排序字段</li>
+</ul>
+</li>
+<li><code>tail</code> 显示文件末尾的内容<ul>
+<li>-c <em>bytes</em> 显示文件最后的bytes字节的内容</li>
+<li>-n <em>lines</em> 显示文件最后的lines行</li>
+<li>-f 保持活动，有新内容添加到末尾就显示</li>
+<li>-s sec 与-f一起，每次输出前休眠sec秒ps</li>
+<li>-v 显示带文件名的头</li>
+<li>-q 从不显示带文件名的头</li>
+</ul>
+</li>
+<li><code>head</code> 显示文件开头的内容，类似tail</li>
+<li><code>grep</code> <em>[option] pattern [file]</em> 查找文件中大的一行数据<ul>
+<li>-v 输出不匹配的行</li>
+<li>-n 显示匹配行的行号</li>
+<li>-c 输出匹配的行数</li>
+<li>-e 指定多个匹配字符串（满足任意一个），通常用正则表达式替代</li>
+<li>-i 忽略大小写</li>
+</ul>
+</li>
+<li><code>tr</code> 替换或删除文件或文本中的字符</li>
+<li><code>egrep</code> 支持POSIX扩展正则表达式</li>
+<li><code>tar</code> <em>function [options] obj1 obj2</em> 归档<ul>
+<li>-A 将一个tar文件追加到另一个tar文件</li>
+<li>-c 创建新的tar归档文件</li>
+<li>-r 追加文件到tar文件末尾</li>
+<li>-x 从tar文件中提取文件</li>
+<li>-C 切换到指定目录</li>
+<li>-f 输出结果到文件或设备</li>
+<li>-j 将输出重定向为bzip2</li>
+<li>-z 将输出重定向给gzip</li>
+<li>-p保留所有文件权限</li>
+<li>-v 处理文件时显示文件</li>
+</ul>
+</li>
+</ul>
+<p>实例：</p>
+<pre><code>//解压.tgz
+tar -zxvf filename.tgz
+</code></pre><ul>
+<li><code>ln</code> <em>option source_file dist_file</em> <ul>
+<li>-b 覆盖已有的链接</li>
+<li>-f 强制执行</li>
+<li>-i 交互模式，提示是否覆盖等</li>
+<li>-n 把符号链接视为一般目录</li>
+<li>-s 软链接（即符号链接）</li>
+<li>-v 显示详细过程</li>
+</ul>
+</li>
+</ul>
+<h3 id="进程和设备管理"><a href="#进程和设备管理" class="headerlink" title="进程和设备管理"></a>进程和设备管理</h3><ul>
+<li><code>ps</code> 检测进程<ul>
+<li>-A 显示所有进程</li>
+<li>-e 显示所有进程</li>
+<li>-p <em>pidlist</em> 显示指定pid的进程</li>
+<li>-f 显示完整格式的输出</li>
+<li>-F 显示更多额外输出（相对-f而言）</li>
+<li>-l 显示长列表</li>
+<li>-L 显示进程中的线程</li>
+<li>-H 用层级格式显示进程</li>
+<li>–forest 图表形式显示层级信息</li>
+</ul>
+</li>
+<li><code>top</code> 实时显示进程信息，<strong>很有用</strong>，详见man</li>
+<li><code>pgrep</code> <em>pattern</em> 获取进程id</li>
+<li><code>kill</code> <em>pid</em> 结束进程（默认发送TERM信号）<ul>
+<li>-s <em>signal</em> 发送其他信号</li>
+</ul>
+</li>
+<li><code>killall</code> <em>name</em> 通过进程名结束进程</li>
+<li><p><code>mount</code> 挂载媒体设备，详见man<br>实例：</p>
+<pre><code>//挂载iso文件
+mount -t iso9660 -o loop file_name.iso /path/to/
+</code></pre></li>
+<li><p><code>unmonut</code> 卸载设备</p>
+<blockquote>
+<p>当提示设备繁忙无法卸载设备时可使用<code>lsof</code>命令获得使用它的进程信息</p>
+</blockquote>
+</li>
+<li><code>df</code> 查看已挂载磁盘的使用情况<ul>
+<li>-h human-readable</li>
+</ul>
+</li>
+<li><code>du</code> 显示当前目录下所有文件、目录、子目录占用的磁盘块数<ul>
+<li>-c 显示所有已列出文件的总大小</li>
+<li>-h human-readable</li>
+<li>-s 显示每个输出参数的总计</li>
+</ul>
+</li>
+</ul>
+<h3 id="系统和权限"><a href="#系统和权限" class="headerlink" title="系统和权限"></a>系统和权限</h3><ul>
+<li><code>set</code> 显示进程的所有环境变量</li>
+<li><code>export</code> <em>var</em> 将局部变量导出为全局变量</li>
+<li><code>unset</code> <em>var</em> 删除环境变量</li>
+<li><p><code>alias</code> 设置命令别名</p>
+<ul>
+<li><p>-p 显示已有的别名列表<br>实例：</p>
+<p>  //定义命令别名<br>  alias li=’ls -il’</p>
+</li>
+</ul>
+</li>
+<li><p><code>useradd</code> 创建用户</p>
+<ul>
+<li>-c <em>comment</em> 添加备注</li>
+<li>-d <em>home_dir</em> 为主目录指定一个名字（默认即home）</li>
+<li>-D <em>YYYY-MM-DD</em> 显示设置用户的系统默认值</li>
+<li>-g <em>initial_group</em> 指定用户登录组的GID或组名</li>
+<li>-G <em>group</em> 指定除登录组外的附加组</li>
+<li>-k 与-m一起使用，将/etc/skel目录的内容复制到HOME目录，（bash shell的标准启动文件）</li>
+<li>-m 创建HOME目录</li>
+<li>-r 创建系统用户</li>
+<li>-p <em>passwd</em> 指定默认密码</li>
+<li>-s <em>shell</em> 指定默认登录shell</li>
+<li>-u <em>uid</em> 为账户指定唯一的uid</li>
+</ul>
+</li>
+<li><code>userdel</code> 删除用户（默认只删除/etc/passwd文件中的用户信息）<ul>
+<li>-r 删除HOME目录和mail目录</li>
+</ul>
+</li>
+<li><code>usermod</code> 修改用户信息，参数与useradd基本相同<ul>
+<li>-l 修改用户登录名</li>
+<li>-L 锁定账户，无法登录</li>
+<li>-p 修改账户密码</li>
+<li>-U 解除锁定</li>
+<li>-G <em>groupname username</em> 将用户添加至组</li>
+</ul>
+</li>
+<li><code>groupadd</code> 添加新组</li>
+<li><code>umask</code> 设置默认权限（掩码）</li>
+<li><code>chmod</code> 设置文件和目录权限<ul>
+<li>+r 添加读取权限</li>
+<li>+w 写入权限</li>
+<li>+x 执行权限</li>
+</ul>
+</li>
+<li><code>chown</code> <em>optoins owner[.group] filename</em> 改变文件的属主<ul>
+<li>-h 改变文件的所有符号连接的所属关系</li>
+<li>-R 递归</li>
+</ul>
+</li>
+<li><code>chgrp</code> 改变文件或目录的默认属组</li>
+</ul>
+<h2 id="脚本实战"><a href="#脚本实战" class="headerlink" title="脚本实战"></a>脚本实战</h2><blockquote>
+<p>shell脚本常见以<code>#!</code>开头，这玩意叫做·<code>shebang</code></p>
+</blockquote>
+<h3 id="终端打印"><a href="#终端打印" class="headerlink" title="终端打印"></a>终端打印</h3><p>echo是用于终端打印的基本命令。默认情况下每次调用echo后都会添加一个换行符。<br>常用参数：</p>
+<ul>
+<li>-e 识别转义序列</li>
+<li>-n 不追加换行符</li>
+</ul>
+<p>使用转义序列生成彩色输出：</p>
+<pre><code>#红色文本
+echo -e &quot;this is \e[1;31m red text \e[0m&quot;
+#绿色背景
+echo -e &quot;this is \e[1;42m green background \e[0m&quot;&quot;
+</code></pre><p>文本颜色：重置=0；黑色=30；红色=31；绿色=32；黄色=33；蓝色=34；洋红=35；青色=36；白色=37；<br>背景颜色：重置=0；黑色=40；红色=41；绿色=42；黄色=43；蓝色=44；洋红=45；青色=46；白色=47；</p>
+<h3 id="变量和环境变量"><a href="#变量和环境变量" class="headerlink" title="变量和环境变量"></a>变量和环境变量</h3><p>获取某个进程运行时的环境变量：</p>
+<pre><code># $PID为摸个进程的id，可用pgrep命令获取
+cat /proc/$PID/environ
+</code></pre><p>为变量赋值时使用<code>var=value</code>的格式，而不是<code>var = value</code>，后者是相等操作。另外，如果value包含空格，则应使用引号将value括起。</p>
+<p>添加环境变量：</p>
+<pre><code>export PATH=&quot;$PATH:/path/to/sp&quot;
+</code></pre><p>获取字符串长度：</p>
+<pre><code>echo ${#var}
+</code></pre><p>获取当前使用的shell：</p>
+<pre><code>echo $SHELL #/bin/bash
+echo $0 #-bash
+</code></pre><p>一种shell参数扩展形式：</p>
+<pre><code>${paramater:+expression} #若paramater有值且不为空则使用expression的值
+</code></pre><h3 id="数学运算"><a href="#数学运算" class="headerlink" title="数学运算"></a>数学运算</h3><p>几种整数运算的格式：</p>
+<pre><code>no1=2;
+no2=3;
+let result=no1+no2
+result=$[$no1+$no2] #变量前可以不加$
+result=$(($no1+$no2)) #变量前可以不加$
+</code></pre><p>还可以使用bc工具进行更高级的运算。</p>
+<pre><code>echo &quot;sqrt(250)&quot; | bc #开方
+</code></pre><h3 id="设置别名"><a href="#设置别名" class="headerlink" title="设置别名"></a>设置别名</h3><p><code>alias</code>的作用只是暂时的，关闭当前终端后定义的别名将失效。可将定义放在<code>.bashrc</code>中。例如：</p>
+<pre><code>echo &apos;alias rm=&quot;cp $@ ~/backup &amp;&amp; rm $@&quot;&apos; &gt;&gt; ~/.bashrc
+</code></pre><p>上面的指令为rm创建了一个别名，原有的rm将被这个新rm替换。<br>若想不使用别名而使用原本的命令，可用<code>\</code>进行转义。如：</p>
+<pre><code>\rm
+</code></pre><p>就是使用原本的rm指令而不是自己定义的别名。</p>
+<p>### </p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;基本的bash-shell命令&quot;&gt;&lt;a href=&quot;#基本的bash-shell命令&quot; class=&quot;headerlink&quot; title=&quot;基本的bash shell命令&quot;&gt;&lt;/a&gt;基本的bash shell命令&lt;/h2&gt;&lt;h3 id=&quot;处理文件和目录&quot;&gt;&lt;a h
+    
+    </summary>
+    
+      <category term="学习笔记" scheme="http://www.upwzr.com/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="linux" scheme="http://www.upwzr.com/tags/linux/"/>
+    
+      <category term="bash" scheme="http://www.upwzr.com/tags/bash/"/>
+    
+      <category term="shell" scheme="http://www.upwzr.com/tags/shell/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>超老本子CF-W2安装lubuntu</title>
+    <link href="http://www.upwzr.com/2016/03/04/refresh-old-laptop/"/>
+    <id>http://www.upwzr.com/2016/03/04/refresh-old-laptop/</id>
+    <published>2016-03-03T16:00:00.000Z</published>
+    <updated>2016-03-05T03:22:19.395Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="祭出大杀器CF-W2"><a href="#祭出大杀器CF-W2" class="headerlink" title="祭出大杀器CF-W2"></a>祭出大杀器CF-W2</h2><p>前几年亲戚去日本出差给我老爸带回来一台二手本本，2003年左右的机器，质量确实过硬，没换过一个零件。。奔腾M 1GHz + 760MB内存，用xp勉强可以看个新闻玩玩同城游戏。到我手里后，实在是食之无味弃之可惜，索性装个linux敲代码好了。</p>
+<h2 id="老机器真蛋疼"><a href="#老机器真蛋疼" class="headerlink" title="老机器真蛋疼"></a>老机器真蛋疼</h2><p>轻量级的linux有不少，<code>lubuntu</code> <code>xubuntu</code> <code>PuppyLinux</code>这些都是很常见的了。<code>lubuntu</code>号称256M内存就能跑起来，<code>LXDE</code>也比puppy用的<code>JVM</code>好看一点（私人观点），那就先搞这个试试（15.04）。最开始做了个U盘启动盘，结果BIOS里死活读不出usb，只好又刻了个CD。<br>lubuntu在12.04开始需要cpu支持pae，幸运的是我这老古董貌似完全不支持，因此在进入到grub后光标移动到install lubuntu选项，F6然后esc，进入编辑，在最后面加入<code>forcepae</code>,最后大概是下面这样的：</p>
+<pre><code>Boot Options file=/cdrom/preseed/ubuntu.seed boot=casper initrd=/casper/initrd.lz quiet splash -- forcepae
+</code></pre><p>这么改完后可以正常启动安装。<strong>安装过程语言最好选择English</strong>，不然后面会出现乱码，完全辨认不出选项。</p>
+<h2 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h2><h3 id="显卡问题"><a href="#显卡问题" class="headerlink" title="显卡问题"></a>显卡问题</h3><p>除了开机有（chao）些（ji）慢，编译有（shi）些（fen）慢，总体上还是非常流畅的。不过每次开机后桌面壁纸会变成一坨颜色。在官方wiki上找到了应对老Intel显卡的处理办法。</p>
+<pre><code>sudo vim /etc/X11/xorg.conf
+</code></pre><p>添加如下语句：</p>
+<pre><code>Section &quot;Device&quot;
+    Identifier &quot;Intel Graphics&quot;
+    Driver &quot;intel&quot;
+    Option &quot;AccelMethod&quot; &quot;uxa&quot;
+EndSection
+</code></pre><p>重启X，问题解决。</p>
+<h3 id="中文乱码"><a href="#中文乱码" class="headerlink" title="中文乱码"></a>中文乱码</h3><p>安装过程中如果选择中文会出现乱码，安装好之后的系统人类基本无法操作。不过update完了之后问题即可解决。建议用英文安装好，update完事再切换中文。</p>
+<blockquote>
+<p>相关链接<br><a href="https://wiki.ubuntu.com/Lubuntu/AdvancedMethods" target="_blank" rel="external">AdvancedMethods</a></p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;祭出大杀器CF-W2&quot;&gt;&lt;a href=&quot;#祭出大杀器CF-W2&quot; class=&quot;headerlink&quot; title=&quot;祭出大杀器CF-W2&quot;&gt;&lt;/a&gt;祭出大杀器CF-W2&lt;/h2&gt;&lt;p&gt;前几年亲戚去日本出差给我老爸带回来一台二手本本，2003年左右的机器，质量确
+    
+    </summary>
+    
+      <category term="技术" scheme="http://www.upwzr.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="CF-w2,Linux,Lubuntu" scheme="http://www.upwzr.com/tags/CF-w2-Linux-Lubuntu/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Kali的一些工具</title>
+    <link href="http://www.upwzr.com/2015/12/19/tools-of-kali/"/>
+    <id>http://www.upwzr.com/2015/12/19/tools-of-kali/</id>
+    <published>2015-12-18T16:00:00.000Z</published>
+    <updated>2016-03-04T14:43:39.151Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h2><h3 id="DNS信息"><a href="#DNS信息" class="headerlink" title="DNS信息"></a>DNS信息</h3><ul>
+<li>host 查询/etc/resolv.conf中指定的DNS服务器 </li>
+<li>dig 可处理文件内的所有DNS指令</li>
+<li>dnsenum 可通过google搜素子域名；课使用字典对子域名进行暴力破解；</li>
+<li>dnsdict6 IPv6子域名枚举</li>
+<li>fierce 能对不连续的IP空间和主机名进行测试</li>
+<li>DMitry 具有DNS分析和路由分析功能，可进行简单端口探测</li>
+<li>Maltego 图形化综合工具</li>
+</ul>
+<h3 id="路由信息"><a href="#路由信息" class="headerlink" title="路由信息"></a>路由信息</h3><ul>
+<li>tcptraceroute 利用TCP SYN数据包进行路由信息探测</li>
+<li>tctrace -i<device> -h<targethost></targethost></device></li>
+</ul>
+<h3 id="搜索引擎"><a href="#搜索引擎" class="headerlink" title="搜索引擎"></a>搜索引擎</h3><ul>
+<li>theharvester 通过多个公共资源搜集所需信息（Email、用户名、主机名等）</li>
+<li>Metagoofil 通过google搜索目标域的文件的元数据信息，kali2默认貌似没有安装</li>
+</ul>
+<h2 id="目标识别"><a href="#目标识别" class="headerlink" title="目标识别"></a>目标识别</h2><h3 id="识别主机"><a href="#识别主机" class="headerlink" title="识别主机"></a>识别主机</h3><ul>
+<li>ping 老朋友。。</li>
+<li>ping6 用来ping IPv6</li>
+<li>fping 可同时探测多个主机或者整个网段</li>
+<li>arping 使用ARP请求检测局域网内主机是否在线，IP或者MAC地址都可作为目标</li>
+<li>hping3 端口扫描、防火墙规则检测、IDS检测等，功能强大</li>
+<li>nping 支持多种协议探测模式；可做压力测试、ARP中毒、Dos攻击</li>
+<li>nbtscan 审计局域网内windows系统IP地址、NetBIOS信息等</li>
+</ul>
+<h3 id="识别操作系统"><a href="#识别操作系统" class="headerlink" title="识别操作系统"></a>识别操作系统</h3><ul>
+<li>p0f 被动方式探测目标主机</li>
+<li>nmap 神器之一</li>
+</ul>
+<h2 id="服务枚举"><a href="#服务枚举" class="headerlink" title="服务枚举"></a>服务枚举</h2><h3 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h3><ul>
+<li>nmap 端口扫描；主机探测；服务/版本检测；操作系统检测；网络路由跟踪；脚本引擎<ul>
+<li>-sT TCP连接扫描</li>
+<li>-sS SYN扫描（半开连接扫描）</li>
+<li>-sN NULL扫描（不设置任何控制位）</li>
+<li>-sF FIN扫描</li>
+<li>-sM TCP Maimom扫描，常用于探测BSD衍生出来的操作系统</li>
+<li>-sA TCP ACK扫描，能检测防火墙，确定定被屏蔽端口</li>
+<li>-sW TCP窗口扫描</li>
+<li>-sI 通过僵尸主机发动扫描</li>
+<li>–scanflags 自定义URG、ACK、PSH、RST、SYN、FIN、ECE、CWR、ALL和NONE组合</li>
+<li>-sU UDP扫描</li>
+<li>-sV 服务版识别</li>
+<li>-O 识别操作系统</li>
+<li>-p 指定端口或端口范围</li>
+<li>-F 快速扫描，近扫描常用100个端口</li>
+<li>-r 顺序扫描</li>
+<li>-oN 正常输出</li>
+<li>-oX 将结果生成为XML文件</li>
+<li>-A 强力扫描，相当于 -sV -O -sC –traceroute</li>
+<li>-sC 使用默认类的脚本进行扫描 相当于–script=default</li>
+<li>–script 根据指定文件名、类别名、目录名执行相应脚本</li>
+<li>-f 使用小数据包，避免目标IDS识别</li>
+<li>–mtu 调整数据包大小，必须是8的倍数</li>
+<li>-D 在侦测数据包中掺杂一些假源IP的数据包。</li>
+<li>-g 模拟源端口</li>
+<li>–data-length 改变数据包默认长度</li>
+<li>–scan-delay 控制发送探测数据的时间间隔</li>
+</ul>
+</li>
+<li>Unicornscna 扫描UDP端口性能卓越</li>
+<li>zenmap nmap的图形化扫描工具</li>
+<li>amap 检测指定端口上运行的应用程序信息</li>
+</ul>
+<h3 id="SNMP枚举"><a href="#SNMP枚举" class="headerlink" title="SNMP枚举"></a>SNMP枚举</h3><blockquote>
+<p>SNMP 简单网络管理协议，运行于161端口的应用层协议，用于网络设备运行状态的监控，<br>SNMP协议有三个版本v1/v2/v3</p>
+</blockquote>
+<ul>
+<li>onesixytone 扫描设备是否支持某些特定SNMP字符串</li>
+<li>snmpcheck 差不多</li>
+<li>SNMP Walk 强大的SNMP信息采集工具，可以使用三个版本的协议</li>
+</ul>
+<h3 id="VPN枚举"><a href="#VPN枚举" class="headerlink" title="VPN枚举"></a>VPN枚举</h3><ul>
+<li>ike-scan 探测IPSec VPN系统</li>
+</ul>
+<h2 id="漏洞映射"><a href="#漏洞映射" class="headerlink" title="漏洞映射"></a>漏洞映射</h2><h3 id="模糊分析"><a href="#模糊分析" class="headerlink" title="模糊分析"></a>模糊分析</h3><ul>
+<li>BED 检测缓冲区溢出、格式化字符串漏洞、整数溢出、DoS条件等漏洞，支持多种协议</li>
+<li>JBroFuzz 模拟HTTP/HTTPS请求；XSS、SQl注入、缓冲区溢出、格式字符串错误等测试</li>
+</ul>
+<h3 id="SMB分析"><a href="#SMB分析" class="headerlink" title="SMB分析"></a>SMB分析</h3><blockquote>
+<p>SMB Server Message Block，又称为CIFS（Common Internet File System）协议，作用<br>于应用层，常用于文件与打印机共享服务。NetBIOS是SMB协议的组成部分。DEC<br>/RPC服务程序实现的网络节点间跨进程通信（IPC）也使用SMB协议。</p>
+</blockquote>
+<ul>
+<li>ImpacketSamrdump 列举同一局域网目标主机上所有系统共享、用户账户等信息</li>
+</ul>
+<h3 id="数据库评估"><a href="#数据库评估" class="headerlink" title="数据库评估"></a>数据库评估</h3><ul>
+<li>sqlmap 又一个神器，详情看文档</li>
+<li>sqlninja 专门评估SQL Server的进阶工具，配置较复杂。</li>
+</ul>
+<h3 id="Web应用程序评估"><a href="#Web应用程序评估" class="headerlink" title="Web应用程序评估"></a>Web应用程序评估</h3><ul>
+<li>Burp Suite 还是一神器，完整的攻击框架。</li>
+<li>Nikto2 支持跨平台部署、SSL、多种IDS规避技术</li>
+<li>Paros Proxy 主动/被动评估工具</li>
+<li>W3AF 识别、审计、攻击，有丰富的插件和exploits。</li>
+<li>wafw00f 检测防web防火墙（WAF）的脚本</li>
+<li>webscarab 集成了众多工具，OWASP Project之一，功能强大</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;信息收集&quot;&gt;&lt;a href=&quot;#信息收集&quot; class=&quot;headerlink&quot; title=&quot;信息收集&quot;&gt;&lt;/a&gt;信息收集&lt;/h2&gt;&lt;h3 id=&quot;DNS信息&quot;&gt;&lt;a href=&quot;#DNS信息&quot; class=&quot;headerlink&quot; title=&quot;DNS信息&quot;&gt;
+    
+    </summary>
+    
+      <category term="学习笔记" scheme="http://www.upwzr.com/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="Kali" scheme="http://www.upwzr.com/tags/Kali/"/>
+    
+      <category term="渗透" scheme="http://www.upwzr.com/tags/%E6%B8%97%E9%80%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Kali下Metasploit学习笔记</title>
+    <link href="http://www.upwzr.com/2015/12/07/metasploit-on-kali/"/>
+    <id>http://www.upwzr.com/2015/12/07/metasploit-on-kali/</id>
+    <published>2015-12-06T16:00:00.000Z</published>
+    <updated>2016-03-04T14:43:39.148Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><p>使用框架前先开启其几个服务：</p>
+<pre><code># service postgresql start
+# msfdb init
+</code></pre><p>注意kali2.0开始不再有metasploit服务，所以官方文档说要用<code>msfdb init</code>代替<code>service metasploit start</code></p>
+<p>然后启动msf控制台</p>
+<pre><code># msfconsole
+</code></pre><h2 id="一些命令"><a href="#一些命令" class="headerlink" title="一些命令"></a>一些命令</h2><p>workspace -h 帮助<br>workspace [-a/d/r] 创建/删除/重命名工作平台</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;启动&quot;&gt;&lt;a href=&quot;#启动&quot; class=&quot;headerlink&quot; title=&quot;启动&quot;&gt;&lt;/a&gt;启动&lt;/h2&gt;&lt;p&gt;使用框架前先开启其几个服务：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# service postgresql start
+# msfdb init
+
+    
+    </summary>
+    
+      <category term="学习笔记" scheme="http://www.upwzr.com/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="Metasploit" scheme="http://www.upwzr.com/tags/Metasploit/"/>
+    
+      <category term="kali" scheme="http://www.upwzr.com/tags/kali/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux下curl实现某资源站自动签到脚本</title>
+    <link href="http://www.upwzr.com/2015/12/06/curl-on-linux-for-autoregistering/"/>
+    <id>http://www.upwzr.com/2015/12/06/curl-on-linux-for-autoregistering/</id>
+    <published>2015-12-05T16:00:00.000Z</published>
+    <updated>2016-03-12T17:14:36.718Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>经常去某资源站下载美剧，我很喜欢的的团(ren)队(ren)在运营这个网站，资源很及时也很好。网站要求登录才能看到下载链接。连续登录达到多少天就可以升级并且可以查看更多下载资源。然而我这种人是不可能记着每天都去网站上签到的(-&lt;-)。。。正好最近买了vps，于是决定自己写一个自动登录的脚本。</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>Fiddler抓包发现此网站登陆时url为/User/Login/ajaxLogin，post提交用户名和密码。</p>
+<p><img src="/assets/img/images/2015-12-04-zimuzu-auto-login_1.png" alt="img"></p>
+<p>登录成功之后返回JSON字符串</p>
+<p><img src="/assets/img/images/2015-12-04-zimuzu-auto-login_3.png" alt="img"></p>
+<p>用户等级等相关信息是通过之后的两个请求<code>hotkeyword``getCurUserTopInfo</code>获取的，用于网站顶部的信息和搜索栏。</p>
+<p><img src="/assets/img/images/2015-12-04-zimuzu-auto-login_4.png" alt="img"></p>
+<p><img src="/assets/img/images/2015-12-04-zimuzu-auto-login_5.png" alt="img"></p>
+<p><img src="/assets/img/images/2015-12-04-zimuzu-auto-login_6.png" alt="img"></p>
+<p>通过我的测试发现这两个请求并不会影响cookie的变化，不模拟也完全没问题。</p>
+<p>签到页面url为/user/sign,签到按钮通过js控制15s后才可以点击，点击后fiddler抓到了/user/sign/dosign的请求，request包里面看起并没有什么新内容，response返回了一个json</p>
+<p><img src="/assets/img/images/2015-12-04-zimuzu-auto-login_7.png" alt="img"></p>
+<p><img src="/assets/img/images/2015-12-04-zimuzu-auto-login_8.png" alt="img"></p>
+<p>json里面的info表示签到结果，1为成功。data为连续签到天数。</p>
+<h2 id="开搞"><a href="#开搞" class="headerlink" title="开搞"></a>开搞</h2><p>OK！开始祭出杀气<strong>curl</strong>，一开始是用的php，但是向dosign发送请求总是返回错误状态，可能是那里的curl参数配置错了，找个时间再回过头去看一下。。就不说这个了。</p>
+<p>后来决定干脆直接上linux写脚本。我水平比较low。。就是简单的3个请求，存一下cookie，也没搞啥复杂东西。</p>
+<p><img src="/assets/img/images/2015-12-04-zimuzu-auto-login_9.png" alt="img"></p>
+<p>先简单在本地测试了一下</p>
+<p><img src="/assets/img/images/2015-12-04-zimuzu-auto-login_10.png" alt="img"></p>
+<p><img src="/assets/img/images/2015-12-04-zimuzu-auto-login_11.png" alt="img"></p>
+<p>哈哈，大功告成！！</p>
+<p>最后把脚本丢到了vps上跑，crontab添加一条定时任务，每天凌晨啪啪啪~~ 麻麻再也不用担心我的签到~~</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;经常去某资源站下载美剧，我很喜欢的的团(ren)队(ren)在运营这个网站，资源很及时也很好。网站要求登录才能看到下载链接。连续登录达到多少
+    
+    </summary>
+    
+      <category term="技术" scheme="http://www.upwzr.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="linux" scheme="http://www.upwzr.com/tags/linux/"/>
+    
+      <category term="curl，模拟登录" scheme="http://www.upwzr.com/tags/curl%EF%BC%8C%E6%A8%A1%E6%8B%9F%E7%99%BB%E5%BD%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>vi/vim命令简记</title>
+    <link href="http://www.upwzr.com/2015/12/05/vim-guide/"/>
+    <id>http://www.upwzr.com/2015/12/05/vim-guide/</id>
+    <published>2015-12-04T16:00:00.000Z</published>
+    <updated>2016-03-04T14:43:39.146Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="模式"><a href="#模式" class="headerlink" title="模式"></a>模式</h2><p>vi有三种模式</p>
+<ul>
+<li>命令模式</li>
+<li>插入模式</li>
+<li>扩展模式</li>
+</ul>
+<h2 id="命令模式下的操作"><a href="#命令模式下的操作" class="headerlink" title="命令模式下的操作"></a>命令模式下的操作</h2><h3 id="移动光标"><a href="#移动光标" class="headerlink" title="移动光标"></a>移动光标</h3><ul>
+<li>h,j,k,l  左下上右</li>
+<li>w/d 上一个字符/下一个字符</li>
+<li>(/) 上一个句子/下一个句子</li>
+<li>{/} 上一个段落/下一个段落</li>
+</ul>
+<h3 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h3><ul>
+<li>cc/cw/cl 重写行/词/字符</li>
+<li>dd/dw/dl 删除行/词/字符</li>
+<li>yy/yw/yl 复制行/词/字符</li>
+<li>dtc，删除从光标到c之间的所有字符</li>
+<li>rc，将光标下的字符替换为c</li>
+<li>5dd，删除5行数据</li>
+<li>5yy，复制5行数据</li>
+<li>5x，删除5个字符</li>
+<li>p/P 粘贴复制修改或者删除的数据，p粘贴在行上，P粘贴在行下</li>
+</ul>
+<h3 id="撤销和恢复"><a href="#撤销和恢复" class="headerlink" title="撤销和恢复"></a>撤销和恢复</h3><ul>
+<li>u 撤销最近一次修改</li>
+<li>ctrl+r 撤销最近一次撤销</li>
+<li>U 撤销所有修改</li>
+</ul>
+<h3 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h3><ul>
+<li>/text 向后搜索</li>
+<li>?text 向前搜索</li>
+<li>n 搜索下一个同样的的内容</li>
+<li>N 搜索上一个同样内容</li>
+<li>R，进入替换状态，esc退出</li>
+</ul>
+<h2 id="读取，保存与退出"><a href="#读取，保存与退出" class="headerlink" title="读取，保存与退出"></a>读取，保存与退出</h2><p>读取保存退出这些操作都是在扩展模式下操作。</p>
+<ul>
+<li>:w 保存</li>
+<li>:w! 强制保存</li>
+<li>:q 退出</li>
+<li>:q! 强制退出</li>
+<li>:wq 保存退出</li>
+<li>:wq! 强制保存退出</li>
+<li>:r filename 将另一个文件读入到当前文件内光标所在位置后</li>
+<li>:1,20 w filename 将1-20行写入新文件中</li>
+<li>:29,$ w filename 将第20行至最后一行写入新文件</li>
+<li>:1,20 w&gt;&gt;filename 将第1值20行追加到另一个文件中</li>
+</ul>
+<h2 id="定位"><a href="#定位" class="headerlink" title="定位"></a>定位</h2><ul>
+<li>G 跳转到文件最后一行</li>
+<li>1G 跳转到文件的第一行</li>
+<li>ctrl-d 往下滚动半屏</li>
+<li>ctrl+u 往上滚动半屏</li>
+<li>H 跳转到本屏显示的第一行</li>
+<li>M 调转到本屏显示的中间一行</li>
+<li>L 跳转到本屏显示的最后一行</li>
+<li>z+Enter 使当前的行成为屏幕显示的第一行</li>
+<li>z- 使当前行成为屏幕的最后一行</li>
+</ul>
+<h2 id="查找与替换"><a href="#查找与替换" class="headerlink" title="查找与替换"></a>查找与替换</h2><h3 id="使用sed进行查找和替换"><a href="#使用sed进行查找和替换" class="headerlink" title="使用sed进行查找和替换"></a>使用sed进行查找和替换</h3><p>sed是linux下一个很常用的工具。在扩展模式下输入s即可使用sed进行替换。</p>
+<ul>
+<li>s/a/b 将光标之后的第一个a替换成b</li>
+<li>s/a/b/g 将光标所在行的全部a替换成b</li>
+<li>1,10s/a/b/g 将第1行到第10行的a全部替换成b，不加/g就是替换每行的第一个a</li>
+<li>1,$s/a/b/g 将文件所有a替换成b</li>
+</ul>
+<h2 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h2><ul>
+<li>:set 显示常用配置选项</li>
+<li>:set all 显示所有配置选项</li>
+<li>:set number 显示行号</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;模式&quot;&gt;&lt;a href=&quot;#模式&quot; class=&quot;headerlink&quot; title=&quot;模式&quot;&gt;&lt;/a&gt;模式&lt;/h2&gt;&lt;p&gt;vi有三种模式&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;命令模式&lt;/li&gt;
+&lt;li&gt;插入模式&lt;/li&gt;
+&lt;li&gt;扩展模式&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 i
+    
+    </summary>
+    
+      <category term="学习笔记" scheme="http://www.upwzr.com/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="vi" scheme="http://www.upwzr.com/tags/vi/"/>
+    
+      <category term="vim" scheme="http://www.upwzr.com/tags/vim/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>vps搭建私人pptp vpn,新姿势GET！</title>
+    <link href="http://www.upwzr.com/2015/12/01/my-personal-pptp-vpn-on-vps/"/>
+    <id>http://www.upwzr.com/2015/12/01/my-personal-pptp-vpn-on-vps/</id>
+    <published>2015-11-30T16:00:00.000Z</published>
+    <updated>2016-03-04T14:43:39.189Z</updated>
+    
+    <content type="html"><![CDATA[<p>一直用hosts和goagent的姿势搞学(ke)术(xue)研(shang)究(wang)，苦于两种方式限制颇多不稳定又不安全。不久前咬牙花了5刀开了DO的vps（当然，DO赠送了10刀回来），穷学生一枚的我终于能换换新姿势了，直接动手搭建了vpn。由于本人不太喜欢用额外的客户端，再加上pptp以简单著称，我决定采用pptp server。</p>
+<h2 id="DigitalOcean购买VPS"><a href="#DigitalOcean购买VPS" class="headerlink" title="DigitalOcean购买VPS"></a>DigitalOcean购买VPS</h2><p>在网上查了大家的经验攻略，自己看了下DO、搬瓦工、bugdetVM，最后还是选了DO，反正现在感觉速度很不错，挺满意的。</p>
+<p>这个流程很简单，在官网上注册账号，用PayPal下个5刀的订单，DO会赠送10美元回来。Paypal支持银联的卡，我就是用建行的借记卡支付的。支付完成后按照流程创建Droplet，我用的ubuntu14.04 x64,旧金山的服务器，创建过程中添加SSH,用puttyputtygen即可。具体内容在下面相关链接。</p>
+<h2 id="安装pptp和配置"><a href="#安装pptp和配置" class="headerlink" title="安装pptp和配置"></a>安装pptp和配置</h2><p>putty登陆，速度可以，直接开始安装。这期间我试了试DO网站上的console，感觉不好用。还是putty方便。</p>
+<pre><code># sudo apt-get update
+# sudo apt-get install pptpd
+</code></pre><p>事实证明我朝GFW有多坑，服务器在美国的ubuntu从官方源下载速度炒鸡快，瞬间完事儿。</p>
+<h3 id="修改pptp配置"><a href="#修改pptp配置" class="headerlink" title="修改pptp配置"></a>修改pptp配置</h3><p>修改/etc/pptpd.cong文件</p>
+<pre><code># sudo nano /etc/pptpd.conf
+</code></pre><p>在末尾添加server IP 和 client IP</p>
+<pre><code>localip 192.168.0.1
+remoteip 192.168.0.100-200
+</code></pre><p>这里用的是nano编辑器，不熟悉的同学（比如我）可以参见相关链接里面的“Linux下的Nano命令”。其实用不到啥。。就是一个保存和退出而已。。nano还是比较简单的。</p>
+<h3 id="修改DNS配置"><a href="#修改DNS配置" class="headerlink" title="修改DNS配置"></a>修改DNS配置</h3><pre><code># sudo nano /etc/ppp/pptpd-options
+</code></pre><p>添加google的DNS</p>
+<pre><code>ms-dns 8.8.8.8
+ms-dns 8.8.4.4
+</code></pre><p>这个文件里还开启了其他的一些选项，课根据需要开启我从别的大神那里复制来了一些资料：</p>
+<blockquote>
+<p>name pptpd（pptpd服务名，可以随便填写。）<br>refuse-pap（拒绝pap身份认证模式。）<br>refuse-chap（拒绝chap身份认证模式。）<br>refuse-mschap（拒绝mschap身份认证模式。）<br>require-mschap-v2（在端点进行连接握手时需要使用微软的 mschap-v2 进行自身验证。）<br>require-mppe-128（MPPE 模块使用 128 位加密。）<br>ms-dns 8.8.8.8 (ppp 为 Windows 客户端提供 DNS 服务器 IP 地址。)<br>proxyarp (建立 ARP 代理键值。)<br>nodefaultroute（不替换默认路由）<br>debug（开启调试模式，相关信息记录在 /var/logs/message 中。现在默认是被注释掉的。）<br>lock（锁定客户端 PTY 设备文件。）<br>nobsdcomp (禁用 BSD 压缩模式。)</p>
+</blockquote>
+<h3 id="添加VPN用户"><a href="#添加VPN用户" class="headerlink" title="添加VPN用户"></a>添加VPN用户</h3><p>打开chap-secrets文件添加用户</p>
+<pre><code># sudo nano /etc/ppp/chap-secrets
+</code></pre><p>第一行是文件里已经存在的注释</p>
+<pre><code># client        server  secret                  IP addresses
+username * myPassword *
+</code></pre><p>第一段和第三段字符串就不用说了吧，第二段是服务器名称，默认的是pptpd，也就是上面pptpd-options的<code>name</code>选项的值。最后一段是登陆的ip，*即可。</p>
+<p>到这里可以重启下pptpd</p>
+<pre><code># /etc/init.d/pptpd restart
+</code></pre><h3 id="设置路由转发"><a href="#设置路由转发" class="headerlink" title="设置路由转发"></a>设置路由转发</h3><h3 id="开启IPv4转发"><a href="#开启IPv4转发" class="headerlink" title="开启IPv4转发"></a>开启IPv4转发</h3><p>打开sysctl.conf</p>
+<pre><code># sudo nano /etc/sysctl.conf
+</code></pre><p>开启IPv4转发选项，即取消下面语句的注释</p>
+<pre><code>net.ipv4.ip_forward=1
+</code></pre><p>刷新下配置文件</p>
+<pre><code># sudo sysctl -p
+</code></pre><h3 id="设置iptables-NAT转发和MTU"><a href="#设置iptables-NAT转发和MTU" class="headerlink" title="设置iptables NAT转发和MTU"></a>设置iptables NAT转发和MTU</h3><p>打开rc.local</p>
+<pre><code># sudo nano /etc/rc.local
+</code></pre><p>把这两个配置添加到这里可以保证重启有效，否则重启系统之后iptables的配置会重置。注意要添加到<code>exit 0</code>上面</p>
+<pre><code>iptables -t nat -A POSTROUTING -s 192.168.0.0/24 -o eth0 -j MASQUERADE
+iptables -A FORWARD -p tcp --syn -s 192.168.0.0/24 -j TCPMSS --set-mss 1356
+</code></pre><p>第一句话设置NAT转发，我使用了192.168.0网段，这里要根据自己上面的配置修改。<code>eth0</code>就是vps的网卡，如果不确定可以用ifconfig确认。</p>
+<p>第二句话设置MTU包大小，防止有较大包时发生数据丢失。</p>
+<p>到现在所有的配置已经完成了。在自己电脑上连接上vpn，直接上油管测试，视频基本秒开。</p>
+<p>好，接下来就用此姿势玩耍了，麻麻再也不用担心我的那啥了%_%</p>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><blockquote>
+<p><a href="https://help.ubuntu.com/community/PPTPServer" target="_blank" rel="external">ubuntu官网PPTPServer帮助</a><br><a href="http://www.cnblogs.com/haichuan3000/articles/2125943.html" target="_blank" rel="external">Linux下的nano命令</a>&gt;</p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;一直用hosts和goagent的姿势搞学(ke)术(xue)研(shang)究(wang)，苦于两种方式限制颇多不稳定又不安全。不久前咬牙花了5刀开了DO的vps（当然，DO赠送了10刀回来），穷学生一枚的我终于能换换新姿势了，直接动手搭建了vpn。由于本人不太喜欢用额外
+    
+    </summary>
+    
+      <category term="技术" scheme="http://www.upwzr.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="pptp" scheme="http://www.upwzr.com/tags/pptp/"/>
+    
+      <category term="vpn" scheme="http://www.upwzr.com/tags/vpn/"/>
+    
+      <category term="vps" scheme="http://www.upwzr.com/tags/vps/"/>
+    
+      <category term="科学上网" scheme="http://www.upwzr.com/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>asp.net网站搭常见问题</title>
+    <link href="http://www.upwzr.com/2015/11/29/website-on-iis/"/>
+    <id>http://www.upwzr.com/2015/11/29/website-on-iis/</id>
+    <published>2015-11-28T16:00:00.000Z</published>
+    <updated>2016-04-12T17:36:48.171Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="IIS-APPPOOL-xxxx-登录失败"><a href="#IIS-APPPOOL-xxxx-登录失败" class="headerlink" title="IIS APPPOOL/xxxx 登录失败"></a>IIS APPPOOL/xxxx 登录失败</h2>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;IIS-APPPOOL-xxxx-登录失败&quot;&gt;&lt;a href=&quot;#IIS-APPPOOL-xxxx-登录失败&quot; class=&quot;headerlink&quot; title=&quot;IIS APPPOOL/xxxx 登录失败&quot;&gt;&lt;/a&gt;IIS APPPOOL/xxxx 登录失败&lt;/
+    
+    </summary>
+    
+      <category term="技术" scheme="http://www.upwzr.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="iis" scheme="http://www.upwzr.com/tags/iis/"/>
+    
+      <category term="asp" scheme="http://www.upwzr.com/tags/asp/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SQL字符串转换成时间</title>
+    <link href="http://www.upwzr.com/2015/11/16/SQL-string-to-date/"/>
+    <id>http://www.upwzr.com/2015/11/16/SQL-string-to-date/</id>
+    <published>2015-11-15T16:00:00.000Z</published>
+    <updated>2016-03-04T14:43:39.181Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近改一个网站，网站的文章顺序总是很奇怪，看代码明明是<code>order by time desc</code>。看了数据库之后发现time列是字符串格式，导致比较的时候2015/11/2会被认为比2015/11/15大。查了一下后将sql语句改为<code>.......order by cast([time] as date) desc</code> 就解决了问题。</p>
+<p>SQL Server支持的两个转换函数：</p>
+<pre><code>CAST ( expression AS data_type [ ( length ) ] )
+
+CONVERT ( data_type [ ( length ) ] , expression [ , style ] )
+</code></pre><p>还有几个其他的转换函数，详细内容请见相关链接。</p>
+<blockquote>
+<p><strong>相关链接</strong><br><a href="https://msdn.microsoft.com/zh-cn/library/bb630352(v=sql.120" target="_blank" rel="external">date (Transact-SQL) - MSDN - Microsoft</a>.aspx)<br><a href="https://msdn.microsoft.com/zh-cn/library/ms187928(v=sql.120" target="_blank" rel="external">CAST 和 CONVERT (Transact-SQL)</a>.aspx)</p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近改一个网站，网站的文章顺序总是很奇怪，看代码明明是&lt;code&gt;order by time desc&lt;/code&gt;。看了数据库之后发现time列是字符串格式，导致比较的时候2015/11/2会被认为比2015/11/15大。查了一下后将sql语句改为&lt;code&gt;.....
+    
+    </summary>
+    
+      <category term="技术" scheme="http://www.upwzr.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+  </entry>
+  
+</feed>
