@@ -44,55 +44,6 @@ git rm --cache /path/to/file
   </entry>
   
   <entry>
-    <title>jquery实现表单上传图片预览</title>
-    <link href="http://www.upwzr.com/2016/06/03/form-image-preview/"/>
-    <id>http://www.upwzr.com/2016/06/03/form-image-preview/</id>
-    <published>2016-06-02T16:00:00.000Z</published>
-    <updated>2016-06-03T13:26:33.650Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近有个小页面需要实现图片上传预览，自己还不擅长javascript，迷茫的看了好久文档之后算是利用File API实现了这个事情。<br>js代码：</p>
-<pre><code>&lt;script&gt;
-    function preview(files){
-      for (var i = 0; i &lt; files.length; i++) {
-        var file = files[i];
-        var reader = new FileReader();
-        reader.onload = (function(aImg) { 
-          return function(e) { 
-            //假设页面上的img元素id为showimg
-            $(&apos;#showimg&apos;) . attr(&apos;src&apos;, e.target.result);
-          }; 
-        })();
-        reader.readAsDataURL(file);
-      }
-    }
-&lt;/script&gt;
-</code></pre><p>调用只要在input元素上加上<code>onchange=&quot;preview(this.files)&quot;</code>。</p>
-<blockquote>
-<p>相关链接<br><a href="https://developer.mozilla.org/zh-CN/docs/Using_files_from_web_applications#%E4%BE%8B%E5%AD%90%EF%BC%9A%E6%98%BE%E7%A4%BA%E7%94%A8%E6%88%B7%E6%89%80%E9%80%89%E5%9B%BE%E7%89%87%E7%9A%84%E7%BC%A9%E7%95%A5%E5%9B%BE" target="_blank" rel="external">在web应用中使用文件 – Mozilla 文档</a><br>来自百度的一个上传组件<a href="http://fex.baidu.com/webuploader/" target="_blank" rel="external">http://fex.baidu.com/webuploader/</a></p>
-</blockquote>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;最近有个小页面需要实现图片上传预览，自己还不擅长javascript，迷茫的看了好久文档之后算是利用File API实现了这个事情。&lt;br&gt;js代码：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;script&amp;gt;
-    function preview(files){
-  
-    
-    </summary>
-    
-      <category term="技术" scheme="http://www.upwzr.com/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="html" scheme="http://www.upwzr.com/tags/html/"/>
-    
-      <category term="php" scheme="http://www.upwzr.com/tags/php/"/>
-    
-      <category term="jquery" scheme="http://www.upwzr.com/tags/jquery/"/>
-    
-  </entry>
-  
-  <entry>
     <title>暑假越南行</title>
     <link href="http://www.upwzr.com/2016/06/03/summer-trip-to-Vietnam/"/>
     <id>http://www.upwzr.com/2016/06/03/summer-trip-to-Vietnam/</id>
@@ -156,6 +107,55 @@ git rm --cache /path/to/file
       <category term="越南" scheme="http://www.upwzr.com/tags/%E8%B6%8A%E5%8D%97/"/>
     
       <category term="穷游" scheme="http://www.upwzr.com/tags/%E7%A9%B7%E6%B8%B8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>jquery实现表单上传图片预览</title>
+    <link href="http://www.upwzr.com/2016/06/03/form-image-preview/"/>
+    <id>http://www.upwzr.com/2016/06/03/form-image-preview/</id>
+    <published>2016-06-02T16:00:00.000Z</published>
+    <updated>2016-06-03T13:26:33.650Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近有个小页面需要实现图片上传预览，自己还不擅长javascript，迷茫的看了好久文档之后算是利用File API实现了这个事情。<br>js代码：</p>
+<pre><code>&lt;script&gt;
+    function preview(files){
+      for (var i = 0; i &lt; files.length; i++) {
+        var file = files[i];
+        var reader = new FileReader();
+        reader.onload = (function(aImg) { 
+          return function(e) { 
+            //假设页面上的img元素id为showimg
+            $(&apos;#showimg&apos;) . attr(&apos;src&apos;, e.target.result);
+          }; 
+        })();
+        reader.readAsDataURL(file);
+      }
+    }
+&lt;/script&gt;
+</code></pre><p>调用只要在input元素上加上<code>onchange=&quot;preview(this.files)&quot;</code>。</p>
+<blockquote>
+<p>相关链接<br><a href="https://developer.mozilla.org/zh-CN/docs/Using_files_from_web_applications#%E4%BE%8B%E5%AD%90%EF%BC%9A%E6%98%BE%E7%A4%BA%E7%94%A8%E6%88%B7%E6%89%80%E9%80%89%E5%9B%BE%E7%89%87%E7%9A%84%E7%BC%A9%E7%95%A5%E5%9B%BE" target="_blank" rel="external">在web应用中使用文件 – Mozilla 文档</a><br>来自百度的一个上传组件<a href="http://fex.baidu.com/webuploader/" target="_blank" rel="external">http://fex.baidu.com/webuploader/</a></p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近有个小页面需要实现图片上传预览，自己还不擅长javascript，迷茫的看了好久文档之后算是利用File API实现了这个事情。&lt;br&gt;js代码：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;script&amp;gt;
+    function preview(files){
+  
+    
+    </summary>
+    
+      <category term="技术" scheme="http://www.upwzr.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="html" scheme="http://www.upwzr.com/tags/html/"/>
+    
+      <category term="php" scheme="http://www.upwzr.com/tags/php/"/>
+    
+      <category term="jquery" scheme="http://www.upwzr.com/tags/jquery/"/>
     
   </entry>
   
@@ -312,11 +312,11 @@ $ sudo apt-get install libapache2-mod-php
     
       <category term="linux" scheme="http://www.upwzr.com/tags/linux/"/>
     
-      <category term="php" scheme="http://www.upwzr.com/tags/php/"/>
-    
       <category term="lamp" scheme="http://www.upwzr.com/tags/lamp/"/>
     
       <category term="apache" scheme="http://www.upwzr.com/tags/apache/"/>
+    
+      <category term="php" scheme="http://www.upwzr.com/tags/php/"/>
     
       <category term="php7" scheme="http://www.upwzr.com/tags/php7/"/>
     
