@@ -93,36 +93,6 @@ git rm --cache /path/to/file
   </entry>
   
   <entry>
-    <title>文件上传组件Web Uploader</title>
-    <link href="http://www.upwzr.com/2016/06/03/webuploader/"/>
-    <id>http://www.upwzr.com/2016/06/03/webuploader/</id>
-    <published>2016-06-02T16:00:00.000Z</published>
-    <updated>2016-06-03T14:10:08.394Z</updated>
-    
-    <content type="html"><![CDATA[<p>WebUploader是由Baidu WebFE(FEX)团队开发的一个简单的以HTML5为主，FLASH为辅的现代文件上传组件。感觉对于实现图片上传预览，截屏等效功能会很方便。虽然我并没有用过。。</p>
-<blockquote>
-<p><a href="http://fex.baidu.com/webuploader/" target="_blank" rel="external">http://fex.baidu.com/webuploader/</a><br><a href="https://github.com/fex-team/webuploader/" target="_blank" rel="external">https://github.com/fex-team/webuploader/</a></p>
-</blockquote>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;WebUploader是由Baidu WebFE(FEX)团队开发的一个简单的以HTML5为主，FLASH为辅的现代文件上传组件。感觉对于实现图片上传预览，截屏等效功能会很方便。虽然我并没有用过。。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;http://f
-    
-    </summary>
-    
-      <category term="资料" scheme="http://www.upwzr.com/categories/%E8%B5%84%E6%96%99/"/>
-    
-    
-      <category term="api" scheme="http://www.upwzr.com/tags/api/"/>
-    
-      <category term="library" scheme="http://www.upwzr.com/tags/library/"/>
-    
-  </entry>
-  
-  <entry>
     <title>暑假越南行</title>
     <link href="http://www.upwzr.com/2016/06/03/summer-trip-to-Vietnam/"/>
     <id>http://www.upwzr.com/2016/06/03/summer-trip-to-Vietnam/</id>
@@ -186,6 +156,36 @@ git rm --cache /path/to/file
       <category term="越南" scheme="http://www.upwzr.com/tags/%E8%B6%8A%E5%8D%97/"/>
     
       <category term="穷游" scheme="http://www.upwzr.com/tags/%E7%A9%B7%E6%B8%B8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>文件上传组件Web Uploader</title>
+    <link href="http://www.upwzr.com/2016/06/03/webuploader/"/>
+    <id>http://www.upwzr.com/2016/06/03/webuploader/</id>
+    <published>2016-06-02T16:00:00.000Z</published>
+    <updated>2016-06-03T14:10:08.394Z</updated>
+    
+    <content type="html"><![CDATA[<p>WebUploader是由Baidu WebFE(FEX)团队开发的一个简单的以HTML5为主，FLASH为辅的现代文件上传组件。感觉对于实现图片上传预览，截屏等效功能会很方便。虽然我并没有用过。。</p>
+<blockquote>
+<p><a href="http://fex.baidu.com/webuploader/" target="_blank" rel="external">http://fex.baidu.com/webuploader/</a><br><a href="https://github.com/fex-team/webuploader/" target="_blank" rel="external">https://github.com/fex-team/webuploader/</a></p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;WebUploader是由Baidu WebFE(FEX)团队开发的一个简单的以HTML5为主，FLASH为辅的现代文件上传组件。感觉对于实现图片上传预览，截屏等效功能会很方便。虽然我并没有用过。。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;http://f
+    
+    </summary>
+    
+      <category term="资料" scheme="http://www.upwzr.com/categories/%E8%B5%84%E6%96%99/"/>
+    
+    
+      <category term="api" scheme="http://www.upwzr.com/tags/api/"/>
+    
+      <category term="library" scheme="http://www.upwzr.com/tags/library/"/>
     
   </entry>
   
@@ -312,11 +312,11 @@ $ sudo apt-get install libapache2-mod-php
     
       <category term="linux" scheme="http://www.upwzr.com/tags/linux/"/>
     
+      <category term="php" scheme="http://www.upwzr.com/tags/php/"/>
+    
       <category term="lamp" scheme="http://www.upwzr.com/tags/lamp/"/>
     
       <category term="apache" scheme="http://www.upwzr.com/tags/apache/"/>
-    
-      <category term="php" scheme="http://www.upwzr.com/tags/php/"/>
     
       <category term="php7" scheme="http://www.upwzr.com/tags/php7/"/>
     
