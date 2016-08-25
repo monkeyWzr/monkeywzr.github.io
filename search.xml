@@ -4,15 +4,6 @@
   
     
     <entry>
-      <title><![CDATA[ADO学习笔记]]></title>
-      <url>http://www.upwzr.com/2016/08/24/2015-11-9-ADO-notes/</url>
-      <content type="html"><![CDATA[<blockquote>
-<p>ADO - ActiveX Data Objects</p>
-</blockquote>
-]]></content>
-    </entry>
-    
-    <entry>
       <title><![CDATA[git日常使用心得]]></title>
       <url>http://www.upwzr.com/2016/07/05/git-notes/</url>
       <content type="html"><![CDATA[<h2 id="忽略文件"><a href="#忽略文件" class="headerlink" title="忽略文件"></a>忽略文件</h2><h3 id="忽略文件或文件夹只在本地需要使用"><a href="#忽略文件或文件夹只在本地需要使用" class="headerlink" title="忽略文件或文件夹只在本地需要使用"></a>忽略文件或文件夹只在本地需要使用</h3><p>此种情况为，文件或文件夹只在本地需要，不应该出现在远程仓库时。<br>在将忽略文件或路径更新到<code>.gitignore</code>后，若对于已经trace的文件，需要让git不再跟踪，执行下列命令：</p>
@@ -63,7 +54,8 @@ git rm --cache /path/to/file
     <entry>
       <title><![CDATA[暑假越南行]]></title>
       <url>http://www.upwzr.com/2016/06/03/summer-trip-to-Vietnam/</url>
-      <content type="html"><![CDATA[<h2 id="【2016-8-25-已更新至在越南境内的第三天】"><a href="#【2016-8-25-已更新至在越南境内的第三天】" class="headerlink" title="【2016.8.25 已更新至在越南境内的第三天】"></a>【2016.8.25 已更新至在越南境内的第三天】</h2><h2 id="准备阶段"><a href="#准备阶段" class="headerlink" title="准备阶段"></a>准备阶段</h2><p>2016.6.3 开始写此文。之前的几个月办下了护照，看了些攻略。</p>
+      <content type="html"><![CDATA[<h2 id="【2016-8-25-已更新至在越南境内的第三天】"><a href="#【2016-8-25-已更新至在越南境内的第三天】" class="headerlink" title="【2016.8.25 已更新至在越南境内的第三天】"></a>【2016.8.25 已更新至在越南境内的第三天】</h2><p>我的经验总结在了文末，也还没写完</p>
+<h2 id="准备阶段"><a href="#准备阶段" class="headerlink" title="准备阶段"></a>准备阶段</h2><p>2016.6.3 开始写此文。之前的几个月办下了护照，看了些攻略。</p>
 <h3 id="路线计划："><a href="#路线计划：" class="headerlink" title="路线计划："></a>路线计划：</h3><p>我只是在脑子里想了想大概的路线，因为打算自由一点，走一步算一步（其实是实在没耐心做详细的规划）。<br>河内 顺化 岘港 会安 芽庄 大叻 美奈 胡志明<br>从长沙出发到南宁，做大巴出关。</p>
 <h3 id="待办："><a href="#待办：" class="headerlink" title="待办："></a>待办：</h3><p><del>签证 保险 买背包、一双徒步鞋</del></p>
 <h2 id="出发啦"><a href="#出发啦" class="headerlink" title="出发啦"></a>出发啦</h2><h3 id="2016-7-31-南宁"><a href="#2016-7-31-南宁" class="headerlink" title="2016.7.31 南宁"></a>2016.7.31 南宁</h3><p>出发去南宁~在瓦舍订了一晚，听说是很棒的青旅。到了之后发现位置不是很好，但是里面的环境还不错。（忘了拍照）<br><img src="http://7xi8b3.com1.z0.glb.clouddn.com/blog/vietnamIMG_20160731_205641.jpg" alt="img"></p>
@@ -88,7 +80,22 @@ git rm --cache /path/to/file
 <p>晚上坐上了去岘港（实际是去顺化）的sleeping bus，是（在国内）比较出名的新咖啡。一天算是结束啦<br><img src="http://7xi8b3.com1.z0.glb.clouddn.com/blog/vietnamIMG_20160802_183318.jpg" alt="img"></p>
 <p>感想：河内街头的摩的 <strong>不能坐</strong> ，无论他们怎样跟你打感情牌；掏钱的时候要注意数清楚有几个零；去便利店买酸奶喝，有个妹子跟我聊的很开心，老板娘也很善意，这在人人都想宰你一笔的河内来说真的好难得。。</p>
 <h3 id="2016-8-3-岘港"><a href="#2016-8-3-岘港" class="headerlink" title="2016.8.3 岘港"></a>2016.8.3 岘港</h3><p>未完待续</p>
-]]></content>
+<h2 id="经验"><a href="#经验" class="headerlink" title="经验"></a>经验</h2><h3 id="钱和银行卡"><a href="#钱和银行卡" class="headerlink" title="钱和银行卡"></a>钱和银行卡</h3><ul>
+<li>可以在金店换钱，河内三十六行街上有无数金店，汇率跟在友谊关基本是一样的。越往南方城市的金店汇率可能会越低。</li>
+<li><strong>胡志明机场的汇率很高</strong>。如果是直接飞到胡志明往北玩的同学，可以在胡志明机场换钱。</li>
+<li><strong>在标有银联标识的pos机上刷卡是不收任何手续费的</strong>。花多少钱扣多少钱。乐天超市、Big C、Vinmart、circle K 等等在越南比较常见的超市和便利店里直接刷卡会划算一些。</li>
+<li>办一张华夏的卡感觉还是有必要的，每天第一笔取款不收各种手续费。这样就不用像我一样带了一路的人民币。。而且在ATM上取钱是实时汇率转换过来的，比直接换钱要划算。</li>
+<li>给钱的时候要看好有几个零。。</li>
+</ul>
+<h3 id="物价"><a href="#物价" class="headerlink" title="物价"></a>物价</h3><ul>
+<li>基本上除了在正规超市便利店之类的地方，商贩给你的价格跟本地人是不一样的。只能接受，砍价。</li>
+<li>东西的价格合不合理，其实主要看自己心情。差不多的东西你觉得比国内便宜不少，那就干脆快乐地接受。</li>
+<li>芽庄的榴莲和椰子很便宜。美奈的火龙果非常便宜。</li>
+<li>上一条的经验当然不是指在旅游区，要到当地百姓实际生活的区域。尤其是芽庄，只要稍微离开酒店几条街就差不多。美奈的话，基本就是一条长长的街加上那个渔村，纯是面向游客的。</li>
+<li>我非常建议各位在到每一个城市的时候，都先去正规一点的超市考察一下物价。尤其是水果的价格，外面的市场不可能会比超市要高。实际上我发现酸奶、矿泉水、咖啡、泡面等等类似的东西在大型超市里面是最便宜的。河内岘港芽庄我去了乐天和big C，胡志明我去了Vinmart。</li>
+<li>还要推荐一下大超市里头的法棍，一米多长，只要不到4k（合人民币1块几毛钱）。尤其是刚出锅的(｡￫v￩｡)<br><img src="http://7xi8b3.com1.z0.glb.clouddn.com/blog/vietnamIMG_20160805_143338.jpg" alt="岘港big C里面的法棍"></li>
+</ul>
+<h3 id="未完"><a href="#未完" class="headerlink" title="未完"></a>未完</h3>]]></content>
     </entry>
     
     <entry>
@@ -1421,6 +1428,12 @@ $.getJSON(&quot;test.php?jsoncallback=?&quot;, function(data) {
     </entry>
     
     <entry>
+      <title><![CDATA[国产科幻里程碑----三体]]></title>
+      <url>http://www.upwzr.com/2015/08/29/Three-Body-problem/</url>
+      <content type="html"><![CDATA[<h3 id="还没开始写，但是既然大刘已经得奖了，先在这里留个位置"><a href="#还没开始写，但是既然大刘已经得奖了，先在这里留个位置" class="headerlink" title="还没开始写，但是既然大刘已经得奖了，先在这里留个位置"></a>还没开始写，但是既然大刘已经得奖了，先在这里留个位置</h3>]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[从教务系统中获取课程表图片]]></title>
       <url>http://www.upwzr.com/2015/08/29/get-img-from-base64/</url>
       <content type="html"><![CDATA[<p>教务系统中的课表以图片形式显示，又不知何故不允许另存，禁用右键也无效（教务使用体验极差，这方面倒是做的细心V.V），以前是用chrome开发者工具翻一下resource就能找到图片，拖下来就成。<br><img src="/img/2015-08-29-get-img-from-base64_1.png" alt="图片"><br>昨天想再把新学期课表存下来发现不行了，直接拖到电脑上不管用，拖到新标签页里一堆乱码<br><img src="/img/2015-08-29-get-img-from-base64_2.png" alt="图片"><br>拖到sublime text里面，直接变成了整齐的编码<br><img src="/img/2015-08-29-get-img-from-base64_3.png" alt="图片"><br>网上查一下之后知道图片经base64编码，我拖下来得到的就是编码后的数据，重现的话写个html就行了</p>
@@ -1429,12 +1442,6 @@ $.getJSON(&quot;test.php?jsoncallback=?&quot;, function(data) {
 </code></pre><p>这样就把图片的“文字版”写到html里了，用浏览器访问即可解码出图片，可以随便保存啦。</p>
 <p>这种用base64编码之后传输图片的形式还是比较不错，从别人的博客上摘录下“减少了HTTP请求，某些文件可以避免跨域的问题，没有图片更新要重新上传，还要清理缓存的问题”这些优点。但实际上这种方式并不像想象中那样可以节省流量，文件反而增大约35%，所以大图片就不要用这种方法了。</p>
 ]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[国产科幻里程碑----三体]]></title>
-      <url>http://www.upwzr.com/2015/08/29/Three-Body-problem/</url>
-      <content type="html"><![CDATA[<h3 id="还没开始写，但是既然大刘已经得奖了，先在这里留个位置"><a href="#还没开始写，但是既然大刘已经得奖了，先在这里留个位置" class="headerlink" title="还没开始写，但是既然大刘已经得奖了，先在这里留个位置"></a>还没开始写，但是既然大刘已经得奖了，先在这里留个位置</h3>]]></content>
     </entry>
     
     <entry>
