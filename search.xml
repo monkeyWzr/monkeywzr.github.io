@@ -4,6 +4,20 @@
   
     
     <entry>
+      <title><![CDATA[hexo迁移心得]]></title>
+      <url>http://www.upwzr.com/2016/08/26/post/</url>
+      <content type="html"><![CDATA[<p>经过一番折腾，把博客从Jekyll迁移到了Hexo。不得不说Hexo的体验真的不错。有很多jekyll没有的特性。</p>
+<h2 id="skip-render"><a href="#skip-render" class="headerlink" title="skip_render"></a>skip_render</h2><p>博客建立完之后想提交readme，结果放在source文件夹下的readme.md总是会被渲染成html。后来发现在根目录的__config.yml里有<code>skip_render</code>这个参数，用来定义不进行解析的文件。</p>
+<pre><code>skip_render: readme.md
+</code></pre><h2 id="生成sitemap"><a href="#生成sitemap" class="headerlink" title="生成sitemap"></a>生成sitemap</h2><p>先安装：</p>
+<pre><code>npm install hexo-generator-sitemap --save
+</code></pre><p>然后再根目录的<code>_config.yml</code>里设置：</p>
+<pre><code>sitemap:
+    path: sitemap.xml
+</code></pre>]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[git日常使用心得]]></title>
       <url>http://www.upwzr.com/2016/07/05/git-notes/</url>
       <content type="html"><![CDATA[<h2 id="忽略文件"><a href="#忽略文件" class="headerlink" title="忽略文件"></a>忽略文件</h2><h3 id="忽略文件或文件夹只在本地需要使用"><a href="#忽略文件或文件夹只在本地需要使用" class="headerlink" title="忽略文件或文件夹只在本地需要使用"></a>忽略文件或文件夹只在本地需要使用</h3><p>此种情况为，文件或文件夹只在本地需要，不应该出现在远程仓库时。<br>在将忽略文件或路径更新到<code>.gitignore</code>后，若对于已经trace的文件，需要让git不再跟踪，执行下列命令：</p>
@@ -12,6 +26,16 @@ git rm --cache /path/to/file
 </code></pre><h3 id="文件或文件夹的改动不需要提交"><a href="#文件或文件夹的改动不需要提交" class="headerlink" title="文件或文件夹的改动不需要提交"></a>文件或文件夹的改动不需要提交</h3><p>有些文件或文件夹的改动不需要提交，则在更新<code>.gitignore</code>的同时也要执行执行：</p>
 <pre><code>git update-index --assume-unchanged logs/*.log
 </code></pre><p>此种情况下需要每位成员都在自己的本地仓库执行上述命令。</p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[文件上传组件Web Uploader]]></title>
+      <url>http://www.upwzr.com/2016/06/03/webuploader/</url>
+      <content type="html"><![CDATA[<p>WebUploader是由Baidu WebFE(FEX)团队开发的一个简单的以HTML5为主，FLASH为辅的现代文件上传组件。感觉对于实现图片上传预览，截屏等效功能会很方便。虽然我并没有用过。。</p>
+<blockquote>
+<p><a href="http://fex.baidu.com/webuploader/" target="_blank" rel="external">http://fex.baidu.com/webuploader/</a><br><a href="https://github.com/fex-team/webuploader/" target="_blank" rel="external">https://github.com/fex-team/webuploader/</a></p>
+</blockquote>
 ]]></content>
     </entry>
     
@@ -84,16 +108,6 @@ git rm --cache /path/to/file
 </code></pre><p>调用只要在input元素上加上<code>onchange=&quot;preview(this.files)&quot;</code>。</p>
 <blockquote>
 <p>相关链接<br><a href="https://developer.mozilla.org/zh-CN/docs/Using_files_from_web_applications#%E4%BE%8B%E5%AD%90%EF%BC%9A%E6%98%BE%E7%A4%BA%E7%94%A8%E6%88%B7%E6%89%80%E9%80%89%E5%9B%BE%E7%89%87%E7%9A%84%E7%BC%A9%E7%95%A5%E5%9B%BE" target="_blank" rel="external">在web应用中使用文件 – Mozilla 文档</a><br>来自百度的一个上传组件<a href="http://fex.baidu.com/webuploader/" target="_blank" rel="external">http://fex.baidu.com/webuploader/</a></p>
-</blockquote>
-]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[文件上传组件Web Uploader]]></title>
-      <url>http://www.upwzr.com/2016/06/03/webuploader/</url>
-      <content type="html"><![CDATA[<p>WebUploader是由Baidu WebFE(FEX)团队开发的一个简单的以HTML5为主，FLASH为辅的现代文件上传组件。感觉对于实现图片上传预览，截屏等效功能会很方便。虽然我并没有用过。。</p>
-<blockquote>
-<p><a href="http://fex.baidu.com/webuploader/" target="_blank" rel="external">http://fex.baidu.com/webuploader/</a><br><a href="https://github.com/fex-team/webuploader/" target="_blank" rel="external">https://github.com/fex-team/webuploader/</a></p>
 </blockquote>
 ]]></content>
     </entry>
@@ -1428,6 +1442,12 @@ $.getJSON(&quot;test.php?jsoncallback=?&quot;, function(data) {
     </entry>
     
     <entry>
+      <title><![CDATA[国产科幻里程碑----三体]]></title>
+      <url>http://www.upwzr.com/2015/08/29/Three-Body-problem/</url>
+      <content type="html"><![CDATA[<h3 id="还没开始写，但是既然大刘已经得奖了，先在这里留个位置"><a href="#还没开始写，但是既然大刘已经得奖了，先在这里留个位置" class="headerlink" title="还没开始写，但是既然大刘已经得奖了，先在这里留个位置"></a>还没开始写，但是既然大刘已经得奖了，先在这里留个位置</h3>]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[从教务系统中获取课程表图片]]></title>
       <url>http://www.upwzr.com/2015/08/29/get-img-from-base64/</url>
       <content type="html"><![CDATA[<p>教务系统中的课表以图片形式显示，又不知何故不允许另存，禁用右键也无效（教务使用体验极差，这方面倒是做的细心V.V），以前是用chrome开发者工具翻一下resource就能找到图片，拖下来就成。<br><img src="/img/2015-08-29-get-img-from-base64_1.png" alt="图片"><br>昨天想再把新学期课表存下来发现不行了，直接拖到电脑上不管用，拖到新标签页里一堆乱码<br><img src="/img/2015-08-29-get-img-from-base64_2.png" alt="图片"><br>拖到sublime text里面，直接变成了整齐的编码<br><img src="/img/2015-08-29-get-img-from-base64_3.png" alt="图片"><br>网上查一下之后知道图片经base64编码，我拖下来得到的就是编码后的数据，重现的话写个html就行了</p>
@@ -1436,12 +1456,6 @@ $.getJSON(&quot;test.php?jsoncallback=?&quot;, function(data) {
 </code></pre><p>这样就把图片的“文字版”写到html里了，用浏览器访问即可解码出图片，可以随便保存啦。</p>
 <p>这种用base64编码之后传输图片的形式还是比较不错，从别人的博客上摘录下“减少了HTTP请求，某些文件可以避免跨域的问题，没有图片更新要重新上传，还要清理缓存的问题”这些优点。但实际上这种方式并不像想象中那样可以节省流量，文件反而增大约35%，所以大图片就不要用这种方法了。</p>
 ]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[国产科幻里程碑----三体]]></title>
-      <url>http://www.upwzr.com/2015/08/29/Three-Body-problem/</url>
-      <content type="html"><![CDATA[<h3 id="还没开始写，但是既然大刘已经得奖了，先在这里留个位置"><a href="#还没开始写，但是既然大刘已经得奖了，先在这里留个位置" class="headerlink" title="还没开始写，但是既然大刘已经得奖了，先在这里留个位置"></a>还没开始写，但是既然大刘已经得奖了，先在这里留个位置</h3>]]></content>
     </entry>
     
     <entry>

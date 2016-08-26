@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.upwzr.com/"/>
-  <updated>2016-07-05T13:13:25.649Z</updated>
+  <updated>2016-08-26T13:15:44.104Z</updated>
   <id>http://www.upwzr.com/</id>
   
   <author>
@@ -14,6 +14,39 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>hexo迁移心得</title>
+    <link href="http://www.upwzr.com/2016/08/26/post/"/>
+    <id>http://www.upwzr.com/2016/08/26/post/</id>
+    <published>2016-08-26T10:44:24.000Z</published>
+    <updated>2016-08-26T13:15:44.104Z</updated>
+    
+    <content type="html"><![CDATA[<p>经过一番折腾，把博客从Jekyll迁移到了Hexo。不得不说Hexo的体验真的不错。有很多jekyll没有的特性。</p>
+<h2 id="skip-render"><a href="#skip-render" class="headerlink" title="skip_render"></a>skip_render</h2><p>博客建立完之后想提交readme，结果放在source文件夹下的readme.md总是会被渲染成html。后来发现在根目录的__config.yml里有<code>skip_render</code>这个参数，用来定义不进行解析的文件。</p>
+<pre><code>skip_render: readme.md
+</code></pre><h2 id="生成sitemap"><a href="#生成sitemap" class="headerlink" title="生成sitemap"></a>生成sitemap</h2><p>先安装：</p>
+<pre><code>npm install hexo-generator-sitemap --save
+</code></pre><p>然后再根目录的<code>_config.yml</code>里设置：</p>
+<pre><code>sitemap:
+    path: sitemap.xml
+</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;经过一番折腾，把博客从Jekyll迁移到了Hexo。不得不说Hexo的体验真的不错。有很多jekyll没有的特性。&lt;/p&gt;
+&lt;h2 id=&quot;skip-render&quot;&gt;&lt;a href=&quot;#skip-render&quot; class=&quot;headerlink&quot; title=&quot;skip_
+    
+    </summary>
+    
+      <category term="技术" scheme="http://www.upwzr.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="hexo" scheme="http://www.upwzr.com/tags/hexo/"/>
+    
+      <category term="blog" scheme="http://www.upwzr.com/tags/blog/"/>
+    
+  </entry>
   
   <entry>
     <title>git日常使用心得</title>
@@ -40,6 +73,36 @@ git rm --cache /path/to/file
     
     
       <category term="git" scheme="http://www.upwzr.com/tags/git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>文件上传组件Web Uploader</title>
+    <link href="http://www.upwzr.com/2016/06/03/webuploader/"/>
+    <id>http://www.upwzr.com/2016/06/03/webuploader/</id>
+    <published>2016-06-02T16:00:00.000Z</published>
+    <updated>2016-06-03T14:10:08.394Z</updated>
+    
+    <content type="html"><![CDATA[<p>WebUploader是由Baidu WebFE(FEX)团队开发的一个简单的以HTML5为主，FLASH为辅的现代文件上传组件。感觉对于实现图片上传预览，截屏等效功能会很方便。虽然我并没有用过。。</p>
+<blockquote>
+<p><a href="http://fex.baidu.com/webuploader/" target="_blank" rel="external">http://fex.baidu.com/webuploader/</a><br><a href="https://github.com/fex-team/webuploader/" target="_blank" rel="external">https://github.com/fex-team/webuploader/</a></p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;WebUploader是由Baidu WebFE(FEX)团队开发的一个简单的以HTML5为主，FLASH为辅的现代文件上传组件。感觉对于实现图片上传预览，截屏等效功能会很方便。虽然我并没有用过。。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;http://f
+    
+    </summary>
+    
+      <category term="资料" scheme="http://www.upwzr.com/categories/%E8%B5%84%E6%96%99/"/>
+    
+    
+      <category term="api" scheme="http://www.upwzr.com/tags/api/"/>
+    
+      <category term="library" scheme="http://www.upwzr.com/tags/library/"/>
     
   </entry>
   
@@ -156,36 +219,6 @@ git rm --cache /path/to/file
       <category term="php" scheme="http://www.upwzr.com/tags/php/"/>
     
       <category term="jquery" scheme="http://www.upwzr.com/tags/jquery/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>文件上传组件Web Uploader</title>
-    <link href="http://www.upwzr.com/2016/06/03/webuploader/"/>
-    <id>http://www.upwzr.com/2016/06/03/webuploader/</id>
-    <published>2016-06-02T16:00:00.000Z</published>
-    <updated>2016-06-03T14:10:08.394Z</updated>
-    
-    <content type="html"><![CDATA[<p>WebUploader是由Baidu WebFE(FEX)团队开发的一个简单的以HTML5为主，FLASH为辅的现代文件上传组件。感觉对于实现图片上传预览，截屏等效功能会很方便。虽然我并没有用过。。</p>
-<blockquote>
-<p><a href="http://fex.baidu.com/webuploader/" target="_blank" rel="external">http://fex.baidu.com/webuploader/</a><br><a href="https://github.com/fex-team/webuploader/" target="_blank" rel="external">https://github.com/fex-team/webuploader/</a></p>
-</blockquote>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;WebUploader是由Baidu WebFE(FEX)团队开发的一个简单的以HTML5为主，FLASH为辅的现代文件上传组件。感觉对于实现图片上传预览，截屏等效功能会很方便。虽然我并没有用过。。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;http://f
-    
-    </summary>
-    
-      <category term="资料" scheme="http://www.upwzr.com/categories/%E8%B5%84%E6%96%99/"/>
-    
-    
-      <category term="api" scheme="http://www.upwzr.com/tags/api/"/>
-    
-      <category term="library" scheme="http://www.upwzr.com/tags/library/"/>
     
   </entry>
   
@@ -1155,28 +1188,6 @@ CONVERT ( data_type [ ( length ) ] , expression [ , style ] )
     <summary type="html">
     
       &lt;p&gt;最近改一个网站，网站的文章顺序总是很奇怪，看代码明明是&lt;code&gt;order by time desc&lt;/code&gt;。看了数据库之后发现time列是字符串格式，导致比较的时候2015/11/2会被认为比2015/11/15大。查了一下后将sql语句改为&lt;code&gt;.....
-    
-    </summary>
-    
-      <category term="技术" scheme="http://www.upwzr.com/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>x86架构寄存器功能简记</title>
-    <link href="http://www.upwzr.com/2015/11/13/x86-cpu-registers/"/>
-    <id>http://www.upwzr.com/2015/11/13/x86-cpu-registers/</id>
-    <published>2015-11-12T16:00:00.000Z</published>
-    <updated>2016-03-04T14:43:39.179Z</updated>
-    
-    <content type="html"><![CDATA[<p>注意：64位系统中或者64位程序调试时eip寄存器的名称为rip</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;注意：64位系统中或者64位程序调试时eip寄存器的名称为rip&lt;/p&gt;
-
     
     </summary>
     
