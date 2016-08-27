@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.upwzr.com/"/>
-  <updated>2016-08-26T13:15:44.104Z</updated>
+  <updated>2016-08-27T17:13:00.610Z</updated>
   <id>http://www.upwzr.com/</id>
   
   <author>
@@ -16,9 +16,34 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>日语自学笔记</title>
+    <link href="http://www.upwzr.com/2016/08/28/japanese-learning-notes/"/>
+    <id>http://www.upwzr.com/2016/08/28/japanese-learning-notes/</id>
+    <published>2016-08-27T16:57:04.000Z</published>
+    <updated>2016-08-27T17:13:00.610Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="浊音"><a href="#浊音" class="headerlink" title="浊音"></a>浊音</h2><p>对于じ和ぢ有一些比较特殊的地方。じ和ぢ的发音是一样的，じ[zi]读作ji，ぢ[di]读作ji，在打字时，zi和ji都会打出じ，而ぢ只能用di。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;浊音&quot;&gt;&lt;a href=&quot;#浊音&quot; class=&quot;headerlink&quot; title=&quot;浊音&quot;&gt;&lt;/a&gt;浊音&lt;/h2&gt;&lt;p&gt;对于じ和ぢ有一些比较特殊的地方。じ和ぢ的发音是一样的，じ[zi]读作ji，ぢ[di]读作ji，在打字时，zi和ji都会打出じ，而ぢ只能用di
+    
+    </summary>
+    
+      <category term="学习笔记" scheme="http://www.upwzr.com/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="日语" scheme="http://www.upwzr.com/tags/%E6%97%A5%E8%AF%AD/"/>
+    
+      <category term="japanese" scheme="http://www.upwzr.com/tags/japanese/"/>
+    
+  </entry>
+  
+  <entry>
     <title>hexo迁移心得</title>
-    <link href="http://www.upwzr.com/2016/08/26/post/"/>
-    <id>http://www.upwzr.com/2016/08/26/post/</id>
+    <link href="http://www.upwzr.com/2016/08/26/hexo/"/>
+    <id>http://www.upwzr.com/2016/08/26/hexo/</id>
     <published>2016-08-26T10:44:24.000Z</published>
     <updated>2016-08-26T13:15:44.104Z</updated>
     
@@ -107,6 +132,55 @@ git rm --cache /path/to/file
   </entry>
   
   <entry>
+    <title>jquery实现表单上传图片预览</title>
+    <link href="http://www.upwzr.com/2016/06/03/form-image-preview/"/>
+    <id>http://www.upwzr.com/2016/06/03/form-image-preview/</id>
+    <published>2016-06-02T16:00:00.000Z</published>
+    <updated>2016-06-03T13:26:33.650Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近有个小页面需要实现图片上传预览，自己还不擅长javascript，迷茫的看了好久文档之后算是利用File API实现了这个事情。<br>js代码：</p>
+<pre><code>&lt;script&gt;
+    function preview(files){
+      for (var i = 0; i &lt; files.length; i++) {
+        var file = files[i];
+        var reader = new FileReader();
+        reader.onload = (function(aImg) { 
+          return function(e) { 
+            //假设页面上的img元素id为showimg
+            $(&apos;#showimg&apos;) . attr(&apos;src&apos;, e.target.result);
+          }; 
+        })();
+        reader.readAsDataURL(file);
+      }
+    }
+&lt;/script&gt;
+</code></pre><p>调用只要在input元素上加上<code>onchange=&quot;preview(this.files)&quot;</code>。</p>
+<blockquote>
+<p>相关链接<br><a href="https://developer.mozilla.org/zh-CN/docs/Using_files_from_web_applications#%E4%BE%8B%E5%AD%90%EF%BC%9A%E6%98%BE%E7%A4%BA%E7%94%A8%E6%88%B7%E6%89%80%E9%80%89%E5%9B%BE%E7%89%87%E7%9A%84%E7%BC%A9%E7%95%A5%E5%9B%BE" target="_blank" rel="external">在web应用中使用文件 – Mozilla 文档</a><br>来自百度的一个上传组件<a href="http://fex.baidu.com/webuploader/" target="_blank" rel="external">http://fex.baidu.com/webuploader/</a></p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近有个小页面需要实现图片上传预览，自己还不擅长javascript，迷茫的看了好久文档之后算是利用File API实现了这个事情。&lt;br&gt;js代码：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;script&amp;gt;
+    function preview(files){
+  
+    
+    </summary>
+    
+      <category term="技术" scheme="http://www.upwzr.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="html" scheme="http://www.upwzr.com/tags/html/"/>
+    
+      <category term="php" scheme="http://www.upwzr.com/tags/php/"/>
+    
+      <category term="jquery" scheme="http://www.upwzr.com/tags/jquery/"/>
+    
+  </entry>
+  
+  <entry>
     <title>暑假越南行</title>
     <link href="http://www.upwzr.com/2016/06/03/summer-trip-to-Vietnam/"/>
     <id>http://www.upwzr.com/2016/06/03/summer-trip-to-Vietnam/</id>
@@ -170,55 +244,6 @@ git rm --cache /path/to/file
       <category term="越南" scheme="http://www.upwzr.com/tags/%E8%B6%8A%E5%8D%97/"/>
     
       <category term="穷游" scheme="http://www.upwzr.com/tags/%E7%A9%B7%E6%B8%B8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>jquery实现表单上传图片预览</title>
-    <link href="http://www.upwzr.com/2016/06/03/form-image-preview/"/>
-    <id>http://www.upwzr.com/2016/06/03/form-image-preview/</id>
-    <published>2016-06-02T16:00:00.000Z</published>
-    <updated>2016-06-03T13:26:33.650Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近有个小页面需要实现图片上传预览，自己还不擅长javascript，迷茫的看了好久文档之后算是利用File API实现了这个事情。<br>js代码：</p>
-<pre><code>&lt;script&gt;
-    function preview(files){
-      for (var i = 0; i &lt; files.length; i++) {
-        var file = files[i];
-        var reader = new FileReader();
-        reader.onload = (function(aImg) { 
-          return function(e) { 
-            //假设页面上的img元素id为showimg
-            $(&apos;#showimg&apos;) . attr(&apos;src&apos;, e.target.result);
-          }; 
-        })();
-        reader.readAsDataURL(file);
-      }
-    }
-&lt;/script&gt;
-</code></pre><p>调用只要在input元素上加上<code>onchange=&quot;preview(this.files)&quot;</code>。</p>
-<blockquote>
-<p>相关链接<br><a href="https://developer.mozilla.org/zh-CN/docs/Using_files_from_web_applications#%E4%BE%8B%E5%AD%90%EF%BC%9A%E6%98%BE%E7%A4%BA%E7%94%A8%E6%88%B7%E6%89%80%E9%80%89%E5%9B%BE%E7%89%87%E7%9A%84%E7%BC%A9%E7%95%A5%E5%9B%BE" target="_blank" rel="external">在web应用中使用文件 – Mozilla 文档</a><br>来自百度的一个上传组件<a href="http://fex.baidu.com/webuploader/" target="_blank" rel="external">http://fex.baidu.com/webuploader/</a></p>
-</blockquote>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;最近有个小页面需要实现图片上传预览，自己还不擅长javascript，迷茫的看了好久文档之后算是利用File API实现了这个事情。&lt;br&gt;js代码：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;script&amp;gt;
-    function preview(files){
-  
-    
-    </summary>
-    
-      <category term="技术" scheme="http://www.upwzr.com/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="html" scheme="http://www.upwzr.com/tags/html/"/>
-    
-      <category term="php" scheme="http://www.upwzr.com/tags/php/"/>
-    
-      <category term="jquery" scheme="http://www.upwzr.com/tags/jquery/"/>
     
   </entry>
   
@@ -1164,35 +1189,6 @@ iptables -A FORWARD -p tcp --syn -s 192.168.0.0/24 -j TCPMSS --set-mss 1356
       <category term="iis" scheme="http://www.upwzr.com/tags/iis/"/>
     
       <category term="asp" scheme="http://www.upwzr.com/tags/asp/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SQL字符串转换成时间</title>
-    <link href="http://www.upwzr.com/2015/11/16/SQL-string-to-date/"/>
-    <id>http://www.upwzr.com/2015/11/16/SQL-string-to-date/</id>
-    <published>2015-11-15T16:00:00.000Z</published>
-    <updated>2016-03-04T14:43:39.181Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近改一个网站，网站的文章顺序总是很奇怪，看代码明明是<code>order by time desc</code>。看了数据库之后发现time列是字符串格式，导致比较的时候2015/11/2会被认为比2015/11/15大。查了一下后将sql语句改为<code>.......order by cast([time] as date) desc</code> 就解决了问题。</p>
-<p>SQL Server支持的两个转换函数：</p>
-<pre><code>CAST ( expression AS data_type [ ( length ) ] )
-
-CONVERT ( data_type [ ( length ) ] , expression [ , style ] )
-</code></pre><p>还有几个其他的转换函数，详细内容请见相关链接。</p>
-<blockquote>
-<p><strong>相关链接</strong><br><a href="https://msdn.microsoft.com/zh-cn/library/bb630352(v=sql.120" target="_blank" rel="external">date (Transact-SQL) - MSDN - Microsoft</a>.aspx)<br><a href="https://msdn.microsoft.com/zh-cn/library/ms187928(v=sql.120" target="_blank" rel="external">CAST 和 CONVERT (Transact-SQL)</a>.aspx)</p>
-</blockquote>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;最近改一个网站，网站的文章顺序总是很奇怪，看代码明明是&lt;code&gt;order by time desc&lt;/code&gt;。看了数据库之后发现time列是字符串格式，导致比较的时候2015/11/2会被认为比2015/11/15大。查了一下后将sql语句改为&lt;code&gt;.....
-    
-    </summary>
-    
-      <category term="技术" scheme="http://www.upwzr.com/categories/%E6%8A%80%E6%9C%AF/"/>
-    
     
   </entry>
   
