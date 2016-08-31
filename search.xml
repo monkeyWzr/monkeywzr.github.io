@@ -4,6 +4,15 @@
   
     
     <entry>
+      <title><![CDATA[composer用法]]></title>
+      <url>http://www.upwzr.com/2016/08/31/composer-usages/</url>
+      <content type="html"><![CDATA[<h2 id="composer-json"><a href="#composer-json" class="headerlink" title="composer.json"></a>composer.json</h2><p>要开始在你的项目中使用 Composer，你只需要一个<code>composer.json</code>文件。该文件包含了项目的依赖和其它的一些元数据。</p>
+<p>首先需要指定<code>require key</code>的值<br>{<br>    “require”: {<br>        “monolog/monolog”: “1.0.*”<br>    }<br>}</p>
+<h3 id="包版本"><a href="#包版本" class="headerlink" title="包版本"></a>包版本</h3><table><br>    <thead><br>        <tr><br>            <th>名称</th><th>实例</th><th>描述</th><br>        </tr><br>    </thead><br>    <tbody><br>        <tr><br>            <td>确切的版本号</td><br>            <td><code>1.0.2</code></td><br>            <td>你可以指定包的确切版本。</td><br>        </tr><br>        <tr><br>            <td>范围</td><br>            <td><br>                <code>&gt;=1.0</code><br>                <code>&gt;=1.0,&lt;2.0</code><br>                <code>&gt;=1.0,&lt;1.1|&gt;=1.2</code><br>            </td><br>            <td>通过使用比较操作符可以指定有效的版本范围。<br>            <br>有效的运算符：<code>&gt;</code>、<code>&gt;=</code>、<code>&lt;</code>、<code>&lt;=</code>、<code>!=</code>。<br>            <br>你可以定义多个范围，用逗号隔开，这将被视为一个<strong>逻辑AND</strong>处理。一个管道符号<code>|</code>将作为<strong>逻辑OR</strong>处理。<br>            <br>AND 的优先级高于 OR。</td><br>        </tr><br>        <tr><br>            <td>通配符</td><br>            <td><code>1.0.<em></em></code></td><br>            <td>你可以使用通配符<code></code>来指定一种模式。<code>1.0.*</code>与<code>&gt;=1.0,&lt;1.1</code>是等效的。</td><br>        </tr><br>        <tr><br>            <td>赋值运算符</td><br>            <td><code>~1.2</code></td><br>            <td>这对于遵循语义化版本号的项目非常有用。<code>~1.2</code>相当于<code>&gt;=1.2,&lt;2.0</code>。想要了解更多，请阅读下一小节。</td><br>        </tr><br>    </tbody><br></table>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[ioc要点简记]]></title>
       <url>http://www.upwzr.com/2016/08/31/ioc-notes/</url>
       <content type="html"><![CDATA[<blockquote>
@@ -96,6 +105,16 @@ git rm --cache /path/to/file
     </entry>
     
     <entry>
+      <title><![CDATA[文件上传组件Web Uploader]]></title>
+      <url>http://www.upwzr.com/2016/06/03/webuploader/</url>
+      <content type="html"><![CDATA[<p>WebUploader是由Baidu WebFE(FEX)团队开发的一个简单的以HTML5为主，FLASH为辅的现代文件上传组件。感觉对于实现图片上传预览，截屏等效功能会很方便。虽然我并没有用过。。</p>
+<blockquote>
+<p><a href="http://fex.baidu.com/webuploader/" target="_blank" rel="external">http://fex.baidu.com/webuploader/</a><br><a href="https://github.com/fex-team/webuploader/" target="_blank" rel="external">https://github.com/fex-team/webuploader/</a></p>
+</blockquote>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[暑假越南行]]></title>
       <url>http://www.upwzr.com/2016/06/03/summer-trip-to-Vietnam/</url>
       <content type="html"><![CDATA[<h2 id="【2016-8-25-已更新至在越南境内的第三天】"><a href="#【2016-8-25-已更新至在越南境内的第三天】" class="headerlink" title="【2016.8.25 已更新至在越南境内的第三天】"></a>【2016.8.25 已更新至在越南境内的第三天】</h2><p>我的经验总结在了文末，也还没写完</p>
@@ -140,16 +159,6 @@ git rm --cache /path/to/file
 <li>还要推荐一下大超市里头的法棍，一米多长，只要不到4k（合人民币1块几毛钱）。尤其是刚出锅的(｡￫v￩｡)<br><img src="http://7xi8b3.com1.z0.glb.clouddn.com/blog/vietnamIMG_20160805_143338.jpg" alt="岘港big C里面的法棍"></li>
 </ul>
 <h3 id="未完"><a href="#未完" class="headerlink" title="未完"></a>未完</h3>]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[文件上传组件Web Uploader]]></title>
-      <url>http://www.upwzr.com/2016/06/03/webuploader/</url>
-      <content type="html"><![CDATA[<p>WebUploader是由Baidu WebFE(FEX)团队开发的一个简单的以HTML5为主，FLASH为辅的现代文件上传组件。感觉对于实现图片上传预览，截屏等效功能会很方便。虽然我并没有用过。。</p>
-<blockquote>
-<p><a href="http://fex.baidu.com/webuploader/" target="_blank" rel="external">http://fex.baidu.com/webuploader/</a><br><a href="https://github.com/fex-team/webuploader/" target="_blank" rel="external">https://github.com/fex-team/webuploader/</a></p>
-</blockquote>
-]]></content>
     </entry>
     
     <entry>
@@ -1508,12 +1517,6 @@ $.getJSON(&quot;test.php?jsoncallback=?&quot;, function(data) {
     </entry>
     
     <entry>
-      <title><![CDATA[国产科幻里程碑----三体]]></title>
-      <url>http://www.upwzr.com/2015/08/29/Three-Body-problem/</url>
-      <content type="html"><![CDATA[<h3 id="还没开始写，但是既然大刘已经得奖了，先在这里留个位置"><a href="#还没开始写，但是既然大刘已经得奖了，先在这里留个位置" class="headerlink" title="还没开始写，但是既然大刘已经得奖了，先在这里留个位置"></a>还没开始写，但是既然大刘已经得奖了，先在这里留个位置</h3>]]></content>
-    </entry>
-    
-    <entry>
       <title><![CDATA[从教务系统中获取课程表图片]]></title>
       <url>http://www.upwzr.com/2015/08/29/get-img-from-base64/</url>
       <content type="html"><![CDATA[<p>教务系统中的课表以图片形式显示，又不知何故不允许另存，禁用右键也无效（教务使用体验极差，这方面倒是做的细心V.V），以前是用chrome开发者工具翻一下resource就能找到图片，拖下来就成。<br><img src="/img/2015-08-29-get-img-from-base64_1.png" alt="图片"><br>昨天想再把新学期课表存下来发现不行了，直接拖到电脑上不管用，拖到新标签页里一堆乱码<br><img src="/img/2015-08-29-get-img-from-base64_2.png" alt="图片"><br>拖到sublime text里面，直接变成了整齐的编码<br><img src="/img/2015-08-29-get-img-from-base64_3.png" alt="图片"><br>网上查一下之后知道图片经base64编码，我拖下来得到的就是编码后的数据，重现的话写个html就行了</p>
@@ -1522,6 +1525,12 @@ $.getJSON(&quot;test.php?jsoncallback=?&quot;, function(data) {
 </code></pre><p>这样就把图片的“文字版”写到html里了，用浏览器访问即可解码出图片，可以随便保存啦。</p>
 <p>这种用base64编码之后传输图片的形式还是比较不错，从别人的博客上摘录下“减少了HTTP请求，某些文件可以避免跨域的问题，没有图片更新要重新上传，还要清理缓存的问题”这些优点。但实际上这种方式并不像想象中那样可以节省流量，文件反而增大约35%，所以大图片就不要用这种方法了。</p>
 ]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[国产科幻里程碑----三体]]></title>
+      <url>http://www.upwzr.com/2015/08/29/Three-Body-problem/</url>
+      <content type="html"><![CDATA[<h3 id="还没开始写，但是既然大刘已经得奖了，先在这里留个位置"><a href="#还没开始写，但是既然大刘已经得奖了，先在这里留个位置" class="headerlink" title="还没开始写，但是既然大刘已经得奖了，先在这里留个位置"></a>还没开始写，但是既然大刘已经得奖了，先在这里留个位置</h3>]]></content>
     </entry>
     
     <entry>
@@ -1621,7 +1630,32 @@ $.getJSON(&quot;test.php?jsoncallback=?&quot;, function(data) {
 [id]: url/to/image "Optional title attribute"  title文字部分可缺省
 </pre>
 
-
+<h2 id="9-表格"><a href="#9-表格" class="headerlink" title="9. 表格"></a>9. 表格</h2><table>
+<thead>
+<tr>
+<th>Tables</th>
+<th style="text-align:center">Are</th>
+<th style="text-align:right">Cool</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>这一列</td>
+<td style="text-align:center">这一列</td>
+<td style="text-align:right">这一列</td>
+</tr>
+<tr>
+<td>会是</td>
+<td style="text-align:center">是</td>
+<td style="text-align:right">是</td>
+</tr>
+<tr>
+<td>左对齐</td>
+<td style="text-align:center">居中（neat）</td>
+<td style="text-align:right">你猜</td>
+</tr>
+</tbody>
+</table>
 <h2 id="详细内容参见"><a href="#详细内容参见" class="headerlink" title="详细内容参见"></a>详细内容参见</h2><p>点击进入<br><a href="https://gitcafe.com/riku/Markdown-Syntax-CN/blob/master/syntax.md" target="_blank" rel="external">Markdown语法简体中文版</a><br><a href="http://daringfireball.net/projects/markdown/syntax" target="_blank" rel="external">Markdoown官方文档</a></p>
 ]]></content>
     </entry>

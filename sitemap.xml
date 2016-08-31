@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.upwzr.com/2016/08/31/composer-usages/</loc>
+    
+    <lastmod>2016-08-31T05:34:08.140Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.upwzr.com/2015/08/03/markdown-notes/</loc>
+    
+    <lastmod>2016-08-31T05:11:06.958Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.upwzr.com/2016/08/31/ioc-notes/</loc>
     
     <lastmod>2016-08-31T03:14:13.500Z</lastmod>
@@ -285,13 +299,6 @@
     <loc>http://www.upwzr.com/2015/10/08/html-head-tags/</loc>
     
     <lastmod>2016-03-04T14:43:39.111Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.upwzr.com/2015/08/03/markdown-notes/</loc>
-    
-    <lastmod>2016-03-04T14:43:39.097Z</lastmod>
     
   </url>
   

@@ -82,7 +82,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="php,composer,包管理,依赖管理" />
 
 
 
@@ -100,15 +100,22 @@
 
 
 
-<meta name="description" content="好想学习。。。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="マクロス">
-<meta property="og:url" content="http://www.upwzr.com/tags/jqury/index.html">
+<meta name="description" content="composer.json要开始在你的项目中使用 Composer，你只需要一个composer.json文件。该文件包含了项目的依赖和其它的一些元数据。
+首先需要指定require key的值{    “require”: {        “monolog/monolog”: “1.0.*”    }}
+包版本                        名称实例描述">
+<meta property="og:type" content="article">
+<meta property="og:title" content="composer用法">
+<meta property="og:url" content="http://www.upwzr.com/2016/08/31/composer-usages/index.html">
 <meta property="og:site_name" content="マクロス">
-<meta property="og:description" content="好想学习。。。">
+<meta property="og:description" content="composer.json要开始在你的项目中使用 Composer，你只需要一个composer.json文件。该文件包含了项目的依赖和其它的一些元数据。
+首先需要指定require key的值{    “require”: {        “monolog/monolog”: “1.0.*”    }}
+包版本                        名称实例描述">
+<meta property="og:updated_time" content="2016-08-31T05:34:08.140Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="マクロス">
-<meta name="twitter:description" content="好想学习。。。">
+<meta name="twitter:title" content="composer用法">
+<meta name="twitter:description" content="composer.json要开始在你的项目中使用 Composer，你只需要一个composer.json文件。该文件包含了项目的依赖和其它的一些元数据。
+首先需要指定require key的值{    “require”: {        “monolog/monolog”: “1.0.*”    }}
+包版本                        名称实例描述">
 
 
 
@@ -129,9 +136,9 @@
 
 
 
-  <link rel="canonical" href="http://www.upwzr.com/tags/jqury/"/>
+  <link rel="canonical" href="http://www.upwzr.com/2016/08/31/composer-usages/"/>
 
-  <title> 标签: jqury | マクロス </title>
+  <title> composer用法 | マクロス </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -180,7 +187,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -308,46 +315,161 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        jqury
-        <small>标签</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                composer用法
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-31T12:21:46+08:00" content="2016-08-31">
+              2016-08-31
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/31/composer-usages/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/31/composer-usages/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/08/31/composer-usages/" class="leancloud_visitors" data-flag-title="composer用法">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+        <h2 id="composer-json"><a href="#composer-json" class="headerlink" title="composer.json"></a>composer.json</h2><p>要开始在你的项目中使用 Composer，你只需要一个<code>composer.json</code>文件。该文件包含了项目的依赖和其它的一些元数据。</p>
+<p>首先需要指定<code>require key</code>的值<br>{<br>    “require”: {<br>        “monolog/monolog”: “1.0.*”<br>    }<br>}</p>
+<h3 id="包版本"><a href="#包版本" class="headerlink" title="包版本"></a>包版本</h3><table><br>    <thead><br>        <tr><br>            <th>名称</th><th>实例</th><th>描述</th><br>        </tr><br>    </thead><br>    <tbody><br>        <tr><br>            <td>确切的版本号</td><br>            <td><code>1.0.2</code></td><br>            <td>你可以指定包的确切版本。</td><br>        </tr><br>        <tr><br>            <td>范围</td><br>            <td><br>                <code>&gt;=1.0</code><br>                <code>&gt;=1.0,&lt;2.0</code><br>                <code>&gt;=1.0,&lt;1.1|&gt;=1.2</code><br>            </td><br>            <td>通过使用比较操作符可以指定有效的版本范围。<br>            <br>有效的运算符：<code>&gt;</code>、<code>&gt;=</code>、<code>&lt;</code>、<code>&lt;=</code>、<code>!=</code>。<br>            <br>你可以定义多个范围，用逗号隔开，这将被视为一个<strong>逻辑AND</strong>处理。一个管道符号<code>|</code>将作为<strong>逻辑OR</strong>处理。<br>            <br>AND 的优先级高于 OR。</td><br>        </tr><br>        <tr><br>            <td>通配符</td><br>            <td><code>1.0.<em></em></code></td><br>            <td>你可以使用通配符<code></code>来指定一种模式。<code>1.0.*</code>与<code>&gt;=1.0,&lt;1.1</code>是等效的。</td><br>        </tr><br>        <tr><br>            <td>赋值运算符</td><br>            <td><code>~1.2</code></td><br>            <td>这对于遵循语义化版本号的项目非常有用。<code>~1.2</code>相当于<code>&gt;=1.2,&lt;2.0</code>。想要了解更多，请阅读下一小节。</td><br>        </tr><br>    </tbody><br></table>
 
-      <h1 class="post-title">
+      
+    </div>
+
+    <div>
+      
         
-            <a class="post-title-link" href="/2015/10/01/jqury-notes/" itemprop="url">
-              
-                <span itemprop="name">jQury基础笔记</span>
-              
-            </a>
+
+      
+    </div>
+
+    <div>
+      
         
-      </h1>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2015-10-01T00:00:00+08:00"
-              content="2015-10-01" >
-          10-01
-        </time>
-      </div>
+      
+    </div>
 
-    </header>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/php/" rel="tag">#php</a>
+          
+            <a href="/tags/copmoser/" rel="tag">#copmoser</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/31/ioc-notes/" rel="next" title="ioc要点简记">
+                <i class="fa fa-chevron-left"></i> ioc要点简记
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </div>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -355,6 +477,17 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -374,8 +507,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/img/head.jpg"
@@ -479,6 +621,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#composer-json"><span class="nav-number">1.</span> <span class="nav-text">composer.json</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#包版本"><span class="nav-number">1.1.</span> <span class="nav-text">包版本</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -591,6 +744,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
@@ -607,9 +764,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'monkeywzr';
-      var disqus_identifier = 'tags/jqury/index.html';
-      var disqus_title = "";
-      var disqus_url = '';
+      var disqus_identifier = '2016/08/31/composer-usages/';
+      var disqus_title = "composer用法";
+      var disqus_url = 'http://www.upwzr.com/2016/08/31/composer-usages/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
@@ -620,6 +777,8 @@
       }
 
       run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
       
     </script>
   
