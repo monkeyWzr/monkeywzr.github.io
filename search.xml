@@ -8,8 +8,9 @@
       <url>http://www.upwzr.com/2016/08/31/composer-usages/</url>
       <content type="html"><![CDATA[<h2 id="composer-json"><a href="#composer-json" class="headerlink" title="composer.json"></a>composer.json</h2><p>要开始在你的项目中使用 Composer，你只需要一个<code>composer.json</code>文件。该文件包含了项目的依赖和其它的一些元数据。</p>
 <p>首先需要指定<code>require key</code>的值<br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"require"</span>: &#123;</div><div class="line">        <span class="attr">"monolog/monolog"</span>: <span class="string">"1.0.*"</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="包名"><a href="#包名" class="headerlink" title="包名"></a>包名</h2><p>包名应该包含供应商名和项目名</p>
 <h3 id="包版本"><a href="#包版本" class="headerlink" title="包版本"></a>包版本</h3><ul>
-<li>指定版本号 <code>1.0.2</code></li>
+<li>指定版本号 <code>1.0.2</code>，<code>1.0.0-dev</code>，<code>1.0.0-alpha3</code></li>
 <li>范围 <code>&gt;=1.0</code> <code>&gt;=1.0,&lt;2.0</code> <code>&gt;=1.0,&lt;1.1|&gt;=1.2</code> <code>,</code>的优先级高于<code>|</code></li>
 <li>通配符 <code>1.0.*</code></li>
 <li>赋值运算符 <code>~1.2</code> 相当于<code>&gt;=1.2,&lt;2.0</code></li>
@@ -17,8 +18,56 @@
 </ul>
 <p>形如<code>1.0.*@beta</code>，或者<code>dev-master#2eb0c0978d290a1c45346a1955188929cb4e5db7</code>这种明确了版本号的也是支持的。</p>
 <p>波浪号运算符的意义在于，防止大版本更新而产生的兼容性问题。</p>
+<h3 id="Dist"><a href="#Dist" class="headerlink" title="Dist"></a>Dist</h3><p>dist 指向一个存档，该存档是对一个资源包的某个版本的数据进行的打包。通常是已经发行的稳定版本。</p>
+<h3 id="Source"><a href="#Source" class="headerlink" title="Source"></a>Source</h3><p>source 指向一个开发中的源。这通常是一个源代码仓库，例如<code>git</code>。当你想要对下载下来的资源包进行修改时，可以这样获取。</p>
+<p>你可以使用其中任意一个，或者同时使用。这取决于其它的一些因素，比如<code>user-supplied</code> 选项和包的稳定性，前者将会被优先考虑。</p>
+<h3 id="repositories"><a href="#repositories" class="headerlink" title="repositories"></a>repositories</h3><p>默认情况下 composer 只使用 packagist 作为包的资源库。通过指定资源库，你可以从其他地方获取资源包。</p>
+<p>Repositories 并不是递归调用的，只能在Root包的 <code>composer.json</code> 中定义。附属包中的 <code>composer.json</code> 将被忽略。</p>
+<p>支持一下类型的资源库：</p>
+<ul>
+<li>composer: 一个 composer 类型的资源库，是一个简单的网络服务器（HTTP、FTP、SSH）上的 <code>packages.json</code> 文件，它包含一个 <code>composer.json</code> 对象的列表，有额外的 <code>dist</code> 和/或 <code>source</code> 信息。这个 <code>packages.json</code> 文件是用一个 PHP 流加载的。你可以使用 <code>options</code> 参数来设定额外的流信息。</li>
+<li>vcs: 从 <code>git</code>、<code>svn</code> 和 <code>hg</code> 取得资源。</li>
+<li>pear: 从 <code>pear</code> 获取资源。</li>
+<li>package: 如果你依赖于一个项目，它不提供任何对 composer 的支持，你就可以使用这种类型。你基本上就只需要内联一个 <code>composer.json</code> 对象。</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"require"</span>: &#123;</div><div class="line">        <span class="attr">"vendor/my-private-repo"</span>: <span class="string">"dev-master"</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">"repositories"</span>: [</div><div class="line">        &#123;</div><div class="line">            <span class="attr">"type"</span>: <span class="string">"vcs"</span>,</div><div class="line">            <span class="attr">"url"</span>:  <span class="string">"git@github.com:vendor/my-private-repo.git"</span></div><div class="line">        &#125;</div><div class="line">    ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="config"><a href="#config" class="headerlink" title="config"></a>config</h3><p>config字段仅适用于root项目。</p>
+<p>几个常用的值：</p>
+<ul>
+<li>use-include-path: 默认为 <code>false</code>。如果为 <code>true</code>，Composer autoloader 还将在 PHP include path 中继续查找类文件。</li>
+<li>preferred-install: 默认为 <code>auto</code>。它的值可以是 <code>source</code>、<code>dist</code> 或 <code>auto</code>。这个选项允许你设置 Composer 的默认安装方法。</li>
+<li>github-protocols: 默认为 [“git”, “https”, “ssh”]。从 github.com 克隆时使用的协议优先级清单。</li>
+<li>vendor-dir: 默认为 <code>vendor</code>。指定依赖安装目录</li>
+<li>bin-dir: 默认为 <code>vendor/bin</code>。如果一个项目包含二进制文件，它们将被连接到这个目录。</li>
+<li>cache-dir: unix 下默认为 <code>$home/cache</code>，Windows 下默认为 <code>C:\Users\&lt;user&gt;\AppData\Local\Composer</code>。用于存储 composer 所有的缓存文件。其子文件夹<code>cache-files-dir</code> <code>cache-repo-dir</code> <code>cache-vcs-dir</code>也可以分别指定路径。</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"config"</span>: &#123;</div><div class="line">        <span class="attr">"bin-dir"</span>: <span class="string">"bin"</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="发布包相关"><a href="#发布包相关" class="headerlink" title="发布包相关"></a>发布包相关</h3><p><code>name</code> <code>description</code> 必填，<code>license</code> <code>authors</code> <code>support</code> 等是强烈建议填写的可选项。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"authors"</span>: [</div><div class="line">        &#123;</div><div class="line">            <span class="attr">"name"</span>: <span class="string">"Nils Adermann"</span>,</div><div class="line">            <span class="attr">"email"</span>: <span class="string">"naderman@naderman.de"</span>,</div><div class="line">            <span class="attr">"homepage"</span>: <span class="string">"http://www.naderman.de"</span>,</div><div class="line">            <span class="attr">"role"</span>: <span class="string">"Developer"</span></div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">            <span class="attr">"name"</span>: <span class="string">"Jordi Boggiano"</span>,</div><div class="line">            <span class="attr">"email"</span>: <span class="string">"j.boggiano@seld.be"</span>,</div><div class="line">            <span class="attr">"homepage"</span>: <span class="string">"http://seld.be"</span>,</div><div class="line">            <span class="attr">"role"</span>: <span class="string">"Developer"</span></div><div class="line">        &#125;</div><div class="line">    ],</div><div class="line">    <span class="attr">"license"</span>: <span class="string">"MIT"</span>,</div><div class="line">    <span class="attr">"support"</span>: &#123;</div><div class="line">        <span class="attr">"email"</span>: <span class="string">"support@example.org"</span>,</div><div class="line">        <span class="attr">"irc"</span>: <span class="string">"irc://irc.freenode.org/composer"</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><p>在<code>composer.json</code>所在目录调用<code>install</code>命令</p>
 <figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer <span class="keyword">install</span></div></pre></td></tr></table></figure>
+<p>install命令会将依赖下载到<code>vendor</code>目录，并会生成<code>composer.lock</code>锁文件。</p>
+<h2 id="composer-lock"><a href="#composer-lock" class="headerlink" title="composer.lock"></a>composer.lock</h2><p>安装依赖后composer会把当前的确切版本号全部写入<code>composer.lock</code>，用来锁定版本。install命令会首先检查锁文件并根据锁文件指定的版本下载依赖。如果需要更新依赖的版本需要执行<code>update</code>命令。</p>
+<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer update <span class="string">[monolog/monolog]</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>在团队协作开发时，<strong>应提交你应用程序的 composer.lock （包括 composer.json）到你的版本库中</strong></p>
+</blockquote>
+<h2 id="自动加载"><a href="#自动加载" class="headerlink" title="自动加载"></a>自动加载</h2><p>Composer 生成了一个 <code>vendor/autoload.php</code> 文件，可在项目中引用它得到一个简单的自动加载支持。</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">require</span> <span class="string">'vendor/autoload.php'</span>;</div></pre></td></tr></table></figure>
+<p>也可以在 <code>composer.json</code> 的 <code>autoload</code> 字段中增加自己的 <code>autoloader</code>。当前composer支持<code>PSR-0</code> <code>PSR-4</code> <code>classmap</code> 和文件包含。官方提倡使用PSR-4标准的方式。</p>
+<blockquote class="blockquote-center"><p>PSR-4 is the recommended way though since it offers greater ease of use (no need to regenerate the autoloader when you add classes). </p>
+</blockquote>
+<p>在 <code>composer.json</code> 中配置 <code>autoloader</code></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"autoload"</span>: &#123;</div><div class="line">        <span class="attr">"psr-4"</span>: &#123;<span class="attr">"Wzr\\"</span>: <span class="string">"src/"</span>&#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Composer 将注册一个 <code>PSR-4 autoloader</code> 到 <code>Wzr</code> 命名空间，且该命名空间映射到根目录的 <code>src</code> 文件夹，比如 <code>src/IsMonkey.php</code> 文件应该包含 <code>Wzr\IsMonkey</code> 类。</p>
+<p>添加 <code>autoload</code> 字段后应该再次执行 <code>install</code> 来重新生成 <code>vendor/autoload.php</code> 文件。</p>
+<p>命名空间一定要以<code>\\</code>来分隔，好处在这：（懒得翻译了&lt;(￣3￣)&gt;)</p>
+<blockquote class="blockquote-center"><p>Namespace prefixes must end in <code>\\</code> to avoid conflicts between similar prefixes. For example Foo would match classes in the FooBar namespace so the trailing backslashes solve the problem: <code>Foo\\</code> and <code>FooBar\\</code> are distinct. </p>
+</blockquote>
+<h2 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h2><h3 id="发布到-packagist"><a href="#发布到-packagist" class="headerlink" title="发布到 packagist"></a>发布到 packagist</h3><p>去<a href="https://packagist.org/" target="_blank" rel="external">网站</a>上发布，提交库来源地址即可。composer有些字段需要定义。移步<a href="#发布包相关">composer.json</a></p>
+<h3 id="发布到vcs"><a href="#发布到vcs" class="headerlink" title="发布到vcs"></a>发布到vcs</h3><p>只要包含着<code>composer.json</code>的项目上传到版本仓库，你的库就可以通过composer安装。在<code>composer.json</code>中需要定义<code>name</code>和<code>description</code>字段。当然，依赖这类库时需要在<code>repositories</code>中声明库的来源。参见<a href="#repositories">repositories</a></p>
+<h2 id="命令行"><a href="#命令行" class="headerlink" title="命令行"></a>命令行</h2><p>在日常使用中，运行 <code>composer</code> 或者 <code>composer list</code> 命令得到命令列表，然后结合 –help 命令获得详细的帮助信息。</p>
+<p><strong>未完待续。。。</strong></p>
 ]]></content>
     </entry>
     
