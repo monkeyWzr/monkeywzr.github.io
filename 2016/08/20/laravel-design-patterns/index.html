@@ -82,7 +82,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="laravel,laravel5,php,理解,设计模式" />
 
 
 
@@ -100,15 +100,43 @@
 
 
 
-<meta name="description" content="好想学习。。。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="マクロス">
-<meta property="og:url" content="http://www.upwzr.com/tags/穷游/index.html">
+<meta name="description" content="DI与IOClaravel中实现了DI依赖注入，如：
+&amp;lt;?php
+    class UserController
+    {
+        private $user;
+        function __construct(UserModel $user) {
+            $this-&amp;gt;user = $user;
+        }
+    }
+    $user">
+<meta property="og:type" content="article">
+<meta property="og:title" content="laravel设计模式">
+<meta property="og:url" content="http://www.upwzr.com/2016/08/20/laravel-design-patterns/index.html">
 <meta property="og:site_name" content="マクロス">
-<meta property="og:description" content="好想学习。。。">
+<meta property="og:description" content="DI与IOClaravel中实现了DI依赖注入，如：
+&amp;lt;?php
+    class UserController
+    {
+        private $user;
+        function __construct(UserModel $user) {
+            $this-&amp;gt;user = $user;
+        }
+    }
+    $user">
+<meta property="og:updated_time" content="2016-09-01T19:38:45.349Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="マクロス">
-<meta name="twitter:description" content="好想学习。。。">
+<meta name="twitter:title" content="laravel设计模式">
+<meta name="twitter:description" content="DI与IOClaravel中实现了DI依赖注入，如：
+&amp;lt;?php
+    class UserController
+    {
+        private $user;
+        function __construct(UserModel $user) {
+            $this-&amp;gt;user = $user;
+        }
+    }
+    $user">
 
 
 
@@ -129,9 +157,9 @@
 
 
 
-  <link rel="canonical" href="http://www.upwzr.com/tags/穷游/"/>
+  <link rel="canonical" href="http://www.upwzr.com/2016/08/20/laravel-design-patterns/"/>
 
-  <title> 标签: 穷游 | マクロス </title>
+  <title> laravel设计模式 | マクロス </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -180,7 +208,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -308,46 +336,174 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        穷游
-        <small>标签</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                laravel设计模式
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-20T23:29:17+08:00" content="2016-08-20">
+              2016-08-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/20/laravel-design-patterns/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/20/laravel-design-patterns/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/08/20/laravel-design-patterns/" class="leancloud_visitors" data-flag-title="laravel设计模式">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+        <h2 id="DI与IOC"><a href="#DI与IOC" class="headerlink" title="DI与IOC"></a>DI与IOC</h2><p>laravel中实现了DI依赖注入，如：</p>
+<pre><code>&lt;?php
+    class UserController
+    {
+        private $user;
+        function __construct(UserModel $user) {
+            $this-&gt;user = $user;
+        }
+    }
+    $user = new UserController(new UserMonel());
+?&gt;
+</code></pre><p><code>UserController</code>依赖<code>UserModel</code>，在实例化时，laravel会自动主注入UserModel实例。</p>
 
-      <h1 class="post-title">
+      
+    </div>
+
+    <div>
+      
         
-            <a class="post-title-link" href="/2016/06/03/summer-trip-to-Vietnam/" itemprop="url">
-              
-                <span itemprop="name">暑假越南行</span>
-              
-            </a>
+
+      
+    </div>
+
+    <div>
+      
         
-      </h1>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-06-03T00:00:00+08:00"
-              content="2016-06-03" >
-          06-03
-        </time>
-      </div>
+      
+    </div>
 
-    </header>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/php/" rel="tag">#php</a>
+          
+            <a href="/tags/laravel/" rel="tag">#laravel</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/10/composer-usages/" rel="next" title="composer用法">
+                <i class="fa fa-chevron-left"></i> composer用法
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/24/ioc-notes/" rel="prev" title="ioc要点简记">
+                ioc要点简记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </div>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -355,6 +511,17 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -374,8 +541,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/img/head.jpg"
@@ -386,7 +562,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">40</span>
+              <span class="site-state-item-count">42</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -403,7 +579,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">66</span>
+                <span class="site-state-item-count">64</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -479,6 +655,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#DI与IOC"><span class="nav-number">1.</span> <span class="nav-text">DI与IOC</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -591,6 +778,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
@@ -607,9 +798,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'monkeywzr';
-      var disqus_identifier = 'tags/穷游/index.html';
-      var disqus_title = "";
-      var disqus_url = '';
+      var disqus_identifier = '2016/08/20/laravel-design-patterns/';
+      var disqus_title = "laravel设计模式";
+      var disqus_url = 'http://www.upwzr.com/2016/08/20/laravel-design-patterns/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
@@ -620,6 +811,8 @@
       }
 
       run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
       
     </script>
   

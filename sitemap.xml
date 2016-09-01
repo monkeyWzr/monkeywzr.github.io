@@ -2,9 +2,44 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://www.upwzr.com/2016/08/31/composer-usages/</loc>
+    <loc>http://www.upwzr.com/2016/09/01/summer-trip-to-Vietnam/</loc>
     
-    <lastmod>2016-08-31T17:05:05.303Z</lastmod>
+    <lastmod>2016-09-01T19:40:12.166Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.upwzr.com/2016/07/10/composer-usages/</loc>
+    
+    <lastmod>2016-09-01T19:39:37.725Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.upwzr.com/2016/08/24/ioc-notes/</loc>
+    
+    <lastmod>2016-09-01T19:39:03.797Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.upwzr.com/2016/08/20/laravel-design-patterns/</loc>
+    
+    <lastmod>2016-09-01T19:38:45.349Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.upwzr.com/2016/08/29/summer-trip-to-Vietnam/</loc>
+    
+    <lastmod>2016-09-01T19:36:11.608Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.upwzr.com/2016/09/02/vietnam-experience/</loc>
+    
+    <lastmod>2016-09-01T19:35:01.720Z</lastmod>
     
   </url>
   
@@ -12,20 +47,6 @@
     <loc>http://www.upwzr.com/2015/08/03/markdown-notes/</loc>
     
     <lastmod>2016-08-31T05:11:06.958Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.upwzr.com/2016/08/31/ioc-notes/</loc>
-    
-    <lastmod>2016-08-31T03:14:13.500Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.upwzr.com/2016/08/30/laravel-design-patterns/</loc>
-    
-    <lastmod>2016-08-30T17:50:06.756Z</lastmod>
     
   </url>
   
@@ -40,13 +61,6 @@
     <loc>http://www.upwzr.com/2016/08/26/hexo/</loc>
     
     <lastmod>2016-08-26T13:15:44.104Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.upwzr.com/2016/06/03/summer-trip-to-Vietnam/</loc>
-    
-    <lastmod>2016-08-25T03:51:59.535Z</lastmod>
     
   </url>
   
