@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.upwzr.com/"/>
-  <updated>2016-09-01T19:35:01.720Z</updated>
+  <updated>2016-09-01T19:47:38.429Z</updated>
   <id>http://www.upwzr.com/</id>
   
   <author>
@@ -20,9 +20,9 @@
     <link href="http://www.upwzr.com/2016/09/02/vietnam-experience/"/>
     <id>http://www.upwzr.com/2016/09/02/vietnam-experience/</id>
     <published>2016-09-01T19:14:41.000Z</published>
-    <updated>2016-09-01T19:35:01.720Z</updated>
+    <updated>2016-09-01T19:47:38.429Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="友情链接"><a href="#友情链接" class="headerlink" title="友情链接"></a>友情链接</h2><p>想阅读我的游记请移步：（多图预警）<br><a href="/2016/08/20/summer-trip-to-Vietnam/">暑假越南行（一）南宁-&gt;河内</a><br><a href="/2016/09/01/summer-trip-to-Vietnam/">暑假越南行（二）顺化-&gt;岘港</a></p>
+    <content type="html"><![CDATA[<h2 id="友情链接"><a href="#友情链接" class="headerlink" title="友情链接"></a>友情链接</h2><p>想阅读我的游记请移步：（多图预警）<br><a href="/2016/08/29/summer-trip-to-Vietnam/">暑假越南行（一）南宁-&gt;河内</a><br><a href="/2016/09/01/summer-trip-to-Vietnam/">暑假越南行（二）顺化-&gt;岘港</a></p>
 <p>未完：<br><a href="">暑假越南行（三）芽庄-&gt;大叻</a><br><a href="">暑假越南行（三）美奈-&gt;胡志明</a></p>
 <h2 id="交通"><a href="#交通" class="headerlink" title="交通"></a>交通</h2><ul>
 <li>在河内胡志明完全可以多做公交车。人很少，票价一般在7000盾左右。会有很贴近本地人的体验。</li>
@@ -49,7 +49,7 @@
     
     <summary type="html">
     
-      &lt;h2 id=&quot;友情链接&quot;&gt;&lt;a href=&quot;#友情链接&quot; class=&quot;headerlink&quot; title=&quot;友情链接&quot;&gt;&lt;/a&gt;友情链接&lt;/h2&gt;&lt;p&gt;想阅读我的游记请移步：（多图预警）&lt;br&gt;&lt;a href=&quot;/2016/08/20/summer-trip-to-Vietn
+      &lt;h2 id=&quot;友情链接&quot;&gt;&lt;a href=&quot;#友情链接&quot; class=&quot;headerlink&quot; title=&quot;友情链接&quot;&gt;&lt;/a&gt;友情链接&lt;/h2&gt;&lt;p&gt;想阅读我的游记请移步：（多图预警）&lt;br&gt;&lt;a href=&quot;/2016/08/29/summer-trip-to-Vietn
     
     </summary>
     
@@ -262,9 +262,9 @@ function __construct(UserModel $user) {
     
       <category term="php" scheme="http://www.upwzr.com/tags/php/"/>
     
-      <category term="软件工程" scheme="http://www.upwzr.com/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
-    
       <category term="laravel" scheme="http://www.upwzr.com/tags/laravel/"/>
+    
+      <category term="软件工程" scheme="http://www.upwzr.com/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
     
   </entry>
   
@@ -421,36 +421,6 @@ git rm --cache /path/to/file
   </entry>
   
   <entry>
-    <title>文件上传组件Web Uploader</title>
-    <link href="http://www.upwzr.com/2016/06/03/webuploader/"/>
-    <id>http://www.upwzr.com/2016/06/03/webuploader/</id>
-    <published>2016-06-02T16:00:00.000Z</published>
-    <updated>2016-06-03T14:10:08.394Z</updated>
-    
-    <content type="html"><![CDATA[<p>WebUploader是由Baidu WebFE(FEX)团队开发的一个简单的以HTML5为主，FLASH为辅的现代文件上传组件。感觉对于实现图片上传预览，截屏等效功能会很方便。虽然我并没有用过。。</p>
-<blockquote>
-<p><a href="http://fex.baidu.com/webuploader/" target="_blank" rel="external">http://fex.baidu.com/webuploader/</a><br><a href="https://github.com/fex-team/webuploader/" target="_blank" rel="external">https://github.com/fex-team/webuploader/</a></p>
-</blockquote>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;WebUploader是由Baidu WebFE(FEX)团队开发的一个简单的以HTML5为主，FLASH为辅的现代文件上传组件。感觉对于实现图片上传预览，截屏等效功能会很方便。虽然我并没有用过。。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;http://f
-    
-    </summary>
-    
-      <category term="资料" scheme="http://www.upwzr.com/categories/%E8%B5%84%E6%96%99/"/>
-    
-    
-      <category term="api" scheme="http://www.upwzr.com/tags/api/"/>
-    
-      <category term="library" scheme="http://www.upwzr.com/tags/library/"/>
-    
-  </entry>
-  
-  <entry>
     <title>jquery实现表单上传图片预览</title>
     <link href="http://www.upwzr.com/2016/06/03/form-image-preview/"/>
     <id>http://www.upwzr.com/2016/06/03/form-image-preview/</id>
@@ -496,6 +466,36 @@ git rm --cache /path/to/file
       <category term="php" scheme="http://www.upwzr.com/tags/php/"/>
     
       <category term="jquery" scheme="http://www.upwzr.com/tags/jquery/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>文件上传组件Web Uploader</title>
+    <link href="http://www.upwzr.com/2016/06/03/webuploader/"/>
+    <id>http://www.upwzr.com/2016/06/03/webuploader/</id>
+    <published>2016-06-02T16:00:00.000Z</published>
+    <updated>2016-06-03T14:10:08.394Z</updated>
+    
+    <content type="html"><![CDATA[<p>WebUploader是由Baidu WebFE(FEX)团队开发的一个简单的以HTML5为主，FLASH为辅的现代文件上传组件。感觉对于实现图片上传预览，截屏等效功能会很方便。虽然我并没有用过。。</p>
+<blockquote>
+<p><a href="http://fex.baidu.com/webuploader/" target="_blank" rel="external">http://fex.baidu.com/webuploader/</a><br><a href="https://github.com/fex-team/webuploader/" target="_blank" rel="external">https://github.com/fex-team/webuploader/</a></p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;WebUploader是由Baidu WebFE(FEX)团队开发的一个简单的以HTML5为主，FLASH为辅的现代文件上传组件。感觉对于实现图片上传预览，截屏等效功能会很方便。虽然我并没有用过。。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;http://f
+    
+    </summary>
+    
+      <category term="资料" scheme="http://www.upwzr.com/categories/%E8%B5%84%E6%96%99/"/>
+    
+    
+      <category term="api" scheme="http://www.upwzr.com/tags/api/"/>
+    
+      <category term="library" scheme="http://www.upwzr.com/tags/library/"/>
     
   </entry>
   
@@ -622,11 +622,11 @@ $ sudo apt-get install libapache2-mod-php
     
       <category term="linux" scheme="http://www.upwzr.com/tags/linux/"/>
     
-      <category term="php" scheme="http://www.upwzr.com/tags/php/"/>
-    
       <category term="lamp" scheme="http://www.upwzr.com/tags/lamp/"/>
     
       <category term="apache" scheme="http://www.upwzr.com/tags/apache/"/>
+    
+      <category term="php" scheme="http://www.upwzr.com/tags/php/"/>
     
       <category term="php7" scheme="http://www.upwzr.com/tags/php7/"/>
     
