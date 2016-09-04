@@ -311,7 +311,7 @@ function __construct(UserModel $user) {
     <link href="http://www.upwzr.com/2016/07/10/composer-usages/"/>
     <id>http://www.upwzr.com/2016/07/10/composer-usages/</id>
     <published>2016-07-10T04:21:46.000Z</published>
-    <updated>2016-09-01T19:39:37.725Z</updated>
+    <updated>2016-09-04T17:24:53.669Z</updated>
     
     <content type="html"><![CDATA[<h2 id="composer-json"><a href="#composer-json" class="headerlink" title="composer.json"></a>composer.json</h2><p>要开始在你的项目中使用 Composer，你只需要一个<code>composer.json</code>文件。该文件包含了项目的依赖和其它的一些元数据。</p>
 <p>首先需要指定<code>require key</code>的值<br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"require"</span>: &#123;</div><div class="line">        <span class="attr">"monolog/monolog"</span>: <span class="string">"1.0.*"</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
@@ -374,7 +374,132 @@ function __construct(UserModel $user) {
 <h2 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h2><h3 id="发布到-packagist"><a href="#发布到-packagist" class="headerlink" title="发布到 packagist"></a>发布到 packagist</h3><p>去<a href="https://packagist.org/" target="_blank" rel="external">网站</a>上发布，提交库来源地址即可。composer有些字段需要定义。移步<a href="#发布包相关">composer.json</a></p>
 <h3 id="发布到vcs"><a href="#发布到vcs" class="headerlink" title="发布到vcs"></a>发布到vcs</h3><p>只要包含着<code>composer.json</code>的项目上传到版本仓库，你的库就可以通过composer安装。在<code>composer.json</code>中需要定义<code>name</code>和<code>description</code>字段。当然，依赖这类库时需要在<code>repositories</code>中声明库的来源。参见<a href="#repositories">repositories</a></p>
 <h2 id="命令行"><a href="#命令行" class="headerlink" title="命令行"></a>命令行</h2><p>在日常使用中，运行 <code>composer</code> 或者 <code>composer list</code> 命令得到命令列表，然后结合 –help 命令获得详细的帮助信息。</p>
-<p><strong>未完待续。。。</strong></p>
+<h3 id="全局参数"><a href="#全局参数" class="headerlink" title="全局参数"></a>全局参数</h3><p>下列参数可与每一个命令结合使用：</p>
+<ul>
+<li><em>–verbose (-v)</em>: 增加反馈信息的详细度。<br>  -v 表示正常输出。<br>  -vv 表示更详细的输出。<br>  -vvv 则是为了 debug。</li>
+<li><em>–help (-h)</em>: 显示帮助信息。</li>
+<li><em>–quiet (-q)</em>: 禁止输出任何信息。</li>
+<li><em>–no-interaction (-n)</em>: 不要询问任何交互问题。</li>
+<li><em>–working-dir (-d)</em>: 如果指定的话，使用给定的目录作为工作目录。</li>
+<li><em>–profile</em>: 显示时间和内存使用信息。</li>
+<li><em>–ansi</em>: 强制 ANSI 输出。</li>
+<li><em>–no-ansi</em>: 关闭 ANSI 输出。</li>
+<li><em>–version (-V)</em>: 显示当前应用程序的版本信息。</li>
+</ul>
+<h3 id="init"><a href="#init" class="headerlink" title="init"></a>init</h3><p><code>init</code>命令可进行初始化,生成<code>composer.json</code>。<br>参数列表：</p>
+<ul>
+<li><em>–name</em>: 包的名称。</li>
+<li><em>–description</em>: 包的描述。</li>
+<li><em>–author</em>: 包的作者。</li>
+<li><em>–homepage</em>: 包的主页。</li>
+<li><em>–require</em>: 需要依赖的其它包，必须要有一个版本约束。并且应该遵循 <code>foo/bar:1.0.0</code> 这样的格式。</li>
+<li><em>–require-dev</em>: 开发版的依赖包，内容格式与 <code>--require</code> 相同。</li>
+<li><em>–stability (-s)</em>: <code>minimum-stability</code> 字段的值。</li>
+</ul>
+<h3 id="install"><a href="#install" class="headerlink" title="install"></a>install</h3><p>参数列表：</p>
+<ul>
+<li><em>–prefer-source</em>: 下载包的方式有两种： source 和 dist。对于稳定版本 composer 将默认使用 dist 方式。而 source 表示版本控制源 。如果 –prefer-source 是被启用的，composer 将从 source 安装（如果有的话）。如果想要使用一个 bugfix 到你的项目，这是非常有用的。并且可以直接从本地的版本库直接获取依赖关系。</li>
+<li><em>–prefer-dist</em>: 与 –prefer-source 相反，composer 将尽可能的从 dist 获取，这将大幅度的加快在 build servers 上的安装。这也是一个回避 git 问题的途径，如果你不清楚如何正确的设置。</li>
+<li><em>–dry-run</em>: 如果你只是想演示而并非实际安装一个包，你可以运行 –dry-run 命令，它将模拟安装并显示将会发生什么。</li>
+<li>–dev: 安装 require-dev 字段中列出的包（这是一个默认值）。</li>
+<li><em>–no-dev</em>: 跳过 require-dev 字段中列出的包。</li>
+<li><em>–no-scripts</em>: 跳过 composer.json 文件中定义的脚本。</li>
+<li><em>–no-plugins</em>: 关闭 plugins。</li>
+<li><em>–no-progress</em>: 移除进度信息，这可以避免一些不处理换行的终端或脚本出现混乱的显示。</li>
+<li><em>–optimize-autoloader (-o)</em>: 转换 PSR-0/4 autoloading 到 classmap 可以获得更快的加载支持。特别是在生产环境下建议这么做，但由于运行需要一些时间，因此并没有作为默认值。</li>
+</ul>
+<h3 id="update"><a href="#update" class="headerlink" title="update"></a>update</h3><p>update命令可以升级依赖到最新版本，并更新<code>composer.lock</code>，也可指定包名单独更新一个或几个包。<br>参数列表：<br><code>install</code>的所有参数均适用于<code>update</code>。</p>
+<ul>
+<li><em>–lock</em>: 仅更新 lock 文件的 hash，取消有关 lock 文件过时的警告。</li>
+<li><em>–with-dependencies</em> 同时更新白名单内包的依赖关系，这将进行递归更新。</li>
+</ul>
+<h3 id="require"><a href="#require" class="headerlink" title="require"></a>require</h3><p>require命令可以增加新的依赖包到当前目录的<code>composer.json</code>，在添加或改变依赖时， 修改后的依赖关系将被安装或者更新。</p>
+<figure class="highlight ceylon"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer require vendor/<span class="keyword">package</span>:<span class="number">2</span>.* vendor/<span class="keyword">package</span><span class="number">2</span>:dev-master</div></pre></td></tr></table></figure>
+<p>参数列表：</p>
+<ul>
+<li><em>–prefer-source</em>: 当有可用的包时，从 source 安装。</li>
+<li><em>–prefer-dist</em>: 当有可用的包时，从 dist 安装。</li>
+<li><em>–dev</em>: 安装 require-dev 字段中列出的包。</li>
+<li><em>–no-update</em>: 禁用依赖关系的自动更新。</li>
+<li><em>–no-progress</em>: 移除进度信息，这可以避免一些不处理换行的终端或脚本出现混乱的显示。</li>
+<li><em>–update-with-dependencies</em> 一并更新新装包的依赖。</li>
+</ul>
+<h3 id="global"><a href="#global" class="headerlink" title="global"></a>global</h3><p>全局执行命令。</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">composer</span> <span class="meta">global</span> <span class="meta">require</span> fabpot/php-cs-fixer:dev-master</div></pre></td></tr></table></figure>
+<p>现在 php-cs-fixer 就可以在全局范围使用了（假设你已经设置了你的 PATH）。</p>
+<h3 id="search"><a href="#search" class="headerlink" title="search"></a>search</h3><p>参数：</p>
+<ul>
+<li><em>–only-name (-N)</em>: 仅搜索制定的名称，即完全匹配</li>
+</ul>
+<h3 id="show"><a href="#show" class="headerlink" title="show"></a>show</h3><p>列出所有可用的软件包<br><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">composer show</span></div></pre></td></tr></table></figure></p>
+<p>也可以指定包名显示包的详细信息，也可以一并输入版本号查看某特定版本的包的详细信息。</p>
+<p>参数：</p>
+<ul>
+<li><em>–installed (-i)</em>: 列出已安装的依赖包。</li>
+<li><em>–platform (-p)</em>: 仅列出平台软件包（PHP 与它的扩展）。</li>
+<li><em>–self (-s)</em>: 仅列出当前项目信息。</li>
+</ul>
+<h3 id="depends"><a href="#depends" class="headerlink" title="depends"></a>depends</h3><p>depends命令可以查出已安装在你项目中的某个包，是否正在被其它的包所依赖，并列出他们。</p>
+<p>参数：</p>
+<ul>
+<li><em>–link-type</em>: 检测的类型，默认为 <code>require</code> 也可以是 <code>require-dev</code>。</li>
+</ul>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">composer depends --link-<span class="keyword">type</span>=<span class="keyword">require</span> monolog/monolog</div><div class="line"></div><div class="line">nrk/monolog-fluent</div><div class="line">poc/poc</div><div class="line">propel/propel</div><div class="line">symfony/monolog-bridge</div><div class="line">symfony/symfony</div></pre></td></tr></table></figure>
+<h3 id="validate"><a href="#validate" class="headerlink" title="validate"></a>validate</h3><p>在提交 <code>composer.json</code> 文件，和创建 tag 前，你应该始终运行 <code>validate</code> 命令。它将检测你的 <code>composer.json</code> 文件是否是有效的。</p>
+<p>参数：</p>
+<ul>
+<li><em>–no-check-all</em>: Composer 是否进行完整的校验。</li>
+</ul>
+<h3 id="status"><a href="#status" class="headerlink" title="status"></a>status</h3><p>如果你经常修改依赖包里的代码，并且它们是从 source（自定义源）进行安装的，那么 status 命令允许你进行检查，如果你有任何本地的更改它将会给予提示。<br>你可以使用 <code>--verbose</code> 系列参数（-v|vv|vvv）来获取更详细的详细：<br><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">composer status -v</span></div></pre></td></tr></table></figure></p>
+<h3 id="self-update"><a href="#self-update" class="headerlink" title="self-update"></a>self-update</h3><p>将 Composer 自身升级到最新版本，只需要运行 <code>self-update</code> 命令。它将替换你的 <code>composer.phar</code> 文件到最新版本。<br>如果你想要升级到一个特定的版本，可以这样简单的指定它：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">php</span> <span class="selector-tag">composer</span><span class="selector-class">.phar</span> <span class="selector-tag">self-update</span> 1<span class="selector-class">.0</span><span class="selector-class">.0-alpha7</span></div></pre></td></tr></table></figure></p>
+<p>如果你已经为整个系统(linux)安装 Composer，你可能需要在 root 权限下运行它.</p>
+<p>参数：</p>
+<ul>
+<li><em>–rollback (-r)</em>: 回滚到你已经安装的最后一个版本。</li>
+<li><em>–clean-backups</em>: 在更新过程中删除旧的备份，这使得更新过后的当前版本是唯一可用的备份。</li>
+</ul>
+<h3 id="create-project"><a href="#create-project" class="headerlink" title="create-project"></a>create-project</h3><p>你可以使用 Composer 从现有的包中创建一个新的项目。这相当于执行了一个 <code>git clone</code> 或 <code>svn checkout</code> 命令后将这个包的依赖安装到它自己的 vendor 目录。</p>
+<p>此命令有几个常见的用途：</p>
+<ul>
+<li>你可以快速的部署你的应用。</li>
+<li>你可以检出任何资源包，并开发它的补丁。</li>
+<li>多人开发项目，可以用它来加快应用的初始化。</li>
+</ul>
+<p>要创建基于 Composer 的新项目，你可以使用 “create-project” 命令。传递一个包名，它会为你创建项目的目录。如果该目录目前不存在，则会在安装过程中自动创建。你也可以在第三个参数中指定版本号，否则将获取最新的版本。<br>如laravel应用的安装：<br><figure class="highlight dsconfig"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">php </span><span class="string">composer.</span><span class="string">phar </span><span class="built_in">create-project</span> <span class="string">laravel/</span><span class="string">laravel </span><span class="string">myapp </span><span class="built_in">--prefer-dist</span></div></pre></td></tr></table></figure></p>
+<p>此外，你也可以无需使用这个命令，而是通过现有的 composer.json 文件来启动这个项目。</p>
+<p>默认情况下，这个命令会在 packagist.org 上查找你指定的包。<br>参数：</p>
+<ul>
+<li><em>–repository-url</em>: 提供一个自定义的储存库来搜索包，这将被用来代替 packagist.org。可以是一个指向 composer 资源库的 HTTP URL，或者是指向某个 packages.json 文件的本地路径。</li>
+<li><em>–stability (-s)</em>: 资源包的最低稳定版本，默认为 stable。</li>
+<li><em>–prefer-source</em>: 当有可用的包时，从 source 安装。</li>
+<li><em>–prefer-dist</em>: 当有可用的包时，从 dist 安装。</li>
+<li><em>–dev</em>: 安装 require-dev 字段中列出的包。</li>
+<li><em>–no-install</em>: 禁止安装包的依赖。</li>
+<li><em>–no-plugins</em>: 禁用 plugins。</li>
+<li><em>–no-scripts</em>: 禁止在根资源包中定义的脚本执行。</li>
+<li><em>–no-progress</em>: 移除进度信息，这可以避免一些不处理换行的终端或脚本出现混乱的显示。</li>
+<li><em>–keep-vcs</em>: 创建时跳过缺失的 VCS 。如果你在非交互模式下运行创建命令，这将是非常有用的。</li>
+</ul>
+<h3 id="dump-autoload"><a href="#dump-autoload" class="headerlink" title="dump-autoload"></a>dump-autoload</h3><p>某些情况下你需要更新 autoloader，例如在你的包中加入了一个新的类。你可以使用 <code>dump-autoload</code> 来完成，而不必执行 <code>install</code> 或 <code>update</code> 命令。</p>
+<p>此外，它可以打印一个优化过的，符合 PSR-0/4 规范的类的索引，这也是出于对性能的可考虑。在大型的应用中会有许多类文件，而 autoloader 会占用每个请求的很大一部分时间，使用 classmaps 或许在开发时不太方便，但它在保证性能的前提下，仍然可以获得 PSR-0/4 规范带来的便利。<br>参数:</p>
+<ul>
+<li><em>–optimize (-o)</em>: 转换 PSR-0/4 autoloading 到 classmap 获得更快的载入速度。这特别适用于生产环境，但可能需要一些时间来运行，因此它目前不是默认设置。</li>
+<li><em>–no-dev</em>: 禁用 autoload-dev 规则。</li>
+</ul>
+<h3 id="licenses"><a href="#licenses" class="headerlink" title="licenses"></a>licenses</h3><p>列出已安装的每个包的名称、版本、许可协议。可以使用 <code>--format=json</code> 参数来获取 JSON 格式的输出。</p>
+<h3 id="run-script"><a href="#run-script" class="headerlink" title="run-script"></a>run-script</h3><p>你可以运行此命令来手动执行 脚本，只需要指定脚本的名称，可选的 <code>--no-dev</code> 参数允许你禁用开发者模式。</p>
+<h3 id="diagnose"><a href="#diagnose" class="headerlink" title="diagnose"></a>diagnose</h3><p>如果你觉得发现了一个 bug 或是程序行为变得怪异，你可能需要运行 <code>diagnose</code> 命令，来帮助你检测一些常见的问题。</p>
+<h3 id="archive"><a href="#archive" class="headerlink" title="archive"></a>archive</h3><p>此命令用来对指定包的指定版本进行 zip/tar 归档。它也可以用来归档你的整个项目，不包括 excluded/ignored（排除/忽略）的文件。<br><figure class="highlight ada"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer archive vendor/<span class="keyword">package</span> <span class="title">2.0.21 --format=zip</span></div></pre></td></tr></table></figure></p>
+<p>参数：</p>
+<ul>
+<li><em>–format (-f)</em>: 指定归档格式：tar 或 zip（默认为 tar）。</li>
+<li><em>–dir</em>: 指定归档存放的目录（默认为当前目录）。</li>
+</ul>
+<h3 id="help"><a href="#help" class="headerlink" title="help"></a>help</h3><p>使用 <code>help</code> 可以获取指定命令的帮助信息。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer <span class="keyword">help</span> <span class="keyword">install</span></div></pre></td></tr></table></figure></p>
+<h2 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h2><p>你可以设置一些环境变量来覆盖默认的配置。建议尽可能的在 <code>composer.json</code> 的 <code>config</code> 字段中设置这些值，而不是通过命令行设置环境变量。值得注意的是环境变量中的值，将始终优先于 <code>composer.json</code> 中所指定的值。</p>
+<blockquote>
+<p>参考资料：<br><a href="http://docs.phpcomposer.com/03-cli.html" target="_blank" rel="external">http://docs.phpcomposer.com/03-cli.html</a></p>
+</blockquote>
 ]]></content>
     
     <summary type="html">
