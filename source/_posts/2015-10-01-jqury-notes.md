@@ -212,7 +212,7 @@ jQuery通常使用两种方法删除元素：
 		$("p").css({"background-color":"yellow","font-size":"200%"});
 
 jQuery提供了多个处理尺寸的方法。
-![css-size](/assets/img/images/css-size.png)
+![css-size](/img/css-size.png)
 
 		//设置或返回元素的宽度（不包括内边距、边框或外边距）
 		$(selector).width();

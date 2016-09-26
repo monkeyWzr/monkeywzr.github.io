@@ -9,10 +9,11 @@ description: 好想学习。。。
 author: 小灰机灰上天
 language: zh-Hans
 timezone:
+since: 2015
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://monkeywzr.github.io
+url: http://www.upwzr.com
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -26,6 +27,7 @@ category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
+  - README.md
 
 # Writing
 new_post_name: :year-:month-:day-:title.md # File name of new posts
@@ -40,7 +42,7 @@ future: true
 highlight:
   enable: true
   line_number: true
-  auto_detect: false
+  auto_detect: true
   tab_replace:
 
 # Category & Tag
@@ -73,4 +75,29 @@ deploy:
   type: git
   repo: git@github.com:monkeyWzr/monkeywzr.github.io.git
   branch: master
+# 社交账号
+social: 
+  GitHub: https://github.com/monkeyWzr
+  Twitter: https://twitter.com/wzr119
+  Facebook: https://www.facebook.com/monkeywzr
+  Google+: https://plus.google.com/u/0/109706734318766815600
+  微博: http://weibo.com/1244449463
+  # 知乎: https://www.zhihu.com/people/xiao-hui-ji-hui-shang-tian
 
+# 各种统计分析
+google_analytics: UA-83047470-1
+baidu_analytics: 729720b53fc2c18615d4ed229708c999
+tencent_analytics: 58089160
+
+# google webmaster tool
+google_site_verification: 5tEovdIgJQWd14qZlP96eAjNhl5oRuPURB23mjYYcvQ
+sitemap:
+    path: sitemap.xml
+
+# swiftype只有两周的试用
+swiftype_key: whJiTn1vmzLLzmXfzF6h
+# search:
+#   path: search.xml
+#   field: post
+
+# jiathis: true

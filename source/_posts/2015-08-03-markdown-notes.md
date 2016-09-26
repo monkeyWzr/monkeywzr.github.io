@@ -190,6 +190,13 @@ Markdown支持以比较简短的自动链接形式来处理网址和电子邮件
 [id]: url/to/image "Optional title attribute"  title文字部分可缺省
 </pre>
 
+## 9. 表格
+
+| Tables        | Are           | Cool  |
+| ------------- |:-------------:| -----:|
+| 这一列        | 这一列        | 这一列|
+| 会是          | 是            |   是  |
+| 左对齐        | 居中（neat）  |  你猜 |
 
 ## 详细内容参见
 
