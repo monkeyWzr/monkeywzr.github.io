@@ -1,0 +1,1101 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="5tEovdIgJQWd14qZlP96eAjNhl5oRuPURB23mjYYcvQ" />
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="UEFI,BIOS,开机引导" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="マクロス" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="一些基本概念MBR分区表
+MBR - Master Boot Record 主引导记录/主引导扇区
+
+MBR分区方案中硬盘的每个扇区通过32位二进制数逻辑块地址（LBA）来标识。计算机开机后访问硬盘时要先读取第一个扇区，这个扇区（通常有512bytes）储存着主引导记录MBR（446bytes）和分区表DPT（64bytes）。主引导记录中装有开机管理程序（boot loader），分区表中记录了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="开机流程中的事儿">
+<meta property="og:url" content="http://www.upwzr.com/2015/10/24/about-booting/index.html">
+<meta property="og:site_name" content="マクロス">
+<meta property="og:description" content="一些基本概念MBR分区表
+MBR - Master Boot Record 主引导记录/主引导扇区
+
+MBR分区方案中硬盘的每个扇区通过32位二进制数逻辑块地址（LBA）来标识。计算机开机后访问硬盘时要先读取第一个扇区，这个扇区（通常有512bytes）储存着主引导记录MBR（446bytes）和分区表DPT（64bytes）。主引导记录中装有开机管理程序（boot loader），分区表中记录了">
+<meta property="og:image" content="http://www.upwzr.com/img/2015-10-23-about-booting_1.png">
+<meta property="og:image" content="http://www.upwzr.com/img/2015-10-23-about-booting_2.png">
+<meta property="og:image" content="http://www.upwzr.com/img/2015-10-23-about-booting_3.png">
+<meta property="og:image" content="http://www.upwzr.com/img/2015-10-23-about-booting_4.png">
+<meta property="og:updated_time" content="2016-08-24T11:13:10.179Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="开机流程中的事儿">
+<meta name="twitter:description" content="一些基本概念MBR分区表
+MBR - Master Boot Record 主引导记录/主引导扇区
+
+MBR分区方案中硬盘的每个扇区通过32位二进制数逻辑块地址（LBA）来标识。计算机开机后访问硬盘时要先读取第一个扇区，这个扇区（通常有512bytes）储存着主引导记录MBR（446bytes）和分区表DPT（64bytes）。主引导记录中装有开机管理程序（boot loader），分区表中记录了">
+<meta name="twitter:image" content="http://www.upwzr.com/img/2015-10-23-about-booting_1.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://www.upwzr.com/2015/10/24/about-booting/"/>
+
+  <title> 开机流程中的事儿 | マクロス </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-83047470-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?729720b53fc2c18615d4ed229708c999";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=58089160";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">マクロス</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'whJiTn1vmzLLzmXfzF6h','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                开机流程中的事儿
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-10-24T00:00:00+08:00" content="2015-10-24">
+              2015-10-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/10/24/about-booting/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/24/about-booting/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2015/10/24/about-booting/" class="leancloud_visitors" data-flag-title="开机流程中的事儿">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="一些基本概念"><a href="#一些基本概念" class="headerlink" title="一些基本概念"></a>一些基本概念</h2><h3 id="MBR分区表"><a href="#MBR分区表" class="headerlink" title="MBR分区表"></a>MBR分区表</h3><blockquote>
+<p>MBR - Master Boot Record 主引导记录/主引导扇区</p>
+</blockquote>
+<p>MBR分区方案中硬盘的每个扇区通过32位二进制数逻辑块地址（LBA）来标识。计算机开机后访问硬盘时要先读取第一个扇区，这个扇区（通常有512bytes）储存着主引导记录MBR（446bytes）和分区表DPT（64bytes）。主引导记录中装有开机管理程序（boot loader），分区表中记录了磁盘分区情况。由于每一条分区记录需要16个字节，因此MBR分区结构只能支持4个主分区，想得到4个以上的分区需要采用扩展分区，注意扩展分区只能有一个，在windows系统中默认划分一个主分区给系统，其余的全部划入扩展分区。扩展分区可以划分出多个逻辑分区。<br><img src="/img/2015-10-23-about-booting_1.png" alt="img"></p>
+<p>MBR的局限性在于，分区表大小固定，只能支持4个主分区，而且最大只能支持到2.2TB的分区容量。随着硬盘技术的发展，MBR分区方案有些撑不住了，再加上win8/8.1的催化，GPT分区表逐渐成为主流。</p>
+<h3 id="GPT分区表"><a href="#GPT分区表" class="headerlink" title="GPT分区表"></a>GPT分区表</h3><blockquote>
+<p>GPT - GUID Partition Table 全局唯一标识分区表</p>
+</blockquote>
+<p>有些硬盘厂商注意到了MBR分区方案的容量局限，就把容量较大的产品升级到了4KB的扇区，这样使得MBR可以支持最大到16TB,但同时带来了关于在有较大的块的设备从BIOS启动时，如何最佳的划分分区。GPT分区方案中LBA是64位2进制数，因此对于扇区为512bytes的硬盘，容量可以达到9.4ZB。。。<br>GPT表的最开头，有一块类似MBR的表头，称为PMBR，存有引导程序和一个特殊标识用来表示次硬盘使用GPT分区方式。接下来的LBA1是GPT的分区表头，记录了硬盘的可用空间和分区表项的大小和数目，还有备份分割的位置。GPT有34个LBA区块记录，从LBA2到LBA33每个区块都可以记录4条分区记录，每条记录都达到128bytes。</p>
+<p><img src="/img/2015-10-23-about-booting_2.png" alt="img"></p>
+<p>在一些MBR/GPT混合硬盘中，不同系统实现有些不一致，windows系统通常优先使用MBR。<br>再来一张windows的分区类型GUID<br><img src="/img/2015-10-23-about-booting_3.png" alt="img"></p>
+<blockquote>
+<p><strong>相关链接</strong><br><a href="https://zh.wikipedia.org/wiki/4K%E5%AF%B9%E9%BD%90" target="_blank" rel="external">4K对齐</a></p>
+</blockquote>
+<h3 id="BIOS"><a href="#BIOS" class="headerlink" title="BIOS"></a>BIOS</h3><blockquote>
+<p>BIOS - Basic Input/Output System 基本输入输出系统</p>
+</blockquote>
+<p>BIOS是一种业界标准的固件接口，用于开机自检以及加载引导程序。BIOSB其实就是一个16位汇编代码，寄存器参数调用方式，静态链接，以及1MB以下内存固定编址形式的程序。现在的BIOS储存在主板上的只读储存器（EEPROM）或者是闪存（flash）中，可以更新也不怕断电了。</p>
+<h3 id="CMOS"><a href="#CMOS" class="headerlink" title="CMOS"></a>CMOS</h3><blockquote>
+<p>CMOS - Complementary Metal Oxide Semiconductor 互补金属氧化物半导体 (-.-)</p>
+</blockquote>
+<p>在计算机领域，CMOS就是一块重要的随机储存器（RAM），BIOS的所有信息都存在这里，最怕被抠电池。。</p>
+<h3 id="EFI-UEFI"><a href="#EFI-UEFI" class="headerlink" title="EFI(UEFI)"></a>EFI(UEFI)</h3><blockquote>
+<p>EFI - Extensible Firmware Interface 可扩展固件接口<br>UEFI - Unified Extensible Firmware Interface 统一可扩展固件接口</p>
+</blockquote>
+<p>UEFI是一种详细描述全新类型接口的标准，是适用于电脑的标准固件接口，旨在代替BIOS。UEFI通过C语言开发，拥有很多BIOS不具备的功能，比如图形化界面、多种多样的操作方式、允许植入硬件驱动程序（.efi）。</p>
+<blockquote>
+<p><strong>相关链接</strong><br><a href="http://www.uefi.org/" target="_blank" rel="external">UEFI官方首页</a><br><a href="http://drops.wooyun.org/binary/4788" target="_blank" rel="external">“暗云”bootkit木马详细技术分析</a></p>
+</blockquote>
+<h2 id="开机方式"><a href="#开机方式" class="headerlink" title="开机方式"></a>开机方式</h2><p>BIOS并不支持GPT，目前主要的开机方式无非BIOS+MBR引导和UEFI+GPT引导</p>
+<h3 id="BIOS-MBR"><a href="#BIOS-MBR" class="headerlink" title="BIOS+MBR"></a>BIOS+MBR</h3><p>这种方式的流程大概为以下几步：</p>
+<ol>
+<li>BIOS加电，初始化芯片组和存储器子系统，将自己解压到系统主存中，读取CMOS中的配置信息，跳转到自检程序对系统进行自检。</li>
+<li>根据CMOS中的储存设备读取顺序，BIOS将读取相应设备中的MBR，启动引导程序。此时BIOS的工作已经完成。</li>
+<li>引导程序接受控制权开始工作。</li>
+</ol>
+<p>引导程序主要任务也不多，提供开机选单、载入核心档案和转交其他的boot loader。硬盘的每个分区都可以有一个开机磁区，boot loader除了可以安装在MBR中外也可以安装到开机磁区中。<br>假设一个采用MBR分区的硬盘装有Windows和Linux双系统，整个流程可以用下图表示：<br><img src="/img/2015-10-23-about-booting_4.png" alt="img"></p>
+<blockquote>
+<p><strong>安装Windows/Linux双系统最好先安装Windows的原因</strong></p>
+<ul>
+<li><p>Linux在安装的时候，你可以选择将开机管​​理程式安装在MBR或各别分割槽的开机磁区， 而且Linux的loader可以手动设定选单(就是上图的M1, M2…)<br>，所以你可以在Linux的boot loader里面加入Windows开机的选项；</p>
+</li>
+<li><p>Windows在安装的时候，他的安装程式会主动的覆盖掉MBR以及自己所在分割槽的开机磁区，你没有选择的机会， 而且他没有让我们自己选择选单的功能</p>
+</li>
+</ul>
+</blockquote>
+<h3 id="UEFI-GPT"><a href="#UEFI-GPT" class="headerlink" title="UEFI+GPT"></a>UEFI+GPT</h3><p>UEFI主要是依靠载入各种驱动程序来完成系统自检等工作，读取GPT分区表，载入系统。这楼里又要介绍一个ESP分区的概念。</p>
+<h4 id="ESP分区"><a href="#ESP分区" class="headerlink" title="ESP分区"></a>ESP分区</h4><blockquote>
+<p>ESP - EFI System partition</p>
+</blockquote>
+<p>ESP分区是一个FAT格式的系统分区，在windows系统下是不可见的，独立于操作系统之外。当操作系统被引导之后就不会在使用这个分区。因此一些系统级的维护工具以及数据非常适合存放在这里，比如boot loader，驱动程序，系统备份等等，甚至可以安装一个特殊的操作系统（PE）。</p>
+<p>开机时UEFI将先读取照硬盘的ESP分区，通过这个分区中的引导文件进行系统引导。</p>
+<p>UEFI添加了一个新的安全启动机制（secure boot），这个机制会验证即将启动的系统，通过验证系统才可以正常启动。这个机制为了解决的是黑客常用的rootkit攻击手段，但是同时也导致一些系统（包括Linux）不能正常启动。因此有时可能会需要关闭这个功能。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/UEFI/" rel="tag">#UEFI</a>
+          
+            <a href="/tags/GPT/" rel="tag">#GPT</a>
+          
+            <a href="/tags/BIOS/" rel="tag">#BIOS</a>
+          
+            <a href="/tags/MBR/" rel="tag">#MBR</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/10/20/windows-server-2008-r2-notes/" rel="next" title="Windows Server 2008 r2学习笔记">
+                <i class="fa fa-chevron-left"></i> Windows Server 2008 r2学习笔记
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/10/29/phpmyadmin-upload-filesize-limit/" rel="prev" title="快速临时解决phpmyadmin上传sql文件大小限制问题">
+                快速临时解决phpmyadmin上传sql文件大小限制问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/img/head.jpg"
+               alt="小灰机灰上天" />
+          <p class="site-author-name" itemprop="name">小灰机灰上天</p>
+          <p class="site-description motion-element" itemprop="description">好想学习。。。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">42</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">64</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/monkeyWzr" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/wzr119" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/monkeywzr" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-facebook-official"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://plus.google.com/u/0/109706734318766815600" target="_blank" title="Google+">
+                  
+                    <i class="fa fa-fw fa-google-plus"></i>
+                  
+                  Google+
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/1244449463" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一些基本概念"><span class="nav-number">1.</span> <span class="nav-text">一些基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MBR分区表"><span class="nav-number">1.1.</span> <span class="nav-text">MBR分区表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GPT分区表"><span class="nav-number">1.2.</span> <span class="nav-text">GPT分区表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BIOS"><span class="nav-number">1.3.</span> <span class="nav-text">BIOS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CMOS"><span class="nav-number">1.4.</span> <span class="nav-text">CMOS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EFI-UEFI"><span class="nav-number">1.5.</span> <span class="nav-text">EFI(UEFI)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开机方式"><span class="nav-number">2.</span> <span class="nav-text">开机方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#BIOS-MBR"><span class="nav-number">2.1.</span> <span class="nav-text">BIOS+MBR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UEFI-GPT"><span class="nav-number">2.2.</span> <span class="nav-text">UEFI+GPT</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ESP分区"><span class="nav-number">2.2.1.</span> <span class="nav-text">ESP分区</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小灰机灰上天</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i>访客数：<span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i>总访问量：<span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'monkeywzr';
+      var disqus_identifier = '2015/10/24/about-booting/';
+      var disqus_title = "开机流程中的事儿";
+      var disqus_url = 'http://www.upwzr.com/2015/10/24/about-booting/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("3V8uzSVqKpazcBtyRNSENSwV-gzGzoHsz", "jMlbQg8xL9ke21wh9sCAoWGX");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1226 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="5tEovdIgJQWd14qZlP96eAjNhl5oRuPURB23mjYYcvQ" />
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="php,composer,包管理,依赖管理" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="マクロス" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="composer.json要开始在你的项目中使用 Composer，你只需要一个composer.json文件。该文件包含了项目的依赖和其它的一些元数据。
+首先需要指定require key的值12345&amp;#123;    &quot;require&quot;: &amp;#123;        &quot;monolog/monolog&quot;: &quot;1.0.*&quot;    &amp;#125;&amp;#125;
+包名包名应该包含供应商名和项目名
+包版本">
+<meta property="og:type" content="article">
+<meta property="og:title" content="composer用法">
+<meta property="og:url" content="http://www.upwzr.com/2016/07/10/composer-usages/index.html">
+<meta property="og:site_name" content="マクロス">
+<meta property="og:description" content="composer.json要开始在你的项目中使用 Composer，你只需要一个composer.json文件。该文件包含了项目的依赖和其它的一些元数据。
+首先需要指定require key的值12345&amp;#123;    &quot;require&quot;: &amp;#123;        &quot;monolog/monolog&quot;: &quot;1.0.*&quot;    &amp;#125;&amp;#125;
+包名包名应该包含供应商名和项目名
+包版本">
+<meta property="og:updated_time" content="2016-09-04T17:24:53.669Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="composer用法">
+<meta name="twitter:description" content="composer.json要开始在你的项目中使用 Composer，你只需要一个composer.json文件。该文件包含了项目的依赖和其它的一些元数据。
+首先需要指定require key的值12345&amp;#123;    &quot;require&quot;: &amp;#123;        &quot;monolog/monolog&quot;: &quot;1.0.*&quot;    &amp;#125;&amp;#125;
+包名包名应该包含供应商名和项目名
+包版本">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://www.upwzr.com/2016/07/10/composer-usages/"/>
+
+  <title> composer用法 | マクロス </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-83047470-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?729720b53fc2c18615d4ed229708c999";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=58089160";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">マクロス</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'whJiTn1vmzLLzmXfzF6h','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                composer用法
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-10T12:21:46+08:00" content="2016-07-10">
+              2016-07-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/10/composer-usages/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/07/10/composer-usages/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/07/10/composer-usages/" class="leancloud_visitors" data-flag-title="composer用法">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="composer-json"><a href="#composer-json" class="headerlink" title="composer.json"></a>composer.json</h2><p>要开始在你的项目中使用 Composer，你只需要一个<code>composer.json</code>文件。该文件包含了项目的依赖和其它的一些元数据。</p>
+<p>首先需要指定<code>require key</code>的值<br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"require"</span>: &#123;</div><div class="line">        <span class="attr">"monolog/monolog"</span>: <span class="string">"1.0.*"</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="包名"><a href="#包名" class="headerlink" title="包名"></a>包名</h2><p>包名应该包含供应商名和项目名</p>
+<h3 id="包版本"><a href="#包版本" class="headerlink" title="包版本"></a>包版本</h3><ul>
+<li>指定版本号 <code>1.0.2</code>，<code>1.0.0-dev</code>，<code>1.0.0-alpha3</code></li>
+<li>范围 <code>&gt;=1.0</code> <code>&gt;=1.0,&lt;2.0</code> <code>&gt;=1.0,&lt;1.1|&gt;=1.2</code> <code>,</code>的优先级高于<code>|</code></li>
+<li>通配符 <code>1.0.*</code></li>
+<li>赋值运算符 <code>~1.2</code> 相当于<code>&gt;=1.2,&lt;2.0</code></li>
+<li>允许依赖不稳定包 <code>@beta</code> <code>@dev</code></li>
+</ul>
+<p>形如<code>1.0.*@beta</code>，或者<code>dev-master#2eb0c0978d290a1c45346a1955188929cb4e5db7</code>这种明确了版本号的也是支持的。</p>
+<p>波浪号运算符的意义在于，防止大版本更新而产生的兼容性问题。</p>
+<h3 id="Dist"><a href="#Dist" class="headerlink" title="Dist"></a>Dist</h3><p>dist 指向一个存档，该存档是对一个资源包的某个版本的数据进行的打包。通常是已经发行的稳定版本。</p>
+<h3 id="Source"><a href="#Source" class="headerlink" title="Source"></a>Source</h3><p>source 指向一个开发中的源。这通常是一个源代码仓库，例如<code>git</code>。当你想要对下载下来的资源包进行修改时，可以这样获取。</p>
+<p>你可以使用其中任意一个，或者同时使用。这取决于其它的一些因素，比如<code>user-supplied</code> 选项和包的稳定性，前者将会被优先考虑。</p>
+<h3 id="repositories"><a href="#repositories" class="headerlink" title="repositories"></a>repositories</h3><p>默认情况下 composer 只使用 packagist 作为包的资源库。通过指定资源库，你可以从其他地方获取资源包。</p>
+<p>Repositories 并不是递归调用的，只能在Root包的 <code>composer.json</code> 中定义。附属包中的 <code>composer.json</code> 将被忽略。</p>
+<p>支持一下类型的资源库：</p>
+<ul>
+<li>composer: 一个 composer 类型的资源库，是一个简单的网络服务器（HTTP、FTP、SSH）上的 <code>packages.json</code> 文件，它包含一个 <code>composer.json</code> 对象的列表，有额外的 <code>dist</code> 和/或 <code>source</code> 信息。这个 <code>packages.json</code> 文件是用一个 PHP 流加载的。你可以使用 <code>options</code> 参数来设定额外的流信息。</li>
+<li>vcs: 从 <code>git</code>、<code>svn</code> 和 <code>hg</code> 取得资源。</li>
+<li>pear: 从 <code>pear</code> 获取资源。</li>
+<li>package: 如果你依赖于一个项目，它不提供任何对 composer 的支持，你就可以使用这种类型。你基本上就只需要内联一个 <code>composer.json</code> 对象。</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"require"</span>: &#123;</div><div class="line">        <span class="attr">"vendor/my-private-repo"</span>: <span class="string">"dev-master"</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">"repositories"</span>: [</div><div class="line">        &#123;</div><div class="line">            <span class="attr">"type"</span>: <span class="string">"vcs"</span>,</div><div class="line">            <span class="attr">"url"</span>:  <span class="string">"git@github.com:vendor/my-private-repo.git"</span></div><div class="line">        &#125;</div><div class="line">    ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="config"><a href="#config" class="headerlink" title="config"></a>config</h3><p>config字段仅适用于root项目。</p>
+<p>几个常用的值：</p>
+<ul>
+<li>use-include-path: 默认为 <code>false</code>。如果为 <code>true</code>，Composer autoloader 还将在 PHP include path 中继续查找类文件。</li>
+<li>preferred-install: 默认为 <code>auto</code>。它的值可以是 <code>source</code>、<code>dist</code> 或 <code>auto</code>。这个选项允许你设置 Composer 的默认安装方法。</li>
+<li>github-protocols: 默认为 [“git”, “https”, “ssh”]。从 github.com 克隆时使用的协议优先级清单。</li>
+<li>vendor-dir: 默认为 <code>vendor</code>。指定依赖安装目录</li>
+<li>bin-dir: 默认为 <code>vendor/bin</code>。如果一个项目包含二进制文件，它们将被连接到这个目录。</li>
+<li>cache-dir: unix 下默认为 <code>$home/cache</code>，Windows 下默认为 <code>C:\Users\&lt;user&gt;\AppData\Local\Composer</code>。用于存储 composer 所有的缓存文件。其子文件夹<code>cache-files-dir</code> <code>cache-repo-dir</code> <code>cache-vcs-dir</code>也可以分别指定路径。</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"config"</span>: &#123;</div><div class="line">        <span class="attr">"bin-dir"</span>: <span class="string">"bin"</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="发布包相关"><a href="#发布包相关" class="headerlink" title="发布包相关"></a>发布包相关</h3><p><code>name</code> <code>description</code> 必填，<code>license</code> <code>authors</code> <code>support</code> 等是强烈建议填写的可选项。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"authors"</span>: [</div><div class="line">        &#123;</div><div class="line">            <span class="attr">"name"</span>: <span class="string">"Nils Adermann"</span>,</div><div class="line">            <span class="attr">"email"</span>: <span class="string">"naderman@naderman.de"</span>,</div><div class="line">            <span class="attr">"homepage"</span>: <span class="string">"http://www.naderman.de"</span>,</div><div class="line">            <span class="attr">"role"</span>: <span class="string">"Developer"</span></div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">            <span class="attr">"name"</span>: <span class="string">"Jordi Boggiano"</span>,</div><div class="line">            <span class="attr">"email"</span>: <span class="string">"j.boggiano@seld.be"</span>,</div><div class="line">            <span class="attr">"homepage"</span>: <span class="string">"http://seld.be"</span>,</div><div class="line">            <span class="attr">"role"</span>: <span class="string">"Developer"</span></div><div class="line">        &#125;</div><div class="line">    ],</div><div class="line">    <span class="attr">"license"</span>: <span class="string">"MIT"</span>,</div><div class="line">    <span class="attr">"support"</span>: &#123;</div><div class="line">        <span class="attr">"email"</span>: <span class="string">"support@example.org"</span>,</div><div class="line">        <span class="attr">"irc"</span>: <span class="string">"irc://irc.freenode.org/composer"</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><p>在<code>composer.json</code>所在目录调用<code>install</code>命令</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer <span class="keyword">install</span></div></pre></td></tr></table></figure>
+<p>install命令会将依赖下载到<code>vendor</code>目录，并会生成<code>composer.lock</code>锁文件。</p>
+<h2 id="composer-lock"><a href="#composer-lock" class="headerlink" title="composer.lock"></a>composer.lock</h2><p>安装依赖后composer会把当前的确切版本号全部写入<code>composer.lock</code>，用来锁定版本。install命令会首先检查锁文件并根据锁文件指定的版本下载依赖。如果需要更新依赖的版本需要执行<code>update</code>命令。</p>
+<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer update <span class="string">[monolog/monolog]</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>在团队协作开发时，<strong>应提交你应用程序的 composer.lock （包括 composer.json）到你的版本库中</strong></p>
+</blockquote>
+<h2 id="自动加载"><a href="#自动加载" class="headerlink" title="自动加载"></a>自动加载</h2><p>Composer 生成了一个 <code>vendor/autoload.php</code> 文件，可在项目中引用它得到一个简单的自动加载支持。</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">require</span> <span class="string">'vendor/autoload.php'</span>;</div></pre></td></tr></table></figure>
+<p>也可以在 <code>composer.json</code> 的 <code>autoload</code> 字段中增加自己的 <code>autoloader</code>。当前composer支持<code>PSR-0</code> <code>PSR-4</code> <code>classmap</code> 和文件包含。官方提倡使用PSR-4标准的方式。</p>
+<blockquote class="blockquote-center"><p>PSR-4 is the recommended way though since it offers greater ease of use (no need to regenerate the autoloader when you add classes). </p>
+</blockquote>
+<p>在 <code>composer.json</code> 中配置 <code>autoloader</code></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"autoload"</span>: &#123;</div><div class="line">        <span class="attr">"psr-4"</span>: &#123;<span class="attr">"Wzr\\"</span>: <span class="string">"src/"</span>&#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Composer 将注册一个 <code>PSR-4 autoloader</code> 到 <code>Wzr</code> 命名空间，且该命名空间映射到根目录的 <code>src</code> 文件夹，比如 <code>src/IsMonkey.php</code> 文件应该包含 <code>Wzr\IsMonkey</code> 类。</p>
+<p>添加 <code>autoload</code> 字段后应该再次执行 <code>install</code> 来重新生成 <code>vendor/autoload.php</code> 文件。</p>
+<p>命名空间一定要以<code>\\</code>来分隔，好处在这：（懒得翻译了&lt;(￣3￣)&gt;)</p>
+<blockquote class="blockquote-center"><p>Namespace prefixes must end in <code>\\</code> to avoid conflicts between similar prefixes. For example Foo would match classes in the FooBar namespace so the trailing backslashes solve the problem: <code>Foo\\</code> and <code>FooBar\\</code> are distinct. </p>
+</blockquote>
+<h2 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h2><h3 id="发布到-packagist"><a href="#发布到-packagist" class="headerlink" title="发布到 packagist"></a>发布到 packagist</h3><p>去<a href="https://packagist.org/" target="_blank" rel="external">网站</a>上发布，提交库来源地址即可。composer有些字段需要定义。移步<a href="#发布包相关">composer.json</a></p>
+<h3 id="发布到vcs"><a href="#发布到vcs" class="headerlink" title="发布到vcs"></a>发布到vcs</h3><p>只要包含着<code>composer.json</code>的项目上传到版本仓库，你的库就可以通过composer安装。在<code>composer.json</code>中需要定义<code>name</code>和<code>description</code>字段。当然，依赖这类库时需要在<code>repositories</code>中声明库的来源。参见<a href="#repositories">repositories</a></p>
+<h2 id="命令行"><a href="#命令行" class="headerlink" title="命令行"></a>命令行</h2><p>在日常使用中，运行 <code>composer</code> 或者 <code>composer list</code> 命令得到命令列表，然后结合 –help 命令获得详细的帮助信息。</p>
+<h3 id="全局参数"><a href="#全局参数" class="headerlink" title="全局参数"></a>全局参数</h3><p>下列参数可与每一个命令结合使用：</p>
+<ul>
+<li><em>–verbose (-v)</em>: 增加反馈信息的详细度。<br>  -v 表示正常输出。<br>  -vv 表示更详细的输出。<br>  -vvv 则是为了 debug。</li>
+<li><em>–help (-h)</em>: 显示帮助信息。</li>
+<li><em>–quiet (-q)</em>: 禁止输出任何信息。</li>
+<li><em>–no-interaction (-n)</em>: 不要询问任何交互问题。</li>
+<li><em>–working-dir (-d)</em>: 如果指定的话，使用给定的目录作为工作目录。</li>
+<li><em>–profile</em>: 显示时间和内存使用信息。</li>
+<li><em>–ansi</em>: 强制 ANSI 输出。</li>
+<li><em>–no-ansi</em>: 关闭 ANSI 输出。</li>
+<li><em>–version (-V)</em>: 显示当前应用程序的版本信息。</li>
+</ul>
+<h3 id="init"><a href="#init" class="headerlink" title="init"></a>init</h3><p><code>init</code>命令可进行初始化,生成<code>composer.json</code>。<br>参数列表：</p>
+<ul>
+<li><em>–name</em>: 包的名称。</li>
+<li><em>–description</em>: 包的描述。</li>
+<li><em>–author</em>: 包的作者。</li>
+<li><em>–homepage</em>: 包的主页。</li>
+<li><em>–require</em>: 需要依赖的其它包，必须要有一个版本约束。并且应该遵循 <code>foo/bar:1.0.0</code> 这样的格式。</li>
+<li><em>–require-dev</em>: 开发版的依赖包，内容格式与 <code>--require</code> 相同。</li>
+<li><em>–stability (-s)</em>: <code>minimum-stability</code> 字段的值。</li>
+</ul>
+<h3 id="install"><a href="#install" class="headerlink" title="install"></a>install</h3><p>参数列表：</p>
+<ul>
+<li><em>–prefer-source</em>: 下载包的方式有两种： source 和 dist。对于稳定版本 composer 将默认使用 dist 方式。而 source 表示版本控制源 。如果 –prefer-source 是被启用的，composer 将从 source 安装（如果有的话）。如果想要使用一个 bugfix 到你的项目，这是非常有用的。并且可以直接从本地的版本库直接获取依赖关系。</li>
+<li><em>–prefer-dist</em>: 与 –prefer-source 相反，composer 将尽可能的从 dist 获取，这将大幅度的加快在 build servers 上的安装。这也是一个回避 git 问题的途径，如果你不清楚如何正确的设置。</li>
+<li><em>–dry-run</em>: 如果你只是想演示而并非实际安装一个包，你可以运行 –dry-run 命令，它将模拟安装并显示将会发生什么。</li>
+<li>–dev: 安装 require-dev 字段中列出的包（这是一个默认值）。</li>
+<li><em>–no-dev</em>: 跳过 require-dev 字段中列出的包。</li>
+<li><em>–no-scripts</em>: 跳过 composer.json 文件中定义的脚本。</li>
+<li><em>–no-plugins</em>: 关闭 plugins。</li>
+<li><em>–no-progress</em>: 移除进度信息，这可以避免一些不处理换行的终端或脚本出现混乱的显示。</li>
+<li><em>–optimize-autoloader (-o)</em>: 转换 PSR-0/4 autoloading 到 classmap 可以获得更快的加载支持。特别是在生产环境下建议这么做，但由于运行需要一些时间，因此并没有作为默认值。</li>
+</ul>
+<h3 id="update"><a href="#update" class="headerlink" title="update"></a>update</h3><p>update命令可以升级依赖到最新版本，并更新<code>composer.lock</code>，也可指定包名单独更新一个或几个包。<br>参数列表：<br><code>install</code>的所有参数均适用于<code>update</code>。</p>
+<ul>
+<li><em>–lock</em>: 仅更新 lock 文件的 hash，取消有关 lock 文件过时的警告。</li>
+<li><em>–with-dependencies</em> 同时更新白名单内包的依赖关系，这将进行递归更新。</li>
+</ul>
+<h3 id="require"><a href="#require" class="headerlink" title="require"></a>require</h3><p>require命令可以增加新的依赖包到当前目录的<code>composer.json</code>，在添加或改变依赖时， 修改后的依赖关系将被安装或者更新。</p>
+<figure class="highlight ceylon"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer require vendor/<span class="keyword">package</span>:<span class="number">2</span>.* vendor/<span class="keyword">package</span><span class="number">2</span>:dev-master</div></pre></td></tr></table></figure>
+<p>参数列表：</p>
+<ul>
+<li><em>–prefer-source</em>: 当有可用的包时，从 source 安装。</li>
+<li><em>–prefer-dist</em>: 当有可用的包时，从 dist 安装。</li>
+<li><em>–dev</em>: 安装 require-dev 字段中列出的包。</li>
+<li><em>–no-update</em>: 禁用依赖关系的自动更新。</li>
+<li><em>–no-progress</em>: 移除进度信息，这可以避免一些不处理换行的终端或脚本出现混乱的显示。</li>
+<li><em>–update-with-dependencies</em> 一并更新新装包的依赖。</li>
+</ul>
+<h3 id="global"><a href="#global" class="headerlink" title="global"></a>global</h3><p>全局执行命令。</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">composer</span> <span class="meta">global</span> <span class="meta">require</span> fabpot/php-cs-fixer:dev-master</div></pre></td></tr></table></figure>
+<p>现在 php-cs-fixer 就可以在全局范围使用了（假设你已经设置了你的 PATH）。</p>
+<h3 id="search"><a href="#search" class="headerlink" title="search"></a>search</h3><p>参数：</p>
+<ul>
+<li><em>–only-name (-N)</em>: 仅搜索制定的名称，即完全匹配</li>
+</ul>
+<h3 id="show"><a href="#show" class="headerlink" title="show"></a>show</h3><p>列出所有可用的软件包<br><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">composer show</span></div></pre></td></tr></table></figure></p>
+<p>也可以指定包名显示包的详细信息，也可以一并输入版本号查看某特定版本的包的详细信息。</p>
+<p>参数：</p>
+<ul>
+<li><em>–installed (-i)</em>: 列出已安装的依赖包。</li>
+<li><em>–platform (-p)</em>: 仅列出平台软件包（PHP 与它的扩展）。</li>
+<li><em>–self (-s)</em>: 仅列出当前项目信息。</li>
+</ul>
+<h3 id="depends"><a href="#depends" class="headerlink" title="depends"></a>depends</h3><p>depends命令可以查出已安装在你项目中的某个包，是否正在被其它的包所依赖，并列出他们。</p>
+<p>参数：</p>
+<ul>
+<li><em>–link-type</em>: 检测的类型，默认为 <code>require</code> 也可以是 <code>require-dev</code>。</li>
+</ul>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">composer depends --link-<span class="keyword">type</span>=<span class="keyword">require</span> monolog/monolog</div><div class="line"></div><div class="line">nrk/monolog-fluent</div><div class="line">poc/poc</div><div class="line">propel/propel</div><div class="line">symfony/monolog-bridge</div><div class="line">symfony/symfony</div></pre></td></tr></table></figure>
+<h3 id="validate"><a href="#validate" class="headerlink" title="validate"></a>validate</h3><p>在提交 <code>composer.json</code> 文件，和创建 tag 前，你应该始终运行 <code>validate</code> 命令。它将检测你的 <code>composer.json</code> 文件是否是有效的。</p>
+<p>参数：</p>
+<ul>
+<li><em>–no-check-all</em>: Composer 是否进行完整的校验。</li>
+</ul>
+<h3 id="status"><a href="#status" class="headerlink" title="status"></a>status</h3><p>如果你经常修改依赖包里的代码，并且它们是从 source（自定义源）进行安装的，那么 status 命令允许你进行检查，如果你有任何本地的更改它将会给予提示。<br>你可以使用 <code>--verbose</code> 系列参数（-v|vv|vvv）来获取更详细的详细：<br><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">composer status -v</span></div></pre></td></tr></table></figure></p>
+<h3 id="self-update"><a href="#self-update" class="headerlink" title="self-update"></a>self-update</h3><p>将 Composer 自身升级到最新版本，只需要运行 <code>self-update</code> 命令。它将替换你的 <code>composer.phar</code> 文件到最新版本。<br>如果你想要升级到一个特定的版本，可以这样简单的指定它：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">php</span> <span class="selector-tag">composer</span><span class="selector-class">.phar</span> <span class="selector-tag">self-update</span> 1<span class="selector-class">.0</span><span class="selector-class">.0-alpha7</span></div></pre></td></tr></table></figure></p>
+<p>如果你已经为整个系统(linux)安装 Composer，你可能需要在 root 权限下运行它.</p>
+<p>参数：</p>
+<ul>
+<li><em>–rollback (-r)</em>: 回滚到你已经安装的最后一个版本。</li>
+<li><em>–clean-backups</em>: 在更新过程中删除旧的备份，这使得更新过后的当前版本是唯一可用的备份。</li>
+</ul>
+<h3 id="create-project"><a href="#create-project" class="headerlink" title="create-project"></a>create-project</h3><p>你可以使用 Composer 从现有的包中创建一个新的项目。这相当于执行了一个 <code>git clone</code> 或 <code>svn checkout</code> 命令后将这个包的依赖安装到它自己的 vendor 目录。</p>
+<p>此命令有几个常见的用途：</p>
+<ul>
+<li>你可以快速的部署你的应用。</li>
+<li>你可以检出任何资源包，并开发它的补丁。</li>
+<li>多人开发项目，可以用它来加快应用的初始化。</li>
+</ul>
+<p>要创建基于 Composer 的新项目，你可以使用 “create-project” 命令。传递一个包名，它会为你创建项目的目录。如果该目录目前不存在，则会在安装过程中自动创建。你也可以在第三个参数中指定版本号，否则将获取最新的版本。<br>如laravel应用的安装：<br><figure class="highlight dsconfig"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">php </span><span class="string">composer.</span><span class="string">phar </span><span class="built_in">create-project</span> <span class="string">laravel/</span><span class="string">laravel </span><span class="string">myapp </span><span class="built_in">--prefer-dist</span></div></pre></td></tr></table></figure></p>
+<p>此外，你也可以无需使用这个命令，而是通过现有的 composer.json 文件来启动这个项目。</p>
+<p>默认情况下，这个命令会在 packagist.org 上查找你指定的包。<br>参数：</p>
+<ul>
+<li><em>–repository-url</em>: 提供一个自定义的储存库来搜索包，这将被用来代替 packagist.org。可以是一个指向 composer 资源库的 HTTP URL，或者是指向某个 packages.json 文件的本地路径。</li>
+<li><em>–stability (-s)</em>: 资源包的最低稳定版本，默认为 stable。</li>
+<li><em>–prefer-source</em>: 当有可用的包时，从 source 安装。</li>
+<li><em>–prefer-dist</em>: 当有可用的包时，从 dist 安装。</li>
+<li><em>–dev</em>: 安装 require-dev 字段中列出的包。</li>
+<li><em>–no-install</em>: 禁止安装包的依赖。</li>
+<li><em>–no-plugins</em>: 禁用 plugins。</li>
+<li><em>–no-scripts</em>: 禁止在根资源包中定义的脚本执行。</li>
+<li><em>–no-progress</em>: 移除进度信息，这可以避免一些不处理换行的终端或脚本出现混乱的显示。</li>
+<li><em>–keep-vcs</em>: 创建时跳过缺失的 VCS 。如果你在非交互模式下运行创建命令，这将是非常有用的。</li>
+</ul>
+<h3 id="dump-autoload"><a href="#dump-autoload" class="headerlink" title="dump-autoload"></a>dump-autoload</h3><p>某些情况下你需要更新 autoloader，例如在你的包中加入了一个新的类。你可以使用 <code>dump-autoload</code> 来完成，而不必执行 <code>install</code> 或 <code>update</code> 命令。</p>
+<p>此外，它可以打印一个优化过的，符合 PSR-0/4 规范的类的索引，这也是出于对性能的可考虑。在大型的应用中会有许多类文件，而 autoloader 会占用每个请求的很大一部分时间，使用 classmaps 或许在开发时不太方便，但它在保证性能的前提下，仍然可以获得 PSR-0/4 规范带来的便利。<br>参数:</p>
+<ul>
+<li><em>–optimize (-o)</em>: 转换 PSR-0/4 autoloading 到 classmap 获得更快的载入速度。这特别适用于生产环境，但可能需要一些时间来运行，因此它目前不是默认设置。</li>
+<li><em>–no-dev</em>: 禁用 autoload-dev 规则。</li>
+</ul>
+<h3 id="licenses"><a href="#licenses" class="headerlink" title="licenses"></a>licenses</h3><p>列出已安装的每个包的名称、版本、许可协议。可以使用 <code>--format=json</code> 参数来获取 JSON 格式的输出。</p>
+<h3 id="run-script"><a href="#run-script" class="headerlink" title="run-script"></a>run-script</h3><p>你可以运行此命令来手动执行 脚本，只需要指定脚本的名称，可选的 <code>--no-dev</code> 参数允许你禁用开发者模式。</p>
+<h3 id="diagnose"><a href="#diagnose" class="headerlink" title="diagnose"></a>diagnose</h3><p>如果你觉得发现了一个 bug 或是程序行为变得怪异，你可能需要运行 <code>diagnose</code> 命令，来帮助你检测一些常见的问题。</p>
+<h3 id="archive"><a href="#archive" class="headerlink" title="archive"></a>archive</h3><p>此命令用来对指定包的指定版本进行 zip/tar 归档。它也可以用来归档你的整个项目，不包括 excluded/ignored（排除/忽略）的文件。<br><figure class="highlight ada"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer archive vendor/<span class="keyword">package</span> <span class="title">2.0.21 --format=zip</span></div></pre></td></tr></table></figure></p>
+<p>参数：</p>
+<ul>
+<li><em>–format (-f)</em>: 指定归档格式：tar 或 zip（默认为 tar）。</li>
+<li><em>–dir</em>: 指定归档存放的目录（默认为当前目录）。</li>
+</ul>
+<h3 id="help"><a href="#help" class="headerlink" title="help"></a>help</h3><p>使用 <code>help</code> 可以获取指定命令的帮助信息。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer <span class="keyword">help</span> <span class="keyword">install</span></div></pre></td></tr></table></figure></p>
+<h2 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h2><p>你可以设置一些环境变量来覆盖默认的配置。建议尽可能的在 <code>composer.json</code> 的 <code>config</code> 字段中设置这些值，而不是通过命令行设置环境变量。值得注意的是环境变量中的值，将始终优先于 <code>composer.json</code> 中所指定的值。</p>
+<blockquote>
+<p>参考资料：<br><a href="http://docs.phpcomposer.com/03-cli.html" target="_blank" rel="external">http://docs.phpcomposer.com/03-cli.html</a></p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/php/" rel="tag">#php</a>
+          
+            <a href="/tags/composer/" rel="tag">#composer</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/05/git-notes/" rel="next" title="git日常使用心得">
+                <i class="fa fa-chevron-left"></i> git日常使用心得
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/20/laravel-design-patterns/" rel="prev" title="laravel设计模式">
+                laravel设计模式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/img/head.jpg"
+               alt="小灰机灰上天" />
+          <p class="site-author-name" itemprop="name">小灰机灰上天</p>
+          <p class="site-description motion-element" itemprop="description">好想学习。。。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">42</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">64</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/monkeyWzr" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/wzr119" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/monkeywzr" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-facebook-official"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://plus.google.com/u/0/109706734318766815600" target="_blank" title="Google+">
+                  
+                    <i class="fa fa-fw fa-google-plus"></i>
+                  
+                  Google+
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/1244449463" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#composer-json"><span class="nav-number">1.</span> <span class="nav-text">composer.json</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#包名"><span class="nav-number">2.</span> <span class="nav-text">包名</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#包版本"><span class="nav-number">2.1.</span> <span class="nav-text">包版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dist"><span class="nav-number">2.2.</span> <span class="nav-text">Dist</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Source"><span class="nav-number">2.3.</span> <span class="nav-text">Source</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#repositories"><span class="nav-number">2.4.</span> <span class="nav-text">repositories</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#config"><span class="nav-number">2.5.</span> <span class="nav-text">config</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#发布包相关"><span class="nav-number">2.6.</span> <span class="nav-text">发布包相关</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装依赖"><span class="nav-number">3.</span> <span class="nav-text">安装依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#composer-lock"><span class="nav-number">4.</span> <span class="nav-text">composer.lock</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自动加载"><span class="nav-number">5.</span> <span class="nav-text">自动加载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发布"><span class="nav-number">6.</span> <span class="nav-text">发布</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#发布到-packagist"><span class="nav-number">6.1.</span> <span class="nav-text">发布到 packagist</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#发布到vcs"><span class="nav-number">6.2.</span> <span class="nav-text">发布到vcs</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令行"><span class="nav-number">7.</span> <span class="nav-text">命令行</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#全局参数"><span class="nav-number">7.1.</span> <span class="nav-text">全局参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#init"><span class="nav-number">7.2.</span> <span class="nav-text">init</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#install"><span class="nav-number">7.3.</span> <span class="nav-text">install</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#update"><span class="nav-number">7.4.</span> <span class="nav-text">update</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#require"><span class="nav-number">7.5.</span> <span class="nav-text">require</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#global"><span class="nav-number">7.6.</span> <span class="nav-text">global</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#search"><span class="nav-number">7.7.</span> <span class="nav-text">search</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#show"><span class="nav-number">7.8.</span> <span class="nav-text">show</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#depends"><span class="nav-number">7.9.</span> <span class="nav-text">depends</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#validate"><span class="nav-number">7.10.</span> <span class="nav-text">validate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#status"><span class="nav-number">7.11.</span> <span class="nav-text">status</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#self-update"><span class="nav-number">7.12.</span> <span class="nav-text">self-update</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#create-project"><span class="nav-number">7.13.</span> <span class="nav-text">create-project</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dump-autoload"><span class="nav-number">7.14.</span> <span class="nav-text">dump-autoload</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#licenses"><span class="nav-number">7.15.</span> <span class="nav-text">licenses</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#run-script"><span class="nav-number">7.16.</span> <span class="nav-text">run-script</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#diagnose"><span class="nav-number">7.17.</span> <span class="nav-text">diagnose</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#archive"><span class="nav-number">7.18.</span> <span class="nav-text">archive</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#help"><span class="nav-number">7.19.</span> <span class="nav-text">help</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境变量"><span class="nav-number">8.</span> <span class="nav-text">环境变量</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小灰机灰上天</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i>访客数：<span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i>总访问量：<span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'monkeywzr';
+      var disqus_identifier = '2016/07/10/composer-usages/';
+      var disqus_title = "composer用法";
+      var disqus_url = 'http://www.upwzr.com/2016/07/10/composer-usages/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("3V8uzSVqKpazcBtyRNSENSwV-gzGzoHsz", "jMlbQg8xL9ke21wh9sCAoWGX");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>
