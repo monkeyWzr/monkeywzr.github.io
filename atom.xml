@@ -522,14 +522,15 @@ function __construct(UserModel $user) {
     <link href="http://www.upwzr.com/2016/07/05/git-notes/"/>
     <id>http://www.upwzr.com/2016/07/05/git-notes/</id>
     <published>2016-07-04T16:00:00.000Z</published>
-    <updated>2016-07-05T13:13:25.649Z</updated>
+    <updated>2016-09-22T11:44:34.222Z</updated>
     
     <content type="html"><![CDATA[<h2 id="忽略文件"><a href="#忽略文件" class="headerlink" title="忽略文件"></a>忽略文件</h2><h3 id="忽略文件或文件夹只在本地需要使用"><a href="#忽略文件或文件夹只在本地需要使用" class="headerlink" title="忽略文件或文件夹只在本地需要使用"></a>忽略文件或文件夹只在本地需要使用</h3><p>此种情况为，文件或文件夹只在本地需要，不应该出现在远程仓库时。<br>在将忽略文件或路径更新到<code>.gitignore</code>后，若对于已经trace的文件，需要让git不再跟踪，执行下列命令：</p>
-<pre><code>//目标为文件夹则需加入-r参数
-git rm --cache /path/to/file
-</code></pre><h3 id="文件或文件夹的改动不需要提交"><a href="#文件或文件夹的改动不需要提交" class="headerlink" title="文件或文件夹的改动不需要提交"></a>文件或文件夹的改动不需要提交</h3><p>有些文件或文件夹的改动不需要提交，则在更新<code>.gitignore</code>的同时也要执行执行：</p>
-<pre><code>git update-index --assume-unchanged logs/*.log
-</code></pre><p>此种情况下需要每位成员都在自己的本地仓库执行上述命令。</p>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//目标为文件夹则需加入-r参数</span></div><div class="line">git rm --cache /path/<span class="keyword">to</span>/<span class="keyword">file</span></div></pre></td></tr></table></figure>
+<h3 id="文件或文件夹的改动不需要提交"><a href="#文件或文件夹的改动不需要提交" class="headerlink" title="文件或文件夹的改动不需要提交"></a>文件或文件夹的改动不需要提交</h3><p>有些文件或文件夹的改动不需要提交，则在更新<code>.gitignore</code>的同时也要执行执行：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git <span class="keyword">update</span>-<span class="keyword">index</span> <span class="comment">--assume-unchanged logs/*.log</span></div></pre></td></tr></table></figure>
+<p>此种情况下需要每位成员都在自己的本地仓库执行上述命令。</p>
+<h2 id="强制更新"><a href="#强制更新" class="headerlink" title="强制更新"></a>强制更新</h2><p>有时候需要使用远程版本，覆盖本地版本，可在项目目录下使用：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git fetch <span class="comment">--all</span></div><div class="line">git <span class="keyword">reset</span> <span class="comment">--hard origin/master</span></div></pre></td></tr></table></figure>
 ]]></content>
     
     <summary type="html">

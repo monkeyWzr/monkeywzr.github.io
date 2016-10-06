@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.upwzr.com/2016/07/05/git-notes/</loc>
+    
+    <lastmod>2016-09-22T11:44:34.222Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.upwzr.com/about/index.html</loc>
     
     <lastmod>2016-09-20T23:51:03.640Z</lastmod>
@@ -138,13 +145,6 @@
     <loc>http://www.upwzr.com/2016/03/05/bash-shell/</loc>
     
     <lastmod>2016-07-22T17:21:50.098Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.upwzr.com/2016/07/05/git-notes/</loc>
-    
-    <lastmod>2016-07-05T13:13:25.649Z</lastmod>
     
   </url>
   
