@@ -4,7 +4,7 @@
 
 # Site
 title: マクロス
-subtitle: 
+subtitle:
 description: 好想学习。。。
 author: 小灰机灰上天
 language: zh-Hans
@@ -28,6 +28,7 @@ code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
   - README.md
+  - .nojekyll
 
 # Writing
 new_post_name: :year-:month-:day-:title.md # File name of new posts
@@ -71,12 +72,12 @@ disqus_shortname: monkeywzr
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
-deploy: 
+deploy:
   type: git
   repo: git@github.com:monkeyWzr/monkeywzr.github.io.git
   branch: master
 # 社交账号
-social: 
+social:
   GitHub: https://github.com/monkeyWzr
   Twitter: https://twitter.com/wzr119
   Facebook: https://www.facebook.com/monkeywzr
