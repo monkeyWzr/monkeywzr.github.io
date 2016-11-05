@@ -26,5 +26,7 @@ keywords:
 __相关链接:__
 
 [What's new in GitHub Pages with Jekyll 3.3](https://github.com/blog/2277-what-s-new-in-github-pages-with-jekyll-3-3)
+
 [issue #1214](https://github.com/iissnan/hexo-theme-next/issues/1214)
-[有关博客传到github css js 404的问题 解决方案！！！]https://github.com/iissnan/hexo-theme-next/issues/1220
+
+[有关博客传到github css js 404的问题 解决方案！！！](https://github.com/iissnan/hexo-theme-next/issues/1220)
