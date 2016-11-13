@@ -5,7 +5,7 @@
 # Site
 title: マクロス
 subtitle:
-description: 好想学习。。。
+description: 好想学习。。。好想表白。。。
 author: 小灰机灰上天
 language: zh-Hans
 timezone:
@@ -80,8 +80,8 @@ deploy:
 social:
   GitHub: https://github.com/monkeyWzr
   Twitter: https://twitter.com/wzr119
-  Facebook: https://www.facebook.com/monkeywzr
-  Google+: https://plus.google.com/u/0/109706734318766815600
+  # Facebook: https://www.facebook.com/monkeywzr
+  # Google+: https://plus.google.com/u/0/109706734318766815600
   微博: http://weibo.com/1244449463
   # 知乎: https://www.zhihu.com/people/xiao-hui-ji-hui-shang-tian
 
