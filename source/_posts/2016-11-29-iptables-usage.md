@@ -90,6 +90,34 @@ iptables -h (print this help information)
 * `--sport` *port* 来源端口，必须指明`-p`
 * `--line-numbers` 显示行号
 
+>关于`-p`配置的上层协议，可参考`/etc/protocols`
+
+## state模块
+
+`state`模块实现了“连接跟踪”功能，用来解决某些情况下防火墙内主机对外建立链接的问题。
+`state`模块定义了四种数据包链接状态，分别为`ESTABLISHED` `NEW` `RELATED` `INVALID` 四种。在TCP/IP标准的定义中，UDP和ICMP数据包是没有链接状态的，但是在state模块的定义中，任何数据包都有连接状态。
+
+### ESTABLISHED状态
+
+只要数据包能够成功穿过防火墙，则之后的所有数据包（包括响应数据包）都会被标记为是`ESTABLISHED`状态。
+
+当我们设置防火墙INPUT链的默认策略为DROP时，防火墙内主机很多服务，如ssh客户端基本上就无法与外面的ssh服务端建立连接了。原因很简单，ssh客户端使用的端口是随机的，防火墙无法预知客户端会使用哪一个端口发起链接。因此即使客户端发出了请求，ssh服务端返回的相应数据包也会被防火墙的默认策略拦截。
+
+ESTABLISHED状态可以很轻易的解决此问题，见[#解决应用程序无法从防火墙主机上对外建立新连接的问题](### 解决应用程序无法从防火墙主机上对外建立新连接的问题)
+
+### NEW状态
+
+每一条链接中的地一个数据包的状态定义为NEW。
+
+### RELATED状态
+
+RELATED状态的数据包其含义是指，被动产成的应答数据包，且此数据包不属于当前任何链接。换一种说法就是，只要应答的数据包是因为本机发起的连接送出vhu一个数据包，导致了另一条连接的产生，那么这个新连接的所有数据包都属于`RELATED`状态。
+
+以ubuntu上上的tracepath工具为例，在检测本机与目的主机间跳数时，tracepath是通过发送TTL值从1递增的tcp数据包来检测每一跳。路径中的路由器因TTL减为0而回送了一个ICMP数据包(ICMP Type 11)，该数据包就属于RELATED状态。
+
+### INVALID状态
+
+`INVALID`状态指的是状态不明的数据包，即不属于`ESTABLISHED` `NEW` `RELATED`三种类型的数据包。所有的`INVALID`数据包都应该视为恶意数据包。
 
 
 ## 实例
@@ -99,4 +127,10 @@ iptables -h (print this help information)
 通过此规则实现禁止ping本机的效果
 ```
 iptables -A INPUT -p icmp -j DROP
+```
+
+### 解决应用程序无法从防火墙主机上对外建立新连接的问题
+
+```
+iptables -A INPUT -p tcp -m state ESTABLISHED -j ACCEPT
 ```
