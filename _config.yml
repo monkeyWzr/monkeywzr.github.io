@@ -96,9 +96,15 @@ sitemap:
     path: sitemap.xml
 
 # swiftype只有两周的试用
-swiftype_key: whJiTn1vmzLLzmXfzF6h
+# swiftype_key: whJiTn1vmzLLzmXfzF6h
 # search:
 #   path: search.xml
 #   field: post
+algolia:
+  applicationID: UM8JZA8Q8J
+  apiKey: c197d462f80960bd626fbbe755a35582
+  adminApiKey: 8bd82a54c0d12622f4b8d31fc55d6f1e
+  indexName: my_blog
+  chunkSize: 5000
 
 # jiathis: true
