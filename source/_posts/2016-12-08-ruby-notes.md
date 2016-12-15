@@ -121,3 +121,63 @@ class Subclass<Superclass
     end
 end
 ```
+
+## variables
+
+* `[a-z] or _` 本地变量
+* `$` 全局变量
+* `@` 实例变量 instance variable
+* `[A-Z]` 常量
+
+### 全局变量
+
+全局变量以 `$` 开头。初始化之前，全局变量的值为`nil`。可定义一段procedure来追踪全局变量。
+```ruby
+$x #return nil
+trace_var :$x, proc{puts "$x is now #{$x}"}
+$x = 5 #return $x is now 5
+```
+
+一些特殊的变量（不一定是全局作用域）：
+
+* `$!`	latest error message
+* `$@`	location of error
+* `$_`	上一次由gets读入的字符串
+* `$.`	line number last read by interpreter
+* `$&`	string last matched by regexp
+* `$~`	the last regexp match, as an array of subexpressions
+* `$n`	the nth subexpression in the last match (same as $~[n])
+* `$=`	case-insensitivity flag
+* `$/`	input record separator
+* `$\`	output record separator
+* `$0`	the name of the ruby script file
+* `$*`	命令行参数
+* `$$`	当前解释器的进程id
+* `$?`	上一次子进程的退出状态码
+
+### 实例变量
+
+An instance variable has a name beginning with `@`, and its scope is confined to whatever object __self__ refers to. Two different objects, even if they belong to the same class, are allowed to have different values for their instance variables. From outside the object, instance variables __cannot be altered or even observed__ (i.e., ruby's instance variables are never public) except by whatever methods are explicitly provided by the programmer. As with globals, instance variables have the nil value until they are initialized.
+
+Instance variables do not need to be declared. This indicates a flexible object structure; in fact, each instance variable is dynamically appended to an object when it is first assigned.
+
+### 常量
+
+常量名以大写字母开头。给常量重新赋值会得到警告。
+```shell
+irb(main):009:0> Wzr=1222
+=> 1222
+irb(main):010:0> Wzr=1223
+(irb):10: warning: already initialized constant Wzr
+(irb):9: warning: previous definition of Wzr was here
+=> 1223
+```
+
+常量可以在类和模块中定义，并允许外部访问。
+```ruby
+class ConstClass
+   C1=120
+end
+
+ConstClass::C1 # return 120
+```
