@@ -4,13 +4,8 @@ title: markdown语法简记
 category: 学习笔记
 tags: [markdown,教程]
 keywords: markdown,教程
-description: 
+description:
 ---
-
-
-
-
-
 
 ## 0. 反斜杠
 
@@ -31,6 +26,8 @@ This is H2
 ```
 类atx形式
 也可以写成前后对称的形式。
+
+<!-- more -->
 
 ```
 #  H1
@@ -72,7 +69,7 @@ This is H2
 标记一小段代码可以用反引号\`包起来，在本文随处可见`效果`。
 
 也可用<code>```</code>的形式：
-    
+
         ```
         代码区块
         ```
@@ -203,4 +200,3 @@ Markdown支持以比较简短的自动链接形式来处理网址和电子邮件
 点击进入
 [Markdown语法简体中文版](https://gitcafe.com/riku/Markdown-Syntax-CN/blob/master/syntax.md)
 [Markdoown官方文档](http://daringfireball.net/projects/markdown/syntax)
-

@@ -18,16 +18,15 @@ keywords:
 
 laravel中实现了DI依赖注入，如：
 
-        <?php
-            class UserController
-            {
-                private $user;
-                function __construct(UserModel $user) {
-                    $this->user = $user;
-                }
-            }
-            $user = new UserController(new UserMonel());
-        ?>
+```php
+class UserController
+{
+    private $user;
+    function __construct(UserModel $user) {
+        $this->user = $user;
+    }
+}
+$user = new UserController(new UserMonel());
+```    
 
 `UserController`依赖`UserModel`，在实例化时，laravel会自动主注入UserModel实例。
-

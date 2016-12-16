@@ -4,7 +4,7 @@ title: jquery实现表单上传图片预览
 category: 技术
 tags: [jquery,php,html]
 keywords: jquery,php,html,图片预览
-description: 
+description:
 ---
 
 最近有个小页面需要实现图片上传预览，自己还不擅长javascript，迷茫的看了好久文档之后算是利用File API实现了这个事情。
@@ -15,11 +15,11 @@ js代码：
               for (var i = 0; i < files.length; i++) {
                 var file = files[i];
                 var reader = new FileReader();
-                reader.onload = (function(aImg) { 
-                  return function(e) { 
+                reader.onload = (function(aImg) {
+                  return function(e) {
                     //假设页面上的img元素id为showimg
                     $('#showimg') . attr('src', e.target.result);
-                  }; 
+                  };
                 })();
                 reader.readAsDataURL(file);
               }

@@ -18,6 +18,8 @@ keywords:
 
 原来是github最近升级了Jekyll，升级之后会默认忽略vendor/vendors文件夹。。这个会直接影响到next主题的显示。
 
+<!-- more -->
+
 目前找到了这么几种解决办法：
 * 官方给出的解决办法就是在根目录下添加一个`.nojekyll`文件，对于hexo的话需要在`.deploy_git`和`public`目录下添加，然后`hexo d`即可。
 * 更新next主题，作者已提交针对此问题的更新。

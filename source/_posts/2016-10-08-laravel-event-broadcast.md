@@ -27,6 +27,8 @@ Laravel 事件提供了简单的观察者模式实现，允许你订阅和监听
 BROADCAST_DRIVER=redis
 ```
 
+<!-- more -->
+
 ## 注册事件和监听器
 
 Laravel 自带的 `EventServiceProvider`（在 app/Providers/EventServiceProvider.php 中） 为事件注册提供了方便之所。其中的 listen 属性包含了事件（键）和对应监听器（值）数组。如果应用需要，你可以添加多个事件到该数组。例如，让我们添加 `SomeEvent` 事件：

@@ -4,7 +4,7 @@ title: SQL Server更改服务器身份验证模式
 category: 技术
 tags: SQLServer
 keywords: SQL Server 2008 r2,身份验证
-description: 
+description:
 ---
 
 
@@ -18,6 +18,8 @@ description:
 3. 在 SQL Server Management Studio 对话框中，单击“确定”以确认需要重新启动 SQL Server。
 
 4. 在对象资源管理器中，右键单击您的服务器，再单击“重新启动”。如果运行有 SQL Server 代理，则也必须重新启动该代理。
+
+<!-- more -->
 
 ### 启用 sa 登录名
 

@@ -11,6 +11,8 @@ description:
 
 前几年亲戚去日本出差给我老爸带回来一台二手本本，2003年左右的机器，质量确实过硬，没换过一个零件。。奔腾M 1GHz + 760MB内存，用xp勉强可以看个新闻玩玩同城游戏。到我手里后，实在是食之无味弃之可惜，索性装个linux敲代码好了。
 
+<!-- more -->
+
 ## 老机器真蛋疼
 
 轻量级的linux有不少，`lubuntu` `xubuntu` `PuppyLinux`这些都是很常见的了。`lubuntu`号称256M内存就能跑起来，`LXDE`也比puppy用的`JVM`好看一点（私人观点），那就先搞这个试试（15.04）。最开始做了个U盘启动盘，结果BIOS里死活读不出usb，只好又刻了个CD。
@@ -44,4 +46,3 @@ lubuntu在12.04开始需要cpu支持pae，幸运的是我这老古董貌似完�
 
 >相关链接
 >[AdvancedMethods](https://wiki.ubuntu.com/Lubuntu/AdvancedMethods)
-

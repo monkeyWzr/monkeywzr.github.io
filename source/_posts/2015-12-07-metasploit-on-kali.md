@@ -4,7 +4,7 @@ title: Kali下Metasploit学习笔记
 category: 学习笔记
 tags: [Metasploit,kali]
 keywords: Metasploit,kali,渗透,安全
-description: 
+description:
 ---
 
 ## 启动
@@ -16,6 +16,7 @@ description:
 
 注意kali2.0开始不再有metasploit服务，所以官方文档说要用`msfdb init`代替`service metasploit start`
 
+<!-- more -->
 
 然后启动msf控制台
 

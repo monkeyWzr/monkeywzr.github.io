@@ -4,20 +4,22 @@ title: Kali的一些工具
 category: 学习笔记
 tags: [Kali,渗透]
 keywords: Kali,渗透
-description: 
+description:
 ---
 
 ## 信息收集
 
 ### DNS信息
 
-- host 查询/etc/resolv.conf中指定的DNS服务器 
+- host 查询/etc/resolv.conf中指定的DNS服务器
 - dig 可处理文件内的所有DNS指令
 - dnsenum 可通过google搜素子域名；课使用字典对子域名进行暴力破解；
 - dnsdict6 IPv6子域名枚举
 - fierce 能对不连续的IP空间和主机名进行测试
 - DMitry 具有DNS分析和路由分析功能，可进行简单端口探测
 - Maltego 图形化综合工具
+
+<!-- more -->
 
 ### 路由信息
 
@@ -122,7 +124,3 @@ description:
 - W3AF 识别、审计、攻击，有丰富的插件和exploits。
 - wafw00f 检测防web防火墙（WAF）的脚本
 - webscarab 集成了众多工具，OWASP Project之一，功能强大
-
-
-
-

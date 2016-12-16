@@ -87,12 +87,14 @@ description:
     - -p保留所有文件权限
     - -v 处理文件时显示文件
 
+<!-- more -->
+
 实例：
-        
+
         //解压.tgz
         tar -zxvf filename.tgz
 
-* `ln` *option source_file dist_file* 
+* `ln` *option source_file dist_file*
 	- -b 覆盖已有的链接
 	- -f 强制执行
 	- -i 交互模式，提示是否覆盖等
@@ -119,7 +121,7 @@ description:
 * `killall` *name* 通过进程名结束进程
 * `mount` 挂载媒体设备，详见man
 实例：
-        
+
         //挂载iso文件
         mount -t iso9660 -o loop file_name.iso /path/to/
 
@@ -140,7 +142,7 @@ description:
 * `alias` 设置命令别名
     - -p 显示已有的别名列表
 实例：
-        
+
         //定义命令别名
         alias li='ls -il'
 
@@ -249,4 +251,4 @@ echo是用于终端打印的基本命令。默认情况下每次调用echo后都
 
 就是使用原本的rm指令而不是自己定义的别名。
 
-### 
+###

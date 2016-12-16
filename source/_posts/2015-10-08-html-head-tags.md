@@ -4,7 +4,7 @@ title: HTML常用头标签
 category: 技术
 tags: html
 keywords: html,头标签
-description: 
+description:
 ---
 
 ## meta
@@ -21,6 +21,8 @@ meta元素通常用于指定网页的描述，关键词，的文件的最后修�
 >__content__-定义与`http+equiv`或`name`属性相关的元信息，即名称/值对中的值
 >__scheme__-定义用于翻译`content`属性值的格式，html5中已删除此属性
 
+<!-- more -->
+
 使用`http-equiv`属性，服务器将把名称/值对添加到发送给浏览器的内容头部，例如：
 
 		<meta http-equiv="charset" content="iso-8859-1">
@@ -34,7 +36,7 @@ meta元素通常用于指定网页的描述，关键词，的文件的最后修�
 
 所有服务器都至少要发送一个：`content-type:text/html`，这将告诉浏览器准备接受一个 HTML 文档。
 
- 
+
 其它实例：
 
 		//定义文档关键词，用于搜索引擎
@@ -101,5 +103,3 @@ link比较常用的属性有`rel``href``type`：`rel`属性是必须的，规定
 		<link rel="alternate" type="application/rss+xml" title="RSS" href="/rss.xml" />
 		//添加favicon icon
 		<link rel="shortcut icon" type="image/ico" href="/favicon.ico" />
-
-

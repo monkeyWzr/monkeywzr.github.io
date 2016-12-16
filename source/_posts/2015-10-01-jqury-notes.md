@@ -4,7 +4,7 @@ title: jQury基础笔记
 category: 学习笔记
 tags: [jqury,教程]
 keywords: jquey,教程
-description: 
+description:
 ---
 
 ## 安装
@@ -23,6 +23,8 @@ description:
 ## 语法
 
 __基础语法： `$(selector).action()`__
+
+<!-- more -->
 
 ### 选择器
 
@@ -78,7 +80,7 @@ jquery选择器基于已存在的css选择器
 
 ### 常见DOM事件
 
-鼠标事件：`click` `dbclick` `mouseenter` `mouseleave` `mouseup` `hover` `mousedown` 
+鼠标事件：`click` `dbclick` `mouseenter` `mouseleave` `mouseup` `hover` `mousedown`
 键盘事件：`keypress` `keydown` `keyup`
 表单事件：`submit` `change` `focus` `blur`
 文档/窗口事件：`load` `resize` `scroll` `unload`
@@ -104,7 +106,7 @@ jquery选择器基于已存在的css选择器
 		$(selector).toggle(speed,callback);
 
 2. 淡入淡出
-		
+
 		//淡入隐藏的元素
 		$(selector).fadeIn(speed,callback);
 		//淡出可见元素
@@ -145,7 +147,7 @@ jquery选择器基于已存在的css选择器
 __注意：对元素位置进行操作，要将元素的css position属性设为`absolute``fixed`或者`relative`__
 
 jQuery中有一种chanining技术，允许在相同元素上依次执行多条命令
-		
+
 		//可进行换行和缩进以美观
 		$("#p1").css("color","red").slideUp(2000).slideDown(2000);
 
@@ -181,7 +183,7 @@ jQuery通常使用两种方法删除元素：
 		//删除被选元素及其子元素，可选参数selector可对删除元素进行过滤
 		$(selector).remove(selector);
 		//删除被选元素的子元素
-		$(selector)..empty();	
+		$(selector)..empty();
 
 ### CSS操作
 
@@ -230,7 +232,7 @@ jQuery提供了多个处理尺寸的方法。
 ### 遍历
 
 1. 向上遍历
-		
+
 		//返回每个被选元素的直接父元素
 		$(selector).parent();
 		//返回被选元素的所有祖先，直到文档的根元素<html>,可传入参数制定返回的祖先
@@ -248,7 +250,7 @@ jQuery提供了多个处理尺寸的方法。
 __注意：find()需要传入参数"*"以返回所有后代__，也可以指定子元素。
 
 实例：
-		
+
 		//返回class="1"的所有<p>
 		$(document).ready(function(){
   		$("div").children("p.1");
@@ -258,7 +260,7 @@ __注意：find()需要传入参数"*"以返回所有后代__，也可以指定�
 
 		//返回被选元素所有同胞元素，可传入参数指定同胞元素
 		$(selector).siblings();
-		//返回被选元素下一个/上一个同胞元素	
+		//返回被选元素下一个/上一个同胞元素
 		$(selector).next();
 		$(selector).prev();
 		//返回被选元素所有跟随/前面同胞元素
@@ -326,7 +328,7 @@ load()函数从服务器加载数据并把返回的数据放入被选元素中
 
 		//回调函数callback(data,status),第一个参数为请求页面内容，第二个参数为请求状态
 		$.get(URL,callback);
-		
+
 		//可选的 data 参数规定连同请求发送的数据
 		//可选参数callback(data,status)
 		$.post(URL,data,callback);
@@ -373,20 +375,20 @@ jQuery可以很方便的实现JSONP调用，下面贴出一个简单实例。
 		<html>
 		<head>
 			<title>JSONP 实例</title>
-			<script src="http://apps.bdimg.com/libs/jquery/1.8.3/jquery.js"></script>	
+			<script src="http://apps.bdimg.com/libs/jquery/1.8.3/jquery.js"></script>
 		</head>
 		<body>
 		<div id="divCustomers"></div>
 		<script>
 		$.getJSON("test.php?jsoncallback=?", function(data) {
-			
+
 			var html = '<ul>';
 			for(var i = 0; i < data.length; i++)
 			{
 				html += '<li>' + data[i] + '</li>';
 			}
 			html += '</ul>';
-			
+
 			$('#divCustomers').html(html);
 		});
 		</script>

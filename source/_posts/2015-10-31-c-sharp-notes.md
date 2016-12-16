@@ -3,8 +3,8 @@ layout: post
 title: C#学习笔记
 category: 学习笔记
 tags: [c#,教程]
-keywords: 
-description: 
+keywords:
+description:
 ---
 
 这里记录的都是与c/c++不太一样的地方，
@@ -24,6 +24,8 @@ C#提供了内置类型转换的方法，例如`ToBoolean``ToInt32``ToString`等
 		<date_type> ? <variable_name> = null;
 		int? num1 = null;
 		int? num2 = 250;
+
+<!-- more -->
 
 Null合并运算符`??`用于定义可空类型和引用类型的默认值；如果第一个操作数的侍卫null则返回第二个操作数，否则返回第一个操作数的值。
 
@@ -203,8 +205,3 @@ C#中有三种参数传递方式：值参数、引用参数、输出参数。
 ## 多线程
 
 ...
-
-
-		
-
-

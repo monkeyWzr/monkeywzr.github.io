@@ -4,7 +4,7 @@ title: vps搭建私人pptp vpn,新姿势GET！
 category: 技术
 tags: [pptp,vpn,vps,科学上网]
 keywords: pptp,vpn,vps,科学上网
-description: 
+description:
 ---
 
 一直用hosts和goagent的姿势搞学(ke)术(xue)研(shang)究(wang)，苦于两种方式限制颇多不稳定又不安全。不久前咬牙花了5刀开了DO的vps（当然，DO赠送了10刀回来），穷学生一枚的我终于能换换新姿势了，直接动手搭建了vpn。由于本人不太喜欢用额外的客户端，再加上pptp以简单著称，我决定采用pptp server。
@@ -21,6 +21,8 @@ putty登陆，速度可以，直接开始安装。这期间我试了试DO网站�
 
 		# sudo apt-get update
 		# sudo apt-get install pptpd
+
+<!-- more -->
 
 事实证明我朝GFW有多坑，服务器在美国的ubuntu从官方源下载速度炒鸡快，瞬间完事儿。
 

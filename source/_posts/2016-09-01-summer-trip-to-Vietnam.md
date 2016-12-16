@@ -22,6 +22,8 @@ keywords:
 顺化街道
 ![img](http://7xi8b3.com1.z0.glb.clouddn.com/blog/vietnamIMG_20160803_074152.jpg)
 
+<!-- more -->
+
 顺化去往岘港的途中。
 ![img](http://7xi8b3.com1.z0.glb.clouddn.com/blog/vietnamIMG_20160803_092150.jpg)
 ![img](http://7xi8b3.com1.z0.glb.clouddn.com/blog/vietnamIMG_20160803_093203.jpg)
