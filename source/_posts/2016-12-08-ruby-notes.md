@@ -122,6 +122,21 @@ class Subclass<Superclass
 end
 ```
 
+### 初始化（构造函数）
+
+`ruby`使用`initialize`关键字来实现构造函数的功能。
+
+```ruby
+class Fruit
+    def initialize( k="apple")
+        @kind = k
+        @condition = "ripe"
+    end
+end
+
+apple = Fruit.new "apple"
+```
+
 ## variables
 
 * `[a-z] or _` 本地变量
@@ -181,3 +196,63 @@ end
 
 ConstClass::C1 # return 120
 ```
+
+## 访问器(accessor)
+
+
+实例属性需要通过属性访问器访问。常规访问器有简化写法：
+```ruby
+class Fruit
+   def kind=(k)
+       @kind = k
+   end
+   def kind
+       @kind
+   end
+ end
+ ```
+
+### inspect方法
+
+当创建一个对象时解释器会返回一些信息：
+```ruby
+irb(main):009:0> apple = Fruit.new
+=> #<Fruit:0x00000000a34f58>
+irb(main):010:0>
+```
+
+可以通过`inspect`关键字来改变这种默认行为。
+```ruby
+class Fruit
+    def inspect
+        "a fruit is created"
+    end
+end
+```
+
+`inspect`方法常用来调试，可通过下面两种方式显示调用：
+```ruby
+p anObject
+puts anObject.inspect
+```
+
+### shortcuts
+
+`Ruby`提供了访问器的一些简写形式：
+
+|缩写|效果|
+| :------: | :------: |
+|attr_reader :v|	def v; @v; end|
+|attr_writer :v|	def v=(value); @v=value; end|
+|attr_accessor :v|	attr_reader :v; attr_writer :v|
+|attr_accessor :v, :w|	attr_accessor :v; attr_accessor :w|
+
+## 注释
+
+单行注释以`#`开头。
+块注释可使用`=begin` `=end`来标记。
+```ruby
+=begin
+这是一段注释块。This is a comment block.
+Egg, I dreamed I was old.
+=end
