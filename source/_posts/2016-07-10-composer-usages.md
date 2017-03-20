@@ -23,9 +23,14 @@ keywords:
     "require": {
         "monolog/monolog": "1.0.*"
     }
+    "require-dev": {
+        "phpunit/phpunit": "4.8.*"
+    }
 }
 
 ```
+
+`require`属性列出组件依赖的组件，`require-dev`属性列出的是开发时所需依赖，在生产环境下不会安装。
 
 <!-- more -->
 
