@@ -1,6 +1,7 @@
 ---
 title: 常用算法总结
-date: 2017-03-16 19:47:40
+date: 2017-02-24 19:47:40
+category: 学习笔记
 tags:
     - algorithms
 keywords:
@@ -15,16 +16,16 @@ keywords:
 文中代码通用的两个方法：
 ```java
 private static boolean less(Comparable v, Comparable w)
-    {
-        return v.compareTo(w) < 0;
-    }
+{
+    return v.compareTo(w) < 0;
+}
 
-    private static void exch(Comparable[] a, int i, int j)
-    {
-        Comparable swap = a[i];
-        a[i] = a[j];
-        a[j] = swap;
-    }
+private static void exch(Comparable[] a, int i, int j)
+{
+    Comparable swap = a[i];
+    a[i] = a[j];
+    a[j] = swap;
+}
 ```
 
 
