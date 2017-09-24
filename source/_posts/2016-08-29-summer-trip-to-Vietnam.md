@@ -4,7 +4,6 @@ title: 暑假越南行（一）
 category: 生活
 tags:
     - 旅行
-    - 越南
 keywords:
     - 旅行
     - 越南

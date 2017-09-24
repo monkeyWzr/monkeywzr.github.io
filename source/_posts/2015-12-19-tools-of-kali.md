@@ -2,7 +2,7 @@
 layout: post
 title: Kali的一些工具
 category: 学习笔记
-tags: [Kali,渗透]
+tags: [kali,linux]
 keywords: Kali,渗透
 description:
 ---

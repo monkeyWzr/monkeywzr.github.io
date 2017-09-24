@@ -2,8 +2,8 @@
 layout: post
 title: 文件上传组件Web Uploader
 category: 资料
-tags: [api,library]
-keywords: api,library
+tags: [html]
+keywords: 前端,webuploader
 description: 
 ---
 

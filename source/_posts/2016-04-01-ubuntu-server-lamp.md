@@ -2,7 +2,7 @@
 layout: post
 title: ubuntu server 搭建apache/mysql/php7
 category: 技术
-tags: [lamp,linux,apache,mysql,php,php7]
+tags: [linux,php]
 keywords: lamp,linux,apache,mysql,php,php7
 description: 
 ---

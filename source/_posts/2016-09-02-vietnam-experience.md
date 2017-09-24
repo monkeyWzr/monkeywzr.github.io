@@ -4,7 +4,6 @@ date: 2016-09-02 03:14:41
 category: 生活
 tags:
     - 旅行
-    - 越南
 keywords:
     - 旅行
     - 越南

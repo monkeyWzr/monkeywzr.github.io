@@ -2,7 +2,7 @@
 layout: post
 title: 基本的bash shell命令
 category: 学习笔记
-tags: [linux,bash,shell]
+tags: [linux]
 keywords: linux,bash,shell
 description:
 ---

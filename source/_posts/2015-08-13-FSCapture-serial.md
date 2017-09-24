@@ -2,7 +2,7 @@
 layout: post
 title: FSCapture序列号
 category: 资源
-tags: [FSCapture,激活,注册码,序列号]
+tags: [激活]
 keywords: FSCapture,激活,注册码,序列号
 ---
 

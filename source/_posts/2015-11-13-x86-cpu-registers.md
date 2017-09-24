@@ -2,7 +2,7 @@
 layout: post
 title: x86架构寄存器功能简记
 category: 技术
-tags: 
+tags: 操作系统
 keywords: 
 description: 
 ---

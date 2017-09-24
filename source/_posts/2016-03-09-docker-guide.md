@@ -2,7 +2,7 @@
 layout: post
 title: docker基础简记
 category: 学习笔记
-tags: [docker,基础,命令,原理]
+tags: [docker]
 keywords: docker,基础,命令,原理
 description:
 ---

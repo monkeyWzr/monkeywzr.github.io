@@ -5,7 +5,6 @@ category:
     - 学习笔记
 tags:
     - php
-    - composer
 keywords:
     - php
     - composer

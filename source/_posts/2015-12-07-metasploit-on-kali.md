@@ -2,7 +2,7 @@
 layout: post
 title: Kali下Metasploit学习笔记
 category: 学习笔记
-tags: [Metasploit,kali]
+tags: [kali,linux]
 keywords: Metasploit,kali,渗透,安全
 description:
 ---
