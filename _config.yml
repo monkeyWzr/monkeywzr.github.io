@@ -4,10 +4,10 @@
 
 # Site
 title: マクロス
-subtitle:
+subtitle: 
 description: 頑張ろう！
 author: 小灰机灰上天
-language: zh-Hans
+language: zh-CN
 timezone:
 since: 2015
 
@@ -46,6 +46,8 @@ highlight:
   auto_detect: true
   tab_replace:
 
+mathjax: true
+
 # Category & Tag
 default_category: uncategorized
 category_map:
@@ -66,7 +68,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: next
+theme: maupassant
 avatar: /img/head.jpg
 disqus_shortname: monkeywzr
 
@@ -77,34 +79,34 @@ deploy:
   repo: git@github.com:monkeyWzr/monkeywzr.github.io.git
   branch: master
 # 社交账号
-social:
-  GitHub: https://github.com/monkeyWzr
-  Twitter: https://twitter.com/wzr119
+# social:
+#   GitHub: https://github.com/monkeyWzr
+#   Twitter: https://twitter.com/wzr119
   # Facebook: https://www.facebook.com/monkeywzr
   # Google+: https://plus.google.com/u/0/109706734318766815600
-  微博: http://weibo.com/1244449463
+  # 微博: http://weibo.com/1244449463
   # 知乎: https://www.zhihu.com/people/xiao-hui-ji-hui-shang-tian
 
 # 各种统计分析
-google_analytics: UA-83047470-1
-baidu_analytics: 729720b53fc2c18615d4ed229708c999
-tencent_analytics: 58089160
+# google_analytics: UA-83047470-1
+# baidu_analytics: 729720b53fc2c18615d4ed229708c999
+# tencent_analytics: 58089160
 
 # google webmaster tool
-google_site_verification: 5tEovdIgJQWd14qZlP96eAjNhl5oRuPURB23mjYYcvQ
-sitemap:
-    path: sitemap.xml
+# google_site_verification: 5tEovdIgJQWd14qZlP96eAjNhl5oRuPURB23mjYYcvQ
+# sitemap:
+#     path: sitemap.xml
 
 # swiftype只有两周的试用
 # swiftype_key: whJiTn1vmzLLzmXfzF6h
 # search:
 #   path: search.xml
 #   field: post
-algolia:
-  applicationID: UM8JZA8Q8J
-  apiKey: c197d462f80960bd626fbbe755a35582
-  adminApiKey: 8bd82a54c0d12622f4b8d31fc55d6f1e
-  indexName: my_blog
-  chunkSize: 5000
+# algolia:
+#   applicationID: UM8JZA8Q8J
+#   apiKey: c197d462f80960bd626fbbe755a35582
+#   adminApiKey: 8bd82a54c0d12622f4b8d31fc55d6f1e
+#   indexName: my_blog
+#   chunkSize: 5000
 
 # jiathis: true
