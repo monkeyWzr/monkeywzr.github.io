@@ -165,7 +165,7 @@ require 'vendor/autoload.php';
 
 也可以在 `composer.json` 的 `autoload` 字段中增加自己的 `autoloader`。当前composer支持`PSR-0` ` PSR-4` `classmap` 和文件包含。官方提倡使用PSR-4标准的方式。
 
-{% cq %} PSR-4 is the recommended way though since it offers greater ease of use (no need to regenerate the autoloader when you add classes). {% endcq %}
+>PSR-4 is the recommended way though since it offers greater ease of use (no need to regenerate the autoloader when you add classes).
 
 在 `composer.json` 中配置 `autoloader`
 
@@ -184,7 +184,7 @@ Composer 将注册一个 `PSR-4 autoloader` 到 `Wzr` 命名空间，且该命�
 
 命名空间一定要以`\\`来分隔，好处在这：（懒得翻译了<(￣3￣)>)
 
-{% cq %} Namespace prefixes must end in `\\` to avoid conflicts between similar prefixes. For example Foo would match classes in the FooBar namespace so the trailing backslashes solve the problem: `Foo\\` and `FooBar\\` are distinct. {% endcq %}
+>Namespace prefixes must end in `\\` to avoid conflicts between similar prefixes. For example Foo would match classes in the FooBar namespace so the trailing backslashes solve the problem: `Foo\\` and `FooBar\\` are distinct.
 
 ## 发布
 
