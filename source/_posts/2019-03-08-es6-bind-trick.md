@@ -1,3 +1,14 @@
+---
+title: Bind specific arguments of a function
+tags:
+    - JavaScript
+category: 技术
+keywords:
+    - Javascript
+    - ES2015
+    - ES6
+---
+
 To bind specific (nth) arguments of a function, we can write a decorator instead of using `Function.bind()`:
 
 ```js
