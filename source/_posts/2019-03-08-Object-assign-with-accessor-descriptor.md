@@ -36,6 +36,8 @@ console.log(copy.name) // undefined
 
 The `name` property is lost. 
 
+<!--more-->
+
 To copy accessors, we can use `Object.getOwnPropertyDescriptor()` and `Object.defineProperty()` as the MDN docs recommend:
 
 ```js
