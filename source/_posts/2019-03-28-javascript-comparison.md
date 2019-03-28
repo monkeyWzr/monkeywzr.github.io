@@ -26,6 +26,7 @@ They all output `false`!
 I googled a lot and finally found answers in [Ecma-262 Specification](http://www.ecma-international.org/ecma-262/8.0/#sec-abstract-equality-comparison).
 
 The comparison `x == y`, where x and y are values, produces true or false. Such a comparison is performed as follows:
+<!-- more -->
 ```text
 1. If Type(x) is the same as Type(y), then return the result of performing Strict Equality Comparison x === y.
 2. If x is null and y is undefined, return true.
