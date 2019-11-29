@@ -73,6 +73,6 @@ Processes　⇒　More Options　⇒　View Process　⇒　最新のバージ�
 
 ジョブ (Jobs) -> プロセス (Processes) -> パッケージ(UiPath Studio)
 
-###　マシンテンプレート
+### マシンテンプレート
 
 Machine Templates only work for Active Directory users, Attended Floating Robots and Studio Floating Robots.
