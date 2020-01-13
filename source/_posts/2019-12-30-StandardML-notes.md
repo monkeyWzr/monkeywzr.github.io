@@ -30,6 +30,11 @@ val z = ~1;
 val w = y div x
 ```
 
+Strings:
+
+```ML
+
+```
 
 
 An ML program is a sequence of bindings. Each binding gets **type-checked** and then **evaluated**. 
@@ -231,6 +236,6 @@ Comparisons:
 * `=` `<>` `>` `<` `>=` `<=`
     - `=` and `<>` can be used with any "equality type" but not with real
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4Mjk5NjE5MzMsMTQyNjUxMTMxOSwtNz
-A3Njc4MzA3XX0=
+eyJoaXN0b3J5IjpbMjAyNTk4MTk5MiwxNDI2NTExMzE5LC03MD
+c2NzgzMDddfQ==
 -->
