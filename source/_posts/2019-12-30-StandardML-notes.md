@@ -108,6 +108,8 @@ val x = [7,8,9];
 ```
 
 To append a list t a list, use list-append operator `@`:
+>Interface:
+>  **val**  [@](http://sml-family.org/Basis/list.html#SIG:LIST.@:VAL)  **:**  _'a_ list *****  _'a_ list **->**  _'a_ list
 ```
 val x = [1,2] @ [3,4,5];
 ```
@@ -225,5 +227,5 @@ Comparisons:
 * `=` `<>` `>` `<` `>=` `<=`
     - `=` and `<>` can be used with any "equality type" but not with real
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIxMDM2ODAxNTQsLTcwNzY3ODMwN119
+eyJoaXN0b3J5IjpbLTE3MjM3OTE3NTksLTcwNzY3ODMwN119
 -->
