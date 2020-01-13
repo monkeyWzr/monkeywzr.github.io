@@ -108,12 +108,12 @@ val x = [7,8,9];
 ```
 
 To append a list t a list, use list-append operator `@`:
-[# The Standard ML Basis Library]()
+[Reference：# The Standard ML Basis Library]([http://sml-family.org/Basis/list.html](http://sml-family.org/Basis/list.html))
 >Interface:
 >  **val**  [@](http://sml-family.org/Basis/list.html#SIG:LIST.@:VAL)  **:**  _'a_ list *  _'a_ list **->**  _'a_ list
 
 ```
-val x = [1,2] @ [3,4,5];
+val x = [1,2] @ [3,4,5]; (* [1,2,3,4,5] *)
 ```
 Accessing:
 ```ML
@@ -229,5 +229,5 @@ Comparisons:
 * `=` `<>` `>` `<` `>=` `<=`
     - `=` and `<>` can be used with any "equality type" but not with real
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTkxOTc0NzM1OSwtNzA3Njc4MzA3XX0=
+eyJoaXN0b3J5IjpbMTQyNjUxMTMxOSwtNzA3Njc4MzA3XX0=
 -->
