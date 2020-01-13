@@ -33,8 +33,10 @@ val w = y div x
 Strings:
 
 ```ML
+(* `\n`のようなエスケープシーケンスが利用できる *)
 val x = "hello\n"; 
-val y = "hello " ^ ""
+(* 文字列の連結には'^'を使う *)
+val y = "hello " ^ "world";
 ```
 
 
@@ -237,6 +239,6 @@ Comparisons:
 * `=` `<>` `>` `<` `>=` `<=`
     - `=` and `<>` can be used with any "equality type" but not with real
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjExNTEwNTY2NiwxNDI2NTExMzE5LC03MD
-c2NzgzMDddfQ==
+eyJoaXN0b3J5IjpbMzI5MTQ3NTksMTQyNjUxMTMxOSwtNzA3Nj
+c4MzA3XX0=
 -->
