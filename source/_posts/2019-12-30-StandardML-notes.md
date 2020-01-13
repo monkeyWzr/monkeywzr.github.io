@@ -106,6 +106,11 @@ val x = [7,8,9];
 6::5::x;
 [6]::[[1,2],[3,4];
 ```
+
+To append a list t a list, use list-append operator `@`:
+```
+val x = [1,2] @ [3,4,5];
+```
 Accessing:
 ```ML
 val x = [7,8,9];
@@ -220,5 +225,5 @@ Comparisons:
 * `=` `<>` `>` `<` `>=` `<=`
     - `=` and `<>` can be used with any "equality type" but not with real
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTcwNzY3ODMwN119
+eyJoaXN0b3J5IjpbLTIxMDM2ODAxNTQsLTcwNzY3ODMwN119
 -->
