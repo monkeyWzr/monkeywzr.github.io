@@ -89,9 +89,11 @@ fun sort_pair(pr : int * int) =
 	(#2 pr, #1 pr);
 ```
 
-ML supportstuplesby allowing any number of parts. Pairs and tuples can be nested however you want.
+ML supportstuplesby allowing any number of parts. Pairs and tuples can be nested however you want. For example, a 3-tuple (i.e., a triple) of integers has type int*int*int. An example is (7,9,11) and you retrieve the parts with #1 e, #2 e, and #3 e where
+e is an expression that evaluates to a triple.
 
 ```ML
+val a = (7, 9, 11) (*  *)
 val x = (3, (4, (5,6))); (* int * (int * (int * int)) *)
 val y = (#2 x, (#1 x, #2 (#2 x))); (* (int * (int * int)) * (int * (int * int)) *)
 val ans = (#2 y, 4); (* (int * (int * int)) * int *)
@@ -218,3 +220,6 @@ Boolean operations:
 Comparisons:
 * `=` `<>` `>` `<` `>=` `<=`
     - `=` and `<>` can be used with any "equality type" but not with real
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTIwNDEwNjk4NDZdfQ==
+-->
