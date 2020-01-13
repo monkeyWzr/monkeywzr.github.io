@@ -207,7 +207,7 @@ An option value has either 0 or 1 thing: `None` is an option value carrying noth
 
 We have:
 * `isSome` which evaluates to false if its argument is NONE
-* `valOf` to get the value carried by `SOME`
+* `valOf` to get the value carried by `SOME`(raising exception for `NONE`)
 
 ```ML
 fun max1( xs : int list) =
@@ -238,6 +238,6 @@ Comparisons:
 * `=` `<>` `>` `<` `>=` `<=`
     - `=` and `<>` can be used with any "equality type" but not with real
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4NTQ0MzU0OTUsMTQyNjUxMTMxOSwtNz
-A3Njc4MzA3XX0=
+eyJoaXN0b3J5IjpbLTEyODE5OTYxNjEsLTE4NTQ0MzU0OTUsMT
+QyNjUxMTMxOSwtNzA3Njc4MzA3XX0=
 -->
