@@ -38,6 +38,10 @@ Sometimes we use just `environment` to mean dynamic environment and use `context
 * Semantics: How it type-checks and evaluates
 * Value: an expression that has no more computation to do
 
+### Strings
+
+
+
 ### Shadowing
 
 **Bindings are immutable** in SML. Given `val x = 8 + 9;` we produce a dynamic environment where x maps to 17. 
@@ -229,5 +233,6 @@ Comparisons:
 * `=` `<>` `>` `<` `>=` `<=`
     - `=` and `<>` can be used with any "equality type" but not with real
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQyNjUxMTMxOSwtNzA3Njc4MzA3XX0=
+eyJoaXN0b3J5IjpbMTAzOTEyOTA2MiwxNDI2NTExMzE5LC03MD
+c2NzgzMDddfQ==
 -->
