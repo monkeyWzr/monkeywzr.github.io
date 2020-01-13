@@ -30,6 +30,8 @@ val z = ~1;
 val w = y div x
 ```
 
+
+
 An ML program is a sequence of bindings. Each binding gets **type-checked** and then **evaluated**. 
 What type a binding has depends on a static environment. How a binding is evaluated depends on a dynamic environment.
 Sometimes we use just `environment` to mean dynamic environment and use `context` as a synonym for static environment.
@@ -37,10 +39,6 @@ Sometimes we use just `environment` to mean dynamic environment and use `context
 * Syntaxs : How to write it.
 * Semantics: How it type-checks and evaluates
 * Value: an expression that has no more computation to do
-
-### Strings
-
-
 
 ### Shadowing
 
@@ -233,6 +231,6 @@ Comparisons:
 * `=` `<>` `>` `<` `>=` `<=`
     - `=` and `<>` can be used with any "equality type" but not with real
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTAzOTEyOTA2MiwxNDI2NTExMzE5LC03MD
-c2NzgzMDddfQ==
+eyJoaXN0b3J5IjpbLTE4Mjk5NjE5MzMsMTQyNjUxMTMxOSwtNz
+A3Njc4MzA3XX0=
 -->
