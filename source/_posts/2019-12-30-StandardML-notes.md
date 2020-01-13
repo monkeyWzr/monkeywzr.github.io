@@ -33,7 +33,8 @@ val w = y div x
 Strings:
 
 ```ML
-
+val x = "hello\n"; 
+val y = "hello " ^ ""
 ```
 
 
@@ -236,6 +237,6 @@ Comparisons:
 * `=` `<>` `>` `<` `>=` `<=`
     - `=` and `<>` can be used with any "equality type" but not with real
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjAyNTk4MTk5MiwxNDI2NTExMzE5LC03MD
+eyJoaXN0b3J5IjpbMjExNTEwNTY2NiwxNDI2NTExMzE5LC03MD
 c2NzgzMDddfQ==
 -->
