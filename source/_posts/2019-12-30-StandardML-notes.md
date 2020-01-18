@@ -301,10 +301,10 @@ We separate the branches with the `|` character. Each branch has the form `p => 
 
 ### Lists and Options are Datatypes too
 
-
+`SOME` and `NONE` are actually constructors. So you ca
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTc1NDQ4MDE0LDE2NTI4Mjg0NjAsMjQ3Mz
-U4NzA3LC03NzI4NjU0MzksMjE4MDUwODAsODYxODEyNjU0LDU2
-MzAyMzkzMywtMTI0MzE5NTM1OCwtMTI4MTk5NjE2MSwtMTg1ND
-QzNTQ5NSwxNDI2NTExMzE5LC03MDc2NzgzMDddfQ==
+eyJoaXN0b3J5IjpbLTE3MDE2NzUxNzYsMTY1MjgyODQ2MCwyND
+czNTg3MDcsLTc3Mjg2NTQzOSwyMTgwNTA4MCw4NjE4MTI2NTQs
+NTYzMDIzOTMzLC0xMjQzMTk1MzU4LC0xMjgxOTk2MTYxLC0xOD
+U0NDM1NDk1LDE0MjY1MTEzMTksLTcwNzY3ODMwN119
 -->
