@@ -238,8 +238,10 @@ Comparisons:
 * `=` `<>` `>` `<` `>=` `<=`
     - `=` and `<>` can be used with any "equality type" but not with real
 
-### Build New Types
+## Build New Types
+
+To Create
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbODk3NDM3MjYzLC0xMjgxOTk2MTYxLC0xOD
-U0NDM1NDk1LDE0MjY1MTEzMTksLTcwNzY3ODMwN119
+eyJoaXN0b3J5IjpbLTI4MjYyMjMzMywtMTI4MTk5NjE2MSwtMT
+g1NDQzNTQ5NSwxNDI2NTExMzE5LC03MDc2NzgzMDddfQ==
 -->
