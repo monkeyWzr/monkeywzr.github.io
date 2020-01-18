@@ -268,10 +268,10 @@ datatype mytype = TwoInts of int*int
 		                       | Str of string
                                | Pizza;
 val a = Str "hi"; (* Str "hi" : mytype *)
-val b = Str; (**)
-val c = Pizza;
-val d = TwoInts(1+2, 3+4);
-val e = a;
+val b = Str; (* fn : string -> mytype *)
+val c = Pizza; (* Pizza : mytype *)
+val d = TwoInts(1+2, 3+4); (* TwoInts (3,7) : mytype *)
+val e = a; (* Str "hi" : mytype *)
 
 
 ```ML
@@ -282,7 +282,7 @@ val e = a;
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTcwMDM1NDMwNSw1NjMwMjM5MzMsLTEyND
+eyJoaXN0b3J5IjpbMTk3Nzc1MjgwMyw1NjMwMjM5MzMsLTEyND
 MxOTUzNTgsLTEyODE5OTYxNjEsLTE4NTQ0MzU0OTUsMTQyNjUx
 MTMxOSwtNzA3Njc4MzA3XX0=
 -->
