@@ -289,14 +289,13 @@ fun f (x : mytype) =
       | Str s => 8
       |  TwoInts(i1, i2) => i1 + i2;
 
-- f(Str("a"));
-val it = 8 : int
+f(Str("a")); (* val it = 8 : int *)
 ```
-
+We separate the branches with the `|` character. 
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTQzMzQ4NjY5MiwyMTgwNTA4MCw4NjE4MT
-I2NTQsNTYzMDIzOTMzLC0xMjQzMTk1MzU4LC0xMjgxOTk2MTYx
-LC0xODU0NDM1NDk1LDE0MjY1MTEzMTksLTcwNzY3ODMwN119
+eyJoaXN0b3J5IjpbNDM5NTA0MTA2LDIxODA1MDgwLDg2MTgxMj
+Y1NCw1NjMwMjM5MzMsLTEyNDMxOTUzNTgsLTEyODE5OTYxNjEs
+LTE4NTQ0MzU0OTUsMTQyNjUxMTMxOSwtNzA3Njc4MzA3XX0=
 -->
