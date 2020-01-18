@@ -277,12 +277,12 @@ val e = a; (* Str "hi" : mytype *)
 ```
 The example above adds four things to the environment:
 * A new type mytype that we can now use just like any other types
-* Three constructors `TwoInt`
+* Three constructors `TwoInts`, `Str`, `Pizza`
 
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjA5OTg0NjMwOCw1NjMwMjM5MzMsLTEyND
-MxOTUzNTgsLTEyODE5OTYxNjEsLTE4NTQ0MzU0OTUsMTQyNjUx
-MTMxOSwtNzA3Njc4MzA3XX0=
+eyJoaXN0b3J5IjpbODYxODEyNjU0LDU2MzAyMzkzMywtMTI0Mz
+E5NTM1OCwtMTI4MTk5NjE2MSwtMTg1NDQzNTQ5NSwxNDI2NTEx
+MzE5LC03MDc2NzgzMDddfQ==
 -->
