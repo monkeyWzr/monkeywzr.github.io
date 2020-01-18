@@ -279,12 +279,21 @@ The example above adds four things to the environment:
 * A new type mytype that we can now use just like any other types
 * Three constructors `TwoInts`, `Str`, `Pizza`
 
+### Case Expressions
 
+To access to datatype values, we can use a case expression:
+```ML
+fun f (x : mytype) =
+    case x of
+	Pizza => 3
+      | Str s => 8
+      |  TwoInts(i1, i2) => i1 + i2;
+```
 
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTUwMTIyMDk4Miw4NjE4MTI2NTQsNTYzMD
-IzOTMzLC0xMjQzMTk1MzU4LC0xMjgxOTk2MTYxLC0xODU0NDM1
-NDk1LDE0MjY1MTEzMTksLTcwNzY3ODMwN119
+eyJoaXN0b3J5IjpbMjE4MDUwODAsODYxODEyNjU0LDU2MzAyMz
+kzMywtMTI0MzE5NTM1OCwtMTI4MTk5NjE2MSwtMTg1NDQzNTQ5
+NSwxNDI2NTExMzE5LC03MDc2NzgzMDddfQ==
 -->
