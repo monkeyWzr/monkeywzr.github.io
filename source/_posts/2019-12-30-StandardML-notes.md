@@ -254,9 +254,16 @@ val x = {bar = (1+2,true andalso true), foo = 3+4, baz = (false,9) }
 #bar x (* (3, true) *)
 ```
 
-Tupels are ac
+Tupels are actually syntactic sugar for records.
+
+
+
+
+
+
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTcxNTA1MjczMywtMTI0MzE5NTM1OCwtMT
-I4MTk5NjE2MSwtMTg1NDQzNTQ5NSwxNDI2NTExMzE5LC03MDc2
-NzgzMDddfQ==
+eyJoaXN0b3J5IjpbLTIwNDQwMzk5OTUsLTEyNDMxOTUzNTgsLT
+EyODE5OTYxNjEsLTE4NTQ0MzU0OTUsMTQyNjUxMTMxOSwtNzA3
+Njc4MzA3XX0=
 -->
