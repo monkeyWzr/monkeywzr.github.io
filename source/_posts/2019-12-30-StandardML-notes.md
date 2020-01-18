@@ -264,14 +264,25 @@ val y = {1="a",3="b"} : {1:string, 3:string}
 
 
 ### Datatype bindings
+datatype mytype = TwoInts of int*int
+		                       | Str of string
+                               | Pizza;
+val a = Str "hi"; (* Str "hi" : mytype *)
+val b = Str; (**)
+val c = Pizza;
+val d = TwoInts(1+2, 3+4);
+val e = a;
 
 
+```ML
+
+```
 
 
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTYzMDIzOTMzLC0xMjQzMTk1MzU4LC0xMj
-gxOTk2MTYxLC0xODU0NDM1NDk1LDE0MjY1MTEzMTksLTcwNzY3
-ODMwN119
+eyJoaXN0b3J5IjpbLTcwMDM1NDMwNSw1NjMwMjM5MzMsLTEyND
+MxOTUzNTgsLTEyODE5OTYxNjEsLTE4NTQ0MzU0OTUsMTQyNjUx
+MTMxOSwtNzA3Njc4MzA3XX0=
 -->
