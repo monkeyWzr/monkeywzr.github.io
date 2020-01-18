@@ -301,9 +301,12 @@ We separate the branches with the `|` character. Each branch has the form `p => 
 
 ### Lists and Options are Datatypes too
 
-`SOME` and `NONE` are actually constructors. So you ca
+`SOME` and `NONE` are actually constructors. So you can use them in a case like:
+```ML
+fun inc_or_zero intoption = 
+```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3MDE2NzUxNzYsMTY1MjgyODQ2MCwyND
+eyJoaXN0b3J5IjpbLTE5MTc0MDI5NTgsMTY1MjgyODQ2MCwyND
 czNTg3MDcsLTc3Mjg2NTQzOSwyMTgwNTA4MCw4NjE4MTI2NTQs
 NTYzMDIzOTMzLC0xMjQzMTk1MzU4LC0xMjgxOTk2MTYxLC0xOD
 U0NDM1NDk1LDE0MjY1MTEzMTksLTcwNzY3ODMwN119
