@@ -299,9 +299,12 @@ f(Str("a")); (* val it = 8 : int *)
 ```
 We separate the branches with the `|` character. Each branch has the form `p => e` where p is a pattern and e is an expression. Patterns are used to match against the result of evaluating the case's first expression. This is why evaluating a case-expression is called pattern-matching.
 
+### Lists and Options are Datatypes too
+
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTY1MjgyODQ2MCwyNDczNTg3MDcsLTc3Mj
-g2NTQzOSwyMTgwNTA4MCw4NjE4MTI2NTQsNTYzMDIzOTMzLC0x
-MjQzMTk1MzU4LC0xMjgxOTk2MTYxLC0xODU0NDM1NDk1LDE0Mj
-Y1MTEzMTksLTcwNzY3ODMwN119
+eyJoaXN0b3J5IjpbLTc1NDQ4MDE0LDE2NTI4Mjg0NjAsMjQ3Mz
+U4NzA3LC03NzI4NjU0MzksMjE4MDUwODAsODYxODEyNjU0LDU2
+MzAyMzkzMywtMTI0MzE5NTM1OCwtMTI4MTk5NjE2MSwtMTg1ND
+QzNTQ5NSwxNDI2NTExMzE5LC03MDc2NzgzMDddfQ==
 -->
