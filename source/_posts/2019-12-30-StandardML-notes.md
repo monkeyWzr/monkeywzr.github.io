@@ -242,8 +242,9 @@ Comparisons:
 
 To Create a compound type, there are really only three essential building blocks:
 
-* **Each-of** : A compound typ t 
+* **Each-of** : A compound type t describes values that contain each of values of type `t1` `t2` ... `tn`
+* **One0-of**: A compound type t describes values that contain a value of one of the types `t1` `t2` ... `tn` 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2NTc1NTI0NTUsLTEyODE5OTYxNjEsLT
-E4NTQ0MzU0OTUsMTQyNjUxMTMxOSwtNzA3Njc4MzA3XX0=
+eyJoaXN0b3J5IjpbMTE0MTcyNjg3MSwtMTI4MTk5NjE2MSwtMT
+g1NDQzNTQ5NSwxNDI2NTExMzE5LC03MDc2NzgzMDddfQ==
 -->
