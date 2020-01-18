@@ -1,7 +1,7 @@
 ---
 layout: post
 title: jQury基础笔记
-category: 学习笔记
+category: notes
 tags: [jqury,教程]
 keywords: jquey,教程
 description:

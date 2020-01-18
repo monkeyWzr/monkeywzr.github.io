@@ -1,7 +1,7 @@
 ---
 layout: post
 title: markdown语法简记
-category: 学习笔记
+category: notes
 tags: [markdown,教程]
 keywords: markdown,教程
 description:

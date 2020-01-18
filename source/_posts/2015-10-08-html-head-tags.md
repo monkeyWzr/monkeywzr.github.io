@@ -1,7 +1,7 @@
 ---
 layout: post
 title: HTML常用头标签
-category: 技术
+category: tech
 tags: html
 keywords: html,头标签
 description:

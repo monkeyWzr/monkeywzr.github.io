@@ -1,7 +1,7 @@
 ---
 title: Algorithms part1 programming assignments 1 - Percolation
 date: 2017-02-08 20:48:32
-category: 学习笔记
+category: notes
 tags:
   - algorithms
 keywords:

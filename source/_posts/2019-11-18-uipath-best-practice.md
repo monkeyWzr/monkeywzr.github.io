@@ -2,7 +2,7 @@
 title: uipath ノート（二）- Best Practice
 tags:
     - RPA
-category: 技术
+category: tech
 keywords:
     - RPA
     - uipath

@@ -1,7 +1,7 @@
 ---
 title: 提升ListView的效率
 date: 2017-10-04 04:52:18
-category: 技术
+category: tech
 tags:
     - android
     - java

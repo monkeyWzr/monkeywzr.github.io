@@ -2,7 +2,7 @@
 title: JavaScript URI エンコーディング
 tags:
     - JavaScript
-category: 技术
+category: tech
 keywords:
     - Javascript
     - encodeURIComponent

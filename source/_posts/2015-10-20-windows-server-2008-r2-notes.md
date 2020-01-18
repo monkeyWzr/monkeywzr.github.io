@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Windows Server 2008 r2学习笔记
-category: 学习笔记
+category: notes
 tags: [服务器]
 keywords: server,服务器
 description: 

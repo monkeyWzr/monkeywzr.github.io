@@ -1,7 +1,7 @@
 ---
 layout: post
 title: C#学习笔记
-category: 学习笔记
+category: notes
 tags: [c#,教程]
 keywords:
 description:

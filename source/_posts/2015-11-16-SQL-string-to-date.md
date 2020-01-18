@@ -1,7 +1,7 @@
 ---
 layout: post
 title: SQL字符串转换成时间
-category: 技术
+category: tech
 tags: SQLServer
 keywords: 
 description: 

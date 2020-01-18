@@ -2,7 +2,7 @@
 title: Bind specific arguments of a function
 tags:
     - JavaScript
-category: 技术
+category: tech
 keywords:
     - Javascript
     - ES2015

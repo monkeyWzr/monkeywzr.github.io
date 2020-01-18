@@ -1,7 +1,7 @@
 ---
 title: Android Webview中的编码问题
 date: 2017-09-24 20:11:30
-category: 技术
+category: tech
 tags:
     - android
     - java

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 基本的bash shell命令
-category: 学习笔记
+category: notes
 tags: [linux]
 keywords: linux,bash,shell
 description:

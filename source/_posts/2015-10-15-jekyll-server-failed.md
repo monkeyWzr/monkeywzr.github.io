@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 解决jekyll server无法启动问题
-category: 技术
+category: tech
 tags: 
 keywords: 
 description: 

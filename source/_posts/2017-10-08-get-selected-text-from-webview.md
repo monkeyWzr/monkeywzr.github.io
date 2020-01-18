@@ -1,7 +1,7 @@
 ---
 title: get-selected-text-from-webview
 date: 2017-10-08 00:30:19
-category: 技术
+category: tech
 tags:
     - android
     - java

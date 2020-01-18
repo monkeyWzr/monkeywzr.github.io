@@ -1,7 +1,7 @@
 ---
 title: 使用Gson解析含有动态未知键名的json数据
 date: 2017-09-05 14:16:06
-category: 技术
+category: tech
 tags:
     - android
     - java

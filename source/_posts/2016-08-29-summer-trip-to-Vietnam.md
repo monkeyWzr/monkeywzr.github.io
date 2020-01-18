@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 暑假越南行（一）
-category: 生活
+category: life
 tags:
     - 旅行
 keywords:

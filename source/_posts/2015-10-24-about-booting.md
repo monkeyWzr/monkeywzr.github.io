@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 开机流程中的事儿
-category: 技术
+category: tech
 tags: [操作系统]
 keywords: UEFI,BIOS,开机引导
 description:

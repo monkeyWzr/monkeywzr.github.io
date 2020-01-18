@@ -1,8 +1,7 @@
 ---
 title: composer用法
 date: 2016-07-10 12:21:46
-category:
-    - 学习笔记
+category: notes
 tags:
     - php
 keywords:

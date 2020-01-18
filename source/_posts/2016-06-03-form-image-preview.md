@@ -1,7 +1,7 @@
 ---
 layout: post
 title: jquery实现表单上传图片预览
-category: 技术
+category: tech
 tags: [jquery,php,html]
 keywords: jquery,php,html,图片预览
 description:

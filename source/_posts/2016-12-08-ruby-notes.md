@@ -1,7 +1,7 @@
 ---
 title: ruby学习笔记
 date: 2016-12-08 22:54:49
-category: 学习笔记
+category: notes
 tags:
     - ruby
 keywords:

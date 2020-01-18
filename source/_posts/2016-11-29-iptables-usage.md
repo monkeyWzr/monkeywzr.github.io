@@ -1,7 +1,7 @@
 ---
 title: netfilter/iptables 笔记
 date: 2016-11-29 21:08:52
-category: 学习笔记
+category: notes
 tags:
     - linux
 keywords:

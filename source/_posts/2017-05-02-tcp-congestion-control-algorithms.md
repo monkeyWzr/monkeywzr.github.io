@@ -1,7 +1,7 @@
 ---
 title: tcp拥塞控制算法总结（含BBR）
 date: 2017-05-02 15:38:54
-category: 学习笔记
+category: notes
 tags:
     - tcp
 keywords:

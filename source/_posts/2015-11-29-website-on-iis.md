@@ -1,7 +1,7 @@
 ---
 layout: post
 title: asp.net网站搭常见问题
-category: 技术
+category: tech
 tags: [iis]
 keywords: 网站搭建，iis
 description: 

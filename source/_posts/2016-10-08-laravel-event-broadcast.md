@@ -1,7 +1,7 @@
 ---
 title: laravel 5.2 事件广播
 date: 2016-10-08 00:38:47
-category: 学习笔记
+category: notes
 tags:
     - laravel
     - php

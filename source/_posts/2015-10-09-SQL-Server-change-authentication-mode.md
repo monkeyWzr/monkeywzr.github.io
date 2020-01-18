@@ -1,7 +1,7 @@
 ---
 layout: post
 title: SQL Server更改服务器身份验证模式
-category: 技术
+category: tech
 tags: SQLServer
 keywords: SQL Server 2008 r2,身份验证
 description:

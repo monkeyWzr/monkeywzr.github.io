@@ -2,7 +2,7 @@
 title: uipath ノート（三）- uipath orchestrator
 tags:
     - RPA
-category: 技术
+category: tech
 keywords:
     - RPA
     - uipath

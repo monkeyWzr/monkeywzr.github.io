@@ -1,7 +1,7 @@
 ---
 layout: post
 title: php几种设计模式
-category: 学习笔记
+category: notes
 tags: [php,设计模式]
 keywords: php,设计模式
 description:

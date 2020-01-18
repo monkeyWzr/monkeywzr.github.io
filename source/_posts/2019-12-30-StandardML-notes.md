@@ -2,7 +2,7 @@
 title: Standard ML notes
 tags:
     - SML
-category: 技术
+category: tech
 keywords:
     - SML
 ---

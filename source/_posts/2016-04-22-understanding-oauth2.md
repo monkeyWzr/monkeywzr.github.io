@@ -1,6 +1,6 @@
 layout: post
 title: 简记oath2.0
-category: 学习笔记
+category: notes
 tags: [oauth2]
 keywords: oauth2
 description:

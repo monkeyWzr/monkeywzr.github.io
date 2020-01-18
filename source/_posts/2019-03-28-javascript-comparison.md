@@ -2,7 +2,7 @@
 title: JavaScript Comparison operation at a glance
 tags:
     - JavaScript
-category: 技术
+category: tech
 keywords:
     - Javascript
     - ES2015

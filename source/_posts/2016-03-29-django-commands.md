@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Django常用命令
-category: 学习笔记
+category: notes
 tags: [python]
 keywords: Django,python
 description:

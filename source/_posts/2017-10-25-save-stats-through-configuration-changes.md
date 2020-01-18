@@ -1,7 +1,7 @@
 ---
 title: Android配置变更时的状态保留
 date: 2017-10-25 03:59:14
-category: 技术
+category: tech
 tags:
     - android
     - java

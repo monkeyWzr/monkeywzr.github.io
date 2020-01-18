@@ -1,7 +1,7 @@
 ---
 title: Android中的MVP模式
 date: 2017-09-29 15:18:32
-category: 学习笔记
+category: notes
 tags:
     - android
     - java
