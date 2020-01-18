@@ -258,7 +258,8 @@ Tupels are actually syntactic sugar for records. `#1 e`, `#2 e`, etc. mean: get 
 ```ML
 - val x = {1="a",2="b"};
 val x = ("a","b") : string * string
-
+- val y = {1="a", 3="b"};
+val y = {1="a",3="b"} : {1:string, 3:string}
 ```
 
 
@@ -268,7 +269,7 @@ val x = ("a","b") : string * string
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTgyNTk0OTIyNCwtMTI0MzE5NTM1OCwtMT
+eyJoaXN0b3J5IjpbMjAxNjc4MjUxOCwtMTI0MzE5NTM1OCwtMT
 I4MTk5NjE2MSwtMTg1NDQzNTQ5NSwxNDI2NTExMzE5LC03MDc2
 NzgzMDddfQ==
 -->
