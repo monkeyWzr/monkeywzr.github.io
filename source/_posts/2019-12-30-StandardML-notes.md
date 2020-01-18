@@ -288,6 +288,7 @@ fun f (x : mytype) =
 	Pizza => 3
       | Str s => 8
       |  TwoInts(i1, i2) => i1 + i2;
+
 - f(Str("a"));
 val it = 8 : int
 ```
@@ -295,7 +296,7 @@ val it = 8 : int
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTI1MjA0MDMzMCwyMTgwNTA4MCw4NjE4MT
+eyJoaXN0b3J5IjpbLTQzMzQ4NjY5MiwyMTgwNTA4MCw4NjE4MT
 I2NTQsNTYzMDIzOTMzLC0xMjQzMTk1MzU4LC0xMjgxOTk2MTYx
 LC0xODU0NDM1NDk1LDE0MjY1MTEzMTksLTcwNzY3ODMwN119
 -->
