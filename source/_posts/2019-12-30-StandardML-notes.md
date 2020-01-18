@@ -237,7 +237,9 @@ Boolean operations:
 Comparisons:
 * `=` `<>` `>` `<` `>=` `<=`
     - `=` and `<>` can be used with any "equality type" but not with real
+
+### Build New Types
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyODE5OTYxNjEsLTE4NTQ0MzU0OTUsMT
-QyNjUxMTMxOSwtNzA3Njc4MzA3XX0=
+eyJoaXN0b3J5IjpbODk3NDM3MjYzLC0xMjgxOTk2MTYxLC0xOD
+U0NDM1NDk1LDE0MjY1MTEzMTksLTcwNzY3ODMwN119
 -->
