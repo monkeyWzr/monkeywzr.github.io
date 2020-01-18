@@ -305,15 +305,26 @@ We separate the branches with the `|` character. Each branch has the form `p => 
 ```ML
 fun inc_or_zero intoption =
     case intoption of
-	NONE => 0
+	    NONE => 0
       | SOME i => i+1;
 ```
 
-As for list, `[]` and `::` are also constructors. `::` is a little unusual because it is an infix operator so 
+As for list, `[]` and `::` are also constructors. `::` is a little unusual because it is an infix operator so when in patterns:
+```ML
+fun sum_list xs =
+    case xs of
+	    [] => 0
+      | x::xs' => x + sum_list xs';
+
+fun append(xs, ys) =
+    case xs of
+	    [] => ys
+      | x::xs' => x :: append(xs', ys);
+```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4MjUzMTUwNTgsLTE5MTc0MDI5NTgsMT
-Y1MjgyODQ2MCwyNDczNTg3MDcsLTc3Mjg2NTQzOSwyMTgwNTA4
-MCw4NjE4MTI2NTQsNTYzMDIzOTMzLC0xMjQzMTk1MzU4LC0xMj
-gxOTk2MTYxLC0xODU0NDM1NDk1LDE0MjY1MTEzMTksLTcwNzY3
-ODMwN119
+eyJoaXN0b3J5IjpbLTEyOTk3MTkxNCwtMTkxNzQwMjk1OCwxNj
+UyODI4NDYwLDI0NzM1ODcwNywtNzcyODY1NDM5LDIxODA1MDgw
+LDg2MTgxMjY1NCw1NjMwMjM5MzMsLTEyNDMxOTUzNTgsLTEyOD
+E5OTYxNjEsLTE4NTQ0MzU0OTUsMTQyNjUxMTMxOSwtNzA3Njc4
+MzA3XX0=
 -->
