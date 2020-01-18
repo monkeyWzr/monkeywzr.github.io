@@ -279,6 +279,12 @@ The example above adds four things to the environment:
 * A new type mytype that we can now use just like any other types
 * Three constructors `TwoInts`, `Str`, `Pizza`
 
+We can also create a type synonmy which is entirely interchangeable with the existing type.
+```ML
+type foo = int
+(* we can write foo wherever we write int and vice-versa *)
+```
+
 ### Case Expressions
 
 To access to datatype values, we can use a case expression:
@@ -294,8 +300,8 @@ f(Str("a")); (* val it = 8 : int *)
 We separate the branches with the `|` character. Each branch has the form `p => e` where p is a pattern and e is an expression. Patterns are used to match against the result of evaluating the case's first expression. This is why evaluating a case-expression is called pattern-matching.
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjQ3MzU4NzA3LC03NzI4NjU0MzksMjE4MD
-UwODAsODYxODEyNjU0LDU2MzAyMzkzMywtMTI0MzE5NTM1OCwt
-MTI4MTk5NjE2MSwtMTg1NDQzNTQ5NSwxNDI2NTExMzE5LC03MD
-c2NzgzMDddfQ==
+eyJoaXN0b3J5IjpbMTY1MjgyODQ2MCwyNDczNTg3MDcsLTc3Mj
+g2NTQzOSwyMTgwNTA4MCw4NjE4MTI2NTQsNTYzMDIzOTMzLC0x
+MjQzMTk1MzU4LC0xMjgxOTk2MTYxLC0xODU0NDM1NDk1LDE0Mj
+Y1MTEzMTksLTcwNzY3ODMwN119
 -->
