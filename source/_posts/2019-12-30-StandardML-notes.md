@@ -264,6 +264,8 @@ val y = {1="a",3="b"} : {1:string, 3:string}
 
 
 ### Datatype bindings
+
+```ML
 datatype mytype = TwoInts of int*int
 		                       | Str of string
                                | Pizza;
@@ -272,17 +274,15 @@ val b = Str; (* fn : string -> mytype *)
 val c = Pizza; (* Pizza : mytype *)
 val d = TwoInts(1+2, 3+4); (* TwoInts (3,7) : mytype *)
 val e = a; (* Str "hi" : mytype *)
-
-
-```ML
-
 ```
-
+The example above adds four things to the environment:
+* A new type mytype that we can now use just like any other types
+* Three constructors `TwoInt`
 
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTk3Nzc1MjgwMyw1NjMwMjM5MzMsLTEyND
+eyJoaXN0b3J5IjpbMjA5OTg0NjMwOCw1NjMwMjM5MzMsLTEyND
 MxOTUzNTgsLTEyODE5OTYxNjEsLTE4NTQ0MzU0OTUsMTQyNjUx
 MTMxOSwtNzA3Njc4MzA3XX0=
 -->
