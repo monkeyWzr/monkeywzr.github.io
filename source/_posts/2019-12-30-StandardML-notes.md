@@ -263,13 +263,15 @@ val y = {1="a",3="b"} : {1:string, 3:string}
 ```
 
 
+### Datatype bindings
+
 
 
 
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjAxNjc4MjUxOCwtMTI0MzE5NTM1OCwtMT
-I4MTk5NjE2MSwtMTg1NDQzNTQ5NSwxNDI2NTExMzE5LC03MDc2
-NzgzMDddfQ==
+eyJoaXN0b3J5IjpbNTYzMDIzOTMzLC0xMjQzMTk1MzU4LC0xMj
+gxOTk2MTYxLC0xODU0NDM1NDk1LDE0MjY1MTEzMTksLTcwNzY3
+ODMwN119
 -->
