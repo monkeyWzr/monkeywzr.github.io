@@ -246,8 +246,10 @@ To Create a compound type, there are really only three essential building blocks
 * **One-of**: A compound type t describes values that contain a value of one of the types `t1` `t2` ... `tn`
 * **Self-refenence**: A compound type t may refer to itself in its definition in order to describe recursive data structures like lists and trees.
 
+### Records
+
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzNjgxOTU1MTEsLTEyODE5OTYxNjEsLT
+eyJoaXN0b3J5IjpbLTEyNDMxOTUzNTgsLTEyODE5OTYxNjEsLT
 E4NTQ0MzU0OTUsMTQyNjUxMTMxOSwtNzA3Njc4MzA3XX0=
 -->
