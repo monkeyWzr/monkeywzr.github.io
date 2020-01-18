@@ -255,7 +255,9 @@ val x = {bar = (1+2,true andalso true), foo = 3+4, baz = (false,9) }
 ```
 
 Tupels are actually syntactic sugar for records.
+```ML
 
+```
 
 
 
@@ -264,7 +266,7 @@ Tupels are actually syntactic sugar for records.
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwNTU4NTcwNDIsLTEyNDMxOTUzNTgsLT
-EyODE5OTYxNjEsLTE4NTQ0MzU0OTUsMTQyNjUxMTMxOSwtNzA3
-Njc4MzA3XX0=
+eyJoaXN0b3J5IjpbMjE0NjEwMTc0NSwtMTI0MzE5NTM1OCwtMT
+I4MTk5NjE2MSwtMTg1NDQzNTQ5NSwxNDI2NTExMzE5LC03MDc2
+NzgzMDddfQ==
 -->
