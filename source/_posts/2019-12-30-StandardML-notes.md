@@ -303,11 +303,17 @@ We separate the branches with the `|` character. Each branch has the form `p => 
 
 `SOME` and `NONE` are actually constructors. So you can use them in a case like:
 ```ML
-fun inc_or_zero intoption = 
+fun inc_or_zero intoption =
+    case intoption of
+	NONE => 0
+      | SOME i => i+1;
 ```
+
+As for list, @@
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5MTc0MDI5NTgsMTY1MjgyODQ2MCwyND
-czNTg3MDcsLTc3Mjg2NTQzOSwyMTgwNTA4MCw4NjE4MTI2NTQs
-NTYzMDIzOTMzLC0xMjQzMTk1MzU4LC0xMjgxOTk2MTYxLC0xOD
-U0NDM1NDk1LDE0MjY1MTEzMTksLTcwNzY3ODMwN119
+eyJoaXN0b3J5IjpbLTE3MzYyNDk2NjUsLTE5MTc0MDI5NTgsMT
+Y1MjgyODQ2MCwyNDczNTg3MDcsLTc3Mjg2NTQzOSwyMTgwNTA4
+MCw4NjE4MTI2NTQsNTYzMDIzOTMzLC0xMjQzMTk1MzU4LC0xMj
+gxOTk2MTYxLC0xODU0NDM1NDk1LDE0MjY1MTEzMTksLTcwNzY3
+ODMwN119
 -->
