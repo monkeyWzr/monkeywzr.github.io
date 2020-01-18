@@ -285,9 +285,9 @@ To access to datatype values, we can use a case expression:
 ```ML
 fun f (x : mytype) =
     case x of
-	Pizza => 3
+	    Pizza => 3
       | Str s => 8
-      |  TwoInts(i1, i2) => i1 + i2;
+      | TwoInts(i1, i2) => i1 + i2;
 
 f(Str("a")); (* val it = 8 : int *)
 ```
@@ -295,7 +295,7 @@ We separate the branches with the `|` character. Each branch has the form `p => 
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTkxMjU5NzE4OSwyMTgwNTA4MCw4NjE4MT
+eyJoaXN0b3J5IjpbLTc3Mjg2NTQzOSwyMTgwNTA4MCw4NjE4MT
 I2NTQsNTYzMDIzOTMzLC0xMjQzMTk1MzU4LC0xMjgxOTk2MTYx
 LC0xODU0NDM1NDk1LDE0MjY1MTEzMTksLTcwNzY3ODMwN119
 -->
