@@ -248,8 +248,12 @@ To Create a compound type, there are really only three essential building blocks
 
 ### Records
 
-
+Record types are "each-of" types where each component is a named field.
+```ML
+{bar = (1+2,true andalso true), foo = 3+4, baz = (false,9) }
+```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyNDMxOTUzNTgsLTEyODE5OTYxNjEsLT
-E4NTQ0MzU0OTUsMTQyNjUxMTMxOSwtNzA3Njc4MzA3XX0=
+eyJoaXN0b3J5IjpbMTUwMzAzMDYyOSwtMTI0MzE5NTM1OCwtMT
+I4MTk5NjE2MSwtMTg1NDQzNTQ5NSwxNDI2NTExMzE5LC03MDc2
+NzgzMDddfQ==
 -->
