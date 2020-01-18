@@ -238,10 +238,12 @@ Comparisons:
 * `=` `<>` `>` `<` `>=` `<=`
     - `=` and `<>` can be used with any "equality type" but not with real
 
-## Build New Types
+### Build New Types
 
-To Create
+To Create a compound type, there are really only three essential building blocks:
+
+* **Each-of** : A compound typ t 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTI4MjYyMjMzMywtMTI4MTk5NjE2MSwtMT
-g1NDQzNTQ5NSwxNDI2NTExMzE5LC03MDc2NzgzMDddfQ==
+eyJoaXN0b3J5IjpbLTE2NTc1NTI0NTUsLTEyODE5OTYxNjEsLT
+E4NTQ0MzU0OTUsMTQyNjUxMTMxOSwtNzA3Njc4MzA3XX0=
 -->
