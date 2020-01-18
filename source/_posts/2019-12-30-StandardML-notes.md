@@ -309,9 +309,9 @@ fun inc_or_zero intoption =
       | SOME i => i+1;
 ```
 
-As for list, @@
+As for list, `[]` and `::` are also constructors. `::` is a little unusual because it is an infix operator so 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3MzYyNDk2NjUsLTE5MTc0MDI5NTgsMT
+eyJoaXN0b3J5IjpbLTE4MjUzMTUwNTgsLTE5MTc0MDI5NTgsMT
 Y1MjgyODQ2MCwyNDczNTg3MDcsLTc3Mjg2NTQzOSwyMTgwNTA4
 MCw4NjE4MTI2NTQsNTYzMDIzOTMzLC0xMjQzMTk1MzU4LC0xMj
 gxOTk2MTYxLC0xODU0NDM1NDk1LDE0MjY1MTEzMTksLTcwNzY3
