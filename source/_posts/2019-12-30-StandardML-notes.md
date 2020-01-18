@@ -254,8 +254,7 @@ val x = {bar = (1+2,true andalso true), foo = 3+4, baz = (false,9) }
 #bar x (* (3, true) *)
 ```
 
-Tupels are actually syntactic sugar for records. `#1 e`, `#2 e`, etc. mean the right thing: get the contents of the eld named 1,
-2, etc.
+Tupels are actually syntactic sugar for records. `#1 e`, `#2 e`, etc. mean: get the contents of the field named 1, 2, etc.
 ```ML
 - val x = {1="a",2="b"};
 val x = ("a","b") : string * string
@@ -269,7 +268,7 @@ val x = ("a","b") : string * string
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQ5MzQ4ODcwMCwtMTI0MzE5NTM1OCwtMT
+eyJoaXN0b3J5IjpbLTgyNTk0OTIyNCwtMTI0MzE5NTM1OCwtMT
 I4MTk5NjE2MSwtMTg1NDQzNTQ5NSwxNDI2NTExMzE5LC03MDc2
 NzgzMDddfQ==
 -->
