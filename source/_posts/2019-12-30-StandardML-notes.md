@@ -288,12 +288,14 @@ fun f (x : mytype) =
 	Pizza => 3
       | Str s => 8
       |  TwoInts(i1, i2) => i1 + i2;
+- f(Str("a"));
+val it = 8 : int
 ```
 
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjE4MDUwODAsODYxODEyNjU0LDU2MzAyMz
-kzMywtMTI0MzE5NTM1OCwtMTI4MTk5NjE2MSwtMTg1NDQzNTQ5
-NSwxNDI2NTExMzE5LC03MDc2NzgzMDddfQ==
+eyJoaXN0b3J5IjpbMTI1MjA0MDMzMCwyMTgwNTA4MCw4NjE4MT
+I2NTQsNTYzMDIzOTMzLC0xMjQzMTk1MzU4LC0xMjgxOTk2MTYx
+LC0xODU0NDM1NDk1LDE0MjY1MTEzMTksLTcwNzY3ODMwN119
 -->
