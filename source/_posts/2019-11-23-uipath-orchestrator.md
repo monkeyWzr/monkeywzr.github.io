@@ -2,7 +2,7 @@
 title: uipath ノート（三）- uipath orchestrator
 tags:
     - RPA
-category: tech
+category: tech技术
 keywords:
     - RPA
     - uipath
@@ -76,3 +76,6 @@ Processes　⇒　More Options　⇒　View Process　⇒　最新のバージ�
 ### マシンテンプレート
 
 Machine Templates only work for Active Directory users, Attended Floating Robots and Studio Floating Robots.
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbNjEwMTAxODg4XX0=
+-->
