@@ -340,8 +340,9 @@ fun sum_triple (x, y, z) =
     x + y + z;
 ```
 Actually, all functions in ML takes one tripple as an argument. There is no such thing as a mutli-argument function  or zero-argument function in ML.
+The binding `fun () = e` is using the unit-pattern `()` to match against calls that pass 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzAxMDAyOTk2LDQ5MTYyMzg1MSwtMTI5OT
+eyJoaXN0b3J5IjpbLTE5NjU3MTgzLDQ5MTYyMzg1MSwtMTI5OT
 cxOTE0LC0xOTE3NDAyOTU4LDE2NTI4Mjg0NjAsMjQ3MzU4NzA3
 LC03NzI4NjU0MzksMjE4MDUwODAsODYxODEyNjU0LDU2MzAyMz
 kzMywtMTI0MzE5NTM1OCwtMTI4MTk5NjE2MSwtMTg1NDQzNTQ5
