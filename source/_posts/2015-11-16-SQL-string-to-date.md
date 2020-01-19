@@ -1,7 +1,7 @@
 ---
 layout: post
 title: SQL字符串转换成时间
-category: tech
+category: tech技术
 tags: SQLServer
 keywords: 
 description: 
@@ -20,3 +20,6 @@ SQL Server支持的两个转换函数：
 >__相关链接__
 >[date (Transact-SQL) - MSDN - Microsoft](https://msdn.microsoft.com/zh-cn/library/bb630352(v=sql.120).aspx)
 >[CAST 和 CONVERT (Transact-SQL)](https://msdn.microsoft.com/zh-cn/library/ms187928(v=sql.120).aspx)
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbMTQ4Mzc4Nzg5N119
+-->
