@@ -1,7 +1,7 @@
 ---
 title: 用php://input代替php的$HTTP_RAW_POST_DATA全局变量
 date: 2017-09-03 04:02:29
-category: tech
+category: tech技术
 tags:
     - php
 keywords:
@@ -21,3 +21,6 @@ $postdata = file_get_contents("php://input");
 >php://input 是个可以访问请求的原始数据的只读流。 POST 请求的情况下，最好使用 php://input 来代替 $HTTP_RAW_POST_DATA，因为它不依赖于特定的 php.ini 指令。 而且，这样的情况下 $HTTP_RAW_POST_DATA 默认没有填充， 比激活 always_populate_raw_post_data 潜在需要更少的内存。 enctype="multipart/form-data" 的时候 php://input 是无效的。
 
 这其实算是自己的问题了。。想偷懒不及时了解php的版本变动真是使不得><
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTE2MDczMDE4ODNdfQ==
+-->
