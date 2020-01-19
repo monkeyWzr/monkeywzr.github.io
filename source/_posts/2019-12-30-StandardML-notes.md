@@ -378,16 +378,12 @@ exception MyUndesirableCondition;
 exception MyOtherException of int * int;
 ```
 
-Use `raise` to raise exceptions
+Use `raise` to raise exceptions. Use `handle p => e2` to catch exceptions.
 ```ML
 fun hd xs =
     case xs of
 	[] => raise List.Empty
       | x::_ => x;
-
-exception MyUndesirableCondition;
-
-exception MyOtherException of int * int;
 
 fun maxlist(xs, ex) =
     case xs of
@@ -400,11 +396,11 @@ val y = maxlist([], MyUndesirableCondition)
 	handle MyUndesirableCondition => 42;
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTAxMDYyNjk4LC0xOTU5OTIwMjczLDY0NT
-g5NzU5MiwtMTQ4MjU3OTI0MywxODA0MzUxMTQxLC0yMDc3Mjg2
-OTQwLDQ5MTYyMzg1MSwtMTI5OTcxOTE0LC0xOTE3NDAyOTU4LD
-E2NTI4Mjg0NjAsMjQ3MzU4NzA3LC03NzI4NjU0MzksMjE4MDUw
-ODAsODYxODEyNjU0LDU2MzAyMzkzMywtMTI0MzE5NTM1OCwtMT
-I4MTk5NjE2MSwtMTg1NDQzNTQ5NSwxNDI2NTExMzE5LC03MDc2
-NzgzMDddfQ==
+eyJoaXN0b3J5IjpbLTg4NjA4NTY2NiwtMTk1OTkyMDI3Myw2ND
+U4OTc1OTIsLTE0ODI1NzkyNDMsMTgwNDM1MTE0MSwtMjA3NzI4
+Njk0MCw0OTE2MjM4NTEsLTEyOTk3MTkxNCwtMTkxNzQwMjk1OC
+wxNjUyODI4NDYwLDI0NzM1ODcwNywtNzcyODY1NDM5LDIxODA1
+MDgwLDg2MTgxMjY1NCw1NjMwMjM5MzMsLTEyNDMxOTUzNTgsLT
+EyODE5OTYxNjEsLTE4NTQ0MzU0OTUsMTQyNjUxMTMxOSwtNzA3
+Njc4MzA3XX0=
 -->
