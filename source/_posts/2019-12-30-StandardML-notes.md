@@ -399,10 +399,12 @@ val y = maxlist([], MyUndesirableCondition)
 
 ## Tail Recursion
 
-There is a situationin function calls called **tail call**:
->
+There is a situation in a recursive call called **tail call**:
+>when f makes a recursive call to f, there is nothing more for the caller to do after the callee returns except return the callee's result.
+
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTA1NzcyNjU2LC0xODc4MzQ0MjQ2LC0xOT
+eyJoaXN0b3J5IjpbNDE1NTMwNDcxLC0xODc4MzQ0MjQ2LC0xOT
 U5OTIwMjczLDY0NTg5NzU5MiwtMTQ4MjU3OTI0MywxODA0MzUx
 MTQxLC0yMDc3Mjg2OTQwLDQ5MTYyMzg1MSwtMTI5OTcxOTE0LC
 0xOTE3NDAyOTU4LDE2NTI4Mjg0NjAsMjQ3MzU4NzA3LC03NzI4
