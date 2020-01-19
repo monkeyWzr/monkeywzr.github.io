@@ -1,7 +1,7 @@
 ---
 title: 暑假越南行（经验篇）
 date: 2016-09-02 03:14:41
-category: life
+category: life生活
 tags:
     - 旅行
 keywords:
@@ -52,3 +52,6 @@ __2016.11.10:__这两个大坑不知道我什么时候才会填上。。。
 ![岘港big C里面的法棍](http://7xi8b3.com1.z0.glb.clouddn.com/blog/vietnamIMG_20160805_143338.jpg)
 
 ## 未完
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbMTEwNTE1NzM3N119
+-->
