@@ -4,7 +4,7 @@ date: 2018-10-10 17:25:25
 tags:
     - SpringMVC
     - JAVA
-category: tech
+category: tech技术
 keywords:
     - android
     - java
@@ -47,3 +47,6 @@ Model层就是数据表的Java载体。需要添加`@Entity`注解标明该类�
 首先在项目最外层的`web.xml`中指定了Spring提供的`dispatcherServlet`作为调度请求的核心servlet。
 
 __未完待续__
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbMTM0OTk5NTc4Nl19
+-->
