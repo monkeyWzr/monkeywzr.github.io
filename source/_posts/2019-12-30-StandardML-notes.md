@@ -342,10 +342,6 @@ fun sum_triple (x, y, z) =
 Actually, all functions in ML takes one tripple as an argument. There is no such thing as a mutli-argument function  or zero-argument function in ML.
 The binding `fun () = e` is using the unit-pattern `()` to match against calls that pass the unit value `()`, which is the only value fo a pre-defined datatype `unit`.
 
-## Nested Patterns
-
-The definition of patterns is recursive. We can use nested patterns instea of nested case expressions.
-
 We can use wildcard pattern `_` in patterns.
 ```ML
 fun len xs =
@@ -357,10 +353,10 @@ fun len xs =
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE0ODI1NzkyNDMsMTgwNDM1MTE0MSwtMj
-A3NzI4Njk0MCw0OTE2MjM4NTEsLTEyOTk3MTkxNCwtMTkxNzQw
-Mjk1OCwxNjUyODI4NDYwLDI0NzM1ODcwNywtNzcyODY1NDM5LD
-IxODA1MDgwLDg2MTgxMjY1NCw1NjMwMjM5MzMsLTEyNDMxOTUz
-NTgsLTEyODE5OTYxNjEsLTE4NTQ0MzU0OTUsMTQyNjUxMTMxOS
-wtNzA3Njc4MzA3XX0=
+eyJoaXN0b3J5IjpbMTY4ODUxMjc0OSwtMTQ4MjU3OTI0MywxOD
+A0MzUxMTQxLC0yMDc3Mjg2OTQwLDQ5MTYyMzg1MSwtMTI5OTcx
+OTE0LC0xOTE3NDAyOTU4LDE2NTI4Mjg0NjAsMjQ3MzU4NzA3LC
+03NzI4NjU0MzksMjE4MDUwODAsODYxODEyNjU0LDU2MzAyMzkz
+MywtMTI0MzE5NTM1OCwtMTI4MTk5NjE2MSwtMTg1NDQzNTQ5NS
+wxNDI2NTExMzE5LC03MDc2NzgzMDddfQ==
 -->
