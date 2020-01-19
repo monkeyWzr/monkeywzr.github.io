@@ -1,7 +1,7 @@
 ---
 title: 使用Tools Attributes Reference
 date: 2017-09-23 19:55:32
-category: tech
+category: tech技术
 tags:
     - android
     - java
@@ -31,3 +31,6 @@ Android Studio 提供了一系列工具属性用于开发过程中，如预览�
 
 >参考资料
 文档：[Tools Attributes Reference](https://developer.android.com/studio/write/tool-attributes.htm)
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbMTI1NDg3ODAyMl19
+-->
