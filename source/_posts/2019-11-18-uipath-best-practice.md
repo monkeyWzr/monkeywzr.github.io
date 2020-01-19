@@ -2,7 +2,7 @@
 title: uipath ノート（二）- Best Practice
 tags:
     - RPA
-category: tech
+category: tech技术
 keywords:
     - RPA
     - uipath
@@ -45,3 +45,6 @@ keywords:
 * 環境設定を Config ファイルに格納
 
 ## 不要になったアプリケーションを終了させることで、常にクリーンな状態を維持しましょう。
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTk5OTA5NjYyNF19
+-->
