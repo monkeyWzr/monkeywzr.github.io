@@ -1,7 +1,7 @@
 ---
 layout: post
 title: markdown语法简记
-category: notes
+category: notes学习笔记
 tags: [markdown,教程]
 keywords: markdown,教程
 description:
@@ -200,3 +200,6 @@ Markdown支持以比较简短的自动链接形式来处理网址和电子邮件
 点击进入
 [Markdown语法简体中文版](https://gitcafe.com/riku/Markdown-Syntax-CN/blob/master/syntax.md)
 [Markdoown官方文档](http://daringfireball.net/projects/markdown/syntax)
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbMTQ5NDUzOTY0MV19
+-->
