@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 暑假越南行（一）
-category: life
+category: life生活
 tags:
     - 旅行
 keywords:
@@ -106,3 +106,6 @@ keywords:
 ![img](http://7xi8b3.com1.z0.glb.clouddn.com/blog/vietnamIMG_20160802_183318.jpg)
 
 感想：河内街头的摩的 __不能坐__ ，无论他们怎样跟你打感情牌；掏钱的时候要注意数清楚有几个零；去便利店买酸奶喝，有个妹子跟我聊的很开心，老板娘也很善意，这在人人都想宰你一笔的河内来说真的好难得。。
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTEyOTg4OTI4MzhdfQ==
+-->
