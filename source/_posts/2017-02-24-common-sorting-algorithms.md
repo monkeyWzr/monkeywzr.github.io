@@ -1,7 +1,7 @@
 ---
 title: 常用算法总结
 date: 2017-02-24 19:47:40
-category: notes
+category: notes学习笔记
 tags:
     - algorithms
 keywords:
@@ -244,3 +244,6 @@ public class Heap
 ```
 
 
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbNDY5MTYwMjkwXX0=
+-->
