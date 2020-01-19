@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Kali下Metasploit学习笔记
-category: notes
+category: notes学习笔记
 tags: [kali,linux]
 keywords: Metasploit,kali,渗透,安全
 description:
@@ -26,3 +26,6 @@ description:
 
 workspace -h 帮助
 workspace [-a/d/r] 创建/删除/重命名工作平台
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTUwNjE2NDA1Ml19
+-->
