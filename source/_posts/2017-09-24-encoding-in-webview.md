@@ -1,7 +1,7 @@
 ---
 title: Android Webview中的编码问题
 date: 2017-09-24 20:11:30
-category: tech
+category: tech技术
 tags:
     - android
     - java
@@ -44,3 +44,6 @@ if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.FROYO) {
 >参考资料
 >[stackoverflow - Android. WebView and loadData](https://stackoverflow.com/questions/3961589/android-webview-and-loaddata)
 >[Android Developers](https://developer.android.com/reference/android/webkit/WebView.html)
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTgwODAwNjExMV19
+-->
