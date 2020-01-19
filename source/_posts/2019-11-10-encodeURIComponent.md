@@ -2,7 +2,7 @@
 title: JavaScript URI エンコーディング
 tags:
     - JavaScript
-category: tech
+category: tech技术
 keywords:
     - Javascript
     - encodeURIComponent
@@ -110,3 +110,6 @@ URI-reference = [ absoluteURI | relativeURI ] [ "#" fragment ]
 [https://qiita.com/aosho235/items/0581fc82f8ce2c5ac055](https://qiita.com/aosho235/items/0581fc82f8ce2c5ac055)
 
 [https://tools.ietf.org/html/rfc2396](https://tools.ietf.org/html/rfc2396)
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbMTcxODQ2NTcyNV19
+-->
