@@ -1,7 +1,7 @@
 ---
 title: netfilter/iptables 笔记
 date: 2016-11-29 21:08:52
-category: notes
+category: notes学习笔记
 tags:
     - linux
 keywords:
@@ -136,3 +136,6 @@ iptables -A INPUT -p icmp -j DROP
 ```
 iptables -A INPUT -p tcp -m state ESTABLISHED -j ACCEPT
 ```
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTIxMjk5NzAwODddfQ==
+-->
