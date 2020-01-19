@@ -402,13 +402,21 @@ val y = maxlist([], MyUndesirableCondition)
 There is a situation in a recursive call called **tail call**:
 >when f makes a recursive call to f, there is nothing more for the caller to do after the callee returns except return the callee's result.
 
+Consider a sum function:
+```ML
+fun sum1 xs =
+    case xs of
+        [] => 0
+      | i::xs' => i + sum1 xs'
+```
 
+When the function runs, it will keep a call stack
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDE1NTMwNDcxLC0xODc4MzQ0MjQ2LC0xOT
-U5OTIwMjczLDY0NTg5NzU5MiwtMTQ4MjU3OTI0MywxODA0MzUx
-MTQxLC0yMDc3Mjg2OTQwLDQ5MTYyMzg1MSwtMTI5OTcxOTE0LC
-0xOTE3NDAyOTU4LDE2NTI4Mjg0NjAsMjQ3MzU4NzA3LC03NzI4
-NjU0MzksMjE4MDUwODAsODYxODEyNjU0LDU2MzAyMzkzMywtMT
-I0MzE5NTM1OCwtMTI4MTk5NjE2MSwtMTg1NDQzNTQ5NSwxNDI2
-NTExMzE5XX0=
+eyJoaXN0b3J5IjpbLTIyNjc0MjI5MywtMTg3ODM0NDI0NiwtMT
+k1OTkyMDI3Myw2NDU4OTc1OTIsLTE0ODI1NzkyNDMsMTgwNDM1
+MTE0MSwtMjA3NzI4Njk0MCw0OTE2MjM4NTEsLTEyOTk3MTkxNC
+wtMTkxNzQwMjk1OCwxNjUyODI4NDYwLDI0NzM1ODcwNywtNzcy
+ODY1NDM5LDIxODA1MDgwLDg2MTgxMjY1NCw1NjMwMjM5MzMsLT
+EyNDMxOTUzNTgsLTEyODE5OTYxNjEsLTE4NTQ0MzU0OTUsMTQy
+NjUxMTMxOV19
 -->
