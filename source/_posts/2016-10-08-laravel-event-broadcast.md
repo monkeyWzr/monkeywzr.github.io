@@ -1,7 +1,7 @@
 ---
 title: laravel 5.2 事件广播
 date: 2016-10-08 00:38:47
-category: notes
+category: notes学习笔记
 tags:
     - laravel
     - php
@@ -127,3 +127,6 @@ event(new SomeEvent($bilibili));
 >[laravel Events](https://laravel.com/docs/5.2/events)
 >[Laravel5.1 事件广播(Event Broadcasting)](https://segmentfault.com/a/1190000002921506)
 >[ Laravel 5.2 文档 服务 —— 事件](http://laravelacademy.org/post/3162.html)
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTE5NDEzNjE4NDNdfQ==
+-->
