@@ -1,7 +1,7 @@
 ---
 layout: post
 title: HTML常用头标签
-category: tech
+category: tech技术
 tags: html
 keywords: html,头标签
 description:
@@ -103,3 +103,6 @@ link比较常用的属性有`rel``href``type`：`rel`属性是必须的，规定
 		<link rel="alternate" type="application/rss+xml" title="RSS" href="/rss.xml" />
 		//添加favicon icon
 		<link rel="shortcut icon" type="image/ico" href="/favicon.ico" />
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbMTg4MTk3MjY1XX0=
+-->
