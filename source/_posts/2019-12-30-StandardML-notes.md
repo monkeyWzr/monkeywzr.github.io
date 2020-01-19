@@ -377,12 +377,34 @@ To create new kinds of exceptions we can use exception bindings.
 exception MyUndesirableCondition;
 exception MyOtherException of int * int;
 ```
+
+Use `raise` to raise exceptions
+```ML
+fun hd xs =
+    case xs of
+	[] => raise List.Empty
+      | x::_ => x;
+
+exception MyUndesirableCondition;
+
+exception MyOtherException of int * int;
+
+fun maxlist(xs, ex) =
+    case xs of
+	[] => raise ex
+      | x::[] => x
+      | x::xs' => Int.max(x, maxlist(xs', ex));
+
+(* e1 handle ex => e2 *)
+val y = maxlist([], MyUndesirableCondition)
+	handle MyUndesirableCondition => 42;
+```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3NjA0NTE2NjgsLTE5NTk5MjAyNzMsNj
-Q1ODk3NTkyLC0xNDgyNTc5MjQzLDE4MDQzNTExNDEsLTIwNzcy
-ODY5NDAsNDkxNjIzODUxLC0xMjk5NzE5MTQsLTE5MTc0MDI5NT
-gsMTY1MjgyODQ2MCwyNDczNTg3MDcsLTc3Mjg2NTQzOSwyMTgw
-NTA4MCw4NjE4MTI2NTQsNTYzMDIzOTMzLC0xMjQzMTk1MzU4LC
-0xMjgxOTk2MTYxLC0xODU0NDM1NDk1LDE0MjY1MTEzMTksLTcw
-NzY3ODMwN119
+eyJoaXN0b3J5IjpbMTAxMDYyNjk4LC0xOTU5OTIwMjczLDY0NT
+g5NzU5MiwtMTQ4MjU3OTI0MywxODA0MzUxMTQxLC0yMDc3Mjg2
+OTQwLDQ5MTYyMzg1MSwtMTI5OTcxOTE0LC0xOTE3NDAyOTU4LD
+E2NTI4Mjg0NjAsMjQ3MzU4NzA3LC03NzI4NjU0MzksMjE4MDUw
+ODAsODYxODEyNjU0LDU2MzAyMzkzMywtMTI0MzE5NTM1OCwtMT
+I4MTk5NjE2MSwtMTg1NDQzNTQ5NSwxNDI2NTExMzE5LC03MDc2
+NzgzMDddfQ==
 -->
