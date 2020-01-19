@@ -346,9 +346,12 @@ The binding `fun () = e` is using the unit-pattern `()` to match against calls t
 
 The definition of patterns is recursive. We can use nested patterns instea of nested case expressions.
 
+We can use wildcard pattern `_` in patterns.
+```ML
 
+```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQwOTE0MjQ3NywxODA0MzUxMTQxLC0yMD
+eyJoaXN0b3J5IjpbMTY4NzcxNjUwMCwxODA0MzUxMTQxLC0yMD
 c3Mjg2OTQwLDQ5MTYyMzg1MSwtMTI5OTcxOTE0LC0xOTE3NDAy
 OTU4LDE2NTI4Mjg0NjAsMjQ3MzU4NzA3LC03NzI4NjU0MzksMj
 E4MDUwODAsODYxODEyNjU0LDU2MzAyMzkzMywtMTI0MzE5NTM1
