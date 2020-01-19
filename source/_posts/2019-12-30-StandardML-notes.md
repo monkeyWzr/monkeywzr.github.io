@@ -442,13 +442,15 @@ fun rev2 lst =
 `rev1` is `O(n^2)` but rev2 is almost as simple as `O(n)`.
 
 To make sure which calls are tail calls, we can use a recursive defination of **tail position**:
-* In fun f(x)
+* In `fun f(x) = e`, `e` is in tail position.
+* If an expression is not in tail position, then none of its subexpressions are
+* If `if e1 then e2 else e3` is in tail position, then `e2` and `e3` are in tail position (but not `e1). (Case-expressions are similar.)
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjE2ODY5Nzg4LC0xODc4MzQ0MjQ2LC0xOT
-U5OTIwMjczLDY0NTg5NzU5MiwtMTQ4MjU3OTI0MywxODA0MzUx
-MTQxLC0yMDc3Mjg2OTQwLDQ5MTYyMzg1MSwtMTI5OTcxOTE0LC
-0xOTE3NDAyOTU4LDE2NTI4Mjg0NjAsMjQ3MzU4NzA3LC03NzI4
-NjU0MzksMjE4MDUwODAsODYxODEyNjU0LDU2MzAyMzkzMywtMT
-I0MzE5NTM1OCwtMTI4MTk5NjE2MSwtMTg1NDQzNTQ5NSwxNDI2
-NTExMzE5XX0=
+eyJoaXN0b3J5IjpbLTYwMjg5MjU2NiwtMTg3ODM0NDI0NiwtMT
+k1OTkyMDI3Myw2NDU4OTc1OTIsLTE0ODI1NzkyNDMsMTgwNDM1
+MTE0MSwtMjA3NzI4Njk0MCw0OTE2MjM4NTEsLTEyOTk3MTkxNC
+wtMTkxNzQwMjk1OCwxNjUyODI4NDYwLDI0NzM1ODcwNywtNzcy
+ODY1NDM5LDIxODA1MDgwLDg2MTgxMjY1NCw1NjMwMjM5MzMsLT
+EyNDMxOTUzNTgsLTEyODE5OTYxNjEsLTE4NTQ0MzU0OTUsMTQy
+NjUxMTMxOV19
 -->
