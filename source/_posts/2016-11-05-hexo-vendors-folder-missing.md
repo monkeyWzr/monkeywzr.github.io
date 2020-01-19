@@ -1,7 +1,7 @@
 ---
 title: hexo博客突然丢失了所有的css js？？
 date: 2016-11-05 14:31:16
-category: tech
+category: tech技术
 tags:
   - hexo
 keywords:
@@ -33,3 +33,6 @@ __相关链接:__
 [issue #1214](https://github.com/iissnan/hexo-theme-next/issues/1214)
 
 [有关博客传到github css js 404的问题 解决方案！！！](https://github.com/iissnan/hexo-theme-next/issues/1220)
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbMTI1NjE3NzcxM119
+-->
