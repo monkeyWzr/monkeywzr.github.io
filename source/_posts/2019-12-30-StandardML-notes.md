@@ -396,8 +396,12 @@ fun maxlist(xs, ex) =
 val y = maxlist([], MyUndesirableCondition)
 	handle MyUndesirableCondition => 42;
 ```
+
+## Tail Recursion
+
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExNDE0MTc5OTIsLTE5NTk5MjAyNzMsNj
+eyJoaXN0b3J5IjpbLTE4NzgzNDQyNDYsLTE5NTk5MjAyNzMsNj
 Q1ODk3NTkyLC0xNDgyNTc5MjQzLDE4MDQzNTExNDEsLTIwNzcy
 ODY5NDAsNDkxNjIzODUxLC0xMjk5NzE5MTQsLTE5MTc0MDI5NT
 gsMTY1MjgyODQ2MCwyNDczNTg3MDcsLTc3Mjg2NTQzOSwyMTgw
