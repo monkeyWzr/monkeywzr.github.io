@@ -1,7 +1,7 @@
 ---
 title: ssh反向代理实现内网穿透（比较失败( ˙灬˙ )）
 date: 2016-10-08 14:45:08
-category: tech
+category: tech技术
 tags:
     - ssh
     - 内网穿透
@@ -50,3 +50,6 @@ GatewayPorts yes
 >相关链接：
 >[SSH原理与运用（二）：远程操作与端口转发](http://www.ruanyifeng.com/blog/2011/12/ssh_port_forwarding.html)
 >[ssh隧道反向代理实现内网到公网端口转发](http://www.netcan666.com/2016/09/28/ssh%E9%9A%A7%E9%81%93%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E5%AE%9E%E7%8E%B0%E5%86%85%E7%BD%91%E5%88%B0%E5%85%AC%E7%BD%91%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91/)
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTEzNTA2ODA4MThdfQ==
+-->
