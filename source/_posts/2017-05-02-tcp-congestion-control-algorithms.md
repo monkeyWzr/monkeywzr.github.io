@@ -1,7 +1,7 @@
 ---
 title: tcp拥塞控制算法总结（含BBR）
 date: 2017-05-02 15:38:54
-category: notes
+category: notes学习笔记
 tags:
     - tcp
 keywords:
@@ -40,3 +40,6 @@ BBR是goole在2016年下半年公开的一种开源拥塞控制算法，已经�
 > [BBR: Congestion-Based Congestion Control](http://queue.acm.org/detail.cfm?id=3022184)
 > [https://www.zhihu.com/question/53559433](https://www.zhihu.com/question/53559433)
 > [http://www.cqvip.com/read/read.aspx?id=23783845#](http://www.cqvip.com/read/read.aspx?id=23783845#)
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbMjAyMTQ1OTM1MF19
+-->
