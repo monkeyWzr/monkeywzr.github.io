@@ -410,13 +410,13 @@ fun sum1 xs =
       | i::xs' => i + sum1 xs'
 ```
 
-When the function runs, it will keep a call stack for each recursive call because there is . But if we change a little bit using tail call
+When the function runs, it will keep a call-stack for each recursive call because there is . But if we change a little bit using tail call
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTY3MTE3MDUsLTE4NzgzNDQyNDYsLTE5NT
-k5MjAyNzMsNjQ1ODk3NTkyLC0xNDgyNTc5MjQzLDE4MDQzNTEx
-NDEsLTIwNzcyODY5NDAsNDkxNjIzODUxLC0xMjk5NzE5MTQsLT
-E5MTc0MDI5NTgsMTY1MjgyODQ2MCwyNDczNTg3MDcsLTc3Mjg2
-NTQzOSwyMTgwNTA4MCw4NjE4MTI2NTQsNTYzMDIzOTMzLC0xMj
-QzMTk1MzU4LC0xMjgxOTk2MTYxLC0xODU0NDM1NDk1LDE0MjY1
-MTEzMTldfQ==
+eyJoaXN0b3J5IjpbMjAxNDk1NiwtMTg3ODM0NDI0NiwtMTk1OT
+kyMDI3Myw2NDU4OTc1OTIsLTE0ODI1NzkyNDMsMTgwNDM1MTE0
+MSwtMjA3NzI4Njk0MCw0OTE2MjM4NTEsLTEyOTk3MTkxNCwtMT
+kxNzQwMjk1OCwxNjUyODI4NDYwLDI0NzM1ODcwNywtNzcyODY1
+NDM5LDIxODA1MDgwLDg2MTgxMjY1NCw1NjMwMjM5MzMsLTEyND
+MxOTUzNTgsLTEyODE5OTYxNjEsLTE4NTQ0MzU0OTUsMTQyNjUx
+MTMxOV19
 -->
