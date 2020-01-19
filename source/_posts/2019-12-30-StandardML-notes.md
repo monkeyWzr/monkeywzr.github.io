@@ -344,12 +344,14 @@ The binding `fun () = e` is using the unit-pattern `()` to match against calls t
 
 ## Nested Patterns
 
+The definition of patterns is recursive. We can use nested patterns instea of nested case expressions.
+
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTgwNDM1MTE0MSwtMjA3NzI4Njk0MCw0OT
-E2MjM4NTEsLTEyOTk3MTkxNCwtMTkxNzQwMjk1OCwxNjUyODI4
-NDYwLDI0NzM1ODcwNywtNzcyODY1NDM5LDIxODA1MDgwLDg2MT
-gxMjY1NCw1NjMwMjM5MzMsLTEyNDMxOTUzNTgsLTEyODE5OTYx
-NjEsLTE4NTQ0MzU0OTUsMTQyNjUxMTMxOSwtNzA3Njc4MzA3XX
-0=
+eyJoaXN0b3J5IjpbMTQwOTE0MjQ3NywxODA0MzUxMTQxLC0yMD
+c3Mjg2OTQwLDQ5MTYyMzg1MSwtMTI5OTcxOTE0LC0xOTE3NDAy
+OTU4LDE2NTI4Mjg0NjAsMjQ3MzU4NzA3LC03NzI4NjU0MzksMj
+E4MDUwODAsODYxODEyNjU0LDU2MzAyMzkzMywtMTI0MzE5NTM1
+OCwtMTI4MTk5NjE2MSwtMTg1NDQzNTQ5NSwxNDI2NTExMzE5LC
+03MDc2NzgzMDddfQ==
 -->
