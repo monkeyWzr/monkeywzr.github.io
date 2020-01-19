@@ -410,13 +410,25 @@ fun sum1 xs =
       | i::xs' => i + sum1 xs'
 ```
 
-When the function runs, it will keep a call-stack for each recursive call because there is . But if we change a little bit using tail call
+When the function runs, it will keep a call-stack for each recursive call . But if we change a little bit using tail call:
+```ML
+fun sum2 xs =
+    let fun f (xs,acc) =
+        case xs of
+            [] => acc
+          | i::xs' => f(xs',i+acc)
+    in
+        f(xs,0)
+    end
+```
+
+we use a local helper `f`
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjAxNDk1NiwtMTg3ODM0NDI0NiwtMTk1OT
-kyMDI3Myw2NDU4OTc1OTIsLTE0ODI1NzkyNDMsMTgwNDM1MTE0
-MSwtMjA3NzI4Njk0MCw0OTE2MjM4NTEsLTEyOTk3MTkxNCwtMT
-kxNzQwMjk1OCwxNjUyODI4NDYwLDI0NzM1ODcwNywtNzcyODY1
-NDM5LDIxODA1MDgwLDg2MTgxMjY1NCw1NjMwMjM5MzMsLTEyND
-MxOTUzNTgsLTEyODE5OTYxNjEsLTE4NTQ0MzU0OTUsMTQyNjUx
-MTMxOV19
+eyJoaXN0b3J5IjpbLTE1MDQ5NDY3NjAsLTE4NzgzNDQyNDYsLT
+E5NTk5MjAyNzMsNjQ1ODk3NTkyLC0xNDgyNTc5MjQzLDE4MDQz
+NTExNDEsLTIwNzcyODY5NDAsNDkxNjIzODUxLC0xMjk5NzE5MT
+QsLTE5MTc0MDI5NTgsMTY1MjgyODQ2MCwyNDczNTg3MDcsLTc3
+Mjg2NTQzOSwyMTgwNTA4MCw4NjE4MTI2NTQsNTYzMDIzOTMzLC
+0xMjQzMTk1MzU4LC0xMjgxOTk2MTYxLC0xODU0NDM1NDk1LDE0
+MjY1MTEzMTldfQ==
 -->
