@@ -325,9 +325,21 @@ fun append(xs, ys) =
 ### Pattern-matching for Each-of Types
 
 Val-bindings are actually using pattern-matching.
-```M
+```ML
+val (x, y, z) = (1,2,3);
+(*
+    val x = 1 : int
+    val y = 2 : int
+    val z = 3 : int
+*)
+```
+
+When defining a function, we can also use pattern-matching
+```ML
+
+```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTY0NTk1MjAwNSw0OTE2MjM4NTEsLTEyOT
+eyJoaXN0b3J5IjpbMTEyODEzNzY2OCw0OTE2MjM4NTEsLTEyOT
 k3MTkxNCwtMTkxNzQwMjk1OCwxNjUyODI4NDYwLDI0NzM1ODcw
 NywtNzcyODY1NDM5LDIxODA1MDgwLDg2MTgxMjY1NCw1NjMwMj
 M5MzMsLTEyNDMxOTUzNTgsLTEyODE5OTYxNjEsLTE4NTQ0MzU0
