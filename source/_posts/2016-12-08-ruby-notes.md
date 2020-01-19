@@ -1,7 +1,7 @@
 ---
 title: ruby学习笔记
 date: 2016-12-08 22:54:49
-category: notes
+category: notes学习笔记
 tags:
     - ruby
 keywords:
@@ -258,3 +258,6 @@ puts anObject.inspect
 这是一段注释块。This is a comment block.
 Egg, I dreamed I was old.
 =end
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTEzODM2OTgyMzddfQ==
+-->
