@@ -1,7 +1,7 @@
 ---
 layout: post
 title: C#学习笔记
-category: notes
+category: notes学习笔记
 tags: [c#,教程]
 keywords:
 description:
@@ -205,3 +205,6 @@ C#中有三种参数传递方式：值参数、引用参数、输出参数。
 ## 多线程
 
 ...
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTE0NTg2NTgyNDJdfQ==
+-->
