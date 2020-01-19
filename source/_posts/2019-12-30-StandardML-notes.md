@@ -422,9 +422,9 @@ fun sum2 xs =
     end
 ```
 
-we use a local helper `f` and a accumulator `acc` so that the return value  of `f`  is just the return value of `sum2` . As a result, there is no need to keep every call in stack, just the current `f` is enough. And that's ML and monst ot
+we use a local helper `f` and a accumulator `acc` so that the return value  of `f`  is just the return value of `sum2` . As a result, there is no need to keep every call in stack, just the current `f` is enough. And that's ML and most of other functional programming language do.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTk3MzE5NDMwMiwtMTg3ODM0NDI0NiwtMT
+eyJoaXN0b3J5IjpbMTczNjA4OTY1OSwtMTg3ODM0NDI0NiwtMT
 k1OTkyMDI3Myw2NDU4OTc1OTIsLTE0ODI1NzkyNDMsMTgwNDM1
 MTE0MSwtMjA3NzI4Njk0MCw0OTE2MjM4NTEsLTEyOTk3MTkxNC
 wtMTkxNzQwMjk1OCwxNjUyODI4NDYwLDI0NzM1ODcwNywtNzcy
