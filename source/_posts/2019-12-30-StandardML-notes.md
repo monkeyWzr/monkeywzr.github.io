@@ -440,9 +440,9 @@ fun rev2 lst =
     end
 ```
 `rev1` is `O(n^2)` but rev2 is almost as simple as `O(n)`.
-By this idiom we can make our function m
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTUzMjY1MzAzNywtMTg3ODM0NDI0NiwtMT
+eyJoaXN0b3J5IjpbMTM3NzM5MTk3MSwtMTg3ODM0NDI0NiwtMT
 k1OTkyMDI3Myw2NDU4OTc1OTIsLTE0ODI1NzkyNDMsMTgwNDM1
 MTE0MSwtMjA3NzI4Njk0MCw0OTE2MjM4NTEsLTEyOTk3MTkxNC
 wtMTkxNzQwMjk1OCwxNjUyODI4NDYwLDI0NzM1ODcwNywtNzcy
