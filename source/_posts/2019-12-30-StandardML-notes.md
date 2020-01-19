@@ -338,13 +338,12 @@ When defining a function, we can also use pattern-matching
 ```ML
 fun sum_triple (x, y, z) =
     x + y + z;
-
 ```
-Actually, all functions in ML takes one tripple as an argument. There 
+Actually, all functions in ML takes one tripple as an argument. There is no such thing as a mutli-argument function  or zero-argument function in ML.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTgxMzY3ODU2NSw0OTE2MjM4NTEsLTEyOT
-k3MTkxNCwtMTkxNzQwMjk1OCwxNjUyODI4NDYwLDI0NzM1ODcw
-NywtNzcyODY1NDM5LDIxODA1MDgwLDg2MTgxMjY1NCw1NjMwMj
-M5MzMsLTEyNDMxOTUzNTgsLTEyODE5OTYxNjEsLTE4NTQ0MzU0
-OTUsMTQyNjUxMTMxOSwtNzA3Njc4MzA3XX0=
+eyJoaXN0b3J5IjpbMzAxMDAyOTk2LDQ5MTYyMzg1MSwtMTI5OT
+cxOTE0LC0xOTE3NDAyOTU4LDE2NTI4Mjg0NjAsMjQ3MzU4NzA3
+LC03NzI4NjU0MzksMjE4MDUwODAsODYxODEyNjU0LDU2MzAyMz
+kzMywtMTI0MzE5NTM1OCwtMTI4MTk5NjE2MSwtMTg1NDQzNTQ5
+NSwxNDI2NTExMzE5LC03MDc2NzgzMDddfQ==
 -->
