@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Kali的一些工具
-category: notes
+category: notes学习笔记
 tags: [kali,linux]
 keywords: Kali,渗透
 description:
@@ -124,3 +124,6 @@ description:
 - W3AF 识别、审计、攻击，有丰富的插件和exploits。
 - wafw00f 检测防web防火墙（WAF）的脚本
 - webscarab 集成了众多工具，OWASP Project之一，功能强大
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTczMjQzNDY2Ml19
+-->
