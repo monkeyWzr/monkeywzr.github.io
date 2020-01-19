@@ -1,7 +1,7 @@
 ---
 title: 提升ListView的效率
 date: 2017-10-04 04:52:18
-category: tech
+category: tech技术
 tags:
     - android
     - java
@@ -85,3 +85,6 @@ new AsyncTask<ViewHolder, Void, Bitmap>() {
 ```
 
 Beginning with Android 3.0 (API level 11), an extra feature is available in AsyncTask so you can enable it to run across multiple processor cores. Instead of calling execute() you can specify executeOnExecutor() and multiple requests can be executed at the same time depending on the number of cores available
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbMTU2NzY1MTExXX0=
+-->
