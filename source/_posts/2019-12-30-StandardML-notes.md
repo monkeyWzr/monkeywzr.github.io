@@ -348,13 +348,19 @@ The definition of patterns is recursive. We can use nested patterns instea of ne
 
 We can use wildcard pattern `_` in patterns.
 ```ML
+fun len xs =
+    case xs of
+	[] => 0
+      | _::xs' => 1 + len xs';
 
 ```
+
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTY4NzcxNjUwMCwxODA0MzUxMTQxLC0yMD
-c3Mjg2OTQwLDQ5MTYyMzg1MSwtMTI5OTcxOTE0LC0xOTE3NDAy
-OTU4LDE2NTI4Mjg0NjAsMjQ3MzU4NzA3LC03NzI4NjU0MzksMj
-E4MDUwODAsODYxODEyNjU0LDU2MzAyMzkzMywtMTI0MzE5NTM1
-OCwtMTI4MTk5NjE2MSwtMTg1NDQzNTQ5NSwxNDI2NTExMzE5LC
-03MDc2NzgzMDddfQ==
+eyJoaXN0b3J5IjpbLTE0ODI1NzkyNDMsMTgwNDM1MTE0MSwtMj
+A3NzI4Njk0MCw0OTE2MjM4NTEsLTEyOTk3MTkxNCwtMTkxNzQw
+Mjk1OCwxNjUyODI4NDYwLDI0NzM1ODcwNywtNzcyODY1NDM5LD
+IxODA1MDgwLDg2MTgxMjY1NCw1NjMwMjM5MzMsLTEyNDMxOTUz
+NTgsLTEyODE5OTYxNjEsLTE4NTQ0MzU0OTUsMTQyNjUxMTMxOS
+wtNzA3Njc4MzA3XX0=
 -->
