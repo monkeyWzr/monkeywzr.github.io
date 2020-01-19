@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Windows Server 2008 r2学习笔记
-category: notes
+category: notes学习笔记
 tags: [服务器]
 keywords: server,服务器
 description: 
@@ -26,3 +26,6 @@ description:
 
 		redircmp DN
 
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTE4MTE1MzQzNzNdfQ==
+-->
