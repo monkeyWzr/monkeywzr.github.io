@@ -1,7 +1,7 @@
 ---
 title: composer中的autoload
 date: 2016-11-05 02:42:06
-category: tech
+category: tech技术
 tags:
     - php
 keywords:
@@ -76,3 +76,6 @@ __相关链接__
 [如何使用composer的autoload来自动加载自己编写的函数库与类库](http://drops.leavesongs.com/php/composer-autoload-class-and-function-written-myself.html)
 
 [使用composer中的autoload](http://gywbd.github.io/posts/2014/12/composer-autoload.html)
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTEwMTcyMTc5MDddfQ==
+-->
