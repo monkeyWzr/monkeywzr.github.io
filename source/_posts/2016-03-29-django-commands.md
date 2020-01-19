@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Django常用命令
-category: notes
+category: notes学习笔记
 tags: [python]
 keywords: Django,python
 description:
@@ -10,3 +10,6 @@ description:
 * `makemigrations` 创建迁移信息
 * `sqlmigrate ` 输出生成的sql语句
 * `migrate` 同步所有未应用的改动
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbMjA3Mjg5NzY2XX0=
+-->
