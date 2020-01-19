@@ -1,7 +1,7 @@
 ---
 layout: post
 title: ubuntu server 搭建apache/mysql/php7
-category: tech
+category: tech技术
 tags: [linux,php]
 keywords: lamp,linux,apache,mysql,php,php7
 description: 
@@ -16,3 +16,6 @@ description:
         $ sudo apt-get install libapache2-mod-php
 
 
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbMTY2MzY0MTk0MV19
+-->
