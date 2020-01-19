@@ -1,7 +1,7 @@
 ---
 title: get-selected-text-from-webview
 date: 2017-10-08 00:30:19
-category: tech
+category: tech技术
 tags:
     - android
     - java
@@ -31,3 +31,6 @@ contentText.evaluateJavascript("(function(){return window.getSelection().toStrin
 研究了一夜，实在没什么方案可以达到我想要的效果，只能通过点击菜单项获取选择的文本了。。
 
 未完待续。
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbODI5Mjg4ODgzXX0=
+-->
