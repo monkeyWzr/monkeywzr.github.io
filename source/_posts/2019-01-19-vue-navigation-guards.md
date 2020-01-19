@@ -4,7 +4,7 @@ date: 2019-01-25 09:00:00
 tags:
     - JavaScript
     - Vue.js
-category: tech
+category: tech技术
 keywords:
     - Vue.js
     - Javascript
@@ -109,3 +109,6 @@ const Foo = {
 + Call global afterEach hooks.
 + DOM updates triggered.
 + Call callbacks passed to next in beforeRouteEnter guards with instantiated instances.
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTE1Mjk2MzU2NThdfQ==
+-->
