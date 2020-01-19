@@ -321,10 +321,14 @@ fun append(xs, ys) =
 	    [] => ys
       | x::xs' => x :: append(xs', ys);
 ```
+
+### Pattern-matching for Each-of Types
+
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyOTk3MTkxNCwtMTkxNzQwMjk1OCwxNj
-UyODI4NDYwLDI0NzM1ODcwNywtNzcyODY1NDM5LDIxODA1MDgw
-LDg2MTgxMjY1NCw1NjMwMjM5MzMsLTEyNDMxOTUzNTgsLTEyOD
-E5OTYxNjEsLTE4NTQ0MzU0OTUsMTQyNjUxMTMxOSwtNzA3Njc4
-MzA3XX0=
+eyJoaXN0b3J5IjpbNDkxNjIzODUxLC0xMjk5NzE5MTQsLTE5MT
+c0MDI5NTgsMTY1MjgyODQ2MCwyNDczNTg3MDcsLTc3Mjg2NTQz
+OSwyMTgwNTA4MCw4NjE4MTI2NTQsNTYzMDIzOTMzLC0xMjQzMT
+k1MzU4LC0xMjgxOTk2MTYxLC0xODU0NDM1NDk1LDE0MjY1MTEz
+MTksLTcwNzY3ODMwN119
 -->
