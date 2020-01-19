@@ -353,14 +353,16 @@ fun len xs =
 
 ### Function Patterns
 
-In a function binding, we can use
+In a function binding, we can use a syntactic sugar instead of using case expressions:
+
 ```ML
+
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3NDgzNjE3MTksLTE0ODI1NzkyNDMsMT
-gwNDM1MTE0MSwtMjA3NzI4Njk0MCw0OTE2MjM4NTEsLTEyOTk3
-MTkxNCwtMTkxNzQwMjk1OCwxNjUyODI4NDYwLDI0NzM1ODcwNy
-wtNzcyODY1NDM5LDIxODA1MDgwLDg2MTgxMjY1NCw1NjMwMjM5
-MzMsLTEyNDMxOTUzNTgsLTEyODE5OTYxNjEsLTE4NTQ0MzU0OT
-UsMTQyNjUxMTMxOSwtNzA3Njc4MzA3XX0=
+eyJoaXN0b3J5IjpbNjQ1ODk3NTkyLC0xNDgyNTc5MjQzLDE4MD
+QzNTExNDEsLTIwNzcyODY5NDAsNDkxNjIzODUxLC0xMjk5NzE5
+MTQsLTE5MTc0MDI5NTgsMTY1MjgyODQ2MCwyNDczNTg3MDcsLT
+c3Mjg2NTQzOSwyMTgwNTA4MCw4NjE4MTI2NTQsNTYzMDIzOTMz
+LC0xMjQzMTk1MzU4LC0xMjgxOTk2MTYxLC0xODU0NDM1NDk1LD
+E0MjY1MTEzMTksLTcwNzY3ODMwN119
 -->
