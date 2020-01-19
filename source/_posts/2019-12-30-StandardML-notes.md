@@ -423,8 +423,16 @@ fun sum2 xs =
 ```
 
 we use a local helper `f` and a accumulator `acc` so that the return value  of `f`  is just the return value of `sum2` . As a result, there is no need to keep every call in stack, just the current `f` is enough. And that's ML and most of other functional programming languages do.
+Another example: when revers
+```ML
+fun rev1 lst =
+    case lst of
+        [] => []
+      | x::xs => (rev1 xs) @ [x]
+```
+By this idiom we can make our function 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIxNjQ5MTMyOCwtMTg3ODM0NDI0NiwtMT
+eyJoaXN0b3J5IjpbMTY1MTUzMjgyMCwtMTg3ODM0NDI0NiwtMT
 k1OTkyMDI3Myw2NDU4OTc1OTIsLTE0ODI1NzkyNDMsMTgwNDM1
 MTE0MSwtMjA3NzI4Njk0MCw0OTE2MjM4NTEsLTEyOTk3MTkxNC
 wtMTkxNzQwMjk1OCwxNjUyODI4NDYwLDI0NzM1ODcwNywtNzcy
