@@ -441,9 +441,10 @@ fun rev2 lst =
 ```
 `rev1` is `O(n^2)` but rev2 is almost as simple as `O(n)`.
 
-To define
+To make sure which calls are tail calls, we can use a recursive defination of **tail position**:
+* In fun f(x)
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzQ5NTk2MDIzLC0xODc4MzQ0MjQ2LC0xOT
+eyJoaXN0b3J5IjpbMjE2ODY5Nzg4LC0xODc4MzQ0MjQ2LC0xOT
 U5OTIwMjczLDY0NTg5NzU5MiwtMTQ4MjU3OTI0MywxODA0MzUx
 MTQxLC0yMDc3Mjg2OTQwLDQ5MTYyMzg1MSwtMTI5OTcxOTE0LC
 0xOTE3NDAyOTU4LDE2NTI4Mjg0NjAsMjQ3MzU4NzA3LC03NzI4
