@@ -422,13 +422,13 @@ fun sum2 xs =
     end
 ```
 
-we use a local helper `f` and a accumulator `acc` so that the return value  of `f`  is just the return value of `sum2` . As a 
+we use a local helper `f` and a accumulator `acc` so that the return value  of `f`  is just the return value of `sum2` . As a result, there is no need to keep every call in stack, just the current `f` is enough. And that's ML and monst ot
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTU0MTc3NTkyLC0xODc4MzQ0MjQ2LC0xOT
-U5OTIwMjczLDY0NTg5NzU5MiwtMTQ4MjU3OTI0MywxODA0MzUx
-MTQxLC0yMDc3Mjg2OTQwLDQ5MTYyMzg1MSwtMTI5OTcxOTE0LC
-0xOTE3NDAyOTU4LDE2NTI4Mjg0NjAsMjQ3MzU4NzA3LC03NzI4
-NjU0MzksMjE4MDUwODAsODYxODEyNjU0LDU2MzAyMzkzMywtMT
-I0MzE5NTM1OCwtMTI4MTk5NjE2MSwtMTg1NDQzNTQ5NSwxNDI2
-NTExMzE5XX0=
+eyJoaXN0b3J5IjpbMTk3MzE5NDMwMiwtMTg3ODM0NDI0NiwtMT
+k1OTkyMDI3Myw2NDU4OTc1OTIsLTE0ODI1NzkyNDMsMTgwNDM1
+MTE0MSwtMjA3NzI4Njk0MCw0OTE2MjM4NTEsLTEyOTk3MTkxNC
+wtMTkxNzQwMjk1OCwxNjUyODI4NDYwLDI0NzM1ODcwNywtNzcy
+ODY1NDM5LDIxODA1MDgwLDg2MTgxMjY1NCw1NjMwMjM5MzMsLT
+EyNDMxOTUzNTgsLTEyODE5OTYxNjEsLTE4NTQ0MzU0OTUsMTQy
+NjUxMTMxOV19
 -->
