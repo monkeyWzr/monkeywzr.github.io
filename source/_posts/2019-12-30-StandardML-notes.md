@@ -410,7 +410,7 @@ fun sum1 xs =
       | i::xs' => i + sum1 xs'
 ```
 
-When the function runs, it will keep a call-stack for each recursive call . But if we change a little bit using tail call:
+When the function runs, it will keep a call-stack for each recursive call . But if we change a little bit using tail call :
 ```ML
 fun sum2 xs =
     let fun f (xs,acc) =
@@ -441,12 +441,13 @@ fun rev2 lst =
 ```
 `rev1` is `O(n^2)` but rev2 is almost as simple as `O(n)`.
 
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTM3NzM5MTk3MSwtMTg3ODM0NDI0NiwtMT
-k1OTkyMDI3Myw2NDU4OTc1OTIsLTE0ODI1NzkyNDMsMTgwNDM1
-MTE0MSwtMjA3NzI4Njk0MCw0OTE2MjM4NTEsLTEyOTk3MTkxNC
-wtMTkxNzQwMjk1OCwxNjUyODI4NDYwLDI0NzM1ODcwNywtNzcy
-ODY1NDM5LDIxODA1MDgwLDg2MTgxMjY1NCw1NjMwMjM5MzMsLT
-EyNDMxOTUzNTgsLTEyODE5OTYxNjEsLTE4NTQ0MzU0OTUsMTQy
-NjUxMTMxOV19
+eyJoaXN0b3J5IjpbODgwNzQ0NjA1LC0xODc4MzQ0MjQ2LC0xOT
+U5OTIwMjczLDY0NTg5NzU5MiwtMTQ4MjU3OTI0MywxODA0MzUx
+MTQxLC0yMDc3Mjg2OTQwLDQ5MTYyMzg1MSwtMTI5OTcxOTE0LC
+0xOTE3NDAyOTU4LDE2NTI4Mjg0NjAsMjQ3MzU4NzA3LC03NzI4
+NjU0MzksMjE4MDUwODAsODYxODEyNjU0LDU2MzAyMzkzMywtMT
+I0MzE5NTM1OCwtMTI4MTk5NjE2MSwtMTg1NDQzNTQ5NSwxNDI2
+NTExMzE5XX0=
 -->
