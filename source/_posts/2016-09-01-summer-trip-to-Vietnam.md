@@ -1,7 +1,7 @@
 ---
 title: 暑假越南行（二）
 date: 2016-09-01 03:28:01
-category: life
+category: life生活
 tags:
     - 旅行
 keywords:
@@ -59,3 +59,6 @@ keywords:
 ![img](http://7xi8b3.com1.z0.glb.clouddn.com/blog/vietnamIMG_20160805_161045.jpg)
 
 感觉在岘港留下了不少遗憾，玩的不是很尽兴，希望以后会有机会再弥补吧。不过在岘港认识了来自上海的岘港通Jimmy帅哥，帮了我很多忙，这里也祝他创业顺利啦！还有超级老司机Michael，祝他。。约到性价比更高的妹子？
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbNjM5NzQ3ODU4XX0=
+-->
