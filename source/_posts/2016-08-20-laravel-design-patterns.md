@@ -2,6 +2,7 @@
 title: laravel设计模式
 date: 2016-08-20 23:29:17
 category: notes
+    - 学习笔记
 tags:
     - laravel
     - php
@@ -29,3 +30,6 @@ $user = new UserController(new UserMonel());
 ```    
 
 `UserController`依赖`UserModel`，在实例化时，laravel会自动主注入UserModel实例。
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTI2NDU0NTgxM119
+-->
