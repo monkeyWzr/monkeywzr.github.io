@@ -322,7 +322,7 @@ fun append(xs, ys) =
       | x::xs' => x :: append(xs', ys);
 ```
 
-## Pattern-matching for Each-of Types
+## Pattern-matching
 
 Val-bindings are actually using pattern-matching.
 ```ML
@@ -351,12 +351,13 @@ fun len xs =
 
 ```
 
+### Function Patterns
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTY4ODUxMjc0OSwtMTQ4MjU3OTI0MywxOD
-A0MzUxMTQxLC0yMDc3Mjg2OTQwLDQ5MTYyMzg1MSwtMTI5OTcx
-OTE0LC0xOTE3NDAyOTU4LDE2NTI4Mjg0NjAsMjQ3MzU4NzA3LC
-03NzI4NjU0MzksMjE4MDUwODAsODYxODEyNjU0LDU2MzAyMzkz
-MywtMTI0MzE5NTM1OCwtMTI4MTk5NjE2MSwtMTg1NDQzNTQ5NS
-wxNDI2NTExMzE5LC03MDc2NzgzMDddfQ==
+eyJoaXN0b3J5IjpbMzU1NjkzNjQ0LC0xNDgyNTc5MjQzLDE4MD
+QzNTExNDEsLTIwNzcyODY5NDAsNDkxNjIzODUxLC0xMjk5NzE5
+MTQsLTE5MTc0MDI5NTgsMTY1MjgyODQ2MCwyNDczNTg3MDcsLT
+c3Mjg2NTQzOSwyMTgwNTA4MCw4NjE4MTI2NTQsNTYzMDIzOTMz
+LC0xMjQzMTk1MzU4LC0xMjgxOTk2MTYxLC0xODU0NDM1NDk1LD
+E0MjY1MTEzMTksLTcwNzY3ODMwN119
 -->
