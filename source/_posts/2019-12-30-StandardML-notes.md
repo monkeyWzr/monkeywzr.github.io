@@ -222,7 +222,7 @@ fun max1( xs : int list) =
 	end;
 ```
 
-### Some More Expressions
+## Some More Expressions
 
 Boolean operations:
 * `e1 andalso e2`
@@ -238,7 +238,7 @@ Comparisons:
 * `=` `<>` `>` `<` `>=` `<=`
     - `=` and `<>` can be used with any "equality type" but not with real
 
-### Build New Types
+## Build New Types
 
 To Create a compound type, there are really only three essential building blocks:
 
@@ -285,7 +285,7 @@ type foo = int
 (* we can write foo wherever we write int and vice-versa *)
 ```
 
-### Case Expressions
+## Case Expressions
 
 To access to datatype values, we can use a case expression:
 ```ML
@@ -299,7 +299,7 @@ f(Str("a")); (* val it = 8 : int *)
 ```
 We separate the branches with the `|` character. Each branch has the form `p => e` where p is a pattern and e is an expression. Patterns are used to match against the result of evaluating the case's first expression. This is why evaluating a case-expression is called pattern-matching.
 
-### Lists and Options are Datatypes too
+## Lists and Options are Datatypes too
 
 `SOME` and `NONE` are actually constructors. So you can use them in a case like:
 ```ML
@@ -322,7 +322,7 @@ fun append(xs, ys) =
       | x::xs' => x :: append(xs', ys);
 ```
 
-### Pattern-matching for Each-of Types
+## Pattern-matching for Each-of Types
 
 Val-bindings are actually using pattern-matching.
 ```ML
@@ -342,9 +342,10 @@ fun sum_triple (x, y, z) =
 Actually, all functions in ML takes one tripple as an argument. There is no such thing as a mutli-argument function  or zero-argument function in ML.
 The binding `fun () = e` is using the unit-pattern `()` to match against calls that pass the unit value `()`, which is the only value fo a pre-defined datatype `unit`.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwNzcyODY5NDAsNDkxNjIzODUxLC0xMj
-k5NzE5MTQsLTE5MTc0MDI5NTgsMTY1MjgyODQ2MCwyNDczNTg3
-MDcsLTc3Mjg2NTQzOSwyMTgwNTA4MCw4NjE4MTI2NTQsNTYzMD
-IzOTMzLC0xMjQzMTk1MzU4LC0xMjgxOTk2MTYxLC0xODU0NDM1
-NDk1LDE0MjY1MTEzMTksLTcwNzY3ODMwN119
+eyJoaXN0b3J5IjpbLTIwMDA1ODQ4NzEsLTIwNzcyODY5NDAsND
+kxNjIzODUxLC0xMjk5NzE5MTQsLTE5MTc0MDI5NTgsMTY1Mjgy
+ODQ2MCwyNDczNTg3MDcsLTc3Mjg2NTQzOSwyMTgwNTA4MCw4Nj
+E4MTI2NTQsNTYzMDIzOTMzLC0xMjQzMTk1MzU4LC0xMjgxOTk2
+MTYxLC0xODU0NDM1NDk1LDE0MjY1MTEzMTksLTcwNzY3ODMwN1
+19
 -->
