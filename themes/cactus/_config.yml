@@ -66,12 +66,15 @@ post:
 # Customize the logo (i.e., the cactus) in the header.
 # Options:
 #   - enabled: whether to show (true) or hide (false) the logo.
+#   - grayout: whether to grayout (true) the logo or keep original
+#              if true, there will be a hover effect on header
 #   - width: width of the logo in pixel units
 #   - height: height of the logo in pixel units
 #   - url: where the logo can be found
 #   - gravatar: whether to use your Gravatar as the logo
 logo:
   enabled: true
+  grayout: true
   width: 50
   height: 50
   url: /images/logo.png
