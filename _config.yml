@@ -6,7 +6,7 @@
 title: マクロス
 subtitle: 
 description: 頑張ろう！
-author: 小灰机灰上天
+author: monkeyWzr
 language: en
 timezone:
 since: 2015
@@ -73,8 +73,7 @@ theme: cactus
 disqus_shortname: monkeywzr
 theme_config:
   colorscheme: white
-  logo:
-    grayout: false
+  logo-grayout: true
   nav:
     Home: /
     Writing: /archives/
