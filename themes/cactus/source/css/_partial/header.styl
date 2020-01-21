@@ -25,12 +25,11 @@
     margin-right: 20px
     width: $logo-width
     height: $logo-height
+    filter: $logo-grayout
     border-radius: 5px
     background-size: $logo-width $logo-height
     background-repeat: no-repeat
-    if $logo-grayout
-      filter: grayscale(100%)
-      -webkit-filter: grayscale(100%)
+    -webkit-filter: $logo-grayout
 
   #nav
     color: $color-accent-1
@@ -69,8 +68,7 @@
         a
           margin-right: 0
 
-if $logo-grayout
-  #header:hover
+#header:hover
     #logo
       filter: none
       -webkit-filter: none
