@@ -447,12 +447,14 @@ To make sure which calls are tail calls, we can use a recursive defination of **
 * If `if e1 then e2 else e3` is in tail position, then `e2` and `e3` are in tail position (but not `e1`). (Case-expressions are similar.)
 * If `let b1 ... bn in e end` is in tail position, then e is in tail position (but no expressions in the bindings are).
 * Function-call arguments are not in tail position.
+
+## First-class Functions
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjMzMzIzODksLTE4NzgzNDQyNDYsLTE5NT
-k5MjAyNzMsNjQ1ODk3NTkyLC0xNDgyNTc5MjQzLDE4MDQzNTEx
-NDEsLTIwNzcyODY5NDAsNDkxNjIzODUxLC0xMjk5NzE5MTQsLT
-E5MTc0MDI5NTgsMTY1MjgyODQ2MCwyNDczNTg3MDcsLTc3Mjg2
-NTQzOSwyMTgwNTA4MCw4NjE4MTI2NTQsNTYzMDIzOTMzLC0xMj
-QzMTk1MzU4LC0xMjgxOTk2MTYxLC0xODU0NDM1NDk1LDE0MjY1
-MTEzMTldfQ==
+eyJoaXN0b3J5IjpbLTg1MTYxOTk4OSwyMzMzMjM4OSwtMTg3OD
+M0NDI0NiwtMTk1OTkyMDI3Myw2NDU4OTc1OTIsLTE0ODI1Nzky
+NDMsMTgwNDM1MTE0MSwtMjA3NzI4Njk0MCw0OTE2MjM4NTEsLT
+EyOTk3MTkxNCwtMTkxNzQwMjk1OCwxNjUyODI4NDYwLDI0NzM1
+ODcwNywtNzcyODY1NDM5LDIxODA1MDgwLDg2MTgxMjY1NCw1Nj
+MwMjM5MzMsLTEyNDMxOTUzNTgsLTEyODE5OTYxNjEsLTE4NTQ0
+MzU0OTVdfQ==
 -->
