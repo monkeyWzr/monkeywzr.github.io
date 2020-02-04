@@ -459,9 +459,9 @@ fun n_times (f, n, x)
     else f (n_times(f, n-1,x))
 ```
 
-The function `n_times` is called high-order funciton.
+The function `n_times` is called higher-order funciton. 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2NDEwNDg1NzksOTY0MjM5NDQ4LC04NT
+eyJoaXN0b3J5IjpbLTE2NzQ3OTQwNDQsOTY0MjM5NDQ4LC04NT
 E2MTk5ODksMjMzMzIzODksLTE4NzgzNDQyNDYsLTE5NTk5MjAy
 NzMsNjQ1ODk3NTkyLC0xNDgyNTc5MjQzLDE4MDQzNTExNDEsLT
 IwNzcyODY5NDAsNDkxNjIzODUxLC0xMjk5NzE5MTQsLTE5MTc0
