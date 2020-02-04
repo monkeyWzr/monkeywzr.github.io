@@ -481,16 +481,33 @@ fun triple_n_times (n, x) =
     n_times((fn x => 3*x), n, x)
 ```
 
-Mapping:
+Maps:
 ```ML
+(* ('a -> 'b) * 'a list -> 'b list *)
+fun map (f, xs) =
+    case xs of
+	[] => []
+      | x::xs' => (f x)::(map(f, xs'));
+```
+
+Filters:
+```ML
+fun filter (f, xs) =
+    case xs of
+	[] => []
+      | x::xs' => if f x
+		  then x::(filter (f, xs'))
+		  else filter (f, xs');
 
 ```
+
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTg1NjU5OTA4LDk0NDA4ODc3MSwtMTE0Nz
-AyNTQ4OSwtMTY3NDc5NDA0NCw5NjQyMzk0NDgsLTg1MTYxOTk4
-OSwyMzMzMjM4OSwtMTg3ODM0NDI0NiwtMTk1OTkyMDI3Myw2ND
-U4OTc1OTIsLTE0ODI1NzkyNDMsMTgwNDM1MTE0MSwtMjA3NzI4
-Njk0MCw0OTE2MjM4NTEsLTEyOTk3MTkxNCwtMTkxNzQwMjk1OC
-wxNjUyODI4NDYwLDI0NzM1ODcwNywtNzcyODY1NDM5LDIxODA1
-MDgwXX0=
+eyJoaXN0b3J5IjpbLTY0OTE5OTM5NCw1ODU2NTk5MDgsOTQ0MD
+g4NzcxLC0xMTQ3MDI1NDg5LC0xNjc0Nzk0MDQ0LDk2NDIzOTQ0
+OCwtODUxNjE5OTg5LDIzMzMyMzg5LC0xODc4MzQ0MjQ2LC0xOT
+U5OTIwMjczLDY0NTg5NzU5MiwtMTQ4MjU3OTI0MywxODA0MzUx
+MTQxLC0yMDc3Mjg2OTQwLDQ5MTYyMzg1MSwtMTI5OTcxOTE0LC
+0xOTE3NDAyOTU4LDE2NTI4Mjg0NjAsMjQ3MzU4NzA3LC03NzI4
+NjU0MzldfQ==
 -->
