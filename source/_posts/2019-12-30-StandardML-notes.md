@@ -451,6 +451,7 @@ To make sure which calls are tail calls, we can use a recursive defination of **
 ## First-class Functions
 
 The most common use of first class functions is passing them as arguments to other functions.
+
 ```ML
 fun n_times (f, n, x)
     if n=0
@@ -458,12 +459,13 @@ fun n_times (f, n, x)
     else f (n_times(f, n-1,x))
 ```
 
+The function `n_times` 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTk4MTY1OTQ1LDk2NDIzOTQ0OCwtODUxNj
-E5OTg5LDIzMzMyMzg5LC0xODc4MzQ0MjQ2LC0xOTU5OTIwMjcz
-LDY0NTg5NzU5MiwtMTQ4MjU3OTI0MywxODA0MzUxMTQxLC0yMD
-c3Mjg2OTQwLDQ5MTYyMzg1MSwtMTI5OTcxOTE0LC0xOTE3NDAy
-OTU4LDE2NTI4Mjg0NjAsMjQ3MzU4NzA3LC03NzI4NjU0MzksMj
-E4MDUwODAsODYxODEyNjU0LDU2MzAyMzkzMywtMTI0MzE5NTM1
-OF19
+eyJoaXN0b3J5IjpbMTc3MTA5MTU2NSw5NjQyMzk0NDgsLTg1MT
+YxOTk4OSwyMzMzMjM4OSwtMTg3ODM0NDI0NiwtMTk1OTkyMDI3
+Myw2NDU4OTc1OTIsLTE0ODI1NzkyNDMsMTgwNDM1MTE0MSwtMj
+A3NzI4Njk0MCw0OTE2MjM4NTEsLTEyOTk3MTkxNCwtMTkxNzQw
+Mjk1OCwxNjUyODI4NDYwLDI0NzM1ODcwNywtNzcyODY1NDM5LD
+IxODA1MDgwLDg2MTgxMjY1NCw1NjMwMjM5MzMsLTEyNDMxOTUz
+NThdfQ==
 -->
