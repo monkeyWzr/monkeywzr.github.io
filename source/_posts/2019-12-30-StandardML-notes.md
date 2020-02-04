@@ -467,14 +467,17 @@ fn : ('a -> 'a) * int * 'a -> 'a
 
 Instead, consider a function that is not polymorphic:
 ```ML
-fun times_until_zero
+fun times_until_zero (f, x) =
+    if x - 0
+    then 0
+    else 1 + times_until_zero(f, f x)
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTk5ODQyMzY2OCwtMTY3NDc5NDA0NCw5Nj
-QyMzk0NDgsLTg1MTYxOTk4OSwyMzMzMjM4OSwtMTg3ODM0NDI0
-NiwtMTk1OTkyMDI3Myw2NDU4OTc1OTIsLTE0ODI1NzkyNDMsMT
-gwNDM1MTE0MSwtMjA3NzI4Njk0MCw0OTE2MjM4NTEsLTEyOTk3
-MTkxNCwtMTkxNzQwMjk1OCwxNjUyODI4NDYwLDI0NzM1ODcwNy
-wtNzcyODY1NDM5LDIxODA1MDgwLDg2MTgxMjY1NCw1NjMwMjM5
-MzNdfQ==
+eyJoaXN0b3J5IjpbLTEzNjgzNzkxMDMsLTE2NzQ3OTQwNDQsOT
+Y0MjM5NDQ4LC04NTE2MTk5ODksMjMzMzIzODksLTE4NzgzNDQy
+NDYsLTE5NTk5MjAyNzMsNjQ1ODk3NTkyLC0xNDgyNTc5MjQzLD
+E4MDQzNTExNDEsLTIwNzcyODY5NDAsNDkxNjIzODUxLC0xMjk5
+NzE5MTQsLTE5MTc0MDI5NTgsMTY1MjgyODQ2MCwyNDczNTg3MD
+csLTc3Mjg2NTQzOSwyMTgwNTA4MCw4NjE4MTI2NTQsNTYzMDIz
+OTMzXX0=
 -->
