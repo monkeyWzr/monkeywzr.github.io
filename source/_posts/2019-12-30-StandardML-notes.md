@@ -492,22 +492,22 @@ fun map (f, xs) =
 
 Filters:
 ```ML
+(* ('a -> bool) * 'a list -> 'a list *)
 fun filter (f, xs) =
     case xs of
 	[] => []
       | x::xs' => if f x
 		  then x::(filter (f, xs'))
 		  else filter (f, xs');
-
 ```
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTY0OTE5OTM5NCw1ODU2NTk5MDgsOTQ0MD
-g4NzcxLC0xMTQ3MDI1NDg5LC0xNjc0Nzk0MDQ0LDk2NDIzOTQ0
-OCwtODUxNjE5OTg5LDIzMzMyMzg5LC0xODc4MzQ0MjQ2LC0xOT
-U5OTIwMjczLDY0NTg5NzU5MiwtMTQ4MjU3OTI0MywxODA0MzUx
-MTQxLC0yMDc3Mjg2OTQwLDQ5MTYyMzg1MSwtMTI5OTcxOTE0LC
-0xOTE3NDAyOTU4LDE2NTI4Mjg0NjAsMjQ3MzU4NzA3LC03NzI4
-NjU0MzldfQ==
+eyJoaXN0b3J5IjpbOTk1MDc5ODQ4LDU4NTY1OTkwOCw5NDQwOD
+g3NzEsLTExNDcwMjU0ODksLTE2NzQ3OTQwNDQsOTY0MjM5NDQ4
+LC04NTE2MTk5ODksMjMzMzIzODksLTE4NzgzNDQyNDYsLTE5NT
+k5MjAyNzMsNjQ1ODk3NTkyLC0xNDgyNTc5MjQzLDE4MDQzNTEx
+NDEsLTIwNzcyODY5NDAsNDkxNjIzODUxLC0xMjk5NzE5MTQsLT
+E5MTc0MDI5NTgsMTY1MjgyODQ2MCwyNDczNTg3MDcsLTc3Mjg2
+NTQzOV19
 -->
