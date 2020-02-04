@@ -453,19 +453,22 @@ To make sure which calls are tail calls, we can use a recursive defination of **
 The most common use of first class functions is passing them as arguments to other functions.
 
 ```ML
-fun n_times (f, n, x)
+fun n_times (f, n, x) =
     if n=0
     then x
     else f (n_times(f, n-1,x))
 ```
 
-The function `n_times` is called higher-order funciton. 
+The function `n_times` is called higher-order funciton.  Its type is:
+```ML
+fn : ('a -> 'a) * int * 'a -> 'a
+```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2NzQ3OTQwNDQsOTY0MjM5NDQ4LC04NT
-E2MTk5ODksMjMzMzIzODksLTE4NzgzNDQyNDYsLTE5NTk5MjAy
-NzMsNjQ1ODk3NTkyLC0xNDgyNTc5MjQzLDE4MDQzNTExNDEsLT
-IwNzcyODY5NDAsNDkxNjIzODUxLC0xMjk5NzE5MTQsLTE5MTc0
-MDI5NTgsMTY1MjgyODQ2MCwyNDczNTg3MDcsLTc3Mjg2NTQzOS
-wyMTgwNTA4MCw4NjE4MTI2NTQsNTYzMDIzOTMzLC0xMjQzMTk1
-MzU4XX0=
+eyJoaXN0b3J5IjpbLTEzNDI4ODI0NTgsLTE2NzQ3OTQwNDQsOT
+Y0MjM5NDQ4LC04NTE2MTk5ODksMjMzMzIzODksLTE4NzgzNDQy
+NDYsLTE5NTk5MjAyNzMsNjQ1ODk3NTkyLC0xNDgyNTc5MjQzLD
+E4MDQzNTExNDEsLTIwNzcyODY5NDAsNDkxNjIzODUxLC0xMjk5
+NzE5MTQsLTE5MTc0MDI5NTgsMTY1MjgyODQ2MCwyNDczNTg3MD
+csLTc3Mjg2NTQzOSwyMTgwNTA4MCw4NjE4MTI2NTQsNTYzMDIz
+OTMzXX0=
 -->
