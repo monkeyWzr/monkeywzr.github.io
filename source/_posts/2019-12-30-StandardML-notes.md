@@ -449,12 +449,20 @@ To make sure which calls are tail calls, we can use a recursive defination of **
 * Function-call arguments are not in tail position.
 
 ## First-class Functions
+
+```ML
+fun n_times (f, n, x)
+    if n=0
+    then x
+    else f (n_times(f, n-1,x))
+```
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTg1MTYxOTk4OSwyMzMzMjM4OSwtMTg3OD
-M0NDI0NiwtMTk1OTkyMDI3Myw2NDU4OTc1OTIsLTE0ODI1Nzky
-NDMsMTgwNDM1MTE0MSwtMjA3NzI4Njk0MCw0OTE2MjM4NTEsLT
-EyOTk3MTkxNCwtMTkxNzQwMjk1OCwxNjUyODI4NDYwLDI0NzM1
-ODcwNywtNzcyODY1NDM5LDIxODA1MDgwLDg2MTgxMjY1NCw1Nj
-MwMjM5MzMsLTEyNDMxOTUzNTgsLTEyODE5OTYxNjEsLTE4NTQ0
-MzU0OTVdfQ==
+eyJoaXN0b3J5IjpbOTY0MjM5NDQ4LC04NTE2MTk5ODksMjMzMz
+IzODksLTE4NzgzNDQyNDYsLTE5NTk5MjAyNzMsNjQ1ODk3NTky
+LC0xNDgyNTc5MjQzLDE4MDQzNTExNDEsLTIwNzcyODY5NDAsND
+kxNjIzODUxLC0xMjk5NzE5MTQsLTE5MTc0MDI5NTgsMTY1Mjgy
+ODQ2MCwyNDczNTg3MDcsLTc3Mjg2NTQzOSwyMTgwNTA4MCw4Nj
+E4MTI2NTQsNTYzMDIzOTMzLC0xMjQzMTk1MzU4LC0xMjgxOTk2
+MTYxXX0=
 -->
