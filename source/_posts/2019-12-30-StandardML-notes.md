@@ -467,13 +467,14 @@ fn : ('a -> 'a) * int * 'a -> 'a
 
 Instead, consider a function that is not polymorphic:
 ```ML
+(* (int -> int) * int -> int *)
 fun times_until_zero (f, x) =
-    if x - 0
+    if x = 0
     then 0
     else 1 + times_until_zero(f, f x)
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzNjgzNzkxMDMsLTE2NzQ3OTQwNDQsOT
+eyJoaXN0b3J5IjpbLTExNDcwMjU0ODksLTE2NzQ3OTQwNDQsOT
 Y0MjM5NDQ4LC04NTE2MTk5ODksMjMzMzIzODksLTE4NzgzNDQy
 NDYsLTE5NTk5MjAyNzMsNjQ1ODk3NTkyLC0xNDgyNTc5MjQzLD
 E4MDQzNTExNDEsLTIwNzcyODY5NDAsNDkxNjIzODUxLC0xMjk5
