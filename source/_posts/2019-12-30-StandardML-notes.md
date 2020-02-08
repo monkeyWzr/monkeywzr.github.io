@@ -517,9 +517,16 @@ fun sqrt_of_abs i = i |> abs |> Real.fromInt |> Math.sqrt;
 ```
 
 ### Currying
-	
+
+```ML
+(* fun sorted(x, y z) = z >= y andalso y >= x *)
+val sorted = fn x => fn y => fn z => z >= y andalso y >= x;
+
+(* just syntactic sugar for code above *)
+fun sorted_nicer x y z = z >= y andalso y >= x;
+```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE0MTk2OTA0NzgsMTU1MTAyODkwNiwxMj
+eyJoaXN0b3J5IjpbLTE5ODgyNjUxNjYsMTU1MTAyODkwNiwxMj
 Y0MzAwOTI0LC0yMTMyNTgzOTA1LC00OTUxNTg1MjEsLTYxNzAy
 ODA5NSw5OTUwNzk4NDgsNTg1NjU5OTA4LDk0NDA4ODc3MSwtMT
 E0NzAyNTQ4OSwtMTY3NDc5NDA0NCw5NjQyMzk0NDgsLTg1MTYx
