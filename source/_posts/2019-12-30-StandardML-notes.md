@@ -509,18 +509,18 @@ fun filter (f, xs) =
  fun sqrt_of_abs i = (Math.sqrt o Real.fromInt o abs) i;
 ```
 
-Use our own infix operator that lets us put the function to the  right
+Use our own infix operator to define a left-to-right syntax.
 ```ML
 infix |>
 fun x |> f = f x;
 fun sqrt_of_abs i = i |> abs |> Real.fromInt |> Math.sqrt;
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTQxNTIxNDYwMSwtMjEzMjU4MzkwNSwtND
-k1MTU4NTIxLC02MTcwMjgwOTUsOTk1MDc5ODQ4LDU4NTY1OTkw
-OCw5NDQwODg3NzEsLTExNDcwMjU0ODksLTE2NzQ3OTQwNDQsOT
-Y0MjM5NDQ4LC04NTE2MTk5ODksMjMzMzIzODksLTE4NzgzNDQy
-NDYsLTE5NTk5MjAyNzMsNjQ1ODk3NTkyLC0xNDgyNTc5MjQzLD
-E4MDQzNTExNDEsLTIwNzcyODY5NDAsNDkxNjIzODUxLC0xMjk5
-NzE5MTRdfQ==
+eyJoaXN0b3J5IjpbNjQ5MTcwMDQwLC0yMTMyNTgzOTA1LC00OT
+UxNTg1MjEsLTYxNzAyODA5NSw5OTUwNzk4NDgsNTg1NjU5OTA4
+LDk0NDA4ODc3MSwtMTE0NzAyNTQ4OSwtMTY3NDc5NDA0NCw5Nj
+QyMzk0NDgsLTg1MTYxOTk4OSwyMzMzMjM4OSwtMTg3ODM0NDI0
+NiwtMTk1OTkyMDI3Myw2NDU4OTc1OTIsLTE0ODI1NzkyNDMsMT
+gwNDM1MTE0MSwtMjA3NzI4Njk0MCw0OTE2MjM4NTEsLTEyOTk3
+MTkxNF19
 -->
