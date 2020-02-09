@@ -525,14 +525,20 @@ val sorted = fn x => fn y => fn z => z >= y andalso y >= x;
 (* just syntactic sugar for code above *)
 fun sorted_nicer x y z = z >= y andalso y >= x;
 ```
-when calling curried the function
+when calling curried the function:
+```ML
+(* ((sorted_nicer x) y) z *)
+(* or just: *)
+sorted_nicer x y z
+```
+
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTg2ODU0NjI4OSwtMTk4ODI2NTE2NiwxNT
-UxMDI4OTA2LDEyNjQzMDA5MjQsLTIxMzI1ODM5MDUsLTQ5NTE1
-ODUyMSwtNjE3MDI4MDk1LDk5NTA3OTg0OCw1ODU2NTk5MDgsOT
-Q0MDg4NzcxLC0xMTQ3MDI1NDg5LC0xNjc0Nzk0MDQ0LDk2NDIz
-OTQ0OCwtODUxNjE5OTg5LDIzMzMyMzg5LC0xODc4MzQ0MjQ2LC
-0xOTU5OTIwMjczLDY0NTg5NzU5MiwtMTQ4MjU3OTI0MywxODA0
-MzUxMTQxXX0=
+eyJoaXN0b3J5IjpbLTQ4MDgyNDMsLTE5ODgyNjUxNjYsMTU1MT
+AyODkwNiwxMjY0MzAwOTI0LC0yMTMyNTgzOTA1LC00OTUxNTg1
+MjEsLTYxNzAyODA5NSw5OTUwNzk4NDgsNTg1NjU5OTA4LDk0ND
+A4ODc3MSwtMTE0NzAyNTQ4OSwtMTY3NDc5NDA0NCw5NjQyMzk0
+NDgsLTg1MTYxOTk4OSwyMzMzMjM4OSwtMTg3ODM0NDI0NiwtMT
+k1OTkyMDI3Myw2NDU4OTc1OTIsLTE0ODI1NzkyNDMsMTgwNDM1
+MTE0MV19
 -->
