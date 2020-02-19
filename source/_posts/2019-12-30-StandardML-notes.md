@@ -563,15 +563,22 @@ One example:
 fun compose (f, g) = fn x => f (g x)
 ```
 
-### value restriction
+### Value restriction
 
-A variable
+A variable-binding can have a polymorphic type only if the expression is a variable or value:
+```ML
+val r = ref NONE
+val _ = r := SOME "hi"
+val i - 1 + valOf (!r)
+```
+
+With value restriction,
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTcwODQyMDA4MiwxMTY4ODU0MDU1LC0xMz
-Y4NDk2MDcxLC0yMDk3Mjk5ODMyLC0xODU3Nzg2NjIzLDE0MDQx
-ODgxOTUsLTE4NDk3MjAxNiwtMTk4ODI2NTE2NiwxNTUxMDI4OT
-A2LDEyNjQzMDA5MjQsLTIxMzI1ODM5MDUsLTQ5NTE1ODUyMSwt
-NjE3MDI4MDk1LDk5NTA3OTg0OCw1ODU2NTk5MDgsOTQ0MDg4Nz
-cxLC0xMTQ3MDI1NDg5LC0xNjc0Nzk0MDQ0LDk2NDIzOTQ0OCwt
-ODUxNjE5OTg5XX0=
+eyJoaXN0b3J5IjpbLTE5Mjg3NDc4ODEsMTE2ODg1NDA1NSwtMT
+M2ODQ5NjA3MSwtMjA5NzI5OTgzMiwtMTg1Nzc4NjYyMywxNDA0
+MTg4MTk1LC0xODQ5NzIwMTYsLTE5ODgyNjUxNjYsMTU1MTAyOD
+kwNiwxMjY0MzAwOTI0LC0yMTMyNTgzOTA1LC00OTUxNTg1MjEs
+LTYxNzAyODA5NSw5OTUwNzk4NDgsNTg1NjU5OTA4LDk0NDA4OD
+c3MSwtMTE0NzAyNTQ4OSwtMTY3NDc5NDA0NCw5NjQyMzk0NDgs
+LTg1MTYxOTk4OV19
 -->
