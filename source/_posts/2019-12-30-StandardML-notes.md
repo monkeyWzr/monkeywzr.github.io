@@ -546,6 +546,7 @@ sorted_nicer x y z
 * Use type variables like `'a` for any unconstrained type
 * Enforce the value restriction
 
+One example:
 ```ML
 (*
 	compose : T1 * T2 -> T3
@@ -561,12 +562,13 @@ sorted_nicer x y z
 *)
 fun compose (f, g) = fn x => f (g x)
 ```
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTU2ODg1MjQzMSwtMjA5NzI5OTgzMiwtMT
-g1Nzc4NjYyMywxNDA0MTg4MTk1LC0xODQ5NzIwMTYsLTE5ODgy
-NjUxNjYsMTU1MTAyODkwNiwxMjY0MzAwOTI0LC0yMTMyNTgzOT
-A1LC00OTUxNTg1MjEsLTYxNzAyODA5NSw5OTUwNzk4NDgsNTg1
-NjU5OTA4LDk0NDA4ODc3MSwtMTE0NzAyNTQ4OSwtMTY3NDc5ND
-A0NCw5NjQyMzk0NDgsLTg1MTYxOTk4OSwyMzMzMjM4OSwtMTg3
-ODM0NDI0Nl19
+eyJoaXN0b3J5IjpbLTEzNjg0OTYwNzEsLTIwOTcyOTk4MzIsLT
+E4NTc3ODY2MjMsMTQwNDE4ODE5NSwtMTg0OTcyMDE2LC0xOTg4
+MjY1MTY2LDE1NTEwMjg5MDYsMTI2NDMwMDkyNCwtMjEzMjU4Mz
+kwNSwtNDk1MTU4NTIxLC02MTcwMjgwOTUsOTk1MDc5ODQ4LDU4
+NTY1OTkwOCw5NDQwODg3NzEsLTExNDcwMjU0ODksLTE2NzQ3OT
+QwNDQsOTY0MjM5NDQ4LC04NTE2MTk5ODksMjMzMzIzODksLTE4
+NzgzNDQyNDZdfQ==
 -->
