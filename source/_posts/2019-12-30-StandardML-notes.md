@@ -553,16 +553,19 @@ sorted_nicer x y z
 	g : T2
 	x : T4
 	body being a function has type T3=T4 -> T5
-	
+	from g being passed x, T2=T4->T6 for some T6
+	from f being passed the result of g, T1=T6->T7
+	from call to f being body of anonymous function, T7 = T5
+	all together,  
 *)
 fun compose (f, g) = fn x => f (g x)
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTY1OTU4NzQ0NSwtMjA5NzI5OTgzMiwtMT
-g1Nzc4NjYyMywxNDA0MTg4MTk1LC0xODQ5NzIwMTYsLTE5ODgy
-NjUxNjYsMTU1MTAyODkwNiwxMjY0MzAwOTI0LC0yMTMyNTgzOT
-A1LC00OTUxNTg1MjEsLTYxNzAyODA5NSw5OTUwNzk4NDgsNTg1
-NjU5OTA4LDk0NDA4ODc3MSwtMTE0NzAyNTQ4OSwtMTY3NDc5ND
-A0NCw5NjQyMzk0NDgsLTg1MTYxOTk4OSwyMzMzMjM4OSwtMTg3
-ODM0NDI0Nl19
+eyJoaXN0b3J5IjpbOTE0MTE2MywtMjA5NzI5OTgzMiwtMTg1Nz
+c4NjYyMywxNDA0MTg4MTk1LC0xODQ5NzIwMTYsLTE5ODgyNjUx
+NjYsMTU1MTAyODkwNiwxMjY0MzAwOTI0LC0yMTMyNTgzOTA1LC
+00OTUxNTg1MjEsLTYxNzAyODA5NSw5OTUwNzk4NDgsNTg1NjU5
+OTA4LDk0NDA4ODc3MSwtMTE0NzAyNTQ4OSwtMTY3NDc5NDA0NC
+w5NjQyMzk0NDgsLTg1MTYxOTk4OSwyMzMzMjM4OSwtMTg3ODM0
+NDI0Nl19
 -->
