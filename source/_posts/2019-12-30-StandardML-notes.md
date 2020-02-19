@@ -542,13 +542,15 @@ sorted_nicer x y z
  * Determine types of bindings in order
  * For each val of fun binding:
 	 * Analyze definition for all necessary facts
-	 * Type erro if no way for al fact
+	 * Type erro if no way for all facts to hold
+* Use type variables like `'a` for any unconstrained type
+* enforce the value restriction
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyMjkwNDQyNDMsMTQwNDE4ODE5NSwtMT
-g0OTcyMDE2LC0xOTg4MjY1MTY2LDE1NTEwMjg5MDYsMTI2NDMw
-MDkyNCwtMjEzMjU4MzkwNSwtNDk1MTU4NTIxLC02MTcwMjgwOT
-UsOTk1MDc5ODQ4LDU4NTY1OTkwOCw5NDQwODg3NzEsLTExNDcw
-MjU0ODksLTE2NzQ3OTQwNDQsOTY0MjM5NDQ4LC04NTE2MTk5OD
-ksMjMzMzIzODksLTE4NzgzNDQyNDYsLTE5NTk5MjAyNzMsNjQ1
-ODk3NTkyXX0=
+eyJoaXN0b3J5IjpbLTk2NTEzNjE1OSwxNDA0MTg4MTk1LC0xOD
+Q5NzIwMTYsLTE5ODgyNjUxNjYsMTU1MTAyODkwNiwxMjY0MzAw
+OTI0LC0yMTMyNTgzOTA1LC00OTUxNTg1MjEsLTYxNzAyODA5NS
+w5OTUwNzk4NDgsNTg1NjU5OTA4LDk0NDA4ODc3MSwtMTE0NzAy
+NTQ4OSwtMTY3NDc5NDA0NCw5NjQyMzk0NDgsLTg1MTYxOTk4OS
+wyMzMzMjM4OSwtMTg3ODM0NDI0NiwtMTk1OTkyMDI3Myw2NDU4
+OTc1OTJdfQ==
 -->
