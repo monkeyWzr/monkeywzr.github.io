@@ -552,12 +552,13 @@ sorted_nicer x y z
 	f : T1
 	g : T2
 	x : T4
-	body beufb
+	body being a function has type T3=T4 -> T5
+	
 *)
 fun compose (f, g) = fn x => f (g x)
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTI4NzkzOTY1NSwtMjA5NzI5OTgzMiwtMT
+eyJoaXN0b3J5IjpbLTY1OTU4NzQ0NSwtMjA5NzI5OTgzMiwtMT
 g1Nzc4NjYyMywxNDA0MTg4MTk1LC0xODQ5NzIwMTYsLTE5ODgy
 NjUxNjYsMTU1MTAyODkwNiwxMjY0MzAwOTI0LC0yMTMyNTgzOT
 A1LC00OTUxNTg1MjEsLTYxNzAyODA5NSw5OTUwNzk4NDgsNTg1
