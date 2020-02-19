@@ -556,16 +556,17 @@ sorted_nicer x y z
 	from g being passed x, T2=T4->T6 for some T6
 	from f being passed the result of g, T1=T6->T7
 	from call to f being body of anonymous function, T7 = T5
-	all together, (T6->T5) * (T4->T6) -> () 
+	all together, (T6->T5) * (T4->T6) -> (T5->T6)
+	('a->'b)*('c->'a) -> ('b->'a) 
 *)
 fun compose (f, g) = fn x => f (g x)
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTQ1OTUzMDMwNCwtMjA5NzI5OTgzMiwtMT
-g1Nzc4NjYyMywxNDA0MTg4MTk1LC0xODQ5NzIwMTYsLTE5ODgy
-NjUxNjYsMTU1MTAyODkwNiwxMjY0MzAwOTI0LC0yMTMyNTgzOT
-A1LC00OTUxNTg1MjEsLTYxNzAyODA5NSw5OTUwNzk4NDgsNTg1
-NjU5OTA4LDk0NDA4ODc3MSwtMTE0NzAyNTQ4OSwtMTY3NDc5ND
-A0NCw5NjQyMzk0NDgsLTg1MTYxOTk4OSwyMzMzMjM4OSwtMTg3
-ODM0NDI0Nl19
+eyJoaXN0b3J5IjpbMzg0MTgxMDc1LC0yMDk3Mjk5ODMyLC0xOD
+U3Nzg2NjIzLDE0MDQxODgxOTUsLTE4NDk3MjAxNiwtMTk4ODI2
+NTE2NiwxNTUxMDI4OTA2LDEyNjQzMDA5MjQsLTIxMzI1ODM5MD
+UsLTQ5NTE1ODUyMSwtNjE3MDI4MDk1LDk5NTA3OTg0OCw1ODU2
+NTk5MDgsOTQ0MDg4NzcxLC0xMTQ3MDI1NDg5LC0xNjc0Nzk0MD
+Q0LDk2NDIzOTQ0OCwtODUxNjE5OTg5LDIzMzMyMzg5LC0xODc4
+MzQ0MjQ2XX0=
 -->
