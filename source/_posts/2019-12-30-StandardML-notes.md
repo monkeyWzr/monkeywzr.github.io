@@ -571,7 +571,7 @@ val r = ref NONE
 val _ = r := SOME "hi"
 val i - 1 + valOf (!r)
 ```
-If there is is no value-restriction, the code above will type check, 
+If there is is no value-restriction, the code above will type check, which shouldn't.
 With value restriction, ML will give a warning when type-checking:
 ```
 - val r = ref NONE;
@@ -582,7 +582,7 @@ val r = ref NONE : ?.X1 option ref
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTg5NzQ1MjAyMywxMTY4ODU0MDU1LC0xMz
+eyJoaXN0b3J5IjpbMTU5MjYxNTgwOCwxMTY4ODU0MDU1LC0xMz
 Y4NDk2MDcxLC0yMDk3Mjk5ODMyLC0xODU3Nzg2NjIzLDE0MDQx
 ODgxOTUsLTE4NDk3MjAxNiwtMTk4ODI2NTE2NiwxNTUxMDI4OT
 A2LDEyNjQzMDA5MjQsLTIxMzI1ODM5MDUsLTQ5NTE1ODUyMSwt
