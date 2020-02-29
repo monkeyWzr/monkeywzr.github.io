@@ -610,12 +610,28 @@ sig types-for-bindings
 end
 ```
 
+```ML
+signature MATHLIB =
+sig
+    val fact : int -> int
+    val half_pi : 
+    val doubler : int -> int
+end
+
+structure MyMathLib :> MATHLIB =
+struct
+fun fact x = x
+val half_pi = Math.pi / 2.0
+fun doubler x = x * 2
+end 
+```
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3NzY0MTQ0NTksLTE3MTE5NDYwMjIsLT
-ExNTI5Nzc4Nyw2ODI1NzAxNDcsLTEyNTEzNDk4NzQsODI1MTc2
-OTI3LDE1OTI2MTU4MDgsMTE2ODg1NDA1NSwtMTM2ODQ5NjA3MS
-wtMjA5NzI5OTgzMiwtMTg1Nzc4NjYyMywxNDA0MTg4MTk1LC0x
-ODQ5NzIwMTYsLTE5ODgyNjUxNjYsMTU1MTAyODkwNiwxMjY0Mz
-AwOTI0LC0yMTMyNTgzOTA1LC00OTUxNTg1MjEsLTYxNzAyODA5
-NSw5OTUwNzk4NDhdfQ==
+eyJoaXN0b3J5IjpbLTE5Mjc5Nzc3MywtMTcxMTk0NjAyMiwtMT
+E1Mjk3Nzg3LDY4MjU3MDE0NywtMTI1MTM0OTg3NCw4MjUxNzY5
+MjcsMTU5MjYxNTgwOCwxMTY4ODU0MDU1LC0xMzY4NDk2MDcxLC
+0yMDk3Mjk5ODMyLC0xODU3Nzg2NjIzLDE0MDQxODgxOTUsLTE4
+NDk3MjAxNiwtMTk4ODI2NTE2NiwxNTUxMDI4OTA2LDEyNjQzMD
+A5MjQsLTIxMzI1ODM5MDUsLTQ5NTE1ODUyMSwtNjE3MDI4MDk1
+LDk5NTA3OTg0OF19
 -->
