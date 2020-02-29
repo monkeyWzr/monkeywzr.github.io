@@ -616,14 +616,15 @@ structure myModule :> SIGNAME =
 struct bindings end;
 ```
 
-Anyth
+Anything not in the signature cannot be used outside the module.
 
 ```ML
 signature MATHLIB =
 sig
     val fact : int -> int
-    val half_pi : 
-    val doubler : int -> int
+    val half_pi : real
+    (* make doubler unaccessable outside  *)
+    (* val doubler : int -> int *)
 end
 
 structure MyMathLib :> MATHLIB =
@@ -635,7 +636,7 @@ end
 ```
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzMDI4NTgyMDIsLTE5Mjc5Nzc3MywtMT
+eyJoaXN0b3J5IjpbLTEzMjU1MTgxODcsLTE5Mjc5Nzc3MywtMT
 cxMTk0NjAyMiwtMTE1Mjk3Nzg3LDY4MjU3MDE0NywtMTI1MTM0
 OTg3NCw4MjUxNzY5MjcsMTU5MjYxNTgwOCwxMTY4ODU0MDU1LC
 0xMzY4NDk2MDcxLC0yMDk3Mjk5ODMyLC0xODU3Nzg2NjIzLDE0
