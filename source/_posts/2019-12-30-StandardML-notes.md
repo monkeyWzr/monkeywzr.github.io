@@ -639,10 +639,11 @@ end
 
 ## Equivalence
 
-### PL Equivalence
-
+* PL Equivalence
+* Asymptotic equivalence
+* System equivalence
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTgwODM1MTg3MCwtMTcyMTczNjMxMSwxOT
+eyJoaXN0b3J5IjpbMTMxMTY3NzMzOSwtMTcyMTczNjMxMSwxOT
 Q0NTI1NTM4LC0xNzIxNzM2MzExLC01MTc4MTYzNDcsMTQzNzg1
 MDg3OSwtMTkyNzk3NzczLC0xNzExOTQ2MDIyLC0xMTUyOTc3OD
 csNjgyNTcwMTQ3LC0xMjUxMzQ5ODc0LDgyNTE3NjkyNywxNTky
