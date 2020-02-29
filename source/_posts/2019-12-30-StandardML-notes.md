@@ -623,7 +623,7 @@ signature MATHLIB =
 sig
     val fact : int -> int
     val half_pi : real
-    (* make doubler unaccessable outside  *)
+    (* make doubler unaccessable outside the MyMathLib *)
     (* val doubler : int -> int *)
 end
 
@@ -636,7 +636,7 @@ end
 ```
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzMjU1MTgxODcsLTE5Mjc5Nzc3MywtMT
+eyJoaXN0b3J5IjpbLTEzOTk1MDEwMzksLTE5Mjc5Nzc3MywtMT
 cxMTk0NjAyMiwtMTE1Mjk3Nzg3LDY4MjU3MDE0NywtMTI1MTM0
 OTg3NCw4MjUxNzY5MjcsMTU5MjYxNTgwOCwxMTY4ODU0MDU1LC
 0xMzY4NDk2MDcxLC0yMDk3Mjk5ODMyLC0xODU3Nzg2NjIzLDE0
