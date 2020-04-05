@@ -1,13 +1,11 @@
 ---
 title: ruby学习笔记
 date: 2016-12-08 22:54:49
-category: notes学习笔记
+category: notes
 tags:
     - ruby
 keywords:
-    - ruby
-    - 教程
-    - 笔记
+   - ruby
 ---
 
 ## regular expressions
@@ -259,5 +257,5 @@ puts anObject.inspect
 Egg, I dreamed I was old.
 =end
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzODM2OTgyMzddfQ==
+eyJoaXN0b3J5IjpbMTI2NTA2NDQ1LC0xMzgzNjk4MjM3XX0=
 -->
