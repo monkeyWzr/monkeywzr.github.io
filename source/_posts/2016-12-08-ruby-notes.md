@@ -259,7 +259,9 @@ Egg, I dreamed I was old.
 ```
 
 ## Dynamic Dispatch
+
+## Double 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjA1MTE0MDY0NCwxMjU3MDE0NTgxLDEyNj
-UwNjQ0NSwtMTM4MzY5ODIzN119
+eyJoaXN0b3J5IjpbOTUxMjk2MDgxLDIwNTExNDA2NDQsMTI1Nz
+AxNDU4MSwxMjY1MDY0NDUsLTEzODM2OTgyMzddfQ==
 -->
