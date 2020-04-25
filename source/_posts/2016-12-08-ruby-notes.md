@@ -260,9 +260,14 @@ Egg, I dreamed I was old.
 
 ## Dynamic Dispatch
 
-## MI
+## Mixins
+
+Ruby has no multiple inheritance. But it has mixins.
+
+Lookup rulres:
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTI2NDMzOTg0OCwtMjkzMDQzNDU2LDE3OD
-k3NTU3MzAsLTUzMzYxNDE3LDIwNTExNDA2NDQsMTI1NzAxNDU4
-MSwxMjY1MDY0NDUsLTEzODM2OTgyMzddfQ==
+eyJoaXN0b3J5IjpbLTIwNDcyNDI2NDQsLTI5MzA0MzQ1NiwxNz
+g5NzU1NzMwLC01MzM2MTQxNywyMDUxMTQwNjQ0LDEyNTcwMTQ1
+ODEsMTI2NTA2NDQ1LC0xMzgzNjk4MjM3XX0=
 -->
