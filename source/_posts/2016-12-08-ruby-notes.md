@@ -269,9 +269,11 @@ Ruby has no multiple inheritance. But it has mixins.
 When looking for receiver obj's method m, 
 * look in obj's class
 * look in mixins the class includes(later includes shadow)
-* look in obj
+* look in obj's superclass
+* look in mixins the superclass inculdes
+* ...
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjUyMjc4MzczLC0yOTMwNDM0NTYsMTc4OT
-c1NTczMCwtNTMzNjE0MTcsMjA1MTE0MDY0NCwxMjU3MDE0NTgx
-LDEyNjUwNjQ0NSwtMTM4MzY5ODIzN119
+eyJoaXN0b3J5IjpbMjEwNTM1MjY2MSwtMjkzMDQzNDU2LDE3OD
+k3NTU3MzAsLTUzMzYxNDE3LDIwNTExNDA2NDQsMTI1NzAxNDU4
+MSwxMjY1MDY0NDUsLTEzODM2OTgyMzddfQ==
 -->
