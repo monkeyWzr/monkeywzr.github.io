@@ -264,10 +264,12 @@ Egg, I dreamed I was old.
 
 Ruby has no multiple inheritance. But it has mixins.
 
-Lookup rulres:
+### Lookup rulres
+
+When looking for receiver obj's method m, 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwNDcyNDI2NDQsLTI5MzA0MzQ1NiwxNz
+eyJoaXN0b3J5IjpbLTE1ODMxNTk5NTUsLTI5MzA0MzQ1NiwxNz
 g5NzU1NzMwLC01MzM2MTQxNywyMDUxMTQwNjQ0LDEyNTcwMTQ1
 ODEsMTI2NTA2NDQ1LC0xMzgzNjk4MjM3XX0=
 -->
