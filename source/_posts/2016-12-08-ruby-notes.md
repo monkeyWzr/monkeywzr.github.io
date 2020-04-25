@@ -260,8 +260,9 @@ Egg, I dreamed I was old.
 
 ## Dynamic Dispatch
 
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTc4OTc1NTczMCwtNTMzNjE0MTcsMjA1MT
-E0MDY0NCwxMjU3MDE0NTgxLDEyNjUwNjQ0NSwtMTM4MzY5ODIz
-N119
+eyJoaXN0b3J5IjpbLTI5MzA0MzQ1NiwxNzg5NzU1NzMwLC01Mz
+M2MTQxNywyMDUxMTQwNjQ0LDEyNTcwMTQ1ODEsMTI2NTA2NDQ1
+LC0xMzgzNjk4MjM3XX0=
 -->
