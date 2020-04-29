@@ -14,7 +14,7 @@ subtyping change the type of a field, and (3) having a sound type system actuall
 
 ## Function Subtyping
 
-
+If t3 is subtype of t1, and t2 is a subtype of t4, then t1 -> t2 is a subtype of t3 -> t4`. 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5OTA1MDM4XX0=
+eyJoaXN0b3J5IjpbMTkwNDAxMjg3OF19
 -->
