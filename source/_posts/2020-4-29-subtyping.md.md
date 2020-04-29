@@ -14,7 +14,9 @@ subtyping change the type of a field, and (3) having a sound type system actuall
 
 ## Function Subtyping
 
-If t3 is subtype of t1, and t2 is a subtype of t4, then t1 -> t2 is a subtype of t3 -> t4`. 
+Function subtyping **contravariant** in argument(s) and **covariant** in results.
+If t3 is subtype of t1, and t2 is a subtype of t4, then `t1 -> t2` is a subtype of `t3 -> t4`.
+ 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTkwNDAxMjg3OF19
+eyJoaXN0b3J5IjpbNzY0MTk5NzAwXX0=
 -->
