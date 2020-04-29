@@ -1,7 +1,7 @@
 
 
 ---
-title: About subtyping
+title: Programming Language: Subtyping
 tags:
     - programming language
 category: tech
@@ -25,5 +25,5 @@ Function subtyping **contravariant** in argument(s) and **covariant** in results
 If t3 is subtype of t1, and t2 is a subtype of t4, then `t1 -> t2` is a subtype of `t3 -> t4`.
  
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjEyMzAwMTQ3NF19
+eyJoaXN0b3J5IjpbLTQ0OTY5NTQ3Ml19
 -->
