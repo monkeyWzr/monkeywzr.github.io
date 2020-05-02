@@ -21,7 +21,7 @@ keywords:
 * MST:
 * Biconnectivity: A vertex whose removal disconnects the graph
 * Planarity
-* Graph isomophism
+* Graph isomorphism
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzIxNzQ5ODkyLDk3NDcxMjAxNF19
+eyJoaXN0b3J5IjpbNTE5MTg5ODM2LDk3NDcxMjAxNF19
 -->
