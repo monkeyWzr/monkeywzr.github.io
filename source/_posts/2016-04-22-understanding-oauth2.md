@@ -1,9 +1,10 @@
 layout: post
 title: 简记oath2.0
-category: notes学习笔记
-tags: [oauth2]
-keywords: oauth2
-description:
+category: notes学
+tags: 
+	- oauth2
+keywords: 
+	- oauth2
 ---
 
 ## 简介
@@ -67,5 +68,5 @@ authorization code grant type is available.
 
 this is a deep hole。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTMxNjI1NjEzOF19
+eyJoaXN0b3J5IjpbMTU0OTYzNjYsLTMxNjI1NjEzOF19
 -->
