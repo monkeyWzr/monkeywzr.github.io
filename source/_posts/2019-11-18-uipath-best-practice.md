@@ -2,7 +2,7 @@
 title: uipath ノート（二）- Best Practice
 tags:
     - RPA
-category: tech技术
+category: tech
 keywords:
     - RPA
     - uipath
@@ -46,5 +46,5 @@ keywords:
 
 ## 不要になったアプリケーションを終了させることで、常にクリーンな状態を維持しましょう。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTk5OTA5NjYyNF19
+eyJoaXN0b3J5IjpbMzU5NDI2NTkzLC05OTkwOTY2MjRdfQ==
 -->
