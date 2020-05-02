@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 快速临时解决phpmyadmin上传sql文件大小限制问题
-category: tech技术
+category: tech
 tags: [phpmyadmin,mysql]
 keywords: phpmyadmin上传sql文件大小限制
 description: 
@@ -14,5 +14,5 @@ description:
 		mysql>source D:/fuck.sql;
 		
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwNjQ5NDE1MzBdfQ==
+eyJoaXN0b3J5IjpbMTQzMjE1NjY2MywtMTA2NDk0MTUzMF19
 -->
