@@ -2,9 +2,12 @@
 layout: post
 title: 基本的bash shell命令
 category: notes学习笔记
-tags: [linux]
-keywords: linux,bash,shell
-description:
+tags: 
+	- linux
+keywords: 
+	- linux
+	- bash
+	- shell
 ---
 
 ## 基本的bash shell命令
@@ -253,5 +256,5 @@ echo是用于终端打印的基本命令。默认情况下每次调用echo后都
 
 ###
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTYxNzc5OTIyOV19
+eyJoaXN0b3J5IjpbMTg2MDUzMDg0OSwtNjE3Nzk5MjI5XX0=
 -->
