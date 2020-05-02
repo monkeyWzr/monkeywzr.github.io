@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Linux下curl实现某资源站自动签到脚本
-category: tech技术
+category: tech
 tags: 
 	- linux
 	- curl
@@ -63,5 +63,5 @@ OK！开始祭出杀气__curl__，一开始是用的php，但是向dosign发送�
 
 最后把脚本丢到了vps上跑，crontab添加一条定时任务，每天凌晨啪啪啪~~ 麻麻再也不用担心我的签到~~
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbODYxOTgxNDcyLDEyMjQyOTUzMl19
+eyJoaXN0b3J5IjpbOTA2NDM1NzYxLDEyMjQyOTUzMl19
 -->
