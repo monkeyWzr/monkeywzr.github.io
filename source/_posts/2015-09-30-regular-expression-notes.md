@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 正则表达式笔记
-category: notes学习笔记
+category: notes
 tags: [正则表达式,教程]
 keywords: 正则表达式,教程
 description:
@@ -60,5 +60,5 @@ description:
 	/^([\w!#@$&'*+\/=?^'{|}~.\-]+)@([\w]+\.)
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQ3NTE4MDE2NV19
+eyJoaXN0b3J5IjpbMTAzNzE1OTMyMywxNDc1MTgwMTY1XX0=
 -->
