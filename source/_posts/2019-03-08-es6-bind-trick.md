@@ -2,7 +2,7 @@
 title: Bind specific arguments of a function
 tags:
     - JavaScript
-category: tech技术
+category: tech
 keywords:
     - Javascript
     - ES2015
@@ -48,5 +48,5 @@ fN("a","b","c"); // a 2 c
 
 [https://stackoverflow.com/questions/27699493/javascript-partially-applied-function-how-to-bind-only-the-2nd-parameter](https://stackoverflow.com/questions/27699493/javascript-partially-applied-function-how-to-bind-only-the-2nd-parameter)
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzMjkyNDAxNTBdfQ==
+eyJoaXN0b3J5IjpbLTc4NDIzMDE0OSwtMTMyOTI0MDE1MF19
 -->
