@@ -1,7 +1,7 @@
 ---
 title: 用php://input代替php的$HTTP_RAW_POST_DATA全局变量
 date: 2017-09-03 04:02:29
-category: tech技术
+category: tech
 tags:
     - php
 keywords:
@@ -22,5 +22,5 @@ $postdata = file_get_contents("php://input");
 
 这其实算是自己的问题了。。想偷懒不及时了解php的版本变动真是使不得><
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2MDczMDE4ODNdfQ==
+eyJoaXN0b3J5IjpbMTc0MjI2ODg4NiwtMTYwNzMwMTg4M119
 -->
