@@ -1,7 +1,7 @@
 ---
 title: Algorithms part1 programming assignments 1 - Percolation
 date: 2017-02-08 20:48:32
-category: notes学习笔记
+category: notes
 tags:
   - algorithms
 keywords:
@@ -64,5 +64,6 @@ public class PercolationStats {
 具体代码放在了github上。[Percolation.java](https://github.com/monkeyWzr/algorithms/blame/master/percolation/src/Percolation.java)
 [PercolationStats.java](https://github.com/monkeyWzr/algorithms/blame/master/percolation/src/PercolationStats.java)
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4MTQ2NDY4NzJdfQ==
+eyJoaXN0b3J5IjpbLTEwNzM3ODM3MjYsLTE4MTQ2NDY4NzJdfQ
+==
 -->
