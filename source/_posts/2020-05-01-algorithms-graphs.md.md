@@ -16,7 +16,12 @@ keywords:
 * Shortest path
 * Cycle
 * Ehler tour: A cycle that uses each edge excatly once.
-* Hamilton tour: A cycle that uses each vertex exa
+* Hamilton tour: A cycle that uses each vertex exactly once
+* Connectivity
+* MST:
+* Biconnectivity: A vertex whose removal disconnects the graph
+* Planarity
+* Graph isomophism
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzODExMTAzNDUsOTc0NzEyMDE0XX0=
+eyJoaXN0b3J5IjpbNzIxNzQ5ODkyLDk3NDcxMjAxNF19
 -->
