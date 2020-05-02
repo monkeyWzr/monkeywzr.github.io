@@ -1,7 +1,7 @@
 ---
 title: Algorithms part1 programming assignments 2 - deque
 date: 2017-02-10 18:33:59
-category: notes学习笔记
+category: notes
 tags:
   - algorithms
 keywords:
@@ -68,5 +68,5 @@ __两种数据结构的性能要求在下表里面做了总结：__
 代码：
 [deque.java](https://github.com/monkeyWzr/algorithms/blame/master/deque/src/Deque.java)  [RandomizedQueue.java](https://github.com/monkeyWzr/algorithms/blob/master/deque/src/RandomizedQueue.java)
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5NzIwMjI3NjBdfQ==
+eyJoaXN0b3J5IjpbNTMxNDU5Nzc4LC0xOTcyMDIyNzYwXX0=
 -->
