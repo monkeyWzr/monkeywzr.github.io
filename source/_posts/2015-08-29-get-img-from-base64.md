@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 从教务系统中获取课程表图片
-category: tech技术
+category: tech
 tags: base64
 keywords: base64
 description: 
@@ -23,5 +23,5 @@ description:
 
 这种用base64编码之后传输图片的形式还是比较不错，从别人的博客上摘录下“减少了HTTP请求，某些文件可以避免跨域的问题，没有图片更新要重新上传，还要清理缓存的问题”这些优点。但实际上这种方式并不像想象中那样可以节省流量，文件反而增大约35%，所以大图片就不要用这种方法了。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzODgwNDY2MDBdfQ==
+eyJoaXN0b3J5IjpbMTcwNTcyNDU1MywtMTM4ODA0NjYwMF19
 -->
