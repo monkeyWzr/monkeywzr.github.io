@@ -2,9 +2,9 @@ layout: post
 title: 简记oath2.0
 category: notes
 tags: 
-	- oauth2
+    - oauth2
 keywords: 
-	- oauth2
+    - oauth2
 ---
 
 ## 简介

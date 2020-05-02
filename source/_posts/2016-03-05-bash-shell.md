@@ -3,11 +3,11 @@ layout: post
 title: 基本的bash shell命令
 category: notes
 tags: 
-	- linux
+    - linux
 keywords: 
-	- linux
-	- bash
-	- shell
+    - linux
+    - bash
+    - shell
 ---
 
 ## 基本的bash shell命令
@@ -98,12 +98,12 @@ keywords:
         tar -zxvf filename.tgz
 
 * `ln` *option source_file dist_file*
-	- -b 覆盖已有的链接
-	- -f 强制执行
-	- -i 交互模式，提示是否覆盖等
-	- -n 把符号链接视为一般目录
-	- -s 软链接（即符号链接）
-	- -v 显示详细过程
+    - -b 覆盖已有的链接
+    - -f 强制执行
+    - -i 交互模式，提示是否覆盖等
+    - -n 把符号链接视为一般目录
+    - -s 软链接（即符号链接）
+    - -v 显示详细过程
 
 ### 进程和设备管理
 

@@ -3,11 +3,11 @@ layout: post
 title: 超老本子CF-W2安装lubuntu
 category: tech
 tags:
-	- Linux
+    - Linux
 keywords: 
-	- CF-w2
-	- Linux
-	- Lubuntu
+    - CF-w2
+    - Linux
+    - Lubuntu
 ---
 
 ## 祭出大杀器CF-W2

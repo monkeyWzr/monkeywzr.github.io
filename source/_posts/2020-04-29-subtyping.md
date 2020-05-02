@@ -1,5 +1,5 @@
 ---
-title: Programming Language: Subtyping
+title: Programming Language - Subtyping
 tags:
     - programming language
 category: tech

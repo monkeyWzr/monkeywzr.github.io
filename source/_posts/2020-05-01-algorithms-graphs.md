@@ -1,11 +1,11 @@
 ---
-title: Algorithms: Graphs
+title: Algorithms - Graphs
 tags:
     - Algorithms
 category: 
 keywords:
-	- Algorithms
-	- Graphs
+    - Algorithms
+    - Graphs
 ---
 
 ## Undirected Graphs
@@ -22,6 +22,4 @@ keywords:
 * Biconnectivity: A vertex whose removal disconnects the graph
 * Planarity
 * Graph isomorphism
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbNTE5MTg5ODM2XX0=
--->
+

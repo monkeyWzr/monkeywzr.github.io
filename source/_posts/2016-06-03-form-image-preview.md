@@ -3,12 +3,12 @@ layout: post
 title: jquery实现表单上传图片预览
 category: tech
 tags: 
-	- jquery
+    - jquery
 keywords: 
-	- jquery
-	- php
-	- html
-	- 图片预览
+    - jquery
+    - php
+    - html
+    - 图片预览
 ---
 
 最近有个小页面需要实现图片上传预览，自己还不擅长javascript，迷茫的看了好久文档之后算是利用File API实现了这个事情。

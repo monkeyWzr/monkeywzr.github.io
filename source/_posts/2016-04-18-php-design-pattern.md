@@ -3,11 +3,11 @@ layout: post
 title: php几种设计模式
 category: notes
 tags: 
-	- php
-	- 设计模式
+    - php
+    - 设计模式
 keywords: 
-	- php
-	- 设计模式
+    - php
+    - 设计模式
 ---
 
 
