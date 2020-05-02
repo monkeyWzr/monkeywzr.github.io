@@ -6,7 +6,6 @@ tags:
 	- docker
 keywords:
 	- docker
-description:
 ---
 
 ## Docker是什么
@@ -43,6 +42,5 @@ Docker是近几年兴起的发展非常快速的开源项目，可用来创建�
 * `search` 搜索镜像
 * `tag` 为镜像添加标签
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE0NDU3NTMwMTIsLTEwOTg3OTcyMTBdfQ
-==
+eyJoaXN0b3J5IjpbLTg3NTc0ODI5MiwtMTA5ODc5NzIxMF19
 -->
