@@ -1,9 +1,13 @@
 ---
 layout: post
 title: 超老本子CF-W2安装lubuntu
-category: tech技术
-tags: Linux
-keywords: [CF-w2,Linux,Lubuntu]
+category: tech
+tags:
+	- Linux
+keywords: 
+	- CF-w2
+	- Linux
+	- Lubuntu
 description:
 ---
 
@@ -47,5 +51,5 @@ lubuntu在12.04开始需要cpu支持pae，幸运的是我这老古董貌似完�
 >相关链接
 >[AdvancedMethods](https://wiki.ubuntu.com/Lubuntu/AdvancedMethods)
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTg5NzcwMjczNV19
+eyJoaXN0b3J5IjpbLTc2MjQ4MzMwOCwtODk3NzAyNzM1XX0=
 -->
