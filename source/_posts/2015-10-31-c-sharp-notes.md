@@ -1,7 +1,7 @@
 ---
 layout: post
 title: C#学习笔记
-category: notes学习笔记
+category: notes
 tags: [c#,教程]
 keywords:
 description:
@@ -206,5 +206,5 @@ C#中有三种参数传递方式：值参数、引用参数、输出参数。
 
 ...
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE0NTg2NTgyNDJdfQ==
+eyJoaXN0b3J5IjpbODcwOTI1NDE2LC0xNDU4NjU4MjQyXX0=
 -->
