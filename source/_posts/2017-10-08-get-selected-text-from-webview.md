@@ -1,7 +1,7 @@
 ---
 title: get-selected-text-from-webview
 date: 2017-10-08 00:30:19
-category: tech技术
+category: tech
 tags:
     - android
     - java
@@ -32,5 +32,5 @@ contentText.evaluateJavascript("(function(){return window.getSelection().toStrin
 
 未完待续。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbODI5Mjg4ODgzXX0=
+eyJoaXN0b3J5IjpbMTQyMzQxNjI1OCw4MjkyODg4ODNdfQ==
 -->
