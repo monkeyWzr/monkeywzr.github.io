@@ -4,7 +4,7 @@ date: 2018-10-10 17:25:25
 tags:
     - SpringMVC
     - JAVA
-category: tech技术
+category: tech
 keywords:
     - android
     - java
@@ -48,5 +48,5 @@ Model层就是数据表的Java载体。需要添加`@Entity`注解标明该类�
 
 __未完待续__
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTM0OTk5NTc4Nl19
+eyJoaXN0b3J5IjpbLTEzNTM2NjM3ODEsMTM0OTk5NTc4Nl19
 -->
