@@ -1,7 +1,7 @@
 ---
 title: 有关php内建函数复杂度的一点探究
 date: 2017-03-05 00:16:38
-category: tech技术
+category: tech
 tags:
     - php
 keywords:
@@ -128,5 +128,5 @@ if (isset(..) || array_key_exists(...))
 >[List of Big-O for PHP functions](http://stackoverflow.com/questions/2473989/list-of-big-o-for-php-functions)
 >[array_key_exists - User Contributed Notes ](http://php.net/manual/zh/function.array-key-exists.php#107786)
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzNzkzMDc3Nl19
+eyJoaXN0b3J5IjpbMjEwMTk4ODk4NSwtMTM3OTMwNzc2XX0=
 -->
