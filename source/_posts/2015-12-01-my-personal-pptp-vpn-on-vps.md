@@ -1,7 +1,7 @@
 ---
 layout: post
 title: vps搭建私人pptp vpn,新姿势GET！
-category: tech技术
+category: tech
 tags: [linux,科学上网]
 keywords: pptp,vpn,vps,科学上网
 description:
@@ -122,5 +122,6 @@ putty登陆，速度可以，直接开始安装。这期间我试了试DO网站�
 >[ubuntu官网PPTPServer帮助](https://help.ubuntu.com/community/PPTPServer)
 >[Linux下的nano命令](http://www.cnblogs.com/haichuan3000/articles/2125943.html)>
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5MTg1MTc2NDddfQ==
+eyJoaXN0b3J5IjpbLTEyMTQyMzIxOTIsLTE5MTg1MTc2NDddfQ
+==
 -->
