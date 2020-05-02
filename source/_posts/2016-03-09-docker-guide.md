@@ -1,7 +1,7 @@
 ---
 layout: post
 title: docker基础简记
-category: notes学习笔记
+category: notes
 tags: [docker]
 keywords: docker,基础,命令,原理
 description:
@@ -41,5 +41,5 @@ Docker是近几年兴起的发展非常快速的开源项目，可用来创建�
 * `search` 搜索镜像
 * `tag` 为镜像添加标签
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwOTg3OTcyMTBdfQ==
+eyJoaXN0b3J5IjpbLTY0OTE5NzQ0NCwtMTA5ODc5NzIxMF19
 -->
