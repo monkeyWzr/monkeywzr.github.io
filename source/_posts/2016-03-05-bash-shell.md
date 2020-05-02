@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 基本的bash shell命令
-category: notes学习笔记
+category: notes
 tags: 
 	- linux
 keywords: 
@@ -256,5 +256,5 @@ echo是用于终端打印的基本命令。默认情况下每次调用echo后都
 
 ###
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTg2MDUzMDg0OSwtNjE3Nzk5MjI5XX0=
+eyJoaXN0b3J5IjpbMTQ1MzE4Nzg5NSwtNjE3Nzk5MjI5XX0=
 -->
