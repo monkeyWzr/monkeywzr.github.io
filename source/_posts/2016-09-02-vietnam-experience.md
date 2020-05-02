@@ -1,7 +1,7 @@
 ---
 title: 暑假越南行（经验篇）
 date: 2016-09-02 03:14:41
-category: life生活
+category: life
 tags:
     - 旅行
 keywords:
@@ -53,5 +53,5 @@ __2016.11.10:__这两个大坑不知道我什么时候才会填上。。。
 
 ## 未完
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTEwNTE1NzM3N119
+eyJoaXN0b3J5IjpbLTE4NzcxODIzMzEsMTEwNTE1NzM3N119
 -->
