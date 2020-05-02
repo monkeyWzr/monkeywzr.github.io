@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 解决jekyll server无法启动问题
-category: tech技术
+category: tech
 tags: 
 keywords: 
 description: 
@@ -19,5 +19,5 @@ description:
 		
 		$ jekyll serve --port 4001
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzMDUxMjI3MjRdfQ==
+eyJoaXN0b3J5IjpbLTU0MzQzMTEyNSwtMTMwNTEyMjcyNF19
 -->
