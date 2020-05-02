@@ -1,7 +1,7 @@
 ---
 title: Android配置变更时的状态保留
 date: 2017-10-25 03:59:14
-category: tech技术
+category: tech
 tags:
     - android
     - java
@@ -86,5 +86,5 @@ public class MyActivity extends Activity {
 >[官方文档](https://developer.android.com/guide/topics/resources/runtime-changes.html)
 >[Android 转屏那些事儿](http://www.gongmingqm10.net/blog/2015/12/16/you-should-know-about-android-rotate/)
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwMTkyNDY1MDRdfQ==
+eyJoaXN0b3J5IjpbLTk0MjcxNDU4MywtMjAxOTI0NjUwNF19
 -->
