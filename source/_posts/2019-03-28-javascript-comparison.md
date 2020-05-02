@@ -2,7 +2,7 @@
 title: JavaScript Comparison operation at a glance
 tags:
     - JavaScript
-category: tech技术
+category: tech
 keywords:
     - Javascript
     - ES2015
@@ -52,5 +52,5 @@ Read more:
 * [http://www.ecma-international.org/ecma-262/8.0/#sec-abstract-relational-comparison](http://www.ecma-international.org/ecma-262/8.0/#sec-abstract-relational-comparison)
 * [http://www.ecma-international.org/ecma-262/8.0/#sec-tonumber](http://www.ecma-international.org/ecma-262/8.0/#sec-tonumber)
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1MDExOTQ5MDNdfQ==
+eyJoaXN0b3J5IjpbMTMyNTI5ODQ4LC0xNTAxMTk0OTAzXX0=
 -->
