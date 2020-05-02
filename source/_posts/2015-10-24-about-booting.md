@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 开机流程中的事儿
-category: tech技术
+category: tech
 tags: [操作系统]
 keywords: UEFI,BIOS,开机引导
 description:
@@ -97,5 +97,5 @@ ESP分区是一个FAT格式的系统分区，在windows系统下是不可见的�
 
 UEFI添加了一个新的安全启动机制（secure boot），这个机制会验证即将启动的系统，通过验证系统才可以正常启动。这个机制为了解决的是黑客常用的rootkit攻击手段，但是同时也导致一些系统（包括Linux）不能正常启动。因此有时可能会需要关闭这个功能。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwNjc4ODkxNDBdfQ==
+eyJoaXN0b3J5IjpbMjA2NjE4NzQ4NSwtMTA2Nzg4OTE0MF19
 -->
