@@ -1,10 +1,13 @@
 ---
 layout: post
 title: php几种设计模式
-category: notes学习笔记
-tags: [php,设计模式]
-keywords: php,设计模式
-description:
+category: notes
+tags: 
+	- php
+	- 设计模式
+keywords: 
+	- php
+	- 设计模式
 ---
 
 
@@ -30,5 +33,5 @@ description:
 
 ### 发布者/订阅者模式
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwNjI3Njc3MTFdfQ==
+eyJoaXN0b3J5IjpbMTQwMzI1MDA2OSwtMjA2Mjc2NzcxMV19
 -->
