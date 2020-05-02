@@ -1,7 +1,7 @@
 ---
 title: 使用Gson解析含有动态未知键名的json数据
 date: 2017-09-05 14:16:06
-category: tech技术
+category: tech
 tags:
     - android
     - java
@@ -118,5 +118,5 @@ MonthNews monthNews = new MonthNews(month);
 >[How to decode JSON with unknown field using Gson?](https://stackoverflow.com/questions/20442265/how-to-decode-json-with-unknown-field-using-gson)
 >[Gson解析JSON中动态未知字段key的方法](http://blog.csdn.net/Chaosminds/article/details/49049455)
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjAyOTE0MTM0Ml19
+eyJoaXN0b3J5IjpbLTExNDg4Mjk2MywyMDI5MTQxMzQyXX0=
 -->
