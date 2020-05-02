@@ -2,7 +2,7 @@
 title: Object.assign() with accessor descriptor
 tags:
     - JavaScript
-category: tech技术
+category: tech
 keywords:
     - Javascript
     - ES2015
@@ -86,5 +86,5 @@ console.log(completeCopy.name); // nyannko
 `Object.prototype.__proto__` is deprecated so be aware that this may cease to work at any time. 
 [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/proto](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/proto)
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjEyMDAzNDQ5N119
+eyJoaXN0b3J5IjpbLTE1MjIwMzc5MzQsMjEyMDAzNDQ5N119
 -->
