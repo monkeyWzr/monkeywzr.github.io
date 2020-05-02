@@ -4,7 +4,7 @@ date: 2019-01-25 09:00:00
 tags:
     - JavaScript
     - Vue.js
-category: tech技术
+category: tech
 keywords:
     - Vue.js
     - Javascript
@@ -110,5 +110,6 @@ const Foo = {
 + DOM updates triggered.
 + Call callbacks passed to next in beforeRouteEnter guards with instantiated instances.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1Mjk2MzU2NThdfQ==
+eyJoaXN0b3J5IjpbLTEwMjM0Nzc1NjMsLTE1Mjk2MzU2NThdfQ
+==
 -->
