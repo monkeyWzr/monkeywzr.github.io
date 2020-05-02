@@ -1,7 +1,7 @@
 ---
 title: Android中的MVP模式
 date: 2017-09-29 15:18:32
-category: notes学习笔记
+category: notes
 tags:
     - android
     - java
@@ -21,5 +21,5 @@ Model View Presenter (MVP) 模式是安卓开发中非常热门的一种架构�
 * Presenter层 该层实现业务逻辑，负责View层和Model层的控制和交互。该层通常应尽量避变对sdk产生依赖。
 * Model层 该层实现对数据操作的封装，暴露接口给Presenter层。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTQ5NTA4NDIwN119
+eyJoaXN0b3J5IjpbMTI1MzQxMzExNSwtNDk1MDg0MjA3XX0=
 -->
