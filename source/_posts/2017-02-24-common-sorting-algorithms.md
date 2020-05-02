@@ -3,10 +3,10 @@ title: 常用算法总结
 date: 2017-02-24 19:47:40
 category: notes
 tags:
-    - algorithms
+    - Algorithms
 keywords:
     - 算法
-    - algorithms
+    - Algorithms
     - 排序
     - 查找
 ---
