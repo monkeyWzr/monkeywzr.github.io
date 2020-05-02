@@ -8,7 +8,6 @@ keywords:
 	- CF-w2
 	- Linux
 	- Lubuntu
-description:
 ---
 
 ## 祭出大杀器CF-W2
@@ -51,5 +50,5 @@ lubuntu在12.04开始需要cpu支持pae，幸运的是我这老古董貌似完�
 >相关链接
 >[AdvancedMethods](https://wiki.ubuntu.com/Lubuntu/AdvancedMethods)
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTc2MjQ4MzMwOCwtODk3NzAyNzM1XX0=
+eyJoaXN0b3J5IjpbLTE4MzU3ODM5NiwtODk3NzAyNzM1XX0=
 -->
