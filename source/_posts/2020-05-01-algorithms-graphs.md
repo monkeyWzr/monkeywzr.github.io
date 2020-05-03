@@ -315,6 +315,7 @@ Kosaraju-Sharir is easy to implement but difficutl to understand. It runs DFS tw
 
 TODO: ADD Proof
 
+[https://algs4.cs.princeton.edu/code/edu/princeton/cs/algs4/KosarajuSharirSCC.java.html](https://algs4.cs.princeton.edu/code/edu/princeton/cs/algs4/KosarajuSharirSCC.java.html)
 ```Java
 public class KosarajuSharirSCC {
     private boolean[] marked;     // marked[v] = has vertex v been visited?
