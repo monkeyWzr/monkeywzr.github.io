@@ -6,7 +6,6 @@ install:
   - npm install hexo-cli -g
   - npm install hexo-renderer-pug --save
   - npm install hexo-renderer-sass --save
-  - npm install hexo-math --save
   - npm install
 script:
   - chmod +x ./deploy.sh

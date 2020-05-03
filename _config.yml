@@ -74,6 +74,7 @@ disqus_shortname: monkeywzr
 theme_config:
   colorscheme: white
   logo-grayout: true
+  highlight: darkula
   nav:
     Home: /
     Writing: /archives/
@@ -89,9 +90,9 @@ theme_config:
     id: UA-83047470-2
 
 math:
-  engine: 'katex' # or 'mathjax'
+  engine: 'katex' # or 'mathjax' 'katex'
   # mathjax:
-  #   src: custom_mathjax_source
+  #   src: "//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
   #   config:
   #     # MathJax config
   # katex:
