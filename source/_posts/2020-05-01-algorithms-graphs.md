@@ -77,6 +77,15 @@ public class DepthFirstPaths{
 }
 ```
 
+Propositions:
+1. DFS marks all vertices connected to s in time proportional to the sum of their degrees.
+2. After DFS, can find vertices connected to s in constant time and can find a path to s in time proportional to its length.
+
+### Breadth-first Search (BFS)
+
+Typical applications:
+* shortest path
+
 Algorithm:
 * Put s onto a queue, and mark s as visited
 * Take the next vertex v from the queue and mark it
@@ -110,19 +119,12 @@ public class BreadthFirstPaths
 }
 ```
 
-Propositions:
-1. DFS marks all vertices connected to s in time proportional to the sum of their degrees.
-2. After DFS, can find vertices connected to s in constant time and can find a path to s in time proportional to its length.
-
-### Breadth-first Search (BFS)
-
 Proposition:
 1. BFS computes shortest paths (fewest number of edges) from s to all other vertices in a graph in time proportional to E + V
 
+### Applications of DFS
 
-## Applications of DFS
-
-### Connected components
+#### Connected components
 
 The goal is to preprocess graph to answer queries of the form *is v connected to w?* in constant time.
 
@@ -162,22 +164,150 @@ public class CC {
 }
 ```
 
-### Cycle detection
+#### Cycle detection
 
 Problem: Is a given graph acylic?
 
 **TODO**
 
-### Two-colorability
+#### Two-colorability
 
 Problem: Is the graph bipartite?
 
 **TODO**
 
-### Symbol graphs
+#### Symbol graphs
 
 **TODO**
 
-### Degrees of separation
+#### Degrees of separation
 
 **TODO**
+
+## Directed Graphs
+
+>A directed graph (or digraph) is a set of vertices and a collection of directed edges. Each directed edge connects an ordered pair of vertices.
+
+* *outdegree*: the number of edges going **from** it
+* *indegree*: the number fo edges going **into** it
+* *directed path*: a sequence of vertices in which there is a (directed) edge pointing from each vertex in the sequence to its successor in the sequence
+* *directed cycle*
+* *simple cycle*: a cycle with no repeated edges or vertices
+
+
+### Representations
+
+Again, use [adjacency-lists representation](#Adjacency-list-Data-structure)
+* Based on iterating over vertices pointing from v
+* Real-world digraphs tend to be sparse
+
+```Java
+public class Digraph {
+    private final int V;
+    private final Bag<Integer>[] adj;
+
+    public Digraph(int V) {
+        this.V = V;
+        adj = (Bag<Integer>[]) new Bag[V];
+        for (int v = 0; v < V; v++) {
+            adj[v] = new Bag<Integer>[];
+        }
+    }
+
+    public void addEdge(int v, int w) {
+        adj[v].add(w);
+    }
+
+    public Iterable<Integer> adj(int v) {
+        return adj[v];
+    }
+}
+```
+
+### Digraph search
+
+Reachabiliity problem: Find all vertices reachable from s along a directed path.
+
+We can use [the same dfs method as for undirected graphs](#Depth-first-Search-(DFS)).
+* Every undirected graph is a digraph with edges in both directions.
+* DFS is a digraph algorithm,
+
+Reachability applications:
+* program control-flow analysis
+    - Dead-code elimination
+    - infinite-loop detection
+* mark-sweep garbage collector
+
+
+Other DFS problems:
+* Path findind
+* Topological sort
+* Directed cycle detection
+* ...
+
+BFS problems:
+* shortest path
+* multiple-source shortest paths
+* web crawler application
+
+### Topological Sort
+
+>Topological sort: Given a digraph, put the vertices in order such that all its directed edges point from a vertix earlier in the order to a vertex later in the order (or report impossible).
+
+A digraph has a topological order **if and only if** it is a *directed acyclic graph* (DAG).
+Topological sort redraws DAG so all edges poitn upwards.
+
+use **DFS** again. It can be proved that reverse DFS postorder of a DAG is a topological order.
+(check P578 for the definition of Preorder/Postorder)
+
+```Java
+public class DepthFirstOrder {
+    private boolean[] marked;
+    private Stack<Integer> reversePost;
+
+    publiv DepthFirstOrder(Digraph G) {
+        reversePost = new Stack<Integer>();
+        marked = new boolean[G.V()];
+        for (int v = 0; v < G.V(); v++) {
+            if (!marked[v]) dfs(G, v);
+        }
+    }
+
+    private void dsf(Digrapg G, int v) {
+        marked[v] = true;
+        for (int w : G.adj(v)) {
+            if (!marked[w]) dfs(G, w)
+        }
+        reversePost.push(v);
+    }
+}
+```
+
+#### Directed cycle detection
+
+To find out if a given digraph is a DAG, we can try to find a directec cycle in the digraph.
+Use DFS and a stack to track the cycle.
+
+```Java
+// TODO
+```
+
+Some very typical applications of directed cycle detection and topological sort:
+(A directed cycle means the problem is infeasible)
+* job schedule
+* course scuedule
+* inheritance
+* spreadsheet
+    - vertex: cell
+    - edge: formula
+* symbolic links
+
+### Strong components
+
+Vertices v and w are **strongly connected** if there is both a directed path from v to w and a directed path from w to v.
+Strong connectivity is an equvicalence relation.
+
+#### Kosaraju-Sharir Algorithm
+
+Kosaraju-Sharir is easy to implement but difficutl to understand. It runs DFS twice:
+* Given a digraph G, compute the topological order of its reverse $G^R$
