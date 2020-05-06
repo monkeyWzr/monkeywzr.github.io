@@ -356,3 +356,71 @@ public class KosarajuSharirSCC {
 ```
 
 
+## Minimum Spanning Trees
+
+An edge-weighted-graph is a graph where we associate weight or costs with each edge.
+A spanning tree of an undirected edge-weighted graph G is a subgraph T that is both **a tree (conneted and acyclic)** and **spanning (includes all of the vertices)**.
+Given an (connected) undirected edge-weighted graph G with V vertices and E edges, the MST of it must have **V - 1** edges.
+If the graph is not connceted, we compute minimum spanning forest (MST of each component).
+
+* A *cut* in a graph is a partition of its vertices into two (nonempty) sets
+* A *crossing edge* connects a vertex in one set with a vertex in the other.
+* Cut property: Given any cut, the crossing edge of min weight is in the MST.
+
+### Edge-weight Graph Data Type
+
+Edge:
+[https://algs4.cs.princeton.edu/code/edu/princeton/cs/algs4/Edge.java.html](https://algs4.cs.princeton.edu/code/edu/princeton/cs/algs4/Edge.java.html)
+
+EdgeWeigthedGraph:
+[https://algs4.cs.princeton.edu/code/edu/princeton/cs/algs4/EdgeWeightedGraph.java.html](https://algs4.cs.princeton.edu/code/edu/princeton/cs/algs4/EdgeWeightedGraph.java.html)
+
+### **Greedy MST Algorithm:**
+* Start with all edges colored gray.
+* Find cut with no blacked crossing edges; color its min-weight edge black.
+* Repeat until V-1 edges are colored black.
+
+### Implementations 1: Kruskal's algorithm
+
+For edges in ascending order of weight:
+* Add next edge to Tree unless doing so would create a cycle.
+
+To efficiently solve this problem, use union-find :
+1. use a priority queue to maintain all the edges in V
+2. union-find data structure:
+    - maintain a set for each connected component in T.
+    - if v and w are in saome set, then adding v->w would create a cycle
+    - to add v>w to T, merge sets containing v and w.
+
+TODO: Add code
+
+### Implementations 2: Prim's algorithm
+
+* Start with vertex 0 and greedily grow tree T.
+* Add To T the min weight edge with exactly oue endpoint in T.
+* Reapeat unitl V - 1 edges.
+
+The key to solve this problem is how do we find the crossing edge of minimal weight efficiently.
+
+A lazy solution (in time proportional to {% math %}ElogE{% endmath %}, fair enough):
+1. Maintain a PQ of edges with (at least) one endpoint in T
+    - Key = edge, priority = weight
+2. Delete-min to determine next edge e = v->w to add to T
+3. Disregard if both endpoints v and w are marked (both in T)
+4. Otherwise, let w be the unmarked vertex (not in T)
+    - add to PQ and edge incident to w (assuming other endpoint not in T)
+    - add e to T and mark w
+
+TODO: add code
+
+A eager solution (in time proprotional to {% math %}ElogV{% endmath %}, better):
+1. Maintain a PQ of vertices connected by an edge to T, where priority of v = weight of shortedt edge connecting v to T
+2. Delete min vertex v and add its associated edge e = v->w to T
+3. Update PQ by considering all edges e = v->x incident to v
+    - ignore if x is already in T
+    - add x to PQ if not alread on it
+    - decrease priority of x if v->x becomes shortest edge connecting x to T
+
+This solution uses an [indexed priority queue](https://algs4.cs.princeton.edu/code/edu/princeton/cs/algs4/IndexMinPQ.java.html) data structure.
+
+TODO: add code
