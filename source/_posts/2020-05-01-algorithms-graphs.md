@@ -257,7 +257,7 @@ BFS problems:
 A digraph has a topological order **if and only if** it is a *directed acyclic graph* (DAG).
 Topological sort redraws DAG so all edges poitn upwards.
 
-use **DFS** again. It can be proved that reverse DFS postorder of a DAG is a topological order.
+use **DFS** again. It can be proved that reverse postorder of a DAG is a topological order.
 (check P578 for the definition of Preorder/Postorder)
 
 ```Java
@@ -273,7 +273,7 @@ public class DepthFirstOrder {
         }
     }
 
-    private void dsf(Digrapg G, int v) {
+    private void dfs(Digrapg G, int v) {
         marked[v] = true;
         for (int w : G.adj(v)) {
             if (!marked[w]) dfs(G, w)
@@ -424,3 +424,197 @@ A eager solution (in time proprotional to {% math %}ElogV{% endmath %}, better):
 This solution uses an [indexed priority queue](https://algs4.cs.princeton.edu/code/edu/princeton/cs/algs4/IndexMinPQ.java.html) data structure.
 
 TODO: add code
+
+## Shortest Paths
+
+**Some variants:**
+* Which vertices?
+    - Single source
+    - Source-sink
+    - All pairs
+* Edge weights
+    - Nonegative weights
+    - Euclidean weights
+    - Arbitrary weights
+* Cycles?
+    - No directed cycles
+    - No negative cycles
+
+### Edge-weighted digraph data strcuture
+
+Weighted directed edge:
+[https://algs4.cs.princeton.edu/code/edu/princeton/cs/algs4/DirectedEdge.java.html](https://algs4.cs.princeton.edu/code/edu/princeton/cs/algs4/DirectedEdge.java.html)
+
+Edge-weighted digraph:
+[https://algs4.cs.princeton.edu/code/edu/princeton/cs/algs4/EdgeWeightedDigraph.java.html](https://algs4.cs.princeton.edu/code/edu/princeton/cs/algs4/EdgeWeightedDigraph.java.html)
+
+Use adjacency-lists implementation same as [EdgeWeightedGraph](https://algs4.cs.princeton.edu/code/edu/princeton/cs/algs4/EdgeWeightedGraph.java.html)
+
+### Generic Single-source Shortest paths
+
+Our goal is to find the shortest path from s to every other vertex. As a result, what we find will be the **shortest-paths tree (SPT)** for source s.
+
+#### Relax edge e = v->w
+
+* distTo[v] is length of shortest known path from s to v
+* distTo[w] is length of shortest known path from s to w
+* esgeTo[w] is last edge on shortest known pathh from s to w
+* if e = v->w gives shorter path to w through v, update both distTo[w] and edgeTo[w]
+
+```Java
+private void relax(DirectedEdge e) {
+    int v = e.from(), w = e.to();
+    if (distTo[w] > distTo[v] + e.weight()) {
+        distTo[w] = distTo[v] + e.weight();
+        edgeTo[w] = e;
+    }
+}
+```
+
+#### Optimality conditions
+
+Given an edge-weighted digraph G, distTo[] are the shortest path distances from s **iff**:
+* distTo[s] = 0
+* For each vertex v, distTo[v] is the length of some path from s to v.
+* For each edge e = v->w, distTo[w] <= distTo[v] + e.weight()
+
+#### Generic algorithm
+
+```
+Generic algorithm (to compute SPT from s) {
+    Initialize distTo[s] = 0 and distTo[v] = {% math %}\infty{% endmath %}
+
+    Repeat until optimality conditions are satisfied:
+        - Relax any edge
+}
+```
+
+Efficient implementations:
+* Nonnegative weights: [Dijkstra's algorithm](#implement-1-dijkstras-algorithm)
+* No directed cycles (DAGs): [Topological sort algorithm](#implement-2-topological-sort-algorithm)
+* No negative cycles: [Bellman-Ford](#implement-3-bellman-ford-algorithm)
+
+### Implement 1: Dijkstra's algorithm
+When there is no nonnegative weight exists, we can use Dijkstra's algorithm.
+* Consider vertices in increasing order of distance from s (non-tree vertex with the lowest distTo[] value)
+* add vertex to tree and relax all edges pointing from that vertex
+
+```Java
+public class DijkstraSP{
+        // ...
+    public DijkstraSP(EdgeWeightedDigraph G, int s) {
+        edgeTo = new DirectedEdge[G.V()];
+        distTo = new double[G.V()];
+        pq = new IndexMinPQ<Double>(G.V());
+
+        for (int v = 0; v < G.V(); v++) {
+            distTo[v] = Double.POSITIVE_INFINITY;
+        }
+        distTo[s] = 0;
+
+        pq.insert(s, 0.0);
+        while(!pq.isEmpty()) {
+            int v= pq.delMin();
+            for (DirectedEdge e : G.adj(v)) {
+                relax(e);
+            }
+        }
+    }
+
+    private void relax(DirectedEdge e) {
+        int v = e.from(), w = e.to();
+        if (distTo[w] > distTo[v] + e.weight()) {
+            distTo[w] = distTo[v] + e.weight();
+            edgeTo[w] = e;
+            if (pq.contains(w)) pq.decreaseKey(w, distTo[w]);
+            else pq.insert(w, distTo[w]);
+        }
+    }
+}
+```
+
+**Compare to Prim's algorithm:**
+* Both are computing a graph's spanning tree
+* Prim's algorithm choose closest vertex to tree as next vertex, while Dijkstra's algorithm choose closest vertex to the source
+
+### Implement 2: Topological sort algorithm
+
+When the graph is a DAG, we can consider vertices in topological order and do relaxing.
+
+```Java
+    // ...
+    Topological topological = new Topological(G);
+    for (int v : topological.order()) {
+        for (DirectedEdge e : G.adj(v)) {
+            relax(e);
+        }
+    }
+```
+
+**[Seam carving](https://en.wikipedia.org/wiki/Seam_carving)**: Resize an image without distortion.
+
+**Longest paths**:
+* Formuate as a shortest paths problem in edge-weighted DAGs
+    - Negate all weights
+    - Find shortest paths
+    - Negate weights in result
+* Allpication: Parallel job scheduling ([Critical path method, CPM](https://ja.wikipedia.org/wiki/%E3%82%AF%E3%83%AA%E3%83%86%E3%82%A3%E3%82%AB%E3%83%AB%E3%83%91%E3%82%B9%E6%B3%95)).
+
+### Implement 3: Bellman-Ford algorithm
+
+>A SPT exists iff no negative cycles (a directed cycle whose sum of edge weights is negative).
+
+When we want to find shortest paths with nagative weights, Dijkstra's algorithms doesn't work.
+We can use Bellman-Ford algorithm as long as there is no negative cycle in the graph.
+(Bellman-Ford algorithm is a dynamic programming algorithm)
+
+* Initialize distTo[s] = 0 and distTo[v] = {% math %}\infty{% endmath %}
+* Maintain a queue and repeat until the queue is empty or find a cycle:
+    - Pop vertex v from q
+    - Relax each edge pointing from v to  any vertex w:
+        - if distTo[w] can be de decreased, update distTo[w] and add w to the queue
+
+```Java
+// ...
+    public BellmanFordSP(EdgeWeightedDigraph G, int s) {
+        distTo  = new double[G.V()];
+        edgeTo  = new DirectedEdge[G.V()];
+        onQueue = new boolean[G.V()];
+        for (int v = 0; v < G.V(); v++)
+            distTo[v] = Double.POSITIVE_INFINITY;
+        distTo[s] = 0.0;
+
+        // Bellman-Ford algorithm
+        queue = new Queue<Integer>();
+        queue.enqueue(s);
+        onQueue[s] = true;
+        while (!queue.isEmpty() && !hasNegativeCycle()) {
+            int v = queue.dequeue();
+            onQueue[v] = false;
+            relax(G, v);
+        }
+    }
+
+    private void relax(EdgeWeightedDigraph G, int v) {
+        for (DirectedEdge e : G.adj(v)) {
+            int w = e.to();
+            if (distTo[w] > distTo[v] + e.weight()) {
+                distTo[w] = distTo[v] + e.weight();
+                edgeTo[w] = e;
+                if (!onQueue[w]) {
+                    queue.enqueue(w);
+                    onQueue[w] = true;
+                }
+            }
+            if (++cost % G.V() == 0) {
+                findNegativeCycle();
+                if (hasNegativeCycle()) return;  // found a negative cycle
+            }
+        }
+    }
+
+```
+
+Bellman-Ford algorithm can also be used for finding a negative cycle.
+
+Negative cycle application: arbitrage detection.
