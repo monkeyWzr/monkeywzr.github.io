@@ -2,7 +2,7 @@
 layout: post
 title: vps搭建私人pptp vpn,新姿势GET！
 category: tech
-tags: [linux,科学上网]
+tags: [Linux,科学上网]
 keywords: pptp,vpn,vps,科学上网
 description:
 ---

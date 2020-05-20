@@ -3,7 +3,7 @@ layout: post
 title: Linux下curl实现某资源站自动签到脚本
 category: tech
 tags: 
-    - linux
+    - Linux
     - curl
 keywords: linux,curl,模拟登录
 ---

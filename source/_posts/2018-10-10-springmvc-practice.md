@@ -3,7 +3,7 @@ title: SpringMVC初使用心得
 date: 2018-10-10 17:25:25
 tags:
     - SpringMVC
-    - JAVA
+    - Java
 category: tech
 keywords:
     - android

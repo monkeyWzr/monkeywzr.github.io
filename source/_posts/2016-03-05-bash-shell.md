@@ -3,7 +3,7 @@ layout: post
 title: 基本的bash shell命令
 category: notes
 tags: 
-    - linux
+    - Linux
 keywords: 
     - linux
     - bash

@@ -4,7 +4,7 @@ date: 2017-09-23 19:55:32
 category: tech
 tags:
     - android
-    - java
+    - Java
 keywords:
     - android
     - java
