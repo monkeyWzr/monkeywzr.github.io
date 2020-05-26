@@ -61,6 +61,51 @@ While there exists an augmenting path:
 
 ### Representation
 
-* Flow edge data type: Associate flow $f_e$ anc capacity$c_e$ 
+* Flow edge data type: Associate flow $f_e$ and capacity $c_e$ 
 * Residual capacity:
   - Forward edge: residual capacity = $c_e - f_e$
+  - Backward edge: residual capacity = $f_e$
+* Argument flow:
+  * Forward edge: add $\varDelta$
+  * Backward edge: subtract $\varDelta$
+* Residual network: Argumenting path in original network is equivalent to directed path in residual network.
+  * backward edge: **not empty**
+  * forward edge: **not full**
+
+Flow edge implementation:
+[https://algs4.cs.princeton.edu/code/edu/princeton/cs/algs4/FlowEdge.java.html](https://algs4.cs.princeton.edu/code/edu/princeton/cs/algs4/FlowEdge.java.html)
+
+Flow network implementation (adjacency-lists representation):
+[https://algs4.cs.princeton.edu/code/edu/princeton/cs/algs4/FlowNetwork.java.html](https://algs4.cs.princeton.edu/code/edu/princeton/cs/algs4/FlowNetwork.java.html)
+
+Ford-Fulkerson implementation:
+```Java
+public class FordFulkerson {
+
+  private boolean[] marked;
+  private FlowEdge[] edgeTo;
+  private double value;
+
+  public FordFulkerson(FlowNetwork G, int s, int t) {
+    value = 0.0;
+    while(hasAugmentingPath(G, s, t)) {
+      double bottle = Double.POSITICE_INFINITY;
+      // calculate the bottleneck residual capacity to t
+      for (int v = t; v != s; v = edgeTo[v].other(v)) {
+        bottle = Math.min(bottle, edgeTo[v].residualCapacityTo(v));
+      }
+
+      // increase flow by the bottleneck
+      for (int v = t; v != s; v = edgeTo[v].other(v)) {
+        edgeTo[v].addResidualFlowTo(v, bottle);
+      }
+
+      value += bottle;
+    }
+  }
+
+  private boolean hasAugmentingPath(FlowNetwork G, int s, int t) {
+    // TODO
+  }
+}
+```
