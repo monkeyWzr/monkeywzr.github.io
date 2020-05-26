@@ -6,6 +6,7 @@ category: notes
 keywords:
     - Algorithms
     - Graphs
+mathjax: true
 ---
 
 ## Undirected Graphs
@@ -310,7 +311,7 @@ Strong connectivity is an equvicalence relation.
 #### Kosaraju-Sharir Algorithm
 
 Kosaraju-Sharir is easy to implement but difficutl to understand. It runs DFS twice:
-* Given a digraph G, run DFS to compute the topological order of its reverse {% math %}G^R{% endmath %}
+* Given a digraph G, run DFS to compute the topological order of its reverse $G^R$
 * Run DFS on G in the order given by first DFS
 
 TODO: ADD Proof
@@ -402,7 +403,7 @@ TODO: Add code
 
 The key to solve this problem is how do we find the crossing edge of minimal weight efficiently.
 
-A lazy solution (in time proportional to {% math %}ElogE{% endmath %}, fair enough):
+A lazy solution (in time proportional to $ElogE$, fair enough):
 1. Maintain a PQ of edges with (at least) one endpoint in T
     - Key = edge, priority = weight
 2. Delete-min to determine next edge e = v->w to add to T
@@ -413,7 +414,7 @@ A lazy solution (in time proportional to {% math %}ElogE{% endmath %}, fair enou
 
 TODO: add code
 
-A eager solution (in time proprotional to {% math %}ElogV{% endmath %}, better):
+A eager solution (in time proprotional to $ElogV$, better):
 1. Maintain a PQ of vertices connected by an edge to T, where priority of v = weight of shortedt edge connecting v to T
 2. Delete min vertex v and add its associated edge e = v->w to T
 3. Update PQ by considering all edges e = v->x incident to v
@@ -482,7 +483,7 @@ Given an edge-weighted digraph G, distTo[] are the shortest path distances from 
 
 ```
 Generic algorithm (to compute SPT from s) {
-    Initialize distTo[s] = 0 and distTo[v] = {% math %}\infty{% endmath %}
+    Initialize distTo[s] = 0 and distTo[v] = $\infty$
 
     Repeat until optimality conditions are satisfied:
         - Relax any edge
@@ -568,7 +569,7 @@ When we want to find shortest paths with nagative weights, Dijkstra's algorithms
 We can use Bellman-Ford algorithm as long as there is no negative cycle in the graph.
 (Bellman-Ford algorithm is a dynamic programming algorithm)
 
-* Initialize distTo[s] = 0 and distTo[v] = {% math %}\infty{% endmath %}
+* Initialize distTo[s] = 0 and distTo[v] = $\infty$
 * Maintain a queue and repeat until the queue is empty or find a cycle:
     - Pop vertex v from q
     - Relax each edge pointing from v to  any vertex w:
@@ -622,6 +623,10 @@ Negative cycle application: arbitrage detection.
 
 ## TEMP
 
-* Flow edge data type: Associate flow {% math %}f_e{% endmath %} anc capacity{% math %}c_e{% endmath %} 
+* Flow edge data type: Associate flow $f_e$ and capacity $c_e$ 
 * Residual capacity:
   - Forward edge: residual capacity = $c_e - f_e$
+  - Backward edge: residual capacity = $f_e$
+* Argument flow:
+  * Forward edge: add $\varDelta$
+  * Backward edge: subtract $\varDelta$
