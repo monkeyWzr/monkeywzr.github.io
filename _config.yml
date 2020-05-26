@@ -90,9 +90,9 @@ theme_config:
     id: UA-83047470-2
 
 math:
-  engine: 'katex' # or 'mathjax' 'katex'
-  # mathjax:
-  #   src: "//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+  engine: 'mathjax' # or 'mathjax' 'katex'
+  mathjax:
+    src: "//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
   #   config:
   #     # MathJax config
   # katex:

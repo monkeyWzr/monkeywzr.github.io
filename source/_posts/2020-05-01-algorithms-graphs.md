@@ -618,3 +618,10 @@ We can use Bellman-Ford algorithm as long as there is no negative cycle in the g
 Bellman-Ford algorithm can also be used for finding a negative cycle.
 
 Negative cycle application: arbitrage detection.
+
+
+## TEMP
+
+* Flow edge data type: Associate flow {% math %}f_e{% endmath %} anc capacity{% math %}c_e{% endmath %} 
+* Residual capacity:
+  - Forward edge: residual capacity = $c_e - f_e$
