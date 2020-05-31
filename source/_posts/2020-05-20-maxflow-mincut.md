@@ -8,6 +8,7 @@ keywords:
     - Graphs
     - maxflow
     - mincut
+mathjax: true
 ---
 
 ## Model
