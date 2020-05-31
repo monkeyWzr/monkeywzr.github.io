@@ -105,7 +105,31 @@ public class FordFulkerson {
   }
 
   private boolean hasAugmentingPath(FlowNetwork G, int s, int t) {
-    // TODO
+    edgeTo = new FlowEdge[G.V()];
+    marked = new boolean[G.V()];
+
+    Queue<Integer> queue = new Queue<Integer>();
+    queue.enqueue(s);
+    marked[s] = true;
+    while(!queue.isEmpty()) {
+      int v = queue.dequeue();
+      for (FlowEdge e : G.adj(v)){
+        int w = e.other();
+        if (e.residualCapacityTo(w) > 0 && !marked[w]) {
+          edgeTo[w] = e;
+          marked[w] = true;
+          queue.enqueue(w);
+        }
+      }
+    }
+    return marked[t];
   }
 }
 ```
+
+### Applications
+
+Some applications:
+* Bipartite matching
+* Baseball elemination
+* ...
