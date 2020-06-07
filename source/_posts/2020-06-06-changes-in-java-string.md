@@ -182,7 +182,6 @@ public final class String
 ```
 
 The auther's comment[^2]:
-
 <a class="embedly-card" href="https://www.reddit.com/r/programming/comments/1qw73v/til_oracle_changed_the_internal_string/cdhb77f">Card</a>
 <script async src="//embed.redditmedia.com/widgets/platform.js" charset="UTF-8"></script>
 
