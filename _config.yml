@@ -93,6 +93,11 @@ ignore:
 # plugins:
 # - hexo-server
 ## Themes: https://hexo.io/themes/
+
+# Markdown-it config
+## Docs: https://github.com/celsomiranda/hexo-renderer-markdown-it/wiki/
+markdown: 'default'
+
 mathjax:
   tags: none # or 'ams' or 'all'
   single_dollars: true # enable single dollar signs as in-line math delimiters
