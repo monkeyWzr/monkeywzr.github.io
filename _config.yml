@@ -129,7 +129,7 @@ theme_config:
 math:
   engine: 'mathjax' # or 'mathjax' 'katex'
   mathjax:
-    src: "//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+    src: "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
   #   config:
   #     # MathJax config
   # katex:
