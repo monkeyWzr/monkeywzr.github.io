@@ -96,7 +96,7 @@ ignore:
 
 # Markdown-it config
 ## Docs: https://github.com/celsomiranda/hexo-renderer-markdown-it/wiki/
-markdown: 'default'
+markdown:
   plugins:
     - markdown-it-footnote
 mathjax:
