@@ -112,6 +112,7 @@ theme_config:
   colorscheme: white
   logo-grayout: true
   highlight: darkula
+  tags_overview: true
   nav:
     Home: /
     Writing: /archives/
