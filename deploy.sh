@@ -1,8 +1,28 @@
-cd ./public # Hexo 生成的目录默认在 public 下
-git init # 初始化一个 Repo
-git config --global push.default matching
-git config --global user.email "${GitHubEMail}"
-git config --global user.name "${GitHubUser}" # 利用在环境变量中定义的信息配置 Git
-git add --all .
-git commit -m "Auto Build for ${GitHubUser}'s Blog" # commit 信息
-git push --quiet --force https://${GitHubKEY}@github.com/${GitHubUser}/${GitHubRepo}.git master # 将生成的静态整站部署到指定 Repo 的 master 分支。
+#!/bin/sh
+
+if [ "`git status -s`" ]
+then
+    echo "The working directory is dirty. Please commit any pending changes."
+    exit 1;
+fi
+
+echo "Deleting old publication"
+rm -rf public
+mkdir public
+git worktree prune
+rm -rf .git/worktrees/public/
+
+echo "Checking out master branch into public"
+git worktree add -f -B master public origin/master
+
+echo "Removing existing files"
+rm -rf public/*
+
+echo "Generating site"
+hugo
+
+echo "Updating master branch"
+cd public && git add --all && git commit -m "Publishing to master (deploy.sh)"
+
+echo "Pushing to github"
+git push --all

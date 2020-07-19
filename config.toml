@@ -1,4 +1,4 @@
-baseURL = "https://localhost:1313"
+baseURL = "https://www.takuzen.me"
 languageCode = "en-us"
 title = "マクロス"
 theme = "cactus"
