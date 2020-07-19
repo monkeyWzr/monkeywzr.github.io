@@ -6,15 +6,19 @@
 #     exit 1;
 # fi
 
-echo "Deleting old publication"
-rm -rf public
-mkdir public
-git worktree prune
-rm -rf .git/worktrees/public/
-
 git config --global push.default matching
 git config --global user.email "${GitHubEMail}"
 git config --global user.name "${GitHubUser}"
+
+git checkout --orphan master
+git reset --hard
+git commit --allow-empty -m "Initializing master branch"
+git push origin master
+git checkout src
+
+echo "Deleting old publication"
+rm -rf public
+mkdir public
 
 echo "Checking out master branch into public"
 git worktree add -f -B master public origin/master
