@@ -1,0 +1,62 @@
+baseURL = "https://localhost:1313"
+languageCode = "en-us"
+title = "マクロス"
+theme = "cactus"
+copyright = "呉" # theme : use title if copyright is not set
+disqusShortname = "wzr" #
+
+[markup.goldmark.renderer]
+unsafe= true
+
+# summaryLength = 2
+
+# Main menu which appears below site header.
+[[menu.main]]
+name = "Home"
+url = "/"
+weight = 1
+
+[[menu.main]]
+name = "All posts"
+url = "/posts"
+weight = 2
+
+[[menu.main]]
+name = "Tags"
+url = "/tags"
+weight = 3
+
+[[menu.main]]
+name = "About"
+url = "/about"
+weight = 4
+
+[markup]
+  [markup.tableOfContents]
+    endLevel = 4
+    ordered = false
+    startLevel = 2
+
+[params]
+
+  # TODO: mainSections = ["posts"]
+  mainSection = "posts"
+
+  # Home page settings
+  showAllPostsOnHomePage = true
+  postsOnHomePage = 5
+  tagsOverview = true
+
+  # https://gohugo.io/functions/format/#hugo-date-and-time-templating-reference
+  dateFormat = "2006-01-02"
+
+  # Post page settings
+  show_updated = false
+
+  [params.comments]
+    enabled = true
+    engine = "disqus" #
+
+  [[params.social]]
+    name = "github"
+    link = "https://github.com/monkeyWzr"
