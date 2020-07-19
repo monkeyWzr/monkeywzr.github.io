@@ -26,7 +26,9 @@ echo "Generating site"
 hugo
 
 echo "Updating master branch"
-cd public && git add --all && git commit -m "Publishing to master (deploy.sh)"
+cd public
+git add --all
+git commit -m "Publishing to master (deploy.sh)"
 
 echo "Pushing to github"
-git push --all
+git push --quiet --force https://${GitHubKEY}@github.com/${GitHubUser}/${GitHubRepo}.git master
