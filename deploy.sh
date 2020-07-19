@@ -12,6 +12,10 @@ mkdir public
 git worktree prune
 rm -rf .git/worktrees/public/
 
+git config --global push.default matching
+git config --global user.email "${GitHubEMail}"
+git config --global user.name "${GitHubUser}"
+
 echo "Checking out master branch into public"
 git worktree add -f -B master public origin/master
 
