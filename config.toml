@@ -1,9 +1,10 @@
 baseURL = "https://www.takuzen.me"
 languageCode = "en-us"
 title = "マクロス"
-theme = "cactus"
-copyright = "呉" # theme : use title if copyright is not set
-disqusShortname = "wzr" #
+theme = "hugo-theme-cactus"
+copyright = "呉" # cactus will use title if copyright is not set
+disqusShortname = "wzr" # cactus will use site title if not set
+# googleAnalytics = "UA-83047470-2"
 
 [markup.goldmark.renderer]
 unsafe= true
@@ -17,7 +18,7 @@ url = "/"
 weight = 1
 
 [[menu.main]]
-name = "All posts"
+name = "Writings"
 url = "/posts"
 weight = 2
 
@@ -39,16 +40,22 @@ weight = 4
 
 [params]
 
-  # TODO: mainSections = ["posts"]
-  mainSection = "posts"
+  colortheme = "white" # dark, light, white, or classic
+  rss = true
+  googleAnalyticsAsync = true # not required
+  # mathjax = true  # not required
 
   # Home page settings
+  description = "勉強中"
+  mainSection = "posts" # your main section
   showAllPostsOnHomePage = true
   postsOnHomePage = 5
   tagsOverview = true
+  showProjectsList = true
+  projectsUrl = "https://github.com/monkeyWzr"
 
   # https://gohugo.io/functions/format/#hugo-date-and-time-templating-reference
-  dateFormat = "2006-01-02"
+  # dateFormat = "2006-01-02"
 
   # Post page settings
   show_updated = false
@@ -60,3 +67,9 @@ weight = 4
   [[params.social]]
     name = "github"
     link = "https://github.com/monkeyWzr"
+  [[params.social]]
+    name = "linkedin"
+    link = "https://www.linkedin.com/in/monkeywzr/"
+  [[params.social]]
+    name = "email"
+    link = "monkeywzr@gmail.com"  # no need for "mailto:" at the start
