@@ -1,7 +1,8 @@
 ---
 layout: post
 title: 超老本子CF-W2安装lubuntu
-category: tech
+date: 2016-03-04 09:00:00
+categories: tech
 tags:
     - Linux
 keywords: 

@@ -1,7 +1,7 @@
 ---
 title: ssh反向代理实现内网穿透（比较失败( ˙灬˙ )）
 date: 2016-10-08 14:45:08
-category: tech
+categories: tech
 tags:
     - ssh
     - 内网穿透

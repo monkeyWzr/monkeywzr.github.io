@@ -1,7 +1,8 @@
 ---
 layout: post
 title: jQury基础笔记
-category: notes
+date: 2015-10-01 09:00:00
+categories: notes
 tags: [jqury,教程]
 keywords: jquey,教程
 description:
@@ -399,7 +400,3 @@ url中的`?`表示让jQuery自动处理返回的callback数据，也可自定义
 
 附上一个说的比较详细的博客：
 [说说JSON和JSONP，也许你会豁然开朗，含jQuery用例](http://www.cnblogs.com/dowinning/archive/2012/04/19/json-jsonp-jquery.html)
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4NzY1NDY0MjUsLTE5MTk5Mzg3MjNdfQ
-==
--->

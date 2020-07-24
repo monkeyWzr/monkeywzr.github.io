@@ -4,7 +4,7 @@ date: 2019-01-25 09:00:00
 tags:
     - JavaScript
     - Vue.js
-category: tech
+categories: tech
 keywords:
     - Vue.js
     - Javascript

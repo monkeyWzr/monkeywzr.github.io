@@ -1,7 +1,8 @@
 ---
 layout: post
 title: 正则表达式笔记
-category: notes
+date: 2015-09-30 09:00:00
+categories: notes
 tags: [正则表达式,教程]
 keywords: 正则表达式,教程
 description:
@@ -59,6 +60,3 @@ description:
 	//本地部分包含A-Za-z0-9等，不包含括号，#@;等
 	/^([\w!#@$&'*+\/=?^'{|}~.\-]+)@([\w]+\.)
 ```
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbMTAzNzE1OTMyMywxNDc1MTgwMTY1XX0=
--->

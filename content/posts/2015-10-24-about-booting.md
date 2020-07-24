@@ -1,9 +1,14 @@
 ---
 layout: post
 title: 开机流程中的事儿
-category: tech
-tags: [操作系统]
-keywords: UEFI,BIOS,开机引导
+date: 2015-10-24 09:00:00
+categories: tech
+tags:
+  - 操作系统
+keywords: 
+  - UEFI
+  - BIOS
+  - 开机引导
 description:
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: uipath ノート（三）- uipath orchestrator
+date: 2019-11-23 09:00:00
 tags:
     - RPA
 categories:

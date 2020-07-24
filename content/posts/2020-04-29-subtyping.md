@@ -1,9 +1,9 @@
 ---
 title: Programming Language - Subtyping
-date: 2020-04-29
+date: 2020-04-29 09:00:00
 tags:
     - programming language
-category: tech
+categories: tech
 keywords:
     - subtyping
 ---

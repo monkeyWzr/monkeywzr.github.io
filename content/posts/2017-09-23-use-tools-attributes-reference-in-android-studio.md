@@ -1,7 +1,7 @@
 ---
 title: 使用Tools Attributes Reference
 date: 2017-09-23 19:55:32
-category: tech
+categories: tech
 tags:
     - android
     - Java

@@ -1,7 +1,7 @@
 ---
 title: 常用算法总结
 date: 2017-02-24 19:47:40
-category: notes
+categories: notes
 tags:
     - Algorithms
 keywords:

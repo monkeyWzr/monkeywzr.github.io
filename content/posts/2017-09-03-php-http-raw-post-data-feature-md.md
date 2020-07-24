@@ -1,7 +1,7 @@
 ---
 title: 用php://input代替php的$HTTP_RAW_POST_DATA全局变量
 date: 2017-09-03 04:02:29
-category: tech
+categories: tech
 tags:
     - php
 keywords:

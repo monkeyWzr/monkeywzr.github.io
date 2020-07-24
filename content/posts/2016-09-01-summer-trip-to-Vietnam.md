@@ -1,7 +1,7 @@
 ---
 title: 暑假越南行（二）
 date: 2016-09-01 03:28:01
-category: life
+categories: life
 tags:
     - 旅行
 keywords:

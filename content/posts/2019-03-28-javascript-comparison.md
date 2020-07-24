@@ -1,8 +1,9 @@
 ---
 title: JavaScript Comparison operation at a glance
+date: 2019-03-28 09:00:00
 tags:
     - JavaScript
-category: tech
+categories: tech
 keywords:
     - Javascript
     - ES2015

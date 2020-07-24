@@ -1,7 +1,8 @@
 ---
 layout: post
 title: jquery实现表单上传图片预览
-category: tech
+date: 2016-06-03 09:00:00
+categories: tech
 tags: 
     - jquery
 keywords: 

@@ -1,9 +1,15 @@
 ---
 layout: post
 title: Kali下Metasploit学习笔记
-category: notes
-tags: kali
-keywords: Metasploit,kali,渗透,安全
+date: 2015-12-07 09:00:00
+categories: notes
+tags:
+  - kali
+keywords:
+	- Metasploit
+	- kali
+	- 渗透
+	- 安全
 description:
 ---
 

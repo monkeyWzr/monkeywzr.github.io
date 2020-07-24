@@ -1,7 +1,8 @@
 ---
 layout: post
 title: 解决jekyll server无法启动问题
-category: tech
+date: 2015-10-15 09:00:00
+categories: tech
 tags: 
 keywords: 
 description: 
@@ -18,6 +19,3 @@ description:
 我勒个草，竟然是个福昕的保护程序。。没啥话可说了，现在就是在抉择是杀掉这个进程还是换个jekyll serve端口(>=<)先把这篇提交了再说
 		
 		$ jekyll serve --port 4001
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbLTU0MzQzMTEyNSwtMTMwNTEyMjcyNF19
--->

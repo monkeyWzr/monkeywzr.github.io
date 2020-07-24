@@ -1,8 +1,11 @@
 ---
 layout: post
 title: C#学习笔记
-category: notes
-tags: [c#,教程]
+date: 2015-10-31 09:00:00
+categories: notes
+tags:
+	- c#
+	- 教程
 keywords:
 description:
 ---

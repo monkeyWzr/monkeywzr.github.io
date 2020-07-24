@@ -1,7 +1,7 @@
 ---
 title: 暑假越南行（经验篇）
 date: 2016-09-02 03:14:41
-category: life
+categories: life
 tags:
     - 旅行
 keywords:

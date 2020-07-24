@@ -1,7 +1,8 @@
 ---
 layout: post
 title: 暑假越南行（一）
-category: life
+date: 2016-08-29 09:00:00
+categories: life
 tags:
     - 旅行
 keywords:

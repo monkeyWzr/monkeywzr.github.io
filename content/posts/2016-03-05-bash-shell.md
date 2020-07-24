@@ -1,7 +1,8 @@
 ---
 layout: post
 title: 基本的bash shell命令
-category: notes
+date: 2016-03-05 09:00:00
+categories: notes
 tags: 
     - Linux
 keywords: 
@@ -255,6 +256,3 @@ echo是用于终端打印的基本命令。默认情况下每次调用echo后都
 就是使用原本的rm指令而不是自己定义的别名。
 
 ###
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQ1MzE4Nzg5NSwtNjE3Nzk5MjI5XX0=
--->

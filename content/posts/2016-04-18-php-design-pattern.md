@@ -1,7 +1,8 @@
 ---
 layout: post
 title: php几种设计模式
-category: notes
+date: 2016-04-18 09:00:00
+categories: notes
 tags: 
     - php
     - 设计模式
@@ -32,6 +33,3 @@ keywords:
 ### 观察者模式
 
 ### 发布者/订阅者模式
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQwMzI1MDA2OSwtMjA2Mjc2NzcxMV19
--->

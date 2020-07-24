@@ -1,9 +1,16 @@
 ---
 layout: post
 title: vps搭建私人pptp vpn,新姿势GET！
-category: tech
-tags: [Linux,科学上网]
-keywords: pptp,vpn,vps,科学上网
+date: 2015-12-01 09:00:00
+categories: tech
+tags:
+	- Linux
+	- 科学上网
+keywords:
+	- pptp
+	- vpn
+	- vps
+	- 科学上网
 description:
 ---
 

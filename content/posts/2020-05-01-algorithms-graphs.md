@@ -3,11 +3,12 @@ title: Algorithms - Graphs
 date: 2020-05-01 09:00:00
 tags:
     - Algorithms
-category: notes
+categories: notes
 keywords:
     - Algorithms
     - Graphs
 mathjax: true
+comments: false
 ---
 
 ## Undirected Graphs

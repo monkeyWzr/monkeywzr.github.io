@@ -1,7 +1,7 @@
 ---
 title: laravel设计模式
 date: 2016-08-20 23:29:17
-category: notes
+categories: notes
 tags:
     - laravel
     - php

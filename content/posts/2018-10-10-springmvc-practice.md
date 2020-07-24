@@ -4,7 +4,7 @@ date: 2018-10-10 17:25:25
 tags:
     - SpringMVC
     - Java
-category: tech
+categories: tech
 keywords:
     - android
     - java

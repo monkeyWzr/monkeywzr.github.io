@@ -1,7 +1,8 @@
 ---
 layout: post
 title: docker基础简记
-category: notes
+date: 2016-03-09 09:00:00
+categories: notes
 tags: 
     - docker
 keywords:
@@ -41,6 +42,3 @@ Docker是近几年兴起的发展非常快速的开源项目，可用来创建�
     - -f '_{{ obj.child }}'_ 显示指定的信息
 * `search` 搜索镜像
 * `tag` 为镜像添加标签
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbLTg3NTc0ODI5MiwtMTA5ODc5NzIxMF19
--->

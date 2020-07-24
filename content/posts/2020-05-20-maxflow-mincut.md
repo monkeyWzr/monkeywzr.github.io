@@ -3,7 +3,7 @@ title: Algorithms - Maxflow and Mincut
 date: 2020-05-20 09:00:00
 tags:
     - Algorithms
-category: notes
+categories: notes
 keywords:
     - Algorithms
     - Graphs

@@ -1,5 +1,6 @@
 ---
 title: uipath ノート（二）- Best Practice
+date: 2019-11-18 09:00:00
 tags:
     - RPA
 categories:

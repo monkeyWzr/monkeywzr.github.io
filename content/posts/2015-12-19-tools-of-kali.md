@@ -1,9 +1,13 @@
 ---
 layout: post
 title: Kali的一些工具
-category: notes
-tags: kali
-keywords: Kali,渗透
+date: 2015-12-19 09:00:00
+categories: notes
+tags:
+  - kali
+keywords:
+  - Kali
+  - 渗透
 description:
 ---
 

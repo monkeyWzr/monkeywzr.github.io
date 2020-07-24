@@ -1,11 +1,15 @@
 ---
 layout: post
 title: Linux下curl实现某资源站自动签到脚本
-category: tech
+date: 2015-12-06 09:00:00
+categories: tech
 tags: 
-    - Linux
-    - curl
-keywords: linux,curl,模拟登录
+  - Linux
+  - curl
+keywords:
+  - linux
+  - curl
+  - 模拟登录
 ---
 
 ## 前言

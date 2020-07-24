@@ -1,7 +1,7 @@
 ---
 title: hexo博客突然丢失了所有的css js？？
 date: 2016-11-05 14:31:16
-category: tech
+categories: tech
 tags:
   - hexo
 keywords:

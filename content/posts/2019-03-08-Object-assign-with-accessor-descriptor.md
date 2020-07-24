@@ -1,8 +1,9 @@
 ---
 title: Object.assign() with accessor descriptor
+date: 2019-03-08 10:00:00
 tags:
     - JavaScript
-category: tech
+categories: tech
 keywords:
     - Javascript
     - ES2015

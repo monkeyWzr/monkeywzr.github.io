@@ -1,7 +1,7 @@
 ---
 title: Algorithms part1 programming assignments 2 - deque
 date: 2017-02-10 18:33:59
-category: notes
+categories: notes
 tags:
   - Algorithms
 keywords:

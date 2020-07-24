@@ -1,7 +1,7 @@
 ---
 title: composer中的autoload
 date: 2016-11-05 02:42:06
-category: tech
+categories: tech
 tags:
     - php
 keywords:

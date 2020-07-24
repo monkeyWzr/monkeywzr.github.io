@@ -1,7 +1,7 @@
 ---
 title: composer用法
 date: 2016-07-10 12:21:46
-category: notes
+categories: notes
 tags:
     - php
 keywords:
@@ -417,6 +417,3 @@ composer help install
 
 >参考资料：
 >http://docs.phpcomposer.com/03-cli.html
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbMTMwNDM2Nzc3NiwtMTY5MDQzNjI4M119
--->

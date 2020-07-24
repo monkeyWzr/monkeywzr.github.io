@@ -1,7 +1,7 @@
 ---
 title: php的闭包特性
 date: 2017-01-11 18:39:17
-category: notes
+categories: notes
 tags:
     - php
 keywords:

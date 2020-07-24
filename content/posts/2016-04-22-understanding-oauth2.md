@@ -1,6 +1,8 @@
+---
 layout: post
 title: 简记oath2.0
-category: notes
+date: 2016-04-22 09:00:00
+categories: notes
 tags: 
     - oauth2
 keywords: 
@@ -66,7 +68,4 @@ authorization code grant type is available.
 
 ## 实例
 
-this is a deep hole。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbMTYwNTAzNDExMCwtMzE2MjU2MTM4XX0=
--->
+TODO
