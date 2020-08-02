@@ -1,6 +1,7 @@
 ---
 layout: post
 title: markdown语法简记
+date: 2015-08-03 09:00:00
 categories: notes
 tags: [markdown,教程]
 keywords: markdown,教程
