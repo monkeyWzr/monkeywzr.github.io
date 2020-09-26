@@ -4,13 +4,13 @@ title: vps搭建私人pptp vpn,新姿势GET！
 date: 2015-12-01 09:00:00
 categories: tech
 tags:
-	- Linux
-	- 科学上网
+  - Linux
+  - 科学上网
 keywords:
-	- pptp
-	- vpn
-	- vps
-	- 科学上网
+  - pptp
+  - vpn
+  - vps
+  - 科学上网
 description:
 ---
 
