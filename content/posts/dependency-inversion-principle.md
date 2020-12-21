@@ -1,7 +1,6 @@
 ---
 title: "依存性逆転の原則(Dependency Inversion Principle), the D in SOLID"
 date: 2020-12-19T15:43:21+09:00
-draft: true
 tags:
     - Java
 categories:
@@ -104,8 +103,8 @@ class Something {
 >* High-level modules should not depend on low-level modules. Both should depend on abstractions.
 >* Abstractions should not depend on details. Details should depend on abstractions.
 
->* 上位レベルのモジュールは下位レベルのモジュールに依存すべきではない。両方とも抽象（abstractions)に依存すべきである。
->* 抽象は詳細に依存してはならない。詳細が抽象に依存すべきである。
+* 上位レベルのモジュールは下位レベルのモジュールに依存すべきではない。両方とも抽象（abstractions)に依存すべきである。
+* 抽象は詳細に依存してはならない。詳細が抽象に依存すべきである。
 
 以下の例を考えてみよう。
 あるTextクラスを操作できるエディタークラスを実装する
@@ -166,9 +165,9 @@ class Editor {
 }
 ```
 
-一つ種類のファイルしか編集できないエディターはあんまり価値がないだろう。他のファイルを編集したい場合、Editorの定義を修正するか新しいエディターを実装しないといけない状況になる。Textの定義が変わった場合、Editorが使えなくなる可能性も高いです。
+ここまでは上位レベル（Editor）が下位レベル（Text）を依存しています。Textの定義が変わった場合、Editorが使えなくなる可能性も高いです。
 
-ではEditorの定義を修正しようか
+ではEditorの定義を修正しようか。まず、Editorが使えるファイルを定義する。
 
 ```java
 package foo.bar.editor;
@@ -185,12 +184,14 @@ interface File {
 }
 ```
 
+Editorはこのインタフェースを依存して実装する。
+
 ```java
 package foo.bar.editor;
 
 class Editor {
-    private Text target;
-    private Text temp;
+    private File target;
+    private File temp;
 
     public open(File file) {
         
@@ -217,25 +218,59 @@ class Editor {
     }
 
     public static void main(Stirng[] args) {
-        Text text = new Text("to/somewhere/bah.txt");
+        File text = new Text("to/somewhere/bah.txt");
         Editor editor = new Editor(text);
     }
 }
 ```
 
 ```java
-// TODO:someFileの実現
+package foo.bar.file;
+
+import foo.bar.editor.File;
+
+class Text implements File {
+    private String content;
+    private int size;
+    public Text(String filename) {
+        // ...
+    }
+
+    @Overrided
+    public int size() {
+
+    }
+
+    @Overrided
+    public String getContent() {
+
+    }
+
+    @Overrided
+    public void setContent(String contents) {
+
+    }
+}
 ```
 
-次、interfaceとEditorのパッケージを分ける
+こうすると、Editorは下位レベルのText実装を依存せず、自分が必要なファイル定義をコントロールしている。そして、下位レベルの実装が上位のインタフェース定義を従わないといけないので、下位レベルが上位を依存するように、依存関係が逆転になった。
+
+上記の例で、Interface定義とEditorが同じパッケージにいるので、上位レベルが抽象定義を所有していると言える。実は上位レベル、下位レベルと抽象定義は全部異なるパッケージに所属し、それぞれ隔離されるケースも普通です。
+
 
 現実の例
-java.Util.Scanner
+`java.Util.Scanner`のコンストラクタの2つ：
 
+
+[https://docs.oracle.com/javase/jp/8/docs/api/java/util/Scanner.html](https://docs.oracle.com/javase/jp/8/docs/api/java/util/Scanner.html)
+
+
+```java
+// java.nio.file.Path
 Scanner(Path source)
+// java.lang.Readable
 Scanner(Readable source)
-
-https://docs.oracle.com/javase/jp/8/docs/api/java/util/Scanner.html
+```
 
 
 
