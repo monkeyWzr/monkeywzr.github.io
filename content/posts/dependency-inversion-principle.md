@@ -272,7 +272,9 @@ Scanner(Path source)
 Scanner(Readable source)
 ```
 
+## 参考
+[The Dependency Inversion Principle in Java](https://www.baeldung.com/java-dependency-inversion-principle)
 
-
+[初学者でも10分で理解できる依存性逆転の原則(Dependency inversion principle)](https://qiita.com/hirodragon/items/090467284d19a4cbafa0)
 
 [^1]: [https://ja.wikipedia.org/wiki/%E4%BE%9D%E5%AD%98%E6%80%A7%E9%80%86%E8%BB%A2%E3%81%AE%E5%8E%9F%E5%89%87](https://ja.wikipedia.org/wiki/%E4%BE%9D%E5%AD%98%E6%80%A7%E9%80%86%E8%BB%A2%E3%81%AE%E5%8E%9F%E5%89%87)
