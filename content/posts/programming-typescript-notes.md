@@ -13,6 +13,7 @@ keywords:
 
 ---
 
+
 ### リテラル
 
 ```typescript
@@ -95,3 +96,53 @@ function bah(n) { // Error: parameter ‘n’ implicitly has an ‘any’ type
 ```
 
 上記インラインのの場合、`n => console.log(n)`のnが`number`であると、文脈から推論できる。インラインでないと当然エラーになる。
+
+
+## ジェネリック型（総称型）
+
+それぞれの宣言方法
+
+* 一つのシグネチャに限られる。呼び出す時文脈的に推論され、具体的な型にバインドされる
+```typescript
+type  Filter1 = {
+    <T>(array: T[], f: (item: T) => boolean): T[]
+}
+
+let filter1:Filter1
+filter1 = (array, f) => {
+    let res = [];
+    for(let i = 0; i < array.length; i++) {
+        if (f(array[i])) res[i] = array[i]
+    }
+    return res
+} 
+
+type  Filter2 = <T>(array: T[], f: (item: T) => boolean) => T[]
+let filter2:Filter2
+// ...
+```
+
+* 全体のシグネチャに制限する
+```typescript
+type  Filter3<T> = {
+    (array: T[], f: (item: T) => boolean): T[]
+} 
+let filter3:Filter3<number>;
+// ...
+
+type  Filter4<T> = (array: T[], f: (item: T) => boolean) => T[]
+let filter4:Filter4<number>;
+// ...
+```
+
+* 名前付き関数。呼び出す時具体的な型に推論できる
+```typescript
+function filter5<T>(array: T[], f: (item: T) => boolean): T[] {
+    return []
+}
+filter5([0,1,2,3], item => item > 0);
+```
+
+
+参考：typescriptの標準Arrayインタフェース定義。Array.filter, Array.map
+
