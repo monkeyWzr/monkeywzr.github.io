@@ -146,3 +146,18 @@ filter5([0,1,2,3], item => item > 0);
 
 参考：typescriptの標準Arrayインタフェース定義。Array.filter, Array.map
 
+### ディフォルトの型
+
+```typescript
+type Foo<T=string> = {
+    name: T
+} 
+let foo:Foo
+
+type  A = { a: string }
+type  C = A & { b: number }
+type Bar<T  extends  A = C> = {
+    target: T
+}
+let bar:Bar
+```
