@@ -193,12 +193,10 @@ RequestBodyAdviceAdapterでいう便利なやつがある。supportsを実装す
 ## 参考
 
 **下記のブロク、大変参考になった。ありがとうございました**
-[Spring でリクエストボディの JSON に対してバリデーションを行う](https://tyru.hatenablog.com/entry/2016/10/14/021333)
-[Spring MVC(+Spring Boot)上でのリクエスト共通処理の実装方法を理解する](https://qiita.com/kazuki43zoo/items/757b557c05f548c6c5db)
-
-
-[Guide to Spring Type Conversions](https://www.baeldung.com/spring-type-conversions)
-[JSON Parameters with Spring MVC](https://www.baeldung.com/spring-mvc-send-json-parameters)
-[A Custom Data Binder in Spring MVC](https://www.baeldung.com/spring-mvc-custom-data-binder)
+* [Spring でリクエストボディの JSON に対してバリデーションを行う](https://tyru.hatenablog.com/entry/2016/10/14/021333)
+* [Spring MVC(+Spring Boot)上でのリクエスト共通処理の実装方法を理解する](https://qiita.com/kazuki43zoo/items/757b557c05f548c6c5db)
+* [Guide to Spring Type Conversions](https://www.baeldung.com/spring-type-conversions)
+* [JSON Parameters with Spring MVC](https://www.baeldung.com/spring-mvc-send-json-parameters)
+* [A Custom Data Binder in Spring MVC](https://www.baeldung.com/spring-mvc-custom-data-binder)
 
 [^1]: https://docs.spring.io/spring-framework/docs/current/reference/html/web.html#mvc-handlermapping-interceptor

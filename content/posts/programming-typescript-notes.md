@@ -161,3 +161,4 @@ type Bar<T  extends  A = C> = {
 }
 let bar:Bar
 ```
+
