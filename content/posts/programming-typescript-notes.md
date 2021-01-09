@@ -162,3 +162,26 @@ type Bar<T  extends  A = C> = {
 let bar:Bar
 ```
 
+## クラスとインタフェース
+
+
+### 戻り値としてthisが使える
+
+チェイン呼び出されるAPIを定義する場合に便利です。
+
+```typescript
+  class DataList {
+      add(value: number): this { // use this as return type instead of Set
+          return this;
+      }
+  }
+
+  class MutableDataList extends DataList {
+      delete(value: number) : void {
+          // do something
+      }
+
+      // no need to override add method
+  }
+```
+
