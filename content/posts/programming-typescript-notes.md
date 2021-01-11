@@ -164,7 +164,6 @@ let bar:Bar
 
 ## クラスとインタフェース
 
-
 ### 戻り値としてthisが使える
 
 チェイン呼び出されるAPIを定義する場合に便利です。
@@ -185,3 +184,49 @@ let bar:Bar
   }
 ```
 
+### インスタンス側とコンストラクタ側のことを考えつく
+公式ドキュメント[^1]により、インスタンス側(instance side)と静的側(staic side)も言われる。
+>Another way to think of each class is that there is an instance side and a static side.
+
+
+### ポリモーフィズム
+
+[インスタンス側とコンストラクタ側のことを考えつく](#インスタンス側とコンストラクタ側のことを考えつく)のは必要です。
+
+```typescript
+class MyMap<K, V> { // generic declaration at class scope
+    set(k: K, v: V) { // can access the generic type
+        // ...
+    }
+    merge<K1, V1>(map: MyMap<K1, V1>): MyMap<K | K1, V | V1> { // can declare new generic types
+        let temp = new MyMap<K | K1, V | V1>();
+        return temp
+    }
+
+    // static side cannot access the generic types so these errors will be raised:
+    // Static members cannot reference class type parameters.(2302)
+    // Parameter 'm' of public static method from exported class has or is using private name 'K'.(4070)
+    // static copyFrom(m: MyMap<K, V>) { // error
+    //     let temp = new MyMap<K, V>(); // error
+    //     // copy
+    //     return temp
+    // }
+    // So we need to declare the generic types we want at the method scope
+    // K, V here is different things to those above
+    static copyFrom<K, V>(m: MyMap<K, V>) {
+        let temp = new MyMap<K, V>();
+        // copy
+        return temp
+    }
+    static of<K, V>(k: K, v: V): MyMap<K, V> {
+        return new MyMap<K, V>();
+    }
+}
+
+```
+
+
+
+
+
+[^1](https://www.typescriptlang.org/docs/handbook/classes.html#advanced-techniques)[
