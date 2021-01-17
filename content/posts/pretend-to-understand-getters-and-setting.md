@@ -1,7 +1,6 @@
 ---
 title: "思考せずに毎日gettersとsettersを実装している私、その理由が分からない"
-date: 2021-01-11T18:05:32+09:00
-draft: true
+date: 2021-01-17T18:05:32+09:00
 tags:
     - Java
 categories:
@@ -9,8 +8,10 @@ categories:
 keywords:
     - Java
     - getters and setters
+    - Java Bean
+    - POJO
+    - accessors
 ---
-
 
 最近lombokを使って下記のようなやつを結構実装していた
 
@@ -34,10 +35,15 @@ public class Foo {
 
 Encapsulation, Accessors, Immutable, JavaBeans, POJO, Persistence Ignorance, YAGNI, ORM
 
-調査した後、個人的にgetters/settersは（少なくともJava世界に）良くない習慣であり、避けたほうが良い、の方を賛成する傾向がある。しかし正直はまだわからない。
-先頭のような実装で、publicデータフィルドで扱う方が良いかもしれないね
+調査した後、個人的にgetters/settersは昔から継承され、（少なくともJava世界に）モダン開発に良くない習慣であり、避けたほうが良い方を賛成する傾向がある。しかし正直というと、まだわからない。
+
+先頭のような実装なら、publicデータフィルドで扱う方が良いかもしれないね
 
 状況次第、最適な方法を選ばせてもらえれば良いかも。（今のプロジェクトの規約には、getters/settersを使うことが唯一の選択肢）
+
+getters/setters以外、以下の概念をうまく把握できなくてずっど悩んてたが、今も（ある程度）納得できた
+* JavaBean、Bean、Spring Beanっで、どういう意味？
+* POJOっで、どういう意味？
 
 ## まず、getters/settersをおすすめしている資料を探した
 
@@ -92,9 +98,86 @@ _すげぇなブログだと思ってる。_
 カプセル、アクセサーとかのコンセプトはソフトウェア方法論の一部であり、Java世界に限らず、Javascript, Ruby, C#等様々な言語仕様にも含まれている。
 
 Java 1.0リリースされた時点（1996年1月23日）、定着的なgetters/setters仕様はJavaに含まれてなかったようです。
+当時GUIプログラミングの流行で、コンポーネント定義の規約としてJavaBeans誕生した。再利用可能なソフトウェアコンポーネントを作ることに目標した。[^3]
 
+from [wikipedia](https://en.wikipedia.org/wiki/JavaBeans):
+>* serializable
+>* zero-argument public constructor
+>* allow access to properties using getter and setter methods
 
+その後、web開発用のJava ServletとStrutsフレームワークが流行になった。HTMLフォール、JSP、DBの間相互のデータ受け渡しもBeansの定義を従ってgetters/settersメソッドを使った。よく使われてるPOJOオブジェクトとか、DTOオブジェクトの概念もあの時代に繋がているようです。
 
+POJO(Plain Old Java Object): filedを持ち、単にデータを格納するオブジェクト
+DTO(Data Transfer Object): getters/settersを備えたデータ格納用の構造。httpリクエストのハンドリング、ロジック、DBアクセスとか、違う処理階層の間、DTOを使ってコミュニケーションする。
+
+Enterprise JavaBeans(EJB)もあの時代に生まれたものです。（あんまり知らない）
+
+これらのプロジェクトの影響で、getters/settersの実装がだんだん定番になってきたようだ。現時代のJavaエコシステムでも、getters/settersを前提として作らえたライブラリがいっぱいあると気がしている。あの時代に生まれ、今まだ生きて使われているやつも結構あるね。xml/jsonの解析とか、ORMライブラリとかのデータマッピングライブラリも、Strutsも、色々なフレームワークを使う時、getters/settersを用意しないと動けない場面が多い。
+
+## 個人の考え(若干間違ってるかも)
+
+個人的にgetters/settersを使いたくないメインの理由は、面倒くさいなのだ。実装も面倒くさいし、使用も面倒くさい。`x.setXXXX(foo)` `x,getXXXXX()` `x.getFoo().getBar().setBah(bah)`のような長い構文になり、疲れやすい。
+
+他のPL言語にアクセサーの仕組みもあるが、糖衣構文(syntactic sugar)の裏に隠されてる場合が多い。
+
+JavaScriptだと、`accessor descriptor`と呼ばれる。オブジェクトプロパティを定義する時、暗黙的に`[[Get]]`と`[[Put]]`ビルトインメソッドも提供してもらう。`myObj.a`のような構文でプロパティをアクセスする時実は`[[Get]]`を通じて値を取得している。[^4]
+
+```javascript
+let myObj = {
+    a: 2
+}
+console.log(myObj.a) // 2
+console.log(myObj.b) // undefined
+
+let myObj2 = {
+    a: 1
+    _b: true
+    get a() {
+        return this.a + 1
+    }
+    set a(v) {
+        this.a = v
+    }
+    // 別名として提供する
+    get b() {
+        return this._b
+    }
+    set b(v) {
+        this._b = v
+    }
+
+    // 動的にプロパティを定義する
+    get c() {
+        return this._c
+    }
+    set c(v) {
+        this._c = v
+    }
+}
+```
+
+存在しないプロパティを参照するとundefinedが返されるのはディフォルトの`[[Get]]`のおかげです。
+
+参照：
+[You Don't Know JS: this & Object Prototypes - Chapter 3: Objects](https://github.com/getify/You-Dont-Know-JS/blob/1st-ed/this%20%26%20object%20prototypes/ch3.md)
+の[#get](https://github.com/getify/You-Dont-Know-JS/blob/1st-ed/this%20%26%20object%20prototypes/ch3.md#get)
+と[#Getters & Setters](https://github.com/getify/You-Dont-Know-JS/blob/1st-ed/this%20%26%20object%20prototypes/ch3.md#getters--setters)
+
+Rubyだと`attr_accessor`のようなアクセスメソッドの糖衣構文があり、アクセサーを生成してくれる
+[https://ruby-doc.org/docs/ruby-doc-bundle/UsersGuide/rg/accessors.html](https://ruby-doc.org/docs/ruby-doc-bundle/UsersGuide/rg/accessors.html)
+
+C#も糖衣構文になっていると思う
+[プロパティ (C# プログラミング ガイド)](https://docs.microsoft.com/ja-jp/dotnet/csharp/programming-guide/classes-and-structs/properties)
+
+c++のコニュニティにgetters/settersもよく使われるようですが、どんなストーリーだろう。また、通常の定義以外、`=`演算子のオーバーロードも可能なので、面白くて変な実装ができそう。
+
+## 次に調査したいもの(ORM, lombok)
+
+ORMフレームワークの仕組みと実装方法にすごく興味を持っているので、調査してみると思ってる。Java世界でも一部の現代ORMフレームワークの内部がpublicフィルドのPOJOクラスを使っているみたいです。doma2,Hibernate,etc.
+
+lombokの仕組みもとても興味深いね。キーワードはAST変換みたいです。今の自分は足りない知識が多い気がする。
+
+## 参考資料
 
 https://www.infoworld.com/article/2073723/why-getter-and-setter-methods-are-evil.html
 
@@ -102,11 +185,16 @@ https://qiita.com/CostlierRain464/items/07f46ba005c6c9bb42e2
 
 
 https://stackoverflow.com/questions/1568091/why-use-getters-and-setters-accessors
+
 https://softwareengineering.stackexchange.com/questions/416386/what-is-the-utility-and-advantage-of-getters-setters-especially-when-they-are
+
 https://www.quora.com/What-is-the-use-of-getters-and-setters-in-java
 
 http://blogs.williamsplayground.com/knowledge-base/server-side/design-patterns/design-pattern-persistence-ignorance/
 
+https://github.com/getify/You-Dont-Know-JS
 
-[^1]:ttps://dzone.com/articles/why-should-i-write-getters-and-setters
-[^2]:https://www.amazon.co.jp/Effective-Java-%E7%AC%AC3%E7%89%88-Joshua-Bloch/dp/4621303252
+[^1]: https://dzone.com/articles/why-should-i-write-getters-and-setters
+[^2]: https://www.amazon.co.jp/Effective-Java-%E7%AC%AC3%E7%89%88-Joshua-Bloch/dp/4621303252
+[^3]: https://en.wikipedia.org/wiki/JavaBeans
+[^4]: (https://github.com/getify/You-Dont-Know-JS/blob/1st-ed/this%20%26%20object%20prototypes/ch3.md#get)
