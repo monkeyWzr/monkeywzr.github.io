@@ -184,6 +184,11 @@ let bar:Bar
   }
 ```
 
+### Interface
+
+open ended.参照：[TypeScript Deep Dive](https://basarat.gitbook.io/typescript/type-system/interfaces)
+宣言のマージ。（第１０章）
+
 ### インスタンス側とコンストラクタ側のことを考えつく
 公式ドキュメント[^1]により、インスタンス側(instance side)と静的側(staic side)も言われる。
 >Another way to think of each class is that there is an instance side and a static side.
@@ -225,8 +230,33 @@ class MyMap<K, V> { // generic declaration at class scope
 
 ```
 
+### ミックスイン
 
+役割指向プログラミング(role-orientend programming)
 
+### privateコンストラクタとファクトリーメソッドでfinalクラスを定義する
 
+```typescript
+class FinalFoo {
+    private constructor() {
+        console.log("constructor")
+    }
+    static create() {
+        return new FinalFoo()
+    }
+}
+
+class ExtendedFoo extends FinalFoo {} // Error: Cannot extend a class 'FinalFoo'. Class constructor is marked as private.(2675)
+
+const foo = new FinalFoo() // Error: Constructor of class 'FinalFoo' is private and only accessible within the class declaration.(2673)
+
+const foooo = FinalFoo.create() // OK
+```
+
+### より型安全なビルダーパターンの実装
+
+第５章の練習４
+
+TODO
 
 [^1](https://www.typescriptlang.org/docs/handbook/classes.html#advanced-techniques)[
