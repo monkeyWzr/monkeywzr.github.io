@@ -1,7 +1,15 @@
 ---
 title: "Jestでaxiosはネットワークエラーになってしまう件"
 date: 2020-12-30T18:02:38+09:00
-draft: true
+tags:
+    - javascript
+    - typescript
+categories:
+    - notes
+keywords:
+    - jest
+    - javascript
+    - typescript
 ---
 
 JestでAPIを検証しようとした時、axiosからネットワークエラーが発生した。

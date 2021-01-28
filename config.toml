@@ -4,7 +4,7 @@ title = "マクロス"
 theme = "hugo-theme-cactus"
 copyright = "呉" # cactus will use title if copyright is not set
 disqusShortname = "wzr" # cactus will use site title if not set
-# googleAnalytics = "UA-83047470-2"
+googleAnalytics = "UA-83047470-2"
 
 [markup.goldmark.renderer]
 unsafe= true
