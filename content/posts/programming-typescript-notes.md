@@ -257,6 +257,53 @@ const foooo = FinalFoo.create() // OK
 
 第５章の練習４
 
-TODO
+a. setUrl --> setMethod --> sendの順で固定する
+
+```typescript
+class RequestBuilder {
+    protected data: object | null = null
+
+    setURL(url:string) {
+        return new RequestBuilderWithUrl(url).setData(this.data)
+    }
+
+    setData(data: object | null) {
+        this.data = data
+        return this
+    }
+}
+
+class RequestBuilderWithUrl extends RequestBuilder {
+    protected url: string
+    constructor(url: string) {
+        super()
+        this.url = url
+    }
+    setMethod(method: 'get' | 'post') {
+        return new RequestBuilderWithUrlAndMethod(this.url, method).setData(this.data)
+    }
+}
+
+class RequestBuilderWithUrlAndMethod extends RequestBuilderWithUrl {
+    protected method: 'get' | 'post'
+    
+    constructor(url: string, method: 'get' | 'post') {
+        super(url)
+        this.method = method
+    }
+    send() {
+        console.log(this.url)
+        console.log(this.method)
+        console.log(this.data)
+        console.log('send')
+    }
+}
+
+let builder = new RequestBuilder()
+builder.setURL('')
+    .setMethod('get')
+    .setData({}) // 省略可
+    .send()
+```
 
 [^1](https://www.typescriptlang.org/docs/handbook/classes.html#advanced-techniques)[
