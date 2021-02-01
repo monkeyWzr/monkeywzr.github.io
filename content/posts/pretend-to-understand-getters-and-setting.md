@@ -35,15 +35,13 @@ public class Foo {
 
 Encapsulation, Accessors, Immutable, JavaBeans, POJO, Persistence Ignorance, YAGNI, ORM
 
-調査した後、個人的にgetters/settersは昔から継承され、（少なくともJava世界に）モダン開発に良くない習慣であり、避けたほうが良い方を賛成する傾向がある。しかし正直というと、まだわからない。
-
-先頭のような実装なら、publicデータフィルドで扱う方が良いかもしれないね
+調査した後、先頭のような場合なら、publicデータフィルドで扱う方が良いかもしれないじゃないかと思っている
 
 状況次第、最適な方法を選ばせてもらえれば良いかも。（今のプロジェクトの規約には、getters/settersを使うことが唯一の選択肢）
 
 getters/setters以外、以下の概念をうまく把握できなくてずっど悩んてたが、今も（ある程度）納得できた
-* JavaBean、Bean、Spring Beanっで、どういう意味？
-* POJOっで、どういう意味？
+* JavaBean、Bean、Spring Bean
+* POJO
 
 ## まず、getters/settersをおすすめしている資料を探した
 
@@ -112,7 +110,7 @@ DTO(Data Transfer Object): getters/settersを備えたデータ格納用の構�
 
 Enterprise JavaBeans(EJB)もあの時代に生まれたものです。（あんまり知らない）
 
-これらのプロジェクトの影響で、getters/settersの実装がだんだん定番になってきたようだ。現時代のJavaエコシステムでも、getters/settersを前提として作らえたライブラリがいっぱいあると気がしている。あの時代に生まれ、今まだ生きて使われているやつも結構あるね。xml/jsonの解析とか、ORMライブラリとかのデータマッピングライブラリも、Strutsも、色々なフレームワークを使う時、getters/settersを用意しないと動けない場面が多い。
+これらのプロジェクトの影響で、getters/settersの実装がだんだん定番になってきたようだ。現時代のJavaエコシステムでも、getters/settersを前提として作らえたライブラリがいっぱいあると気がしている。あの時代に生まれ、今まだ生きて使われているやつも結構あるね。xml/jsonの解析、ORMライブラリなどデータマッピングライブラリも、Strutsも、色々なフレームワークを使う時、getters/settersを用意しないと動けない場面が多い。
 
 ## 個人の考え(若干間違ってるかも)
 
@@ -173,7 +171,7 @@ c++のコニュニティにgetters/settersもよく使われるようですが�
 
 ## 次に調査したいもの(ORM, lombok)
 
-ORMフレームワークの仕組みと実装方法にすごく興味を持っているので、調査してみると思ってる。Java世界でも一部の現代ORMフレームワークの内部がpublicフィルドのPOJOクラスを使っているみたいです。doma2,Hibernate,etc.
+ORMフレームワークの仕組みと実装方法にすごく興味を持っているので、調査してみたいと思ってる。doma2,Hibernate,etc.
 
 lombokの仕組みもとても興味深いね。キーワードはAST変換みたいです。今の自分は足りない知識が多い気がする。
 
