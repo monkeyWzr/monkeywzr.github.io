@@ -25,9 +25,9 @@ public class Foo {
 }
 ```
 
-ある日、考えずに動いてる俺は突然目覚めた：lombokでいうのはgettersとsettersを生成してくれる、ただのツールに過ぎないから、上記のような処理せずフィールドの値の参照と設定だけの場合、どうしてgettersとsettersが必要なのだろう？fieldのアクセス修飾子をpublicにして直接使ったらいいんじゃない？
+ある日、考えずに動いてる俺は突然目覚めた：上記のような処理せずフィールドの値の参照と設定だけの場合、fieldのアクセス修飾子をpublicにして直接使ったらいいんじゃない？lombokを使ってgettersとsettersを生成する目的は何だっけ？gettersとsettersは何だっけ？
 
-いつからgetters/settersを使うことを身に付いたのか、どこから学んだのか全然覚えてないので、調査してみた。
+いつからgetters/settersを使うことを習慣になるのか、どこから学んだのか全然覚えてないので、調査してみた。
 
 ## TL;DR
 
@@ -35,13 +35,12 @@ public class Foo {
 
 Encapsulation, Accessors, Immutable, JavaBeans, POJO, Persistence Ignorance, YAGNI, ORM
 
-調査した後、先頭のような場合なら、publicデータフィルドで扱う方が良いかもしれないじゃないかと思っている
+Java世界にgetters/setters手法の定番化は、Beanの概念の誕生、発展、およびJavaエコシステムの発展に関係があります。
 
-状況次第、最適な方法を選ばせてもらえれば良いかも。（今のプロジェクトの規約には、getters/settersを使うことが唯一の選択肢）
+POJOはライブラリに依存せずごく普通なオブジェクトである、JavaBeanは再利用可能なGUIコンポーネントの定義として登場、現在にいたってBeanの名前で再利用コンポーネントの概念として使われている
 
-getters/setters以外、以下の概念をうまく把握できなくてずっど悩んてたが、今も（ある程度）納得できた
-* JavaBean、Bean、Spring Bean
-* POJO
+調査した後、先頭のような場合なら、publicデータフィルドで扱う方が良いかもしれないじゃないかと思っているが断言できません。
+常に考えて、適切な処理を実装するのは大切だと思う。
 
 ## まず、getters/settersをおすすめしている資料を探した
 
@@ -66,8 +65,8 @@ stackoverflowでgetters/settersを使う理由について、結構人気な記�
 * publicインタフェースを変更から隔離する
 * ライフタイムのコントロールとメモリマネジメント（Java以外の言語の話っぽい）
 * [○]デバックに便利する（設定・取得にインタセプトできるから）
-* アクセサー操作するようなデザインであるライブラリとの相互運用性が良い
-* 値の代わり、アクセサーメソッドその自身をlambda対象として使う（Javaで可能？）
+* [○]アクセサー操作するようなデザインであるライブラリとの相互運用性が良い
+* 値の代わり、アクセサーメソッドその自身をlambda対象として使う
 * [○]参照と変更を別々のアクセス権を制御できる、継承とかをする時、更にアクセサーのスコープを変更できる
 * 遅延ロードできる、コピーオンライト（Copy on Write, COW）できる　→　具体的に何かが知らない
 
@@ -104,13 +103,13 @@ from [wikipedia](https://en.wikipedia.org/wiki/JavaBeans):
 >* allow access to properties using getter and setter methods
 
 その後、web開発用のJava ServletとStrutsフレームワークが流行になった。HTMLフォール、JSP、DBの間相互のデータ受け渡しもBeansの定義を従ってgetters/settersメソッドを使った。よく使われてるPOJOオブジェクトとか、DTOオブジェクトの概念もあの時代に繋がているようです。
-
-POJO(Plain Old Java Object): filedを持ち、単にデータを格納するオブジェクト
-DTO(Data Transfer Object): getters/settersを備えたデータ格納用の構造。httpリクエストのハンドリング、ロジック、DBアクセスとか、違う処理階層の間、DTOを使ってコミュニケーションする。
-
 Enterprise JavaBeans(EJB)もあの時代に生まれたものです。（あんまり知らない）
 
-これらのプロジェクトの影響で、getters/settersの実装がだんだん定番になってきたようだ。現時代のJavaエコシステムでも、getters/settersを前提として作らえたライブラリがいっぱいあると気がしている。あの時代に生まれ、今まだ生きて使われているやつも結構あるね。xml/jsonの解析、ORMライブラリなどデータマッピングライブラリも、Strutsも、色々なフレームワークを使う時、getters/settersを用意しないと動けない場面が多い。
+* POJO(Plain Old Java Object): ごく普通のJavaオブジェクトである。普通でいうは、特定なライブラリ、フレームワークなどに依存せず、純粋なオブジェクト。例えば`HttpServlet`を継承するオブジェクトはPOJOでない、EJBのエンティティBeanを継承するオブジェクトもPOPでない。 
+* DTO(Data Transfer Object): getters/settersを備えたデータ格納用の構造。特にMVCフレームワーク中には、httpリクエストのハンドリング、ロジック、DBアクセスとか、違う処理階層の間、DTOを使ってコミュニケーションする。
+
+
+これらのプロジェクトの影響で、Beanの概念が広がって、getters/settersの手法がだんだん定番になってきたようだ。現時代のJavaエコシステムでも、getters/settersを前提として作らえたライブラリがいっぱいあると気がしている。あの時代に生まれ、今まだ生きて使われているやつも結構あるね。xml/jsonの解析、ORMライブラリなどデータマッピングライブラリも、Strutsも、色々なフレームワークを使う時、getters/settersを用意しないと動けない場面が多い。
 
 ## 個人の考え(若干間違ってるかも)
 
