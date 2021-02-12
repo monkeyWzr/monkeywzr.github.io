@@ -1,5 +1,5 @@
 ---
-title: "Java Varargs and Primitive Types"
+title: "JavaのArrays.asListのシグネチャーを始めとしてVarargsとバイトコードを調査した件"
 date: 2021-01-29T23:39:16+09:00
 tags:
     - Java
