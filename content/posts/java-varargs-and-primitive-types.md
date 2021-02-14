@@ -43,7 +43,7 @@ Ideaコード補完の提示に従って書いたし、エラーもないけど�
 
 はいずれもよく把握してなかった。
 
-ちなみに、`Arrays#toString`で簡単に配列を出力してくれる[^1]
+ちなみに、`Arrays#toString`で簡単に配列が出力できる[^1]
 ```java
 System.out.println(Arrays.toString(array)); // [1, 2, 3, 4]
 ```
@@ -276,5 +276,5 @@ https://www.ne.jp/asahi/hishidama/home/tech/java/generics.html
 
 [^1]: https://stackoverflow.com/questions/29140402/how-do-i-print-my-java-object-without-getting-sometype2f92e0f4
 [^2]: https://stackoverflow.com/a/3615757
-[^3]: [知らなくても困らない Javaクラスのバイトコードの読み方]: https://blog1.mammb.com/entry/2017/11/02/231509
+[^3]: https://blog1.mammb.com/entry/2017/11/02/231509
 [^4]: http://www.ne.jp/asahi/hishidama/home/tech/java/varargs.html#h2_def_array
