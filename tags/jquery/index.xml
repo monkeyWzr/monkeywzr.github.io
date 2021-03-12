@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>jquery on マクロス</title>
+    <link>https://www.takuzen.me/tags/jquery/</link>
+    <description>Recent content in jquery on マクロス</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>呉</copyright>
+    <lastBuildDate>Fri, 03 Jun 2016 09:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.takuzen.me/tags/jquery/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>jquery实现表单上传图片预览</title>
+      <link>https://www.takuzen.me/posts/2016-06-03-form-image-preview/</link>
+      <pubDate>Fri, 03 Jun 2016 09:00:00 +0000</pubDate>
+      
+      <guid>https://www.takuzen.me/posts/2016-06-03-form-image-preview/</guid>
+      <description>最近有个小页面需要实现图片上传预览，自己还不擅长javascript，迷茫的看了好久文档之后算是利用File API实现了这个事情。 js代码：
+ &amp;lt;script&amp;gt; function preview(files){ for (var i = 0; i &amp;lt; files.length; i++) { var file = files[i]; var reader = new FileReader(); reader.onload = (function(aImg) { return function(e) { //假设页面上的img元素id为showimg $(&#39;#showimg&#39;) . attr(&#39;src&#39;, e.target.result); }; })(); reader.readAsDataURL(file); } } &amp;lt;/script&amp;gt;  调用只要在input元素上加上onchange=&amp;quot;preview(this.files)&amp;quot;。
+ 相关链接 在web应用中使用文件 &amp;ndash; Mozilla 文档 来自百度的一个上传组件http://fex.baidu.com/webuploader/
+   </description>
+    </item>
+    
+  </channel>
+</rss>

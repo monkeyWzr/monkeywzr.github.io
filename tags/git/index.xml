@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>git on マクロス</title>
+    <link>https://www.takuzen.me/tags/git/</link>
+    <description>Recent content in git on マクロス</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>呉</copyright>
+    <lastBuildDate>Tue, 05 Jul 2016 09:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.takuzen.me/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>git日常使用心得</title>
+      <link>https://www.takuzen.me/posts/2016-07-05-git-notes/</link>
+      <pubDate>Tue, 05 Jul 2016 09:00:00 +0000</pubDate>
+      
+      <guid>https://www.takuzen.me/posts/2016-07-05-git-notes/</guid>
+      <description>As with many great things in life, Git began with a bit of creative destruction and fiery controversy.
+ 版本控制 版本控制系统(VCS)是一套方便开发团队管理项目的工具。它可以追踪代码的每一次改动，并保存到特殊的数据库中。开发者可以轻松的将项目回滚到历史上的某一个版本上去。
+分布式(Distributed)版本控制 是什么概念呢。在DVCS中，没有严格意义上的中央server，每一台用户终端都可以充当中央仓库的角色。因为用户终端并不是checkout了项目的快照，而是镜像了整个仓库。用户终端的仓库也可以互相推送自己的更新。
+GIT的玄学哲学 Snapshots, Not Differences Git 和其它版本控制系统（包括 Subversion 和近似工具）的主要差别在于 Git 对待数据的方法。 概念上来区分，其它大部分系统（CVS、Subversion、Perforce、Bazaar 等等）将它们保存的信息看作是一组基本文件和每个文件随时间逐步累积的差异。Git 不按照以上方式对待或保存数据。 反之，Git 更像是把数据看作是对小型文件系统的一组快照。 每次你提交更新，或在 Git 中保存项目状态时，它主要对当时的全部文件制作一个快照并保存这个快照的索引。 为了高效，如果文件没有修改，Git 不再重新存储该文件，而是只保留一个链接指向之前存储的文件。 Git 对待数据更像是一个 快照流。这种形式也为git超强的分支管理打下了基础。
+Nearly Every Operation Is Local 本地仓库包含了完整的项目历史，所以不需要经常通过网络读取数据。
+ If you’re used to a CVCS where most operations have that network latency overhead, this aspect of Git will make you think that the gods of speed have blessed Git with unworldly powers.</description>
+    </item>
+    
+  </channel>
+</rss>

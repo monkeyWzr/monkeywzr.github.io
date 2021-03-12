@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>jqury on マクロス</title>
+    <link>https://www.takuzen.me/tags/jqury/</link>
+    <description>Recent content in jqury on マクロス</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>呉</copyright>
+    <lastBuildDate>Thu, 01 Oct 2015 09:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.takuzen.me/tags/jqury/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>jQury基础笔记</title>
+      <link>https://www.takuzen.me/posts/2015-10-01-jqury-notes/</link>
+      <pubDate>Thu, 01 Oct 2015 09:00:00 +0000</pubDate>
+      
+      <guid>https://www.takuzen.me/posts/2015-10-01-jqury-notes/</guid>
+      <description>安装 1.从jqury.com下载
+2.CDN
+Baidu CDN:http://libs.baidu.com/jquery/1.10.2/jquery.min.js 又拍云 CDN:http://upcdn.b0.upaiyun.com/libs/jquery/jquery-2.0.2.min.js 新浪 CDN:http://lib.sinaapp.com/js/jquery/2.0.2/jquery-2.0.2.min.js Google CDN:http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js Microsoft CDN:http://ajax.htmlnetcdn.com/ajax/jQuery/jquery-1.10.2.min.js  语法 基础语法： $(selector).action()
+选择器 jquery选择器基于已存在的css选择器
+$(this) - 当前元素 $(&amp;quot;p&amp;quot;) - 所有 &amp;lt;p&amp;gt; 元素 $(&amp;quot;p:first&amp;quot;) - 选取第一个&amp;lt;p&amp;gt;元素 $(&amp;quot;p .test&amp;quot;) - 所有 class=&amp;quot;test&amp;rdquo; 的 &amp;lt;p&amp;gt; 元素 $(&amp;quot;.test&amp;quot;) - 所有class=&amp;quot;test&amp;quot;的元素 $(&amp;quot;#test&amp;quot;) - 所有 id=&amp;quot;test&amp;rdquo; 的元素 $(&amp;quot;[href]&amp;quot;) - 带有href属性的元素 $(&amp;quot;ui li:first&amp;quot;) - 选取第一个&amp;lt;ul&amp;gt;的第一个&amp;lt;li&amp;gt;元素 $(&amp;quot;ui li:first-child&amp;quot;) - 选取每个&amp;lt;ul&amp;gt;的第一个&amp;lt;li&amp;gt;元素 $(&amp;quot;a[target!=&#39;_blank&#39;]&amp;quot;) - 选取所有target属性值不等于&amp;rdquo;_blank&amp;quot;的&amp;lt;a&amp;gt;元素 $(&amp;quot;:button&amp;quot;) - 选取所有type=&amp;quot;button&amp;quot;的&amp;lt;input&amp;gt;元素和&amp;lt;button&amp;gt;元素
+还有一些自定义的选择器
+$(&amp;quot;tr:even&amp;quot;) - 选取奇数位置的&amp;lt;tr&amp;gt;，偶数为:odd $(&amp;quot;tr:nth-child(odd)&amp;quot;) - 相对于元素的父元素而非当前所选择的元素来选取偶数位置 $(&amp;quot;td:contains(monkey)&amp;quot;) - 选择含有&amp;rsquo;monkey&amp;rsquo;的表格单元</description>
+    </item>
+    
+  </channel>
+</rss>
