@@ -13,6 +13,14 @@ keywords:
     - プログラミングTypeScript
 ---
 
+難しすぎて、一回3−4ページ文しか進められてない、、
+
+**よく自分に聞く：Is this something about TYPEScript(exists only during compile time) or not(to be dealt at runtime)?**
+
+聞きながら勉強すると大変助かります。
+
+
+## 高度な型
 ### サブタイプとスーパータイプ
 
 * anyはすべての型のスーパータイプ
@@ -151,4 +159,69 @@ function playWith(pet: Pet) {
 `noImplicitReturns`オプションはstrictフラグに含まれないため、有効したい場合は明示的に指定する必要がある
 
 ### ルックアップ型
+
+```typescript
+type User = {
+    name: string,
+    friendList: {
+        count: number,
+        friends: {
+            name: string
+        }[]
+    }
+}
+
+type FriendList = User['friendList']
+type FriendInfo = User['friendList']['friends'][number] // note this!
+```
+### keyof演算子
+
+```typescript
+type keys = keyof {a: string, b: number, c: boolean} // type keys = "a" | "b" | "c"
+```
+
+### レコード(Record)型
+
+One of [Utility Types](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeystype).
+→　[Map型](#Map型)
+
+```typescript
+let r: Record<'a' | 'b' | 'c', string> = { // Error: Property 'c' is missing in type '{ a: string; b: string; }' but required in type 'Record<"a" | "b" | "c", string>'.
+    a: "",
+    b: ""
+}
+```
+
+### Map型
+
+[Utility Types](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeystype).
+
+汎用なユーティリティ機能です。強い!
+マイナス演算子`-`で省略可能、readonlyなど制約の撤去ができる
+
+```typescript
+type OptionalUser = {
+    [K in keyof User]?: User[K]
+}
+
+// ! we can remove optional constraint
+type RequiredUser = {
+    [K in keyof OptionalUser]-?: User[K]
+}
+
+type NullableUser = {
+    [K in keyof User]: User[K] | null
+}
+type ReadonlyUser = {
+    readonly [K in keyof User]: User[K]
+}
+
+// ! we can remove readonly constraint
+type ModifiableUser = {
+    -readonly [K in keyof User]: User[K]
+}
+```
+
+## 関数にまつわる型
+
 
