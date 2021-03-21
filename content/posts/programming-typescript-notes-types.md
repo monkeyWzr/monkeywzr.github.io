@@ -1,7 +1,6 @@
 ---
 title: "プログラミングTypeScriptの読書メモ - 型"
-date: 2021-02-14T16:31:57+09:00
-draft: true
+date: 2021-03-22T16:31:57+09:00
 tags:
     - javascript
     - typescript
