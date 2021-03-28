@@ -223,4 +223,92 @@ type ModifiableUser = {
 
 ## 関数にまつわる型
 
+### Tupleの型推論
 
+マジックだこれ。
+
+```typescript
+const a = [1, true] // a is (number | boolean)[]
+
+function tuple<T extends unknown[]>(...t: T): T {
+    return t
+}
+
+const b = tuple(1, true) // b is [number, boolean]
+```
+
+### 型ガイド
+
+面白い
+
+```typescript
+// this works at runtime so TypeScript do not know the type at compile type
+function isString(p: unknown): boolean {
+    return typeof p == 'string'
+}
+
+// now TypeScript knows the type is string when this function return true
+function isStringType(p: unknown): p is string {
+    return typeof p == 'string'
+}
+```
+
+## 条件型
+
+```typescript
+type x = string
+type A = x extends string ? true : false // type of A is true
+type B = x extends number ? true : false // type of B is false
+```
+
+### 分配法則
+
+本の例`Without<T, U>`について、分配法則がなかったとする場合の推論が間違ったようだ。
+[『プログラミングTypeScript』の正誤表](https://github.com/oreilly-japan/programming-typescript-ja/wiki/errata#%E7%AC%AC1%E5%88%B7)
+
+```typescript
+// type of C is boolean | number | string, which is T.
+type T = (boolean | number | string)
+type C =  T extends boolean ? T : never
+
+// type of E is boolean !!
+type Select<T, U> = T extends U ? T : never
+type E = Select<boolean | number | string, boolean>
+// because it is the same as Select<boolean> | Select<number> | Select<string>
+```
+### inferキーワードで型変数を宣言する
+
+```typescript
+type ElementType<T> = T extends (infer U)[] ? U : T
+```
+
+### 明確な割立てアサーション
+
+```typescript
+
+let userId: string
+
+function fetchUser() {
+    userId = 'abc'
+}
+
+fetchUser()
+
+userId.toUpperCase(); // Error: Variable 'userId' is used before being assigned.
+```
+
+To fix this, 
+
+```typescript
+let userId!: string
+// OR
+userId!.toUpperCase()
+```
+
+### 名前的型
+
+TypeScriptの型は構造的なので、型のブランド化というテクニックで名前的な型を作る
+
+https://qiita.com/suin/items/ae9ed911ebab48c98835
+https://qiita.com/suin/items/57cfc0ec9bb1a6995aa5
+https://typescript-jp.gitbook.io/deep-dive/main-1/nominaltyping
