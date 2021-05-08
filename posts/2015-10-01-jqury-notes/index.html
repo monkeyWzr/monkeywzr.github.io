@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title> jQury基础笔记 | マクロス</title>
+  <meta name="description" content="勉強中">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta property="og:title" content="jQury基础笔记" />
+<meta property="og:description" content="安装 1.从jqury.com下载
+2.CDN
+Baidu CDN:http://libs.baidu.com/jquery/1.10.2/jquery.min.js 又拍云 CDN:http://upcdn.b0.upaiyun.com/libs/jquery/jquery-2.0.2.min.js 新浪 CDN:http://lib.sinaapp.com/js/jquery/2.0.2/jquery-2.0.2.min.js Google CDN:http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js Microsoft CDN:http://ajax.htmlnetcdn.com/ajax/jQuery/jquery-1.10.2.min.js  语法 基础语法： $(selector).action()
+选择器 jquery选择器基于已存在的css选择器
+$(this) - 当前元素 $(&quot;p&quot;) - 所有 &lt;p&gt; 元素 $(&quot;p:first&quot;) - 选取第一个&lt;p&gt;元素 $(&quot;p .test&quot;) - 所有 class=&quot;test&rdquo; 的 &lt;p&gt; 元素 $(&quot;.test&quot;) - 所有class=&quot;test&quot;的元素 $(&quot;#test&quot;) - 所有 id=&quot;test&rdquo; 的元素 $(&quot;[href]&quot;) - 带有href属性的元素 $(&quot;ui li:first&quot;) - 选取第一个&lt;ul&gt;的第一个&lt;li&gt;元素 $(&quot;ui li:first-child&quot;) - 选取每个&lt;ul&gt;的第一个&lt;li&gt;元素 $(&quot;a[target!=&#39;_blank&#39;]&quot;) - 选取所有target属性值不等于&rdquo;_blank&quot;的&lt;a&gt;元素 $(&quot;:button&quot;) - 选取所有type=&quot;button&quot;的&lt;input&gt;元素和&lt;button&gt;元素
+还有一些自定义的选择器
+$(&quot;tr:even&quot;) - 选取奇数位置的&lt;tr&gt;，偶数为:odd $(&quot;tr:nth-child(odd)&quot;) - 相对于元素的父元素而非当前所选择的元素来选取偶数位置 $(&quot;td:contains(monkey)&quot;) - 选择含有&rsquo;monkey&rsquo;的表格单元" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.takuzen.me/posts/2015-10-01-jqury-notes/" />
+<meta property="article:published_time" content="2015-10-01T09:00:00+00:00" />
+<meta property="article:modified_time" content="2015-10-01T09:00:00+00:00" />
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="jQury基础笔记"/>
+<meta name="twitter:description" content="安装 1.从jqury.com下载
+2.CDN
+Baidu CDN:http://libs.baidu.com/jquery/1.10.2/jquery.min.js 又拍云 CDN:http://upcdn.b0.upaiyun.com/libs/jquery/jquery-2.0.2.min.js 新浪 CDN:http://lib.sinaapp.com/js/jquery/2.0.2/jquery-2.0.2.min.js Google CDN:http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js Microsoft CDN:http://ajax.htmlnetcdn.com/ajax/jQuery/jquery-1.10.2.min.js  语法 基础语法： $(selector).action()
+选择器 jquery选择器基于已存在的css选择器
+$(this) - 当前元素 $(&quot;p&quot;) - 所有 &lt;p&gt; 元素 $(&quot;p:first&quot;) - 选取第一个&lt;p&gt;元素 $(&quot;p .test&quot;) - 所有 class=&quot;test&rdquo; 的 &lt;p&gt; 元素 $(&quot;.test&quot;) - 所有class=&quot;test&quot;的元素 $(&quot;#test&quot;) - 所有 id=&quot;test&rdquo; 的元素 $(&quot;[href]&quot;) - 带有href属性的元素 $(&quot;ui li:first&quot;) - 选取第一个&lt;ul&gt;的第一个&lt;li&gt;元素 $(&quot;ui li:first-child&quot;) - 选取每个&lt;ul&gt;的第一个&lt;li&gt;元素 $(&quot;a[target!=&#39;_blank&#39;]&quot;) - 选取所有target属性值不等于&rdquo;_blank&quot;的&lt;a&gt;元素 $(&quot;:button&quot;) - 选取所有type=&quot;button&quot;的&lt;input&gt;元素和&lt;button&gt;元素
+还有一些自定义的选择器
+$(&quot;tr:even&quot;) - 选取奇数位置的&lt;tr&gt;，偶数为:odd $(&quot;tr:nth-child(odd)&quot;) - 相对于元素的父元素而非当前所选择的元素来选取偶数位置 $(&quot;td:contains(monkey)&quot;) - 选择含有&rsquo;monkey&rsquo;的表格单元"/>
+
+  
+  
+    
+  
+  
+  <link rel="stylesheet" href="https://www.takuzen.me/css/style-white.css">
+  
+  
+  
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+<link rel="icon" type="image/png" href="https://www.takuzen.me/images/favicon.ico" />
+
+  
+  
+  
+  
+  
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-83047470-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  
+  
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+  <div class="content index py4">
+
+  <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li>
+          <a class="icon" href=" https://www.takuzen.me/posts/2015-09-30-regular-expression-notes/">
+            <i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i>
+          </a>
+        </li>
+        
+        
+        <li>
+          <a class="icon" href="https://www.takuzen.me/posts/2015-10-08-html-head-tags/">
+            <i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i>
+          </a>
+        </li>
+        
+        <li>
+          <a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');">
+            <i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i>
+          </a>
+        </li>
+        <li>
+          <a class="icon" href="#">
+            <i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i>
+          </a>
+        </li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fwww.takuzen.me%2fposts%2f2015-10-01-jqury-notes%2f">
+      <i class="fab fa-facebook " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2015-10-01-jqury-notes%2f&text=jQury%e5%9f%ba%e7%a1%80%e7%ac%94%e8%ae%b0">
+      <i class="fab fa-twitter " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2015-10-01-jqury-notes%2f&title=jQury%e5%9f%ba%e7%a1%80%e7%ac%94%e8%ae%b0">
+      <i class="fab fa-linkedin " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2015-10-01-jqury-notes%2f&is_video=false&description=jQury%e5%9f%ba%e7%a1%80%e7%ac%94%e8%ae%b0">
+      <i class="fab fa-pinterest " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=jQury%e5%9f%ba%e7%a1%80%e7%ac%94%e8%ae%b0&body=Check out this article: https%3a%2f%2fwww.takuzen.me%2fposts%2f2015-10-01-jqury-notes%2f">
+      <i class="fas fa-envelope " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2015-10-01-jqury-notes%2f&title=jQury%e5%9f%ba%e7%a1%80%e7%ac%94%e8%ae%b0">
+      <i class="fab fa-get-pocket " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2015-10-01-jqury-notes%2f&title=jQury%e5%9f%ba%e7%a1%80%e7%ac%94%e8%ae%b0">
+      <i class="fab fa-reddit " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2015-10-01-jqury-notes%2f&name=jQury%e5%9f%ba%e7%a1%80%e7%ac%94%e8%ae%b0&description=%e5%ae%89%e8%a3%85%201.%e4%bb%8ejqury.com%e4%b8%8b%e8%bd%bd%0a2.CDN%0aBaidu%20CDN%3ahttp%3a%2f%2flibs.baidu.com%2fjquery%2f1.10.2%2fjquery.min.js%20%e5%8f%88%e6%8b%8d%e4%ba%91%20CDN%3ahttp%3a%2f%2fupcdn.b0.upaiyun.com%2flibs%2fjquery%2fjquery-2.0.2.min.js%20%e6%96%b0%e6%b5%aa%20CDN%3ahttp%3a%2f%2flib.sinaapp.com%2fjs%2fjquery%2f2.0.2%2fjquery-2.0.2.min.js%20Google%20CDN%3ahttp%3a%2f%2fajax.googleapis.com%2fajax%2flibs%2fjquery%2f1.10.2%2fjquery.min.js%20Microsoft%20CDN%3ahttp%3a%2f%2fajax.htmlnetcdn.com%2fajax%2fjQuery%2fjquery-1.10.2.min.js%20%20%e8%af%ad%e6%b3%95%20%e5%9f%ba%e7%a1%80%e8%af%ad%e6%b3%95%ef%bc%9a%20%24%28selector%29.action%28%29%0a%e9%80%89%e6%8b%a9%e5%99%a8%20jquery%e9%80%89%e6%8b%a9%e5%99%a8%e5%9f%ba%e4%ba%8e%e5%b7%b2%e5%ad%98%e5%9c%a8%e7%9a%84css%e9%80%89%e6%8b%a9%e5%99%a8%0a%24%28this%29%20-%20%e5%bd%93%e5%89%8d%e5%85%83%e7%b4%a0%20%24%28%26quot%3bp%26quot%3b%29%20-%20%e6%89%80%e6%9c%89%20%26lt%3bp%26gt%3b%20%e5%85%83%e7%b4%a0%20%24%28%26quot%3bp%3afirst%26quot%3b%29%20-%20%e9%80%89%e5%8f%96%e7%ac%ac%e4%b8%80%e4%b8%aa%26lt%3bp%26gt%3b%e5%85%83%e7%b4%a0%20%24%28%26quot%3bp%20.test%26quot%3b%29%20-%20%e6%89%80%e6%9c%89%20class%3d%26quot%3btest%26rdquo%3b%20%e7%9a%84%20%26lt%3bp%26gt%3b%20%e5%85%83%e7%b4%a0%20%24%28%26quot%3b.test%26quot%3b%29%20-%20%e6%89%80%e6%9c%89class%3d%26quot%3btest%26quot%3b%e7%9a%84%e5%85%83%e7%b4%a0%20%24%28%26quot%3b%23test%26quot%3b%29%20-%20%e6%89%80%e6%9c%89%20id%3d%26quot%3btest%26rdquo%3b%20%e7%9a%84%e5%85%83%e7%b4%a0%20%24%28%26quot%3b%5bhref%5d%26quot%3b%29%20-%20%e5%b8%a6%e6%9c%89href%e5%b1%9e%e6%80%a7%e7%9a%84%e5%85%83%e7%b4%a0%20%24%28%26quot%3bui%20li%3afirst%26quot%3b%29%20-%20%e9%80%89%e5%8f%96%e7%ac%ac%e4%b8%80%e4%b8%aa%26lt%3bul%26gt%3b%e7%9a%84%e7%ac%ac%e4%b8%80%e4%b8%aa%26lt%3bli%26gt%3b%e5%85%83%e7%b4%a0%20%24%28%26quot%3bui%20li%3afirst-child%26quot%3b%29%20-%20%e9%80%89%e5%8f%96%e6%af%8f%e4%b8%aa%26lt%3bul%26gt%3b%e7%9a%84%e7%ac%ac%e4%b8%80%e4%b8%aa%26lt%3bli%26gt%3b%e5%85%83%e7%b4%a0%20%24%28%26quot%3ba%5btarget%21%3d%27_blank%27%5d%26quot%3b%29%20-%20%e9%80%89%e5%8f%96%e6%89%80%e6%9c%89target%e5%b1%9e%e6%80%a7%e5%80%bc%e4%b8%8d%e7%ad%89%e4%ba%8e%26rdquo%3b_blank%26quot%3b%e7%9a%84%26lt%3ba%26gt%3b%e5%85%83%e7%b4%a0%20%24%28%26quot%3b%3abutton%26quot%3b%29%20-%20%e9%80%89%e5%8f%96%e6%89%80%e6%9c%89type%3d%26quot%3bbutton%26quot%3b%e7%9a%84%26lt%3binput%26gt%3b%e5%85%83%e7%b4%a0%e5%92%8c%26lt%3bbutton%26gt%3b%e5%85%83%e7%b4%a0%0a%e8%bf%98%e6%9c%89%e4%b8%80%e4%ba%9b%e8%87%aa%e5%ae%9a%e4%b9%89%e7%9a%84%e9%80%89%e6%8b%a9%e5%99%a8%0a%24%28%26quot%3btr%3aeven%26quot%3b%29%20-%20%e9%80%89%e5%8f%96%e5%a5%87%e6%95%b0%e4%bd%8d%e7%bd%ae%e7%9a%84%26lt%3btr%26gt%3b%ef%bc%8c%e5%81%b6%e6%95%b0%e4%b8%ba%3aodd%20%24%28%26quot%3btr%3anth-child%28odd%29%26quot%3b%29%20-%20%e7%9b%b8%e5%af%b9%e4%ba%8e%e5%85%83%e7%b4%a0%e7%9a%84%e7%88%b6%e5%85%83%e7%b4%a0%e8%80%8c%e9%9d%9e%e5%bd%93%e5%89%8d%e6%89%80%e9%80%89%e6%8b%a9%e7%9a%84%e5%85%83%e7%b4%a0%e6%9d%a5%e9%80%89%e5%8f%96%e5%81%b6%e6%95%b0%e4%bd%8d%e7%bd%ae%20%24%28%26quot%3btd%3acontains%28monkey%29%26quot%3b%29%20-%20%e9%80%89%e6%8b%a9%e5%90%ab%e6%9c%89%26rsquo%3bmonkey%26rsquo%3b%e7%9a%84%e8%a1%a8%e6%a0%bc%e5%8d%95%e5%85%83">
+      <i class="fab fa-tumblr " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fwww.takuzen.me%2fposts%2f2015-10-01-jqury-notes%2f&t=jQury%e5%9f%ba%e7%a1%80%e7%ac%94%e8%ae%b0">
+      <i class="fab fa-hacker-news " aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#安装">安装</a></li>
+    <li><a href="#语法">语法</a>
+      <ul>
+        <li><a href="#选择器">选择器</a></li>
+      </ul>
+    </li>
+    <li><a href="#事件">事件</a>
+      <ul>
+        <li><a href="#文档就绪事件">文档就绪事件</a></li>
+        <li><a href="#常见dom事件">常见DOM事件</a></li>
+      </ul>
+    </li>
+    <li><a href="#效果">效果</a></li>
+    <li><a href="#dom操作">DOM操作</a>
+      <ul>
+        <li><a href="#基本操作">基本操作</a></li>
+        <li><a href="#css操作">CSS操作</a></li>
+        <li><a href="#遍历">遍历</a></li>
+      </ul>
+    </li>
+    <li><a href="#jquery-ajax">jQuery AJAX</a></li>
+    <li><a href="#jquery-jsonp">jQuery JSONP</a></li>
+  </ul>
+</nav>
+    </div>
+  </span>
+</div>
+
+
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1 class="posttitle" itemprop="name headline">
+        jQury基础笔记
+      </h1>
+      <div class="meta">
+        
+        <div class="postdate">
+          
+          <time datetime="2015-10-01 09:00:00 &#43;0000 UTC" itemprop="datePublished">2015-10-01</time>
+          
+        </div>
+        
+        
+        
+        
+        <div class="article-tag">
+            <i class="fas fa-tag"></i>
+            
+            
+            <a class="tag-link" href="/tags/jqury" rel="tag">jqury</a>
+            
+             ,  
+            <a class="tag-link" href="/tags/%E6%95%99%E7%A8%8B" rel="tag">教程</a>
+            
+        </div>
+        
+      </div>
+    </header>
+
+  
+    <div class="content" itemprop="articleBody">
+      <h2 id="安装">安装</h2>
+<p>1.从<a href="http://jqury.com">jqury.com</a>下载</p>
+<p>2.CDN</p>
+<pre><code>Baidu CDN:http://libs.baidu.com/jquery/1.10.2/jquery.min.js
+又拍云 CDN:http://upcdn.b0.upaiyun.com/libs/jquery/jquery-2.0.2.min.js
+新浪 CDN:http://lib.sinaapp.com/js/jquery/2.0.2/jquery-2.0.2.min.js
+Google CDN:http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js
+Microsoft CDN:http://ajax.htmlnetcdn.com/ajax/jQuery/jquery-1.10.2.min.js
+</code></pre>
+<h2 id="语法">语法</h2>
+<p><strong>基础语法： <code>$(selector).action()</code></strong></p>
+<!-- more -->
+<h3 id="选择器">选择器</h3>
+<p>jquery选择器基于已存在的css选择器</p>
+<p><code>$(this)</code> - 当前元素
+<code>$(&quot;p&quot;)</code> - 所有 &lt;p&gt; 元素
+<code>$(&quot;p:first&quot;)</code> - 选取第一个&lt;p&gt;元素
+<code>$(&quot;p .test&quot;)</code> - 所有 class=&quot;test&rdquo; 的 &lt;p&gt; 元素
+<code>$(&quot;.test&quot;)</code> - 所有class=&quot;test&quot;的元素
+<code>$(&quot;#test&quot;)</code> - 所有 id=&quot;test&rdquo; 的元素
+<code>$(&quot;[href]&quot;)</code> - 带有href属性的元素
+<code>$(&quot;ui li:first&quot;)</code> - 选取第一个&lt;ul&gt;的第一个&lt;li&gt;元素
+<code>$(&quot;ui li:first-child&quot;)</code> - 选取每个&lt;ul&gt;的第一个&lt;li&gt;元素
+<code>$(&quot;a[target!='_blank']&quot;)</code> - 选取所有target属性值不等于&rdquo;_blank&quot;的&lt;a&gt;元素
+<code>$(&quot;:button&quot;)</code> - 选取所有type=&quot;button&quot;的&lt;input&gt;元素和&lt;button&gt;元素</p>
+<p>还有一些自定义的选择器</p>
+<p><code>$(&quot;tr:even&quot;)</code> - 选取奇数位置的&lt;tr&gt;，偶数为<code>:odd</code>
+<code>$(&quot;tr:nth-child(odd)&quot;)</code> - 相对于元素的父元素而非当前所选择的元素来选取偶数位置
+<code>$(&quot;td:contains(monkey)&quot;)</code> - 选择含有&rsquo;monkey&rsquo;的表格单元</p>
+<p>注意<code>:nth-child</code>是jquery中唯一从1开始计数的选择符</p>
+<h2 id="事件">事件</h2>
+<h3 id="文档就绪事件">文档就绪事件</h3>
+<p>为防止jquery代码在文档未加载完成时就执行，最好将函数封装在document ready函数中：</p>
+<pre><code>    $(document).ready(function(){
+
+        // jQuery code...
+
+    });
+</code></pre>
+<p>简写为：</p>
+<pre><code>    $(function(){
+
+        // jQuery code...
+
+        });
+</code></pre>
+<p>或者：</p>
+<pre><code>    $().ready(function(){
+
+            //jQuery code...
+
+        })
+</code></pre>
+<h3 id="常见dom事件">常见DOM事件</h3>
+<p>鼠标事件：<code>click</code> <code>dbclick</code> <code>mouseenter</code> <code>mouseleave</code> <code>mouseup</code> <code>hover</code> <code>mousedown</code>
+键盘事件：<code>keypress</code> <code>keydown</code> <code>keyup</code>
+表单事件：<code>submit</code> <code>change</code> <code>focus</code> <code>blur</code>
+文档/窗口事件：<code>load</code> <code>resize</code> <code>scroll</code> <code>unload</code></p>
+<pre><code>$(&quot;p&quot;).click(function(){
+    $(this).hide();
+    });
+
+$(&quot;input&quot;).focus(function(){
+    $(this).css(&quot;background-color&quot;,&quot;#cccccc&quot;);
+        });
+</code></pre>
+<h2 id="效果">效果</h2>
+<ol>
+<li>
+<p>显示/隐藏</p>
+<pre><code> //可选参数speed规定变化速度，可取&quot;slow&quot; &quot;fast&quot;或毫秒数
+ //可选参数callback为变化完成之后执行的函数
+ $(selector).hide(speed,callback);
+ $(selector).show(speed,callback);
+ //toggle()方法可切换hide()和show()
+ $(selector).toggle(speed,callback);
+</code></pre>
+</li>
+<li>
+<p>淡入淡出</p>
+<pre><code> //淡入隐藏的元素
+ $(selector).fadeIn(speed,callback);
+ //淡出可见元素
+ $(selector).fadeOut(speed,callback);
+ //在fadeIn()和fadeOut()间进行切换
+ $(selector).fadeToggle(speed,callback);
+ //渐变为给定的不透明度(opacity)，值介于 0 与 1 之间，speed与opacity为必选参数
+ $(selector).fadeTo(speed,opacity,callback);
+</code></pre>
+</li>
+<li>
+<p>滑动</p>
+<pre><code> $(selector).slideDown(speed,callback);
+ $(selector).slideUp(speed,callback);
+ $(selector).slideToggle(speed,callback);
+</code></pre>
+</li>
+<li>
+<p>动画</p>
+<pre><code> //必需的params定义形成动画的css属性，可同时操作多个属性
+ //要使用驼峰式书写属性名，如`paddingLeft`而不是`padding-left`
+ $(selector).animate({params},speed,callback);
+
+ //停止动画或效果
+ //stopAll参数规定是否应该清除动画队列，默认为false，仅停止活动的动画
+ //goToEnd参数规定是否立即完成当前动画
+ $(selector).stop(stopAll=false,goToEnd=false);
+</code></pre>
+</li>
+</ol>
+<p>实例：</p>
+<pre><code>    $(&quot;button&quot;).click(function(){
+    $(&quot;div&quot;).animate({
+        left:'250px',
+        opacity:'0.5',
+        height:'150px',
+        width:'150px'
+        });
+    });
+</code></pre>
+<p><strong>注意：对元素位置进行操作，要将元素的css position属性设为<code>absolute``fixed</code>或者<code>relative</code></strong></p>
+<p>jQuery中有一种chanining技术，允许在相同元素上依次执行多条命令</p>
+<pre><code>    //可进行换行和缩进以美观
+    $(&quot;#p1&quot;).css(&quot;color&quot;,&quot;red&quot;).slideUp(2000).slideDown(2000);
+</code></pre>
+<h2 id="dom操作">DOM操作</h2>
+<h3 id="基本操作">基本操作</h3>
+<pre><code>    //设置或获取文本内容
+    $(selector).text();
+    //设置或获取转义后的内容
+    $(selector).html();
+    //设置或获取输入框内容
+    $(selector).val();
+    //设置或获取属性
+    $(selector).attr();
+</code></pre>
+<p><code>text()``html()``val()``attr()</code>拥有回调函数<code>callback(i,origText)</code>,i为当前元素下标，origText为原始值</p>
+<pre><code>    //在被选元素的结尾插入一个或多个内容
+    $(selector).append();
+    //在被选元素的开头插入一个或多个内容
+    $(selector).prepend();
+    //在被选元素之后插入一个或多个内容
+    $(selector).after();
+    //在被选元素之前插入一个或多个内容
+    $(selector).before();
+</code></pre>
+<p><code>after()/before()</code>与<code>append()/prepend()</code>的区别在于，前者是将内容插入到对象中来，作为元素的子节点，后者是将内容插入到对象的前后，作为元素的兄弟节点。</p>
+<p>jQuery通常使用两种方法删除元素：</p>
+<pre><code>    //删除被选元素及其子元素，可选参数selector可对删除元素进行过滤
+    $(selector).remove(selector);
+    //删除被选元素的子元素
+    $(selector)..empty();
+</code></pre>
+<h3 id="css操作">CSS操作</h3>
+<pre><code>    //添加class属性
+    $(selector).addClass(className);
+    //删除class属性
+    $(selector).removeClass(className);
+    //add/remove切换操作
+    $(selector).toggleClass(classname);
+</code></pre>
+<p>实例：</p>
+<pre><code>    .important{font-weight:bold;font-size:xx-large;}
+    .blue{color:blue;}
+
+    $(&quot;button&quot;).click(function(){
+$(&quot;h1,h2,p&quot;).addClass(&quot;blue&quot;);
+$(&quot;div&quot;).addClass(&quot;important blue&quot;);
+    });
+</code></pre>
+<p>还有一个更实用的<code>css()</code>方法，设置或返回被选元素的一个或多个样式属性</p>
+<pre><code>    //返回首个匹配的值
+    $(&quot;p&quot;).css(&quot;background-color&quot;);
+    //设置属性值
+    $(&quot;p&quot;).css(&quot;background-color&quot;,&quot;yellow&quot;);
+    //设置多个属性值
+    $(&quot;p&quot;).css({&quot;background-color&quot;:&quot;yellow&quot;,&quot;font-size&quot;:&quot;200%&quot;});
+</code></pre>
+<p>jQuery提供了多个处理尺寸的方法。
+<img src="/img/css-size.png" alt="css-size"></p>
+<pre><code>    //设置或返回元素的宽度（不包括内边距、边框或外边距）
+    $(selector).width();
+    //设置或返回元素的高度（不包括内边距、边框或外边距）
+    $(selector).height();
+    //返回元素的宽度（包括内边距）
+    $(selector).innerWidth();
+    //返回元素的高度（包括内边距）
+    $(selector).innerHeight();
+    //返回元素的宽度（包括内边距和边框）
+    $(selector).outerWidth();
+    //方法返回元素的高度（包括内边距和边框）
+    $(selector).outerHeight();
+</code></pre>
+<h3 id="遍历">遍历</h3>
+<ol>
+<li>
+<p>向上遍历</p>
+<pre><code> //返回每个被选元素的直接父元素
+ $(selector).parent();
+ //返回被选元素的所有祖先，直到文档的根元素&lt;html&gt;,可传入参数制定返回的祖先
+ $(selector).parents();
+ //返回制定元素之间的祖先元素
+ $(selector).parentsUntil(selector)
+</code></pre>
+</li>
+<li>
+<p>向下遍历</p>
+<pre><code> //返回被选元素所有直接子元素，客串如参数指定返回的子元素
+ $(selector).children();
+ //返回被选元素的所有后代，直到最后一代,注意参数的传递
+ $(selector).find(&quot;*&quot;);
+</code></pre>
+</li>
+</ol>
+<p><strong>注意：find()需要传入参数&rdquo;*&ldquo;以返回所有后代</strong>，也可以指定子元素。</p>
+<p>实例：</p>
+<pre><code>    //返回class=&quot;1&quot;的所有&lt;p&gt;
+    $(document).ready(function(){
+    $(&quot;div&quot;).children(&quot;p.1&quot;);
+    });
+</code></pre>
+<ol start="3">
+<li>
+<p>水平遍历</p>
+<pre><code> //返回被选元素所有同胞元素，可传入参数指定同胞元素
+ $(selector).siblings();
+ //返回被选元素下一个/上一个同胞元素
+ $(selector).next();
+ $(selector).prev();
+ //返回被选元素所有跟随/前面同胞元素
+ $(selector).nextAll();
+ $(selector).prevAll();
+ //返回指定元素之间所有同胞元素
+ $(selector).nextUntil(selector);
+ $(selector).prevUntil(selector);
+</code></pre>
+</li>
+<li>
+<p>过滤</p>
+<pre><code> //返回被选元素的首个元素
+ $(selector).first();
+ //返回被选元素的最后一个元素
+ $(selector).last();
+ //返回被选元素中指定索引的元素
+ $(selector).eq(index);
+ //返回匹配的元素
+ $(selector).filter(selector);
+ //返回不匹配的所有元素
+ $(selector).not(selector);
+</code></pre>
+</li>
+</ol>
+<p>首个元素的索引号是0。</p>
+<h2 id="jquery-ajax">jQuery AJAX</h2>
+<p>jQuery将javascript的AJAX相关函数进一步封装，使用起来非常方便</p>
+<blockquote>
+<p>总是记不住这个单词怎么写
+AJAX = Asynchronous JavaScript and XML</p>
+</blockquote>
+<p>load()函数从服务器加载数据并把返回的数据放入被选元素中</p>
+<pre><code>    //必需的 URL 参数规定您希望加载的 URL。
+    //可选的 data 参数规定与请求一同发送的查询字符串键/值对集合。
+    $(selector).load(URL,data,callback);
+</code></pre>
+<p><code>callback</code>函数可设置如下参数:</p>
+<blockquote>
+<p><code>responseTxt</code> - 包含调用成功时的结果内容
+<code>statusTXT</code> - 包含调用的状态
+<code>xhr</code> - 包含 XMLHttpRequest 对象</p>
+</blockquote>
+<p>实例：</p>
+<pre><code>    //demo_test.txt内容为
+    //&lt;h2&gt;jQuery and AJAX is FUN!!!&lt;/h2&gt;
+//&lt;p id=&quot;p1&quot;&gt;This is some text in a paragraph.&lt;/p&gt;
+
+    //获取txt中id为p1的元素内容
+    //执行错误返回错误码及错误信息
+    $(&quot;button&quot;).click(function(){
+    $(&quot;#div1&quot;).load(&quot;demo_test.txt #p1&quot;,function(responseTxt,statusTxt,xhr){
+        if(statusTxt==&quot;success&quot;)
+        alert(&quot;External content loaded successfully!&quot;);
+        if(statusTxt==&quot;error&quot;)
+        alert(&quot;Error: &quot;+xhr.status+&quot;: &quot;+xhr.statusText);
+    });
+    });
+</code></pre>
+<p><code>get()</code>和<code>post()</code>方法用于通过 HTTP GET 或 POST 请求从服务器请求数据。</p>
+<blockquote>
+<p>GET 基本上用于从服务器获得（取回）数据。可能返回缓存数据。
+POST 向指定的资源提交要处理的数据,也可用于从服务器获取数据。不过，POST 方法不会缓存数据，并且常用于连同请求一起发送数据。</p>
+</blockquote>
+<pre><code>    //回调函数callback(data,status),第一个参数为请求页面内容，第二个参数为请求状态
+    $.get(URL,callback);
+
+    //可选的 data 参数规定连同请求发送的数据
+    //可选参数callback(data,status)
+    $.post(URL,data,callback);
+</code></pre>
+<p>实例：</p>
+<pre><code>    $(&quot;button&quot;).click(function(){
+      $.post(&quot;demo_test_post.html&quot;,
+      {
+        name:&quot;Donald Duck&quot;,
+        city:&quot;Duckburg&quot;
+      },
+      function(data,status){
+        alert(&quot;Data: &quot; + data + &quot;nStatus: &quot; + status);
+      });
+    });
+</code></pre>
+<h2 id="jquery-jsonp">jQuery JSONP</h2>
+<p><strong>JSONP(JSON with Padding)</strong> 是 json 的一种&quot;使用模式&rdquo;，可以让网页跨域读取数据。由于同源策略的存在，AJAX无权限进行跨域请求，为了解决这个头疼的问题，开发人员逐渐完善了JSONP这种非正式传输协议。该协议的要点就是允许用户传递一个callback参数给服务端，服务端返回数据时会将这个callback参数作为函数来封装JSON数据。</p>
+<blockquote>
+<p>同源策略(Same-Origin Policy)：相同domain/ip/端口/协议是为同一个域或源(origin),非同源的脚本不能访问对方的资源，除非得到授权。
+__相关链接：__
+<a href="http://www.jianshu.com/p/4e17445d66e2">同源策略——浏览器的安全卫士</a>
+<a href="https://developer.mozilla.org/zh-CN/docs/Web/Security/Same-origin_policy">JavaScript的同源策略</a>
+<a href="http://blog.csdn.net/broadview2006/article/details/8595191">浏览器的同源策略</a></p>
+</blockquote>
+<p>jQuery可以很方便的实现JSONP调用，下面贴出一个简单实例。
+服务端test.php代码：</p>
+<pre><code>    &lt;?php
+        header('Content-type: application/json');
+        //获取回调函数名
+        $jsoncallback = htmlspecialchars($_REQUEST ['jsoncallback']);
+        //json数据
+        $json_data = '[&quot;customername1&quot;,&quot;customername2&quot;]';
+        //输出jsonp格式的数据
+        echo $jsoncallback . &quot;(&quot; . $json_data . &quot;)&quot;;
+    ?&gt;
+</code></pre>
+<p>客户端实现：</p>
+<pre><code>    &lt;!DOCTYPE html&gt;
+    &lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;JSONP 实例&lt;/title&gt;
+        &lt;script src=&quot;http://apps.bdimg.com/libs/jquery/1.8.3/jquery.js&quot;&gt;&lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+    &lt;div id=&quot;divCustomers&quot;&gt;&lt;/div&gt;
+    &lt;script&gt;
+    $.getJSON(&quot;test.php?jsoncallback=?&quot;, function(data) {
+
+        var html = '&lt;ul&gt;';
+        for(var i = 0; i &lt; data.length; i++)
+        {
+            html += '&lt;li&gt;' + data[i] + '&lt;/li&gt;';
+        }
+        html += '&lt;/ul&gt;';
+
+        $('#divCustomers').html(html);
+    });
+    &lt;/script&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;
+</code></pre>
+<p>url中的<code>?</code>表示让jQuery自动处理返回的callback数据，也可自定义回调函数名称，默认为jQuery自动生成的随机函数名。</p>
+<p>附上一个说的比较详细的博客：
+<a href="http://www.cnblogs.com/dowinning/archive/2012/04/19/json-jsonp-jquery.html">说说JSON和JSONP，也许你会豁然开朗，含jQuery用例</a></p>
+
+    </div>
+  </article>
+
+  
+  
+
+
+
+
+  
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+          <script type="text/javascript">
+          
+          (function() {
+              
+              
+              
+              
+          
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              var disqus_shortname = 'wzr';
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="https://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+    </div>
+
+  
+
+
+  <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/posts">Writings</a></li>
+         
+          <li><a href="/tags">Tags</a></li>
+         
+          <li><a href="/about">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#安装">安装</a></li>
+    <li><a href="#语法">语法</a>
+      <ul>
+        <li><a href="#选择器">选择器</a></li>
+      </ul>
+    </li>
+    <li><a href="#事件">事件</a>
+      <ul>
+        <li><a href="#文档就绪事件">文档就绪事件</a></li>
+        <li><a href="#常见dom事件">常见DOM事件</a></li>
+      </ul>
+    </li>
+    <li><a href="#效果">效果</a></li>
+    <li><a href="#dom操作">DOM操作</a>
+      <ul>
+        <li><a href="#基本操作">基本操作</a></li>
+        <li><a href="#css操作">CSS操作</a></li>
+        <li><a href="#遍历">遍历</a></li>
+      </ul>
+    </li>
+    <li><a href="#jquery-ajax">jQuery AJAX</a></li>
+    <li><a href="#jquery-jsonp">jQuery JSONP</a></li>
+  </ul>
+</nav>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fwww.takuzen.me%2fposts%2f2015-10-01-jqury-notes%2f">
+      <i class="fab fa-facebook fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2015-10-01-jqury-notes%2f&text=jQury%e5%9f%ba%e7%a1%80%e7%ac%94%e8%ae%b0">
+      <i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2015-10-01-jqury-notes%2f&title=jQury%e5%9f%ba%e7%a1%80%e7%ac%94%e8%ae%b0">
+      <i class="fab fa-linkedin fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2015-10-01-jqury-notes%2f&is_video=false&description=jQury%e5%9f%ba%e7%a1%80%e7%ac%94%e8%ae%b0">
+      <i class="fab fa-pinterest fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=jQury%e5%9f%ba%e7%a1%80%e7%ac%94%e8%ae%b0&body=Check out this article: https%3a%2f%2fwww.takuzen.me%2fposts%2f2015-10-01-jqury-notes%2f">
+      <i class="fas fa-envelope fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2015-10-01-jqury-notes%2f&title=jQury%e5%9f%ba%e7%a1%80%e7%ac%94%e8%ae%b0">
+      <i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2015-10-01-jqury-notes%2f&title=jQury%e5%9f%ba%e7%a1%80%e7%ac%94%e8%ae%b0">
+      <i class="fab fa-reddit fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2015-10-01-jqury-notes%2f&name=jQury%e5%9f%ba%e7%a1%80%e7%ac%94%e8%ae%b0&description=%e5%ae%89%e8%a3%85%201.%e4%bb%8ejqury.com%e4%b8%8b%e8%bd%bd%0a2.CDN%0aBaidu%20CDN%3ahttp%3a%2f%2flibs.baidu.com%2fjquery%2f1.10.2%2fjquery.min.js%20%e5%8f%88%e6%8b%8d%e4%ba%91%20CDN%3ahttp%3a%2f%2fupcdn.b0.upaiyun.com%2flibs%2fjquery%2fjquery-2.0.2.min.js%20%e6%96%b0%e6%b5%aa%20CDN%3ahttp%3a%2f%2flib.sinaapp.com%2fjs%2fjquery%2f2.0.2%2fjquery-2.0.2.min.js%20Google%20CDN%3ahttp%3a%2f%2fajax.googleapis.com%2fajax%2flibs%2fjquery%2f1.10.2%2fjquery.min.js%20Microsoft%20CDN%3ahttp%3a%2f%2fajax.htmlnetcdn.com%2fajax%2fjQuery%2fjquery-1.10.2.min.js%20%20%e8%af%ad%e6%b3%95%20%e5%9f%ba%e7%a1%80%e8%af%ad%e6%b3%95%ef%bc%9a%20%24%28selector%29.action%28%29%0a%e9%80%89%e6%8b%a9%e5%99%a8%20jquery%e9%80%89%e6%8b%a9%e5%99%a8%e5%9f%ba%e4%ba%8e%e5%b7%b2%e5%ad%98%e5%9c%a8%e7%9a%84css%e9%80%89%e6%8b%a9%e5%99%a8%0a%24%28this%29%20-%20%e5%bd%93%e5%89%8d%e5%85%83%e7%b4%a0%20%24%28%26quot%3bp%26quot%3b%29%20-%20%e6%89%80%e6%9c%89%20%26lt%3bp%26gt%3b%20%e5%85%83%e7%b4%a0%20%24%28%26quot%3bp%3afirst%26quot%3b%29%20-%20%e9%80%89%e5%8f%96%e7%ac%ac%e4%b8%80%e4%b8%aa%26lt%3bp%26gt%3b%e5%85%83%e7%b4%a0%20%24%28%26quot%3bp%20.test%26quot%3b%29%20-%20%e6%89%80%e6%9c%89%20class%3d%26quot%3btest%26rdquo%3b%20%e7%9a%84%20%26lt%3bp%26gt%3b%20%e5%85%83%e7%b4%a0%20%24%28%26quot%3b.test%26quot%3b%29%20-%20%e6%89%80%e6%9c%89class%3d%26quot%3btest%26quot%3b%e7%9a%84%e5%85%83%e7%b4%a0%20%24%28%26quot%3b%23test%26quot%3b%29%20-%20%e6%89%80%e6%9c%89%20id%3d%26quot%3btest%26rdquo%3b%20%e7%9a%84%e5%85%83%e7%b4%a0%20%24%28%26quot%3b%5bhref%5d%26quot%3b%29%20-%20%e5%b8%a6%e6%9c%89href%e5%b1%9e%e6%80%a7%e7%9a%84%e5%85%83%e7%b4%a0%20%24%28%26quot%3bui%20li%3afirst%26quot%3b%29%20-%20%e9%80%89%e5%8f%96%e7%ac%ac%e4%b8%80%e4%b8%aa%26lt%3bul%26gt%3b%e7%9a%84%e7%ac%ac%e4%b8%80%e4%b8%aa%26lt%3bli%26gt%3b%e5%85%83%e7%b4%a0%20%24%28%26quot%3bui%20li%3afirst-child%26quot%3b%29%20-%20%e9%80%89%e5%8f%96%e6%af%8f%e4%b8%aa%26lt%3bul%26gt%3b%e7%9a%84%e7%ac%ac%e4%b8%80%e4%b8%aa%26lt%3bli%26gt%3b%e5%85%83%e7%b4%a0%20%24%28%26quot%3ba%5btarget%21%3d%27_blank%27%5d%26quot%3b%29%20-%20%e9%80%89%e5%8f%96%e6%89%80%e6%9c%89target%e5%b1%9e%e6%80%a7%e5%80%bc%e4%b8%8d%e7%ad%89%e4%ba%8e%26rdquo%3b_blank%26quot%3b%e7%9a%84%26lt%3ba%26gt%3b%e5%85%83%e7%b4%a0%20%24%28%26quot%3b%3abutton%26quot%3b%29%20-%20%e9%80%89%e5%8f%96%e6%89%80%e6%9c%89type%3d%26quot%3bbutton%26quot%3b%e7%9a%84%26lt%3binput%26gt%3b%e5%85%83%e7%b4%a0%e5%92%8c%26lt%3bbutton%26gt%3b%e5%85%83%e7%b4%a0%0a%e8%bf%98%e6%9c%89%e4%b8%80%e4%ba%9b%e8%87%aa%e5%ae%9a%e4%b9%89%e7%9a%84%e9%80%89%e6%8b%a9%e5%99%a8%0a%24%28%26quot%3btr%3aeven%26quot%3b%29%20-%20%e9%80%89%e5%8f%96%e5%a5%87%e6%95%b0%e4%bd%8d%e7%bd%ae%e7%9a%84%26lt%3btr%26gt%3b%ef%bc%8c%e5%81%b6%e6%95%b0%e4%b8%ba%3aodd%20%24%28%26quot%3btr%3anth-child%28odd%29%26quot%3b%29%20-%20%e7%9b%b8%e5%af%b9%e4%ba%8e%e5%85%83%e7%b4%a0%e7%9a%84%e7%88%b6%e5%85%83%e7%b4%a0%e8%80%8c%e9%9d%9e%e5%bd%93%e5%89%8d%e6%89%80%e9%80%89%e6%8b%a9%e7%9a%84%e5%85%83%e7%b4%a0%e6%9d%a5%e9%80%89%e5%8f%96%e5%81%b6%e6%95%b0%e4%bd%8d%e7%bd%ae%20%24%28%26quot%3btd%3acontains%28monkey%29%26quot%3b%29%20-%20%e9%80%89%e6%8b%a9%e5%90%ab%e6%9c%89%26rsquo%3bmonkey%26rsquo%3b%e7%9a%84%e8%a1%a8%e6%a0%bc%e5%8d%95%e5%85%83">
+      <i class="fab fa-tumblr fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fwww.takuzen.me%2fposts%2f2015-10-01-jqury-notes%2f&t=jQury%e5%9f%ba%e7%a1%80%e7%ac%94%e8%ae%b0">
+      <i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;">
+          <i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;">
+          <i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;">
+          <i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');">
+          <i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+
+  <footer id="footer">
+  <div class="footer-left">
+    Copyright  &copy; 2021  呉 
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  </div>
+</body>
+
+<link rel="stylesheet" href=/lib/font-awesome/css/all.min.css>
+<script src=/lib/jquery/jquery.min.js></script>
+<script src=/js/main.js></script>
+
+
+
+</html>

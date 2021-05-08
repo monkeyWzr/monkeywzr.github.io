@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>laravel on マクロス</title>
+    <link>https://www.takuzen.me/tags/laravel/</link>
+    <description>Recent content in laravel on マクロス</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>呉</copyright>
+    <lastBuildDate>Sat, 08 Oct 2016 00:38:47 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.takuzen.me/tags/laravel/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>laravel 5.2 事件广播</title>
+      <link>https://www.takuzen.me/posts/2016-10-08-laravel-event-broadcast/</link>
+      <pubDate>Sat, 08 Oct 2016 00:38:47 +0000</pubDate>
+      
+      <guid>https://www.takuzen.me/posts/2016-10-08-laravel-event-broadcast/</guid>
+      <description>简介 Laravel 事件提供了简单的观察者模式实现，允许你订阅和监听应用中的事件。事件类通常存放在 app/Events 目录，监听器存放在 app/Listeners。
+配置 所有的事件广播配置选项都存放在 config/broadcasting.php 配置文件中。Laravel 支持多种广播驱动：Pusher、Redis以及一个服务于本地开发和调试的Log日志驱动。每一个驱动都已经有一个配置示例。基本上所有配置信息全可以在.env中指定，不需要改动broadcasting.php配置文件，如：
+#在.env中配置驱动 BROADCAST_DRIVER=redis 注册事件和监听器 Laravel 自带的 EventServiceProvider（在 app/Providers/EventServiceProvider.php 中） 为事件注册提供了方便之所。其中的 listen 属性包含了事件（键）和对应监听器（值）数组。如果应用需要，你可以添加多个事件到该数组。例如，让我们添加 SomeEvent 事件：
+/** * 事件监听器映射 * * @var array */ protected $listen = [ &#39;App\Events\SomeEvent&#39; =&amp;gt; [ &#39;App\Listeners\SomeEventListener&#39;, ], ]; 接下来使用event:generate命令生成对应的事件和监听器：
+php artisan event:generate 执行后将会创建app/Events/SomeEvent.php 和 app/Listener/SomeEventListener.php。
+ 除了上面在 EventServiceProvider 中注册事件的方式，还可以使用 Event 门面或者 Illuminate\Contracts\Events\Dispatcher 契约的具体实现类作为事件分发器手动注册事件：
+ /** * Register any other events for your application. * * @param \Illuminate\Contracts\Events\Dispatcher $events * @return void */ public function boot(DispatcherContract $events) { parent::boot($events); $events-&amp;gt;listen(&#39;event.</description>
+    </item>
+    
+    <item>
+      <title>ioc要点简记</title>
+      <link>https://www.takuzen.me/posts/2016-08-24-ioc-notes/</link>
+      <pubDate>Wed, 24 Aug 2016 01:50:45 +0000</pubDate>
+      
+      <guid>https://www.takuzen.me/posts/2016-08-24-ioc-notes/</guid>
+      <description>文中资料出处： 浅谈IOC&amp;ndash;说清楚IOC是什么 浅谈 Laravel 设计模式 深度理解依赖注入
+ IOC的含义  IOC是Inversion of Control的缩写，多数书籍翻译成“控制反转”。
+ 面向对象设计及编程的基本思想简单来说就是把复杂系统分解成相互合作的对象，这些对象类通过封装以后，内部实现对外部是透明的，从而降低了解决问题的复杂度，而且可以灵活地被重用和扩展。
+在面向对象设计的软件系统中，它的底层都是由N个对象构成的，各个对象之间通过相互合作，最终实现系统地业务逻辑。 伴随着应用的规模越来越庞大，对象之间的依赖关系也越来越复杂，经常会出现对象之间的多重依赖性关系，因此，对象之间耦合度过高的系统，必然会出现牵一发而动全身的情形。
+IOC理论提出的观点大体是这样的：借助于“第三方”实现具有依赖关系的对象之间的解耦。 由图可以看出，系统增加了在中间位置的第三方。此时构成系统的各个部分并没有耦合关系，而是是借助这个第三方来互相粘合。这个第三方也就是IOC容器的作用。在容器的穿针引线下，系统的各个部分才能结合起来发挥作用。如果图中没有IOC容器这个第三方存在，系统的各个部件彼此毫无联系。也就是说，在实现与变更A的时候，完全不用考虑与其他部件之间的影响。 这也就是IOC（控制反转）这个名字的含义： 软件系统在没有引入IOC容器之前，对象A依赖于对象B，那么对象A在初始化或者运行到某一点的时候，自己必须主动去创建对象B或者使用已经创建的对象B。无论是创建还是使用对象B，控制权都在自己手上。 软件系统在引入IOC容器之后，对象A与对象B之间失去了直接联系，所以，当对象A运行到需要对象B的时候，IOC容器会主动创建一个对象B注入到对象A需要的地方。
+//主动依赖 function __construct() { $this-&amp;gt;user = new UserModel(); } //被动依赖 function __construct(UserModel $user) { $this-&amp;gt;user = $user; }  IOC中最基本的技术就是 反射(Reflection) 编程。反射通俗来讲就是根据给出的类名（字符串方式）来动态地生成对象。这种编程方式可以让对象在生成时才决定到底是哪一种对象。很多框架中都是把“反射”做为最基本的技术手段。
+IOC的优缺点 优点  flexibility  changing the implementation class for a widely used interface is simpler (e.g. replace a mock web service by the production instance) changing the retrieval strategy for a given class is simpler (e.</description>
+    </item>
+    
+    <item>
+      <title>laravel设计模式</title>
+      <link>https://www.takuzen.me/posts/2016-08-20-laravel-design-patterns/</link>
+      <pubDate>Sat, 20 Aug 2016 23:29:17 +0000</pubDate>
+      
+      <guid>https://www.takuzen.me/posts/2016-08-20-laravel-design-patterns/</guid>
+      <description>DI与IOC laravel中实现了DI依赖注入，如：
+class UserController { private $user; function __construct(UserModel $user) { $this-&amp;gt;user = $user; } } $user = new UserController(new UserMonel()); UserController依赖UserModel，在实例化时，laravel会自动主注入UserModel实例。
+  </description>
+    </item>
+    
+  </channel>
+</rss>

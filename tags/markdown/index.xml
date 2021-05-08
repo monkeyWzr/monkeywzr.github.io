@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>markdown on マクロス</title>
+    <link>https://www.takuzen.me/tags/markdown/</link>
+    <description>Recent content in markdown on マクロス</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>呉</copyright>
+    <lastBuildDate>Mon, 03 Aug 2015 09:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.takuzen.me/tags/markdown/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>markdown语法简记</title>
+      <link>https://www.takuzen.me/posts/2015-08-03-markdown-notes/</link>
+      <pubDate>Mon, 03 Aug 2015 09:00:00 +0000</pubDate>
+      
+      <guid>https://www.takuzen.me/posts/2015-08-03-markdown-notes/</guid>
+      <description>0. 反斜杠 反斜杠可以将在markdown中有特殊意义的字符作为正常字符插入。
+1. 标题 类Setext形式 =和-的数量随意，效果效果是相同的。
+This is H1 ========== This is H2 ---------- 类atx形式 也可以写成前后对称的形式。
+# H1 ## H2 ###### H6 注意在#与标题间必须存在至少一个空格或制表符
+2. 引用 &amp;gt;在段落前加&amp;gt;进行引用。 在段落前加&amp;gt;进行引用。 在段落前加&amp;gt;进行引用。
+&amp;gt;或者每行前加&amp;gt;进行引用。 &amp;gt;或者每行前加&amp;gt;进行引用。 &amp;gt;或者每行前加&amp;gt;进行引用。
+效果相同。
+ 在段落或者每句前加&amp;gt;进行引用 在段落或者每行前加&amp;gt;进行引用。 在段落或者每行前加&amp;gt;进行引用。
+ 加上不同数量的&amp;gt;实现嵌套引用。
+3. 代码区块 代码区块只需一个制表符或者4个空格：
+当你想插入代码区块
+ 只需4个空格或者1个制表符  标记一小段代码可以用反引号`包起来，在本文随处可见效果。
+也可用```的形式：
+ ``` 代码区块 ```  将产生相同效果。但是此种方法并非标准markdown语法，有时可能会解析不正确。 在代码区块中可以方便的插入HTML原始码，Markdown会自动将&amp;lt;``&amp;amp;等转换为HTML实体。
+4. 列表 无序列表
+* red + green - yellow 三种形式等同。
+ red   green   yellow  有序列表</description>
+    </item>
+    
+  </channel>
+</rss>

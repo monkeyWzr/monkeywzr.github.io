@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux on マクロス</title>
+    <link>https://www.takuzen.me/tags/linux/</link>
+    <description>Recent content in Linux on マクロス</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>呉</copyright>
+    <lastBuildDate>Tue, 29 Nov 2016 21:08:52 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.takuzen.me/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>netfilter/iptables 笔记</title>
+      <link>https://www.takuzen.me/posts/2016-11-29-iptables-usage/</link>
+      <pubDate>Tue, 29 Nov 2016 21:08:52 +0000</pubDate>
+      
+      <guid>https://www.takuzen.me/posts/2016-11-29-iptables-usage/</guid>
+      <description>netfilter 与 iptables netfilter是linux默认的防火墙，在2.4之后的版本正式进入内核。netfilter 使用四个表(Table)来存放控制信息包过滤处理的规则集。每张表由链(Chain)组成，每条链又包含了多条规则(rule)。
+iptables是用来编辑操作这些表的一个工具。iptables包中也包含了针对IPv6的工具ip6tables。
+四个表及其包含的链：
+ filter  INPUT FORWARD OUTPUT   nat  PREROUTING POSTROUTING OUTPUT   mangle  PREROUTING INPUT FORWARD OUTPUT POSTROUTING   raw  PREROUTING OUTPUT    filter机制 filter是netfilter中最重要的机制，其任务是执行数据包的过滤操作。具有三种内建链：
+ INPUT - 来自外部的数据包（访问本机） OUTPUT - 发往外部的数据包（本机访问外部） FORWORD - “路过”本机的数据包，转发到其他设备  链中规则的匹配方式遵循first match。filter会根据数据包特征从相应链中的第一条规则开始逐一进行匹配。只要遇到满足特征的规则后便不再继续。 每条链在最底端都定义了默认规则。默认规则只会有一种状态：ACCEPT或者DROP。默认为ACCEPT。
+iptables命令参数 格式：
+iptables -操作方式 [链名] [条件匹配] [选项] iptables -[ACD] chain rule-specification [options] iptables -I chain [rulenum] rule-specification [options] iptables -R chain rulenum rule-specification [options] iptables -D chain rulenum [options] iptables -[LS] [chain [rulenum]] [options] iptables -[FZ] [chain] [options] iptables -[NX] chain iptables -E old-chain-name new-chain-name iptables -P chain target [options] iptables -h (print this help information) 常用操作方式：</description>
+    </item>
+    
+    <item>
+      <title>搭建自己的ngrok服务实现内网穿透</title>
+      <link>https://www.takuzen.me/posts/2016-10-08-run-ngrok/</link>
+      <pubDate>Sat, 08 Oct 2016 12:41:33 +0000</pubDate>
+      
+      <guid>https://www.takuzen.me/posts/2016-10-08-run-ngrok/</guid>
+      <description>学校有台服务器上跑我们的自己用的gitlab，然而分配的ip是内网网段，在校外或者使用手机流量就没办法访问，跟信管中心申请公网ip又得看他们脸色( ∙̆ .̯ ∙̆ )。尝试了直接用ssh做反向代理，感觉效果不是很满意，不太稳定时常掉线，而且由于腾讯云的坑爹限制，没办法转发到公网80端口上。后来发现了一款神器ngrok，官网提供了收费的转发服务，国内也有不少热心童鞋提供了免费的ngrok服务。不过ngrok 1.x 的版本是开源的，干脆自力更生，搭建自己的ngrok服务。
+准备 首先最重要的当然是得有一台公网主机，我的是腾讯云的vps；然后内网主机需要保证可以访问外网（废话），然后要有个域名，绑定到公网ip上。最好做下泛解析，也就是添加一条形如*.yourdomain.xxx的A记录。 公网主机有些环境要配置好，下面这几个包要安装上，为了后面能够顺利的编译ngrok源码（以ubuntu为例）：
+sudo add-apt-repository ppa:ubuntu-lxc/lxd-stable sudo apt-get update sudo apt-get install golang sudo apt-get install build-essential mercurial git ngrok使用go写的，所以上面安装了golang环境。有时因为友好的GFW，可能会获取不到源，可参见这个Go 安装
+安装ngrok 获取源码 git clone https://github.com/inconshreveable/ngrok.git ngrok cd ngrok export GOPATH=~/ngrok # 也就是刚刚获取的源码位置 最后一句是go环境的配置，跳过不执行应该也可以，没试过。
+生成自签名证书 注意第二步和第五步中要替换你自己的域名。
+openssl genrsa -out rootCA.key 2048 openssl req -x509 -new -nodes -key rootCA.key -subj &amp;quot;/CN=upwzr.com&amp;quot; -days 5000 -out rootCA.pem openssl genrsa -out device.key 2048 openssl req -new -key device.</description>
+    </item>
+    
+    <item>
+      <title>基本的bash shell命令</title>
+      <link>https://www.takuzen.me/posts/2016-03-05-bash-shell/</link>
+      <pubDate>Sat, 05 Mar 2016 09:00:00 +0000</pubDate>
+      
+      <guid>https://www.takuzen.me/posts/2016-03-05-bash-shell/</guid>
+      <description>基本的bash shell命令 处理文件和目录  ls 输出目录  -s 显示文件大小 -a 输出隐藏文件 -i 显示文件的索引值 -l 产生长列表的输出 -R 递归列出子目录内容   touch 创建新文件或者改变访问/修改时间  -a 只改变访问时间 -m 只改变修改时间 -t 指定时间戳   cp 复制文件  -f 强制覆盖不提示 -i 覆盖前提示 -r 递归的复制文件 -R 递归的复制目录 -l 创建文件链接（硬链接） -s 创建符号链接（软连接） -v 详细模式   mv 移动文件（重命名） rm 删除文件  -i 删除前提示 -f 强制删除不提示 -r 递归删除非空目录   mkdir 创建目录 stat 提供文件的所有状态信息 file 查看文件类型 cat 显示文本数据  -n 给所有行加上行号 -b 给有文本的行加上行号 -s 多个空白行压缩为一行 -T 用^I替换制表符   more 分页显示  空格 显示下一屏 ENTER 显示下一行 /expression 查找 n 查找下一处匹配的内容 &#39; 调到匹配的第一处内容 !</description>
+    </item>
+    
+    <item>
+      <title>超老本子CF-W2安装lubuntu</title>
+      <link>https://www.takuzen.me/posts/2016-03-04-refresh-old-laptop/</link>
+      <pubDate>Fri, 04 Mar 2016 09:00:00 +0000</pubDate>
+      
+      <guid>https://www.takuzen.me/posts/2016-03-04-refresh-old-laptop/</guid>
+      <description>祭出大杀器CF-W2 前几年亲戚去日本出差给我老爸带回来一台二手本本，2003年左右的机器，质量确实过硬，没换过一个零件。。奔腾M 1GHz + 760MB内存，用xp勉强可以看个新闻玩玩同城游戏。到我手里后，实在是食之无味弃之可惜，索性装个linux敲代码好了。
+老机器真蛋疼 轻量级的linux有不少，lubuntu xubuntu PuppyLinux这些都是很常见的了。lubuntu号称256M内存就能跑起来，LXDE也比puppy用的JVM好看一点（私人观点），那就先搞这个试试（15.04）。最开始做了个U盘启动盘，结果BIOS里死活读不出usb，只好又刻了个CD。 lubuntu在12.04开始需要cpu支持pae，幸运的是我这老古董貌似完全不支持，因此在进入到grub后光标移动到install lubuntu选项，F6然后esc，进入编辑，在最后面加入forcepae,最后大概是下面这样的：
+Boot Options file=/cdrom/preseed/ubuntu.seed boot=casper initrd=/casper/initrd.lz quiet splash -- forcepae  这么改完后可以正常启动安装。安装过程语言最好选择English，不然后面会出现乱码，完全辨认不出选项。
+优化 显卡问题 除了开机有（chao）些（ji）慢，编译有（shi）些（fen）慢，总体上还是非常流畅的。不过每次开机后桌面壁纸会变成一坨颜色。在官方wiki上找到了应对老Intel显卡的处理办法。
+sudo vim /etc/X11/xorg.conf  添加如下语句：
+Section &amp;quot;Device&amp;quot; Identifier &amp;quot;Intel Graphics&amp;quot; Driver &amp;quot;intel&amp;quot; Option &amp;quot;AccelMethod&amp;quot; &amp;quot;uxa&amp;quot; EndSection  重启X，问题解决。
+中文乱码 安装过程中如果选择中文会出现乱码，安装好之后的系统人类基本无法操作。不过update完了之后问题即可解决。建议用英文安装好，update完事再切换中文。
+ 相关链接 AdvancedMethods
+   </description>
+    </item>
+    
+    <item>
+      <title>Linux下curl实现某资源站自动签到脚本</title>
+      <link>https://www.takuzen.me/posts/2015-12-06-curl-on-linux-for-autoregistering/</link>
+      <pubDate>Sun, 06 Dec 2015 09:00:00 +0000</pubDate>
+      
+      <guid>https://www.takuzen.me/posts/2015-12-06-curl-on-linux-for-autoregistering/</guid>
+      <description>前言 经常去某资源站下载美剧，我很喜欢的的团(ren)队(ren)在运营这个网站，资源很及时也很好。网站要求登录才能看到下载链接。连续登录达到多少天就可以升级并且可以查看更多下载资源。然而我这种人是不可能记着每天都去网站上签到的(-&amp;lt;-)。。。正好最近买了vps，于是决定自己写一个自动登录的脚本。
+分析 Fiddler抓包发现此网站登陆时url为/User/Login/ajaxLogin，post提交用户名和密码。
+登录成功之后返回JSON字符串
+用户等级等相关信息是通过之后的两个请求hotkeyword``getCurUserTopInfo获取的，用于网站顶部的信息和搜索栏。
+通过我的测试发现这两个请求并不会影响cookie的变化，不模拟也完全没问题。
+签到页面url为/user/sign,签到按钮通过js控制15s后才可以点击，点击后fiddler抓到了/user/sign/dosign的请求，request包里面看起并没有什么新内容，response返回了一个json
+json里面的info表示签到结果，1为成功。data为连续签到天数。
+开搞 OK！开始祭出杀气__curl__，一开始是用的php，但是向dosign发送请求总是返回错误状态，可能是那里的curl参数配置错了，找个时间再回过头去看一下。。就不说这个了。
+后来决定干脆直接上linux写脚本。我水平比较low。。就是简单的3个请求，存一下cookie，也没搞啥复杂东西。
+先简单在本地测试了一下
+哈哈，大功告成！！
+最后把脚本丢到了vps上跑，crontab添加一条定时任务，每天凌晨啪啪啪~~ 麻麻再也不用担心我的签到~~
+  </description>
+    </item>
+    
+    <item>
+      <title>vi/vim命令简记</title>
+      <link>https://www.takuzen.me/posts/2015-12-05-vim-guide/</link>
+      <pubDate>Sat, 05 Dec 2015 09:00:00 +0000</pubDate>
+      
+      <guid>https://www.takuzen.me/posts/2015-12-05-vim-guide/</guid>
+      <description>模式 vi有三种模式
+ 命令模式 插入模式 扩展模式  命令模式下的操作 移动光标  h,j,k,l 左下上右 w/d 上一个字符/下一个字符 (/) 上一个句子/下一个句子 {/} 上一个段落/下一个段落  修改  cc/cw/cl 重写行/词/字符 dd/dw/dl 删除行/词/字符 yy/yw/yl 复制行/词/字符 dtc，删除从光标到c之间的所有字符 rc，将光标下的字符替换为c 5dd，删除5行数据 5yy，复制5行数据 5x，删除5个字符 p/P 粘贴复制修改或者删除的数据，p粘贴在行上，P粘贴在行下  撤销和恢复  u 撤销最近一次修改 ctrl+r 撤销最近一次撤销 U 撤销所有修改  搜索  /text 向后搜索 ?text 向前搜索 n 搜索下一个同样的的内容 N 搜索上一个同样内容 R，进入替换状态，esc退出  读取，保存与退出 读取保存退出这些操作都是在扩展模式下操作。
+ :w 保存 :w! 强制保存 :q 退出 :q! 强制退出 :wq 保存退出 :wq! 强制保存退出 :r filename 将另一个文件读入到当前文件内光标所在位置后 :1,20 w filename 将1-20行写入新文件中 :29,$ w filename 将第20行至最后一行写入新文件 :1,20 w&amp;raquo;filename 将第1值20行追加到另一个文件中  定位  G 跳转到文件最后一行 1G 跳转到文件的第一行 ctrl-d 往下滚动半屏 ctrl+u 往上滚动半屏 H 跳转到本屏显示的第一行 M 调转到本屏显示的中间一行 L 跳转到本屏显示的最后一行 z+Enter 使当前的行成为屏幕显示的第一行 z- 使当前行成为屏幕的最后一行  查找与替换 使用sed进行查找和替换 sed是linux下一个很常用的工具。在扩展模式下输入s即可使用sed进行替换。</description>
+    </item>
+    
+    <item>
+      <title>vps搭建私人pptp vpn,新姿势GET！</title>
+      <link>https://www.takuzen.me/posts/2015-12-01-my-personal-pptp-vpn-on-vps/</link>
+      <pubDate>Tue, 01 Dec 2015 09:00:00 +0000</pubDate>
+      
+      <guid>https://www.takuzen.me/posts/2015-12-01-my-personal-pptp-vpn-on-vps/</guid>
+      <description>一直用hosts和goagent的姿势搞学(ke)术(xue)研(shang)究(wang)，苦于两种方式限制颇多不稳定又不安全。不久前咬牙花了5刀开了DO的vps（当然，DO赠送了10刀回来），穷学生一枚的我终于能换换新姿势了，直接动手搭建了vpn。由于本人不太喜欢用额外的客户端，再加上pptp以简单著称，我决定采用pptp server。
+DigitalOcean购买VPS 在网上查了大家的经验攻略，自己看了下DO、搬瓦工、bugdetVM，最后还是选了DO，反正现在感觉速度很不错，挺满意的。
+这个流程很简单，在官网上注册账号，用PayPal下个5刀的订单，DO会赠送10美元回来。Paypal支持银联的卡，我就是用建行的借记卡支付的。支付完成后按照流程创建Droplet，我用的ubuntu14.04 x64,旧金山的服务器，创建过程中添加SSH,用puttyputtygen即可。具体内容在下面相关链接。
+安装pptp和配置 putty登陆，速度可以，直接开始安装。这期间我试了试DO网站上的console，感觉不好用。还是putty方便。
+ # sudo apt-get update # sudo apt-get install pptpd  事实证明我朝GFW有多坑，服务器在美国的ubuntu从官方源下载速度炒鸡快，瞬间完事儿。
+修改pptp配置 修改/etc/pptpd.cong文件
+ # sudo nano /etc/pptpd.conf  在末尾添加server IP 和 client IP
+ localip 192.168.0.1 remoteip 192.168.0.100-200  这里用的是nano编辑器，不熟悉的同学（比如我）可以参见相关链接里面的“Linux下的Nano命令”。其实用不到啥。。就是一个保存和退出而已。。nano还是比较简单的。
+修改DNS配置  # sudo nano /etc/ppp/pptpd-options  添加google的DNS
+ ms-dns 8.8.8.8 ms-dns 8.8.4.4  这个文件里还开启了其他的一些选项，课根据需要开启我从别的大神那里复制来了一些资料：
+ name pptpd（pptpd服务名，可以随便填写。） refuse-pap（拒绝pap身份认证模式。） refuse-chap（拒绝chap身份认证模式。） refuse-mschap（拒绝mschap身份认证模式。） require-mschap-v2（在端点进行连接握手时需要使用微软的 mschap-v2 进行自身验证。） require-mppe-128（MPPE 模块使用 128 位加密。） ms-dns 8.8.8.8 (ppp 为 Windows 客户端提供 DNS 服务器 IP 地址。) proxyarp (建立 ARP 代理键值。) nodefaultroute（不替换默认路由） debug（开启调试模式，相关信息记录在 /var/logs/message 中。现在默认是被注释掉的。） lock（锁定客户端 PTY 设备文件。） nobsdcomp (禁用 BSD 压缩模式。)</description>
+    </item>
+    
+  </channel>
+</rss>

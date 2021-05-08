@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>typescript on マクロス</title>
+    <link>https://www.takuzen.me/tags/typescript/</link>
+    <description>Recent content in typescript on マクロス</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>呉</copyright>
+    <lastBuildDate>Mon, 22 Mar 2021 16:31:57 +0900</lastBuildDate>
+    
+	<atom:link href="https://www.takuzen.me/tags/typescript/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>プログラミングTypeScriptの読書メモ - 型</title>
+      <link>https://www.takuzen.me/posts/programming-typescript-notes-types/</link>
+      <pubDate>Mon, 22 Mar 2021 16:31:57 +0900</pubDate>
+      
+      <guid>https://www.takuzen.me/posts/programming-typescript-notes-types/</guid>
+      <description>難しすぎて、一回3−4ページ文しか進められてない、、
+よく自分に聞く：Is this something about TYPEScript(exists only during compile time) or not(to be dealt at runtime)?
+聞きながら勉強すると大変助かります。
+高度な型 サブタイプとスーパータイプ  anyはすべての型のスーパータイプ neverはすべての型のサブタイプ  変性  不変性(invariance) 共変性(covariance) 反変性(contravariance) 双変性(bivariance)  ディフォルトでTypescriptの型に関して共変です。 {&amp;quot;strictFunctionTypes&amp;quot;: true}の場合、関数型にはそのパラメータの型が反変にと扱うようにする。具体は下記を参照ください。
+関数型の関係と反変 class Animal {} class Bird extends Animal { chirp() {} } class Crow extends Bird { caw() {} } function clone (f: (b:Bird) =&amp;gt; Bird): void { } clone関数は、関数型のパラメータを期待する。(b: Bird) =&amp;gt; Bird型の関数、とそのサブタイプの関数を渡すことができる。 ここまでは普通の共変であり、反変に関係ない。
+ではどんな関数は(b: Bird) =&amp;gt; Birdのサブタイプでしょうか</description>
+    </item>
+    
+    <item>
+      <title>プログラミングTypeScriptの読書メモ</title>
+      <link>https://www.takuzen.me/posts/programming-typescript-notes/</link>
+      <pubDate>Fri, 01 Jan 2021 17:01:34 +0900</pubDate>
+      
+      <guid>https://www.takuzen.me/posts/programming-typescript-notes/</guid>
+      <description>リテラル let a = 1 // number let c : 3 = 3; // リテラル型 3 const b = 2 // リテラル型 2 const d: number = 4 // number 構造的型付け(structural typing) ダックタイピング
+→名前的型付け
+インデックスシグネチャ { [key: T]: U } オブジェクトについて 空のオブジェクトリテラル表記{}とオブジェクトプロトタイプ表記Objectはできるだけ避けてください。
+let foo: {} foo = 1; foo = {a: 1}; foo = []; foo = &amp;#39;abc&amp;#39;; let bar : Object; bar = 1; bar = {a: 1} bar = [] bar = &amp;#39;abc&amp;#39; foo = {toString() {return 1}} // OK bar = {toString() {return 1}} // Error: Type ‘() =&amp;gt; number’ is not assignable to type ‘() =&amp;gt; string’.</description>
+    </item>
+    
+    <item>
+      <title>Jestでaxiosはネットワークエラーになってしまう件</title>
+      <link>https://www.takuzen.me/posts/jest-axios-network-error/</link>
+      <pubDate>Wed, 30 Dec 2020 18:02:38 +0900</pubDate>
+      
+      <guid>https://www.takuzen.me/posts/jest-axios-network-error/</guid>
+      <description>JestでAPIを検証しようとした時、axiosからネットワークエラーが発生した。 背景：localhost:9090のwebpack-server経由でlocalhost:8080のバックサービスを叩く
+色々調べると、ランタイム環境に関係ありそう。ちゃんとわかってないけど
+解決案１ axiosアダプタをnode環境用のhttpアダプタを使うように変更する1。今回これを使って解決した
+import axios from &amp;#39;axios&amp;#39; import httpAdapter from &amp;#39;axios/lib/adapters/http&amp;#39; const instance = axios.create({ adapter: httpAdapter, // ... }); 解決案２ jestのディフォルト環境はブラウザ風のjsdomなので、nodeに変更すればできるはず2
+// jest.config.js module.exports = { testEnvironment: &amp;#34;node&amp;#34; }; 又はjest --env=nodeで実行する3
+参考 Jestは、axiosで認証されたリクエストを行うと「ネットワークエラー」を返します
+configuration#testenvironment-string
+Jestでaxiosを使おうとするとNetwork Errorになってうまくいかないときの対処方法
+  https://stackoverflow.com/a/42678578 &amp;#x21a9;&amp;#xfe0e;
+ https://www.tolog.site/aws/jest-sam-network-error/ &amp;#x21a9;&amp;#xfe0e;
+ https://github.com/axios/axios/issues/938 &amp;#x21a9;&amp;#xfe0e;
+   </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>android on マクロス</title>
+    <link>https://www.takuzen.me/tags/android/</link>
+    <description>Recent content in android on マクロス</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>呉</copyright>
+    <lastBuildDate>Wed, 25 Oct 2017 03:59:14 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.takuzen.me/tags/android/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Android配置变更时的状态保留</title>
+      <link>https://www.takuzen.me/posts/2017-10-25-save-stats-through-configuration-changes/</link>
+      <pubDate>Wed, 25 Oct 2017 03:59:14 +0000</pubDate>
+      
+      <guid>https://www.takuzen.me/posts/2017-10-25-save-stats-through-configuration-changes/</guid>
+      <description>在设备配置变化时，Android会销毁并重建正在运行的 Activity， 通常使用 onSaveInstanceState()，来保存有关应用状态的数据。 然后，可以在 onCreate() 或 onRestoreInstanceState() 期间恢复 Activity 状态。
+但是，在有些情况下，如在执行一段耗时的异步网络请求，onSaveInstanceState()就显得力不从心了，只能重新执行异步操作。这样不但影响用户体验，处理不慎还可能会使应用异常终止。
+文档中推荐使用 Fragment 来保留有状态对象的引用。通过 setRetainInstance(true) 方法，系统不会在重启活动时销毁fragment。
+public class RetainedFragment extends Fragment { // data object we want to retain  private MyDataObject data; // this method is only called once for this fragment  @Override public void onCreate(Bundle savedInstanceState) { super.onCreate(savedInstanceState); // retain this fragment  setRetainInstance(true); } public void setData(MyDataObject data) { this.data = data; } public MyDataObject getData() { return data; } } 在添加fragment时定义一个标签以便恢复。</description>
+    </item>
+    
+    <item>
+      <title>get-selected-text-from-webview</title>
+      <link>https://www.takuzen.me/posts/2017-10-08-get-selected-text-from-webview/</link>
+      <pubDate>Sun, 08 Oct 2017 00:30:19 +0000</pubDate>
+      
+      <guid>https://www.takuzen.me/posts/2017-10-08-get-selected-text-from-webview/</guid>
+      <description>在试图自定义WebView选择文本之后的行为时，遇到了很多的麻烦。
+首先便是获得选择文本这一步。WebView并没有相应的API，想获取选择的文本貌似只能通过js来解决。在最开始的尝试中，我的代码实现如下：
+contentText.loadDataWithBaseURL(null, article.getContent(), &amp;#34;text/html&amp;#34;, &amp;#34;UTF-8&amp;#34;, null); contentText.evaluateJavascript(&amp;#34;(function(){return window.getSelection().toString()})()&amp;#34;, new ValueCallback&amp;lt;String&amp;gt;() { @Override public void onReceiveValue(String s) { Log.d(&amp;#34;NewsContentActivity&amp;#34;, s); } }); 然而不知为何，获取到的文本始终为空字符串&amp;quot;&amp;quot;，百思不得其解的我偶然把evaluateJavascript方法放到了重写的onActionModeStarted中，竟然可以收到正确的文本了，不过依然有个严重的问题：在当前WebView中只能成功获取一次，再次选择文本就完全没有反应了。在调试时我发现，是因为我在选择文本时要先点击屏幕使得之前的选择消除掉，否则始终是同一次的onActionModeStarted调用。这样就无法解决我的问题了，因为我需要获取拖拽浮标选择的文本。
+。。。
+研究了一夜，实在没什么方案可以达到我想要的效果，只能通过点击菜单项获取选择的文本了。。
+未完待续。
+  </description>
+    </item>
+    
+    <item>
+      <title>提升ListView的效率</title>
+      <link>https://www.takuzen.me/posts/2017-10-04-making-listview-scrolling-smooth/</link>
+      <pubDate>Wed, 04 Oct 2017 04:52:18 +0000</pubDate>
+      
+      <guid>https://www.takuzen.me/posts/2017-10-04-making-listview-scrolling-smooth/</guid>
+      <description>利用好getView中的convertView参数 getView()方法中有一个convertView参数用来缓存已经加载好的布局，从而我们可以在代码中对布局进行重用：
+public View getView(int position, View convertView, ViewGroup parent) { View view = convertView; if (view == null) view = LayoutInflater.from(getContext()).inflate(resorceId, parent, false); // ... } 使用ViewHolder 定义ViewHolder来存储已经获取的Views实例。
+class ViewHolder { TextView textView; ImageView imageView; // ... } public View getView(int position, View convertView, ViewGroup parent) { View view = convertView; VIewHolder holder; if (view == null) { view = LayoutInflater.from(getContext()).inflate(resorceId, parent, false); holder = new ViewHolder(); // save views to the holder.</description>
+    </item>
+    
+    <item>
+      <title>Android中的MVP模式</title>
+      <link>https://www.takuzen.me/posts/2017-09-29-mvp-in-android/</link>
+      <pubDate>Fri, 29 Sep 2017 15:18:32 +0000</pubDate>
+      
+      <guid>https://www.takuzen.me/posts/2017-09-29-mvp-in-android/</guid>
+      <description>Model View Presenter (MVP) 模式是安卓开发中非常热门的一种架构模式。MVP模式将数据模型从传统的View层分离出来，通过presenter实现两者的间接通信。
+(图片出处：vogella)
+ View层 该层专注于UI的实现，实现UI操作的接口，如showProgressBar, updateData等。通常会持有对Presenter层的引用，或通过依赖注入获取到Presenter实例。 Presenter层 该层实现业务逻辑，负责View层和Model层的控制和交互。该层通常应尽量避变对sdk产生依赖。 Model层 该层实现对数据操作的封装，暴露接口给Presenter层。    </description>
+    </item>
+    
+    <item>
+      <title>Android Webview中的编码问题</title>
+      <link>https://www.takuzen.me/posts/2017-09-24-encoding-in-webview/</link>
+      <pubDate>Sun, 24 Sep 2017 20:11:30 +0000</pubDate>
+      
+      <guid>https://www.takuzen.me/posts/2017-09-24-encoding-in-webview/</guid>
+      <description>最近在处理一段html文本时，为了解析ruby标签，我用Weview代替了Textview，起初是这样写的：
+webview.loadData(article.getContent(), &amp;#34;text/html&amp;#34;, &amp;#34;UTF-8&amp;#34;); 结果显示出来全部是乱码。网上查阅资料后发现一个一简易的处理办法：
+contentText.loadData(article.getContent(), &amp;#34;text/html; charset=UTF-8&amp;#34;, &amp;#34;UTF-8&amp;#34;); 我处理的文本是含有日语的html文本，这个方法是有效的。
+另外，也可以使用WebView.loadDataWithBaseURL()代替WebView.loadData()。
+webview.loadDataWithBaseURL(null, article.getContent(), &amp;#34;text/html&amp;#34;, &amp;#34;UTF-8&amp;#34;, null); 网上还有这样的方法：
+if (Build.VERSION.SDK_INT &amp;gt;= Build.VERSION_CODES.FROYO) { String base64 = Base64.encodeToString(htmlString.getBytes(), Base64.DEFAULT); myWebView.loadData(base64, &amp;quot;text/html; charset=utf-8&amp;quot;, &amp;quot;base64&amp;quot;); } 如代码中所见，该方法适用于Android 4+的场景。不过我并没有进行实际测试这种方式。
+ 参考资料 stackoverflow - Android. WebView and loadData Android Developers
+   </description>
+    </item>
+    
+    <item>
+      <title>使用Tools Attributes Reference</title>
+      <link>https://www.takuzen.me/posts/2017-09-23-use-tools-attributes-reference-in-android-studio/</link>
+      <pubDate>Sat, 23 Sep 2017 19:55:32 +0000</pubDate>
+      
+      <guid>https://www.takuzen.me/posts/2017-09-23-use-tools-attributes-reference-in-android-studio/</guid>
+      <description>Android Studio 提供了一系列工具属性用于开发过程中，如预览布局效果等。构建应用时会自动删除掉所有此类属性。灵活应用这些属性可以给开发带来很大的快感。
+为启用此类属性，加入toolsNs即可。
+&amp;lt;RootTag xmlns:android=&amp;#34;http://schemas.android.com/apk/res/android&amp;#34; xmlns:tools=&amp;#34;http://schemas.android.com/tools&amp;#34; &amp;gt; 使用tools:前缀代替android: 由于经常会在代码中对布局进行更改，无法通过IDE的预览功能直观的查看到效果。这时可使用tools:前缀代替android:来插入简单的数据，如tools:text tools:src等。
+使用tools:listitem / tools:listheader / tools:listfooter 这些属性可以将item的布局加载出来，帮助我们预览ListView或RecyclerView，而不再是单纯的文本。
+还有一些其他属性，待下次用到时再进行记载。
+ 参考资料 文档：Tools Attributes Reference
+   </description>
+    </item>
+    
+    <item>
+      <title>使用Gson解析含有动态未知键名的json数据</title>
+      <link>https://www.takuzen.me/posts/2017-09-05-dealing-with-ramdomly-generated-json-key-names-using-gson-md/</link>
+      <pubDate>Tue, 05 Sep 2017 14:16:06 +0000</pubDate>
+      
+      <guid>https://www.takuzen.me/posts/2017-09-05-dealing-with-ramdomly-generated-json-key-names-using-gson-md/</guid>
+      <description>初学Android开发，最近在开发一个用来练手的android小项目，遇到了一个问题：在解析json时遇到了含有未知字段的json数据，此时不能通过Gson库的静态解析方式进行解析。文档上提到了可以自定义解析器，网上也有一些类似的实现案例。我也记录下相应的解决方案。
+我获取的json数据可简化为：
+// news { news_id: &amp;#34;id&amp;#34;, news_title: &amp;#34;title&amp;#34; } // monthJson { &amp;#34;2017-09-05&amp;#34;: [ { news_id: &amp;#34;id1&amp;#34;, news_title: &amp;#34;title1&amp;#34; }, { news_id: &amp;#34;id2&amp;#34;, news_title: &amp;#34;title2&amp;#34; } ], &amp;#34;2017-09-04&amp;#34;: [ { news_id: &amp;#34;id1&amp;#34;, news_title: &amp;#34;title1&amp;#34; }, { news_id: &amp;#34;id2&amp;#34;, news_title: &amp;#34;title2&amp;#34; } ] } 可建立如下模型（省略 getter 和 setter ）：
+public class News { @SerializedName(&amp;#34;news_id&amp;#34;) private String id; @SerializedName(&amp;#34;news_title&amp;#34;) private String title; } public class MonthNews { private Map&amp;lt;String, List&amp;lt;News&amp;gt;&amp;gt; monthNews; public MonthNews(Map&amp;lt;String, List&amp;lt;News&amp;gt;&amp;gt; monthNews) { this.</description>
+    </item>
+    
+  </channel>
+</rss>

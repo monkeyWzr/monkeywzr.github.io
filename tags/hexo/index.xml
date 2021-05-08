@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>hexo on マクロス</title>
+    <link>https://www.takuzen.me/tags/hexo/</link>
+    <description>Recent content in hexo on マクロス</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>呉</copyright>
+    <lastBuildDate>Sat, 05 Nov 2016 14:31:16 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.takuzen.me/tags/hexo/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>hexo博客突然丢失了所有的css js？？</title>
+      <link>https://www.takuzen.me/posts/2016-11-05-hexo-vendors-folder-missing/</link>
+      <pubDate>Sat, 05 Nov 2016 14:31:16 +0000</pubDate>
+      
+      <guid>https://www.takuzen.me/posts/2016-11-05-hexo-vendors-folder-missing/</guid>
+      <description>我这个博客使用Github Pages + hexo + next主题，昨天提交一篇博客之后就跪了，看不见文章列表，控制台里发现所有在vendor目录下的css和js全部404。纠结了一下午终于在github上找到了这个问题的issue
+ We recently updated to Jekyll v3.3, which ignores the vendor folder by default. If you&amp;rsquo;re not using Jekyll, you can add a .nojekyll file to the root of your repository to disable Jekyll from building your site. Once you do that, your site should build with your vendor folder.
+ 原来是github最近升级了Jekyll，升级之后会默认忽略vendor/vendors文件夹。。这个会直接影响到next主题的显示。
+目前找到了这么几种解决办法：
+ 官方给出的解决办法就是在根目录下添加一个.nojekyll文件，对于hexo的话需要在.deploy_git和public目录下添加，然后hexo d即可。 更新next主题，作者已提交针对此问题的更新。 手动将 source/vendors 目录修改成 source/lib 或者其他的名称；同时，修改下主题配置文件_config.yml， 将 _internal: vendors 改成你所修改的名字  相关链接:</description>
+    </item>
+    
+    <item>
+      <title>hexo迁移心得</title>
+      <link>https://www.takuzen.me/posts/2016-08-26-hexo/</link>
+      <pubDate>Fri, 26 Aug 2016 18:44:24 +0000</pubDate>
+      
+      <guid>https://www.takuzen.me/posts/2016-08-26-hexo/</guid>
+      <description>经过一番折腾，把博客从Jekyll迁移到了Hexo。不得不说Hexo的体验真的不错。有很多jekyll没有的特性。
+skip_render 博客建立完之后想提交readme，结果放在source文件夹下的readme.md总是会被渲染成html。后来发现在根目录的__config.yml里有skip_render这个参数，用来定义不进行解析的文件。
+skip_render: readme.md 生成sitemap 先安装：
+npm install hexo-generator-sitemap --save 然后再根目录的_config.yml里设置：
+sitemap: path: sitemap.xml 多终端同步 平时kubuntu+windows经常切换，两个系统上都有写字的需要。hexo使用自带的d命令部署，提交到github上的是解析之后的文件。网上参考了几种方法，感觉都不太满意。最后我决定创建额外的分支来提交源文件。
+git checkout -b src git add . git commit -m &amp;quot;source branch&amp;quot; git push origin src 根据自己的需要修改.gitignore文件。 在另外的终端下直接clone仓库进行部署就好。然后平时直接在src分支下工作，使用hexo d -g会直接发布到master分支，源文件就通过正常的提交方式提交，两者互不冲突。 当然，写新文字前记着git pull把另外一台机器之前提交的内容更新下来。
+  </description>
+    </item>
+    
+  </channel>
+</rss>
