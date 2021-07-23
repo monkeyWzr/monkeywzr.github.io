@@ -1,32 +1,8 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>c# on マクロス</title>
-    <link>https://www.takuzen.me/tags/c#/</link>
-    <description>Recent content in c# on マクロス</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>呉</copyright>
-    <lastBuildDate>Sat, 31 Oct 2015 09:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://www.takuzen.me/tags/c#/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>C#学习笔记</title>
-      <link>https://www.takuzen.me/posts/2015-10-31-c-sharp-notes/</link>
-      <pubDate>Sat, 31 Oct 2015 09:00:00 +0000</pubDate>
-      
-      <guid>https://www.takuzen.me/posts/2015-10-31-c-sharp-notes/</guid>
-      <description>这里记录的都是与c/c++不太一样的地方，
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>c# on マクロス</title><link>https://www.takuzen.me/tags/c#/</link><description>Recent content in c# on マクロス</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>呉</copyright><lastBuildDate>Sat, 31 Oct 2015 09:00:00 +0000</lastBuildDate><atom:link href="https://www.takuzen.me/tags/c#/index.xml" rel="self" type="application/rss+xml"/><item><title>C#学习笔记</title><link>https://www.takuzen.me/posts/2015-10-31-c-sharp-notes/</link><pubDate>Sat, 31 Oct 2015 09:00:00 +0000</pubDate><guid>https://www.takuzen.me/posts/2015-10-31-c-sharp-notes/</guid><description>这里记录的都是与c/c++不太一样的地方，
 数据类型 值类型 从类System.ValueType中派生，比较独特的有decimal``sbyte; C#提供了内置类型转换的方法，例如ToBoolean``ToInt32``ToString等等。
 可空类型(Nullable) 这个单独列出来了因为很有趣，他是允许值为正常类型范围内或者是null。
- //语法 &amp;lt;date_type&amp;gt; ? &amp;lt;variable_name&amp;gt; = null; int? num1 = null; int? num2 = 250;  Null合并运算符??用于定义可空类型和引用类型的默认值；如果第一个操作数的侍卫null则返回第二个操作数，否则返回第一个操作数的值。
- //继续使用上面的num1和num2 int num3; num3 = num1 ?? 10;//num3 = 10; num3 = num2 ?? 38;//num3 = 250;  引用类型 引用类型不包含储存在变量中的实际数据。内置的引用类型有object``dynamic``string
-  对象(object)类型 object类型是c#通用类型系统CTS中所有数据的终极基类，可以分配任何类型的值。一个值类型转换为对象类型时称为__装箱__，反过来称为__拆箱__;
- object obj； obj = 100;//装箱    动态(Dynamic)类型 类型检查在运行时发生。
- dynamic a = 20;    字符串(String)类型 String是System.String类的别名，从对象类派生。有一个@分配方式（称作逐字字符串）。</description>
-    </item>
-    
-  </channel>
-</rss>
+//语法 &amp;lt;date_type&amp;gt; ? &amp;lt;variable_name&amp;gt; = null; int? num1 = null; int? num2 = 250; Null合并运算符??用于定义可空类型和引用类型的默认值；如果第一个操作数的侍卫null则返回第二个操作数，否则返回第一个操作数的值。
+//继续使用上面的num1和num2 int num3; num3 = num1 ?? 10;//num3 = 10; num3 = num2 ?? 38;//num3 = 250; 引用类型 引用类型不包含储存在变量中的实际数据。内置的引用类型有object``dynamic``string
+对象(object)类型 object类型是c#通用类型系统CTS中所有数据的终极基类，可以分配任何类型的值。一个值类型转换为对象类型时称为__装箱__，反过来称为__拆箱__;
+object obj； obj = 100;//装箱 动态(Dynamic)类型 类型检查在运行时发生。
+dynamic a = 20; 字符串(String)类型 String是System.String类的别名，从对象类派生。有一个@分配方式（称作逐字字符串）。</description></item></channel></rss>

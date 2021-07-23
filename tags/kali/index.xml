@@ -1,38 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>kali on マクロス</title>
-    <link>https://www.takuzen.me/tags/kali/</link>
-    <description>Recent content in kali on マクロス</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>呉</copyright>
-    <lastBuildDate>Sat, 19 Dec 2015 09:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://www.takuzen.me/tags/kali/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>Kali的一些工具</title>
-      <link>https://www.takuzen.me/posts/2015-12-19-tools-of-kali/</link>
-      <pubDate>Sat, 19 Dec 2015 09:00:00 +0000</pubDate>
-      
-      <guid>https://www.takuzen.me/posts/2015-12-19-tools-of-kali/</guid>
-      <description>信息收集 DNS信息  host 查询/etc/resolv.conf中指定的DNS服务器 dig 可处理文件内的所有DNS指令 dnsenum 可通过google搜素子域名；课使用字典对子域名进行暴力破解； dnsdict6 IPv6子域名枚举 fierce 能对不连续的IP空间和主机名进行测试 DMitry 具有DNS分析和路由分析功能，可进行简单端口探测 Maltego 图形化综合工具  路由信息  tcptraceroute 利用TCP SYN数据包进行路由信息探测 tctrace -i -h  搜索引擎  theharvester 通过多个公共资源搜集所需信息（Email、用户名、主机名等） Metagoofil 通过google搜索目标域的文件的元数据信息，kali2默认貌似没有安装  目标识别 识别主机  ping 老朋友。。 ping6 用来ping IPv6 fping 可同时探测多个主机或者整个网段 arping 使用ARP请求检测局域网内主机是否在线，IP或者MAC地址都可作为目标 hping3 端口扫描、防火墙规则检测、IDS检测等，功能强大 nping 支持多种协议探测模式；可做压力测试、ARP中毒、Dos攻击 nbtscan 审计局域网内windows系统IP地址、NetBIOS信息等  识别操作系统  p0f 被动方式探测目标主机 nmap 神器之一  服务枚举 端口扫描  nmap 端口扫描；主机探测；服务/版本检测；操作系统检测；网络路由跟踪；脚本引擎  -sT TCP连接扫描 -sS SYN扫描（半开连接扫描） -sN NULL扫描（不设置任何控制位） -sF FIN扫描 -sM TCP Maimom扫描，常用于探测BSD衍生出来的操作系统 -sA TCP ACK扫描，能检测防火墙，确定定被屏蔽端口 -sW TCP窗口扫描 -sI 通过僵尸主机发动扫描 &amp;ndash;scanflags 自定义URG、ACK、PSH、RST、SYN、FIN、ECE、CWR、ALL和NONE组合 -sU UDP扫描 -sV 服务版识别 -O 识别操作系统 -p 指定端口或端口范围 -F 快速扫描，近扫描常用100个端口 -r 顺序扫描 -oN 正常输出 -oX 将结果生成为XML文件 -A 强力扫描，相当于 -sV -O -sC &amp;ndash;traceroute -sC 使用默认类的脚本进行扫描 相当于&amp;ndash;script=default &amp;ndash;script 根据指定文件名、类别名、目录名执行相应脚本 -f 使用小数据包，避免目标IDS识别 &amp;ndash;mtu 调整数据包大小，必须是8的倍数 -D 在侦测数据包中掺杂一些假源IP的数据包。 -g 模拟源端口 &amp;ndash;data-length 改变数据包默认长度 &amp;ndash;scan-delay 控制发送探测数据的时间间隔   Unicornscna 扫描UDP端口性能卓越 zenmap nmap的图形化扫描工具 amap 检测指定端口上运行的应用程序信息  SNMP枚举  SNMP 简单网络管理协议，运行于161端口的应用层协议，用于网络设备运行状态的监控， SNMP协议有三个版本v1/v2/v3</description>
-    </item>
-    
-    <item>
-      <title>Kali下Metasploit学习笔记</title>
-      <link>https://www.takuzen.me/posts/2015-12-07-metasploit-on-kali/</link>
-      <pubDate>Mon, 07 Dec 2015 09:00:00 +0000</pubDate>
-      
-      <guid>https://www.takuzen.me/posts/2015-12-07-metasploit-on-kali/</guid>
-      <description>启动 使用框架前先开启其几个服务：
-# service postgresql start # msfdb init  注意kali2.0开始不再有metasploit服务，所以官方文档说要用msfdb init代替service metasploit start
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>kali on マクロス</title><link>https://www.takuzen.me/tags/kali/</link><description>Recent content in kali on マクロス</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>呉</copyright><lastBuildDate>Sat, 19 Dec 2015 09:00:00 +0000</lastBuildDate><atom:link href="https://www.takuzen.me/tags/kali/index.xml" rel="self" type="application/rss+xml"/><item><title>Kali的一些工具</title><link>https://www.takuzen.me/posts/2015-12-19-tools-of-kali/</link><pubDate>Sat, 19 Dec 2015 09:00:00 +0000</pubDate><guid>https://www.takuzen.me/posts/2015-12-19-tools-of-kali/</guid><description>信息收集 DNS信息 host 查询/etc/resolv.conf中指定的DNS服务器 dig 可处理文件内的所有DNS指令 dnsenum 可通过google搜素子域名；课使用字典对子域名进行暴力破解； dnsdict6 IPv6子域名枚举 fierce 能对不连续的IP空间和主机名进行测试 DMitry 具有DNS分析和路由分析功能，可进行简单端口探测 Maltego 图形化综合工具 路由信息 tcptraceroute 利用TCP SYN数据包进行路由信息探测 tctrace -i -h 搜索引擎 theharvester 通过多个公共资源搜集所需信息（Email、用户名、主机名等） Metagoofil 通过google搜索目标域的文件的元数据信息，kali2默认貌似没有安装 目标识别 识别主机 ping 老朋友。。 ping6 用来ping IPv6 fping 可同时探测多个主机或者整个网段 arping 使用ARP请求检测局域网内主机是否在线，IP或者MAC地址都可作为目标 hping3 端口扫描、防火墙规则检测、IDS检测等，功能强大 nping 支持多种协议探测模式；可做压力测试、ARP中毒、Dos攻击 nbtscan 审计局域网内windows系统IP地址、NetBIOS信息等 识别操作系统 p0f 被动方式探测目标主机 nmap 神器之一 服务枚举 端口扫描 nmap 端口扫描；主机探测；服务/版本检测；操作系统检测；网络路由跟踪；脚本引擎 -sT TCP连接扫描 -sS SYN扫描（半开连接扫描） -sN NULL扫描（不设置任何控制位） -sF FIN扫描 -sM TCP Maimom扫描，常用于探测BSD衍生出来的操作系统 -sA TCP ACK扫描，能检测防火墙，确定定被屏蔽端口 -sW TCP窗口扫描 -sI 通过僵尸主机发动扫描 &amp;ndash;scanflags 自定义URG、ACK、PSH、RST、SYN、FIN、ECE、CWR、ALL和NONE组合 -sU UDP扫描 -sV 服务版识别 -O 识别操作系统 -p 指定端口或端口范围 -F 快速扫描，近扫描常用100个端口 -r 顺序扫描 -oN 正常输出 -oX 将结果生成为XML文件 -A 强力扫描，相当于 -sV -O -sC &amp;ndash;traceroute -sC 使用默认类的脚本进行扫描 相当于&amp;ndash;script=default &amp;ndash;script 根据指定文件名、类别名、目录名执行相应脚本 -f 使用小数据包，避免目标IDS识别 &amp;ndash;mtu 调整数据包大小，必须是8的倍数 -D 在侦测数据包中掺杂一些假源IP的数据包。 -g 模拟源端口 &amp;ndash;data-length 改变数据包默认长度 &amp;ndash;scan-delay 控制发送探测数据的时间间隔 Unicornscna 扫描UDP端口性能卓越 zenmap nmap的图形化扫描工具 amap 检测指定端口上运行的应用程序信息 SNMP枚举 SNMP 简单网络管理协议，运行于161端口的应用层协议，用于网络设备运行状态的监控， SNMP协议有三个版本v1/v2/v3</description></item><item><title>Kali下Metasploit学习笔记</title><link>https://www.takuzen.me/posts/2015-12-07-metasploit-on-kali/</link><pubDate>Mon, 07 Dec 2015 09:00:00 +0000</pubDate><guid>https://www.takuzen.me/posts/2015-12-07-metasploit-on-kali/</guid><description>启动 使用框架前先开启其几个服务：
+# service postgresql start # msfdb init 注意kali2.0开始不再有metasploit服务，所以官方文档说要用msfdb init代替service metasploit start
 然后启动msf控制台
-# msfconsole  一些命令 workspace -h 帮助 workspace [-a/d/r] 创建/删除/重命名工作平台
-  </description>
-    </item>
-    
-  </channel>
-</rss>
+# msfconsole 一些命令 workspace -h 帮助 workspace [-a/d/r] 创建/删除/重命名工作平台</description></item></channel></rss>

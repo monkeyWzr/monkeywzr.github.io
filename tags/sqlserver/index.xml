@@ -1,48 +1,14 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>SQLServer on マクロス</title>
-    <link>https://www.takuzen.me/tags/sqlserver/</link>
-    <description>Recent content in SQLServer on マクロス</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>呉</copyright>
-    <lastBuildDate>Fri, 09 Oct 2015 09:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://www.takuzen.me/tags/sqlserver/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>SQL Server更改服务器身份验证模式</title>
-      <link>https://www.takuzen.me/posts/2015-10-09-sql-server-change-authentication-mode/</link>
-      <pubDate>Fri, 09 Oct 2015 09:00:00 +0000</pubDate>
-      
-      <guid>https://www.takuzen.me/posts/2015-10-09-sql-server-change-authentication-mode/</guid>
-      <description>使用 SQL Server Management Studio 更改安全身份验证模式   在 SQL Server Management Studio 的对象资源管理器中，右键单击服务器，再单击“属性”。
-  在“安全性”页上的“服务器身份验证”下，选择新的服务器身份验证模式，再单击“确定”。
-  在 SQL Server Management Studio 对话框中，单击“确定”以确认需要重新启动 SQL Server。
-  在对象资源管理器中，右键单击您的服务器，再单击“重新启动”。如果运行有 SQL Server 代理，则也必须重新启动该代理。
-  启用 sa 登录名   在对象资源管理器中，依次展开“安全性”、“登录名”，右键单击“sa”，再单击“属性”。
-  在“常规”页上，您可能需要为登录名创建密码并确认该密码。
-  在“状态”页上的“登录”部分，单击“启用”，然后单击“确定”
-  使用 Transact-SQL 启用 sa 登录名   在“对象资源管理器”中，连接到 数据库引擎的实例。
-  在标准菜单栏上，单击“新建查询”。
-  将以下示例复制并粘贴到查询窗口中，然后单击“执行”。下面的示例启用 sa 登录名并设置一个新密码。
- ALTER LOGIN sa ENABLE ; GO ALTER LOGIN sa WITH PASSWORD = &#39;&amp;lt;enterStrongPasswordHere&amp;gt;&#39; ; GO     相关链接 MSDN-管理数据库引擎服务</description>
-    </item>
-    
-    <item>
-      <title>SQL字符串转换成时间</title>
-      <link>https://www.takuzen.me/posts/2015-11-16-sql-string-to-date/</link>
-      <pubDate>Mon, 03 Aug 2015 09:00:00 +0000</pubDate>
-      
-      <guid>https://www.takuzen.me/posts/2015-11-16-sql-string-to-date/</guid>
-      <description>最近改一个网站，网站的文章顺序总是很奇怪，看代码明明是order by time desc。看了数据库之后发现time列是字符串格式，导致比较的时候2015/11/2会被认为比2015/11/15大。查了一下后将sql语句改为.......order by cast([time] as date) desc 就解决了问题。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>SQLServer on マクロス</title><link>https://www.takuzen.me/tags/sqlserver/</link><description>Recent content in SQLServer on マクロス</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>呉</copyright><lastBuildDate>Fri, 09 Oct 2015 09:00:00 +0000</lastBuildDate><atom:link href="https://www.takuzen.me/tags/sqlserver/index.xml" rel="self" type="application/rss+xml"/><item><title>SQL Server更改服务器身份验证模式</title><link>https://www.takuzen.me/posts/2015-10-09-sql-server-change-authentication-mode/</link><pubDate>Fri, 09 Oct 2015 09:00:00 +0000</pubDate><guid>https://www.takuzen.me/posts/2015-10-09-sql-server-change-authentication-mode/</guid><description>使用 SQL Server Management Studio 更改安全身份验证模式 在 SQL Server Management Studio 的对象资源管理器中，右键单击服务器，再单击“属性”。
+在“安全性”页上的“服务器身份验证”下，选择新的服务器身份验证模式，再单击“确定”。
+在 SQL Server Management Studio 对话框中，单击“确定”以确认需要重新启动 SQL Server。
+在对象资源管理器中，右键单击您的服务器，再单击“重新启动”。如果运行有 SQL Server 代理，则也必须重新启动该代理。
+启用 sa 登录名 在对象资源管理器中，依次展开“安全性”、“登录名”，右键单击“sa”，再单击“属性”。
+在“常规”页上，您可能需要为登录名创建密码并确认该密码。
+在“状态”页上的“登录”部分，单击“启用”，然后单击“确定”
+使用 Transact-SQL 启用 sa 登录名 在“对象资源管理器”中，连接到 数据库引擎的实例。
+在标准菜单栏上，单击“新建查询”。
+将以下示例复制并粘贴到查询窗口中，然后单击“执行”。下面的示例启用 sa 登录名并设置一个新密码。
+ALTER LOGIN sa ENABLE ; GO ALTER LOGIN sa WITH PASSWORD = '&amp;lt;enterStrongPasswordHere&amp;gt;' ; GO 相关链接 MSDN-管理数据库引擎服务</description></item><item><title>SQL字符串转换成时间</title><link>https://www.takuzen.me/posts/2015-11-16-sql-string-to-date/</link><pubDate>Mon, 03 Aug 2015 09:00:00 +0000</pubDate><guid>https://www.takuzen.me/posts/2015-11-16-sql-string-to-date/</guid><description>最近改一个网站，网站的文章顺序总是很奇怪，看代码明明是order by time desc。看了数据库之后发现time列是字符串格式，导致比较的时候2015/11/2会被认为比2015/11/15大。查了一下后将sql语句改为.......order by cast([time] as date) desc 就解决了问题。
 SQL Server支持的两个转换函数：
- CAST ( expression AS data_type [ ( length ) ] ) CONVERT ( data_type [ ( length ) ] , expression [ , style ] )  还有几个其他的转换函数，详细内容请见相关链接。
- 相关链接 date (Transact-SQL) - MSDN - Microsoft CAST 和 CONVERT (Transact-SQL)
-   </description>
-    </item>
-    
-  </channel>
-</rss>
+CAST ( expression AS data_type [ ( length ) ] ) CONVERT ( data_type [ ( length ) ] , expression [ , style ] ) 还有几个其他的转换函数，详细内容请见相关链接。
+相关链接 date (Transact-SQL) - MSDN - Microsoft CAST 和 CONVERT (Transact-SQL)</description></item></channel></rss>

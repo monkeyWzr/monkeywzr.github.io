@@ -1,119 +1,34 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>php on マクロス</title>
-    <link>https://www.takuzen.me/tags/php/</link>
-    <description>Recent content in php on マクロス</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>呉</copyright>
-    <lastBuildDate>Sun, 03 Sep 2017 04:02:29 +0000</lastBuildDate>
-    
-	<atom:link href="https://www.takuzen.me/tags/php/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>用php://input代替php的$HTTP_RAW_POST_DATA全局变量</title>
-      <link>https://www.takuzen.me/posts/2017-09-03-php-http-raw-post-data-feature-md/</link>
-      <pubDate>Sun, 03 Sep 2017 04:02:29 +0000</pubDate>
-      
-      <guid>https://www.takuzen.me/posts/2017-09-03-php-http-raw-post-data-feature-md/</guid>
-      <description>最近在开发一个小微信应用时，发现使用原来的工具代码总是获取不到微信服务器发来的数据。原来的代码中使用$GLOBALS[&amp;quot;HTTP_RAW_POST_DATA&amp;quot;]的方式获取post提交的数据。查了查才发现，HTTP_RAW_POST_DATA 早在php 5.6.0时就已经废弃，到了7.0.0版本已经移除。我的服务器上php是7.0版本，难怪会发生这样的问题。文档中推荐使用php://input的方式代替$HTTP_RAW_POST_DATA获取post数据。
-$postdata = file_get_contents(&amp;#34;php://input&amp;#34;);  php://input 是个可以访问请求的原始数据的只读流。 POST 请求的情况下，最好使用 php://input 来代替 $HTTP_RAW_POST_DATA，因为它不依赖于特定的 php.ini 指令。 而且，这样的情况下 $HTTP_RAW_POST_DATA 默认没有填充， 比激活 always_populate_raw_post_data 潜在需要更少的内存。 enctype=&amp;quot;multipart/form-data&amp;rdquo; 的时候 php://input 是无效的。
- 这其实算是自己的问题了。。想偷懒不及时了解php的版本变动真是使不得&amp;gt;&amp;lt;
-  </description>
-    </item>
-    
-    <item>
-      <title>有关php内建函数复杂度的一点探究</title>
-      <link>https://www.takuzen.me/posts/2017-03-05-performance-of-php-built-in-functions/</link>
-      <pubDate>Sun, 05 Mar 2017 00:16:38 +0000</pubDate>
-      
-      <guid>https://www.takuzen.me/posts/2017-03-05-performance-of-php-built-in-functions/</guid>
-      <description>在用php实现CtCI里面的习题时，算法中常常要用到array_key_exists()方法。然而通常在数组中检索的复杂度为O(n)，那么这是否会对php实现的算法产生比较大的影响呢？
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>php on マクロス</title><link>https://www.takuzen.me/tags/php/</link><description>Recent content in php on マクロス</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>呉</copyright><lastBuildDate>Sun, 03 Sep 2017 04:02:29 +0000</lastBuildDate><atom:link href="https://www.takuzen.me/tags/php/index.xml" rel="self" type="application/rss+xml"/><item><title>用php://input代替php的$HTTP_RAW_POST_DATA全局变量</title><link>https://www.takuzen.me/posts/2017-09-03-php-http-raw-post-data-feature-md/</link><pubDate>Sun, 03 Sep 2017 04:02:29 +0000</pubDate><guid>https://www.takuzen.me/posts/2017-09-03-php-http-raw-post-data-feature-md/</guid><description>最近在开发一个小微信应用时，发现使用原来的工具代码总是获取不到微信服务器发来的数据。原来的代码中使用$GLOBALS[&amp;quot;HTTP_RAW_POST_DATA&amp;quot;]的方式获取post提交的数据。查了查才发现，HTTP_RAW_POST_DATA 早在php 5.6.0时就已经废弃，到了7.0.0版本已经移除。我的服务器上php是7.0版本，难怪会发生这样的问题。文档中推荐使用php://input的方式代替$HTTP_RAW_POST_DATA获取post数据。
+$postdata = file_get_contents(&amp;#34;php://input&amp;#34;); php://input 是个可以访问请求的原始数据的只读流。 POST 请求的情况下，最好使用 php://input 来代替 $HTTP_RAW_POST_DATA，因为它不依赖于特定的 php.ini 指令。 而且，这样的情况下 $HTTP_RAW_POST_DATA 默认没有填充， 比激活 always_populate_raw_post_data 潜在需要更少的内存。 enctype=&amp;ldquo;multipart/form-data&amp;rdquo; 的时候 php://input 是无效的。
+这其实算是自己的问题了。。想偷懒不及时了解php的版本变动真是使不得&amp;gt;&amp;lt;</description></item><item><title>有关php内建函数复杂度的一点探究</title><link>https://www.takuzen.me/posts/2017-03-05-performance-of-php-built-in-functions/</link><pubDate>Sun, 05 Mar 2017 00:16:38 +0000</pubDate><guid>https://www.takuzen.me/posts/2017-03-05-performance-of-php-built-in-functions/</guid><description>在用php实现CtCI里面的习题时，算法中常常要用到array_key_exists()方法。然而通常在数组中检索的复杂度为O(n)，那么这是否会对php实现的算法产生比较大的影响呢？
 在php的 manual 中有人提到，isset()比array_key_exists()快的多，但是两者对null的处理方式是不一样的。
 &amp;lt;?php //test.php $t[&amp;#39;a&amp;#39;] = null; if (isset($t[&amp;#39;a&amp;#39;])) echo &amp;#34;a is set\n&amp;#34;; else echo &amp;#34;a is not set\n&amp;#34;; if (array_key_exists(&amp;#39;a&amp;#39;, $t)) echo &amp;#34;a exists\n&amp;#34;; else echo &amp;#34;a doesn&amp;#39;t exists\n&amp;#34;; // 运行上面的代码，会输出： // a is not set // a exists 在开发中可以采用如下方法：
 if (isset(..) || array_key_exists(...)) { ... } 大大提升了运行速度又保证了结果。
- Benchmark (100000 runs): array_key_exists() : 205 ms is_set() : 35ms isset() || array_key_exists() : 48ms
- 另外 stackoverflow 上有人对array_*的复杂度做过一番调查：</description>
-    </item>
-    
-    <item>
-      <title>php的闭包特性</title>
-      <link>https://www.takuzen.me/posts/2017-01-11-php-lambada/</link>
-      <pubDate>Wed, 11 Jan 2017 18:39:17 +0000</pubDate>
-      
-      <guid>https://www.takuzen.me/posts/2017-01-11-php-lambada/</guid>
-      <description>闭包和匿名函数在PHP 5.3.0引入，并且PHP将两者视为相同的概念。闭包其实是伪装成函数的对象，它的实质其实是Closure实例。
+Benchmark (100000 runs): array_key_exists() : 205 ms is_set() : 35ms isset() || array_key_exists() : 48ms
+另外 stackoverflow 上有人对array_*的复杂度做过一番调查：</description></item><item><title>php的闭包特性</title><link>https://www.takuzen.me/posts/2017-01-11-php-lambada/</link><pubDate>Wed, 11 Jan 2017 18:39:17 +0000</pubDate><guid>https://www.takuzen.me/posts/2017-01-11-php-lambada/</guid><description>闭包和匿名函数在PHP 5.3.0引入，并且PHP将两者视为相同的概念。闭包其实是伪装成函数的对象，它的实质其实是Closure实例。
 创建闭包非常简单：
 $c = function($name) { return sprintf(&amp;#34;Hello World! Hello %s!&amp;#34;, $name); }; echo $c(&amp;#39;PHP&amp;#39;); 使用use对闭包附加状态，多个参数使用,分隔：
 function callPerson($name) { return function($about) use ($name) { return sprintf(&amp;#34;%s, %s&amp;#34;, $name, $about); } } $triver = callPerson(&amp;#39;Triver&amp;#39;); echo $triver(&amp;#34;slow down, please!!&amp;#34;); 附加的变量会被封装到闭包内，即使返回的闭包队形已经跳出了callPerson()的作用域也仍然会记住$name的值。
 闭包有一个有趣的bindTo()方法，可以将闭包的内部状态绑定到其他对象上，第二个参数指定了绑定闭包的对象所属的类，从而实现在闭包中访问绑定对象的私有方法和属性。
-class Bind { protected $name = &amp;#39;no name&amp;#39;; public $change; public function addAction($action) { $this-&amp;gt;change = $action-&amp;gt;bindTo($this, __CLASS__); } } $bind = new Bind(); $bind-&amp;gt;addAction(function() { $this-&amp;gt;name = &amp;#34;php&amp;#34;; return $this-&amp;gt;name; }); $change = $bind-&amp;gt;change; echo $change(); 使用这个特性可以方便的为类添加方法并绑定：</description>
-    </item>
-    
-    <item>
-      <title>composer中的autoload</title>
-      <link>https://www.takuzen.me/posts/2016-11-05-php-composer-autoload/</link>
-      <pubDate>Sat, 05 Nov 2016 02:42:06 +0000</pubDate>
-      
-      <guid>https://www.takuzen.me/posts/2016-11-05-php-composer-autoload/</guid>
-      <description>composer的autoload可以轻松的实现php的自动加载。在composer.json中添加autoload字段即可。当前支持 PSR-0 PSR-4 classmap解析和files包含。官方推荐PSR-4标准（添加类时不需要重新生成加载器）。
-PSR-4 Under the psr-4 key you define a mapping from namespaces to paths, relative to the package root. When autoloading a class like Foo\\Bar\\Baz a namespace prefix Foo\\ pointing to a directory src/ means that the autoloader will look for a file named src/Bar/Baz.php and include it if present. Note that as opposed to the older PSR-0 style, the prefix (Foo\\) is not present in the file path.</description>
-    </item>
-    
-    <item>
-      <title>laravel 5.2 事件广播</title>
-      <link>https://www.takuzen.me/posts/2016-10-08-laravel-event-broadcast/</link>
-      <pubDate>Sat, 08 Oct 2016 00:38:47 +0000</pubDate>
-      
-      <guid>https://www.takuzen.me/posts/2016-10-08-laravel-event-broadcast/</guid>
-      <description>简介 Laravel 事件提供了简单的观察者模式实现，允许你订阅和监听应用中的事件。事件类通常存放在 app/Events 目录，监听器存放在 app/Listeners。
+class Bind { protected $name = &amp;#39;no name&amp;#39;; public $change; public function addAction($action) { $this-&amp;gt;change = $action-&amp;gt;bindTo($this, __CLASS__); } } $bind = new Bind(); $bind-&amp;gt;addAction(function() { $this-&amp;gt;name = &amp;#34;php&amp;#34;; return $this-&amp;gt;name; }); $change = $bind-&amp;gt;change; echo $change(); 使用这个特性可以方便的为类添加方法并绑定：</description></item><item><title>composer中的autoload</title><link>https://www.takuzen.me/posts/2016-11-05-php-composer-autoload/</link><pubDate>Sat, 05 Nov 2016 02:42:06 +0000</pubDate><guid>https://www.takuzen.me/posts/2016-11-05-php-composer-autoload/</guid><description>composer的autoload可以轻松的实现php的自动加载。在composer.json中添加autoload字段即可。当前支持 PSR-0 PSR-4 classmap解析和files包含。官方推荐PSR-4标准（添加类时不需要重新生成加载器）。
+PSR-4 Under the psr-4 key you define a mapping from namespaces to paths, relative to the package root. When autoloading a class like Foo\\Bar\\Baz a namespace prefix Foo\\ pointing to a directory src/ means that the autoloader will look for a file named src/Bar/Baz.php and include it if present. Note that as opposed to the older PSR-0 style, the prefix (Foo\\) is not present in the file path.</description></item><item><title>laravel 5.2 事件广播</title><link>https://www.takuzen.me/posts/2016-10-08-laravel-event-broadcast/</link><pubDate>Sat, 08 Oct 2016 00:38:47 +0000</pubDate><guid>https://www.takuzen.me/posts/2016-10-08-laravel-event-broadcast/</guid><description>简介 Laravel 事件提供了简单的观察者模式实现，允许你订阅和监听应用中的事件。事件类通常存放在 app/Events 目录，监听器存放在 app/Listeners。
 配置 所有的事件广播配置选项都存放在 config/broadcasting.php 配置文件中。Laravel 支持多种广播驱动：Pusher、Redis以及一个服务于本地开发和调试的Log日志驱动。每一个驱动都已经有一个配置示例。基本上所有配置信息全可以在.env中指定，不需要改动broadcasting.php配置文件，如：
 #在.env中配置驱动 BROADCAST_DRIVER=redis 注册事件和监听器 Laravel 自带的 EventServiceProvider（在 app/Providers/EventServiceProvider.php 中） 为事件注册提供了方便之所。其中的 listen 属性包含了事件（键）和对应监听器（值）数组。如果应用需要，你可以添加多个事件到该数组。例如，让我们添加 SomeEvent 事件：
-/** * 事件监听器映射 * * @var array */ protected $listen = [ &#39;App\Events\SomeEvent&#39; =&amp;gt; [ &#39;App\Listeners\SomeEventListener&#39;, ], ]; 接下来使用event:generate命令生成对应的事件和监听器：
+/** * 事件监听器映射 * * @var array */ protected $listen = [ 'App\Events\SomeEvent' =&amp;gt; [ 'App\Listeners\SomeEventListener', ], ]; 接下来使用event:generate命令生成对应的事件和监听器：
 php artisan event:generate 执行后将会创建app/Events/SomeEvent.php 和 app/Listener/SomeEventListener.php。
- 除了上面在 EventServiceProvider 中注册事件的方式，还可以使用 Event 门面或者 Illuminate\Contracts\Events\Dispatcher 契约的具体实现类作为事件分发器手动注册事件：
- /** * Register any other events for your application. * * @param \Illuminate\Contracts\Events\Dispatcher $events * @return void */ public function boot(DispatcherContract $events) { parent::boot($events); $events-&amp;gt;listen(&#39;event.</description>
-    </item>
-    
-    <item>
-      <title>ioc要点简记</title>
-      <link>https://www.takuzen.me/posts/2016-08-24-ioc-notes/</link>
-      <pubDate>Wed, 24 Aug 2016 01:50:45 +0000</pubDate>
-      
-      <guid>https://www.takuzen.me/posts/2016-08-24-ioc-notes/</guid>
-      <description>文中资料出处： 浅谈IOC&amp;ndash;说清楚IOC是什么 浅谈 Laravel 设计模式 深度理解依赖注入
- IOC的含义  IOC是Inversion of Control的缩写，多数书籍翻译成“控制反转”。
- 面向对象设计及编程的基本思想简单来说就是把复杂系统分解成相互合作的对象，这些对象类通过封装以后，内部实现对外部是透明的，从而降低了解决问题的复杂度，而且可以灵活地被重用和扩展。
+除了上面在 EventServiceProvider 中注册事件的方式，还可以使用 Event 门面或者 Illuminate\Contracts\Events\Dispatcher 契约的具体实现类作为事件分发器手动注册事件：
+/** * Register any other events for your application. * * @param \Illuminate\Contracts\Events\Dispatcher $events * @return void */ public function boot(DispatcherContract $events) { parent::boot($events); $events-&amp;gt;listen('event.</description></item><item><title>ioc要点简记</title><link>https://www.takuzen.me/posts/2016-08-24-ioc-notes/</link><pubDate>Wed, 24 Aug 2016 01:50:45 +0000</pubDate><guid>https://www.takuzen.me/posts/2016-08-24-ioc-notes/</guid><description>文中资料出处： 浅谈IOC&amp;ndash;说清楚IOC是什么 浅谈 Laravel 设计模式 深度理解依赖注入
+IOC的含义 IOC是Inversion of Control的缩写，多数书籍翻译成“控制反转”。
+面向对象设计及编程的基本思想简单来说就是把复杂系统分解成相互合作的对象，这些对象类通过封装以后，内部实现对外部是透明的，从而降低了解决问题的复杂度，而且可以灵活地被重用和扩展。
 在面向对象设计的软件系统中，它的底层都是由N个对象构成的，各个对象之间通过相互合作，最终实现系统地业务逻辑。 伴随着应用的规模越来越庞大，对象之间的依赖关系也越来越复杂，经常会出现对象之间的多重依赖性关系，因此，对象之间耦合度过高的系统，必然会出现牵一发而动全身的情形。
 IOC理论提出的观点大体是这样的：借助于“第三方”实现具有依赖关系的对象之间的解耦。 由图可以看出，系统增加了在中间位置的第三方。此时构成系统的各个部分并没有耦合关系，而是是借助这个第三方来互相粘合。这个第三方也就是IOC容器的作用。在容器的穿针引线下，系统的各个部分才能结合起来发挥作用。如果图中没有IOC容器这个第三方存在，系统的各个部件彼此毫无联系。也就是说，在实现与变更A的时候，完全不用考虑与其他部件之间的影响。 这也就是IOC（控制反转）这个名字的含义： 软件系统在没有引入IOC容器之前，对象A依赖于对象B，那么对象A在初始化或者运行到某一点的时候，自己必须主动去创建对象B或者使用已经创建的对象B。无论是创建还是使用对象B，控制权都在自己手上。 软件系统在引入IOC容器之后，对象A与对象B之间失去了直接联系，所以，当对象A运行到需要对象B的时候，IOC容器会主动创建一个对象B注入到对象A需要的地方。
-//主动依赖 function __construct() { $this-&amp;gt;user = new UserModel(); } //被动依赖 function __construct(UserModel $user) { $this-&amp;gt;user = $user; }  IOC中最基本的技术就是 反射(Reflection) 编程。反射通俗来讲就是根据给出的类名（字符串方式）来动态地生成对象。这种编程方式可以让对象在生成时才决定到底是哪一种对象。很多框架中都是把“反射”做为最基本的技术手段。
-IOC的优缺点 优点  flexibility  changing the implementation class for a widely used interface is simpler (e.g. replace a mock web service by the production instance) changing the retrieval strategy for a given class is simpler (e.</description>
-    </item>
-    
-    <item>
-      <title>laravel设计模式</title>
-      <link>https://www.takuzen.me/posts/2016-08-20-laravel-design-patterns/</link>
-      <pubDate>Sat, 20 Aug 2016 23:29:17 +0000</pubDate>
-      
-      <guid>https://www.takuzen.me/posts/2016-08-20-laravel-design-patterns/</guid>
-      <description>DI与IOC laravel中实现了DI依赖注入，如：
-class UserController { private $user; function __construct(UserModel $user) { $this-&amp;gt;user = $user; } } $user = new UserController(new UserMonel()); UserController依赖UserModel，在实例化时，laravel会自动主注入UserModel实例。
-  </description>
-    </item>
-    
-    <item>
-      <title>composer用法</title>
-      <link>https://www.takuzen.me/posts/2016-07-10-composer-usages/</link>
-      <pubDate>Sun, 10 Jul 2016 12:21:46 +0000</pubDate>
-      
-      <guid>https://www.takuzen.me/posts/2016-07-10-composer-usages/</guid>
-      <description>composer.json 要开始在你的项目中使用 Composer，你只需要一个composer.json文件。该文件包含了项目的依赖和其它的一些元数据。
+//主动依赖 function __construct() { $this-&amp;gt;user = new UserModel(); } //被动依赖 function __construct(UserModel $user) { $this-&amp;gt;user = $user; } IOC中最基本的技术就是 反射(Reflection) 编程。反射通俗来讲就是根据给出的类名（字符串方式）来动态地生成对象。这种编程方式可以让对象在生成时才决定到底是哪一种对象。很多框架中都是把“反射”做为最基本的技术手段。
+IOC的优缺点 优点 flexibility changing the implementation class for a widely used interface is simpler (e.g. replace a mock web service by the production instance) changing the retrieval strategy for a given class is simpler (e.</description></item><item><title>laravel设计模式</title><link>https://www.takuzen.me/posts/2016-08-20-laravel-design-patterns/</link><pubDate>Sat, 20 Aug 2016 23:29:17 +0000</pubDate><guid>https://www.takuzen.me/posts/2016-08-20-laravel-design-patterns/</guid><description>DI与IOC laravel中实现了DI依赖注入，如：
+class UserController { private $user; function __construct(UserModel $user) { $this-&amp;gt;user = $user; } } $user = new UserController(new UserMonel()); UserController依赖UserModel，在实例化时，laravel会自动主注入UserModel实例。</description></item><item><title>composer用法</title><link>https://www.takuzen.me/posts/2016-07-10-composer-usages/</link><pubDate>Sun, 10 Jul 2016 12:21:46 +0000</pubDate><guid>https://www.takuzen.me/posts/2016-07-10-composer-usages/</guid><description>composer.json 要开始在你的项目中使用 Composer，你只需要一个composer.json文件。该文件包含了项目的依赖和其它的一些元数据。
 首先需要指定require key的值
 { &amp;quot;require&amp;quot;: { &amp;quot;monolog/monolog&amp;quot;: &amp;quot;1.0.*&amp;quot; } &amp;quot;require-dev&amp;quot;: { &amp;quot;phpunit/phpunit&amp;quot;: &amp;quot;4.8.*&amp;quot; } } require属性列出组件依赖的组件，require-dev属性列出的是开发时所需依赖，在生产环境下不会安装。
 包名 包名应该包含供应商名和项目名
-包版本  指定版本号 1.0.2，1.0.0-dev，1.0.0-alpha3 范围 &amp;gt;=1.0 &amp;gt;=1.0,&amp;lt;2.0 &amp;gt;=1.0,&amp;lt;1.1|&amp;gt;=1.2 ,的优先级高于| 通配符 1.0.* 赋值运算符 ~1.2 相当于&amp;gt;=1.2,&amp;lt;2.0 允许依赖不稳定包 @beta @dev  形如1.0.*@beta，或者dev-master#2eb0c0978d290a1c45346a1955188929cb4e5db7这种明确了版本号的也是支持的。
+包版本 指定版本号 1.0.2，1.0.0-dev，1.0.0-alpha3 范围 &amp;gt;=1.0 &amp;gt;=1.0,&amp;lt;2.0 &amp;gt;=1.0,&amp;lt;1.1|&amp;gt;=1.2 ,的优先级高于| 通配符 1.0.* 赋值运算符 ~1.2 相当于&amp;gt;=1.2,&amp;lt;2.0 允许依赖不稳定包 @beta @dev 形如1.0.*@beta，或者dev-master#2eb0c0978d290a1c45346a1955188929cb4e5db7这种明确了版本号的也是支持的。
 波浪号运算符的意义在于，防止大版本更新而产生的兼容性问题。
 Dist dist 指向一个存档，该存档是对一个资源包的某个版本的数据进行的打包。通常是已经发行的稳定版本。
 Source source 指向一个开发中的源。这通常是一个源代码仓库，例如git。当你想要对下载下来的资源包进行修改时，可以这样获取。
@@ -121,18 +36,5 @@ Source source 指向一个开发中的源。这通常是一个源代码仓库，
 repositories 默认情况下 composer 只使用 packagist 作为包的资源库。通过指定资源库，你可以从其他地方获取资源包。
 Repositories 并不是递归调用的，只能在Root包的 composer.json 中定义。附属包中的 composer.json 将被忽略。
 支持一下类型的资源库：
- composer: 一个 composer 类型的资源库，是一个简单的网络服务器（HTTP、FTP、SSH）上的 packages.json 文件，它包含一个 composer.json 对象的列表，有额外的 dist 和/或 source 信息。这个 packages.</description>
-    </item>
-    
-    <item>
-      <title>php几种设计模式</title>
-      <link>https://www.takuzen.me/posts/2016-04-18-php-design-pattern/</link>
-      <pubDate>Mon, 18 Apr 2016 09:00:00 +0000</pubDate>
-      
-      <guid>https://www.takuzen.me/posts/2016-04-18-php-design-pattern/</guid>
-      <description>php设计模式 单例模式 多例模式 代理模式 代理模式实际上就是解决了在有些不适合继承的情况下使用方法的问题。在proxy类中实现__call()方法调用被代理类的方法。
-外观模式（facade） 装饰者模式(decorator) 工厂模式 观察者模式 发布者/订阅者模式 </description>
-    </item>
-    
-  </channel>
-</rss>
+composer: 一个 composer 类型的资源库，是一个简单的网络服务器（HTTP、FTP、SSH）上的 packages.json 文件，它包含一个 composer.json 对象的列表，有额外的 dist 和/或 source 信息。这个 packages.</description></item><item><title>php几种设计模式</title><link>https://www.takuzen.me/posts/2016-04-18-php-design-pattern/</link><pubDate>Mon, 18 Apr 2016 09:00:00 +0000</pubDate><guid>https://www.takuzen.me/posts/2016-04-18-php-design-pattern/</guid><description>php设计模式 单例模式 多例模式 代理模式 代理模式实际上就是解决了在有些不适合继承的情况下使用方法的问题。在proxy类中实现__call()方法调用被代理类的方法。
+外观模式（facade） 装饰者模式(decorator) 工厂模式 观察者模式 发布者/订阅者模式</description></item></channel></rss>

@@ -1,449 +1,321 @@
-<!DOCTYPE html>
-<html lang="en-us">
+<!doctype html><html lang=en-us>
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title> 提升ListView的效率 | マクロス</title>
-  <meta name="description" content="勉強中">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="all,follow">
-  <meta name="googlebot" content="index,follow,snippet,archive">
-  <meta property="og:title" content="提升ListView的效率" />
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<title> 提升ListView的效率 | マクロス</title>
+<meta name=description content="勉強中">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=robots content="all,follow">
+<meta name=googlebot content="index,follow,snippet,archive">
+<meta property="og:title" content="提升ListView的效率">
 <meta property="og:description" content="利用好getView中的convertView参数 getView()方法中有一个convertView参数用来缓存已经加载好的布局，从而我们可以在代码中对布局进行重用：
 public View getView(int position, View convertView, ViewGroup parent) { View view = convertView; if (view == null) view = LayoutInflater.from(getContext()).inflate(resorceId, parent, false); // ... } 使用ViewHolder 定义ViewHolder来存储已经获取的Views实例。
-class ViewHolder { TextView textView; ImageView imageView; // ... } public View getView(int position, View convertView, ViewGroup parent) { View view = convertView; VIewHolder holder; if (view == null) { view = LayoutInflater.from(getContext()).inflate(resorceId, parent, false); holder = new ViewHolder(); // save views to the holder." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.takuzen.me/posts/2017-10-04-making-listview-scrolling-smooth/" />
-<meta property="article:published_time" content="2017-10-04T04:52:18+00:00" />
-<meta property="article:modified_time" content="2017-10-04T04:52:18+00:00" />
-
-  <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="提升ListView的效率"/>
-<meta name="twitter:description" content="利用好getView中的convertView参数 getView()方法中有一个convertView参数用来缓存已经加载好的布局，从而我们可以在代码中对布局进行重用：
+class ViewHolder { TextView textView; ImageView imageView; // ... } public View getView(int position, View convertView, ViewGroup parent) { View view = convertView; VIewHolder holder; if (view == null) { view = LayoutInflater.from(getContext()).inflate(resorceId, parent, false); holder = new ViewHolder(); // save views to the holder.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://www.takuzen.me/posts/2017-10-04-making-listview-scrolling-smooth/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2017-10-04T04:52:18+00:00">
+<meta property="article:modified_time" content="2017-10-04T04:52:18+00:00">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="提升ListView的效率">
+<meta name=twitter:description content="利用好getView中的convertView参数 getView()方法中有一个convertView参数用来缓存已经加载好的布局，从而我们可以在代码中对布局进行重用：
 public View getView(int position, View convertView, ViewGroup parent) { View view = convertView; if (view == null) view = LayoutInflater.from(getContext()).inflate(resorceId, parent, false); // ... } 使用ViewHolder 定义ViewHolder来存储已经获取的Views实例。
-class ViewHolder { TextView textView; ImageView imageView; // ... } public View getView(int position, View convertView, ViewGroup parent) { View view = convertView; VIewHolder holder; if (view == null) { view = LayoutInflater.from(getContext()).inflate(resorceId, parent, false); holder = new ViewHolder(); // save views to the holder."/>
-
-  
-  
-    
-  
-  
-  <link rel="stylesheet" href="https://www.takuzen.me/css/style-white.css">
-  
-  
-  
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  
-
-  
-<link rel="icon" type="image/png" href="https://www.takuzen.me/images/favicon.ico" />
-
-  
-  
-  
-  
-  
-    
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-83047470-2', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
-  
-  
+class ViewHolder { TextView textView; ImageView imageView; // ... } public View getView(int position, View convertView, ViewGroup parent) { View view = convertView; VIewHolder holder; if (view == null) { view = LayoutInflater.from(getContext()).inflate(resorceId, parent, false); holder = new ViewHolder(); // save views to the holder.">
+<link rel=stylesheet href=https://www.takuzen.me/css/style-white.css><!--[if lt IE 9]><script src=https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js></script>
+<script src=https://oss.maxcdn.com/respond/1.4.2/respond.min.js></script><![endif]-->
+<link rel=icon type=image/png href=https://www.takuzen.me/images/favicon.ico>
+<script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','UA-83047470-2','auto'),ga('send','pageview'))</script>
+<script async src=https://www.google-analytics.com/analytics.js></script>
 </head>
-
 <body class="max-width mx-auto px3 ltr">
-  <div class="content index py4">
-
-  <div id="header-post">
-  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
-  <span id="menu">
-    <span id="nav">
-      <ul>
-         
-        <li><a href="/">Home</a></li>
-         
-        <li><a href="/posts">Writings</a></li>
-         
-        <li><a href="/tags">Tags</a></li>
-         
-        <li><a href="/about">About</a></li>
-        
-      </ul>
-    </span>
-    <br/>
-    <span id="actions">
-      <ul>
-        
-        <li>
-          <a class="icon" href=" https://www.takuzen.me/posts/2017-09-29-mvp-in-android/">
-            <i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i>
-          </a>
-        </li>
-        
-        
-        <li>
-          <a class="icon" href="https://www.takuzen.me/posts/2017-10-08-get-selected-text-from-webview/">
-            <i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i>
-          </a>
-        </li>
-        
-        <li>
-          <a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');">
-            <i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i>
-          </a>
-        </li>
-        <li>
-          <a class="icon" href="#">
-            <i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i>
-          </a>
-        </li>
-      </ul>
-      <span id="i-prev" class="info" style="display:none;">Previous post</span>
-      <span id="i-next" class="info" style="display:none;">Next post</span>
-      <span id="i-top" class="info" style="display:none;">Back to top</span>
-      <span id="i-share" class="info" style="display:none;">Share post</span>
-    </span>
-    <br/>
-    <div id="share" style="display: none">
-      
-      <ul>
-  
-  
-    
-  
-  
-  <li>
-    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fwww.takuzen.me%2fposts%2f2017-10-04-making-listview-scrolling-smooth%2f">
-      <i class="fab fa-facebook " aria-hidden="true"></i>
-    </a>
-  </li>
-  <li>
-    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2017-10-04-making-listview-scrolling-smooth%2f&text=%e6%8f%90%e5%8d%87ListView%e7%9a%84%e6%95%88%e7%8e%87">
-      <i class="fab fa-twitter " aria-hidden="true"></i>
-    </a>
-  </li>
-  <li>
-    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2017-10-04-making-listview-scrolling-smooth%2f&title=%e6%8f%90%e5%8d%87ListView%e7%9a%84%e6%95%88%e7%8e%87">
-      <i class="fab fa-linkedin " aria-hidden="true"></i>
-    </a>
-  </li>
-  <li>
-    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2017-10-04-making-listview-scrolling-smooth%2f&is_video=false&description=%e6%8f%90%e5%8d%87ListView%e7%9a%84%e6%95%88%e7%8e%87">
-      <i class="fab fa-pinterest " aria-hidden="true"></i>
-    </a>
-  </li>
-  <li>
-    <a class="icon" href="mailto:?subject=%e6%8f%90%e5%8d%87ListView%e7%9a%84%e6%95%88%e7%8e%87&body=Check out this article: https%3a%2f%2fwww.takuzen.me%2fposts%2f2017-10-04-making-listview-scrolling-smooth%2f">
-      <i class="fas fa-envelope " aria-hidden="true"></i>
-    </a>
-  </li>
-  <li>
-    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2017-10-04-making-listview-scrolling-smooth%2f&title=%e6%8f%90%e5%8d%87ListView%e7%9a%84%e6%95%88%e7%8e%87">
-      <i class="fab fa-get-pocket " aria-hidden="true"></i>
-    </a>
-  </li>
-  <li>
-    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2017-10-04-making-listview-scrolling-smooth%2f&title=%e6%8f%90%e5%8d%87ListView%e7%9a%84%e6%95%88%e7%8e%87">
-      <i class="fab fa-reddit " aria-hidden="true"></i>
-    </a>
-  </li>
-  <li>
-    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2017-10-04-making-listview-scrolling-smooth%2f&name=%e6%8f%90%e5%8d%87ListView%e7%9a%84%e6%95%88%e7%8e%87&description=%e5%88%a9%e7%94%a8%e5%a5%bdgetView%e4%b8%ad%e7%9a%84convertView%e5%8f%82%e6%95%b0%20getView%28%29%e6%96%b9%e6%b3%95%e4%b8%ad%e6%9c%89%e4%b8%80%e4%b8%aaconvertView%e5%8f%82%e6%95%b0%e7%94%a8%e6%9d%a5%e7%bc%93%e5%ad%98%e5%b7%b2%e7%bb%8f%e5%8a%a0%e8%bd%bd%e5%a5%bd%e7%9a%84%e5%b8%83%e5%b1%80%ef%bc%8c%e4%bb%8e%e8%80%8c%e6%88%91%e4%bb%ac%e5%8f%af%e4%bb%a5%e5%9c%a8%e4%bb%a3%e7%a0%81%e4%b8%ad%e5%af%b9%e5%b8%83%e5%b1%80%e8%bf%9b%e8%a1%8c%e9%87%8d%e7%94%a8%ef%bc%9a%0apublic%20View%20getView%28int%20position%2c%20View%20convertView%2c%20ViewGroup%20parent%29%20%7b%20View%20view%20%3d%20convertView%3b%20if%20%28view%20%3d%3d%20null%29%20view%20%3d%20LayoutInflater.from%28getContext%28%29%29.inflate%28resorceId%2c%20parent%2c%20false%29%3b%20%2f%2f%20...%20%7d%20%e4%bd%bf%e7%94%a8ViewHolder%20%e5%ae%9a%e4%b9%89ViewHolder%e6%9d%a5%e5%ad%98%e5%82%a8%e5%b7%b2%e7%bb%8f%e8%8e%b7%e5%8f%96%e7%9a%84Views%e5%ae%9e%e4%be%8b%e3%80%82%0aclass%20ViewHolder%20%7b%20TextView%20textView%3b%20ImageView%20imageView%3b%20%2f%2f%20...%20%7d%20public%20View%20getView%28int%20position%2c%20View%20convertView%2c%20ViewGroup%20parent%29%20%7b%20View%20view%20%3d%20convertView%3b%20VIewHolder%20holder%3b%20if%20%28view%20%3d%3d%20null%29%20%7b%20view%20%3d%20LayoutInflater.from%28getContext%28%29%29.inflate%28resorceId%2c%20parent%2c%20false%29%3b%20holder%20%3d%20new%20ViewHolder%28%29%3b%20%2f%2f%20save%20views%20to%20the%20holder.">
-      <i class="fab fa-tumblr " aria-hidden="true"></i>
-    </a>
-  </li>
-  <li>
-    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fwww.takuzen.me%2fposts%2f2017-10-04-making-listview-scrolling-smooth%2f&t=%e6%8f%90%e5%8d%87ListView%e7%9a%84%e6%95%88%e7%8e%87">
-      <i class="fab fa-hacker-news " aria-hidden="true"></i>
-    </a>
-  </li>
+<div class="content index py4">
+<div id=header-post>
+<a id=menu-icon href=#><i class="fas fa-bars fa-lg"></i></a>
+<a id=menu-icon-tablet href=#><i class="fas fa-bars fa-lg"></i></a>
+<a id=top-icon-tablet href=# onclick="$('html, body').animate({scrollTop:0},'fast')" style=display:none aria-label="Top of Page"><i class="fas fa-chevron-up fa-lg"></i></a>
+<span id=menu>
+<span id=nav>
+<ul>
+<li><a href=/>Home</a></li>
+<li><a href=/posts>Writings</a></li>
+<li><a href=/tags>Tags</a></li>
+<li><a href=/about>About</a></li>
 </ul>
-
-    </div>
-    <div id="toc">
-      <nav id="TableOfContents">
-  <ul>
-    <li><a href="#利用好getview中的convertview参数">利用好getView中的convertView参数</a></li>
-    <li><a href="#使用viewholder">使用ViewHolder</a></li>
-    <li><a href="#使用后台线程">使用后台线程</a></li>
-  </ul>
-</nav>
-    </div>
-  </span>
+</span>
+<br>
+<span id=actions>
+<ul>
+<li>
+<a class=icon href=https://www.takuzen.me/posts/2017-09-29-mvp-in-android/ aria-label=Previous>
+<i class="fas fa-chevron-left" aria-hidden=true onmouseover="$('#i-prev').toggle()" onmouseout="$('#i-prev').toggle()"></i>
+</a>
+</li>
+<li>
+<a class=icon href=https://www.takuzen.me/posts/2017-10-08-get-selected-text-from-webview/ aria-label=Next>
+<i class="fas fa-chevron-right" aria-hidden=true onmouseover="$('#i-next').toggle()" onmouseout="$('#i-next').toggle()"></i>
+</a>
+</li>
+<li>
+<a class=icon href=# onclick="$('html, body').animate({scrollTop:0},'fast')" aria-label="Top of Page">
+<i class="fas fa-chevron-up" aria-hidden=true onmouseover="$('#i-top').toggle()" onmouseout="$('#i-top').toggle()"></i>
+</a>
+</li>
+<li>
+<a class=icon href=# aria-label=Share>
+<i class="fas fa-share-alt" aria-hidden=true onmouseover="$('#i-share').toggle()" onmouseout="$('#i-share').toggle()" onclick="return $('#share').toggle(),!1"></i>
+</a>
+</li>
+</ul>
+<span id=i-prev class=info style=display:none>Previous post</span>
+<span id=i-next class=info style=display:none>Next post</span>
+<span id=i-top class=info style=display:none>Back to top</span>
+<span id=i-share class=info style=display:none>Share post</span>
+</span>
+<br>
+<div id=share style=display:none>
+<ul>
+<li>
+<a class=icon href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fwww.takuzen.me%2fposts%2f2017-10-04-making-listview-scrolling-smooth%2f" aria-label=Facebook>
+<i class="fab fa-facebook" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="https://twitter.com/share?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2017-10-04-making-listview-scrolling-smooth%2f&text=%e6%8f%90%e5%8d%87ListView%e7%9a%84%e6%95%88%e7%8e%87" aria-label=Twitter>
+<i class="fab fa-twitter" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2017-10-04-making-listview-scrolling-smooth%2f&title=%e6%8f%90%e5%8d%87ListView%e7%9a%84%e6%95%88%e7%8e%87" aria-label=Linkedin>
+<i class="fab fa-linkedin" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2017-10-04-making-listview-scrolling-smooth%2f&is_video=false&description=%e6%8f%90%e5%8d%87ListView%e7%9a%84%e6%95%88%e7%8e%87" aria-label=Pinterest>
+<i class="fab fa-pinterest" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="mailto:?subject=%e6%8f%90%e5%8d%87ListView%e7%9a%84%e6%95%88%e7%8e%87&body=Check out this article: https%3a%2f%2fwww.takuzen.me%2fposts%2f2017-10-04-making-listview-scrolling-smooth%2f" aria-label=Email>
+<i class="fas fa-envelope" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="https://getpocket.com/save?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2017-10-04-making-listview-scrolling-smooth%2f&title=%e6%8f%90%e5%8d%87ListView%e7%9a%84%e6%95%88%e7%8e%87" aria-label=Pocket>
+<i class="fab fa-get-pocket" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="http://reddit.com/submit?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2017-10-04-making-listview-scrolling-smooth%2f&title=%e6%8f%90%e5%8d%87ListView%e7%9a%84%e6%95%88%e7%8e%87" aria-label=reddit>
+<i class="fab fa-reddit" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="http://www.tumblr.com/share/link?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2017-10-04-making-listview-scrolling-smooth%2f&name=%e6%8f%90%e5%8d%87ListView%e7%9a%84%e6%95%88%e7%8e%87&description=%e5%88%a9%e7%94%a8%e5%a5%bdgetView%e4%b8%ad%e7%9a%84convertView%e5%8f%82%e6%95%b0%20getView%28%29%e6%96%b9%e6%b3%95%e4%b8%ad%e6%9c%89%e4%b8%80%e4%b8%aaconvertView%e5%8f%82%e6%95%b0%e7%94%a8%e6%9d%a5%e7%bc%93%e5%ad%98%e5%b7%b2%e7%bb%8f%e5%8a%a0%e8%bd%bd%e5%a5%bd%e7%9a%84%e5%b8%83%e5%b1%80%ef%bc%8c%e4%bb%8e%e8%80%8c%e6%88%91%e4%bb%ac%e5%8f%af%e4%bb%a5%e5%9c%a8%e4%bb%a3%e7%a0%81%e4%b8%ad%e5%af%b9%e5%b8%83%e5%b1%80%e8%bf%9b%e8%a1%8c%e9%87%8d%e7%94%a8%ef%bc%9a%0apublic%20View%20getView%28int%20position%2c%20View%20convertView%2c%20ViewGroup%20parent%29%20%7b%20View%20view%20%3d%20convertView%3b%20if%20%28view%20%3d%3d%20null%29%20view%20%3d%20LayoutInflater.from%28getContext%28%29%29.inflate%28resorceId%2c%20parent%2c%20false%29%3b%20%2f%2f%20...%20%7d%20%e4%bd%bf%e7%94%a8ViewHolder%20%e5%ae%9a%e4%b9%89ViewHolder%e6%9d%a5%e5%ad%98%e5%82%a8%e5%b7%b2%e7%bb%8f%e8%8e%b7%e5%8f%96%e7%9a%84Views%e5%ae%9e%e4%be%8b%e3%80%82%0aclass%20ViewHolder%20%7b%20TextView%20textView%3b%20ImageView%20imageView%3b%20%2f%2f%20...%20%7d%20public%20View%20getView%28int%20position%2c%20View%20convertView%2c%20ViewGroup%20parent%29%20%7b%20View%20view%20%3d%20convertView%3b%20VIewHolder%20holder%3b%20if%20%28view%20%3d%3d%20null%29%20%7b%20view%20%3d%20LayoutInflater.from%28getContext%28%29%29.inflate%28resorceId%2c%20parent%2c%20false%29%3b%20holder%20%3d%20new%20ViewHolder%28%29%3b%20%2f%2f%20save%20views%20to%20the%20holder." aria-label=Tumblr>
+<i class="fab fa-tumblr" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fwww.takuzen.me%2fposts%2f2017-10-04-making-listview-scrolling-smooth%2f&t=%e6%8f%90%e5%8d%87ListView%e7%9a%84%e6%95%88%e7%8e%87" aria-label="Hacker News">
+<i class="fab fa-hacker-news" aria-hidden=true></i>
+</a>
+</li>
+</ul>
 </div>
-
-
-  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
-    <header>
-      <h1 class="posttitle" itemprop="name headline">
-        提升ListView的效率
-      </h1>
-      <div class="meta">
-        
-        <div class="postdate">
-          
-          <time datetime="2017-10-04 04:52:18 &#43;0000 UTC" itemprop="datePublished">2017-10-04</time>
-          
-        </div>
-        
-        
-        
-        
-        <div class="article-tag">
-            <i class="fas fa-tag"></i>
-            
-            
-            <a class="tag-link" href="/tags/android" rel="tag">android</a>
-            
-             ,  
-            <a class="tag-link" href="/tags/java" rel="tag">Java</a>
-            
-        </div>
-        
-      </div>
-    </header>
-
-  
-    <div class="content" itemprop="articleBody">
-      <h2 id="利用好getview中的convertview参数">利用好getView中的convertView参数</h2>
+<div id=toc>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#利用好getview中的convertview参数>利用好getView中的convertView参数</a></li>
+<li><a href=#使用viewholder>使用ViewHolder</a></li>
+<li><a href=#使用后台线程>使用后台线程</a></li>
+</ul>
+</nav>
+</div>
+</span>
+</div>
+<article class=post itemscope itemtype=http://schema.org/BlogPosting>
+<header>
+<h1 class=posttitle itemprop="name headline">
+提升ListView的效率
+</h1>
+<div class=meta>
+<div class=postdate>
+<time datetime="2017-10-04 04:52:18 +0000 UTC" itemprop=datePublished>2017-10-04</time>
+</div>
+<div class=article-tag>
+<i class="fas fa-tag"></i>
+<a class=tag-link href=/tags/android rel=tag>android</a>
+,
+<a class=tag-link href=/tags/java rel=tag>Java</a>
+</div>
+</div>
+</header>
+<div class=content itemprop=articleBody>
+<h2 id=利用好getview中的convertview参数>利用好getView中的convertView参数</h2>
 <p><code>getView()</code>方法中有一个<code>convertView</code>参数用来缓存已经加载好的布局，从而我们可以在代码中对布局进行重用：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> View <span style="color:#a6e22e">getView</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> position<span style="color:#f92672">,</span> View convertView<span style="color:#f92672">,</span> ViewGroup parent<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-    View view <span style="color:#f92672">=</span> convertView<span style="color:#f92672">;</span>
-    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>view <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span>
-        view <span style="color:#f92672">=</span> LayoutInflater<span style="color:#f92672">.</span><span style="color:#a6e22e">from</span><span style="color:#f92672">(</span>getContext<span style="color:#f92672">()).</span><span style="color:#a6e22e">inflate</span><span style="color:#f92672">(</span>resorceId<span style="color:#f92672">,</span> parent<span style="color:#f92672">,</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">);</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> View <span style=color:#a6e22e>getView</span><span style=color:#f92672>(</span><span style=color:#66d9ef>int</span> position<span style=color:#f92672>,</span> View convertView<span style=color:#f92672>,</span> ViewGroup parent<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+    View view <span style=color:#f92672>=</span> convertView<span style=color:#f92672>;</span>
+    <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>view <span style=color:#f92672>==</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>)</span>
+        view <span style=color:#f92672>=</span> LayoutInflater<span style=color:#f92672>.</span><span style=color:#a6e22e>from</span><span style=color:#f92672>(</span>getContext<span style=color:#f92672>()).</span><span style=color:#a6e22e>inflate</span><span style=color:#f92672>(</span>resorceId<span style=color:#f92672>,</span> parent<span style=color:#f92672>,</span> <span style=color:#66d9ef>false</span><span style=color:#f92672>);</span>
 
-    <span style="color:#75715e">// ...
-</span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
-</code></pre></div><h2 id="使用viewholder">使用ViewHolder</h2>
+    <span style=color:#75715e>// ...
+</span><span style=color:#75715e></span><span style=color:#f92672>}</span>
+</code></pre></div><h2 id=使用viewholder>使用ViewHolder</h2>
 <p>定义<code>ViewHolder</code>来存储已经获取的<code>Views</code>实例。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ViewHolder</span> <span style="color:#f92672">{</span>
-    TextView textView<span style="color:#f92672">;</span>
-    ImageView imageView<span style="color:#f92672">;</span>
-    <span style="color:#75715e">// ...
-</span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
-<span style="color:#66d9ef">public</span> View <span style="color:#a6e22e">getView</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> position<span style="color:#f92672">,</span> View convertView<span style="color:#f92672">,</span> ViewGroup parent<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-    View view <span style="color:#f92672">=</span> convertView<span style="color:#f92672">;</span>
-    VIewHolder holder<span style="color:#f92672">;</span>
-    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>view <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        view <span style="color:#f92672">=</span> LayoutInflater<span style="color:#f92672">.</span><span style="color:#a6e22e">from</span><span style="color:#f92672">(</span>getContext<span style="color:#f92672">()).</span><span style="color:#a6e22e">inflate</span><span style="color:#f92672">(</span>resorceId<span style="color:#f92672">,</span> parent<span style="color:#f92672">,</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">);</span>
-        holder <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ViewHolder<span style="color:#f92672">();</span>
-        <span style="color:#75715e">// save views to the holder.
-</span><span style="color:#75715e"></span>
-        view<span style="color:#f92672">.</span><span style="color:#a6e22e">setTag</span><span style="color:#f92672">(</span>holder<span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
-        viewHolder <span style="color:#f92672">=</span> view<span style="color:#f92672">.</span><span style="color:#a6e22e">getTag</span><span style="color:#f92672">();</span>
-    <span style="color:#f92672">}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ViewHolder</span> <span style=color:#f92672>{</span>
+    TextView textView<span style=color:#f92672>;</span>
+    ImageView imageView<span style=color:#f92672>;</span>
+    <span style=color:#75715e>// ...
+</span><span style=color:#75715e></span><span style=color:#f92672>}</span>
+<span style=color:#66d9ef>public</span> View <span style=color:#a6e22e>getView</span><span style=color:#f92672>(</span><span style=color:#66d9ef>int</span> position<span style=color:#f92672>,</span> View convertView<span style=color:#f92672>,</span> ViewGroup parent<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+    View view <span style=color:#f92672>=</span> convertView<span style=color:#f92672>;</span>
+    VIewHolder holder<span style=color:#f92672>;</span>
+    <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>view <span style=color:#f92672>==</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        view <span style=color:#f92672>=</span> LayoutInflater<span style=color:#f92672>.</span><span style=color:#a6e22e>from</span><span style=color:#f92672>(</span>getContext<span style=color:#f92672>()).</span><span style=color:#a6e22e>inflate</span><span style=color:#f92672>(</span>resorceId<span style=color:#f92672>,</span> parent<span style=color:#f92672>,</span> <span style=color:#66d9ef>false</span><span style=color:#f92672>);</span>
+        holder <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> ViewHolder<span style=color:#f92672>();</span>
+        <span style=color:#75715e>// save views to the holder.
+</span><span style=color:#75715e></span>
+        view<span style=color:#f92672>.</span><span style=color:#a6e22e>setTag</span><span style=color:#f92672>(</span>holder<span style=color:#f92672>);</span>
+    <span style=color:#f92672>}</span> <span style=color:#66d9ef>else</span> <span style=color:#f92672>{</span>
+        viewHolder <span style=color:#f92672>=</span> view<span style=color:#f92672>.</span><span style=color:#a6e22e>getTag</span><span style=color:#f92672>();</span>
+    <span style=color:#f92672>}</span>
 
-    <span style="color:#75715e">// ...
-</span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
+    <span style=color:#75715e>// ...
+</span><span style=color:#75715e></span><span style=color:#f92672>}</span>
 
-</code></pre></div><h2 id="使用后台线程">使用后台线程</h2>
+</code></pre></div><h2 id=使用后台线程>使用后台线程</h2>
 <p>Using a background thread (&ldquo;worker thread&rdquo;) removes strain from the main thread so it can focus on drawing the UI. In many cases, using AsyncTask provides a simple way to perform your work outside the main thread. AsyncTask automatically queues up all the execute() requests and performs them serially. This behavior is global to a particular process and means you don’t need to worry about creating your own thread pool.</p>
 <p>In the sample code below, an AsyncTask is used to load images in a background thread, then apply them to the UI once finished. It also shows a progress spinner in place of the images while they are loading.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// Using an AsyncTask to load the slow images in a background thread
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">new</span> AsyncTask<span style="color:#f92672">&lt;</span>ViewHolder<span style="color:#f92672">,</span> Void<span style="color:#f92672">,</span> Bitmap<span style="color:#f92672">&gt;()</span> <span style="color:#f92672">{</span>
-    <span style="color:#66d9ef">private</span> ViewHolder v<span style="color:#f92672">;</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#75715e>// Using an AsyncTask to load the slow images in a background thread
+</span><span style=color:#75715e></span><span style=color:#66d9ef>new</span> AsyncTask<span style=color:#f92672>&lt;</span>ViewHolder<span style=color:#f92672>,</span> Void<span style=color:#f92672>,</span> Bitmap<span style=color:#f92672>&gt;()</span> <span style=color:#f92672>{</span>
+    <span style=color:#66d9ef>private</span> ViewHolder v<span style=color:#f92672>;</span>
 
-    <span style="color:#a6e22e">@Override</span>
-    <span style="color:#66d9ef">protected</span> Bitmap <span style="color:#a6e22e">doInBackground</span><span style="color:#f92672">(</span>ViewHolder<span style="color:#f92672">...</span> params<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        v <span style="color:#f92672">=</span> params<span style="color:#f92672">[</span>0<span style="color:#f92672">];</span>
-        <span style="color:#66d9ef">return</span> mFakeImageLoader<span style="color:#f92672">.</span><span style="color:#a6e22e">getImage</span><span style="color:#f92672">();</span>
-    <span style="color:#f92672">}</span>
+    <span style=color:#a6e22e>@Override</span>
+    <span style=color:#66d9ef>protected</span> Bitmap <span style=color:#a6e22e>doInBackground</span><span style=color:#f92672>(</span>ViewHolder<span style=color:#f92672>...</span> params<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        v <span style=color:#f92672>=</span> params<span style=color:#f92672>[</span>0<span style=color:#f92672>];</span>
+        <span style=color:#66d9ef>return</span> mFakeImageLoader<span style=color:#f92672>.</span><span style=color:#a6e22e>getImage</span><span style=color:#f92672>();</span>
+    <span style=color:#f92672>}</span>
 
-    <span style="color:#a6e22e">@Override</span>
-    <span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onPostExecute</span><span style="color:#f92672">(</span>Bitmap result<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">super</span><span style="color:#f92672">.</span><span style="color:#a6e22e">onPostExecute</span><span style="color:#f92672">(</span>result<span style="color:#f92672">);</span>
-        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>v<span style="color:#f92672">.</span><span style="color:#a6e22e">position</span> <span style="color:#f92672">==</span> position<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-            <span style="color:#75715e">// If this item hasn&#39;t been recycled already, hide the
-</span><span style="color:#75715e"></span>            <span style="color:#75715e">// progress and set and show the image
-</span><span style="color:#75715e"></span>            v<span style="color:#f92672">.</span><span style="color:#a6e22e">progress</span><span style="color:#f92672">.</span><span style="color:#a6e22e">setVisibility</span><span style="color:#f92672">(</span>View<span style="color:#f92672">.</span><span style="color:#a6e22e">GONE</span><span style="color:#f92672">);</span>
-            v<span style="color:#f92672">.</span><span style="color:#a6e22e">icon</span><span style="color:#f92672">.</span><span style="color:#a6e22e">setVisibility</span><span style="color:#f92672">(</span>View<span style="color:#f92672">.</span><span style="color:#a6e22e">VISIBLE</span><span style="color:#f92672">);</span>
-            v<span style="color:#f92672">.</span><span style="color:#a6e22e">icon</span><span style="color:#f92672">.</span><span style="color:#a6e22e">setImageBitmap</span><span style="color:#f92672">(</span>result<span style="color:#f92672">);</span>
-        <span style="color:#f92672">}</span>
-    <span style="color:#f92672">}</span>
-<span style="color:#f92672">}.</span><span style="color:#a6e22e">execute</span><span style="color:#f92672">(</span>holder<span style="color:#f92672">);</span>
+    <span style=color:#a6e22e>@Override</span>
+    <span style=color:#66d9ef>protected</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>onPostExecute</span><span style=color:#f92672>(</span>Bitmap result<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        <span style=color:#66d9ef>super</span><span style=color:#f92672>.</span><span style=color:#a6e22e>onPostExecute</span><span style=color:#f92672>(</span>result<span style=color:#f92672>);</span>
+        <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>v<span style=color:#f92672>.</span><span style=color:#a6e22e>position</span> <span style=color:#f92672>==</span> position<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+            <span style=color:#75715e>// If this item hasn&#39;t been recycled already, hide the
+</span><span style=color:#75715e></span>            <span style=color:#75715e>// progress and set and show the image
+</span><span style=color:#75715e></span>            v<span style=color:#f92672>.</span><span style=color:#a6e22e>progress</span><span style=color:#f92672>.</span><span style=color:#a6e22e>setVisibility</span><span style=color:#f92672>(</span>View<span style=color:#f92672>.</span><span style=color:#a6e22e>GONE</span><span style=color:#f92672>);</span>
+            v<span style=color:#f92672>.</span><span style=color:#a6e22e>icon</span><span style=color:#f92672>.</span><span style=color:#a6e22e>setVisibility</span><span style=color:#f92672>(</span>View<span style=color:#f92672>.</span><span style=color:#a6e22e>VISIBLE</span><span style=color:#f92672>);</span>
+            v<span style=color:#f92672>.</span><span style=color:#a6e22e>icon</span><span style=color:#f92672>.</span><span style=color:#a6e22e>setImageBitmap</span><span style=color:#f92672>(</span>result<span style=color:#f92672>);</span>
+        <span style=color:#f92672>}</span>
+    <span style=color:#f92672>}</span>
+<span style=color:#f92672>}.</span><span style=color:#a6e22e>execute</span><span style=color:#f92672>(</span>holder<span style=color:#f92672>);</span>
 </code></pre></div><p>Beginning with Android 3.0 (API level 11), an extra feature is available in AsyncTask so you can enable it to run across multiple processor cores. Instead of calling execute() you can specify executeOnExecutor() and multiple requests can be executed at the same time depending on the number of cores available</p>
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbMTg1MTEzMjI0LDE1Njc2NTExMV19
---><blockquote>
+<blockquote>
 </blockquote>
-
-    </div>
-  </article>
-
-  
-  
-
-
-
-
-  
-    <div class="blog-post-comments">
-        <div id="disqus_thread">
-          <script type="text/javascript">
-          
-          (function() {
-              
-              
-              
-              
-          
-              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-              var disqus_shortname = 'wzr';
-              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-          })();
-          </script>
-          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-          <a href="https://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-        </div>
-    </div>
-
-  
-
-
-  <div id="footer-post-container">
-  <div id="footer-post">
-
-    <div id="nav-footer" style="display: none">
-      <ul>
-         
-          <li><a href="/">Home</a></li>
-         
-          <li><a href="/posts">Writings</a></li>
-         
-          <li><a href="/tags">Tags</a></li>
-         
-          <li><a href="/about">About</a></li>
-        
-      </ul>
-    </div>
-
-    <div id="toc-footer" style="display: none">
-      <nav id="TableOfContents">
-  <ul>
-    <li><a href="#利用好getview中的convertview参数">利用好getView中的convertView参数</a></li>
-    <li><a href="#使用viewholder">使用ViewHolder</a></li>
-    <li><a href="#使用后台线程">使用后台线程</a></li>
-  </ul>
-</nav>
-    </div>
-
-    <div id="share-footer" style="display: none">
-      
-      <ul>
-  
-  
-    
-  
-  
-  <li>
-    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fwww.takuzen.me%2fposts%2f2017-10-04-making-listview-scrolling-smooth%2f">
-      <i class="fab fa-facebook fa-lg" aria-hidden="true"></i>
-    </a>
-  </li>
-  <li>
-    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2017-10-04-making-listview-scrolling-smooth%2f&text=%e6%8f%90%e5%8d%87ListView%e7%9a%84%e6%95%88%e7%8e%87">
-      <i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
-    </a>
-  </li>
-  <li>
-    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2017-10-04-making-listview-scrolling-smooth%2f&title=%e6%8f%90%e5%8d%87ListView%e7%9a%84%e6%95%88%e7%8e%87">
-      <i class="fab fa-linkedin fa-lg" aria-hidden="true"></i>
-    </a>
-  </li>
-  <li>
-    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2017-10-04-making-listview-scrolling-smooth%2f&is_video=false&description=%e6%8f%90%e5%8d%87ListView%e7%9a%84%e6%95%88%e7%8e%87">
-      <i class="fab fa-pinterest fa-lg" aria-hidden="true"></i>
-    </a>
-  </li>
-  <li>
-    <a class="icon" href="mailto:?subject=%e6%8f%90%e5%8d%87ListView%e7%9a%84%e6%95%88%e7%8e%87&body=Check out this article: https%3a%2f%2fwww.takuzen.me%2fposts%2f2017-10-04-making-listview-scrolling-smooth%2f">
-      <i class="fas fa-envelope fa-lg" aria-hidden="true"></i>
-    </a>
-  </li>
-  <li>
-    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2017-10-04-making-listview-scrolling-smooth%2f&title=%e6%8f%90%e5%8d%87ListView%e7%9a%84%e6%95%88%e7%8e%87">
-      <i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i>
-    </a>
-  </li>
-  <li>
-    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2017-10-04-making-listview-scrolling-smooth%2f&title=%e6%8f%90%e5%8d%87ListView%e7%9a%84%e6%95%88%e7%8e%87">
-      <i class="fab fa-reddit fa-lg" aria-hidden="true"></i>
-    </a>
-  </li>
-  <li>
-    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2017-10-04-making-listview-scrolling-smooth%2f&name=%e6%8f%90%e5%8d%87ListView%e7%9a%84%e6%95%88%e7%8e%87&description=%e5%88%a9%e7%94%a8%e5%a5%bdgetView%e4%b8%ad%e7%9a%84convertView%e5%8f%82%e6%95%b0%20getView%28%29%e6%96%b9%e6%b3%95%e4%b8%ad%e6%9c%89%e4%b8%80%e4%b8%aaconvertView%e5%8f%82%e6%95%b0%e7%94%a8%e6%9d%a5%e7%bc%93%e5%ad%98%e5%b7%b2%e7%bb%8f%e5%8a%a0%e8%bd%bd%e5%a5%bd%e7%9a%84%e5%b8%83%e5%b1%80%ef%bc%8c%e4%bb%8e%e8%80%8c%e6%88%91%e4%bb%ac%e5%8f%af%e4%bb%a5%e5%9c%a8%e4%bb%a3%e7%a0%81%e4%b8%ad%e5%af%b9%e5%b8%83%e5%b1%80%e8%bf%9b%e8%a1%8c%e9%87%8d%e7%94%a8%ef%bc%9a%0apublic%20View%20getView%28int%20position%2c%20View%20convertView%2c%20ViewGroup%20parent%29%20%7b%20View%20view%20%3d%20convertView%3b%20if%20%28view%20%3d%3d%20null%29%20view%20%3d%20LayoutInflater.from%28getContext%28%29%29.inflate%28resorceId%2c%20parent%2c%20false%29%3b%20%2f%2f%20...%20%7d%20%e4%bd%bf%e7%94%a8ViewHolder%20%e5%ae%9a%e4%b9%89ViewHolder%e6%9d%a5%e5%ad%98%e5%82%a8%e5%b7%b2%e7%bb%8f%e8%8e%b7%e5%8f%96%e7%9a%84Views%e5%ae%9e%e4%be%8b%e3%80%82%0aclass%20ViewHolder%20%7b%20TextView%20textView%3b%20ImageView%20imageView%3b%20%2f%2f%20...%20%7d%20public%20View%20getView%28int%20position%2c%20View%20convertView%2c%20ViewGroup%20parent%29%20%7b%20View%20view%20%3d%20convertView%3b%20VIewHolder%20holder%3b%20if%20%28view%20%3d%3d%20null%29%20%7b%20view%20%3d%20LayoutInflater.from%28getContext%28%29%29.inflate%28resorceId%2c%20parent%2c%20false%29%3b%20holder%20%3d%20new%20ViewHolder%28%29%3b%20%2f%2f%20save%20views%20to%20the%20holder.">
-      <i class="fab fa-tumblr fa-lg" aria-hidden="true"></i>
-    </a>
-  </li>
-  <li>
-    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fwww.takuzen.me%2fposts%2f2017-10-04-making-listview-scrolling-smooth%2f&t=%e6%8f%90%e5%8d%87ListView%e7%9a%84%e6%95%88%e7%8e%87">
-      <i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i>
-    </a>
-  </li>
-</ul>
-
-    </div>
-
-    <div id="actions-footer">
-      
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;">
-          <i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
-        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;">
-          <i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;">
-          <i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> share</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');">
-          <i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
-    </div>
-
-  </div>
 </div>
-
-
-  <footer id="footer">
-  <div class="footer-left">
-    Copyright  &copy; 2021  呉 
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-         
-        <li><a href="/">Home</a></li>
-         
-        <li><a href="/posts">Writings</a></li>
-         
-        <li><a href="/tags">Tags</a></li>
-         
-        <li><a href="/about">About</a></li>
-        
-      </ul>
-    </nav>
-  </div>
+</article>
+<div class=blog-post-comments>
+<div id=disqus_thread>
+<script type=text/javascript>(function(){var a=document.createElement('script'),b;a.type='text/javascript',a.async=!0,b='wzr',a.src='//'+b+'.disqus.com/embed.js',(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(a)})()</script>
+<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
+<a href=https://disqus.com/ class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a>
+</div>
+</div>
+<div id=footer-post-container>
+<div id=footer-post>
+<div id=nav-footer style=display:none>
+<ul>
+<li><a href=/>Home</a></li>
+<li><a href=/posts>Writings</a></li>
+<li><a href=/tags>Tags</a></li>
+<li><a href=/about>About</a></li>
+</ul>
+</div>
+<div id=toc-footer style=display:none>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#利用好getview中的convertview参数>利用好getView中的convertView参数</a></li>
+<li><a href=#使用viewholder>使用ViewHolder</a></li>
+<li><a href=#使用后台线程>使用后台线程</a></li>
+</ul>
+</nav>
+</div>
+<div id=share-footer style=display:none>
+<ul>
+<li>
+<a class=icon href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fwww.takuzen.me%2fposts%2f2017-10-04-making-listview-scrolling-smooth%2f" aria-label=Facebook>
+<i class="fab fa-facebook fa-lg" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="https://twitter.com/share?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2017-10-04-making-listview-scrolling-smooth%2f&text=%e6%8f%90%e5%8d%87ListView%e7%9a%84%e6%95%88%e7%8e%87" aria-label=Twitter>
+<i class="fab fa-twitter fa-lg" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2017-10-04-making-listview-scrolling-smooth%2f&title=%e6%8f%90%e5%8d%87ListView%e7%9a%84%e6%95%88%e7%8e%87" aria-label=Linkedin>
+<i class="fab fa-linkedin fa-lg" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2017-10-04-making-listview-scrolling-smooth%2f&is_video=false&description=%e6%8f%90%e5%8d%87ListView%e7%9a%84%e6%95%88%e7%8e%87" aria-label=Pinterest>
+<i class="fab fa-pinterest fa-lg" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="mailto:?subject=%e6%8f%90%e5%8d%87ListView%e7%9a%84%e6%95%88%e7%8e%87&body=Check out this article: https%3a%2f%2fwww.takuzen.me%2fposts%2f2017-10-04-making-listview-scrolling-smooth%2f" aria-label=Email>
+<i class="fas fa-envelope fa-lg" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="https://getpocket.com/save?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2017-10-04-making-listview-scrolling-smooth%2f&title=%e6%8f%90%e5%8d%87ListView%e7%9a%84%e6%95%88%e7%8e%87" aria-label=Pocket>
+<i class="fab fa-get-pocket fa-lg" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="http://reddit.com/submit?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2017-10-04-making-listview-scrolling-smooth%2f&title=%e6%8f%90%e5%8d%87ListView%e7%9a%84%e6%95%88%e7%8e%87" aria-label=reddit>
+<i class="fab fa-reddit fa-lg" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="http://www.tumblr.com/share/link?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2017-10-04-making-listview-scrolling-smooth%2f&name=%e6%8f%90%e5%8d%87ListView%e7%9a%84%e6%95%88%e7%8e%87&description=%e5%88%a9%e7%94%a8%e5%a5%bdgetView%e4%b8%ad%e7%9a%84convertView%e5%8f%82%e6%95%b0%20getView%28%29%e6%96%b9%e6%b3%95%e4%b8%ad%e6%9c%89%e4%b8%80%e4%b8%aaconvertView%e5%8f%82%e6%95%b0%e7%94%a8%e6%9d%a5%e7%bc%93%e5%ad%98%e5%b7%b2%e7%bb%8f%e5%8a%a0%e8%bd%bd%e5%a5%bd%e7%9a%84%e5%b8%83%e5%b1%80%ef%bc%8c%e4%bb%8e%e8%80%8c%e6%88%91%e4%bb%ac%e5%8f%af%e4%bb%a5%e5%9c%a8%e4%bb%a3%e7%a0%81%e4%b8%ad%e5%af%b9%e5%b8%83%e5%b1%80%e8%bf%9b%e8%a1%8c%e9%87%8d%e7%94%a8%ef%bc%9a%0apublic%20View%20getView%28int%20position%2c%20View%20convertView%2c%20ViewGroup%20parent%29%20%7b%20View%20view%20%3d%20convertView%3b%20if%20%28view%20%3d%3d%20null%29%20view%20%3d%20LayoutInflater.from%28getContext%28%29%29.inflate%28resorceId%2c%20parent%2c%20false%29%3b%20%2f%2f%20...%20%7d%20%e4%bd%bf%e7%94%a8ViewHolder%20%e5%ae%9a%e4%b9%89ViewHolder%e6%9d%a5%e5%ad%98%e5%82%a8%e5%b7%b2%e7%bb%8f%e8%8e%b7%e5%8f%96%e7%9a%84Views%e5%ae%9e%e4%be%8b%e3%80%82%0aclass%20ViewHolder%20%7b%20TextView%20textView%3b%20ImageView%20imageView%3b%20%2f%2f%20...%20%7d%20public%20View%20getView%28int%20position%2c%20View%20convertView%2c%20ViewGroup%20parent%29%20%7b%20View%20view%20%3d%20convertView%3b%20VIewHolder%20holder%3b%20if%20%28view%20%3d%3d%20null%29%20%7b%20view%20%3d%20LayoutInflater.from%28getContext%28%29%29.inflate%28resorceId%2c%20parent%2c%20false%29%3b%20holder%20%3d%20new%20ViewHolder%28%29%3b%20%2f%2f%20save%20views%20to%20the%20holder." aria-label=Tumblr>
+<i class="fab fa-tumblr fa-lg" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fwww.takuzen.me%2fposts%2f2017-10-04-making-listview-scrolling-smooth%2f&t=%e6%8f%90%e5%8d%87ListView%e7%9a%84%e6%95%88%e7%8e%87" aria-label="Hacker News">
+<i class="fab fa-hacker-news fa-lg" aria-hidden=true></i>
+</a>
+</li>
+</ul>
+</div>
+<div id=actions-footer>
+<a id=menu-toggle class=icon href=# onclick="return $('#nav-footer').toggle(),!1" aria-label=Menu>
+<i class="fas fa-bars fa-lg" aria-hidden=true></i> Menu</a>
+<a id=toc-toggle class=icon href=# onclick="return $('#toc-footer').toggle(),!1" aria-label=TOC>
+<i class="fas fa-list fa-lg" aria-hidden=true></i> TOC</a>
+<a id=share-toggle class=icon href=# onclick="return $('#share-footer').toggle(),!1" aria-label=Share>
+<i class="fas fa-share-alt fa-lg" aria-hidden=true></i> share</a>
+<a id=top style=display:none class=icon href=# onclick="$('html, body').animate({scrollTop:0},'fast')" aria-label="Top of Page">
+<i class="fas fa-chevron-up fa-lg" aria-hidden=true></i> Top</a>
+</div>
+</div>
+</div>
+<footer id=footer>
+<div class=footer-left>
+Copyright &copy; 2021 呉
+</div>
+<div class=footer-right>
+<nav>
+<ul>
+<li><a href=/>Home</a></li>
+<li><a href=/posts>Writings</a></li>
+<li><a href=/tags>Tags</a></li>
+<li><a href=/about>About</a></li>
+</ul>
+</nav>
+</div>
 </footer>
-
-
-  </div>
+</div>
 </body>
-
-<link rel="stylesheet" href=/lib/font-awesome/css/all.min.css>
+<link rel=stylesheet href=/lib/font-awesome/css/all.min.css>
 <script src=/lib/jquery/jquery.min.js></script>
 <script src=/js/main.js></script>
-
-
-
 </html>

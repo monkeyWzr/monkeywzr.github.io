@@ -1,243 +1,175 @@
-<!DOCTYPE html>
-<html lang="en-us">
+<!doctype html><html lang=en-us>
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title> Kali的一些工具 | マクロス</title>
-  <meta name="description" content="勉強中">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="all,follow">
-  <meta name="googlebot" content="index,follow,snippet,archive">
-  <meta property="og:title" content="Kali的一些工具" />
-<meta property="og:description" content="信息收集 DNS信息  host 查询/etc/resolv.conf中指定的DNS服务器 dig 可处理文件内的所有DNS指令 dnsenum 可通过google搜素子域名；课使用字典对子域名进行暴力破解； dnsdict6 IPv6子域名枚举 fierce 能对不连续的IP空间和主机名进行测试 DMitry 具有DNS分析和路由分析功能，可进行简单端口探测 Maltego 图形化综合工具  路由信息  tcptraceroute 利用TCP SYN数据包进行路由信息探测 tctrace -i -h  搜索引擎  theharvester 通过多个公共资源搜集所需信息（Email、用户名、主机名等） Metagoofil 通过google搜索目标域的文件的元数据信息，kali2默认貌似没有安装  目标识别 识别主机  ping 老朋友。。 ping6 用来ping IPv6 fping 可同时探测多个主机或者整个网段 arping 使用ARP请求检测局域网内主机是否在线，IP或者MAC地址都可作为目标 hping3 端口扫描、防火墙规则检测、IDS检测等，功能强大 nping 支持多种协议探测模式；可做压力测试、ARP中毒、Dos攻击 nbtscan 审计局域网内windows系统IP地址、NetBIOS信息等  识别操作系统  p0f 被动方式探测目标主机 nmap 神器之一  服务枚举 端口扫描  nmap 端口扫描；主机探测；服务/版本检测；操作系统检测；网络路由跟踪；脚本引擎  -sT TCP连接扫描 -sS SYN扫描（半开连接扫描） -sN NULL扫描（不设置任何控制位） -sF FIN扫描 -sM TCP Maimom扫描，常用于探测BSD衍生出来的操作系统 -sA TCP ACK扫描，能检测防火墙，确定定被屏蔽端口 -sW TCP窗口扫描 -sI 通过僵尸主机发动扫描 &ndash;scanflags 自定义URG、ACK、PSH、RST、SYN、FIN、ECE、CWR、ALL和NONE组合 -sU UDP扫描 -sV 服务版识别 -O 识别操作系统 -p 指定端口或端口范围 -F 快速扫描，近扫描常用100个端口 -r 顺序扫描 -oN 正常输出 -oX 将结果生成为XML文件 -A 强力扫描，相当于 -sV -O -sC &ndash;traceroute -sC 使用默认类的脚本进行扫描 相当于&ndash;script=default &ndash;script 根据指定文件名、类别名、目录名执行相应脚本 -f 使用小数据包，避免目标IDS识别 &ndash;mtu 调整数据包大小，必须是8的倍数 -D 在侦测数据包中掺杂一些假源IP的数据包。 -g 模拟源端口 &ndash;data-length 改变数据包默认长度 &ndash;scan-delay 控制发送探测数据的时间间隔   Unicornscna 扫描UDP端口性能卓越 zenmap nmap的图形化扫描工具 amap 检测指定端口上运行的应用程序信息  SNMP枚举  SNMP 简单网络管理协议，运行于161端口的应用层协议，用于网络设备运行状态的监控， SNMP协议有三个版本v1/v2/v3" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.takuzen.me/posts/2015-12-19-tools-of-kali/" />
-<meta property="article:published_time" content="2015-12-19T09:00:00+00:00" />
-<meta property="article:modified_time" content="2015-12-19T09:00:00+00:00" />
-
-  <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Kali的一些工具"/>
-<meta name="twitter:description" content="信息收集 DNS信息  host 查询/etc/resolv.conf中指定的DNS服务器 dig 可处理文件内的所有DNS指令 dnsenum 可通过google搜素子域名；课使用字典对子域名进行暴力破解； dnsdict6 IPv6子域名枚举 fierce 能对不连续的IP空间和主机名进行测试 DMitry 具有DNS分析和路由分析功能，可进行简单端口探测 Maltego 图形化综合工具  路由信息  tcptraceroute 利用TCP SYN数据包进行路由信息探测 tctrace -i -h  搜索引擎  theharvester 通过多个公共资源搜集所需信息（Email、用户名、主机名等） Metagoofil 通过google搜索目标域的文件的元数据信息，kali2默认貌似没有安装  目标识别 识别主机  ping 老朋友。。 ping6 用来ping IPv6 fping 可同时探测多个主机或者整个网段 arping 使用ARP请求检测局域网内主机是否在线，IP或者MAC地址都可作为目标 hping3 端口扫描、防火墙规则检测、IDS检测等，功能强大 nping 支持多种协议探测模式；可做压力测试、ARP中毒、Dos攻击 nbtscan 审计局域网内windows系统IP地址、NetBIOS信息等  识别操作系统  p0f 被动方式探测目标主机 nmap 神器之一  服务枚举 端口扫描  nmap 端口扫描；主机探测；服务/版本检测；操作系统检测；网络路由跟踪；脚本引擎  -sT TCP连接扫描 -sS SYN扫描（半开连接扫描） -sN NULL扫描（不设置任何控制位） -sF FIN扫描 -sM TCP Maimom扫描，常用于探测BSD衍生出来的操作系统 -sA TCP ACK扫描，能检测防火墙，确定定被屏蔽端口 -sW TCP窗口扫描 -sI 通过僵尸主机发动扫描 &ndash;scanflags 自定义URG、ACK、PSH、RST、SYN、FIN、ECE、CWR、ALL和NONE组合 -sU UDP扫描 -sV 服务版识别 -O 识别操作系统 -p 指定端口或端口范围 -F 快速扫描，近扫描常用100个端口 -r 顺序扫描 -oN 正常输出 -oX 将结果生成为XML文件 -A 强力扫描，相当于 -sV -O -sC &ndash;traceroute -sC 使用默认类的脚本进行扫描 相当于&ndash;script=default &ndash;script 根据指定文件名、类别名、目录名执行相应脚本 -f 使用小数据包，避免目标IDS识别 &ndash;mtu 调整数据包大小，必须是8的倍数 -D 在侦测数据包中掺杂一些假源IP的数据包。 -g 模拟源端口 &ndash;data-length 改变数据包默认长度 &ndash;scan-delay 控制发送探测数据的时间间隔   Unicornscna 扫描UDP端口性能卓越 zenmap nmap的图形化扫描工具 amap 检测指定端口上运行的应用程序信息  SNMP枚举  SNMP 简单网络管理协议，运行于161端口的应用层协议，用于网络设备运行状态的监控， SNMP协议有三个版本v1/v2/v3"/>
-
-  
-  
-    
-  
-  
-  <link rel="stylesheet" href="https://www.takuzen.me/css/style-white.css">
-  
-  
-  
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  
-
-  
-<link rel="icon" type="image/png" href="https://www.takuzen.me/images/favicon.ico" />
-
-  
-  
-  
-  
-  
-    
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-83047470-2', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
-  
-  
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<title> Kali的一些工具 | マクロス</title>
+<meta name=description content="勉強中">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=robots content="all,follow">
+<meta name=googlebot content="index,follow,snippet,archive">
+<meta property="og:title" content="Kali的一些工具">
+<meta property="og:description" content="信息收集 DNS信息  host 查询/etc/resolv.conf中指定的DNS服务器 dig 可处理文件内的所有DNS指令 dnsenum 可通过google搜素子域名；课使用字典对子域名进行暴力破解； dnsdict6 IPv6子域名枚举 fierce 能对不连续的IP空间和主机名进行测试 DMitry 具有DNS分析和路由分析功能，可进行简单端口探测 Maltego 图形化综合工具  路由信息  tcptraceroute 利用TCP SYN数据包进行路由信息探测 tctrace -i -h  搜索引擎  theharvester 通过多个公共资源搜集所需信息（Email、用户名、主机名等） Metagoofil 通过google搜索目标域的文件的元数据信息，kali2默认貌似没有安装  目标识别 识别主机  ping 老朋友。。 ping6 用来ping IPv6 fping 可同时探测多个主机或者整个网段 arping 使用ARP请求检测局域网内主机是否在线，IP或者MAC地址都可作为目标 hping3 端口扫描、防火墙规则检测、IDS检测等，功能强大 nping 支持多种协议探测模式；可做压力测试、ARP中毒、Dos攻击 nbtscan 审计局域网内windows系统IP地址、NetBIOS信息等  识别操作系统  p0f 被动方式探测目标主机 nmap 神器之一  服务枚举 端口扫描  nmap 端口扫描；主机探测；服务/版本检测；操作系统检测；网络路由跟踪；脚本引擎  -sT TCP连接扫描 -sS SYN扫描（半开连接扫描） -sN NULL扫描（不设置任何控制位） -sF FIN扫描 -sM TCP Maimom扫描，常用于探测BSD衍生出来的操作系统 -sA TCP ACK扫描，能检测防火墙，确定定被屏蔽端口 -sW TCP窗口扫描 -sI 通过僵尸主机发动扫描 &ndash;scanflags 自定义URG、ACK、PSH、RST、SYN、FIN、ECE、CWR、ALL和NONE组合 -sU UDP扫描 -sV 服务版识别 -O 识别操作系统 -p 指定端口或端口范围 -F 快速扫描，近扫描常用100个端口 -r 顺序扫描 -oN 正常输出 -oX 将结果生成为XML文件 -A 强力扫描，相当于 -sV -O -sC &ndash;traceroute -sC 使用默认类的脚本进行扫描 相当于&ndash;script=default &ndash;script 根据指定文件名、类别名、目录名执行相应脚本 -f 使用小数据包，避免目标IDS识别 &ndash;mtu 调整数据包大小，必须是8的倍数 -D 在侦测数据包中掺杂一些假源IP的数据包。 -g 模拟源端口 &ndash;data-length 改变数据包默认长度 &ndash;scan-delay 控制发送探测数据的时间间隔   Unicornscna 扫描UDP端口性能卓越 zenmap nmap的图形化扫描工具 amap 检测指定端口上运行的应用程序信息  SNMP枚举  SNMP 简单网络管理协议，运行于161端口的应用层协议，用于网络设备运行状态的监控， SNMP协议有三个版本v1/v2/v3">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://www.takuzen.me/posts/2015-12-19-tools-of-kali/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2015-12-19T09:00:00+00:00">
+<meta property="article:modified_time" content="2015-12-19T09:00:00+00:00">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="Kali的一些工具">
+<meta name=twitter:description content="信息收集 DNS信息  host 查询/etc/resolv.conf中指定的DNS服务器 dig 可处理文件内的所有DNS指令 dnsenum 可通过google搜素子域名；课使用字典对子域名进行暴力破解； dnsdict6 IPv6子域名枚举 fierce 能对不连续的IP空间和主机名进行测试 DMitry 具有DNS分析和路由分析功能，可进行简单端口探测 Maltego 图形化综合工具  路由信息  tcptraceroute 利用TCP SYN数据包进行路由信息探测 tctrace -i -h  搜索引擎  theharvester 通过多个公共资源搜集所需信息（Email、用户名、主机名等） Metagoofil 通过google搜索目标域的文件的元数据信息，kali2默认貌似没有安装  目标识别 识别主机  ping 老朋友。。 ping6 用来ping IPv6 fping 可同时探测多个主机或者整个网段 arping 使用ARP请求检测局域网内主机是否在线，IP或者MAC地址都可作为目标 hping3 端口扫描、防火墙规则检测、IDS检测等，功能强大 nping 支持多种协议探测模式；可做压力测试、ARP中毒、Dos攻击 nbtscan 审计局域网内windows系统IP地址、NetBIOS信息等  识别操作系统  p0f 被动方式探测目标主机 nmap 神器之一  服务枚举 端口扫描  nmap 端口扫描；主机探测；服务/版本检测；操作系统检测；网络路由跟踪；脚本引擎  -sT TCP连接扫描 -sS SYN扫描（半开连接扫描） -sN NULL扫描（不设置任何控制位） -sF FIN扫描 -sM TCP Maimom扫描，常用于探测BSD衍生出来的操作系统 -sA TCP ACK扫描，能检测防火墙，确定定被屏蔽端口 -sW TCP窗口扫描 -sI 通过僵尸主机发动扫描 &ndash;scanflags 自定义URG、ACK、PSH、RST、SYN、FIN、ECE、CWR、ALL和NONE组合 -sU UDP扫描 -sV 服务版识别 -O 识别操作系统 -p 指定端口或端口范围 -F 快速扫描，近扫描常用100个端口 -r 顺序扫描 -oN 正常输出 -oX 将结果生成为XML文件 -A 强力扫描，相当于 -sV -O -sC &ndash;traceroute -sC 使用默认类的脚本进行扫描 相当于&ndash;script=default &ndash;script 根据指定文件名、类别名、目录名执行相应脚本 -f 使用小数据包，避免目标IDS识别 &ndash;mtu 调整数据包大小，必须是8的倍数 -D 在侦测数据包中掺杂一些假源IP的数据包。 -g 模拟源端口 &ndash;data-length 改变数据包默认长度 &ndash;scan-delay 控制发送探测数据的时间间隔   Unicornscna 扫描UDP端口性能卓越 zenmap nmap的图形化扫描工具 amap 检测指定端口上运行的应用程序信息  SNMP枚举  SNMP 简单网络管理协议，运行于161端口的应用层协议，用于网络设备运行状态的监控， SNMP协议有三个版本v1/v2/v3">
+<link rel=stylesheet href=https://www.takuzen.me/css/style-white.css><!--[if lt IE 9]><script src=https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js></script>
+<script src=https://oss.maxcdn.com/respond/1.4.2/respond.min.js></script><![endif]-->
+<link rel=icon type=image/png href=https://www.takuzen.me/images/favicon.ico>
+<script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','UA-83047470-2','auto'),ga('send','pageview'))</script>
+<script async src=https://www.google-analytics.com/analytics.js></script>
 </head>
-
 <body class="max-width mx-auto px3 ltr">
-  <div class="content index py4">
-
-  <div id="header-post">
-  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
-  <span id="menu">
-    <span id="nav">
-      <ul>
-         
-        <li><a href="/">Home</a></li>
-         
-        <li><a href="/posts">Writings</a></li>
-         
-        <li><a href="/tags">Tags</a></li>
-         
-        <li><a href="/about">About</a></li>
-        
-      </ul>
-    </span>
-    <br/>
-    <span id="actions">
-      <ul>
-        
-        <li>
-          <a class="icon" href=" https://www.takuzen.me/posts/2015-12-07-metasploit-on-kali/">
-            <i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i>
-          </a>
-        </li>
-        
-        
-        <li>
-          <a class="icon" href="https://www.takuzen.me/posts/2016-03-04-refresh-old-laptop/">
-            <i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i>
-          </a>
-        </li>
-        
-        <li>
-          <a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');">
-            <i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i>
-          </a>
-        </li>
-        <li>
-          <a class="icon" href="#">
-            <i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i>
-          </a>
-        </li>
-      </ul>
-      <span id="i-prev" class="info" style="display:none;">Previous post</span>
-      <span id="i-next" class="info" style="display:none;">Next post</span>
-      <span id="i-top" class="info" style="display:none;">Back to top</span>
-      <span id="i-share" class="info" style="display:none;">Share post</span>
-    </span>
-    <br/>
-    <div id="share" style="display: none">
-      
-      <ul>
-  
-  
-    
-  
-  
-  <li>
-    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fwww.takuzen.me%2fposts%2f2015-12-19-tools-of-kali%2f">
-      <i class="fab fa-facebook " aria-hidden="true"></i>
-    </a>
-  </li>
-  <li>
-    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2015-12-19-tools-of-kali%2f&text=Kali%e7%9a%84%e4%b8%80%e4%ba%9b%e5%b7%a5%e5%85%b7">
-      <i class="fab fa-twitter " aria-hidden="true"></i>
-    </a>
-  </li>
-  <li>
-    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2015-12-19-tools-of-kali%2f&title=Kali%e7%9a%84%e4%b8%80%e4%ba%9b%e5%b7%a5%e5%85%b7">
-      <i class="fab fa-linkedin " aria-hidden="true"></i>
-    </a>
-  </li>
-  <li>
-    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2015-12-19-tools-of-kali%2f&is_video=false&description=Kali%e7%9a%84%e4%b8%80%e4%ba%9b%e5%b7%a5%e5%85%b7">
-      <i class="fab fa-pinterest " aria-hidden="true"></i>
-    </a>
-  </li>
-  <li>
-    <a class="icon" href="mailto:?subject=Kali%e7%9a%84%e4%b8%80%e4%ba%9b%e5%b7%a5%e5%85%b7&body=Check out this article: https%3a%2f%2fwww.takuzen.me%2fposts%2f2015-12-19-tools-of-kali%2f">
-      <i class="fas fa-envelope " aria-hidden="true"></i>
-    </a>
-  </li>
-  <li>
-    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2015-12-19-tools-of-kali%2f&title=Kali%e7%9a%84%e4%b8%80%e4%ba%9b%e5%b7%a5%e5%85%b7">
-      <i class="fab fa-get-pocket " aria-hidden="true"></i>
-    </a>
-  </li>
-  <li>
-    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2015-12-19-tools-of-kali%2f&title=Kali%e7%9a%84%e4%b8%80%e4%ba%9b%e5%b7%a5%e5%85%b7">
-      <i class="fab fa-reddit " aria-hidden="true"></i>
-    </a>
-  </li>
-  <li>
-    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2015-12-19-tools-of-kali%2f&name=Kali%e7%9a%84%e4%b8%80%e4%ba%9b%e5%b7%a5%e5%85%b7&description=%e4%bf%a1%e6%81%af%e6%94%b6%e9%9b%86%20DNS%e4%bf%a1%e6%81%af%20%20host%20%e6%9f%a5%e8%af%a2%2fetc%2fresolv.conf%e4%b8%ad%e6%8c%87%e5%ae%9a%e7%9a%84DNS%e6%9c%8d%e5%8a%a1%e5%99%a8%20dig%20%e5%8f%af%e5%a4%84%e7%90%86%e6%96%87%e4%bb%b6%e5%86%85%e7%9a%84%e6%89%80%e6%9c%89DNS%e6%8c%87%e4%bb%a4%20dnsenum%20%e5%8f%af%e9%80%9a%e8%bf%87google%e6%90%9c%e7%b4%a0%e5%ad%90%e5%9f%9f%e5%90%8d%ef%bc%9b%e8%af%be%e4%bd%bf%e7%94%a8%e5%ad%97%e5%85%b8%e5%af%b9%e5%ad%90%e5%9f%9f%e5%90%8d%e8%bf%9b%e8%a1%8c%e6%9a%b4%e5%8a%9b%e7%a0%b4%e8%a7%a3%ef%bc%9b%20dnsdict6%20IPv6%e5%ad%90%e5%9f%9f%e5%90%8d%e6%9e%9a%e4%b8%be%20fierce%20%e8%83%bd%e5%af%b9%e4%b8%8d%e8%bf%9e%e7%bb%ad%e7%9a%84IP%e7%a9%ba%e9%97%b4%e5%92%8c%e4%b8%bb%e6%9c%ba%e5%90%8d%e8%bf%9b%e8%a1%8c%e6%b5%8b%e8%af%95%20DMitry%20%e5%85%b7%e6%9c%89DNS%e5%88%86%e6%9e%90%e5%92%8c%e8%b7%af%e7%94%b1%e5%88%86%e6%9e%90%e5%8a%9f%e8%83%bd%ef%bc%8c%e5%8f%af%e8%bf%9b%e8%a1%8c%e7%ae%80%e5%8d%95%e7%ab%af%e5%8f%a3%e6%8e%a2%e6%b5%8b%20Maltego%20%e5%9b%be%e5%bd%a2%e5%8c%96%e7%bb%bc%e5%90%88%e5%b7%a5%e5%85%b7%20%20%e8%b7%af%e7%94%b1%e4%bf%a1%e6%81%af%20%20tcptraceroute%20%e5%88%a9%e7%94%a8TCP%20SYN%e6%95%b0%e6%8d%ae%e5%8c%85%e8%bf%9b%e8%a1%8c%e8%b7%af%e7%94%b1%e4%bf%a1%e6%81%af%e6%8e%a2%e6%b5%8b%20tctrace%20-i%20-h%20%20%e6%90%9c%e7%b4%a2%e5%bc%95%e6%93%8e%20%20theharvester%20%e9%80%9a%e8%bf%87%e5%a4%9a%e4%b8%aa%e5%85%ac%e5%85%b1%e8%b5%84%e6%ba%90%e6%90%9c%e9%9b%86%e6%89%80%e9%9c%80%e4%bf%a1%e6%81%af%ef%bc%88Email%e3%80%81%e7%94%a8%e6%88%b7%e5%90%8d%e3%80%81%e4%b8%bb%e6%9c%ba%e5%90%8d%e7%ad%89%ef%bc%89%20Metagoofil%20%e9%80%9a%e8%bf%87google%e6%90%9c%e7%b4%a2%e7%9b%ae%e6%a0%87%e5%9f%9f%e7%9a%84%e6%96%87%e4%bb%b6%e7%9a%84%e5%85%83%e6%95%b0%e6%8d%ae%e4%bf%a1%e6%81%af%ef%bc%8ckali2%e9%bb%98%e8%ae%a4%e8%b2%8c%e4%bc%bc%e6%b2%a1%e6%9c%89%e5%ae%89%e8%a3%85%20%20%e7%9b%ae%e6%a0%87%e8%af%86%e5%88%ab%20%e8%af%86%e5%88%ab%e4%b8%bb%e6%9c%ba%20%20ping%20%e8%80%81%e6%9c%8b%e5%8f%8b%e3%80%82%e3%80%82%20ping6%20%e7%94%a8%e6%9d%a5ping%20IPv6%20fping%20%e5%8f%af%e5%90%8c%e6%97%b6%e6%8e%a2%e6%b5%8b%e5%a4%9a%e4%b8%aa%e4%b8%bb%e6%9c%ba%e6%88%96%e8%80%85%e6%95%b4%e4%b8%aa%e7%bd%91%e6%ae%b5%20arping%20%e4%bd%bf%e7%94%a8ARP%e8%af%b7%e6%b1%82%e6%a3%80%e6%b5%8b%e5%b1%80%e5%9f%9f%e7%bd%91%e5%86%85%e4%b8%bb%e6%9c%ba%e6%98%af%e5%90%a6%e5%9c%a8%e7%ba%bf%ef%bc%8cIP%e6%88%96%e8%80%85MAC%e5%9c%b0%e5%9d%80%e9%83%bd%e5%8f%af%e4%bd%9c%e4%b8%ba%e7%9b%ae%e6%a0%87%20hping3%20%e7%ab%af%e5%8f%a3%e6%89%ab%e6%8f%8f%e3%80%81%e9%98%b2%e7%81%ab%e5%a2%99%e8%a7%84%e5%88%99%e6%a3%80%e6%b5%8b%e3%80%81IDS%e6%a3%80%e6%b5%8b%e7%ad%89%ef%bc%8c%e5%8a%9f%e8%83%bd%e5%bc%ba%e5%a4%a7%20nping%20%e6%94%af%e6%8c%81%e5%a4%9a%e7%a7%8d%e5%8d%8f%e8%ae%ae%e6%8e%a2%e6%b5%8b%e6%a8%a1%e5%bc%8f%ef%bc%9b%e5%8f%af%e5%81%9a%e5%8e%8b%e5%8a%9b%e6%b5%8b%e8%af%95%e3%80%81ARP%e4%b8%ad%e6%af%92%e3%80%81Dos%e6%94%bb%e5%87%bb%20nbtscan%20%e5%ae%a1%e8%ae%a1%e5%b1%80%e5%9f%9f%e7%bd%91%e5%86%85windows%e7%b3%bb%e7%bb%9fIP%e5%9c%b0%e5%9d%80%e3%80%81NetBIOS%e4%bf%a1%e6%81%af%e7%ad%89%20%20%e8%af%86%e5%88%ab%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%20%20p0f%20%e8%a2%ab%e5%8a%a8%e6%96%b9%e5%bc%8f%e6%8e%a2%e6%b5%8b%e7%9b%ae%e6%a0%87%e4%b8%bb%e6%9c%ba%20nmap%20%e7%a5%9e%e5%99%a8%e4%b9%8b%e4%b8%80%20%20%e6%9c%8d%e5%8a%a1%e6%9e%9a%e4%b8%be%20%e7%ab%af%e5%8f%a3%e6%89%ab%e6%8f%8f%20%20nmap%20%e7%ab%af%e5%8f%a3%e6%89%ab%e6%8f%8f%ef%bc%9b%e4%b8%bb%e6%9c%ba%e6%8e%a2%e6%b5%8b%ef%bc%9b%e6%9c%8d%e5%8a%a1%2f%e7%89%88%e6%9c%ac%e6%a3%80%e6%b5%8b%ef%bc%9b%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%e6%a3%80%e6%b5%8b%ef%bc%9b%e7%bd%91%e7%bb%9c%e8%b7%af%e7%94%b1%e8%b7%9f%e8%b8%aa%ef%bc%9b%e8%84%9a%e6%9c%ac%e5%bc%95%e6%93%8e%20%20-sT%20TCP%e8%bf%9e%e6%8e%a5%e6%89%ab%e6%8f%8f%20-sS%20SYN%e6%89%ab%e6%8f%8f%ef%bc%88%e5%8d%8a%e5%bc%80%e8%bf%9e%e6%8e%a5%e6%89%ab%e6%8f%8f%ef%bc%89%20-sN%20NULL%e6%89%ab%e6%8f%8f%ef%bc%88%e4%b8%8d%e8%ae%be%e7%bd%ae%e4%bb%bb%e4%bd%95%e6%8e%a7%e5%88%b6%e4%bd%8d%ef%bc%89%20-sF%20FIN%e6%89%ab%e6%8f%8f%20-sM%20TCP%20Maimom%e6%89%ab%e6%8f%8f%ef%bc%8c%e5%b8%b8%e7%94%a8%e4%ba%8e%e6%8e%a2%e6%b5%8bBSD%e8%a1%8d%e7%94%9f%e5%87%ba%e6%9d%a5%e7%9a%84%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%20-sA%20TCP%20ACK%e6%89%ab%e6%8f%8f%ef%bc%8c%e8%83%bd%e6%a3%80%e6%b5%8b%e9%98%b2%e7%81%ab%e5%a2%99%ef%bc%8c%e7%a1%ae%e5%ae%9a%e5%ae%9a%e8%a2%ab%e5%b1%8f%e8%94%bd%e7%ab%af%e5%8f%a3%20-sW%20TCP%e7%aa%97%e5%8f%a3%e6%89%ab%e6%8f%8f%20-sI%20%e9%80%9a%e8%bf%87%e5%83%b5%e5%b0%b8%e4%b8%bb%e6%9c%ba%e5%8f%91%e5%8a%a8%e6%89%ab%e6%8f%8f%20%26ndash%3bscanflags%20%e8%87%aa%e5%ae%9a%e4%b9%89URG%e3%80%81ACK%e3%80%81PSH%e3%80%81RST%e3%80%81SYN%e3%80%81FIN%e3%80%81ECE%e3%80%81CWR%e3%80%81ALL%e5%92%8cNONE%e7%bb%84%e5%90%88%20-sU%20UDP%e6%89%ab%e6%8f%8f%20-sV%20%e6%9c%8d%e5%8a%a1%e7%89%88%e8%af%86%e5%88%ab%20-O%20%e8%af%86%e5%88%ab%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%20-p%20%e6%8c%87%e5%ae%9a%e7%ab%af%e5%8f%a3%e6%88%96%e7%ab%af%e5%8f%a3%e8%8c%83%e5%9b%b4%20-F%20%e5%bf%ab%e9%80%9f%e6%89%ab%e6%8f%8f%ef%bc%8c%e8%bf%91%e6%89%ab%e6%8f%8f%e5%b8%b8%e7%94%a8100%e4%b8%aa%e7%ab%af%e5%8f%a3%20-r%20%e9%a1%ba%e5%ba%8f%e6%89%ab%e6%8f%8f%20-oN%20%e6%ad%a3%e5%b8%b8%e8%be%93%e5%87%ba%20-oX%20%e5%b0%86%e7%bb%93%e6%9e%9c%e7%94%9f%e6%88%90%e4%b8%baXML%e6%96%87%e4%bb%b6%20-A%20%e5%bc%ba%e5%8a%9b%e6%89%ab%e6%8f%8f%ef%bc%8c%e7%9b%b8%e5%bd%93%e4%ba%8e%20-sV%20-O%20-sC%20%26ndash%3btraceroute%20-sC%20%e4%bd%bf%e7%94%a8%e9%bb%98%e8%ae%a4%e7%b1%bb%e7%9a%84%e8%84%9a%e6%9c%ac%e8%bf%9b%e8%a1%8c%e6%89%ab%e6%8f%8f%20%e7%9b%b8%e5%bd%93%e4%ba%8e%26ndash%3bscript%3ddefault%20%26ndash%3bscript%20%e6%a0%b9%e6%8d%ae%e6%8c%87%e5%ae%9a%e6%96%87%e4%bb%b6%e5%90%8d%e3%80%81%e7%b1%bb%e5%88%ab%e5%90%8d%e3%80%81%e7%9b%ae%e5%bd%95%e5%90%8d%e6%89%a7%e8%a1%8c%e7%9b%b8%e5%ba%94%e8%84%9a%e6%9c%ac%20-f%20%e4%bd%bf%e7%94%a8%e5%b0%8f%e6%95%b0%e6%8d%ae%e5%8c%85%ef%bc%8c%e9%81%bf%e5%85%8d%e7%9b%ae%e6%a0%87IDS%e8%af%86%e5%88%ab%20%26ndash%3bmtu%20%e8%b0%83%e6%95%b4%e6%95%b0%e6%8d%ae%e5%8c%85%e5%a4%a7%e5%b0%8f%ef%bc%8c%e5%bf%85%e9%a1%bb%e6%98%af8%e7%9a%84%e5%80%8d%e6%95%b0%20-D%20%e5%9c%a8%e4%be%a6%e6%b5%8b%e6%95%b0%e6%8d%ae%e5%8c%85%e4%b8%ad%e6%8e%ba%e6%9d%82%e4%b8%80%e4%ba%9b%e5%81%87%e6%ba%90IP%e7%9a%84%e6%95%b0%e6%8d%ae%e5%8c%85%e3%80%82%20-g%20%e6%a8%a1%e6%8b%9f%e6%ba%90%e7%ab%af%e5%8f%a3%20%26ndash%3bdata-length%20%e6%94%b9%e5%8f%98%e6%95%b0%e6%8d%ae%e5%8c%85%e9%bb%98%e8%ae%a4%e9%95%bf%e5%ba%a6%20%26ndash%3bscan-delay%20%e6%8e%a7%e5%88%b6%e5%8f%91%e9%80%81%e6%8e%a2%e6%b5%8b%e6%95%b0%e6%8d%ae%e7%9a%84%e6%97%b6%e9%97%b4%e9%97%b4%e9%9a%94%20%20%20Unicornscna%20%e6%89%ab%e6%8f%8fUDP%e7%ab%af%e5%8f%a3%e6%80%a7%e8%83%bd%e5%8d%93%e8%b6%8a%20zenmap%20nmap%e7%9a%84%e5%9b%be%e5%bd%a2%e5%8c%96%e6%89%ab%e6%8f%8f%e5%b7%a5%e5%85%b7%20amap%20%e6%a3%80%e6%b5%8b%e6%8c%87%e5%ae%9a%e7%ab%af%e5%8f%a3%e4%b8%8a%e8%bf%90%e8%a1%8c%e7%9a%84%e5%ba%94%e7%94%a8%e7%a8%8b%e5%ba%8f%e4%bf%a1%e6%81%af%20%20SNMP%e6%9e%9a%e4%b8%be%20%20SNMP%20%e7%ae%80%e5%8d%95%e7%bd%91%e7%bb%9c%e7%ae%a1%e7%90%86%e5%8d%8f%e8%ae%ae%ef%bc%8c%e8%bf%90%e8%a1%8c%e4%ba%8e161%e7%ab%af%e5%8f%a3%e7%9a%84%e5%ba%94%e7%94%a8%e5%b1%82%e5%8d%8f%e8%ae%ae%ef%bc%8c%e7%94%a8%e4%ba%8e%e7%bd%91%e7%bb%9c%e8%ae%be%e5%a4%87%e8%bf%90%e8%a1%8c%e7%8a%b6%e6%80%81%e7%9a%84%e7%9b%91%e6%8e%a7%ef%bc%8c%20SNMP%e5%8d%8f%e8%ae%ae%e6%9c%89%e4%b8%89%e4%b8%aa%e7%89%88%e6%9c%acv1%2fv2%2fv3">
-      <i class="fab fa-tumblr " aria-hidden="true"></i>
-    </a>
-  </li>
-  <li>
-    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fwww.takuzen.me%2fposts%2f2015-12-19-tools-of-kali%2f&t=Kali%e7%9a%84%e4%b8%80%e4%ba%9b%e5%b7%a5%e5%85%b7">
-      <i class="fab fa-hacker-news " aria-hidden="true"></i>
-    </a>
-  </li>
+<div class="content index py4">
+<div id=header-post>
+<a id=menu-icon href=#><i class="fas fa-bars fa-lg"></i></a>
+<a id=menu-icon-tablet href=#><i class="fas fa-bars fa-lg"></i></a>
+<a id=top-icon-tablet href=# onclick="$('html, body').animate({scrollTop:0},'fast')" style=display:none aria-label="Top of Page"><i class="fas fa-chevron-up fa-lg"></i></a>
+<span id=menu>
+<span id=nav>
+<ul>
+<li><a href=/>Home</a></li>
+<li><a href=/posts>Writings</a></li>
+<li><a href=/tags>Tags</a></li>
+<li><a href=/about>About</a></li>
 </ul>
-
-    </div>
-    <div id="toc">
-      <nav id="TableOfContents">
-  <ul>
-    <li><a href="#信息收集">信息收集</a>
-      <ul>
-        <li><a href="#dns信息">DNS信息</a></li>
-        <li><a href="#路由信息">路由信息</a></li>
-        <li><a href="#搜索引擎">搜索引擎</a></li>
-      </ul>
-    </li>
-    <li><a href="#目标识别">目标识别</a>
-      <ul>
-        <li><a href="#识别主机">识别主机</a></li>
-        <li><a href="#识别操作系统">识别操作系统</a></li>
-      </ul>
-    </li>
-    <li><a href="#服务枚举">服务枚举</a>
-      <ul>
-        <li><a href="#端口扫描">端口扫描</a></li>
-        <li><a href="#snmp枚举">SNMP枚举</a></li>
-        <li><a href="#vpn枚举">VPN枚举</a></li>
-      </ul>
-    </li>
-    <li><a href="#漏洞映射">漏洞映射</a>
-      <ul>
-        <li><a href="#模糊分析">模糊分析</a></li>
-        <li><a href="#smb分析">SMB分析</a></li>
-        <li><a href="#数据库评估">数据库评估</a></li>
-        <li><a href="#web应用程序评估">Web应用程序评估</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
-    </div>
-  </span>
+</span>
+<br>
+<span id=actions>
+<ul>
+<li>
+<a class=icon href=https://www.takuzen.me/posts/2015-12-07-metasploit-on-kali/ aria-label=Previous>
+<i class="fas fa-chevron-left" aria-hidden=true onmouseover="$('#i-prev').toggle()" onmouseout="$('#i-prev').toggle()"></i>
+</a>
+</li>
+<li>
+<a class=icon href=https://www.takuzen.me/posts/2016-03-04-refresh-old-laptop/ aria-label=Next>
+<i class="fas fa-chevron-right" aria-hidden=true onmouseover="$('#i-next').toggle()" onmouseout="$('#i-next').toggle()"></i>
+</a>
+</li>
+<li>
+<a class=icon href=# onclick="$('html, body').animate({scrollTop:0},'fast')" aria-label="Top of Page">
+<i class="fas fa-chevron-up" aria-hidden=true onmouseover="$('#i-top').toggle()" onmouseout="$('#i-top').toggle()"></i>
+</a>
+</li>
+<li>
+<a class=icon href=# aria-label=Share>
+<i class="fas fa-share-alt" aria-hidden=true onmouseover="$('#i-share').toggle()" onmouseout="$('#i-share').toggle()" onclick="return $('#share').toggle(),!1"></i>
+</a>
+</li>
+</ul>
+<span id=i-prev class=info style=display:none>Previous post</span>
+<span id=i-next class=info style=display:none>Next post</span>
+<span id=i-top class=info style=display:none>Back to top</span>
+<span id=i-share class=info style=display:none>Share post</span>
+</span>
+<br>
+<div id=share style=display:none>
+<ul>
+<li>
+<a class=icon href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fwww.takuzen.me%2fposts%2f2015-12-19-tools-of-kali%2f" aria-label=Facebook>
+<i class="fab fa-facebook" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="https://twitter.com/share?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2015-12-19-tools-of-kali%2f&text=Kali%e7%9a%84%e4%b8%80%e4%ba%9b%e5%b7%a5%e5%85%b7" aria-label=Twitter>
+<i class="fab fa-twitter" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2015-12-19-tools-of-kali%2f&title=Kali%e7%9a%84%e4%b8%80%e4%ba%9b%e5%b7%a5%e5%85%b7" aria-label=Linkedin>
+<i class="fab fa-linkedin" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2015-12-19-tools-of-kali%2f&is_video=false&description=Kali%e7%9a%84%e4%b8%80%e4%ba%9b%e5%b7%a5%e5%85%b7" aria-label=Pinterest>
+<i class="fab fa-pinterest" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="mailto:?subject=Kali%e7%9a%84%e4%b8%80%e4%ba%9b%e5%b7%a5%e5%85%b7&body=Check out this article: https%3a%2f%2fwww.takuzen.me%2fposts%2f2015-12-19-tools-of-kali%2f" aria-label=Email>
+<i class="fas fa-envelope" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="https://getpocket.com/save?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2015-12-19-tools-of-kali%2f&title=Kali%e7%9a%84%e4%b8%80%e4%ba%9b%e5%b7%a5%e5%85%b7" aria-label=Pocket>
+<i class="fab fa-get-pocket" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="http://reddit.com/submit?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2015-12-19-tools-of-kali%2f&title=Kali%e7%9a%84%e4%b8%80%e4%ba%9b%e5%b7%a5%e5%85%b7" aria-label=reddit>
+<i class="fab fa-reddit" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="http://www.tumblr.com/share/link?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2015-12-19-tools-of-kali%2f&name=Kali%e7%9a%84%e4%b8%80%e4%ba%9b%e5%b7%a5%e5%85%b7&description=%e4%bf%a1%e6%81%af%e6%94%b6%e9%9b%86%20DNS%e4%bf%a1%e6%81%af%20%20host%20%e6%9f%a5%e8%af%a2%2fetc%2fresolv.conf%e4%b8%ad%e6%8c%87%e5%ae%9a%e7%9a%84DNS%e6%9c%8d%e5%8a%a1%e5%99%a8%20dig%20%e5%8f%af%e5%a4%84%e7%90%86%e6%96%87%e4%bb%b6%e5%86%85%e7%9a%84%e6%89%80%e6%9c%89DNS%e6%8c%87%e4%bb%a4%20dnsenum%20%e5%8f%af%e9%80%9a%e8%bf%87google%e6%90%9c%e7%b4%a0%e5%ad%90%e5%9f%9f%e5%90%8d%ef%bc%9b%e8%af%be%e4%bd%bf%e7%94%a8%e5%ad%97%e5%85%b8%e5%af%b9%e5%ad%90%e5%9f%9f%e5%90%8d%e8%bf%9b%e8%a1%8c%e6%9a%b4%e5%8a%9b%e7%a0%b4%e8%a7%a3%ef%bc%9b%20dnsdict6%20IPv6%e5%ad%90%e5%9f%9f%e5%90%8d%e6%9e%9a%e4%b8%be%20fierce%20%e8%83%bd%e5%af%b9%e4%b8%8d%e8%bf%9e%e7%bb%ad%e7%9a%84IP%e7%a9%ba%e9%97%b4%e5%92%8c%e4%b8%bb%e6%9c%ba%e5%90%8d%e8%bf%9b%e8%a1%8c%e6%b5%8b%e8%af%95%20DMitry%20%e5%85%b7%e6%9c%89DNS%e5%88%86%e6%9e%90%e5%92%8c%e8%b7%af%e7%94%b1%e5%88%86%e6%9e%90%e5%8a%9f%e8%83%bd%ef%bc%8c%e5%8f%af%e8%bf%9b%e8%a1%8c%e7%ae%80%e5%8d%95%e7%ab%af%e5%8f%a3%e6%8e%a2%e6%b5%8b%20Maltego%20%e5%9b%be%e5%bd%a2%e5%8c%96%e7%bb%bc%e5%90%88%e5%b7%a5%e5%85%b7%20%20%e8%b7%af%e7%94%b1%e4%bf%a1%e6%81%af%20%20tcptraceroute%20%e5%88%a9%e7%94%a8TCP%20SYN%e6%95%b0%e6%8d%ae%e5%8c%85%e8%bf%9b%e8%a1%8c%e8%b7%af%e7%94%b1%e4%bf%a1%e6%81%af%e6%8e%a2%e6%b5%8b%20tctrace%20-i%20-h%20%20%e6%90%9c%e7%b4%a2%e5%bc%95%e6%93%8e%20%20theharvester%20%e9%80%9a%e8%bf%87%e5%a4%9a%e4%b8%aa%e5%85%ac%e5%85%b1%e8%b5%84%e6%ba%90%e6%90%9c%e9%9b%86%e6%89%80%e9%9c%80%e4%bf%a1%e6%81%af%ef%bc%88Email%e3%80%81%e7%94%a8%e6%88%b7%e5%90%8d%e3%80%81%e4%b8%bb%e6%9c%ba%e5%90%8d%e7%ad%89%ef%bc%89%20Metagoofil%20%e9%80%9a%e8%bf%87google%e6%90%9c%e7%b4%a2%e7%9b%ae%e6%a0%87%e5%9f%9f%e7%9a%84%e6%96%87%e4%bb%b6%e7%9a%84%e5%85%83%e6%95%b0%e6%8d%ae%e4%bf%a1%e6%81%af%ef%bc%8ckali2%e9%bb%98%e8%ae%a4%e8%b2%8c%e4%bc%bc%e6%b2%a1%e6%9c%89%e5%ae%89%e8%a3%85%20%20%e7%9b%ae%e6%a0%87%e8%af%86%e5%88%ab%20%e8%af%86%e5%88%ab%e4%b8%bb%e6%9c%ba%20%20ping%20%e8%80%81%e6%9c%8b%e5%8f%8b%e3%80%82%e3%80%82%20ping6%20%e7%94%a8%e6%9d%a5ping%20IPv6%20fping%20%e5%8f%af%e5%90%8c%e6%97%b6%e6%8e%a2%e6%b5%8b%e5%a4%9a%e4%b8%aa%e4%b8%bb%e6%9c%ba%e6%88%96%e8%80%85%e6%95%b4%e4%b8%aa%e7%bd%91%e6%ae%b5%20arping%20%e4%bd%bf%e7%94%a8ARP%e8%af%b7%e6%b1%82%e6%a3%80%e6%b5%8b%e5%b1%80%e5%9f%9f%e7%bd%91%e5%86%85%e4%b8%bb%e6%9c%ba%e6%98%af%e5%90%a6%e5%9c%a8%e7%ba%bf%ef%bc%8cIP%e6%88%96%e8%80%85MAC%e5%9c%b0%e5%9d%80%e9%83%bd%e5%8f%af%e4%bd%9c%e4%b8%ba%e7%9b%ae%e6%a0%87%20hping3%20%e7%ab%af%e5%8f%a3%e6%89%ab%e6%8f%8f%e3%80%81%e9%98%b2%e7%81%ab%e5%a2%99%e8%a7%84%e5%88%99%e6%a3%80%e6%b5%8b%e3%80%81IDS%e6%a3%80%e6%b5%8b%e7%ad%89%ef%bc%8c%e5%8a%9f%e8%83%bd%e5%bc%ba%e5%a4%a7%20nping%20%e6%94%af%e6%8c%81%e5%a4%9a%e7%a7%8d%e5%8d%8f%e8%ae%ae%e6%8e%a2%e6%b5%8b%e6%a8%a1%e5%bc%8f%ef%bc%9b%e5%8f%af%e5%81%9a%e5%8e%8b%e5%8a%9b%e6%b5%8b%e8%af%95%e3%80%81ARP%e4%b8%ad%e6%af%92%e3%80%81Dos%e6%94%bb%e5%87%bb%20nbtscan%20%e5%ae%a1%e8%ae%a1%e5%b1%80%e5%9f%9f%e7%bd%91%e5%86%85windows%e7%b3%bb%e7%bb%9fIP%e5%9c%b0%e5%9d%80%e3%80%81NetBIOS%e4%bf%a1%e6%81%af%e7%ad%89%20%20%e8%af%86%e5%88%ab%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%20%20p0f%20%e8%a2%ab%e5%8a%a8%e6%96%b9%e5%bc%8f%e6%8e%a2%e6%b5%8b%e7%9b%ae%e6%a0%87%e4%b8%bb%e6%9c%ba%20nmap%20%e7%a5%9e%e5%99%a8%e4%b9%8b%e4%b8%80%20%20%e6%9c%8d%e5%8a%a1%e6%9e%9a%e4%b8%be%20%e7%ab%af%e5%8f%a3%e6%89%ab%e6%8f%8f%20%20nmap%20%e7%ab%af%e5%8f%a3%e6%89%ab%e6%8f%8f%ef%bc%9b%e4%b8%bb%e6%9c%ba%e6%8e%a2%e6%b5%8b%ef%bc%9b%e6%9c%8d%e5%8a%a1%2f%e7%89%88%e6%9c%ac%e6%a3%80%e6%b5%8b%ef%bc%9b%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%e6%a3%80%e6%b5%8b%ef%bc%9b%e7%bd%91%e7%bb%9c%e8%b7%af%e7%94%b1%e8%b7%9f%e8%b8%aa%ef%bc%9b%e8%84%9a%e6%9c%ac%e5%bc%95%e6%93%8e%20%20-sT%20TCP%e8%bf%9e%e6%8e%a5%e6%89%ab%e6%8f%8f%20-sS%20SYN%e6%89%ab%e6%8f%8f%ef%bc%88%e5%8d%8a%e5%bc%80%e8%bf%9e%e6%8e%a5%e6%89%ab%e6%8f%8f%ef%bc%89%20-sN%20NULL%e6%89%ab%e6%8f%8f%ef%bc%88%e4%b8%8d%e8%ae%be%e7%bd%ae%e4%bb%bb%e4%bd%95%e6%8e%a7%e5%88%b6%e4%bd%8d%ef%bc%89%20-sF%20FIN%e6%89%ab%e6%8f%8f%20-sM%20TCP%20Maimom%e6%89%ab%e6%8f%8f%ef%bc%8c%e5%b8%b8%e7%94%a8%e4%ba%8e%e6%8e%a2%e6%b5%8bBSD%e8%a1%8d%e7%94%9f%e5%87%ba%e6%9d%a5%e7%9a%84%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%20-sA%20TCP%20ACK%e6%89%ab%e6%8f%8f%ef%bc%8c%e8%83%bd%e6%a3%80%e6%b5%8b%e9%98%b2%e7%81%ab%e5%a2%99%ef%bc%8c%e7%a1%ae%e5%ae%9a%e5%ae%9a%e8%a2%ab%e5%b1%8f%e8%94%bd%e7%ab%af%e5%8f%a3%20-sW%20TCP%e7%aa%97%e5%8f%a3%e6%89%ab%e6%8f%8f%20-sI%20%e9%80%9a%e8%bf%87%e5%83%b5%e5%b0%b8%e4%b8%bb%e6%9c%ba%e5%8f%91%e5%8a%a8%e6%89%ab%e6%8f%8f%20%26ndash%3bscanflags%20%e8%87%aa%e5%ae%9a%e4%b9%89URG%e3%80%81ACK%e3%80%81PSH%e3%80%81RST%e3%80%81SYN%e3%80%81FIN%e3%80%81ECE%e3%80%81CWR%e3%80%81ALL%e5%92%8cNONE%e7%bb%84%e5%90%88%20-sU%20UDP%e6%89%ab%e6%8f%8f%20-sV%20%e6%9c%8d%e5%8a%a1%e7%89%88%e8%af%86%e5%88%ab%20-O%20%e8%af%86%e5%88%ab%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%20-p%20%e6%8c%87%e5%ae%9a%e7%ab%af%e5%8f%a3%e6%88%96%e7%ab%af%e5%8f%a3%e8%8c%83%e5%9b%b4%20-F%20%e5%bf%ab%e9%80%9f%e6%89%ab%e6%8f%8f%ef%bc%8c%e8%bf%91%e6%89%ab%e6%8f%8f%e5%b8%b8%e7%94%a8100%e4%b8%aa%e7%ab%af%e5%8f%a3%20-r%20%e9%a1%ba%e5%ba%8f%e6%89%ab%e6%8f%8f%20-oN%20%e6%ad%a3%e5%b8%b8%e8%be%93%e5%87%ba%20-oX%20%e5%b0%86%e7%bb%93%e6%9e%9c%e7%94%9f%e6%88%90%e4%b8%baXML%e6%96%87%e4%bb%b6%20-A%20%e5%bc%ba%e5%8a%9b%e6%89%ab%e6%8f%8f%ef%bc%8c%e7%9b%b8%e5%bd%93%e4%ba%8e%20-sV%20-O%20-sC%20%26ndash%3btraceroute%20-sC%20%e4%bd%bf%e7%94%a8%e9%bb%98%e8%ae%a4%e7%b1%bb%e7%9a%84%e8%84%9a%e6%9c%ac%e8%bf%9b%e8%a1%8c%e6%89%ab%e6%8f%8f%20%e7%9b%b8%e5%bd%93%e4%ba%8e%26ndash%3bscript%3ddefault%20%26ndash%3bscript%20%e6%a0%b9%e6%8d%ae%e6%8c%87%e5%ae%9a%e6%96%87%e4%bb%b6%e5%90%8d%e3%80%81%e7%b1%bb%e5%88%ab%e5%90%8d%e3%80%81%e7%9b%ae%e5%bd%95%e5%90%8d%e6%89%a7%e8%a1%8c%e7%9b%b8%e5%ba%94%e8%84%9a%e6%9c%ac%20-f%20%e4%bd%bf%e7%94%a8%e5%b0%8f%e6%95%b0%e6%8d%ae%e5%8c%85%ef%bc%8c%e9%81%bf%e5%85%8d%e7%9b%ae%e6%a0%87IDS%e8%af%86%e5%88%ab%20%26ndash%3bmtu%20%e8%b0%83%e6%95%b4%e6%95%b0%e6%8d%ae%e5%8c%85%e5%a4%a7%e5%b0%8f%ef%bc%8c%e5%bf%85%e9%a1%bb%e6%98%af8%e7%9a%84%e5%80%8d%e6%95%b0%20-D%20%e5%9c%a8%e4%be%a6%e6%b5%8b%e6%95%b0%e6%8d%ae%e5%8c%85%e4%b8%ad%e6%8e%ba%e6%9d%82%e4%b8%80%e4%ba%9b%e5%81%87%e6%ba%90IP%e7%9a%84%e6%95%b0%e6%8d%ae%e5%8c%85%e3%80%82%20-g%20%e6%a8%a1%e6%8b%9f%e6%ba%90%e7%ab%af%e5%8f%a3%20%26ndash%3bdata-length%20%e6%94%b9%e5%8f%98%e6%95%b0%e6%8d%ae%e5%8c%85%e9%bb%98%e8%ae%a4%e9%95%bf%e5%ba%a6%20%26ndash%3bscan-delay%20%e6%8e%a7%e5%88%b6%e5%8f%91%e9%80%81%e6%8e%a2%e6%b5%8b%e6%95%b0%e6%8d%ae%e7%9a%84%e6%97%b6%e9%97%b4%e9%97%b4%e9%9a%94%20%20%20Unicornscna%20%e6%89%ab%e6%8f%8fUDP%e7%ab%af%e5%8f%a3%e6%80%a7%e8%83%bd%e5%8d%93%e8%b6%8a%20zenmap%20nmap%e7%9a%84%e5%9b%be%e5%bd%a2%e5%8c%96%e6%89%ab%e6%8f%8f%e5%b7%a5%e5%85%b7%20amap%20%e6%a3%80%e6%b5%8b%e6%8c%87%e5%ae%9a%e7%ab%af%e5%8f%a3%e4%b8%8a%e8%bf%90%e8%a1%8c%e7%9a%84%e5%ba%94%e7%94%a8%e7%a8%8b%e5%ba%8f%e4%bf%a1%e6%81%af%20%20SNMP%e6%9e%9a%e4%b8%be%20%20SNMP%20%e7%ae%80%e5%8d%95%e7%bd%91%e7%bb%9c%e7%ae%a1%e7%90%86%e5%8d%8f%e8%ae%ae%ef%bc%8c%e8%bf%90%e8%a1%8c%e4%ba%8e161%e7%ab%af%e5%8f%a3%e7%9a%84%e5%ba%94%e7%94%a8%e5%b1%82%e5%8d%8f%e8%ae%ae%ef%bc%8c%e7%94%a8%e4%ba%8e%e7%bd%91%e7%bb%9c%e8%ae%be%e5%a4%87%e8%bf%90%e8%a1%8c%e7%8a%b6%e6%80%81%e7%9a%84%e7%9b%91%e6%8e%a7%ef%bc%8c%20SNMP%e5%8d%8f%e8%ae%ae%e6%9c%89%e4%b8%89%e4%b8%aa%e7%89%88%e6%9c%acv1%2fv2%2fv3" aria-label=Tumblr>
+<i class="fab fa-tumblr" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fwww.takuzen.me%2fposts%2f2015-12-19-tools-of-kali%2f&t=Kali%e7%9a%84%e4%b8%80%e4%ba%9b%e5%b7%a5%e5%85%b7" aria-label="Hacker News">
+<i class="fab fa-hacker-news" aria-hidden=true></i>
+</a>
+</li>
+</ul>
 </div>
-
-
-  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
-    <header>
-      <h1 class="posttitle" itemprop="name headline">
-        Kali的一些工具
-      </h1>
-      <div class="meta">
-        
-        <div class="postdate">
-          
-          <time datetime="2015-12-19 09:00:00 &#43;0000 UTC" itemprop="datePublished">2015-12-19</time>
-          
-        </div>
-        
-        
-        
-        
-        <div class="article-tag">
-            <i class="fas fa-tag"></i>
-            
-            
-            <a class="tag-link" href="/tags/kali" rel="tag">kali</a>
-            
-        </div>
-        
-      </div>
-    </header>
-
-  
-    <div class="content" itemprop="articleBody">
-      <h2 id="信息收集">信息收集</h2>
-<h3 id="dns信息">DNS信息</h3>
+<div id=toc>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#信息收集>信息收集</a>
+<ul>
+<li><a href=#dns信息>DNS信息</a></li>
+<li><a href=#路由信息>路由信息</a></li>
+<li><a href=#搜索引擎>搜索引擎</a></li>
+</ul>
+</li>
+<li><a href=#目标识别>目标识别</a>
+<ul>
+<li><a href=#识别主机>识别主机</a></li>
+<li><a href=#识别操作系统>识别操作系统</a></li>
+</ul>
+</li>
+<li><a href=#服务枚举>服务枚举</a>
+<ul>
+<li><a href=#端口扫描>端口扫描</a></li>
+<li><a href=#snmp枚举>SNMP枚举</a></li>
+<li><a href=#vpn枚举>VPN枚举</a></li>
+</ul>
+</li>
+<li><a href=#漏洞映射>漏洞映射</a>
+<ul>
+<li><a href=#模糊分析>模糊分析</a></li>
+<li><a href=#smb分析>SMB分析</a></li>
+<li><a href=#数据库评估>数据库评估</a></li>
+<li><a href=#web应用程序评估>Web应用程序评估</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</span>
+</div>
+<article class=post itemscope itemtype=http://schema.org/BlogPosting>
+<header>
+<h1 class=posttitle itemprop="name headline">
+Kali的一些工具
+</h1>
+<div class=meta>
+<div class=postdate>
+<time datetime="2015-12-19 09:00:00 +0000 UTC" itemprop=datePublished>2015-12-19</time>
+</div>
+<div class=article-tag>
+<i class="fas fa-tag"></i>
+<a class=tag-link href=/tags/kali rel=tag>kali</a>
+</div>
+</div>
+</header>
+<div class=content itemprop=articleBody>
+<h2 id=信息收集>信息收集</h2>
+<h3 id=dns信息>DNS信息</h3>
 <ul>
 <li>host 查询/etc/resolv.conf中指定的DNS服务器</li>
 <li>dig 可处理文件内的所有DNS指令</li>
@@ -247,19 +179,18 @@ if (!doNotTrack) {
 <li>DMitry 具有DNS分析和路由分析功能，可进行简单端口探测</li>
 <li>Maltego 图形化综合工具</li>
 </ul>
-<!-- more -->
-<h3 id="路由信息">路由信息</h3>
+<h3 id=路由信息>路由信息</h3>
 <ul>
 <li>tcptraceroute 利用TCP SYN数据包进行路由信息探测</li>
 <li>tctrace -i<device> -h<targethost></li>
 </ul>
-<h3 id="搜索引擎">搜索引擎</h3>
+<h3 id=搜索引擎>搜索引擎</h3>
 <ul>
 <li>theharvester 通过多个公共资源搜集所需信息（Email、用户名、主机名等）</li>
 <li>Metagoofil 通过google搜索目标域的文件的元数据信息，kali2默认貌似没有安装</li>
 </ul>
-<h2 id="目标识别">目标识别</h2>
-<h3 id="识别主机">识别主机</h3>
+<h2 id=目标识别>目标识别</h2>
+<h3 id=识别主机>识别主机</h3>
 <ul>
 <li>ping 老朋友。。</li>
 <li>ping6 用来ping IPv6</li>
@@ -269,13 +200,13 @@ if (!doNotTrack) {
 <li>nping 支持多种协议探测模式；可做压力测试、ARP中毒、Dos攻击</li>
 <li>nbtscan 审计局域网内windows系统IP地址、NetBIOS信息等</li>
 </ul>
-<h3 id="识别操作系统">识别操作系统</h3>
+<h3 id=识别操作系统>识别操作系统</h3>
 <ul>
 <li>p0f 被动方式探测目标主机</li>
 <li>nmap 神器之一</li>
 </ul>
-<h2 id="服务枚举">服务枚举</h2>
-<h3 id="端口扫描">端口扫描</h3>
+<h2 id=服务枚举>服务枚举</h2>
+<h3 id=端口扫描>端口扫描</h3>
 <ul>
 <li>nmap 端口扫描；主机探测；服务/版本检测；操作系统检测；网络路由跟踪；脚本引擎
 <ul>
@@ -311,7 +242,7 @@ if (!doNotTrack) {
 <li>zenmap nmap的图形化扫描工具</li>
 <li>amap 检测指定端口上运行的应用程序信息</li>
 </ul>
-<h3 id="snmp枚举">SNMP枚举</h3>
+<h3 id=snmp枚举>SNMP枚举</h3>
 <blockquote>
 <p>SNMP 简单网络管理协议，运行于161端口的应用层协议，用于网络设备运行状态的监控，
 SNMP协议有三个版本v1/v2/v3</p>
@@ -321,17 +252,17 @@ SNMP协议有三个版本v1/v2/v3</p>
 <li>snmpcheck 差不多</li>
 <li>SNMP Walk 强大的SNMP信息采集工具，可以使用三个版本的协议</li>
 </ul>
-<h3 id="vpn枚举">VPN枚举</h3>
+<h3 id=vpn枚举>VPN枚举</h3>
 <ul>
 <li>ike-scan 探测IPSec VPN系统</li>
 </ul>
-<h2 id="漏洞映射">漏洞映射</h2>
-<h3 id="模糊分析">模糊分析</h3>
+<h2 id=漏洞映射>漏洞映射</h2>
+<h3 id=模糊分析>模糊分析</h3>
 <ul>
 <li>BED 检测缓冲区溢出、格式化字符串漏洞、整数溢出、DoS条件等漏洞，支持多种协议</li>
 <li>JBroFuzz 模拟HTTP/HTTPS请求；XSS、SQl注入、缓冲区溢出、格式字符串错误等测试</li>
 </ul>
-<h3 id="smb分析">SMB分析</h3>
+<h3 id=smb分析>SMB分析</h3>
 <blockquote>
 <p>SMB Server Message Block，又称为CIFS（Common Internet File System）协议，作用
 于应用层，常用于文件与打印机共享服务。NetBIOS是SMB协议的组成部分。DEC
@@ -340,12 +271,12 @@ SNMP协议有三个版本v1/v2/v3</p>
 <ul>
 <li>ImpacketSamrdump 列举同一局域网目标主机上所有系统共享、用户账户等信息</li>
 </ul>
-<h3 id="数据库评估">数据库评估</h3>
+<h3 id=数据库评估>数据库评估</h3>
 <ul>
 <li>sqlmap 又一个神器，详情看文档</li>
 <li>sqlninja 专门评估SQL Server的进阶工具，配置较复杂。</li>
 </ul>
-<h3 id="web应用程序评估">Web应用程序评估</h3>
+<h3 id=web应用程序评估>Web应用程序评估</h3>
 <ul>
 <li>Burp Suite 还是一神器，完整的攻击框架。</li>
 <li>Nikto2 支持跨平台部署、SSL、多种IDS规避技术</li>
@@ -354,199 +285,140 @@ SNMP协议有三个版本v1/v2/v3</p>
 <li>wafw00f 检测防web防火墙（WAF）的脚本</li>
 <li>webscarab 集成了众多工具，OWASP Project之一，功能强大</li>
 </ul>
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbMTYxNDU4ODAzNiwtNzMyNDM0NjYyXX0=
---><blockquote>
+<blockquote>
 </blockquote>
-
-    </div>
-  </article>
-
-  
-  
-
-
-
-
-  
-    <div class="blog-post-comments">
-        <div id="disqus_thread">
-          <script type="text/javascript">
-          
-          (function() {
-              
-              
-              
-              
-          
-              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-              var disqus_shortname = 'wzr';
-              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-          })();
-          </script>
-          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-          <a href="https://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-        </div>
-    </div>
-
-  
-
-
-  <div id="footer-post-container">
-  <div id="footer-post">
-
-    <div id="nav-footer" style="display: none">
-      <ul>
-         
-          <li><a href="/">Home</a></li>
-         
-          <li><a href="/posts">Writings</a></li>
-         
-          <li><a href="/tags">Tags</a></li>
-         
-          <li><a href="/about">About</a></li>
-        
-      </ul>
-    </div>
-
-    <div id="toc-footer" style="display: none">
-      <nav id="TableOfContents">
-  <ul>
-    <li><a href="#信息收集">信息收集</a>
-      <ul>
-        <li><a href="#dns信息">DNS信息</a></li>
-        <li><a href="#路由信息">路由信息</a></li>
-        <li><a href="#搜索引擎">搜索引擎</a></li>
-      </ul>
-    </li>
-    <li><a href="#目标识别">目标识别</a>
-      <ul>
-        <li><a href="#识别主机">识别主机</a></li>
-        <li><a href="#识别操作系统">识别操作系统</a></li>
-      </ul>
-    </li>
-    <li><a href="#服务枚举">服务枚举</a>
-      <ul>
-        <li><a href="#端口扫描">端口扫描</a></li>
-        <li><a href="#snmp枚举">SNMP枚举</a></li>
-        <li><a href="#vpn枚举">VPN枚举</a></li>
-      </ul>
-    </li>
-    <li><a href="#漏洞映射">漏洞映射</a>
-      <ul>
-        <li><a href="#模糊分析">模糊分析</a></li>
-        <li><a href="#smb分析">SMB分析</a></li>
-        <li><a href="#数据库评估">数据库评估</a></li>
-        <li><a href="#web应用程序评估">Web应用程序评估</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
-    </div>
-
-    <div id="share-footer" style="display: none">
-      
-      <ul>
-  
-  
-    
-  
-  
-  <li>
-    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fwww.takuzen.me%2fposts%2f2015-12-19-tools-of-kali%2f">
-      <i class="fab fa-facebook fa-lg" aria-hidden="true"></i>
-    </a>
-  </li>
-  <li>
-    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2015-12-19-tools-of-kali%2f&text=Kali%e7%9a%84%e4%b8%80%e4%ba%9b%e5%b7%a5%e5%85%b7">
-      <i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
-    </a>
-  </li>
-  <li>
-    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2015-12-19-tools-of-kali%2f&title=Kali%e7%9a%84%e4%b8%80%e4%ba%9b%e5%b7%a5%e5%85%b7">
-      <i class="fab fa-linkedin fa-lg" aria-hidden="true"></i>
-    </a>
-  </li>
-  <li>
-    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2015-12-19-tools-of-kali%2f&is_video=false&description=Kali%e7%9a%84%e4%b8%80%e4%ba%9b%e5%b7%a5%e5%85%b7">
-      <i class="fab fa-pinterest fa-lg" aria-hidden="true"></i>
-    </a>
-  </li>
-  <li>
-    <a class="icon" href="mailto:?subject=Kali%e7%9a%84%e4%b8%80%e4%ba%9b%e5%b7%a5%e5%85%b7&body=Check out this article: https%3a%2f%2fwww.takuzen.me%2fposts%2f2015-12-19-tools-of-kali%2f">
-      <i class="fas fa-envelope fa-lg" aria-hidden="true"></i>
-    </a>
-  </li>
-  <li>
-    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2015-12-19-tools-of-kali%2f&title=Kali%e7%9a%84%e4%b8%80%e4%ba%9b%e5%b7%a5%e5%85%b7">
-      <i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i>
-    </a>
-  </li>
-  <li>
-    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2015-12-19-tools-of-kali%2f&title=Kali%e7%9a%84%e4%b8%80%e4%ba%9b%e5%b7%a5%e5%85%b7">
-      <i class="fab fa-reddit fa-lg" aria-hidden="true"></i>
-    </a>
-  </li>
-  <li>
-    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2015-12-19-tools-of-kali%2f&name=Kali%e7%9a%84%e4%b8%80%e4%ba%9b%e5%b7%a5%e5%85%b7&description=%e4%bf%a1%e6%81%af%e6%94%b6%e9%9b%86%20DNS%e4%bf%a1%e6%81%af%20%20host%20%e6%9f%a5%e8%af%a2%2fetc%2fresolv.conf%e4%b8%ad%e6%8c%87%e5%ae%9a%e7%9a%84DNS%e6%9c%8d%e5%8a%a1%e5%99%a8%20dig%20%e5%8f%af%e5%a4%84%e7%90%86%e6%96%87%e4%bb%b6%e5%86%85%e7%9a%84%e6%89%80%e6%9c%89DNS%e6%8c%87%e4%bb%a4%20dnsenum%20%e5%8f%af%e9%80%9a%e8%bf%87google%e6%90%9c%e7%b4%a0%e5%ad%90%e5%9f%9f%e5%90%8d%ef%bc%9b%e8%af%be%e4%bd%bf%e7%94%a8%e5%ad%97%e5%85%b8%e5%af%b9%e5%ad%90%e5%9f%9f%e5%90%8d%e8%bf%9b%e8%a1%8c%e6%9a%b4%e5%8a%9b%e7%a0%b4%e8%a7%a3%ef%bc%9b%20dnsdict6%20IPv6%e5%ad%90%e5%9f%9f%e5%90%8d%e6%9e%9a%e4%b8%be%20fierce%20%e8%83%bd%e5%af%b9%e4%b8%8d%e8%bf%9e%e7%bb%ad%e7%9a%84IP%e7%a9%ba%e9%97%b4%e5%92%8c%e4%b8%bb%e6%9c%ba%e5%90%8d%e8%bf%9b%e8%a1%8c%e6%b5%8b%e8%af%95%20DMitry%20%e5%85%b7%e6%9c%89DNS%e5%88%86%e6%9e%90%e5%92%8c%e8%b7%af%e7%94%b1%e5%88%86%e6%9e%90%e5%8a%9f%e8%83%bd%ef%bc%8c%e5%8f%af%e8%bf%9b%e8%a1%8c%e7%ae%80%e5%8d%95%e7%ab%af%e5%8f%a3%e6%8e%a2%e6%b5%8b%20Maltego%20%e5%9b%be%e5%bd%a2%e5%8c%96%e7%bb%bc%e5%90%88%e5%b7%a5%e5%85%b7%20%20%e8%b7%af%e7%94%b1%e4%bf%a1%e6%81%af%20%20tcptraceroute%20%e5%88%a9%e7%94%a8TCP%20SYN%e6%95%b0%e6%8d%ae%e5%8c%85%e8%bf%9b%e8%a1%8c%e8%b7%af%e7%94%b1%e4%bf%a1%e6%81%af%e6%8e%a2%e6%b5%8b%20tctrace%20-i%20-h%20%20%e6%90%9c%e7%b4%a2%e5%bc%95%e6%93%8e%20%20theharvester%20%e9%80%9a%e8%bf%87%e5%a4%9a%e4%b8%aa%e5%85%ac%e5%85%b1%e8%b5%84%e6%ba%90%e6%90%9c%e9%9b%86%e6%89%80%e9%9c%80%e4%bf%a1%e6%81%af%ef%bc%88Email%e3%80%81%e7%94%a8%e6%88%b7%e5%90%8d%e3%80%81%e4%b8%bb%e6%9c%ba%e5%90%8d%e7%ad%89%ef%bc%89%20Metagoofil%20%e9%80%9a%e8%bf%87google%e6%90%9c%e7%b4%a2%e7%9b%ae%e6%a0%87%e5%9f%9f%e7%9a%84%e6%96%87%e4%bb%b6%e7%9a%84%e5%85%83%e6%95%b0%e6%8d%ae%e4%bf%a1%e6%81%af%ef%bc%8ckali2%e9%bb%98%e8%ae%a4%e8%b2%8c%e4%bc%bc%e6%b2%a1%e6%9c%89%e5%ae%89%e8%a3%85%20%20%e7%9b%ae%e6%a0%87%e8%af%86%e5%88%ab%20%e8%af%86%e5%88%ab%e4%b8%bb%e6%9c%ba%20%20ping%20%e8%80%81%e6%9c%8b%e5%8f%8b%e3%80%82%e3%80%82%20ping6%20%e7%94%a8%e6%9d%a5ping%20IPv6%20fping%20%e5%8f%af%e5%90%8c%e6%97%b6%e6%8e%a2%e6%b5%8b%e5%a4%9a%e4%b8%aa%e4%b8%bb%e6%9c%ba%e6%88%96%e8%80%85%e6%95%b4%e4%b8%aa%e7%bd%91%e6%ae%b5%20arping%20%e4%bd%bf%e7%94%a8ARP%e8%af%b7%e6%b1%82%e6%a3%80%e6%b5%8b%e5%b1%80%e5%9f%9f%e7%bd%91%e5%86%85%e4%b8%bb%e6%9c%ba%e6%98%af%e5%90%a6%e5%9c%a8%e7%ba%bf%ef%bc%8cIP%e6%88%96%e8%80%85MAC%e5%9c%b0%e5%9d%80%e9%83%bd%e5%8f%af%e4%bd%9c%e4%b8%ba%e7%9b%ae%e6%a0%87%20hping3%20%e7%ab%af%e5%8f%a3%e6%89%ab%e6%8f%8f%e3%80%81%e9%98%b2%e7%81%ab%e5%a2%99%e8%a7%84%e5%88%99%e6%a3%80%e6%b5%8b%e3%80%81IDS%e6%a3%80%e6%b5%8b%e7%ad%89%ef%bc%8c%e5%8a%9f%e8%83%bd%e5%bc%ba%e5%a4%a7%20nping%20%e6%94%af%e6%8c%81%e5%a4%9a%e7%a7%8d%e5%8d%8f%e8%ae%ae%e6%8e%a2%e6%b5%8b%e6%a8%a1%e5%bc%8f%ef%bc%9b%e5%8f%af%e5%81%9a%e5%8e%8b%e5%8a%9b%e6%b5%8b%e8%af%95%e3%80%81ARP%e4%b8%ad%e6%af%92%e3%80%81Dos%e6%94%bb%e5%87%bb%20nbtscan%20%e5%ae%a1%e8%ae%a1%e5%b1%80%e5%9f%9f%e7%bd%91%e5%86%85windows%e7%b3%bb%e7%bb%9fIP%e5%9c%b0%e5%9d%80%e3%80%81NetBIOS%e4%bf%a1%e6%81%af%e7%ad%89%20%20%e8%af%86%e5%88%ab%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%20%20p0f%20%e8%a2%ab%e5%8a%a8%e6%96%b9%e5%bc%8f%e6%8e%a2%e6%b5%8b%e7%9b%ae%e6%a0%87%e4%b8%bb%e6%9c%ba%20nmap%20%e7%a5%9e%e5%99%a8%e4%b9%8b%e4%b8%80%20%20%e6%9c%8d%e5%8a%a1%e6%9e%9a%e4%b8%be%20%e7%ab%af%e5%8f%a3%e6%89%ab%e6%8f%8f%20%20nmap%20%e7%ab%af%e5%8f%a3%e6%89%ab%e6%8f%8f%ef%bc%9b%e4%b8%bb%e6%9c%ba%e6%8e%a2%e6%b5%8b%ef%bc%9b%e6%9c%8d%e5%8a%a1%2f%e7%89%88%e6%9c%ac%e6%a3%80%e6%b5%8b%ef%bc%9b%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%e6%a3%80%e6%b5%8b%ef%bc%9b%e7%bd%91%e7%bb%9c%e8%b7%af%e7%94%b1%e8%b7%9f%e8%b8%aa%ef%bc%9b%e8%84%9a%e6%9c%ac%e5%bc%95%e6%93%8e%20%20-sT%20TCP%e8%bf%9e%e6%8e%a5%e6%89%ab%e6%8f%8f%20-sS%20SYN%e6%89%ab%e6%8f%8f%ef%bc%88%e5%8d%8a%e5%bc%80%e8%bf%9e%e6%8e%a5%e6%89%ab%e6%8f%8f%ef%bc%89%20-sN%20NULL%e6%89%ab%e6%8f%8f%ef%bc%88%e4%b8%8d%e8%ae%be%e7%bd%ae%e4%bb%bb%e4%bd%95%e6%8e%a7%e5%88%b6%e4%bd%8d%ef%bc%89%20-sF%20FIN%e6%89%ab%e6%8f%8f%20-sM%20TCP%20Maimom%e6%89%ab%e6%8f%8f%ef%bc%8c%e5%b8%b8%e7%94%a8%e4%ba%8e%e6%8e%a2%e6%b5%8bBSD%e8%a1%8d%e7%94%9f%e5%87%ba%e6%9d%a5%e7%9a%84%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%20-sA%20TCP%20ACK%e6%89%ab%e6%8f%8f%ef%bc%8c%e8%83%bd%e6%a3%80%e6%b5%8b%e9%98%b2%e7%81%ab%e5%a2%99%ef%bc%8c%e7%a1%ae%e5%ae%9a%e5%ae%9a%e8%a2%ab%e5%b1%8f%e8%94%bd%e7%ab%af%e5%8f%a3%20-sW%20TCP%e7%aa%97%e5%8f%a3%e6%89%ab%e6%8f%8f%20-sI%20%e9%80%9a%e8%bf%87%e5%83%b5%e5%b0%b8%e4%b8%bb%e6%9c%ba%e5%8f%91%e5%8a%a8%e6%89%ab%e6%8f%8f%20%26ndash%3bscanflags%20%e8%87%aa%e5%ae%9a%e4%b9%89URG%e3%80%81ACK%e3%80%81PSH%e3%80%81RST%e3%80%81SYN%e3%80%81FIN%e3%80%81ECE%e3%80%81CWR%e3%80%81ALL%e5%92%8cNONE%e7%bb%84%e5%90%88%20-sU%20UDP%e6%89%ab%e6%8f%8f%20-sV%20%e6%9c%8d%e5%8a%a1%e7%89%88%e8%af%86%e5%88%ab%20-O%20%e8%af%86%e5%88%ab%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%20-p%20%e6%8c%87%e5%ae%9a%e7%ab%af%e5%8f%a3%e6%88%96%e7%ab%af%e5%8f%a3%e8%8c%83%e5%9b%b4%20-F%20%e5%bf%ab%e9%80%9f%e6%89%ab%e6%8f%8f%ef%bc%8c%e8%bf%91%e6%89%ab%e6%8f%8f%e5%b8%b8%e7%94%a8100%e4%b8%aa%e7%ab%af%e5%8f%a3%20-r%20%e9%a1%ba%e5%ba%8f%e6%89%ab%e6%8f%8f%20-oN%20%e6%ad%a3%e5%b8%b8%e8%be%93%e5%87%ba%20-oX%20%e5%b0%86%e7%bb%93%e6%9e%9c%e7%94%9f%e6%88%90%e4%b8%baXML%e6%96%87%e4%bb%b6%20-A%20%e5%bc%ba%e5%8a%9b%e6%89%ab%e6%8f%8f%ef%bc%8c%e7%9b%b8%e5%bd%93%e4%ba%8e%20-sV%20-O%20-sC%20%26ndash%3btraceroute%20-sC%20%e4%bd%bf%e7%94%a8%e9%bb%98%e8%ae%a4%e7%b1%bb%e7%9a%84%e8%84%9a%e6%9c%ac%e8%bf%9b%e8%a1%8c%e6%89%ab%e6%8f%8f%20%e7%9b%b8%e5%bd%93%e4%ba%8e%26ndash%3bscript%3ddefault%20%26ndash%3bscript%20%e6%a0%b9%e6%8d%ae%e6%8c%87%e5%ae%9a%e6%96%87%e4%bb%b6%e5%90%8d%e3%80%81%e7%b1%bb%e5%88%ab%e5%90%8d%e3%80%81%e7%9b%ae%e5%bd%95%e5%90%8d%e6%89%a7%e8%a1%8c%e7%9b%b8%e5%ba%94%e8%84%9a%e6%9c%ac%20-f%20%e4%bd%bf%e7%94%a8%e5%b0%8f%e6%95%b0%e6%8d%ae%e5%8c%85%ef%bc%8c%e9%81%bf%e5%85%8d%e7%9b%ae%e6%a0%87IDS%e8%af%86%e5%88%ab%20%26ndash%3bmtu%20%e8%b0%83%e6%95%b4%e6%95%b0%e6%8d%ae%e5%8c%85%e5%a4%a7%e5%b0%8f%ef%bc%8c%e5%bf%85%e9%a1%bb%e6%98%af8%e7%9a%84%e5%80%8d%e6%95%b0%20-D%20%e5%9c%a8%e4%be%a6%e6%b5%8b%e6%95%b0%e6%8d%ae%e5%8c%85%e4%b8%ad%e6%8e%ba%e6%9d%82%e4%b8%80%e4%ba%9b%e5%81%87%e6%ba%90IP%e7%9a%84%e6%95%b0%e6%8d%ae%e5%8c%85%e3%80%82%20-g%20%e6%a8%a1%e6%8b%9f%e6%ba%90%e7%ab%af%e5%8f%a3%20%26ndash%3bdata-length%20%e6%94%b9%e5%8f%98%e6%95%b0%e6%8d%ae%e5%8c%85%e9%bb%98%e8%ae%a4%e9%95%bf%e5%ba%a6%20%26ndash%3bscan-delay%20%e6%8e%a7%e5%88%b6%e5%8f%91%e9%80%81%e6%8e%a2%e6%b5%8b%e6%95%b0%e6%8d%ae%e7%9a%84%e6%97%b6%e9%97%b4%e9%97%b4%e9%9a%94%20%20%20Unicornscna%20%e6%89%ab%e6%8f%8fUDP%e7%ab%af%e5%8f%a3%e6%80%a7%e8%83%bd%e5%8d%93%e8%b6%8a%20zenmap%20nmap%e7%9a%84%e5%9b%be%e5%bd%a2%e5%8c%96%e6%89%ab%e6%8f%8f%e5%b7%a5%e5%85%b7%20amap%20%e6%a3%80%e6%b5%8b%e6%8c%87%e5%ae%9a%e7%ab%af%e5%8f%a3%e4%b8%8a%e8%bf%90%e8%a1%8c%e7%9a%84%e5%ba%94%e7%94%a8%e7%a8%8b%e5%ba%8f%e4%bf%a1%e6%81%af%20%20SNMP%e6%9e%9a%e4%b8%be%20%20SNMP%20%e7%ae%80%e5%8d%95%e7%bd%91%e7%bb%9c%e7%ae%a1%e7%90%86%e5%8d%8f%e8%ae%ae%ef%bc%8c%e8%bf%90%e8%a1%8c%e4%ba%8e161%e7%ab%af%e5%8f%a3%e7%9a%84%e5%ba%94%e7%94%a8%e5%b1%82%e5%8d%8f%e8%ae%ae%ef%bc%8c%e7%94%a8%e4%ba%8e%e7%bd%91%e7%bb%9c%e8%ae%be%e5%a4%87%e8%bf%90%e8%a1%8c%e7%8a%b6%e6%80%81%e7%9a%84%e7%9b%91%e6%8e%a7%ef%bc%8c%20SNMP%e5%8d%8f%e8%ae%ae%e6%9c%89%e4%b8%89%e4%b8%aa%e7%89%88%e6%9c%acv1%2fv2%2fv3">
-      <i class="fab fa-tumblr fa-lg" aria-hidden="true"></i>
-    </a>
-  </li>
-  <li>
-    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fwww.takuzen.me%2fposts%2f2015-12-19-tools-of-kali%2f&t=Kali%e7%9a%84%e4%b8%80%e4%ba%9b%e5%b7%a5%e5%85%b7">
-      <i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i>
-    </a>
-  </li>
-</ul>
-
-    </div>
-
-    <div id="actions-footer">
-      
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;">
-          <i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
-        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;">
-          <i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;">
-          <i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> share</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');">
-          <i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
-    </div>
-
-  </div>
 </div>
-
-
-  <footer id="footer">
-  <div class="footer-left">
-    Copyright  &copy; 2021  呉 
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-         
-        <li><a href="/">Home</a></li>
-         
-        <li><a href="/posts">Writings</a></li>
-         
-        <li><a href="/tags">Tags</a></li>
-         
-        <li><a href="/about">About</a></li>
-        
-      </ul>
-    </nav>
-  </div>
+</article>
+<div class=blog-post-comments>
+<div id=disqus_thread>
+<script type=text/javascript>(function(){var a=document.createElement('script'),b;a.type='text/javascript',a.async=!0,b='wzr',a.src='//'+b+'.disqus.com/embed.js',(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(a)})()</script>
+<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
+<a href=https://disqus.com/ class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a>
+</div>
+</div>
+<div id=footer-post-container>
+<div id=footer-post>
+<div id=nav-footer style=display:none>
+<ul>
+<li><a href=/>Home</a></li>
+<li><a href=/posts>Writings</a></li>
+<li><a href=/tags>Tags</a></li>
+<li><a href=/about>About</a></li>
+</ul>
+</div>
+<div id=toc-footer style=display:none>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#信息收集>信息收集</a>
+<ul>
+<li><a href=#dns信息>DNS信息</a></li>
+<li><a href=#路由信息>路由信息</a></li>
+<li><a href=#搜索引擎>搜索引擎</a></li>
+</ul>
+</li>
+<li><a href=#目标识别>目标识别</a>
+<ul>
+<li><a href=#识别主机>识别主机</a></li>
+<li><a href=#识别操作系统>识别操作系统</a></li>
+</ul>
+</li>
+<li><a href=#服务枚举>服务枚举</a>
+<ul>
+<li><a href=#端口扫描>端口扫描</a></li>
+<li><a href=#snmp枚举>SNMP枚举</a></li>
+<li><a href=#vpn枚举>VPN枚举</a></li>
+</ul>
+</li>
+<li><a href=#漏洞映射>漏洞映射</a>
+<ul>
+<li><a href=#模糊分析>模糊分析</a></li>
+<li><a href=#smb分析>SMB分析</a></li>
+<li><a href=#数据库评估>数据库评估</a></li>
+<li><a href=#web应用程序评估>Web应用程序评估</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+<div id=share-footer style=display:none>
+<ul>
+<li>
+<a class=icon href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fwww.takuzen.me%2fposts%2f2015-12-19-tools-of-kali%2f" aria-label=Facebook>
+<i class="fab fa-facebook fa-lg" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="https://twitter.com/share?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2015-12-19-tools-of-kali%2f&text=Kali%e7%9a%84%e4%b8%80%e4%ba%9b%e5%b7%a5%e5%85%b7" aria-label=Twitter>
+<i class="fab fa-twitter fa-lg" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2015-12-19-tools-of-kali%2f&title=Kali%e7%9a%84%e4%b8%80%e4%ba%9b%e5%b7%a5%e5%85%b7" aria-label=Linkedin>
+<i class="fab fa-linkedin fa-lg" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2015-12-19-tools-of-kali%2f&is_video=false&description=Kali%e7%9a%84%e4%b8%80%e4%ba%9b%e5%b7%a5%e5%85%b7" aria-label=Pinterest>
+<i class="fab fa-pinterest fa-lg" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="mailto:?subject=Kali%e7%9a%84%e4%b8%80%e4%ba%9b%e5%b7%a5%e5%85%b7&body=Check out this article: https%3a%2f%2fwww.takuzen.me%2fposts%2f2015-12-19-tools-of-kali%2f" aria-label=Email>
+<i class="fas fa-envelope fa-lg" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="https://getpocket.com/save?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2015-12-19-tools-of-kali%2f&title=Kali%e7%9a%84%e4%b8%80%e4%ba%9b%e5%b7%a5%e5%85%b7" aria-label=Pocket>
+<i class="fab fa-get-pocket fa-lg" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="http://reddit.com/submit?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2015-12-19-tools-of-kali%2f&title=Kali%e7%9a%84%e4%b8%80%e4%ba%9b%e5%b7%a5%e5%85%b7" aria-label=reddit>
+<i class="fab fa-reddit fa-lg" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="http://www.tumblr.com/share/link?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2015-12-19-tools-of-kali%2f&name=Kali%e7%9a%84%e4%b8%80%e4%ba%9b%e5%b7%a5%e5%85%b7&description=%e4%bf%a1%e6%81%af%e6%94%b6%e9%9b%86%20DNS%e4%bf%a1%e6%81%af%20%20host%20%e6%9f%a5%e8%af%a2%2fetc%2fresolv.conf%e4%b8%ad%e6%8c%87%e5%ae%9a%e7%9a%84DNS%e6%9c%8d%e5%8a%a1%e5%99%a8%20dig%20%e5%8f%af%e5%a4%84%e7%90%86%e6%96%87%e4%bb%b6%e5%86%85%e7%9a%84%e6%89%80%e6%9c%89DNS%e6%8c%87%e4%bb%a4%20dnsenum%20%e5%8f%af%e9%80%9a%e8%bf%87google%e6%90%9c%e7%b4%a0%e5%ad%90%e5%9f%9f%e5%90%8d%ef%bc%9b%e8%af%be%e4%bd%bf%e7%94%a8%e5%ad%97%e5%85%b8%e5%af%b9%e5%ad%90%e5%9f%9f%e5%90%8d%e8%bf%9b%e8%a1%8c%e6%9a%b4%e5%8a%9b%e7%a0%b4%e8%a7%a3%ef%bc%9b%20dnsdict6%20IPv6%e5%ad%90%e5%9f%9f%e5%90%8d%e6%9e%9a%e4%b8%be%20fierce%20%e8%83%bd%e5%af%b9%e4%b8%8d%e8%bf%9e%e7%bb%ad%e7%9a%84IP%e7%a9%ba%e9%97%b4%e5%92%8c%e4%b8%bb%e6%9c%ba%e5%90%8d%e8%bf%9b%e8%a1%8c%e6%b5%8b%e8%af%95%20DMitry%20%e5%85%b7%e6%9c%89DNS%e5%88%86%e6%9e%90%e5%92%8c%e8%b7%af%e7%94%b1%e5%88%86%e6%9e%90%e5%8a%9f%e8%83%bd%ef%bc%8c%e5%8f%af%e8%bf%9b%e8%a1%8c%e7%ae%80%e5%8d%95%e7%ab%af%e5%8f%a3%e6%8e%a2%e6%b5%8b%20Maltego%20%e5%9b%be%e5%bd%a2%e5%8c%96%e7%bb%bc%e5%90%88%e5%b7%a5%e5%85%b7%20%20%e8%b7%af%e7%94%b1%e4%bf%a1%e6%81%af%20%20tcptraceroute%20%e5%88%a9%e7%94%a8TCP%20SYN%e6%95%b0%e6%8d%ae%e5%8c%85%e8%bf%9b%e8%a1%8c%e8%b7%af%e7%94%b1%e4%bf%a1%e6%81%af%e6%8e%a2%e6%b5%8b%20tctrace%20-i%20-h%20%20%e6%90%9c%e7%b4%a2%e5%bc%95%e6%93%8e%20%20theharvester%20%e9%80%9a%e8%bf%87%e5%a4%9a%e4%b8%aa%e5%85%ac%e5%85%b1%e8%b5%84%e6%ba%90%e6%90%9c%e9%9b%86%e6%89%80%e9%9c%80%e4%bf%a1%e6%81%af%ef%bc%88Email%e3%80%81%e7%94%a8%e6%88%b7%e5%90%8d%e3%80%81%e4%b8%bb%e6%9c%ba%e5%90%8d%e7%ad%89%ef%bc%89%20Metagoofil%20%e9%80%9a%e8%bf%87google%e6%90%9c%e7%b4%a2%e7%9b%ae%e6%a0%87%e5%9f%9f%e7%9a%84%e6%96%87%e4%bb%b6%e7%9a%84%e5%85%83%e6%95%b0%e6%8d%ae%e4%bf%a1%e6%81%af%ef%bc%8ckali2%e9%bb%98%e8%ae%a4%e8%b2%8c%e4%bc%bc%e6%b2%a1%e6%9c%89%e5%ae%89%e8%a3%85%20%20%e7%9b%ae%e6%a0%87%e8%af%86%e5%88%ab%20%e8%af%86%e5%88%ab%e4%b8%bb%e6%9c%ba%20%20ping%20%e8%80%81%e6%9c%8b%e5%8f%8b%e3%80%82%e3%80%82%20ping6%20%e7%94%a8%e6%9d%a5ping%20IPv6%20fping%20%e5%8f%af%e5%90%8c%e6%97%b6%e6%8e%a2%e6%b5%8b%e5%a4%9a%e4%b8%aa%e4%b8%bb%e6%9c%ba%e6%88%96%e8%80%85%e6%95%b4%e4%b8%aa%e7%bd%91%e6%ae%b5%20arping%20%e4%bd%bf%e7%94%a8ARP%e8%af%b7%e6%b1%82%e6%a3%80%e6%b5%8b%e5%b1%80%e5%9f%9f%e7%bd%91%e5%86%85%e4%b8%bb%e6%9c%ba%e6%98%af%e5%90%a6%e5%9c%a8%e7%ba%bf%ef%bc%8cIP%e6%88%96%e8%80%85MAC%e5%9c%b0%e5%9d%80%e9%83%bd%e5%8f%af%e4%bd%9c%e4%b8%ba%e7%9b%ae%e6%a0%87%20hping3%20%e7%ab%af%e5%8f%a3%e6%89%ab%e6%8f%8f%e3%80%81%e9%98%b2%e7%81%ab%e5%a2%99%e8%a7%84%e5%88%99%e6%a3%80%e6%b5%8b%e3%80%81IDS%e6%a3%80%e6%b5%8b%e7%ad%89%ef%bc%8c%e5%8a%9f%e8%83%bd%e5%bc%ba%e5%a4%a7%20nping%20%e6%94%af%e6%8c%81%e5%a4%9a%e7%a7%8d%e5%8d%8f%e8%ae%ae%e6%8e%a2%e6%b5%8b%e6%a8%a1%e5%bc%8f%ef%bc%9b%e5%8f%af%e5%81%9a%e5%8e%8b%e5%8a%9b%e6%b5%8b%e8%af%95%e3%80%81ARP%e4%b8%ad%e6%af%92%e3%80%81Dos%e6%94%bb%e5%87%bb%20nbtscan%20%e5%ae%a1%e8%ae%a1%e5%b1%80%e5%9f%9f%e7%bd%91%e5%86%85windows%e7%b3%bb%e7%bb%9fIP%e5%9c%b0%e5%9d%80%e3%80%81NetBIOS%e4%bf%a1%e6%81%af%e7%ad%89%20%20%e8%af%86%e5%88%ab%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%20%20p0f%20%e8%a2%ab%e5%8a%a8%e6%96%b9%e5%bc%8f%e6%8e%a2%e6%b5%8b%e7%9b%ae%e6%a0%87%e4%b8%bb%e6%9c%ba%20nmap%20%e7%a5%9e%e5%99%a8%e4%b9%8b%e4%b8%80%20%20%e6%9c%8d%e5%8a%a1%e6%9e%9a%e4%b8%be%20%e7%ab%af%e5%8f%a3%e6%89%ab%e6%8f%8f%20%20nmap%20%e7%ab%af%e5%8f%a3%e6%89%ab%e6%8f%8f%ef%bc%9b%e4%b8%bb%e6%9c%ba%e6%8e%a2%e6%b5%8b%ef%bc%9b%e6%9c%8d%e5%8a%a1%2f%e7%89%88%e6%9c%ac%e6%a3%80%e6%b5%8b%ef%bc%9b%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%e6%a3%80%e6%b5%8b%ef%bc%9b%e7%bd%91%e7%bb%9c%e8%b7%af%e7%94%b1%e8%b7%9f%e8%b8%aa%ef%bc%9b%e8%84%9a%e6%9c%ac%e5%bc%95%e6%93%8e%20%20-sT%20TCP%e8%bf%9e%e6%8e%a5%e6%89%ab%e6%8f%8f%20-sS%20SYN%e6%89%ab%e6%8f%8f%ef%bc%88%e5%8d%8a%e5%bc%80%e8%bf%9e%e6%8e%a5%e6%89%ab%e6%8f%8f%ef%bc%89%20-sN%20NULL%e6%89%ab%e6%8f%8f%ef%bc%88%e4%b8%8d%e8%ae%be%e7%bd%ae%e4%bb%bb%e4%bd%95%e6%8e%a7%e5%88%b6%e4%bd%8d%ef%bc%89%20-sF%20FIN%e6%89%ab%e6%8f%8f%20-sM%20TCP%20Maimom%e6%89%ab%e6%8f%8f%ef%bc%8c%e5%b8%b8%e7%94%a8%e4%ba%8e%e6%8e%a2%e6%b5%8bBSD%e8%a1%8d%e7%94%9f%e5%87%ba%e6%9d%a5%e7%9a%84%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%20-sA%20TCP%20ACK%e6%89%ab%e6%8f%8f%ef%bc%8c%e8%83%bd%e6%a3%80%e6%b5%8b%e9%98%b2%e7%81%ab%e5%a2%99%ef%bc%8c%e7%a1%ae%e5%ae%9a%e5%ae%9a%e8%a2%ab%e5%b1%8f%e8%94%bd%e7%ab%af%e5%8f%a3%20-sW%20TCP%e7%aa%97%e5%8f%a3%e6%89%ab%e6%8f%8f%20-sI%20%e9%80%9a%e8%bf%87%e5%83%b5%e5%b0%b8%e4%b8%bb%e6%9c%ba%e5%8f%91%e5%8a%a8%e6%89%ab%e6%8f%8f%20%26ndash%3bscanflags%20%e8%87%aa%e5%ae%9a%e4%b9%89URG%e3%80%81ACK%e3%80%81PSH%e3%80%81RST%e3%80%81SYN%e3%80%81FIN%e3%80%81ECE%e3%80%81CWR%e3%80%81ALL%e5%92%8cNONE%e7%bb%84%e5%90%88%20-sU%20UDP%e6%89%ab%e6%8f%8f%20-sV%20%e6%9c%8d%e5%8a%a1%e7%89%88%e8%af%86%e5%88%ab%20-O%20%e8%af%86%e5%88%ab%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%20-p%20%e6%8c%87%e5%ae%9a%e7%ab%af%e5%8f%a3%e6%88%96%e7%ab%af%e5%8f%a3%e8%8c%83%e5%9b%b4%20-F%20%e5%bf%ab%e9%80%9f%e6%89%ab%e6%8f%8f%ef%bc%8c%e8%bf%91%e6%89%ab%e6%8f%8f%e5%b8%b8%e7%94%a8100%e4%b8%aa%e7%ab%af%e5%8f%a3%20-r%20%e9%a1%ba%e5%ba%8f%e6%89%ab%e6%8f%8f%20-oN%20%e6%ad%a3%e5%b8%b8%e8%be%93%e5%87%ba%20-oX%20%e5%b0%86%e7%bb%93%e6%9e%9c%e7%94%9f%e6%88%90%e4%b8%baXML%e6%96%87%e4%bb%b6%20-A%20%e5%bc%ba%e5%8a%9b%e6%89%ab%e6%8f%8f%ef%bc%8c%e7%9b%b8%e5%bd%93%e4%ba%8e%20-sV%20-O%20-sC%20%26ndash%3btraceroute%20-sC%20%e4%bd%bf%e7%94%a8%e9%bb%98%e8%ae%a4%e7%b1%bb%e7%9a%84%e8%84%9a%e6%9c%ac%e8%bf%9b%e8%a1%8c%e6%89%ab%e6%8f%8f%20%e7%9b%b8%e5%bd%93%e4%ba%8e%26ndash%3bscript%3ddefault%20%26ndash%3bscript%20%e6%a0%b9%e6%8d%ae%e6%8c%87%e5%ae%9a%e6%96%87%e4%bb%b6%e5%90%8d%e3%80%81%e7%b1%bb%e5%88%ab%e5%90%8d%e3%80%81%e7%9b%ae%e5%bd%95%e5%90%8d%e6%89%a7%e8%a1%8c%e7%9b%b8%e5%ba%94%e8%84%9a%e6%9c%ac%20-f%20%e4%bd%bf%e7%94%a8%e5%b0%8f%e6%95%b0%e6%8d%ae%e5%8c%85%ef%bc%8c%e9%81%bf%e5%85%8d%e7%9b%ae%e6%a0%87IDS%e8%af%86%e5%88%ab%20%26ndash%3bmtu%20%e8%b0%83%e6%95%b4%e6%95%b0%e6%8d%ae%e5%8c%85%e5%a4%a7%e5%b0%8f%ef%bc%8c%e5%bf%85%e9%a1%bb%e6%98%af8%e7%9a%84%e5%80%8d%e6%95%b0%20-D%20%e5%9c%a8%e4%be%a6%e6%b5%8b%e6%95%b0%e6%8d%ae%e5%8c%85%e4%b8%ad%e6%8e%ba%e6%9d%82%e4%b8%80%e4%ba%9b%e5%81%87%e6%ba%90IP%e7%9a%84%e6%95%b0%e6%8d%ae%e5%8c%85%e3%80%82%20-g%20%e6%a8%a1%e6%8b%9f%e6%ba%90%e7%ab%af%e5%8f%a3%20%26ndash%3bdata-length%20%e6%94%b9%e5%8f%98%e6%95%b0%e6%8d%ae%e5%8c%85%e9%bb%98%e8%ae%a4%e9%95%bf%e5%ba%a6%20%26ndash%3bscan-delay%20%e6%8e%a7%e5%88%b6%e5%8f%91%e9%80%81%e6%8e%a2%e6%b5%8b%e6%95%b0%e6%8d%ae%e7%9a%84%e6%97%b6%e9%97%b4%e9%97%b4%e9%9a%94%20%20%20Unicornscna%20%e6%89%ab%e6%8f%8fUDP%e7%ab%af%e5%8f%a3%e6%80%a7%e8%83%bd%e5%8d%93%e8%b6%8a%20zenmap%20nmap%e7%9a%84%e5%9b%be%e5%bd%a2%e5%8c%96%e6%89%ab%e6%8f%8f%e5%b7%a5%e5%85%b7%20amap%20%e6%a3%80%e6%b5%8b%e6%8c%87%e5%ae%9a%e7%ab%af%e5%8f%a3%e4%b8%8a%e8%bf%90%e8%a1%8c%e7%9a%84%e5%ba%94%e7%94%a8%e7%a8%8b%e5%ba%8f%e4%bf%a1%e6%81%af%20%20SNMP%e6%9e%9a%e4%b8%be%20%20SNMP%20%e7%ae%80%e5%8d%95%e7%bd%91%e7%bb%9c%e7%ae%a1%e7%90%86%e5%8d%8f%e8%ae%ae%ef%bc%8c%e8%bf%90%e8%a1%8c%e4%ba%8e161%e7%ab%af%e5%8f%a3%e7%9a%84%e5%ba%94%e7%94%a8%e5%b1%82%e5%8d%8f%e8%ae%ae%ef%bc%8c%e7%94%a8%e4%ba%8e%e7%bd%91%e7%bb%9c%e8%ae%be%e5%a4%87%e8%bf%90%e8%a1%8c%e7%8a%b6%e6%80%81%e7%9a%84%e7%9b%91%e6%8e%a7%ef%bc%8c%20SNMP%e5%8d%8f%e8%ae%ae%e6%9c%89%e4%b8%89%e4%b8%aa%e7%89%88%e6%9c%acv1%2fv2%2fv3" aria-label=Tumblr>
+<i class="fab fa-tumblr fa-lg" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fwww.takuzen.me%2fposts%2f2015-12-19-tools-of-kali%2f&t=Kali%e7%9a%84%e4%b8%80%e4%ba%9b%e5%b7%a5%e5%85%b7" aria-label="Hacker News">
+<i class="fab fa-hacker-news fa-lg" aria-hidden=true></i>
+</a>
+</li>
+</ul>
+</div>
+<div id=actions-footer>
+<a id=menu-toggle class=icon href=# onclick="return $('#nav-footer').toggle(),!1" aria-label=Menu>
+<i class="fas fa-bars fa-lg" aria-hidden=true></i> Menu</a>
+<a id=toc-toggle class=icon href=# onclick="return $('#toc-footer').toggle(),!1" aria-label=TOC>
+<i class="fas fa-list fa-lg" aria-hidden=true></i> TOC</a>
+<a id=share-toggle class=icon href=# onclick="return $('#share-footer').toggle(),!1" aria-label=Share>
+<i class="fas fa-share-alt fa-lg" aria-hidden=true></i> share</a>
+<a id=top style=display:none class=icon href=# onclick="$('html, body').animate({scrollTop:0},'fast')" aria-label="Top of Page">
+<i class="fas fa-chevron-up fa-lg" aria-hidden=true></i> Top</a>
+</div>
+</div>
+</div>
+<footer id=footer>
+<div class=footer-left>
+Copyright &copy; 2021 呉
+</div>
+<div class=footer-right>
+<nav>
+<ul>
+<li><a href=/>Home</a></li>
+<li><a href=/posts>Writings</a></li>
+<li><a href=/tags>Tags</a></li>
+<li><a href=/about>About</a></li>
+</ul>
+</nav>
+</div>
 </footer>
-
-
-  </div>
+</div>
 </body>
-
-<link rel="stylesheet" href=/lib/font-awesome/css/all.min.css>
+<link rel=stylesheet href=/lib/font-awesome/css/all.min.css>
 <script src=/lib/jquery/jquery.min.js></script>
 <script src=/js/main.js></script>
-
-
-
 </html>

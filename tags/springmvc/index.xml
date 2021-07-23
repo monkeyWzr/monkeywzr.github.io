@@ -1,24 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>SpringMVC on マクロス</title>
-    <link>https://www.takuzen.me/tags/springmvc/</link>
-    <description>Recent content in SpringMVC on マクロス</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>呉</copyright>
-    <lastBuildDate>Wed, 10 Oct 2018 17:25:25 +0000</lastBuildDate>
-    
-	<atom:link href="https://www.takuzen.me/tags/springmvc/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>SpringMVC初使用心得</title>
-      <link>https://www.takuzen.me/posts/2018-10-10-springmvc-practice/</link>
-      <pubDate>Wed, 10 Oct 2018 17:25:25 +0000</pubDate>
-      
-      <guid>https://www.takuzen.me/posts/2018-10-10-springmvc-practice/</guid>
-      <description>进入公司第一个实践的项目是用SpringMVC开发的。在前辈指导跳过了Spring庞大的学习内容直接上手了SpringMVC。磕磕碰碰中也算是对Spring有了一个初步的了解。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>SpringMVC on マクロス</title><link>https://www.takuzen.me/tags/springmvc/</link><description>Recent content in SpringMVC on マクロス</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>呉</copyright><lastBuildDate>Wed, 10 Oct 2018 17:25:25 +0000</lastBuildDate><atom:link href="https://www.takuzen.me/tags/springmvc/index.xml" rel="self" type="application/rss+xml"/><item><title>SpringMVC初使用心得</title><link>https://www.takuzen.me/posts/2018-10-10-springmvc-practice/</link><pubDate>Wed, 10 Oct 2018 17:25:25 +0000</pubDate><guid>https://www.takuzen.me/posts/2018-10-10-springmvc-practice/</guid><description>进入公司第一个实践的项目是用SpringMVC开发的。在前辈指导跳过了Spring庞大的学习内容直接上手了SpringMVC。磕磕碰碰中也算是对Spring有了一个初步的了解。
 SpringMVC框架初识 SpringMVC是Spring提供的一个web框架。
 架构 SpringMVC是Spring的一部分，主要模块如下图所示。
 在SpringMVC为架构的项目中的代码逻辑主要有如下几层:
@@ -27,9 +7,4 @@ Service层 Service层实现了业务的主要逻辑。处理参数，调用负�
 Dao层 Data access的部分在项目中体现为Dao层。Dao层的类以Model为载体，借助JDBC或者Hibernate的方法封装了对表的各种操作。通常Dao层的类和数据表是一一对应的。Dao层的类需要添加@Repository注解。
 Model Model层就是数据表的Java载体。需要添加@Entity注解标明该类为实体，并使用@Table(name = &amp;quot;table_name&amp;quot;)来绑定数据表。Model类中要添加@Id @GeneratedValue注解配置主键（具体含义还需进一步学习。参考链接:https://www.baeldung.com/hibernate-identifiers https://www.thoughts-on-java.org/jpa-generate-primary-keys/。）Model中的getter setter通过@Column(name = &amp;quot;id&amp;quot;, unique = true, nullable = false)注解表字段。
 调度流程 首先在项目最外层的web.xml中指定了Spring提供的dispatcherServlet作为调度请求的核心servlet。
-未完待续
-  </description>
-    </item>
-    
-  </channel>
-</rss>
+未完待续</description></item></channel></rss>

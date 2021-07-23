@@ -1,27 +1,3 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>base64 on マクロス</title>
-    <link>https://www.takuzen.me/tags/base64/</link>
-    <description>Recent content in base64 on マクロス</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>呉</copyright>
-    <lastBuildDate>Sat, 29 Aug 2015 09:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://www.takuzen.me/tags/base64/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>从教务系统中获取课程表图片</title>
-      <link>https://www.takuzen.me/posts/2015-08-29-get-img-from-base64/</link>
-      <pubDate>Sat, 29 Aug 2015 09:00:00 +0000</pubDate>
-      
-      <guid>https://www.takuzen.me/posts/2015-08-29-get-img-from-base64/</guid>
-      <description>教务系统中的课表以图片形式显示，又不知何故不允许另存，禁用右键也无效（教务使用体验极差，这方面倒是做的细心V.V），以前是用chrome开发者工具翻一下resource就能找到图片，拖下来就成。 昨天想再把新学期课表存下来发现不行了，直接拖到电脑上不管用，拖到新标签页里一堆乱码 拖到sublime text里面，直接变成了整齐的编码 网上查一下之后知道图片经base64编码，我拖下来得到的就是编码后的数据，重现的话写个html就行了
-&amp;lt;span&amp;gt;&amp;lt;img src=&amp;quot;data:image/jpg;base64,编码后的数据&amp;quot;&amp;gt;&amp;lt;/span&amp;gt; 看出来了吧，上面图里我拖下来的其实是src里的完整格式。  这样就把图片的“文字版”写到html里了，用浏览器访问即可解码出图片，可以随便保存啦。
-这种用base64编码之后传输图片的形式还是比较不错，从别人的博客上摘录下“减少了HTTP请求，某些文件可以避免跨域的问题，没有图片更新要重新上传，还要清理缓存的问题”这些优点。但实际上这种方式并不像想象中那样可以节省流量，文件反而增大约35%，所以大图片就不要用这种方法了。</description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>base64 on マクロス</title><link>https://www.takuzen.me/tags/base64/</link><description>Recent content in base64 on マクロス</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>呉</copyright><lastBuildDate>Sat, 29 Aug 2015 09:00:00 +0000</lastBuildDate><atom:link href="https://www.takuzen.me/tags/base64/index.xml" rel="self" type="application/rss+xml"/><item><title>从教务系统中获取课程表图片</title><link>https://www.takuzen.me/posts/2015-08-29-get-img-from-base64/</link><pubDate>Sat, 29 Aug 2015 09:00:00 +0000</pubDate><guid>https://www.takuzen.me/posts/2015-08-29-get-img-from-base64/</guid><description>教务系统中的课表以图片形式显示，又不知何故不允许另存，禁用右键也无效（教务使用体验极差，这方面倒是做的细心V.V），以前是用chrome开发者工具翻一下resource就能找到图片，拖下来就成。 昨天想再把新学期课表存下来发现不行了，直接拖到电脑上不管用，拖到新标签页里一堆乱码 拖到sublime text里面，直接变成了整齐的编码 网上查一下之后知道图片经base64编码，我拖下来得到的就是编码后的数据，重现的话写个html就行了
+&amp;lt;span&amp;gt;&amp;lt;img src=&amp;quot;data:image/jpg;base64,编码后的数据&amp;quot;&amp;gt;&amp;lt;/span&amp;gt; 看出来了吧，上面图里我拖下来的其实是src里的完整格式。 这样就把图片的“文字版”写到html里了，用浏览器访问即可解码出图片，可以随便保存啦。
+这种用base64编码之后传输图片的形式还是比较不错，从别人的博客上摘录下“减少了HTTP请求，某些文件可以避免跨域的问题，没有图片更新要重新上传，还要清理缓存的问题”这些优点。但实际上这种方式并不像想象中那样可以节省流量，文件反而增大约35%，所以大图片就不要用这种方法了。</description></item></channel></rss>

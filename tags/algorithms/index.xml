@@ -1,103 +1,16 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Algorithms on マクロス</title>
-    <link>https://www.takuzen.me/tags/algorithms/</link>
-    <description>Recent content in Algorithms on マクロス</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>呉</copyright>
-    <lastBuildDate>Sat, 06 Jun 2020 09:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://www.takuzen.me/tags/algorithms/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>Changes to String in java (from 1.7.0_06)</title>
-      <link>https://www.takuzen.me/posts/2020-06-06-changes-in-java-string/</link>
-      <pubDate>Sat, 06 Jun 2020 09:00:00 +0000</pubDate>
-      
-      <guid>https://www.takuzen.me/posts/2020-06-06-changes-in-java-string/</guid>
-      <description>Before 1.7.0_06, String has 4 non static field:
- char[] value int[] offset int count int hash  Subing.substring create a String by sharing the original String&amp;rsquo;s internal char[] value and setting offset. This saves memory and makes String.substring run in a constant time($O(1)$). Meanwhile, this feature may cause memory leak1.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Algorithms on マクロス</title><link>https://www.takuzen.me/tags/algorithms/</link><description>Recent content in Algorithms on マクロス</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>呉</copyright><lastBuildDate>Sat, 06 Jun 2020 09:00:00 +0000</lastBuildDate><atom:link href="https://www.takuzen.me/tags/algorithms/index.xml" rel="self" type="application/rss+xml"/><item><title>Changes to String in java (from 1.7.0_06)</title><link>https://www.takuzen.me/posts/2020-06-06-changes-in-java-string/</link><pubDate>Sat, 06 Jun 2020 09:00:00 +0000</pubDate><guid>https://www.takuzen.me/posts/2020-06-06-changes-in-java-string/</guid><description>Before 1.7.0_06, String has 4 non static field:
+char[] value int[] offset int count int hash Subing.substring create a String by sharing the original String&amp;rsquo;s internal char[] value and setting offset. This saves memory and makes String.substring run in a constant time($O(1)$). Meanwhile, this feature may cause memory leak1.
 http://hg.openjdk.java.net/jdk6/jdk6/jdk/file/8deef18bb749/src/share/classes/java/lang/String.java
-public final class String implements java.io.Serializable, Comparable&amp;lt;String&amp;gt;, CharSequence { /** The value is used for character storage. */ private final char value[]; /** The offset is the first index of the storage that is used.</description>
-    </item>
-    
-    <item>
-      <title>Algorithms - String Sorts</title>
-      <link>https://www.takuzen.me/posts/2020-06-05-string-sorts/</link>
-      <pubDate>Fri, 05 Jun 2020 09:00:00 +0000</pubDate>
-      
-      <guid>https://www.takuzen.me/posts/2020-06-05-string-sorts/</guid>
-      <description>Key-indexed counting Sort an array a[] of N integers between 0 and R-1.
-int N = a.length; // the temp array during sorting int[] aux = new int[N]; // the index of count[] is the integer int[] count = new int[R+1]; // count frequencies of N integers // offset by one(a[0] = 0) for (int i = 0; i &amp;lt; N; i++) { count[a[i]+1]++; } // compute frequency cumulates which specify destinations // (how many intgers &amp;lt; the integer r) for (int r = 0; r &amp;lt; R; R++) { count[r+1] += count[r]; } // access cumulates using key as index to move items for (int i = 0; i &amp;lt; N; i++) { aux[count[a[i]]++] = a[i]; } // copy back for (int i = 0; i &amp;lt; N; i++) { a[i] = aux[i]; }  Key-indexed counting is stable.</description>
-    </item>
-    
-    <item>
-      <title>Algorithms - Maxflow and Mincut</title>
-      <link>https://www.takuzen.me/posts/2020-05-20-maxflow-mincut/</link>
-      <pubDate>Wed, 20 May 2020 09:00:00 +0000</pubDate>
-      
-      <guid>https://www.takuzen.me/posts/2020-05-20-maxflow-mincut/</guid>
-      <description>Model We use a flow network model which is an edge-weighted digraph with positive edge weights referred to as capacities. An st-flow network has two identified vertices, a source s and a sink t.
-Minimum Cut problem An st-cut is a partition of the vertices into two disjoint sets, which s in one set A and t in the other set B. Its capacity is the sum of the capacities of the edges from A to B.</description>
-    </item>
-    
-    <item>
-      <title>Algorithms - Graphs</title>
-      <link>https://www.takuzen.me/posts/2020-05-01-algorithms-graphs/</link>
-      <pubDate>Fri, 01 May 2020 09:00:00 +0000</pubDate>
-      
-      <guid>https://www.takuzen.me/posts/2020-05-01-algorithms-graphs/</guid>
-      <description>Undirected Graphs Some problems  Path Shortest path Cycle Ehler tour: A cycle that uses each edge excatly once. Hamilton tour: A cycle that uses each vertex exactly once  classical NP-complete problem.   Connectivity MST: Biconnectivity: A vertex whose removal disconnects the graph Planarity Graph isomorphism: Are two graphs identical?  No one knows so far. A lonstanding open problem    Representations Real-world graphs tend to be sparse (huge number of vertices, small average vertex degree).</description>
-    </item>
-    
-    <item>
-      <title>常用算法总结</title>
-      <link>https://www.takuzen.me/posts/2017-02-24-common-sorting-algorithms/</link>
-      <pubDate>Fri, 24 Feb 2017 19:47:40 +0000</pubDate>
-      
-      <guid>https://www.takuzen.me/posts/2017-02-24-common-sorting-algorithms/</guid>
-      <description>基于比较的排序算法的最优性能是O(n log n)
- 文中代码通用的两个方法：
-private static boolean less(Comparable v, Comparable w) { return v.compareTo(w) &amp;lt; 0; } private static void exch(Comparable[] a, int i, int j) { Comparable swap = a[i]; a[i] = a[j]; a[j] = swap; } 插入排序  Time Complexity: O(n ^ 2) 最好情况O(n) 稳定 in place  public class Insertion { public static void sort(Comparable[] a) { int N = a.length; for (int i = 0; i &amp;lt; N; i++) for (int j = i; j &amp;gt; 0; j--) if (a[j] &amp;lt; a[j - 1]) { exch(a, j, j-1); } else break; } } 选择排序  Time Complexity: O(n ^ 2) 不稳定 in place  public class Selection { public static void sort(Comparable[] a) { int N = a.</description>
-    </item>
-    
-    <item>
-      <title>java散列知识点总结</title>
-      <link>https://www.takuzen.me/posts/2017-02-18-hash/</link>
-      <pubDate>Sat, 18 Feb 2017 19:19:01 +0000</pubDate>
-      
-      <guid>https://www.takuzen.me/posts/2017-02-18-hash/</guid>
-      <description>java 的根类 Object 具有 hashcode 方法。当 equal 方法被重写时也应当重写 hashcode 方法。
-基本数据类型的散列码  byte short int char 类型的搜索键将会转换为 int。 float 类型的搜索键使用 Float.floatToIntBits(key) 作为散列码。 long 类型的搜索键会进行折叠操作，如下：  iny hashCode = (int) (key ^ (key &amp;gt;&amp;gt; 32));  double 类型的搜索键会使用 Double.doubleToLongBits(key) 方法转换为 long 类型然后再进行折叠。  字符串类型的散列码 对于字符串一般使用多项式散列码进行计算，
+public final class String implements java.io.Serializable, Comparable&amp;lt;String&amp;gt;, CharSequence { /** The value is used for character storage. */ private final char value[]; /** The offset is the first index of the storage that is used.</description></item><item><title>Algorithms - String Sorts</title><link>https://www.takuzen.me/posts/2020-06-05-string-sorts/</link><pubDate>Fri, 05 Jun 2020 09:00:00 +0000</pubDate><guid>https://www.takuzen.me/posts/2020-06-05-string-sorts/</guid><description>Key-indexed counting Sort an array a[] of N integers between 0 and R-1.
+int N = a.length; // the temp array during sorting int[] aux = new int[N]; // the index of count[] is the integer int[] count = new int[R+1]; // count frequencies of N integers // offset by one(a[0] = 0) for (int i = 0; i &amp;lt; N; i++) { count[a[i]+1]++; } // compute frequency cumulates which specify destinations // (how many intgers &amp;lt; the integer r) for (int r = 0; r &amp;lt; R; R++) { count[r+1] += count[r]; } // access cumulates using key as index to move items for (int i = 0; i &amp;lt; N; i++) { aux[count[a[i]]++] = a[i]; } // copy back for (int i = 0; i &amp;lt; N; i++) { a[i] = aux[i]; } Key-indexed counting is stable.</description></item><item><title>Algorithms - Maxflow and Mincut</title><link>https://www.takuzen.me/posts/2020-05-20-maxflow-mincut/</link><pubDate>Wed, 20 May 2020 09:00:00 +0000</pubDate><guid>https://www.takuzen.me/posts/2020-05-20-maxflow-mincut/</guid><description>Model We use a flow network model which is an edge-weighted digraph with positive edge weights referred to as capacities. An st-flow network has two identified vertices, a source s and a sink t.
+Minimum Cut problem An st-cut is a partition of the vertices into two disjoint sets, which s in one set A and t in the other set B. Its capacity is the sum of the capacities of the edges from A to B.</description></item><item><title>Algorithms - Graphs</title><link>https://www.takuzen.me/posts/2020-05-01-algorithms-graphs/</link><pubDate>Fri, 01 May 2020 09:00:00 +0000</pubDate><guid>https://www.takuzen.me/posts/2020-05-01-algorithms-graphs/</guid><description>Undirected Graphs Some problems Path Shortest path Cycle Ehler tour: A cycle that uses each edge excatly once. Hamilton tour: A cycle that uses each vertex exactly once classical NP-complete problem. Connectivity MST: Biconnectivity: A vertex whose removal disconnects the graph Planarity Graph isomorphism: Are two graphs identical? No one knows so far. A lonstanding open problem Representations Real-world graphs tend to be sparse (huge number of vertices, small average vertex degree).</description></item><item><title>常用算法总结</title><link>https://www.takuzen.me/posts/2017-02-24-common-sorting-algorithms/</link><pubDate>Fri, 24 Feb 2017 19:47:40 +0000</pubDate><guid>https://www.takuzen.me/posts/2017-02-24-common-sorting-algorithms/</guid><description>基于比较的排序算法的最优性能是O(n log n)
+文中代码通用的两个方法：
+private static boolean less(Comparable v, Comparable w) { return v.compareTo(w) &amp;lt; 0; } private static void exch(Comparable[] a, int i, int j) { Comparable swap = a[i]; a[i] = a[j]; a[j] = swap; } 插入排序 Time Complexity: O(n ^ 2) 最好情况O(n) 稳定 in place public class Insertion { public static void sort(Comparable[] a) { int N = a.length; for (int i = 0; i &amp;lt; N; i++) for (int j = i; j &amp;gt; 0; j--) if (a[j] &amp;lt; a[j - 1]) { exch(a, j, j-1); } else break; } } 选择排序 Time Complexity: O(n ^ 2) 不稳定 in place public class Selection { public static void sort(Comparable[] a) { int N = a.</description></item><item><title>java散列知识点总结</title><link>https://www.takuzen.me/posts/2017-02-18-hash/</link><pubDate>Sat, 18 Feb 2017 19:19:01 +0000</pubDate><guid>https://www.takuzen.me/posts/2017-02-18-hash/</guid><description>java 的根类 Object 具有 hashcode 方法。当 equal 方法被重写时也应当重写 hashcode 方法。
+基本数据类型的散列码 byte short int char 类型的搜索键将会转换为 int。 float 类型的搜索键使用 Float.floatToIntBits(key) 作为散列码。 long 类型的搜索键会进行折叠操作，如下： iny hashCode = (int) (key ^ (key &amp;gt;&amp;gt; 32)); double 类型的搜索键会使用 Double.doubleToLongBits(key) 方法转换为 long 类型然后再进行折叠。 字符串类型的散列码 对于字符串一般使用多项式散列码进行计算，
 这里放个公式的图
 b的较好取值为31，33，37，39，41。在 java String 类中 b 取31。
-public static int hash(String key, int tableSize) { int hashVal = 0; for (int i = 0; i &amp;lt; key.</description>
-    </item>
-    
-    <item>
-      <title>Algorithms part1 programming assignments 2 - deque</title>
-      <link>https://www.takuzen.me/posts/2017-02-10-algorithms-part1-assignments-2-deque/</link>
-      <pubDate>Fri, 10 Feb 2017 18:33:59 +0000</pubDate>
-      
-      <guid>https://www.takuzen.me/posts/2017-02-10-algorithms-part1-assignments-2-deque/</guid>
-      <description>这次作业内容是关于栈和队列的。要求为实现两种数据类型：deque 和 randomized queues。
-Deque  Deque: A double-ended queue or deque (pronounced &amp;ldquo;deck&amp;rdquo;) is a generalization of a stack and a queue that supports adding and removing items from either the front or the back of the data structure.
- deque就是个双向队列，从两头都可以添加和删除。用链表实现起来比较方便。要求的api如下：
-public class Deque&amp;lt;Item&amp;gt; implements Iterable&amp;lt;Item&amp;gt; { public Deque() // construct an empty deque  public boolean isEmpty() // is the deque empty?  public int size() // return the number of items on the deque  public void addFirst(Item item) // add the item to the front  public void addLast(Item item) // add the item to the end  public Item removeFirst() // remove and return the item from the front  public Item removeLast() // remove and return the item from the end  public Iterator&amp;lt;Item&amp;gt; iterator() // return an iterator over items in order from front to end  public static void main(String[] args) // unit testing (optional) } 题目要求每个deque的操作都必须是 O(1) 的时间复杂度，迭代器的操作也是 O(1) 的时间复杂度。包含n个元素的deque最多占用48n + 192 bytes。综合考虑采用双向链表比较合适。</description>
-    </item>
-    
-    <item>
-      <title>Algorithms part1 programming assignments 1 - Percolation</title>
-      <link>https://www.takuzen.me/posts/2017-02-08-algorithms-part1-programming-assignments-1/</link>
-      <pubDate>Wed, 08 Feb 2017 20:48:32 +0000</pubDate>
-      
-      <guid>https://www.takuzen.me/posts/2017-02-08-algorithms-part1-programming-assignments-1/</guid>
-      <description>坚持看了很久的algorithms公开课，终于决定回过头来整理一下作业。。 这次作业解决的是渗滤系统的阈值问题。渗滤（percolation)是一个常见的物理系统，描述为：
- We model a percolation system using an n-by-n grid of sites. Each site is either open or blocked. A full site is an open site that can be connected to an open site in the top row via a chain of neighboring (left, right, up, down) open sites. We say the system percolates if there is a full site in the bottom row. In other words, a system percolates if we fill all open sites connected to the top row and that process fills some open site on the bottom row.</description>
-    </item>
-    
-  </channel>
-</rss>
+public static int hash(String key, int tableSize) { int hashVal = 0; for (int i = 0; i &amp;lt; key.</description></item><item><title>Algorithms part1 programming assignments 2 - deque</title><link>https://www.takuzen.me/posts/2017-02-10-algorithms-part1-assignments-2-deque/</link><pubDate>Fri, 10 Feb 2017 18:33:59 +0000</pubDate><guid>https://www.takuzen.me/posts/2017-02-10-algorithms-part1-assignments-2-deque/</guid><description>这次作业内容是关于栈和队列的。要求为实现两种数据类型：deque 和 randomized queues。
+Deque Deque: A double-ended queue or deque (pronounced &amp;ldquo;deck&amp;rdquo;) is a generalization of a stack and a queue that supports adding and removing items from either the front or the back of the data structure.
+deque就是个双向队列，从两头都可以添加和删除。用链表实现起来比较方便。要求的api如下：
+public class Deque&amp;lt;Item&amp;gt; implements Iterable&amp;lt;Item&amp;gt; { public Deque() // construct an empty deque public boolean isEmpty() // is the deque empty? public int size() // return the number of items on the deque public void addFirst(Item item) // add the item to the front public void addLast(Item item) // add the item to the end public Item removeFirst() // remove and return the item from the front public Item removeLast() // remove and return the item from the end public Iterator&amp;lt;Item&amp;gt; iterator() // return an iterator over items in order from front to end public static void main(String[] args) // unit testing (optional) } 题目要求每个deque的操作都必须是 O(1) 的时间复杂度，迭代器的操作也是 O(1) 的时间复杂度。包含n个元素的deque最多占用48n + 192 bytes。综合考虑采用双向链表比较合适。</description></item><item><title>Algorithms part1 programming assignments 1 - Percolation</title><link>https://www.takuzen.me/posts/2017-02-08-algorithms-part1-programming-assignments-1/</link><pubDate>Wed, 08 Feb 2017 20:48:32 +0000</pubDate><guid>https://www.takuzen.me/posts/2017-02-08-algorithms-part1-programming-assignments-1/</guid><description>坚持看了很久的algorithms公开课，终于决定回过头来整理一下作业。。 这次作业解决的是渗滤系统的阈值问题。渗滤（percolation)是一个常见的物理系统，描述为：
+We model a percolation system using an n-by-n grid of sites. Each site is either open or blocked. A full site is an open site that can be connected to an open site in the top row via a chain of neighboring (left, right, up, down) open sites. We say the system percolates if there is a full site in the bottom row. In other words, a system percolates if we fill all open sites connected to the top row and that process fills some open site on the bottom row.</description></item></channel></rss>

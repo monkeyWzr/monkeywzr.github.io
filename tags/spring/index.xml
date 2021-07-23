@@ -1,43 +1,10 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Spring on マクロス</title>
-    <link>https://www.takuzen.me/tags/spring/</link>
-    <description>Recent content in Spring on マクロス</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>呉</copyright>
-    <lastBuildDate>Mon, 04 Jan 2021 15:13:31 +0900</lastBuildDate>
-    
-	<atom:link href="https://www.takuzen.me/tags/spring/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>Springでjsonリクエスト情報のカスタマイズ処理（変換、バリデーション、共通処理）</title>
-      <link>https://www.takuzen.me/posts/spring-handle-request-arguments/</link>
-      <pubDate>Mon, 04 Jan 2021 15:13:31 +0900</pubDate>
-      
-      <guid>https://www.takuzen.me/posts/spring-handle-request-arguments/</guid>
-      <description>内容要補足
-共通処理  HandlerInterceptor ControllerAdvice/RestControllerAdvice RequestBodyAdvice @RequestBodyの共通処理に適用。 Filter 不勉強すみません AOP 不勉強againすみません  カスタマイズ変換の視点から、下記の方法がある（特に@RequestParamから取得したStringからオブジェクトへのカスタマイズ変換）
- RequestBodyAdvice @RequestBodyに適用 ConverterFactory ArgumentResolver @RequestParamとかの制御に適用（カスタマイズ変換） PropertyEditor @RequestParamとかの制御に適用（カスタマイズ変換）  HandlerInterceptor インターフェース HandlerInterceptor
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Spring on マクロス</title><link>https://www.takuzen.me/tags/spring/</link><description>Recent content in Spring on マクロス</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>呉</copyright><lastBuildDate>Mon, 04 Jan 2021 15:13:31 +0900</lastBuildDate><atom:link href="https://www.takuzen.me/tags/spring/index.xml" rel="self" type="application/rss+xml"/><item><title>Springでjsonリクエスト情報のカスタマイズ処理（変換、バリデーション、共通処理）</title><link>https://www.takuzen.me/posts/spring-handle-request-arguments/</link><pubDate>Mon, 04 Jan 2021 15:13:31 +0900</pubDate><guid>https://www.takuzen.me/posts/spring-handle-request-arguments/</guid><description>内容要補足
+共通処理 HandlerInterceptor ControllerAdvice/RestControllerAdvice RequestBodyAdvice @RequestBodyの共通処理に適用。 Filter 不勉強すみません AOP 不勉強againすみません カスタマイズ変換の視点から、下記の方法がある（特に@RequestParamから取得したStringからオブジェクトへのカスタマイズ変換）
+RequestBodyAdvice @RequestBodyに適用 ConverterFactory ArgumentResolver @RequestParamとかの制御に適用（カスタマイズ変換） PropertyEditor @RequestParamとかの制御に適用（カスタマイズ変換） HandlerInterceptor インターフェース HandlerInterceptor
 リクエストがハンドルされる前後にインタセプトするインタフェースです。（Controllerは当然handlerであると認識しているが、なぜこのインタフェースの名前がControllerIntercepterになってないでしょうか）
 インタフェースによりインタセプトタイミングを見ると、Restアプリケーションの場合（特に共通バリデーションとかをしたい場合）に役割が少ないと思った1
- preHandle: ハンドラー(controller)メソッドが呼び出される前に呼び出される。httpRequestとhttpResponseがパラメータであるので、一部の前処理とかを実装できる postHandle: ハンドラーメソッドが呼び出された後、DispatcherServlet がビューをレンダリングする前に呼び出される afterCompletion:　ビューのレンダリング後のコールバック  最近のプロジェクトに、preHandleでログ出力の初期設定を行う、afterCompletionでMDCのクリアを行う、のような仕組みを応用した。
+preHandle: ハンドラー(controller)メソッドが呼び出される前に呼び出される。httpRequestとhttpResponseがパラメータであるので、一部の前処理とかを実装できる postHandle: ハンドラーメソッドが呼び出された後、DispatcherServlet がビューをレンダリングする前に呼び出される afterCompletion:　ビューのレンダリング後のコールバック 最近のプロジェクトに、preHandleでログ出力の初期設定を行う、afterCompletionでMDCのクリアを行う、のような仕組みを応用した。
 ControllerAdvice/RestControllerAdvice Controllerクラスの間に、@ExceptionHandler @InitBinder @ModelAttributeの処理を共通定義できる
 Data Binder, Model, Exceptionの共通カスタマイズ処理とかに適用
-@ControllerAdvice // @RestControllerAdvice // RestControllerの場合 class SomeCustomControllerAdvice { @InitBinder public void initDataBinder(WebDataBinder dataBinder) { // dataBinder.registerCustomEditorでカスタマイズエディターの登録を行ったり  // dataBinder.getTarget()でハンドラーメソッドに渡すPOJOオブジェクトのインスタンスも取得できる  } @ModelAttribute public void addSomething(@RequestParam(&amp;#34;someKey&amp;#34;) String someValue, Model model) { // モデルを更新するとか  // ハンドラーのようにリクエストパラメータを取得できるので、前処理とか実装できる  } @ExceptionHandler // @ExceptionHandler({NullPointerException.</description>
-    </item>
-    
-    <item>
-      <title>Spring Bean Scope: Singleton and Prototype</title>
-      <link>https://www.takuzen.me/posts/spring-bean-scope/</link>
-      <pubDate>Sun, 13 Dec 2020 16:36:42 +0900</pubDate>
-      
-      <guid>https://www.takuzen.me/posts/spring-bean-scope/</guid>
-      <description>シングルトンsingleton Only one instance is created and managed in the Spring container. This instance is shared by all requests so we should use this for stateless beans. Singleton scope is the default scope in Spring.
-@Service public class SomeService{ // DANGER! This property is shared by all requests so one user might use others&amp;#39; password  private String password; public void authByPassword(){ // ...  } } prototype A new instance is created by each request for that bean.</description>
-    </item>
-    
-  </channel>
-</rss>
+@ControllerAdvice // @RestControllerAdvice // RestControllerの場合 class SomeCustomControllerAdvice { @InitBinder public void initDataBinder(WebDataBinder dataBinder) { // dataBinder.registerCustomEditorでカスタマイズエディターの登録を行ったり // dataBinder.getTarget()でハンドラーメソッドに渡すPOJOオブジェクトのインスタンスも取得できる } @ModelAttribute public void addSomething(@RequestParam(&amp;#34;someKey&amp;#34;) String someValue, Model model) { // モデルを更新するとか // ハンドラーのようにリクエストパラメータを取得できるので、前処理とか実装できる } @ExceptionHandler // @ExceptionHandler({NullPointerException.</description></item><item><title>Spring Bean Scope: Singleton and Prototype</title><link>https://www.takuzen.me/posts/spring-bean-scope/</link><pubDate>Sun, 13 Dec 2020 16:36:42 +0900</pubDate><guid>https://www.takuzen.me/posts/spring-bean-scope/</guid><description>シングルトンsingleton Only one instance is created and managed in the Spring container. This instance is shared by all requests so we should use this for stateless beans. Singleton scope is the default scope in Spring.
+@Service public class SomeService{ // DANGER! This property is shared by all requests so one user might use others&amp;#39; password private String password; public void authByPassword(){ // ... } } prototype A new instance is created by each request for that bean.</description></item></channel></rss>

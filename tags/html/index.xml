@@ -1,33 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>html on マクロス</title>
-    <link>https://www.takuzen.me/tags/html/</link>
-    <description>Recent content in html on マクロス</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>呉</copyright>
-    <lastBuildDate>Thu, 08 Oct 2015 09:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://www.takuzen.me/tags/html/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>HTML常用头标签</title>
-      <link>https://www.takuzen.me/posts/2015-10-08-html-head-tags/</link>
-      <pubDate>Thu, 08 Oct 2015 09:00:00 +0000</pubDate>
-      
-      <guid>https://www.takuzen.me/posts/2015-10-08-html-head-tags/</guid>
-      <description>meta &amp;lt;meta&amp;gt;标签提供了 HTML 文档的元数据(metadate)。元数据不会显示在客户端，而是被浏览器解析。 meta元素通常用于指定网页的描述，关键词，的文件的最后修改，作者，和其他元数据。 元数据可以被使用浏览器（如何显示内容或重新加载页面），搜索引擎（关键词），或其他 Web 服务调用。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>html on マクロス</title><link>https://www.takuzen.me/tags/html/</link><description>Recent content in html on マクロス</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>呉</copyright><lastBuildDate>Thu, 08 Oct 2015 09:00:00 +0000</lastBuildDate><atom:link href="https://www.takuzen.me/tags/html/index.xml" rel="self" type="application/rss+xml"/><item><title>HTML常用头标签</title><link>https://www.takuzen.me/posts/2015-10-08-html-head-tags/</link><pubDate>Thu, 08 Oct 2015 09:00:00 +0000</pubDate><guid>https://www.takuzen.me/posts/2015-10-08-html-head-tags/</guid><description>meta &amp;lt;meta&amp;gt;标签提供了 HTML 文档的元数据(metadate)。元数据不会显示在客户端，而是被浏览器解析。 meta元素通常用于指定网页的描述，关键词，的文件的最后修改，作者，和其他元数据。 元数据可以被使用浏览器（如何显示内容或重新加载页面），搜索引擎（关键词），或其他 Web 服务调用。
 &amp;lt;meta&amp;gt;标签通常位于&amp;lt;head&amp;gt;区域内,有如下几个属性；
- charset-定义文档字符编码，常用值为utf-8 __http-equiv__-提供了名称/值对中的名称，并指示服务器把名称/值对添加到发送给浏览器的MIME文档头部 __name__-提供了名称/值对中的名称，通常情况下可自定义对自己和源文档的读者来说富有意义的名称，常用值有keywords``description等 __content__-定义与http+equiv或name属性相关的元信息，即名称/值对中的值 __scheme__-定义用于翻译content属性值的格式，html5中已删除此属性
- 使用http-equiv属性，服务器将把名称/值对添加到发送给浏览器的内容头部，例如：
- &amp;lt;meta http-equiv=&amp;quot;charset&amp;quot; content=&amp;quot;iso-8859-1&amp;quot;&amp;gt; &amp;lt;meta http-equiv=&amp;quot;expires&amp;quot; content=&amp;quot;31 Dec 2008&amp;quot;&amp;gt;  浏览器头部就应包含：
- content-type: text/html charset:iso-8859-1 expires:31 Dec 2008  所有服务器都至少要发送一个：content-type:text/html，这将告诉浏览器准备接受一个 HTML 文档。
+charset-定义文档字符编码，常用值为utf-8 http-equiv-提供了名称/值对中的名称，并指示服务器把名称/值对添加到发送给浏览器的MIME文档头部 name-提供了名称/值对中的名称，通常情况下可自定义对自己和源文档的读者来说富有意义的名称，常用值有keywords``description等 content-定义与http+equiv或name属性相关的元信息，即名称/值对中的值 scheme-定义用于翻译content属性值的格式，html5中已删除此属性
+使用http-equiv属性，服务器将把名称/值对添加到发送给浏览器的内容头部，例如：
+&amp;lt;meta http-equiv=&amp;quot;charset&amp;quot; content=&amp;quot;iso-8859-1&amp;quot;&amp;gt; &amp;lt;meta http-equiv=&amp;quot;expires&amp;quot; content=&amp;quot;31 Dec 2008&amp;quot;&amp;gt; 浏览器头部就应包含：
+content-type: text/html charset:iso-8859-1 expires:31 Dec 2008 所有服务器都至少要发送一个：content-type:text/html，这将告诉浏览器准备接受一个 HTML 文档。
 其它实例：
- //定义文档关键词，用于搜索引擎 &amp;lt;meta name=&amp;quot;keywords&amp;quot; content=&amp;quot;HTML, CSS, XML, XHTML, JavaScript&amp;quot;&amp;gt; //每30秒刷新页面 &amp;lt;meta http-equiv=&amp;quot;refresh&amp;quot; content=&amp;quot;30&amp;quot;&amp;gt; //声明文档使用的字符编码 &amp;lt;meta charset=&#39;utf-8&#39;&amp;gt;  还有一种lang属性写法：
- //简体中文 &amp;lt;html lang=&amp;quot;zh-cmn-Hans&amp;quot;&amp;gt; //繁体中文 &amp;lt;html lang=&amp;quot;zh-cmn-Hant&amp;quot;&amp;gt; //英文 &amp;lt;html lang=&amp;quot;en&amp;quot;&amp;gt;  lang属性的取值应该遵循 BCP 47 - Tags for Identifying Languages</description>
-    </item>
-    
-  </channel>
-</rss>
+//定义文档关键词，用于搜索引擎 &amp;lt;meta name=&amp;quot;keywords&amp;quot; content=&amp;quot;HTML, CSS, XML, XHTML, JavaScript&amp;quot;&amp;gt; //每30秒刷新页面 &amp;lt;meta http-equiv=&amp;quot;refresh&amp;quot; content=&amp;quot;30&amp;quot;&amp;gt; //声明文档使用的字符编码 &amp;lt;meta charset='utf-8'&amp;gt; 还有一种lang属性写法：
+//简体中文 &amp;lt;html lang=&amp;quot;zh-cmn-Hans&amp;quot;&amp;gt; //繁体中文 &amp;lt;html lang=&amp;quot;zh-cmn-Hant&amp;quot;&amp;gt; //英文 &amp;lt;html lang=&amp;quot;en&amp;quot;&amp;gt; lang属性的取值应该遵循 BCP 47 - Tags for Identifying Languages</description></item></channel></rss>

@@ -1,19 +1,18 @@
-<!DOCTYPE html>
-<html lang="en-us">
+<!doctype html><html lang=en-us>
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title> composer用法 | マクロス</title>
-  <meta name="description" content="勉強中">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="all,follow">
-  <meta name="googlebot" content="index,follow,snippet,archive">
-  <meta property="og:title" content="composer用法" />
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<title> composer用法 | マクロス</title>
+<meta name=description content="勉強中">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=robots content="all,follow">
+<meta name=googlebot content="index,follow,snippet,archive">
+<meta property="og:title" content="composer用法">
 <meta property="og:description" content="composer.json 要开始在你的项目中使用 Composer，你只需要一个composer.json文件。该文件包含了项目的依赖和其它的一些元数据。
 首先需要指定require key的值
-{ &quot;require&quot;: { &quot;monolog/monolog&quot;: &quot;1.0.*&quot; } &quot;require-dev&quot;: { &quot;phpunit/phpunit&quot;: &quot;4.8.*&quot; } } require属性列出组件依赖的组件，require-dev属性列出的是开发时所需依赖，在生产环境下不会安装。
+{ &#34;require&#34;: { &#34;monolog/monolog&#34;: &#34;1.0.*&#34; } &#34;require-dev&#34;: { &#34;phpunit/phpunit&#34;: &#34;4.8.*&#34; } } require属性列出组件依赖的组件，require-dev属性列出的是开发时所需依赖，在生产环境下不会安装。
 包名 包名应该包含供应商名和项目名
-包版本  指定版本号 1.0.2，1.0.0-dev，1.0.0-alpha3 范围 &gt;=1.0 &gt;=1.0,&lt;2.0 &gt;=1.0,&lt;1.1|&gt;=1.2 ,的优先级高于| 通配符 1.0.* 赋值运算符 ~1.2 相当于&gt;=1.2,&lt;2.0 允许依赖不稳定包 @beta @dev  形如1.0.*@beta，或者dev-master#2eb0c0978d290a1c45346a1955188929cb4e5db7这种明确了版本号的也是支持的。
+包版本  指定版本号 1.0.2，1.0.0-dev，1.0.0-alpha3 范围 >=1.0 >=1.0,<2.0 >=1.0,<1.1|>=1.2 ,的优先级高于| 通配符 1.0.* 赋值运算符 ~1.2 相当于>=1.2,<2.0 允许依赖不稳定包 @beta @dev  形如1.0.*@beta，或者dev-master#2eb0c0978d290a1c45346a1955188929cb4e5db7这种明确了版本号的也是支持的。
 波浪号运算符的意义在于，防止大版本更新而产生的兼容性问题。
 Dist dist 指向一个存档，该存档是对一个资源包的某个版本的数据进行的打包。通常是已经发行的稳定版本。
 Source source 指向一个开发中的源。这通常是一个源代码仓库，例如git。当你想要对下载下来的资源包进行修改时，可以这样获取。
@@ -21,19 +20,18 @@ Source source 指向一个开发中的源。这通常是一个源代码仓库，
 repositories 默认情况下 composer 只使用 packagist 作为包的资源库。通过指定资源库，你可以从其他地方获取资源包。
 Repositories 并不是递归调用的，只能在Root包的 composer.json 中定义。附属包中的 composer.json 将被忽略。
 支持一下类型的资源库：
- composer: 一个 composer 类型的资源库，是一个简单的网络服务器（HTTP、FTP、SSH）上的 packages.json 文件，它包含一个 composer.json 对象的列表，有额外的 dist 和/或 source 信息。这个 packages." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.takuzen.me/posts/2016-07-10-composer-usages/" />
-<meta property="article:published_time" content="2016-07-10T12:21:46+00:00" />
-<meta property="article:modified_time" content="2016-07-10T12:21:46+00:00" />
-
-  <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="composer用法"/>
-<meta name="twitter:description" content="composer.json 要开始在你的项目中使用 Composer，你只需要一个composer.json文件。该文件包含了项目的依赖和其它的一些元数据。
+ composer: 一个 composer 类型的资源库，是一个简单的网络服务器（HTTP、FTP、SSH）上的 packages.json 文件，它包含一个 composer.json 对象的列表，有额外的 dist 和/或 source 信息。这个 packages.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://www.takuzen.me/posts/2016-07-10-composer-usages/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2016-07-10T12:21:46+00:00">
+<meta property="article:modified_time" content="2016-07-10T12:21:46+00:00">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="composer用法">
+<meta name=twitter:description content="composer.json 要开始在你的项目中使用 Composer，你只需要一个composer.json文件。该文件包含了项目的依赖和其它的一些元数据。
 首先需要指定require key的值
-{ &quot;require&quot;: { &quot;monolog/monolog&quot;: &quot;1.0.*&quot; } &quot;require-dev&quot;: { &quot;phpunit/phpunit&quot;: &quot;4.8.*&quot; } } require属性列出组件依赖的组件，require-dev属性列出的是开发时所需依赖，在生产环境下不会安装。
+{ &#34;require&#34;: { &#34;monolog/monolog&#34;: &#34;1.0.*&#34; } &#34;require-dev&#34;: { &#34;phpunit/phpunit&#34;: &#34;4.8.*&#34; } } require属性列出组件依赖的组件，require-dev属性列出的是开发时所需依赖，在生产环境下不会安装。
 包名 包名应该包含供应商名和项目名
-包版本  指定版本号 1.0.2，1.0.0-dev，1.0.0-alpha3 范围 &gt;=1.0 &gt;=1.0,&lt;2.0 &gt;=1.0,&lt;1.1|&gt;=1.2 ,的优先级高于| 通配符 1.0.* 赋值运算符 ~1.2 相当于&gt;=1.2,&lt;2.0 允许依赖不稳定包 @beta @dev  形如1.0.*@beta，或者dev-master#2eb0c0978d290a1c45346a1955188929cb4e5db7这种明确了版本号的也是支持的。
+包版本  指定版本号 1.0.2，1.0.0-dev，1.0.0-alpha3 范围 >=1.0 >=1.0,<2.0 >=1.0,<1.1|>=1.2 ,的优先级高于| 通配符 1.0.* 赋值运算符 ~1.2 相当于>=1.2,<2.0 允许依赖不稳定包 @beta @dev  形如1.0.*@beta，或者dev-master#2eb0c0978d290a1c45346a1955188929cb4e5db7这种明确了版本号的也是支持的。
 波浪号运算符的意义在于，防止大版本更新而产生的兼容性问题。
 Dist dist 指向一个存档，该存档是对一个资源包的某个版本的数据进行的打包。通常是已经发行的稳定版本。
 Source source 指向一个开发中的源。这通常是一个源代码仓库，例如git。当你想要对下载下来的资源包进行修改时，可以这样获取。
@@ -41,242 +39,176 @@ Source source 指向一个开发中的源。这通常是一个源代码仓库，
 repositories 默认情况下 composer 只使用 packagist 作为包的资源库。通过指定资源库，你可以从其他地方获取资源包。
 Repositories 并不是递归调用的，只能在Root包的 composer.json 中定义。附属包中的 composer.json 将被忽略。
 支持一下类型的资源库：
- composer: 一个 composer 类型的资源库，是一个简单的网络服务器（HTTP、FTP、SSH）上的 packages.json 文件，它包含一个 composer.json 对象的列表，有额外的 dist 和/或 source 信息。这个 packages."/>
-
-  
-  
-    
-  
-  
-  <link rel="stylesheet" href="https://www.takuzen.me/css/style-white.css">
-  
-  
-  
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  
-
-  
-<link rel="icon" type="image/png" href="https://www.takuzen.me/images/favicon.ico" />
-
-  
-  
-  
-  
-  
-    
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-83047470-2', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
-  
-  
+ composer: 一个 composer 类型的资源库，是一个简单的网络服务器（HTTP、FTP、SSH）上的 packages.json 文件，它包含一个 composer.json 对象的列表，有额外的 dist 和/或 source 信息。这个 packages.">
+<link rel=stylesheet href=https://www.takuzen.me/css/style-white.css><!--[if lt IE 9]><script src=https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js></script>
+<script src=https://oss.maxcdn.com/respond/1.4.2/respond.min.js></script><![endif]-->
+<link rel=icon type=image/png href=https://www.takuzen.me/images/favicon.ico>
+<script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','UA-83047470-2','auto'),ga('send','pageview'))</script>
+<script async src=https://www.google-analytics.com/analytics.js></script>
 </head>
-
 <body class="max-width mx-auto px3 ltr">
-  <div class="content index py4">
-
-  <div id="header-post">
-  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
-  <span id="menu">
-    <span id="nav">
-      <ul>
-         
-        <li><a href="/">Home</a></li>
-         
-        <li><a href="/posts">Writings</a></li>
-         
-        <li><a href="/tags">Tags</a></li>
-         
-        <li><a href="/about">About</a></li>
-        
-      </ul>
-    </span>
-    <br/>
-    <span id="actions">
-      <ul>
-        
-        <li>
-          <a class="icon" href=" https://www.takuzen.me/posts/2016-07-05-git-notes/">
-            <i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i>
-          </a>
-        </li>
-        
-        
-        <li>
-          <a class="icon" href="https://www.takuzen.me/posts/2016-08-20-laravel-design-patterns/">
-            <i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i>
-          </a>
-        </li>
-        
-        <li>
-          <a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');">
-            <i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i>
-          </a>
-        </li>
-        <li>
-          <a class="icon" href="#">
-            <i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i>
-          </a>
-        </li>
-      </ul>
-      <span id="i-prev" class="info" style="display:none;">Previous post</span>
-      <span id="i-next" class="info" style="display:none;">Next post</span>
-      <span id="i-top" class="info" style="display:none;">Back to top</span>
-      <span id="i-share" class="info" style="display:none;">Share post</span>
-    </span>
-    <br/>
-    <div id="share" style="display: none">
-      
-      <ul>
-  
-  
-    
-  
-  
-  <li>
-    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fwww.takuzen.me%2fposts%2f2016-07-10-composer-usages%2f">
-      <i class="fab fa-facebook " aria-hidden="true"></i>
-    </a>
-  </li>
-  <li>
-    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2016-07-10-composer-usages%2f&text=composer%e7%94%a8%e6%b3%95">
-      <i class="fab fa-twitter " aria-hidden="true"></i>
-    </a>
-  </li>
-  <li>
-    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2016-07-10-composer-usages%2f&title=composer%e7%94%a8%e6%b3%95">
-      <i class="fab fa-linkedin " aria-hidden="true"></i>
-    </a>
-  </li>
-  <li>
-    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2016-07-10-composer-usages%2f&is_video=false&description=composer%e7%94%a8%e6%b3%95">
-      <i class="fab fa-pinterest " aria-hidden="true"></i>
-    </a>
-  </li>
-  <li>
-    <a class="icon" href="mailto:?subject=composer%e7%94%a8%e6%b3%95&body=Check out this article: https%3a%2f%2fwww.takuzen.me%2fposts%2f2016-07-10-composer-usages%2f">
-      <i class="fas fa-envelope " aria-hidden="true"></i>
-    </a>
-  </li>
-  <li>
-    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2016-07-10-composer-usages%2f&title=composer%e7%94%a8%e6%b3%95">
-      <i class="fab fa-get-pocket " aria-hidden="true"></i>
-    </a>
-  </li>
-  <li>
-    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2016-07-10-composer-usages%2f&title=composer%e7%94%a8%e6%b3%95">
-      <i class="fab fa-reddit " aria-hidden="true"></i>
-    </a>
-  </li>
-  <li>
-    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2016-07-10-composer-usages%2f&name=composer%e7%94%a8%e6%b3%95&description=composer.json%20%e8%a6%81%e5%bc%80%e5%a7%8b%e5%9c%a8%e4%bd%a0%e7%9a%84%e9%a1%b9%e7%9b%ae%e4%b8%ad%e4%bd%bf%e7%94%a8%20Composer%ef%bc%8c%e4%bd%a0%e5%8f%aa%e9%9c%80%e8%a6%81%e4%b8%80%e4%b8%aacomposer.json%e6%96%87%e4%bb%b6%e3%80%82%e8%af%a5%e6%96%87%e4%bb%b6%e5%8c%85%e5%90%ab%e4%ba%86%e9%a1%b9%e7%9b%ae%e7%9a%84%e4%be%9d%e8%b5%96%e5%92%8c%e5%85%b6%e5%ae%83%e7%9a%84%e4%b8%80%e4%ba%9b%e5%85%83%e6%95%b0%e6%8d%ae%e3%80%82%0a%e9%a6%96%e5%85%88%e9%9c%80%e8%a6%81%e6%8c%87%e5%ae%9arequire%20key%e7%9a%84%e5%80%bc%0a%7b%20%26quot%3brequire%26quot%3b%3a%20%7b%20%26quot%3bmonolog%2fmonolog%26quot%3b%3a%20%26quot%3b1.0.%2a%26quot%3b%20%7d%20%26quot%3brequire-dev%26quot%3b%3a%20%7b%20%26quot%3bphpunit%2fphpunit%26quot%3b%3a%20%26quot%3b4.8.%2a%26quot%3b%20%7d%20%7d%20require%e5%b1%9e%e6%80%a7%e5%88%97%e5%87%ba%e7%bb%84%e4%bb%b6%e4%be%9d%e8%b5%96%e7%9a%84%e7%bb%84%e4%bb%b6%ef%bc%8crequire-dev%e5%b1%9e%e6%80%a7%e5%88%97%e5%87%ba%e7%9a%84%e6%98%af%e5%bc%80%e5%8f%91%e6%97%b6%e6%89%80%e9%9c%80%e4%be%9d%e8%b5%96%ef%bc%8c%e5%9c%a8%e7%94%9f%e4%ba%a7%e7%8e%af%e5%a2%83%e4%b8%8b%e4%b8%8d%e4%bc%9a%e5%ae%89%e8%a3%85%e3%80%82%0a%e5%8c%85%e5%90%8d%20%e5%8c%85%e5%90%8d%e5%ba%94%e8%af%a5%e5%8c%85%e5%90%ab%e4%be%9b%e5%ba%94%e5%95%86%e5%90%8d%e5%92%8c%e9%a1%b9%e7%9b%ae%e5%90%8d%0a%e5%8c%85%e7%89%88%e6%9c%ac%20%20%e6%8c%87%e5%ae%9a%e7%89%88%e6%9c%ac%e5%8f%b7%201.0.2%ef%bc%8c1.0.0-dev%ef%bc%8c1.0.0-alpha3%20%e8%8c%83%e5%9b%b4%20%26gt%3b%3d1.0%20%26gt%3b%3d1.0%2c%26lt%3b2.0%20%26gt%3b%3d1.0%2c%26lt%3b1.1%7c%26gt%3b%3d1.2%20%2c%e7%9a%84%e4%bc%98%e5%85%88%e7%ba%a7%e9%ab%98%e4%ba%8e%7c%20%e9%80%9a%e9%85%8d%e7%ac%a6%201.0.%2a%20%e8%b5%8b%e5%80%bc%e8%bf%90%e7%ae%97%e7%ac%a6%20~1.2%20%e7%9b%b8%e5%bd%93%e4%ba%8e%26gt%3b%3d1.2%2c%26lt%3b2.0%20%e5%85%81%e8%ae%b8%e4%be%9d%e8%b5%96%e4%b8%8d%e7%a8%b3%e5%ae%9a%e5%8c%85%20%40beta%20%40dev%20%20%e5%bd%a2%e5%a6%821.0.%2a%40beta%ef%bc%8c%e6%88%96%e8%80%85dev-master%232eb0c0978d290a1c45346a1955188929cb4e5db7%e8%bf%99%e7%a7%8d%e6%98%8e%e7%a1%ae%e4%ba%86%e7%89%88%e6%9c%ac%e5%8f%b7%e7%9a%84%e4%b9%9f%e6%98%af%e6%94%af%e6%8c%81%e7%9a%84%e3%80%82%0a%e6%b3%a2%e6%b5%aa%e5%8f%b7%e8%bf%90%e7%ae%97%e7%ac%a6%e7%9a%84%e6%84%8f%e4%b9%89%e5%9c%a8%e4%ba%8e%ef%bc%8c%e9%98%b2%e6%ad%a2%e5%a4%a7%e7%89%88%e6%9c%ac%e6%9b%b4%e6%96%b0%e8%80%8c%e4%ba%a7%e7%94%9f%e7%9a%84%e5%85%bc%e5%ae%b9%e6%80%a7%e9%97%ae%e9%a2%98%e3%80%82%0aDist%20dist%20%e6%8c%87%e5%90%91%e4%b8%80%e4%b8%aa%e5%ad%98%e6%a1%a3%ef%bc%8c%e8%af%a5%e5%ad%98%e6%a1%a3%e6%98%af%e5%af%b9%e4%b8%80%e4%b8%aa%e8%b5%84%e6%ba%90%e5%8c%85%e7%9a%84%e6%9f%90%e4%b8%aa%e7%89%88%e6%9c%ac%e7%9a%84%e6%95%b0%e6%8d%ae%e8%bf%9b%e8%a1%8c%e7%9a%84%e6%89%93%e5%8c%85%e3%80%82%e9%80%9a%e5%b8%b8%e6%98%af%e5%b7%b2%e7%bb%8f%e5%8f%91%e8%a1%8c%e7%9a%84%e7%a8%b3%e5%ae%9a%e7%89%88%e6%9c%ac%e3%80%82%0aSource%20source%20%e6%8c%87%e5%90%91%e4%b8%80%e4%b8%aa%e5%bc%80%e5%8f%91%e4%b8%ad%e7%9a%84%e6%ba%90%e3%80%82%e8%bf%99%e9%80%9a%e5%b8%b8%e6%98%af%e4%b8%80%e4%b8%aa%e6%ba%90%e4%bb%a3%e7%a0%81%e4%bb%93%e5%ba%93%ef%bc%8c%e4%be%8b%e5%a6%82git%e3%80%82%e5%bd%93%e4%bd%a0%e6%83%b3%e8%a6%81%e5%af%b9%e4%b8%8b%e8%bd%bd%e4%b8%8b%e6%9d%a5%e7%9a%84%e8%b5%84%e6%ba%90%e5%8c%85%e8%bf%9b%e8%a1%8c%e4%bf%ae%e6%94%b9%e6%97%b6%ef%bc%8c%e5%8f%af%e4%bb%a5%e8%bf%99%e6%a0%b7%e8%8e%b7%e5%8f%96%e3%80%82%0a%e4%bd%a0%e5%8f%af%e4%bb%a5%e4%bd%bf%e7%94%a8%e5%85%b6%e4%b8%ad%e4%bb%bb%e6%84%8f%e4%b8%80%e4%b8%aa%ef%bc%8c%e6%88%96%e8%80%85%e5%90%8c%e6%97%b6%e4%bd%bf%e7%94%a8%e3%80%82%e8%bf%99%e5%8f%96%e5%86%b3%e4%ba%8e%e5%85%b6%e5%ae%83%e7%9a%84%e4%b8%80%e4%ba%9b%e5%9b%a0%e7%b4%a0%ef%bc%8c%e6%af%94%e5%a6%82user-supplied%20%e9%80%89%e9%a1%b9%e5%92%8c%e5%8c%85%e7%9a%84%e7%a8%b3%e5%ae%9a%e6%80%a7%ef%bc%8c%e5%89%8d%e8%80%85%e5%b0%86%e4%bc%9a%e8%a2%ab%e4%bc%98%e5%85%88%e8%80%83%e8%99%91%e3%80%82%0arepositories%20%e9%bb%98%e8%ae%a4%e6%83%85%e5%86%b5%e4%b8%8b%20composer%20%e5%8f%aa%e4%bd%bf%e7%94%a8%20packagist%20%e4%bd%9c%e4%b8%ba%e5%8c%85%e7%9a%84%e8%b5%84%e6%ba%90%e5%ba%93%e3%80%82%e9%80%9a%e8%bf%87%e6%8c%87%e5%ae%9a%e8%b5%84%e6%ba%90%e5%ba%93%ef%bc%8c%e4%bd%a0%e5%8f%af%e4%bb%a5%e4%bb%8e%e5%85%b6%e4%bb%96%e5%9c%b0%e6%96%b9%e8%8e%b7%e5%8f%96%e8%b5%84%e6%ba%90%e5%8c%85%e3%80%82%0aRepositories%20%e5%b9%b6%e4%b8%8d%e6%98%af%e9%80%92%e5%bd%92%e8%b0%83%e7%94%a8%e7%9a%84%ef%bc%8c%e5%8f%aa%e8%83%bd%e5%9c%a8Root%e5%8c%85%e7%9a%84%20composer.json%20%e4%b8%ad%e5%ae%9a%e4%b9%89%e3%80%82%e9%99%84%e5%b1%9e%e5%8c%85%e4%b8%ad%e7%9a%84%20composer.json%20%e5%b0%86%e8%a2%ab%e5%bf%bd%e7%95%a5%e3%80%82%0a%e6%94%af%e6%8c%81%e4%b8%80%e4%b8%8b%e7%b1%bb%e5%9e%8b%e7%9a%84%e8%b5%84%e6%ba%90%e5%ba%93%ef%bc%9a%0a%20composer%3a%20%e4%b8%80%e4%b8%aa%20composer%20%e7%b1%bb%e5%9e%8b%e7%9a%84%e8%b5%84%e6%ba%90%e5%ba%93%ef%bc%8c%e6%98%af%e4%b8%80%e4%b8%aa%e7%ae%80%e5%8d%95%e7%9a%84%e7%bd%91%e7%bb%9c%e6%9c%8d%e5%8a%a1%e5%99%a8%ef%bc%88HTTP%e3%80%81FTP%e3%80%81SSH%ef%bc%89%e4%b8%8a%e7%9a%84%20packages.json%20%e6%96%87%e4%bb%b6%ef%bc%8c%e5%ae%83%e5%8c%85%e5%90%ab%e4%b8%80%e4%b8%aa%20composer.json%20%e5%af%b9%e8%b1%a1%e7%9a%84%e5%88%97%e8%a1%a8%ef%bc%8c%e6%9c%89%e9%a2%9d%e5%a4%96%e7%9a%84%20dist%20%e5%92%8c%2f%e6%88%96%20source%20%e4%bf%a1%e6%81%af%e3%80%82%e8%bf%99%e4%b8%aa%20packages.">
-      <i class="fab fa-tumblr " aria-hidden="true"></i>
-    </a>
-  </li>
-  <li>
-    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fwww.takuzen.me%2fposts%2f2016-07-10-composer-usages%2f&t=composer%e7%94%a8%e6%b3%95">
-      <i class="fab fa-hacker-news " aria-hidden="true"></i>
-    </a>
-  </li>
+<div class="content index py4">
+<div id=header-post>
+<a id=menu-icon href=#><i class="fas fa-bars fa-lg"></i></a>
+<a id=menu-icon-tablet href=#><i class="fas fa-bars fa-lg"></i></a>
+<a id=top-icon-tablet href=# onclick="$('html, body').animate({scrollTop:0},'fast')" style=display:none aria-label="Top of Page"><i class="fas fa-chevron-up fa-lg"></i></a>
+<span id=menu>
+<span id=nav>
+<ul>
+<li><a href=/>Home</a></li>
+<li><a href=/posts>Writings</a></li>
+<li><a href=/tags>Tags</a></li>
+<li><a href=/about>About</a></li>
 </ul>
-
-    </div>
-    <div id="toc">
-      <nav id="TableOfContents">
-  <ul>
-    <li><a href="#composerjson">composer.json</a></li>
-    <li><a href="#包名">包名</a>
-      <ul>
-        <li><a href="#包版本">包版本</a></li>
-        <li><a href="#dist">Dist</a></li>
-        <li><a href="#source">Source</a></li>
-        <li><a href="#repositories">repositories</a></li>
-        <li><a href="#config">config</a></li>
-        <li><a href="#发布包相关">发布包相关</a></li>
-      </ul>
-    </li>
-    <li><a href="#安装依赖">安装依赖</a></li>
-    <li><a href="#composerlock">composer.lock</a></li>
-    <li><a href="#自动加载">自动加载</a></li>
-    <li><a href="#发布">发布</a>
-      <ul>
-        <li><a href="#发布到-packagist">发布到 packagist</a></li>
-        <li><a href="#发布到vcs">发布到vcs</a></li>
-      </ul>
-    </li>
-    <li><a href="#命令行">命令行</a>
-      <ul>
-        <li><a href="#全局参数">全局参数</a></li>
-        <li><a href="#init">init</a></li>
-        <li><a href="#install">install</a></li>
-        <li><a href="#update">update</a></li>
-        <li><a href="#require">require</a></li>
-        <li><a href="#global">global</a></li>
-        <li><a href="#search">search</a></li>
-        <li><a href="#show">show</a></li>
-        <li><a href="#depends">depends</a></li>
-        <li><a href="#validate">validate</a></li>
-        <li><a href="#status">status</a></li>
-        <li><a href="#self-update">self-update</a></li>
-        <li><a href="#create-project">create-project</a></li>
-        <li><a href="#dump-autoload">dump-autoload</a></li>
-        <li><a href="#licenses">licenses</a></li>
-        <li><a href="#run-script">run-script</a></li>
-        <li><a href="#diagnose">diagnose</a></li>
-        <li><a href="#archive">archive</a></li>
-        <li><a href="#help">help</a></li>
-      </ul>
-    </li>
-    <li><a href="#环境变量">环境变量</a></li>
-  </ul>
-</nav>
-    </div>
-  </span>
+</span>
+<br>
+<span id=actions>
+<ul>
+<li>
+<a class=icon href=https://www.takuzen.me/posts/2016-07-05-git-notes/ aria-label=Previous>
+<i class="fas fa-chevron-left" aria-hidden=true onmouseover="$('#i-prev').toggle()" onmouseout="$('#i-prev').toggle()"></i>
+</a>
+</li>
+<li>
+<a class=icon href=https://www.takuzen.me/posts/2016-08-20-laravel-design-patterns/ aria-label=Next>
+<i class="fas fa-chevron-right" aria-hidden=true onmouseover="$('#i-next').toggle()" onmouseout="$('#i-next').toggle()"></i>
+</a>
+</li>
+<li>
+<a class=icon href=# onclick="$('html, body').animate({scrollTop:0},'fast')" aria-label="Top of Page">
+<i class="fas fa-chevron-up" aria-hidden=true onmouseover="$('#i-top').toggle()" onmouseout="$('#i-top').toggle()"></i>
+</a>
+</li>
+<li>
+<a class=icon href=# aria-label=Share>
+<i class="fas fa-share-alt" aria-hidden=true onmouseover="$('#i-share').toggle()" onmouseout="$('#i-share').toggle()" onclick="return $('#share').toggle(),!1"></i>
+</a>
+</li>
+</ul>
+<span id=i-prev class=info style=display:none>Previous post</span>
+<span id=i-next class=info style=display:none>Next post</span>
+<span id=i-top class=info style=display:none>Back to top</span>
+<span id=i-share class=info style=display:none>Share post</span>
+</span>
+<br>
+<div id=share style=display:none>
+<ul>
+<li>
+<a class=icon href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fwww.takuzen.me%2fposts%2f2016-07-10-composer-usages%2f" aria-label=Facebook>
+<i class="fab fa-facebook" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="https://twitter.com/share?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2016-07-10-composer-usages%2f&text=composer%e7%94%a8%e6%b3%95" aria-label=Twitter>
+<i class="fab fa-twitter" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2016-07-10-composer-usages%2f&title=composer%e7%94%a8%e6%b3%95" aria-label=Linkedin>
+<i class="fab fa-linkedin" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2016-07-10-composer-usages%2f&is_video=false&description=composer%e7%94%a8%e6%b3%95" aria-label=Pinterest>
+<i class="fab fa-pinterest" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="mailto:?subject=composer%e7%94%a8%e6%b3%95&body=Check out this article: https%3a%2f%2fwww.takuzen.me%2fposts%2f2016-07-10-composer-usages%2f" aria-label=Email>
+<i class="fas fa-envelope" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="https://getpocket.com/save?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2016-07-10-composer-usages%2f&title=composer%e7%94%a8%e6%b3%95" aria-label=Pocket>
+<i class="fab fa-get-pocket" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="http://reddit.com/submit?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2016-07-10-composer-usages%2f&title=composer%e7%94%a8%e6%b3%95" aria-label=reddit>
+<i class="fab fa-reddit" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="http://www.tumblr.com/share/link?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2016-07-10-composer-usages%2f&name=composer%e7%94%a8%e6%b3%95&description=composer.json%20%e8%a6%81%e5%bc%80%e5%a7%8b%e5%9c%a8%e4%bd%a0%e7%9a%84%e9%a1%b9%e7%9b%ae%e4%b8%ad%e4%bd%bf%e7%94%a8%20Composer%ef%bc%8c%e4%bd%a0%e5%8f%aa%e9%9c%80%e8%a6%81%e4%b8%80%e4%b8%aacomposer.json%e6%96%87%e4%bb%b6%e3%80%82%e8%af%a5%e6%96%87%e4%bb%b6%e5%8c%85%e5%90%ab%e4%ba%86%e9%a1%b9%e7%9b%ae%e7%9a%84%e4%be%9d%e8%b5%96%e5%92%8c%e5%85%b6%e5%ae%83%e7%9a%84%e4%b8%80%e4%ba%9b%e5%85%83%e6%95%b0%e6%8d%ae%e3%80%82%0a%e9%a6%96%e5%85%88%e9%9c%80%e8%a6%81%e6%8c%87%e5%ae%9arequire%20key%e7%9a%84%e5%80%bc%0a%7b%20%26quot%3brequire%26quot%3b%3a%20%7b%20%26quot%3bmonolog%2fmonolog%26quot%3b%3a%20%26quot%3b1.0.%2a%26quot%3b%20%7d%20%26quot%3brequire-dev%26quot%3b%3a%20%7b%20%26quot%3bphpunit%2fphpunit%26quot%3b%3a%20%26quot%3b4.8.%2a%26quot%3b%20%7d%20%7d%20require%e5%b1%9e%e6%80%a7%e5%88%97%e5%87%ba%e7%bb%84%e4%bb%b6%e4%be%9d%e8%b5%96%e7%9a%84%e7%bb%84%e4%bb%b6%ef%bc%8crequire-dev%e5%b1%9e%e6%80%a7%e5%88%97%e5%87%ba%e7%9a%84%e6%98%af%e5%bc%80%e5%8f%91%e6%97%b6%e6%89%80%e9%9c%80%e4%be%9d%e8%b5%96%ef%bc%8c%e5%9c%a8%e7%94%9f%e4%ba%a7%e7%8e%af%e5%a2%83%e4%b8%8b%e4%b8%8d%e4%bc%9a%e5%ae%89%e8%a3%85%e3%80%82%0a%e5%8c%85%e5%90%8d%20%e5%8c%85%e5%90%8d%e5%ba%94%e8%af%a5%e5%8c%85%e5%90%ab%e4%be%9b%e5%ba%94%e5%95%86%e5%90%8d%e5%92%8c%e9%a1%b9%e7%9b%ae%e5%90%8d%0a%e5%8c%85%e7%89%88%e6%9c%ac%20%20%e6%8c%87%e5%ae%9a%e7%89%88%e6%9c%ac%e5%8f%b7%201.0.2%ef%bc%8c1.0.0-dev%ef%bc%8c1.0.0-alpha3%20%e8%8c%83%e5%9b%b4%20%26gt%3b%3d1.0%20%26gt%3b%3d1.0%2c%26lt%3b2.0%20%26gt%3b%3d1.0%2c%26lt%3b1.1%7c%26gt%3b%3d1.2%20%2c%e7%9a%84%e4%bc%98%e5%85%88%e7%ba%a7%e9%ab%98%e4%ba%8e%7c%20%e9%80%9a%e9%85%8d%e7%ac%a6%201.0.%2a%20%e8%b5%8b%e5%80%bc%e8%bf%90%e7%ae%97%e7%ac%a6%20~1.2%20%e7%9b%b8%e5%bd%93%e4%ba%8e%26gt%3b%3d1.2%2c%26lt%3b2.0%20%e5%85%81%e8%ae%b8%e4%be%9d%e8%b5%96%e4%b8%8d%e7%a8%b3%e5%ae%9a%e5%8c%85%20%40beta%20%40dev%20%20%e5%bd%a2%e5%a6%821.0.%2a%40beta%ef%bc%8c%e6%88%96%e8%80%85dev-master%232eb0c0978d290a1c45346a1955188929cb4e5db7%e8%bf%99%e7%a7%8d%e6%98%8e%e7%a1%ae%e4%ba%86%e7%89%88%e6%9c%ac%e5%8f%b7%e7%9a%84%e4%b9%9f%e6%98%af%e6%94%af%e6%8c%81%e7%9a%84%e3%80%82%0a%e6%b3%a2%e6%b5%aa%e5%8f%b7%e8%bf%90%e7%ae%97%e7%ac%a6%e7%9a%84%e6%84%8f%e4%b9%89%e5%9c%a8%e4%ba%8e%ef%bc%8c%e9%98%b2%e6%ad%a2%e5%a4%a7%e7%89%88%e6%9c%ac%e6%9b%b4%e6%96%b0%e8%80%8c%e4%ba%a7%e7%94%9f%e7%9a%84%e5%85%bc%e5%ae%b9%e6%80%a7%e9%97%ae%e9%a2%98%e3%80%82%0aDist%20dist%20%e6%8c%87%e5%90%91%e4%b8%80%e4%b8%aa%e5%ad%98%e6%a1%a3%ef%bc%8c%e8%af%a5%e5%ad%98%e6%a1%a3%e6%98%af%e5%af%b9%e4%b8%80%e4%b8%aa%e8%b5%84%e6%ba%90%e5%8c%85%e7%9a%84%e6%9f%90%e4%b8%aa%e7%89%88%e6%9c%ac%e7%9a%84%e6%95%b0%e6%8d%ae%e8%bf%9b%e8%a1%8c%e7%9a%84%e6%89%93%e5%8c%85%e3%80%82%e9%80%9a%e5%b8%b8%e6%98%af%e5%b7%b2%e7%bb%8f%e5%8f%91%e8%a1%8c%e7%9a%84%e7%a8%b3%e5%ae%9a%e7%89%88%e6%9c%ac%e3%80%82%0aSource%20source%20%e6%8c%87%e5%90%91%e4%b8%80%e4%b8%aa%e5%bc%80%e5%8f%91%e4%b8%ad%e7%9a%84%e6%ba%90%e3%80%82%e8%bf%99%e9%80%9a%e5%b8%b8%e6%98%af%e4%b8%80%e4%b8%aa%e6%ba%90%e4%bb%a3%e7%a0%81%e4%bb%93%e5%ba%93%ef%bc%8c%e4%be%8b%e5%a6%82git%e3%80%82%e5%bd%93%e4%bd%a0%e6%83%b3%e8%a6%81%e5%af%b9%e4%b8%8b%e8%bd%bd%e4%b8%8b%e6%9d%a5%e7%9a%84%e8%b5%84%e6%ba%90%e5%8c%85%e8%bf%9b%e8%a1%8c%e4%bf%ae%e6%94%b9%e6%97%b6%ef%bc%8c%e5%8f%af%e4%bb%a5%e8%bf%99%e6%a0%b7%e8%8e%b7%e5%8f%96%e3%80%82%0a%e4%bd%a0%e5%8f%af%e4%bb%a5%e4%bd%bf%e7%94%a8%e5%85%b6%e4%b8%ad%e4%bb%bb%e6%84%8f%e4%b8%80%e4%b8%aa%ef%bc%8c%e6%88%96%e8%80%85%e5%90%8c%e6%97%b6%e4%bd%bf%e7%94%a8%e3%80%82%e8%bf%99%e5%8f%96%e5%86%b3%e4%ba%8e%e5%85%b6%e5%ae%83%e7%9a%84%e4%b8%80%e4%ba%9b%e5%9b%a0%e7%b4%a0%ef%bc%8c%e6%af%94%e5%a6%82user-supplied%20%e9%80%89%e9%a1%b9%e5%92%8c%e5%8c%85%e7%9a%84%e7%a8%b3%e5%ae%9a%e6%80%a7%ef%bc%8c%e5%89%8d%e8%80%85%e5%b0%86%e4%bc%9a%e8%a2%ab%e4%bc%98%e5%85%88%e8%80%83%e8%99%91%e3%80%82%0arepositories%20%e9%bb%98%e8%ae%a4%e6%83%85%e5%86%b5%e4%b8%8b%20composer%20%e5%8f%aa%e4%bd%bf%e7%94%a8%20packagist%20%e4%bd%9c%e4%b8%ba%e5%8c%85%e7%9a%84%e8%b5%84%e6%ba%90%e5%ba%93%e3%80%82%e9%80%9a%e8%bf%87%e6%8c%87%e5%ae%9a%e8%b5%84%e6%ba%90%e5%ba%93%ef%bc%8c%e4%bd%a0%e5%8f%af%e4%bb%a5%e4%bb%8e%e5%85%b6%e4%bb%96%e5%9c%b0%e6%96%b9%e8%8e%b7%e5%8f%96%e8%b5%84%e6%ba%90%e5%8c%85%e3%80%82%0aRepositories%20%e5%b9%b6%e4%b8%8d%e6%98%af%e9%80%92%e5%bd%92%e8%b0%83%e7%94%a8%e7%9a%84%ef%bc%8c%e5%8f%aa%e8%83%bd%e5%9c%a8Root%e5%8c%85%e7%9a%84%20composer.json%20%e4%b8%ad%e5%ae%9a%e4%b9%89%e3%80%82%e9%99%84%e5%b1%9e%e5%8c%85%e4%b8%ad%e7%9a%84%20composer.json%20%e5%b0%86%e8%a2%ab%e5%bf%bd%e7%95%a5%e3%80%82%0a%e6%94%af%e6%8c%81%e4%b8%80%e4%b8%8b%e7%b1%bb%e5%9e%8b%e7%9a%84%e8%b5%84%e6%ba%90%e5%ba%93%ef%bc%9a%0a%20composer%3a%20%e4%b8%80%e4%b8%aa%20composer%20%e7%b1%bb%e5%9e%8b%e7%9a%84%e8%b5%84%e6%ba%90%e5%ba%93%ef%bc%8c%e6%98%af%e4%b8%80%e4%b8%aa%e7%ae%80%e5%8d%95%e7%9a%84%e7%bd%91%e7%bb%9c%e6%9c%8d%e5%8a%a1%e5%99%a8%ef%bc%88HTTP%e3%80%81FTP%e3%80%81SSH%ef%bc%89%e4%b8%8a%e7%9a%84%20packages.json%20%e6%96%87%e4%bb%b6%ef%bc%8c%e5%ae%83%e5%8c%85%e5%90%ab%e4%b8%80%e4%b8%aa%20composer.json%20%e5%af%b9%e8%b1%a1%e7%9a%84%e5%88%97%e8%a1%a8%ef%bc%8c%e6%9c%89%e9%a2%9d%e5%a4%96%e7%9a%84%20dist%20%e5%92%8c%2f%e6%88%96%20source%20%e4%bf%a1%e6%81%af%e3%80%82%e8%bf%99%e4%b8%aa%20packages." aria-label=Tumblr>
+<i class="fab fa-tumblr" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fwww.takuzen.me%2fposts%2f2016-07-10-composer-usages%2f&t=composer%e7%94%a8%e6%b3%95" aria-label="Hacker News">
+<i class="fab fa-hacker-news" aria-hidden=true></i>
+</a>
+</li>
+</ul>
 </div>
-
-
-  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
-    <header>
-      <h1 class="posttitle" itemprop="name headline">
-        composer用法
-      </h1>
-      <div class="meta">
-        
-        <div class="postdate">
-          
-          <time datetime="2016-07-10 12:21:46 &#43;0000 UTC" itemprop="datePublished">2016-07-10</time>
-          
-        </div>
-        
-        
-        
-        
-        <div class="article-tag">
-            <i class="fas fa-tag"></i>
-            
-            
-            <a class="tag-link" href="/tags/php" rel="tag">php</a>
-            
-        </div>
-        
-      </div>
-    </header>
-
-  
-    <div class="content" itemprop="articleBody">
-      <h2 id="composerjson">composer.json</h2>
+<div id=toc>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#composerjson>composer.json</a></li>
+<li><a href=#包名>包名</a>
+<ul>
+<li><a href=#包版本>包版本</a></li>
+<li><a href=#dist>Dist</a></li>
+<li><a href=#source>Source</a></li>
+<li><a href=#repositories>repositories</a></li>
+<li><a href=#config>config</a></li>
+<li><a href=#发布包相关>发布包相关</a></li>
+</ul>
+</li>
+<li><a href=#安装依赖>安装依赖</a></li>
+<li><a href=#composerlock>composer.lock</a></li>
+<li><a href=#自动加载>自动加载</a></li>
+<li><a href=#发布>发布</a>
+<ul>
+<li><a href=#发布到-packagist>发布到 packagist</a></li>
+<li><a href=#发布到vcs>发布到vcs</a></li>
+</ul>
+</li>
+<li><a href=#命令行>命令行</a>
+<ul>
+<li><a href=#全局参数>全局参数</a></li>
+<li><a href=#init>init</a></li>
+<li><a href=#install>install</a></li>
+<li><a href=#update>update</a></li>
+<li><a href=#require>require</a></li>
+<li><a href=#global>global</a></li>
+<li><a href=#search>search</a></li>
+<li><a href=#show>show</a></li>
+<li><a href=#depends>depends</a></li>
+<li><a href=#validate>validate</a></li>
+<li><a href=#status>status</a></li>
+<li><a href=#self-update>self-update</a></li>
+<li><a href=#create-project>create-project</a></li>
+<li><a href=#dump-autoload>dump-autoload</a></li>
+<li><a href=#licenses>licenses</a></li>
+<li><a href=#run-script>run-script</a></li>
+<li><a href=#diagnose>diagnose</a></li>
+<li><a href=#archive>archive</a></li>
+<li><a href=#help>help</a></li>
+</ul>
+</li>
+<li><a href=#环境变量>环境变量</a></li>
+</ul>
+</nav>
+</div>
+</span>
+</div>
+<article class=post itemscope itemtype=http://schema.org/BlogPosting>
+<header>
+<h1 class=posttitle itemprop="name headline">
+composer用法
+</h1>
+<div class=meta>
+<div class=postdate>
+<time datetime="2016-07-10 12:21:46 +0000 UTC" itemprop=datePublished>2016-07-10</time>
+</div>
+<div class=article-tag>
+<i class="fas fa-tag"></i>
+<a class=tag-link href=/tags/php rel=tag>php</a>
+</div>
+</div>
+</header>
+<div class=content itemprop=articleBody>
+<h2 id=composerjson>composer.json</h2>
 <p>要开始在你的项目中使用 Composer，你只需要一个<code>composer.json</code>文件。该文件包含了项目的依赖和其它的一些元数据。</p>
 <p>首先需要指定<code>require key</code>的值</p>
 <pre><code>{
@@ -289,25 +221,24 @@ if (!doNotTrack) {
 }
 
 </code></pre><p><code>require</code>属性列出组件依赖的组件，<code>require-dev</code>属性列出的是开发时所需依赖，在生产环境下不会安装。</p>
-<!-- more -->
-<h2 id="包名">包名</h2>
+<h2 id=包名>包名</h2>
 <p>包名应该包含供应商名和项目名</p>
-<h3 id="包版本">包版本</h3>
+<h3 id=包版本>包版本</h3>
 <ul>
 <li>指定版本号 <code>1.0.2</code>，<code>1.0.0-dev</code>，<code>1.0.0-alpha3</code></li>
-<li>范围 <code>&gt;=1.0</code> <code>&gt;=1.0,&lt;2.0</code> <code>&gt;=1.0,&lt;1.1|&gt;=1.2</code> <code>,</code>的优先级高于<code>|</code></li>
+<li>范围 <code>>=1.0</code> <code>>=1.0,&lt;2.0</code> <code>>=1.0,&lt;1.1|>=1.2</code> <code>,</code>的优先级高于<code>|</code></li>
 <li>通配符 <code>1.0.*</code></li>
-<li>赋值运算符 <code>~1.2</code> 相当于<code>&gt;=1.2,&lt;2.0</code></li>
+<li>赋值运算符 <code>~1.2</code> 相当于<code>>=1.2,&lt;2.0</code></li>
 <li>允许依赖不稳定包 <code>@beta</code> <code>@dev</code></li>
 </ul>
 <p>形如<code>1.0.*@beta</code>，或者<code>dev-master#2eb0c0978d290a1c45346a1955188929cb4e5db7</code>这种明确了版本号的也是支持的。</p>
 <p>波浪号运算符的意义在于，防止大版本更新而产生的兼容性问题。</p>
-<h3 id="dist">Dist</h3>
+<h3 id=dist>Dist</h3>
 <p>dist 指向一个存档，该存档是对一个资源包的某个版本的数据进行的打包。通常是已经发行的稳定版本。</p>
-<h3 id="source">Source</h3>
+<h3 id=source>Source</h3>
 <p>source 指向一个开发中的源。这通常是一个源代码仓库，例如<code>git</code>。当你想要对下载下来的资源包进行修改时，可以这样获取。</p>
 <p>你可以使用其中任意一个，或者同时使用。这取决于其它的一些因素，比如<code>user-supplied</code> 选项和包的稳定性，前者将会被优先考虑。</p>
-<h3 id="repositories">repositories</h3>
+<h3 id=repositories>repositories</h3>
 <p>默认情况下 composer 只使用 packagist 作为包的资源库。通过指定资源库，你可以从其他地方获取资源包。</p>
 <p>Repositories 并不是递归调用的，只能在Root包的 <code>composer.json</code> 中定义。附属包中的 <code>composer.json</code> 将被忽略。</p>
 <p>支持一下类型的资源库：</p>
@@ -328,7 +259,7 @@ if (!doNotTrack) {
         }
     ]
 }
-</code></pre><h3 id="config">config</h3>
+</code></pre><h3 id=config>config</h3>
 <p>config字段仅适用于root项目。</p>
 <p>几个常用的值：</p>
 <ul>
@@ -337,14 +268,14 @@ if (!doNotTrack) {
 <li>github-protocols: 默认为 [&ldquo;git&rdquo;, &ldquo;https&rdquo;, &ldquo;ssh&rdquo;]。从 github.com 克隆时使用的协议优先级清单。</li>
 <li>vendor-dir: 默认为 <code>vendor</code>。指定依赖安装目录</li>
 <li>bin-dir: 默认为 <code>vendor/bin</code>。如果一个项目包含二进制文件，它们将被连接到这个目录。</li>
-<li>cache-dir: unix 下默认为 <code>$home/cache</code>，Windows 下默认为 <code>C:\Users\&lt;user&gt;\AppData\Local\Composer</code>。用于存储 composer 所有的缓存文件。其子文件夹<code>cache-files-dir</code> <code>cache-repo-dir</code> <code>cache-vcs-dir</code>也可以分别指定路径。</li>
+<li>cache-dir: unix 下默认为 <code>$home/cache</code>，Windows 下默认为 <code>C:\Users\&lt;user>\AppData\Local\Composer</code>。用于存储 composer 所有的缓存文件。其子文件夹<code>cache-files-dir</code> <code>cache-repo-dir</code> <code>cache-vcs-dir</code>也可以分别指定路径。</li>
 </ul>
 <pre><code>{
     &quot;config&quot;: {
         &quot;bin-dir&quot;: &quot;bin&quot;
     }
 }
-</code></pre><h3 id="发布包相关">发布包相关</h3>
+</code></pre><h3 id=发布包相关>发布包相关</h3>
 <p><code>name</code> <code>description</code> 必填，<code>license</code> <code>authors</code> <code>support</code> 等是强烈建议填写的可选项。</p>
 <pre><code>{
     &quot;authors&quot;: [
@@ -368,19 +299,19 @@ if (!doNotTrack) {
     }
 }
 
-</code></pre><h2 id="安装依赖">安装依赖</h2>
+</code></pre><h2 id=安装依赖>安装依赖</h2>
 <p>在<code>composer.json</code>所在目录调用<code>install</code>命令</p>
 <pre><code>composer install
 
 </code></pre><p>install命令会将依赖下载到<code>vendor</code>目录，并会生成<code>composer.lock</code>锁文件。</p>
-<h2 id="composerlock">composer.lock</h2>
+<h2 id=composerlock>composer.lock</h2>
 <p>安装依赖后composer会把当前的确切版本号全部写入<code>composer.lock</code>，用来锁定版本。install命令会首先检查锁文件并根据锁文件指定的版本下载依赖。如果需要更新依赖的版本需要执行<code>update</code>命令。</p>
 <pre><code>composer update [monolog/monolog]
 
 </code></pre><blockquote>
 <p>在团队协作开发时，<strong>应提交你应用程序的 composer.lock （包括 composer.json）到你的版本库中</strong></p>
 </blockquote>
-<h2 id="自动加载">自动加载</h2>
+<h2 id=自动加载>自动加载</h2>
 <p>Composer 生成了一个 <code>vendor/autoload.php</code> 文件，可在项目中引用它得到一个简单的自动加载支持。</p>
 <pre><code>require 'vendor/autoload.php';
 
@@ -397,18 +328,18 @@ if (!doNotTrack) {
 
 </code></pre><p>Composer 将注册一个 <code>PSR-4 autoloader</code> 到 <code>Wzr</code> 命名空间，且该命名空间映射到根目录的 <code>src</code> 文件夹，比如 <code>src/IsMonkey.php</code> 文件应该包含 <code>Wzr\IsMonkey</code> 类。</p>
 <p>添加 <code>autoload</code> 字段后应该再次执行 <code>install</code> 来重新生成 <code>vendor/autoload.php</code> 文件。</p>
-<p>命名空间一定要以<code>\\</code>来分隔，好处在这：（懒得翻译了&lt;(￣3￣)&gt;)</p>
+<p>命名空间一定要以<code>\\</code>来分隔，好处在这：（懒得翻译了&lt;(￣3￣)>)</p>
 <blockquote>
 <p>Namespace prefixes must end in <code>\\</code> to avoid conflicts between similar prefixes. For example Foo would match classes in the FooBar namespace so the trailing backslashes solve the problem: <code>Foo\\</code> and <code>FooBar\\</code> are distinct.</p>
 </blockquote>
-<h2 id="发布">发布</h2>
-<h3 id="发布到-packagist">发布到 packagist</h3>
-<p>去<a href="https://packagist.org/">网站</a>上发布，提交库来源地址即可。composer有些字段需要定义。移步<a href="#%E5%8F%91%E5%B8%83%E5%8C%85%E7%9B%B8%E5%85%B3">composer.json</a></p>
-<h3 id="发布到vcs">发布到vcs</h3>
-<p>只要包含着<code>composer.json</code>的项目上传到版本仓库，你的库就可以通过composer安装。在<code>composer.json</code>中需要定义<code>name</code>和<code>description</code>字段。当然，依赖这类库时需要在<code>repositories</code>中声明库的来源。参见<a href="#repositories">repositories</a></p>
-<h2 id="命令行">命令行</h2>
+<h2 id=发布>发布</h2>
+<h3 id=发布到-packagist>发布到 packagist</h3>
+<p>去<a href=https://packagist.org/>网站</a>上发布，提交库来源地址即可。composer有些字段需要定义。移步<a href=#%E5%8F%91%E5%B8%83%E5%8C%85%E7%9B%B8%E5%85%B3>composer.json</a></p>
+<h3 id=发布到vcs>发布到vcs</h3>
+<p>只要包含着<code>composer.json</code>的项目上传到版本仓库，你的库就可以通过composer安装。在<code>composer.json</code>中需要定义<code>name</code>和<code>description</code>字段。当然，依赖这类库时需要在<code>repositories</code>中声明库的来源。参见<a href=#repositories>repositories</a></p>
+<h2 id=命令行>命令行</h2>
 <p>在日常使用中，运行 <code>composer</code> 或者 <code>composer list</code> 命令得到命令列表，然后结合 &ndash;help 命令获得详细的帮助信息。</p>
-<h3 id="全局参数">全局参数</h3>
+<h3 id=全局参数>全局参数</h3>
 <p>下列参数可与每一个命令结合使用：</p>
 <ul>
 <li><em>&ndash;verbose (-v)</em>: 增加反馈信息的详细度。
@@ -424,7 +355,7 @@ if (!doNotTrack) {
 <li><em>&ndash;no-ansi</em>: 关闭 ANSI 输出。</li>
 <li><em>&ndash;version (-V)</em>: 显示当前应用程序的版本信息。</li>
 </ul>
-<h3 id="init">init</h3>
+<h3 id=init>init</h3>
 <p><code>init</code>命令可进行初始化,生成<code>composer.json</code>。
 参数列表：</p>
 <ul>
@@ -436,7 +367,7 @@ if (!doNotTrack) {
 <li><em>&ndash;require-dev</em>: 开发版的依赖包，内容格式与 <code>--require</code> 相同。</li>
 <li><em>&ndash;stability (-s)</em>: <code>minimum-stability</code> 字段的值。</li>
 </ul>
-<h3 id="install">install</h3>
+<h3 id=install>install</h3>
 <p>参数列表：</p>
 <ul>
 <li><em>&ndash;prefer-source</em>: 下载包的方式有两种： source 和 dist。对于稳定版本 composer 将默认使用 dist 方式。而 source 表示版本控制源 。如果 &ndash;prefer-source 是被启用的，composer 将从 source 安装（如果有的话）。如果想要使用一个 bugfix 到你的项目，这是非常有用的。并且可以直接从本地的版本库直接获取依赖关系。</li>
@@ -449,7 +380,7 @@ if (!doNotTrack) {
 <li><em>&ndash;no-progress</em>: 移除进度信息，这可以避免一些不处理换行的终端或脚本出现混乱的显示。</li>
 <li><em>&ndash;optimize-autoloader (-o)</em>: 转换 PSR-0/4 autoloading 到 classmap 可以获得更快的加载支持。特别是在生产环境下建议这么做，但由于运行需要一些时间，因此并没有作为默认值。</li>
 </ul>
-<h3 id="update">update</h3>
+<h3 id=update>update</h3>
 <p>update命令可以升级依赖到最新版本，并更新<code>composer.lock</code>，也可指定包名单独更新一个或几个包。
 参数列表：
 <code>install</code>的所有参数均适用于<code>update</code>。</p>
@@ -457,7 +388,7 @@ if (!doNotTrack) {
 <li><em>&ndash;lock</em>: 仅更新 lock 文件的 hash，取消有关 lock 文件过时的警告。</li>
 <li><em>&ndash;with-dependencies</em> 同时更新白名单内包的依赖关系，这将进行递归更新。</li>
 </ul>
-<h3 id="require">require</h3>
+<h3 id=require>require</h3>
 <p>require命令可以增加新的依赖包到当前目录的<code>composer.json</code>，在添加或改变依赖时， 修改后的依赖关系将被安装或者更新。</p>
 <pre><code>composer require vendor/package:2.* vendor/package2:dev-master
 </code></pre><p>参数列表：</p>
@@ -469,16 +400,16 @@ if (!doNotTrack) {
 <li><em>&ndash;no-progress</em>: 移除进度信息，这可以避免一些不处理换行的终端或脚本出现混乱的显示。</li>
 <li><em>&ndash;update-with-dependencies</em> 一并更新新装包的依赖。</li>
 </ul>
-<h3 id="global">global</h3>
+<h3 id=global>global</h3>
 <p>全局执行命令。</p>
 <pre><code>composer global require fabpot/php-cs-fixer:dev-master
 </code></pre><p>现在 php-cs-fixer 就可以在全局范围使用了（假设你已经设置了你的 PATH）。</p>
-<h3 id="search">search</h3>
+<h3 id=search>search</h3>
 <p>参数：</p>
 <ul>
 <li><em>&ndash;only-name (-N)</em>: 仅搜索制定的名称，即完全匹配</li>
 </ul>
-<h3 id="show">show</h3>
+<h3 id=show>show</h3>
 <p>列出所有可用的软件包</p>
 <pre><code>composer show
 </code></pre><p>也可以指定包名显示包的详细信息，也可以一并输入版本号查看某特定版本的包的详细信息。</p>
@@ -488,7 +419,7 @@ if (!doNotTrack) {
 <li><em>&ndash;platform (-p)</em>: 仅列出平台软件包（PHP 与它的扩展）。</li>
 <li><em>&ndash;self (-s)</em>: 仅列出当前项目信息。</li>
 </ul>
-<h3 id="depends">depends</h3>
+<h3 id=depends>depends</h3>
 <p>depends命令可以查出已安装在你项目中的某个包，是否正在被其它的包所依赖，并列出他们。</p>
 <p>参数：</p>
 <ul>
@@ -501,17 +432,17 @@ poc/poc
 propel/propel
 symfony/monolog-bridge
 symfony/symfony
-</code></pre><h3 id="validate">validate</h3>
+</code></pre><h3 id=validate>validate</h3>
 <p>在提交 <code>composer.json</code> 文件，和创建 tag 前，你应该始终运行 <code>validate</code> 命令。它将检测你的 <code>composer.json</code> 文件是否是有效的。</p>
 <p>参数：</p>
 <ul>
 <li><em>&ndash;no-check-all</em>: Composer 是否进行完整的校验。</li>
 </ul>
-<h3 id="status">status</h3>
+<h3 id=status>status</h3>
 <p>如果你经常修改依赖包里的代码，并且它们是从 source（自定义源）进行安装的，那么 status 命令允许你进行检查，如果你有任何本地的更改它将会给予提示。
 你可以使用 <code>--verbose</code> 系列参数（-v|vv|vvv）来获取更详细的详细：</p>
 <pre><code>composer status -v
-</code></pre><h3 id="self-update">self-update</h3>
+</code></pre><h3 id=self-update>self-update</h3>
 <p>将 Composer 自身升级到最新版本，只需要运行 <code>self-update</code> 命令。它将替换你的 <code>composer.phar</code> 文件到最新版本。
 如果你想要升级到一个特定的版本，可以这样简单的指定它：</p>
 <pre><code>php composer.phar self-update 1.0.0-alpha7
@@ -521,7 +452,7 @@ symfony/symfony
 <li><em>&ndash;rollback (-r)</em>: 回滚到你已经安装的最后一个版本。</li>
 <li><em>&ndash;clean-backups</em>: 在更新过程中删除旧的备份，这使得更新过后的当前版本是唯一可用的备份。</li>
 </ul>
-<h3 id="create-project">create-project</h3>
+<h3 id=create-project>create-project</h3>
 <p>你可以使用 Composer 从现有的包中创建一个新的项目。这相当于执行了一个 <code>git clone</code> 或 <code>svn checkout</code> 命令后将这个包的依赖安装到它自己的 vendor 目录。</p>
 <p>此命令有几个常见的用途：</p>
 <ul>
@@ -547,7 +478,7 @@ symfony/symfony
 <li><em>&ndash;no-progress</em>: 移除进度信息，这可以避免一些不处理换行的终端或脚本出现混乱的显示。</li>
 <li><em>&ndash;keep-vcs</em>: 创建时跳过缺失的 VCS 。如果你在非交互模式下运行创建命令，这将是非常有用的。</li>
 </ul>
-<h3 id="dump-autoload">dump-autoload</h3>
+<h3 id=dump-autoload>dump-autoload</h3>
 <p>某些情况下你需要更新 autoloader，例如在你的包中加入了一个新的类。你可以使用 <code>dump-autoload</code> 来完成，而不必执行 <code>install</code> 或 <code>update</code> 命令。</p>
 <p>此外，它可以打印一个优化过的，符合 PSR-0/4 规范的类的索引，这也是出于对性能的可考虑。在大型的应用中会有许多类文件，而 autoloader 会占用每个请求的很大一部分时间，使用 classmaps 或许在开发时不太方便，但它在保证性能的前提下，仍然可以获得 PSR-0/4 规范带来的便利。
 参数:</p>
@@ -555,13 +486,13 @@ symfony/symfony
 <li><em>&ndash;optimize (-o)</em>: 转换 PSR-0/4 autoloading 到 classmap 获得更快的载入速度。这特别适用于生产环境，但可能需要一些时间来运行，因此它目前不是默认设置。</li>
 <li><em>&ndash;no-dev</em>: 禁用 autoload-dev 规则。</li>
 </ul>
-<h3 id="licenses">licenses</h3>
+<h3 id=licenses>licenses</h3>
 <p>列出已安装的每个包的名称、版本、许可协议。可以使用 <code>--format=json</code> 参数来获取 JSON 格式的输出。</p>
-<h3 id="run-script">run-script</h3>
+<h3 id=run-script>run-script</h3>
 <p>你可以运行此命令来手动执行 脚本，只需要指定脚本的名称，可选的 <code>--no-dev</code> 参数允许你禁用开发者模式。</p>
-<h3 id="diagnose">diagnose</h3>
+<h3 id=diagnose>diagnose</h3>
 <p>如果你觉得发现了一个 bug 或是程序行为变得怪异，你可能需要运行 <code>diagnose</code> 命令，来帮助你检测一些常见的问题。</p>
-<h3 id="archive">archive</h3>
+<h3 id=archive>archive</h3>
 <p>此命令用来对指定包的指定版本进行 zip/tar 归档。它也可以用来归档你的整个项目，不包括 excluded/ignored（排除/忽略）的文件。</p>
 <pre><code>composer archive vendor/package 2.0.21 --format=zip
 </code></pre><p>参数：</p>
@@ -569,220 +500,163 @@ symfony/symfony
 <li><em>&ndash;format (-f)</em>: 指定归档格式：tar 或 zip（默认为 tar）。</li>
 <li><em>&ndash;dir</em>: 指定归档存放的目录（默认为当前目录）。</li>
 </ul>
-<h3 id="help">help</h3>
+<h3 id=help>help</h3>
 <p>使用 <code>help</code> 可以获取指定命令的帮助信息。</p>
 <pre><code>composer help install
-</code></pre><h2 id="环境变量">环境变量</h2>
+</code></pre><h2 id=环境变量>环境变量</h2>
 <p>你可以设置一些环境变量来覆盖默认的配置。建议尽可能的在 <code>composer.json</code> 的 <code>config</code> 字段中设置这些值，而不是通过命令行设置环境变量。值得注意的是环境变量中的值，将始终优先于 <code>composer.json</code> 中所指定的值。</p>
 <blockquote>
 <p>参考资料：
-<a href="http://docs.phpcomposer.com/03-cli.html">http://docs.phpcomposer.com/03-cli.html</a></p>
+<a href=http://docs.phpcomposer.com/03-cli.html>http://docs.phpcomposer.com/03-cli.html</a></p>
 </blockquote>
-
-    </div>
-  </article>
-
-  
-  
-
-
-
-
-  
-    <div class="blog-post-comments">
-        <div id="disqus_thread">
-          <script type="text/javascript">
-          
-          (function() {
-              
-              
-              
-              
-          
-              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-              var disqus_shortname = 'wzr';
-              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-          })();
-          </script>
-          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-          <a href="https://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-        </div>
-    </div>
-
-  
-
-
-  <div id="footer-post-container">
-  <div id="footer-post">
-
-    <div id="nav-footer" style="display: none">
-      <ul>
-         
-          <li><a href="/">Home</a></li>
-         
-          <li><a href="/posts">Writings</a></li>
-         
-          <li><a href="/tags">Tags</a></li>
-         
-          <li><a href="/about">About</a></li>
-        
-      </ul>
-    </div>
-
-    <div id="toc-footer" style="display: none">
-      <nav id="TableOfContents">
-  <ul>
-    <li><a href="#composerjson">composer.json</a></li>
-    <li><a href="#包名">包名</a>
-      <ul>
-        <li><a href="#包版本">包版本</a></li>
-        <li><a href="#dist">Dist</a></li>
-        <li><a href="#source">Source</a></li>
-        <li><a href="#repositories">repositories</a></li>
-        <li><a href="#config">config</a></li>
-        <li><a href="#发布包相关">发布包相关</a></li>
-      </ul>
-    </li>
-    <li><a href="#安装依赖">安装依赖</a></li>
-    <li><a href="#composerlock">composer.lock</a></li>
-    <li><a href="#自动加载">自动加载</a></li>
-    <li><a href="#发布">发布</a>
-      <ul>
-        <li><a href="#发布到-packagist">发布到 packagist</a></li>
-        <li><a href="#发布到vcs">发布到vcs</a></li>
-      </ul>
-    </li>
-    <li><a href="#命令行">命令行</a>
-      <ul>
-        <li><a href="#全局参数">全局参数</a></li>
-        <li><a href="#init">init</a></li>
-        <li><a href="#install">install</a></li>
-        <li><a href="#update">update</a></li>
-        <li><a href="#require">require</a></li>
-        <li><a href="#global">global</a></li>
-        <li><a href="#search">search</a></li>
-        <li><a href="#show">show</a></li>
-        <li><a href="#depends">depends</a></li>
-        <li><a href="#validate">validate</a></li>
-        <li><a href="#status">status</a></li>
-        <li><a href="#self-update">self-update</a></li>
-        <li><a href="#create-project">create-project</a></li>
-        <li><a href="#dump-autoload">dump-autoload</a></li>
-        <li><a href="#licenses">licenses</a></li>
-        <li><a href="#run-script">run-script</a></li>
-        <li><a href="#diagnose">diagnose</a></li>
-        <li><a href="#archive">archive</a></li>
-        <li><a href="#help">help</a></li>
-      </ul>
-    </li>
-    <li><a href="#环境变量">环境变量</a></li>
-  </ul>
-</nav>
-    </div>
-
-    <div id="share-footer" style="display: none">
-      
-      <ul>
-  
-  
-    
-  
-  
-  <li>
-    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fwww.takuzen.me%2fposts%2f2016-07-10-composer-usages%2f">
-      <i class="fab fa-facebook fa-lg" aria-hidden="true"></i>
-    </a>
-  </li>
-  <li>
-    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2016-07-10-composer-usages%2f&text=composer%e7%94%a8%e6%b3%95">
-      <i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
-    </a>
-  </li>
-  <li>
-    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2016-07-10-composer-usages%2f&title=composer%e7%94%a8%e6%b3%95">
-      <i class="fab fa-linkedin fa-lg" aria-hidden="true"></i>
-    </a>
-  </li>
-  <li>
-    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2016-07-10-composer-usages%2f&is_video=false&description=composer%e7%94%a8%e6%b3%95">
-      <i class="fab fa-pinterest fa-lg" aria-hidden="true"></i>
-    </a>
-  </li>
-  <li>
-    <a class="icon" href="mailto:?subject=composer%e7%94%a8%e6%b3%95&body=Check out this article: https%3a%2f%2fwww.takuzen.me%2fposts%2f2016-07-10-composer-usages%2f">
-      <i class="fas fa-envelope fa-lg" aria-hidden="true"></i>
-    </a>
-  </li>
-  <li>
-    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2016-07-10-composer-usages%2f&title=composer%e7%94%a8%e6%b3%95">
-      <i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i>
-    </a>
-  </li>
-  <li>
-    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2016-07-10-composer-usages%2f&title=composer%e7%94%a8%e6%b3%95">
-      <i class="fab fa-reddit fa-lg" aria-hidden="true"></i>
-    </a>
-  </li>
-  <li>
-    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2016-07-10-composer-usages%2f&name=composer%e7%94%a8%e6%b3%95&description=composer.json%20%e8%a6%81%e5%bc%80%e5%a7%8b%e5%9c%a8%e4%bd%a0%e7%9a%84%e9%a1%b9%e7%9b%ae%e4%b8%ad%e4%bd%bf%e7%94%a8%20Composer%ef%bc%8c%e4%bd%a0%e5%8f%aa%e9%9c%80%e8%a6%81%e4%b8%80%e4%b8%aacomposer.json%e6%96%87%e4%bb%b6%e3%80%82%e8%af%a5%e6%96%87%e4%bb%b6%e5%8c%85%e5%90%ab%e4%ba%86%e9%a1%b9%e7%9b%ae%e7%9a%84%e4%be%9d%e8%b5%96%e5%92%8c%e5%85%b6%e5%ae%83%e7%9a%84%e4%b8%80%e4%ba%9b%e5%85%83%e6%95%b0%e6%8d%ae%e3%80%82%0a%e9%a6%96%e5%85%88%e9%9c%80%e8%a6%81%e6%8c%87%e5%ae%9arequire%20key%e7%9a%84%e5%80%bc%0a%7b%20%26quot%3brequire%26quot%3b%3a%20%7b%20%26quot%3bmonolog%2fmonolog%26quot%3b%3a%20%26quot%3b1.0.%2a%26quot%3b%20%7d%20%26quot%3brequire-dev%26quot%3b%3a%20%7b%20%26quot%3bphpunit%2fphpunit%26quot%3b%3a%20%26quot%3b4.8.%2a%26quot%3b%20%7d%20%7d%20require%e5%b1%9e%e6%80%a7%e5%88%97%e5%87%ba%e7%bb%84%e4%bb%b6%e4%be%9d%e8%b5%96%e7%9a%84%e7%bb%84%e4%bb%b6%ef%bc%8crequire-dev%e5%b1%9e%e6%80%a7%e5%88%97%e5%87%ba%e7%9a%84%e6%98%af%e5%bc%80%e5%8f%91%e6%97%b6%e6%89%80%e9%9c%80%e4%be%9d%e8%b5%96%ef%bc%8c%e5%9c%a8%e7%94%9f%e4%ba%a7%e7%8e%af%e5%a2%83%e4%b8%8b%e4%b8%8d%e4%bc%9a%e5%ae%89%e8%a3%85%e3%80%82%0a%e5%8c%85%e5%90%8d%20%e5%8c%85%e5%90%8d%e5%ba%94%e8%af%a5%e5%8c%85%e5%90%ab%e4%be%9b%e5%ba%94%e5%95%86%e5%90%8d%e5%92%8c%e9%a1%b9%e7%9b%ae%e5%90%8d%0a%e5%8c%85%e7%89%88%e6%9c%ac%20%20%e6%8c%87%e5%ae%9a%e7%89%88%e6%9c%ac%e5%8f%b7%201.0.2%ef%bc%8c1.0.0-dev%ef%bc%8c1.0.0-alpha3%20%e8%8c%83%e5%9b%b4%20%26gt%3b%3d1.0%20%26gt%3b%3d1.0%2c%26lt%3b2.0%20%26gt%3b%3d1.0%2c%26lt%3b1.1%7c%26gt%3b%3d1.2%20%2c%e7%9a%84%e4%bc%98%e5%85%88%e7%ba%a7%e9%ab%98%e4%ba%8e%7c%20%e9%80%9a%e9%85%8d%e7%ac%a6%201.0.%2a%20%e8%b5%8b%e5%80%bc%e8%bf%90%e7%ae%97%e7%ac%a6%20~1.2%20%e7%9b%b8%e5%bd%93%e4%ba%8e%26gt%3b%3d1.2%2c%26lt%3b2.0%20%e5%85%81%e8%ae%b8%e4%be%9d%e8%b5%96%e4%b8%8d%e7%a8%b3%e5%ae%9a%e5%8c%85%20%40beta%20%40dev%20%20%e5%bd%a2%e5%a6%821.0.%2a%40beta%ef%bc%8c%e6%88%96%e8%80%85dev-master%232eb0c0978d290a1c45346a1955188929cb4e5db7%e8%bf%99%e7%a7%8d%e6%98%8e%e7%a1%ae%e4%ba%86%e7%89%88%e6%9c%ac%e5%8f%b7%e7%9a%84%e4%b9%9f%e6%98%af%e6%94%af%e6%8c%81%e7%9a%84%e3%80%82%0a%e6%b3%a2%e6%b5%aa%e5%8f%b7%e8%bf%90%e7%ae%97%e7%ac%a6%e7%9a%84%e6%84%8f%e4%b9%89%e5%9c%a8%e4%ba%8e%ef%bc%8c%e9%98%b2%e6%ad%a2%e5%a4%a7%e7%89%88%e6%9c%ac%e6%9b%b4%e6%96%b0%e8%80%8c%e4%ba%a7%e7%94%9f%e7%9a%84%e5%85%bc%e5%ae%b9%e6%80%a7%e9%97%ae%e9%a2%98%e3%80%82%0aDist%20dist%20%e6%8c%87%e5%90%91%e4%b8%80%e4%b8%aa%e5%ad%98%e6%a1%a3%ef%bc%8c%e8%af%a5%e5%ad%98%e6%a1%a3%e6%98%af%e5%af%b9%e4%b8%80%e4%b8%aa%e8%b5%84%e6%ba%90%e5%8c%85%e7%9a%84%e6%9f%90%e4%b8%aa%e7%89%88%e6%9c%ac%e7%9a%84%e6%95%b0%e6%8d%ae%e8%bf%9b%e8%a1%8c%e7%9a%84%e6%89%93%e5%8c%85%e3%80%82%e9%80%9a%e5%b8%b8%e6%98%af%e5%b7%b2%e7%bb%8f%e5%8f%91%e8%a1%8c%e7%9a%84%e7%a8%b3%e5%ae%9a%e7%89%88%e6%9c%ac%e3%80%82%0aSource%20source%20%e6%8c%87%e5%90%91%e4%b8%80%e4%b8%aa%e5%bc%80%e5%8f%91%e4%b8%ad%e7%9a%84%e6%ba%90%e3%80%82%e8%bf%99%e9%80%9a%e5%b8%b8%e6%98%af%e4%b8%80%e4%b8%aa%e6%ba%90%e4%bb%a3%e7%a0%81%e4%bb%93%e5%ba%93%ef%bc%8c%e4%be%8b%e5%a6%82git%e3%80%82%e5%bd%93%e4%bd%a0%e6%83%b3%e8%a6%81%e5%af%b9%e4%b8%8b%e8%bd%bd%e4%b8%8b%e6%9d%a5%e7%9a%84%e8%b5%84%e6%ba%90%e5%8c%85%e8%bf%9b%e8%a1%8c%e4%bf%ae%e6%94%b9%e6%97%b6%ef%bc%8c%e5%8f%af%e4%bb%a5%e8%bf%99%e6%a0%b7%e8%8e%b7%e5%8f%96%e3%80%82%0a%e4%bd%a0%e5%8f%af%e4%bb%a5%e4%bd%bf%e7%94%a8%e5%85%b6%e4%b8%ad%e4%bb%bb%e6%84%8f%e4%b8%80%e4%b8%aa%ef%bc%8c%e6%88%96%e8%80%85%e5%90%8c%e6%97%b6%e4%bd%bf%e7%94%a8%e3%80%82%e8%bf%99%e5%8f%96%e5%86%b3%e4%ba%8e%e5%85%b6%e5%ae%83%e7%9a%84%e4%b8%80%e4%ba%9b%e5%9b%a0%e7%b4%a0%ef%bc%8c%e6%af%94%e5%a6%82user-supplied%20%e9%80%89%e9%a1%b9%e5%92%8c%e5%8c%85%e7%9a%84%e7%a8%b3%e5%ae%9a%e6%80%a7%ef%bc%8c%e5%89%8d%e8%80%85%e5%b0%86%e4%bc%9a%e8%a2%ab%e4%bc%98%e5%85%88%e8%80%83%e8%99%91%e3%80%82%0arepositories%20%e9%bb%98%e8%ae%a4%e6%83%85%e5%86%b5%e4%b8%8b%20composer%20%e5%8f%aa%e4%bd%bf%e7%94%a8%20packagist%20%e4%bd%9c%e4%b8%ba%e5%8c%85%e7%9a%84%e8%b5%84%e6%ba%90%e5%ba%93%e3%80%82%e9%80%9a%e8%bf%87%e6%8c%87%e5%ae%9a%e8%b5%84%e6%ba%90%e5%ba%93%ef%bc%8c%e4%bd%a0%e5%8f%af%e4%bb%a5%e4%bb%8e%e5%85%b6%e4%bb%96%e5%9c%b0%e6%96%b9%e8%8e%b7%e5%8f%96%e8%b5%84%e6%ba%90%e5%8c%85%e3%80%82%0aRepositories%20%e5%b9%b6%e4%b8%8d%e6%98%af%e9%80%92%e5%bd%92%e8%b0%83%e7%94%a8%e7%9a%84%ef%bc%8c%e5%8f%aa%e8%83%bd%e5%9c%a8Root%e5%8c%85%e7%9a%84%20composer.json%20%e4%b8%ad%e5%ae%9a%e4%b9%89%e3%80%82%e9%99%84%e5%b1%9e%e5%8c%85%e4%b8%ad%e7%9a%84%20composer.json%20%e5%b0%86%e8%a2%ab%e5%bf%bd%e7%95%a5%e3%80%82%0a%e6%94%af%e6%8c%81%e4%b8%80%e4%b8%8b%e7%b1%bb%e5%9e%8b%e7%9a%84%e8%b5%84%e6%ba%90%e5%ba%93%ef%bc%9a%0a%20composer%3a%20%e4%b8%80%e4%b8%aa%20composer%20%e7%b1%bb%e5%9e%8b%e7%9a%84%e8%b5%84%e6%ba%90%e5%ba%93%ef%bc%8c%e6%98%af%e4%b8%80%e4%b8%aa%e7%ae%80%e5%8d%95%e7%9a%84%e7%bd%91%e7%bb%9c%e6%9c%8d%e5%8a%a1%e5%99%a8%ef%bc%88HTTP%e3%80%81FTP%e3%80%81SSH%ef%bc%89%e4%b8%8a%e7%9a%84%20packages.json%20%e6%96%87%e4%bb%b6%ef%bc%8c%e5%ae%83%e5%8c%85%e5%90%ab%e4%b8%80%e4%b8%aa%20composer.json%20%e5%af%b9%e8%b1%a1%e7%9a%84%e5%88%97%e8%a1%a8%ef%bc%8c%e6%9c%89%e9%a2%9d%e5%a4%96%e7%9a%84%20dist%20%e5%92%8c%2f%e6%88%96%20source%20%e4%bf%a1%e6%81%af%e3%80%82%e8%bf%99%e4%b8%aa%20packages.">
-      <i class="fab fa-tumblr fa-lg" aria-hidden="true"></i>
-    </a>
-  </li>
-  <li>
-    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fwww.takuzen.me%2fposts%2f2016-07-10-composer-usages%2f&t=composer%e7%94%a8%e6%b3%95">
-      <i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i>
-    </a>
-  </li>
-</ul>
-
-    </div>
-
-    <div id="actions-footer">
-      
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;">
-          <i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
-        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;">
-          <i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;">
-          <i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> share</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');">
-          <i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
-    </div>
-
-  </div>
 </div>
-
-
-  <footer id="footer">
-  <div class="footer-left">
-    Copyright  &copy; 2021  呉 
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-         
-        <li><a href="/">Home</a></li>
-         
-        <li><a href="/posts">Writings</a></li>
-         
-        <li><a href="/tags">Tags</a></li>
-         
-        <li><a href="/about">About</a></li>
-        
-      </ul>
-    </nav>
-  </div>
+</article>
+<div class=blog-post-comments>
+<div id=disqus_thread>
+<script type=text/javascript>(function(){var a=document.createElement('script'),b;a.type='text/javascript',a.async=!0,b='wzr',a.src='//'+b+'.disqus.com/embed.js',(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(a)})()</script>
+<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
+<a href=https://disqus.com/ class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a>
+</div>
+</div>
+<div id=footer-post-container>
+<div id=footer-post>
+<div id=nav-footer style=display:none>
+<ul>
+<li><a href=/>Home</a></li>
+<li><a href=/posts>Writings</a></li>
+<li><a href=/tags>Tags</a></li>
+<li><a href=/about>About</a></li>
+</ul>
+</div>
+<div id=toc-footer style=display:none>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#composerjson>composer.json</a></li>
+<li><a href=#包名>包名</a>
+<ul>
+<li><a href=#包版本>包版本</a></li>
+<li><a href=#dist>Dist</a></li>
+<li><a href=#source>Source</a></li>
+<li><a href=#repositories>repositories</a></li>
+<li><a href=#config>config</a></li>
+<li><a href=#发布包相关>发布包相关</a></li>
+</ul>
+</li>
+<li><a href=#安装依赖>安装依赖</a></li>
+<li><a href=#composerlock>composer.lock</a></li>
+<li><a href=#自动加载>自动加载</a></li>
+<li><a href=#发布>发布</a>
+<ul>
+<li><a href=#发布到-packagist>发布到 packagist</a></li>
+<li><a href=#发布到vcs>发布到vcs</a></li>
+</ul>
+</li>
+<li><a href=#命令行>命令行</a>
+<ul>
+<li><a href=#全局参数>全局参数</a></li>
+<li><a href=#init>init</a></li>
+<li><a href=#install>install</a></li>
+<li><a href=#update>update</a></li>
+<li><a href=#require>require</a></li>
+<li><a href=#global>global</a></li>
+<li><a href=#search>search</a></li>
+<li><a href=#show>show</a></li>
+<li><a href=#depends>depends</a></li>
+<li><a href=#validate>validate</a></li>
+<li><a href=#status>status</a></li>
+<li><a href=#self-update>self-update</a></li>
+<li><a href=#create-project>create-project</a></li>
+<li><a href=#dump-autoload>dump-autoload</a></li>
+<li><a href=#licenses>licenses</a></li>
+<li><a href=#run-script>run-script</a></li>
+<li><a href=#diagnose>diagnose</a></li>
+<li><a href=#archive>archive</a></li>
+<li><a href=#help>help</a></li>
+</ul>
+</li>
+<li><a href=#环境变量>环境变量</a></li>
+</ul>
+</nav>
+</div>
+<div id=share-footer style=display:none>
+<ul>
+<li>
+<a class=icon href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fwww.takuzen.me%2fposts%2f2016-07-10-composer-usages%2f" aria-label=Facebook>
+<i class="fab fa-facebook fa-lg" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="https://twitter.com/share?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2016-07-10-composer-usages%2f&text=composer%e7%94%a8%e6%b3%95" aria-label=Twitter>
+<i class="fab fa-twitter fa-lg" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2016-07-10-composer-usages%2f&title=composer%e7%94%a8%e6%b3%95" aria-label=Linkedin>
+<i class="fab fa-linkedin fa-lg" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2016-07-10-composer-usages%2f&is_video=false&description=composer%e7%94%a8%e6%b3%95" aria-label=Pinterest>
+<i class="fab fa-pinterest fa-lg" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="mailto:?subject=composer%e7%94%a8%e6%b3%95&body=Check out this article: https%3a%2f%2fwww.takuzen.me%2fposts%2f2016-07-10-composer-usages%2f" aria-label=Email>
+<i class="fas fa-envelope fa-lg" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="https://getpocket.com/save?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2016-07-10-composer-usages%2f&title=composer%e7%94%a8%e6%b3%95" aria-label=Pocket>
+<i class="fab fa-get-pocket fa-lg" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="http://reddit.com/submit?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2016-07-10-composer-usages%2f&title=composer%e7%94%a8%e6%b3%95" aria-label=reddit>
+<i class="fab fa-reddit fa-lg" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="http://www.tumblr.com/share/link?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2016-07-10-composer-usages%2f&name=composer%e7%94%a8%e6%b3%95&description=composer.json%20%e8%a6%81%e5%bc%80%e5%a7%8b%e5%9c%a8%e4%bd%a0%e7%9a%84%e9%a1%b9%e7%9b%ae%e4%b8%ad%e4%bd%bf%e7%94%a8%20Composer%ef%bc%8c%e4%bd%a0%e5%8f%aa%e9%9c%80%e8%a6%81%e4%b8%80%e4%b8%aacomposer.json%e6%96%87%e4%bb%b6%e3%80%82%e8%af%a5%e6%96%87%e4%bb%b6%e5%8c%85%e5%90%ab%e4%ba%86%e9%a1%b9%e7%9b%ae%e7%9a%84%e4%be%9d%e8%b5%96%e5%92%8c%e5%85%b6%e5%ae%83%e7%9a%84%e4%b8%80%e4%ba%9b%e5%85%83%e6%95%b0%e6%8d%ae%e3%80%82%0a%e9%a6%96%e5%85%88%e9%9c%80%e8%a6%81%e6%8c%87%e5%ae%9arequire%20key%e7%9a%84%e5%80%bc%0a%7b%20%26quot%3brequire%26quot%3b%3a%20%7b%20%26quot%3bmonolog%2fmonolog%26quot%3b%3a%20%26quot%3b1.0.%2a%26quot%3b%20%7d%20%26quot%3brequire-dev%26quot%3b%3a%20%7b%20%26quot%3bphpunit%2fphpunit%26quot%3b%3a%20%26quot%3b4.8.%2a%26quot%3b%20%7d%20%7d%20require%e5%b1%9e%e6%80%a7%e5%88%97%e5%87%ba%e7%bb%84%e4%bb%b6%e4%be%9d%e8%b5%96%e7%9a%84%e7%bb%84%e4%bb%b6%ef%bc%8crequire-dev%e5%b1%9e%e6%80%a7%e5%88%97%e5%87%ba%e7%9a%84%e6%98%af%e5%bc%80%e5%8f%91%e6%97%b6%e6%89%80%e9%9c%80%e4%be%9d%e8%b5%96%ef%bc%8c%e5%9c%a8%e7%94%9f%e4%ba%a7%e7%8e%af%e5%a2%83%e4%b8%8b%e4%b8%8d%e4%bc%9a%e5%ae%89%e8%a3%85%e3%80%82%0a%e5%8c%85%e5%90%8d%20%e5%8c%85%e5%90%8d%e5%ba%94%e8%af%a5%e5%8c%85%e5%90%ab%e4%be%9b%e5%ba%94%e5%95%86%e5%90%8d%e5%92%8c%e9%a1%b9%e7%9b%ae%e5%90%8d%0a%e5%8c%85%e7%89%88%e6%9c%ac%20%20%e6%8c%87%e5%ae%9a%e7%89%88%e6%9c%ac%e5%8f%b7%201.0.2%ef%bc%8c1.0.0-dev%ef%bc%8c1.0.0-alpha3%20%e8%8c%83%e5%9b%b4%20%26gt%3b%3d1.0%20%26gt%3b%3d1.0%2c%26lt%3b2.0%20%26gt%3b%3d1.0%2c%26lt%3b1.1%7c%26gt%3b%3d1.2%20%2c%e7%9a%84%e4%bc%98%e5%85%88%e7%ba%a7%e9%ab%98%e4%ba%8e%7c%20%e9%80%9a%e9%85%8d%e7%ac%a6%201.0.%2a%20%e8%b5%8b%e5%80%bc%e8%bf%90%e7%ae%97%e7%ac%a6%20~1.2%20%e7%9b%b8%e5%bd%93%e4%ba%8e%26gt%3b%3d1.2%2c%26lt%3b2.0%20%e5%85%81%e8%ae%b8%e4%be%9d%e8%b5%96%e4%b8%8d%e7%a8%b3%e5%ae%9a%e5%8c%85%20%40beta%20%40dev%20%20%e5%bd%a2%e5%a6%821.0.%2a%40beta%ef%bc%8c%e6%88%96%e8%80%85dev-master%232eb0c0978d290a1c45346a1955188929cb4e5db7%e8%bf%99%e7%a7%8d%e6%98%8e%e7%a1%ae%e4%ba%86%e7%89%88%e6%9c%ac%e5%8f%b7%e7%9a%84%e4%b9%9f%e6%98%af%e6%94%af%e6%8c%81%e7%9a%84%e3%80%82%0a%e6%b3%a2%e6%b5%aa%e5%8f%b7%e8%bf%90%e7%ae%97%e7%ac%a6%e7%9a%84%e6%84%8f%e4%b9%89%e5%9c%a8%e4%ba%8e%ef%bc%8c%e9%98%b2%e6%ad%a2%e5%a4%a7%e7%89%88%e6%9c%ac%e6%9b%b4%e6%96%b0%e8%80%8c%e4%ba%a7%e7%94%9f%e7%9a%84%e5%85%bc%e5%ae%b9%e6%80%a7%e9%97%ae%e9%a2%98%e3%80%82%0aDist%20dist%20%e6%8c%87%e5%90%91%e4%b8%80%e4%b8%aa%e5%ad%98%e6%a1%a3%ef%bc%8c%e8%af%a5%e5%ad%98%e6%a1%a3%e6%98%af%e5%af%b9%e4%b8%80%e4%b8%aa%e8%b5%84%e6%ba%90%e5%8c%85%e7%9a%84%e6%9f%90%e4%b8%aa%e7%89%88%e6%9c%ac%e7%9a%84%e6%95%b0%e6%8d%ae%e8%bf%9b%e8%a1%8c%e7%9a%84%e6%89%93%e5%8c%85%e3%80%82%e9%80%9a%e5%b8%b8%e6%98%af%e5%b7%b2%e7%bb%8f%e5%8f%91%e8%a1%8c%e7%9a%84%e7%a8%b3%e5%ae%9a%e7%89%88%e6%9c%ac%e3%80%82%0aSource%20source%20%e6%8c%87%e5%90%91%e4%b8%80%e4%b8%aa%e5%bc%80%e5%8f%91%e4%b8%ad%e7%9a%84%e6%ba%90%e3%80%82%e8%bf%99%e9%80%9a%e5%b8%b8%e6%98%af%e4%b8%80%e4%b8%aa%e6%ba%90%e4%bb%a3%e7%a0%81%e4%bb%93%e5%ba%93%ef%bc%8c%e4%be%8b%e5%a6%82git%e3%80%82%e5%bd%93%e4%bd%a0%e6%83%b3%e8%a6%81%e5%af%b9%e4%b8%8b%e8%bd%bd%e4%b8%8b%e6%9d%a5%e7%9a%84%e8%b5%84%e6%ba%90%e5%8c%85%e8%bf%9b%e8%a1%8c%e4%bf%ae%e6%94%b9%e6%97%b6%ef%bc%8c%e5%8f%af%e4%bb%a5%e8%bf%99%e6%a0%b7%e8%8e%b7%e5%8f%96%e3%80%82%0a%e4%bd%a0%e5%8f%af%e4%bb%a5%e4%bd%bf%e7%94%a8%e5%85%b6%e4%b8%ad%e4%bb%bb%e6%84%8f%e4%b8%80%e4%b8%aa%ef%bc%8c%e6%88%96%e8%80%85%e5%90%8c%e6%97%b6%e4%bd%bf%e7%94%a8%e3%80%82%e8%bf%99%e5%8f%96%e5%86%b3%e4%ba%8e%e5%85%b6%e5%ae%83%e7%9a%84%e4%b8%80%e4%ba%9b%e5%9b%a0%e7%b4%a0%ef%bc%8c%e6%af%94%e5%a6%82user-supplied%20%e9%80%89%e9%a1%b9%e5%92%8c%e5%8c%85%e7%9a%84%e7%a8%b3%e5%ae%9a%e6%80%a7%ef%bc%8c%e5%89%8d%e8%80%85%e5%b0%86%e4%bc%9a%e8%a2%ab%e4%bc%98%e5%85%88%e8%80%83%e8%99%91%e3%80%82%0arepositories%20%e9%bb%98%e8%ae%a4%e6%83%85%e5%86%b5%e4%b8%8b%20composer%20%e5%8f%aa%e4%bd%bf%e7%94%a8%20packagist%20%e4%bd%9c%e4%b8%ba%e5%8c%85%e7%9a%84%e8%b5%84%e6%ba%90%e5%ba%93%e3%80%82%e9%80%9a%e8%bf%87%e6%8c%87%e5%ae%9a%e8%b5%84%e6%ba%90%e5%ba%93%ef%bc%8c%e4%bd%a0%e5%8f%af%e4%bb%a5%e4%bb%8e%e5%85%b6%e4%bb%96%e5%9c%b0%e6%96%b9%e8%8e%b7%e5%8f%96%e8%b5%84%e6%ba%90%e5%8c%85%e3%80%82%0aRepositories%20%e5%b9%b6%e4%b8%8d%e6%98%af%e9%80%92%e5%bd%92%e8%b0%83%e7%94%a8%e7%9a%84%ef%bc%8c%e5%8f%aa%e8%83%bd%e5%9c%a8Root%e5%8c%85%e7%9a%84%20composer.json%20%e4%b8%ad%e5%ae%9a%e4%b9%89%e3%80%82%e9%99%84%e5%b1%9e%e5%8c%85%e4%b8%ad%e7%9a%84%20composer.json%20%e5%b0%86%e8%a2%ab%e5%bf%bd%e7%95%a5%e3%80%82%0a%e6%94%af%e6%8c%81%e4%b8%80%e4%b8%8b%e7%b1%bb%e5%9e%8b%e7%9a%84%e8%b5%84%e6%ba%90%e5%ba%93%ef%bc%9a%0a%20composer%3a%20%e4%b8%80%e4%b8%aa%20composer%20%e7%b1%bb%e5%9e%8b%e7%9a%84%e8%b5%84%e6%ba%90%e5%ba%93%ef%bc%8c%e6%98%af%e4%b8%80%e4%b8%aa%e7%ae%80%e5%8d%95%e7%9a%84%e7%bd%91%e7%bb%9c%e6%9c%8d%e5%8a%a1%e5%99%a8%ef%bc%88HTTP%e3%80%81FTP%e3%80%81SSH%ef%bc%89%e4%b8%8a%e7%9a%84%20packages.json%20%e6%96%87%e4%bb%b6%ef%bc%8c%e5%ae%83%e5%8c%85%e5%90%ab%e4%b8%80%e4%b8%aa%20composer.json%20%e5%af%b9%e8%b1%a1%e7%9a%84%e5%88%97%e8%a1%a8%ef%bc%8c%e6%9c%89%e9%a2%9d%e5%a4%96%e7%9a%84%20dist%20%e5%92%8c%2f%e6%88%96%20source%20%e4%bf%a1%e6%81%af%e3%80%82%e8%bf%99%e4%b8%aa%20packages." aria-label=Tumblr>
+<i class="fab fa-tumblr fa-lg" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fwww.takuzen.me%2fposts%2f2016-07-10-composer-usages%2f&t=composer%e7%94%a8%e6%b3%95" aria-label="Hacker News">
+<i class="fab fa-hacker-news fa-lg" aria-hidden=true></i>
+</a>
+</li>
+</ul>
+</div>
+<div id=actions-footer>
+<a id=menu-toggle class=icon href=# onclick="return $('#nav-footer').toggle(),!1" aria-label=Menu>
+<i class="fas fa-bars fa-lg" aria-hidden=true></i> Menu</a>
+<a id=toc-toggle class=icon href=# onclick="return $('#toc-footer').toggle(),!1" aria-label=TOC>
+<i class="fas fa-list fa-lg" aria-hidden=true></i> TOC</a>
+<a id=share-toggle class=icon href=# onclick="return $('#share-footer').toggle(),!1" aria-label=Share>
+<i class="fas fa-share-alt fa-lg" aria-hidden=true></i> share</a>
+<a id=top style=display:none class=icon href=# onclick="$('html, body').animate({scrollTop:0},'fast')" aria-label="Top of Page">
+<i class="fas fa-chevron-up fa-lg" aria-hidden=true></i> Top</a>
+</div>
+</div>
+</div>
+<footer id=footer>
+<div class=footer-left>
+Copyright &copy; 2021 呉
+</div>
+<div class=footer-right>
+<nav>
+<ul>
+<li><a href=/>Home</a></li>
+<li><a href=/posts>Writings</a></li>
+<li><a href=/tags>Tags</a></li>
+<li><a href=/about>About</a></li>
+</ul>
+</nav>
+</div>
 </footer>
-
-
-  </div>
+</div>
 </body>
-
-<link rel="stylesheet" href=/lib/font-awesome/css/all.min.css>
+<link rel=stylesheet href=/lib/font-awesome/css/all.min.css>
 <script src=/lib/jquery/jquery.min.js></script>
 <script src=/js/main.js></script>
-
-
-
 </html>

@@ -1,28 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>redis on マクロス</title>
-    <link>https://www.takuzen.me/tags/redis/</link>
-    <description>Recent content in redis on マクロス</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>呉</copyright>
-    <lastBuildDate>Tue, 17 May 2016 09:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://www.takuzen.me/tags/redis/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>kali2016下phpredis的使用</title>
-      <link>https://www.takuzen.me/posts/2016-05-17-phpredis/</link>
-      <pubDate>Tue, 17 May 2016 09:00:00 +0000</pubDate>
-      
-      <guid>https://www.takuzen.me/posts/2016-05-17-phpredis/</guid>
-      <description>phpredis安装 安装phpredis非常的简单，github上文档写的很详细。 在源码根目录执行：
- phpize ./configure [--enable-redis-igbinary] sudo make &amp;amp;&amp;amp; sudo make install  对于没有安装phpize的情况，可以apt-get安装dev包
- sudo apt-get install php5-dev  如果用的是php7，记得要使用php7分支，或者终端下载：
- git clone -b php7 https://github.com/phpredis/phpredis.git  </description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>redis on マクロス</title><link>https://www.takuzen.me/tags/redis/</link><description>Recent content in redis on マクロス</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>呉</copyright><lastBuildDate>Tue, 17 May 2016 09:00:00 +0000</lastBuildDate><atom:link href="https://www.takuzen.me/tags/redis/index.xml" rel="self" type="application/rss+xml"/><item><title>kali2016下phpredis的使用</title><link>https://www.takuzen.me/posts/2016-05-17-phpredis/</link><pubDate>Tue, 17 May 2016 09:00:00 +0000</pubDate><guid>https://www.takuzen.me/posts/2016-05-17-phpredis/</guid><description>phpredis安装 安装phpredis非常的简单，github上文档写的很详细。 在源码根目录执行：
+phpize ./configure [--enable-redis-igbinary] sudo make &amp;amp;&amp;amp; sudo make install 对于没有安装phpize的情况，可以apt-get安装dev包
+sudo apt-get install php5-dev 如果用的是php7，记得要使用php7分支，或者终端下载：
+git clone -b php7 https://github.com/phpredis/phpredis.git</description></item></channel></rss>

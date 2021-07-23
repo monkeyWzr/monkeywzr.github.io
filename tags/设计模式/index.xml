@@ -1,26 +1,2 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>设计模式 on マクロス</title>
-    <link>https://www.takuzen.me/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
-    <description>Recent content in 设计模式 on マクロス</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>呉</copyright>
-    <lastBuildDate>Mon, 18 Apr 2016 09:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://www.takuzen.me/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>php几种设计模式</title>
-      <link>https://www.takuzen.me/posts/2016-04-18-php-design-pattern/</link>
-      <pubDate>Mon, 18 Apr 2016 09:00:00 +0000</pubDate>
-      
-      <guid>https://www.takuzen.me/posts/2016-04-18-php-design-pattern/</guid>
-      <description>php设计模式 单例模式 多例模式 代理模式 代理模式实际上就是解决了在有些不适合继承的情况下使用方法的问题。在proxy类中实现__call()方法调用被代理类的方法。
-外观模式（facade） 装饰者模式(decorator) 工厂模式 观察者模式 发布者/订阅者模式 </description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>设计模式 on マクロス</title><link>https://www.takuzen.me/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link><description>Recent content in 设计模式 on マクロス</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>呉</copyright><lastBuildDate>Mon, 18 Apr 2016 09:00:00 +0000</lastBuildDate><atom:link href="https://www.takuzen.me/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/index.xml" rel="self" type="application/rss+xml"/><item><title>php几种设计模式</title><link>https://www.takuzen.me/posts/2016-04-18-php-design-pattern/</link><pubDate>Mon, 18 Apr 2016 09:00:00 +0000</pubDate><guid>https://www.takuzen.me/posts/2016-04-18-php-design-pattern/</guid><description>php设计模式 单例模式 多例模式 代理模式 代理模式实际上就是解决了在有些不适合继承的情况下使用方法的问题。在proxy类中实现__call()方法调用被代理类的方法。
+外观模式（facade） 装饰者模式(decorator) 工厂模式 观察者模式 发布者/订阅者模式</description></item></channel></rss>

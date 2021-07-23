@@ -1,28 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>ssh on マクロス</title>
-    <link>https://www.takuzen.me/tags/ssh/</link>
-    <description>Recent content in ssh on マクロス</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>呉</copyright>
-    <lastBuildDate>Sat, 08 Oct 2016 14:45:08 +0000</lastBuildDate>
-    
-	<atom:link href="https://www.takuzen.me/tags/ssh/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>ssh反向代理实现内网穿透（比较失败( ˙灬˙ )）</title>
-      <link>https://www.takuzen.me/posts/2016-10-08-ssh-reverse-proxy/</link>
-      <pubDate>Sat, 08 Oct 2016 14:45:08 +0000</pubDate>
-      
-      <guid>https://www.takuzen.me/posts/2016-10-08-ssh-reverse-proxy/</guid>
-      <description>有关背景请参见http://www.upwzr.com/2016/10/08/run-ngrok/，本文是在使用ngrok之前的依次失败的尝试。。。当然，ngrok实际上也是是ssh来实现的。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ssh on マクロス</title><link>https://www.takuzen.me/tags/ssh/</link><description>Recent content in ssh on マクロス</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>呉</copyright><lastBuildDate>Sat, 08 Oct 2016 14:45:08 +0000</lastBuildDate><atom:link href="https://www.takuzen.me/tags/ssh/index.xml" rel="self" type="application/rss+xml"/><item><title>ssh反向代理实现内网穿透（比较失败( ˙灬˙ )）</title><link>https://www.takuzen.me/posts/2016-10-08-ssh-reverse-proxy/</link><pubDate>Sat, 08 Oct 2016 14:45:08 +0000</pubDate><guid>https://www.takuzen.me/posts/2016-10-08-ssh-reverse-proxy/</guid><description>有关背景请参见http://www.upwzr.com/2016/10/08/run-ngrok/，本文是在使用ngrok之前的依次失败的尝试。。。当然，ngrok实际上也是是ssh来实现的。
 对于内网主机想要外网访问，最简单的办法当然是在路由器上做手脚，但是在不能操作路由设备的时候（比如说学校的内网网段），想要实现外网访问可通过ssh隧道实现。只需要一条很简单的命令：
-ssh -N -f -R 80:127.0.0.1:8001 root@123.45.67.89  -N 不执行远程命令 -f 后台执行 -R remote_port:localhost:local_port 远程端口转发 上面的命令就表示连接到123.45.67.89，将本地的8001端口转发到123.45.67.89的80端口。公网主机的80端口转发必须使用root权限，用root角色去连接公网主机。  -g (GatewayPorts) option 先贴出一段鸟文：
- When you forward a TCP port (either locally or remotely), by default SSH only listens for connections to the forwarded port on the loopback address (localhost, 127.0.0.1). This means only other programs running on the same host as the listening side of the forwarding can connect to the forwarded port.</description>
-    </item>
-    
-  </channel>
-</rss>
+ssh -N -f -R 80:127.0.0.1:8001 root@123.45.67.89 -N 不执行远程命令 -f 后台执行 -R remote_port:localhost:local_port 远程端口转发 上面的命令就表示连接到123.45.67.89，将本地的8001端口转发到123.45.67.89的80端口。公网主机的80端口转发必须使用root权限，用root角色去连接公网主机。 -g (GatewayPorts) option 先贴出一段鸟文：
+When you forward a TCP port (either locally or remotely), by default SSH only listens for connections to the forwarded port on the loopback address (localhost, 127.0.0.1). This means only other programs running on the same host as the listening side of the forwarding can connect to the forwarded port.</description></item></channel></rss>

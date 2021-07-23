@@ -1,40 +1,11 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Java on マクロス</title>
-    <link>https://www.takuzen.me/tags/java/</link>
-    <description>Recent content in Java on マクロス</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>呉</copyright>
-    <lastBuildDate>Fri, 29 Jan 2021 23:39:16 +0900</lastBuildDate>
-    
-	<atom:link href="https://www.takuzen.me/tags/java/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>JavaのArrays.asListのシグネチャーを始めとしてVarargsとバイトコードを調査した件</title>
-      <link>https://www.takuzen.me/posts/java-varargs-and-primitive-types/</link>
-      <pubDate>Fri, 29 Jan 2021 23:39:16 +0900</pubDate>
-      
-      <guid>https://www.takuzen.me/posts/java-varargs-and-primitive-types/</guid>
-      <description>0. 課題 数日前、配列を出力したいので下記のようなコードを書いた
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Java on マクロス</title><link>https://www.takuzen.me/tags/java/</link><description>Recent content in Java on マクロス</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>呉</copyright><lastBuildDate>Fri, 29 Jan 2021 23:39:16 +0900</lastBuildDate><atom:link href="https://www.takuzen.me/tags/java/index.xml" rel="self" type="application/rss+xml"/><item><title>JavaのArrays.asListのシグネチャーを始めとしてVarargsとバイトコードを調査した件</title><link>https://www.takuzen.me/posts/java-varargs-and-primitive-types/</link><pubDate>Fri, 29 Jan 2021 23:39:16 +0900</pubDate><guid>https://www.takuzen.me/posts/java-varargs-and-primitive-types/</guid><description>0. 課題 数日前、配列を出力したいので下記のようなコードを書いた
 public class Nani { public static void main(String[] args) { int[] nums = new int[]{1, 2, 3, 4}; Arrays.asList(nums).forEach(i -&amp;gt; System.out.println(i + &amp;#34; &amp;#34;)); } } Ideaコード補完の提示に従って書いたし、エラーもないけど実行すると1 2 3 4ではなく、 [I@5ba23b66というようなやつが出力された。オブジェクトとして出力されてることが分かてるけどこれ以上理解できなかった。
 友達からヒントをもらって、Integerにすると
 Integer[] nums2 = new Integer[]{1, 2, 3, 4}; Arrays.asList(nums2).forEach(i -&amp;gt; System.out.print(i + &amp;#34; &amp;#34;)); 1 2 3 4になった。Listとかジェネリクスとかプリミティブとかに関係あるだろうと思って色々調べてみた。
 結局、これらJavaの基本コンセプト:
- Varargs Autoboxing Generics  はいずれもよく把握してなかった。
+Varargs Autoboxing Generics はいずれもよく把握してなかった。
 ちなみに、Arrays#toStringで簡単に配列が出力できる1
-System.out.println(Arrays.toString(array)); // [1, 2, 3, 4] 1. 基本知識の明確 1.1 ジェネリクス「T」にはプリミティブ型が含まれていない.</description>
-    </item>
-    
-    <item>
-      <title>思考せずに毎日gettersとsettersを実装している私、その理由が分からない</title>
-      <link>https://www.takuzen.me/posts/pretend-to-understand-getters-and-setting/</link>
-      <pubDate>Sun, 17 Jan 2021 18:05:32 +0900</pubDate>
-      
-      <guid>https://www.takuzen.me/posts/pretend-to-understand-getters-and-setting/</guid>
-      <description>最近lombokを使って下記のようなやつを結構実装していた
+System.out.println(Arrays.toString(array)); // [1, 2, 3, 4] 1. 基本知識の明確 1.1 ジェネリクス「T」にはプリミティブ型が含まれていない.</description></item><item><title>思考せずに毎日gettersとsettersを実装している私、その理由が分からない</title><link>https://www.takuzen.me/posts/pretend-to-understand-getters-and-setting/</link><pubDate>Sun, 17 Jan 2021 18:05:32 +0900</pubDate><guid>https://www.takuzen.me/posts/pretend-to-understand-getters-and-setting/</guid><description>最近lombokを使って下記のようなやつを結構実装していた
 @Getter @Setter // @Dataもよく使ってる public class Foo { private String name; private int id; } ある日、考えずに動いてる俺は突然目覚めた：上記のような処理せずフィールドの値の参照と設定だけの場合、fieldのアクセス修飾子をpublicにして直接使ったらいいんじゃない？lombokを使ってgettersとsettersを生成する目的は何だっけ？gettersとsettersは何だっけ？
 いつからgetters/settersを使うことを習慣になるのか、どこから学んだのか全然覚えてないので、調査してみた。
 TL;DR 関係あるキーワード:
@@ -45,56 +16,20 @@ POJOはライブラリに依存せずごく普通なオブジェクトである�
 まず、getters/settersをおすすめしている資料を探した getters/settersはJavaオブジェクト指向プログラミングの入門教材の定番としてよく見られ、カプセルかとかの概念に紐付けられているような印象がある。 だがgoogleしてみるとgetters/settersの必要性を疑ているタイトルがいっぱい出てきた。
 おすすめしている資料の一例： Why Should I Write Getters and Setters
 後半から
- I understand, but generally, we do not write anything in getters/setters. We just return and set the field, which is same as exposing a field as public.</description>
-    </item>
-    
-    <item>
-      <title>Springでjsonリクエスト情報のカスタマイズ処理（変換、バリデーション、共通処理）</title>
-      <link>https://www.takuzen.me/posts/spring-handle-request-arguments/</link>
-      <pubDate>Mon, 04 Jan 2021 15:13:31 +0900</pubDate>
-      
-      <guid>https://www.takuzen.me/posts/spring-handle-request-arguments/</guid>
-      <description>内容要補足
-共通処理  HandlerInterceptor ControllerAdvice/RestControllerAdvice RequestBodyAdvice @RequestBodyの共通処理に適用。 Filter 不勉強すみません AOP 不勉強againすみません  カスタマイズ変換の視点から、下記の方法がある（特に@RequestParamから取得したStringからオブジェクトへのカスタマイズ変換）
- RequestBodyAdvice @RequestBodyに適用 ConverterFactory ArgumentResolver @RequestParamとかの制御に適用（カスタマイズ変換） PropertyEditor @RequestParamとかの制御に適用（カスタマイズ変換）  HandlerInterceptor インターフェース HandlerInterceptor
+I understand, but generally, we do not write anything in getters/setters. We just return and set the field, which is same as exposing a field as public.</description></item><item><title>Springでjsonリクエスト情報のカスタマイズ処理（変換、バリデーション、共通処理）</title><link>https://www.takuzen.me/posts/spring-handle-request-arguments/</link><pubDate>Mon, 04 Jan 2021 15:13:31 +0900</pubDate><guid>https://www.takuzen.me/posts/spring-handle-request-arguments/</guid><description>内容要補足
+共通処理 HandlerInterceptor ControllerAdvice/RestControllerAdvice RequestBodyAdvice @RequestBodyの共通処理に適用。 Filter 不勉強すみません AOP 不勉強againすみません カスタマイズ変換の視点から、下記の方法がある（特に@RequestParamから取得したStringからオブジェクトへのカスタマイズ変換）
+RequestBodyAdvice @RequestBodyに適用 ConverterFactory ArgumentResolver @RequestParamとかの制御に適用（カスタマイズ変換） PropertyEditor @RequestParamとかの制御に適用（カスタマイズ変換） HandlerInterceptor インターフェース HandlerInterceptor
 リクエストがハンドルされる前後にインタセプトするインタフェースです。（Controllerは当然handlerであると認識しているが、なぜこのインタフェースの名前がControllerIntercepterになってないでしょうか）
 インタフェースによりインタセプトタイミングを見ると、Restアプリケーションの場合（特に共通バリデーションとかをしたい場合）に役割が少ないと思った1
- preHandle: ハンドラー(controller)メソッドが呼び出される前に呼び出される。httpRequestとhttpResponseがパラメータであるので、一部の前処理とかを実装できる postHandle: ハンドラーメソッドが呼び出された後、DispatcherServlet がビューをレンダリングする前に呼び出される afterCompletion:　ビューのレンダリング後のコールバック  最近のプロジェクトに、preHandleでログ出力の初期設定を行う、afterCompletionでMDCのクリアを行う、のような仕組みを応用した。
+preHandle: ハンドラー(controller)メソッドが呼び出される前に呼び出される。httpRequestとhttpResponseがパラメータであるので、一部の前処理とかを実装できる postHandle: ハンドラーメソッドが呼び出された後、DispatcherServlet がビューをレンダリングする前に呼び出される afterCompletion:　ビューのレンダリング後のコールバック 最近のプロジェクトに、preHandleでログ出力の初期設定を行う、afterCompletionでMDCのクリアを行う、のような仕組みを応用した。
 ControllerAdvice/RestControllerAdvice Controllerクラスの間に、@ExceptionHandler @InitBinder @ModelAttributeの処理を共通定義できる
 Data Binder, Model, Exceptionの共通カスタマイズ処理とかに適用
-@ControllerAdvice // @RestControllerAdvice // RestControllerの場合 class SomeCustomControllerAdvice { @InitBinder public void initDataBinder(WebDataBinder dataBinder) { // dataBinder.registerCustomEditorでカスタマイズエディターの登録を行ったり  // dataBinder.getTarget()でハンドラーメソッドに渡すPOJOオブジェクトのインスタンスも取得できる  } @ModelAttribute public void addSomething(@RequestParam(&amp;#34;someKey&amp;#34;) String someValue, Model model) { // モデルを更新するとか  // ハンドラーのようにリクエストパラメータを取得できるので、前処理とか実装できる  } @ExceptionHandler // @ExceptionHandler({NullPointerException.</description>
-    </item>
-    
-    <item>
-      <title>依存性逆転の原則(Dependency Inversion Principle), the D in SOLID</title>
-      <link>https://www.takuzen.me/posts/dependency-inversion-principle/</link>
-      <pubDate>Sat, 19 Dec 2020 15:43:21 +0900</pubDate>
-      
-      <guid>https://www.takuzen.me/posts/dependency-inversion-principle/</guid>
-      <description>SOLIDの一つである、依存性逆転の原則(Dependency Inversion Principle, DIP)は一体どういうものか？色々調査してみた。今までもはっきりわかったと言えないがある程度納得したと思う。
+@ControllerAdvice // @RestControllerAdvice // RestControllerの場合 class SomeCustomControllerAdvice { @InitBinder public void initDataBinder(WebDataBinder dataBinder) { // dataBinder.registerCustomEditorでカスタマイズエディターの登録を行ったり // dataBinder.getTarget()でハンドラーメソッドに渡すPOJOオブジェクトのインスタンスも取得できる } @ModelAttribute public void addSomething(@RequestParam(&amp;#34;someKey&amp;#34;) String someValue, Model model) { // モデルを更新するとか // ハンドラーのようにリクエストパラメータを取得できるので、前処理とか実装できる } @ExceptionHandler // @ExceptionHandler({NullPointerException.</description></item><item><title>依存性逆転の原則(Dependency Inversion Principle), the D in SOLID</title><link>https://www.takuzen.me/posts/dependency-inversion-principle/</link><pubDate>Sat, 19 Dec 2020 15:43:21 +0900</pubDate><guid>https://www.takuzen.me/posts/dependency-inversion-principle/</guid><description>SOLIDの一つである、依存性逆転の原則(Dependency Inversion Principle, DIP)は一体どういうものか？色々調査してみた。今までもはっきりわかったと言えないがある程度納得したと思う。
 まず、依存性の注入(DI)は依存性逆転の原則(DIP)ではない よく言われてる依存性の注入(Dependency Injection, DI)と依存性逆転の原則は、全く別のものである。
 あるクラスBの中には、別のクラスAを使う場合、BはAを依存している
-class A { public A(int p) { // ...  } } class B { public B() { A a = new A(1); // ...  } public static void main(String[] args) { B b = new B(); } } DIていうのは、その依存対象を直接扱う代わりに、外から注入することです。
-class B { public B(A a) { // ...  } public static void main(String[] args) { A a = new A(1); B b = new B(a);　// Bの依存を注入する  } } SpringとかのフレームワークはDIを利用して依存関係を管理して注入してくれる。</description>
-    </item>
-    
-    <item>
-      <title>Spring Bean Scope: Singleton and Prototype</title>
-      <link>https://www.takuzen.me/posts/spring-bean-scope/</link>
-      <pubDate>Sun, 13 Dec 2020 16:36:42 +0900</pubDate>
-      
-      <guid>https://www.takuzen.me/posts/spring-bean-scope/</guid>
-      <description>シングルトンsingleton Only one instance is created and managed in the Spring container. This instance is shared by all requests so we should use this for stateless beans. Singleton scope is the default scope in Spring.
-@Service public class SomeService{ // DANGER! This property is shared by all requests so one user might use others&amp;#39; password  private String password; public void authByPassword(){ // ...  } } prototype A new instance is created by each request for that bean.</description>
-    </item>
-    
-    <item>
-      <title>SpringMVC初使用心得</title>
-      <link>https://www.takuzen.me/posts/2018-10-10-springmvc-practice/</link>
-      <pubDate>Wed, 10 Oct 2018 17:25:25 +0000</pubDate>
-      
-      <guid>https://www.takuzen.me/posts/2018-10-10-springmvc-practice/</guid>
-      <description>进入公司第一个实践的项目是用SpringMVC开发的。在前辈指导跳过了Spring庞大的学习内容直接上手了SpringMVC。磕磕碰碰中也算是对Spring有了一个初步的了解。
+class A { public A(int p) { // ... } } class B { public B() { A a = new A(1); // ... } public static void main(String[] args) { B b = new B(); } } DIていうのは、その依存対象を直接扱う代わりに、外から注入することです。
+class B { public B(A a) { // ... } public static void main(String[] args) { A a = new A(1); B b = new B(a);　// Bの依存を注入する } } SpringとかのフレームワークはDIを利用して依存関係を管理して注入してくれる。</description></item><item><title>Spring Bean Scope: Singleton and Prototype</title><link>https://www.takuzen.me/posts/spring-bean-scope/</link><pubDate>Sun, 13 Dec 2020 16:36:42 +0900</pubDate><guid>https://www.takuzen.me/posts/spring-bean-scope/</guid><description>シングルトンsingleton Only one instance is created and managed in the Spring container. This instance is shared by all requests so we should use this for stateless beans. Singleton scope is the default scope in Spring.
+@Service public class SomeService{ // DANGER! This property is shared by all requests so one user might use others&amp;#39; password private String password; public void authByPassword(){ // ... } } prototype A new instance is created by each request for that bean.</description></item><item><title>SpringMVC初使用心得</title><link>https://www.takuzen.me/posts/2018-10-10-springmvc-practice/</link><pubDate>Wed, 10 Oct 2018 17:25:25 +0000</pubDate><guid>https://www.takuzen.me/posts/2018-10-10-springmvc-practice/</guid><description>进入公司第一个实践的项目是用SpringMVC开发的。在前辈指导跳过了Spring庞大的学习内容直接上手了SpringMVC。磕磕碰碰中也算是对Spring有了一个初步的了解。
 SpringMVC框架初识 SpringMVC是Spring提供的一个web框架。
 架构 SpringMVC是Spring的一部分，主要模块如下图所示。
 在SpringMVC为架构的项目中的代码逻辑主要有如下几层:
@@ -103,101 +38,30 @@ Service层 Service层实现了业务的主要逻辑。处理参数，调用负�
 Dao层 Data access的部分在项目中体现为Dao层。Dao层的类以Model为载体，借助JDBC或者Hibernate的方法封装了对表的各种操作。通常Dao层的类和数据表是一一对应的。Dao层的类需要添加@Repository注解。
 Model Model层就是数据表的Java载体。需要添加@Entity注解标明该类为实体，并使用@Table(name = &amp;quot;table_name&amp;quot;)来绑定数据表。Model类中要添加@Id @GeneratedValue注解配置主键（具体含义还需进一步学习。参考链接:https://www.baeldung.com/hibernate-identifiers https://www.thoughts-on-java.org/jpa-generate-primary-keys/。）Model中的getter setter通过@Column(name = &amp;quot;id&amp;quot;, unique = true, nullable = false)注解表字段。
 调度流程 首先在项目最外层的web.xml中指定了Spring提供的dispatcherServlet作为调度请求的核心servlet。
-未完待续
-  </description>
-    </item>
-    
-    <item>
-      <title>Android配置变更时的状态保留</title>
-      <link>https://www.takuzen.me/posts/2017-10-25-save-stats-through-configuration-changes/</link>
-      <pubDate>Wed, 25 Oct 2017 03:59:14 +0000</pubDate>
-      
-      <guid>https://www.takuzen.me/posts/2017-10-25-save-stats-through-configuration-changes/</guid>
-      <description>在设备配置变化时，Android会销毁并重建正在运行的 Activity， 通常使用 onSaveInstanceState()，来保存有关应用状态的数据。 然后，可以在 onCreate() 或 onRestoreInstanceState() 期间恢复 Activity 状态。
+未完待续</description></item><item><title>Android配置变更时的状态保留</title><link>https://www.takuzen.me/posts/2017-10-25-save-stats-through-configuration-changes/</link><pubDate>Wed, 25 Oct 2017 03:59:14 +0000</pubDate><guid>https://www.takuzen.me/posts/2017-10-25-save-stats-through-configuration-changes/</guid><description>在设备配置变化时，Android会销毁并重建正在运行的 Activity， 通常使用 onSaveInstanceState()，来保存有关应用状态的数据。 然后，可以在 onCreate() 或 onRestoreInstanceState() 期间恢复 Activity 状态。
 但是，在有些情况下，如在执行一段耗时的异步网络请求，onSaveInstanceState()就显得力不从心了，只能重新执行异步操作。这样不但影响用户体验，处理不慎还可能会使应用异常终止。
 文档中推荐使用 Fragment 来保留有状态对象的引用。通过 setRetainInstance(true) 方法，系统不会在重启活动时销毁fragment。
-public class RetainedFragment extends Fragment { // data object we want to retain  private MyDataObject data; // this method is only called once for this fragment  @Override public void onCreate(Bundle savedInstanceState) { super.onCreate(savedInstanceState); // retain this fragment  setRetainInstance(true); } public void setData(MyDataObject data) { this.data = data; } public MyDataObject getData() { return data; } } 在添加fragment时定义一个标签以便恢复。</description>
-    </item>
-    
-    <item>
-      <title>get-selected-text-from-webview</title>
-      <link>https://www.takuzen.me/posts/2017-10-08-get-selected-text-from-webview/</link>
-      <pubDate>Sun, 08 Oct 2017 00:30:19 +0000</pubDate>
-      
-      <guid>https://www.takuzen.me/posts/2017-10-08-get-selected-text-from-webview/</guid>
-      <description>在试图自定义WebView选择文本之后的行为时，遇到了很多的麻烦。
+public class RetainedFragment extends Fragment { // data object we want to retain private MyDataObject data; // this method is only called once for this fragment @Override public void onCreate(Bundle savedInstanceState) { super.onCreate(savedInstanceState); // retain this fragment setRetainInstance(true); } public void setData(MyDataObject data) { this.data = data; } public MyDataObject getData() { return data; } } 在添加fragment时定义一个标签以便恢复。</description></item><item><title>get-selected-text-from-webview</title><link>https://www.takuzen.me/posts/2017-10-08-get-selected-text-from-webview/</link><pubDate>Sun, 08 Oct 2017 00:30:19 +0000</pubDate><guid>https://www.takuzen.me/posts/2017-10-08-get-selected-text-from-webview/</guid><description>在试图自定义WebView选择文本之后的行为时，遇到了很多的麻烦。
 首先便是获得选择文本这一步。WebView并没有相应的API，想获取选择的文本貌似只能通过js来解决。在最开始的尝试中，我的代码实现如下：
 contentText.loadDataWithBaseURL(null, article.getContent(), &amp;#34;text/html&amp;#34;, &amp;#34;UTF-8&amp;#34;, null); contentText.evaluateJavascript(&amp;#34;(function(){return window.getSelection().toString()})()&amp;#34;, new ValueCallback&amp;lt;String&amp;gt;() { @Override public void onReceiveValue(String s) { Log.d(&amp;#34;NewsContentActivity&amp;#34;, s); } }); 然而不知为何，获取到的文本始终为空字符串&amp;quot;&amp;quot;，百思不得其解的我偶然把evaluateJavascript方法放到了重写的onActionModeStarted中，竟然可以收到正确的文本了，不过依然有个严重的问题：在当前WebView中只能成功获取一次，再次选择文本就完全没有反应了。在调试时我发现，是因为我在选择文本时要先点击屏幕使得之前的选择消除掉，否则始终是同一次的onActionModeStarted调用。这样就无法解决我的问题了，因为我需要获取拖拽浮标选择的文本。
 。。。
 研究了一夜，实在没什么方案可以达到我想要的效果，只能通过点击菜单项获取选择的文本了。。
-未完待续。
-  </description>
-    </item>
-    
-    <item>
-      <title>提升ListView的效率</title>
-      <link>https://www.takuzen.me/posts/2017-10-04-making-listview-scrolling-smooth/</link>
-      <pubDate>Wed, 04 Oct 2017 04:52:18 +0000</pubDate>
-      
-      <guid>https://www.takuzen.me/posts/2017-10-04-making-listview-scrolling-smooth/</guid>
-      <description>利用好getView中的convertView参数 getView()方法中有一个convertView参数用来缓存已经加载好的布局，从而我们可以在代码中对布局进行重用：
+未完待续。</description></item><item><title>提升ListView的效率</title><link>https://www.takuzen.me/posts/2017-10-04-making-listview-scrolling-smooth/</link><pubDate>Wed, 04 Oct 2017 04:52:18 +0000</pubDate><guid>https://www.takuzen.me/posts/2017-10-04-making-listview-scrolling-smooth/</guid><description>利用好getView中的convertView参数 getView()方法中有一个convertView参数用来缓存已经加载好的布局，从而我们可以在代码中对布局进行重用：
 public View getView(int position, View convertView, ViewGroup parent) { View view = convertView; if (view == null) view = LayoutInflater.from(getContext()).inflate(resorceId, parent, false); // ... } 使用ViewHolder 定义ViewHolder来存储已经获取的Views实例。
-class ViewHolder { TextView textView; ImageView imageView; // ... } public View getView(int position, View convertView, ViewGroup parent) { View view = convertView; VIewHolder holder; if (view == null) { view = LayoutInflater.from(getContext()).inflate(resorceId, parent, false); holder = new ViewHolder(); // save views to the holder.</description>
-    </item>
-    
-    <item>
-      <title>Android中的MVP模式</title>
-      <link>https://www.takuzen.me/posts/2017-09-29-mvp-in-android/</link>
-      <pubDate>Fri, 29 Sep 2017 15:18:32 +0000</pubDate>
-      
-      <guid>https://www.takuzen.me/posts/2017-09-29-mvp-in-android/</guid>
-      <description>Model View Presenter (MVP) 模式是安卓开发中非常热门的一种架构模式。MVP模式将数据模型从传统的View层分离出来，通过presenter实现两者的间接通信。
+class ViewHolder { TextView textView; ImageView imageView; // ... } public View getView(int position, View convertView, ViewGroup parent) { View view = convertView; VIewHolder holder; if (view == null) { view = LayoutInflater.from(getContext()).inflate(resorceId, parent, false); holder = new ViewHolder(); // save views to the holder.</description></item><item><title>Android中的MVP模式</title><link>https://www.takuzen.me/posts/2017-09-29-mvp-in-android/</link><pubDate>Fri, 29 Sep 2017 15:18:32 +0000</pubDate><guid>https://www.takuzen.me/posts/2017-09-29-mvp-in-android/</guid><description>Model View Presenter (MVP) 模式是安卓开发中非常热门的一种架构模式。MVP模式将数据模型从传统的View层分离出来，通过presenter实现两者的间接通信。
 (图片出处：vogella)
- View层 该层专注于UI的实现，实现UI操作的接口，如showProgressBar, updateData等。通常会持有对Presenter层的引用，或通过依赖注入获取到Presenter实例。 Presenter层 该层实现业务逻辑，负责View层和Model层的控制和交互。该层通常应尽量避变对sdk产生依赖。 Model层 该层实现对数据操作的封装，暴露接口给Presenter层。    </description>
-    </item>
-    
-    <item>
-      <title>Android Webview中的编码问题</title>
-      <link>https://www.takuzen.me/posts/2017-09-24-encoding-in-webview/</link>
-      <pubDate>Sun, 24 Sep 2017 20:11:30 +0000</pubDate>
-      
-      <guid>https://www.takuzen.me/posts/2017-09-24-encoding-in-webview/</guid>
-      <description>最近在处理一段html文本时，为了解析ruby标签，我用Weview代替了Textview，起初是这样写的：
+View层 该层专注于UI的实现，实现UI操作的接口，如showProgressBar, updateData等。通常会持有对Presenter层的引用，或通过依赖注入获取到Presenter实例。 Presenter层 该层实现业务逻辑，负责View层和Model层的控制和交互。该层通常应尽量避变对sdk产生依赖。 Model层 该层实现对数据操作的封装，暴露接口给Presenter层。</description></item><item><title>Android Webview中的编码问题</title><link>https://www.takuzen.me/posts/2017-09-24-encoding-in-webview/</link><pubDate>Sun, 24 Sep 2017 20:11:30 +0000</pubDate><guid>https://www.takuzen.me/posts/2017-09-24-encoding-in-webview/</guid><description>最近在处理一段html文本时，为了解析ruby标签，我用Weview代替了Textview，起初是这样写的：
 webview.loadData(article.getContent(), &amp;#34;text/html&amp;#34;, &amp;#34;UTF-8&amp;#34;); 结果显示出来全部是乱码。网上查阅资料后发现一个一简易的处理办法：
 contentText.loadData(article.getContent(), &amp;#34;text/html; charset=UTF-8&amp;#34;, &amp;#34;UTF-8&amp;#34;); 我处理的文本是含有日语的html文本，这个方法是有效的。
 另外，也可以使用WebView.loadDataWithBaseURL()代替WebView.loadData()。
 webview.loadDataWithBaseURL(null, article.getContent(), &amp;#34;text/html&amp;#34;, &amp;#34;UTF-8&amp;#34;, null); 网上还有这样的方法：
 if (Build.VERSION.SDK_INT &amp;gt;= Build.VERSION_CODES.FROYO) { String base64 = Base64.encodeToString(htmlString.getBytes(), Base64.DEFAULT); myWebView.loadData(base64, &amp;quot;text/html; charset=utf-8&amp;quot;, &amp;quot;base64&amp;quot;); } 如代码中所见，该方法适用于Android 4+的场景。不过我并没有进行实际测试这种方式。
- 参考资料 stackoverflow - Android. WebView and loadData Android Developers
-   </description>
-    </item>
-    
-    <item>
-      <title>使用Tools Attributes Reference</title>
-      <link>https://www.takuzen.me/posts/2017-09-23-use-tools-attributes-reference-in-android-studio/</link>
-      <pubDate>Sat, 23 Sep 2017 19:55:32 +0000</pubDate>
-      
-      <guid>https://www.takuzen.me/posts/2017-09-23-use-tools-attributes-reference-in-android-studio/</guid>
-      <description>Android Studio 提供了一系列工具属性用于开发过程中，如预览布局效果等。构建应用时会自动删除掉所有此类属性。灵活应用这些属性可以给开发带来很大的快感。
+参考资料 stackoverflow - Android. WebView and loadData Android Developers</description></item><item><title>使用Tools Attributes Reference</title><link>https://www.takuzen.me/posts/2017-09-23-use-tools-attributes-reference-in-android-studio/</link><pubDate>Sat, 23 Sep 2017 19:55:32 +0000</pubDate><guid>https://www.takuzen.me/posts/2017-09-23-use-tools-attributes-reference-in-android-studio/</guid><description>Android Studio 提供了一系列工具属性用于开发过程中，如预览布局效果等。构建应用时会自动删除掉所有此类属性。灵活应用这些属性可以给开发带来很大的快感。
 为启用此类属性，加入toolsNs即可。
 &amp;lt;RootTag xmlns:android=&amp;#34;http://schemas.android.com/apk/res/android&amp;#34; xmlns:tools=&amp;#34;http://schemas.android.com/tools&amp;#34; &amp;gt; 使用tools:前缀代替android: 由于经常会在代码中对布局进行更改，无法通过IDE的预览功能直观的查看到效果。这时可使用tools:前缀代替android:来插入简单的数据，如tools:text tools:src等。
 使用tools:listitem / tools:listheader / tools:listfooter 这些属性可以将item的布局加载出来，帮助我们预览ListView或RecyclerView，而不再是单纯的文本。
 还有一些其他属性，待下次用到时再进行记载。
- 参考资料 文档：Tools Attributes Reference
-   </description>
-    </item>
-    
-    <item>
-      <title>使用Gson解析含有动态未知键名的json数据</title>
-      <link>https://www.takuzen.me/posts/2017-09-05-dealing-with-ramdomly-generated-json-key-names-using-gson-md/</link>
-      <pubDate>Tue, 05 Sep 2017 14:16:06 +0000</pubDate>
-      
-      <guid>https://www.takuzen.me/posts/2017-09-05-dealing-with-ramdomly-generated-json-key-names-using-gson-md/</guid>
-      <description>初学Android开发，最近在开发一个用来练手的android小项目，遇到了一个问题：在解析json时遇到了含有未知字段的json数据，此时不能通过Gson库的静态解析方式进行解析。文档上提到了可以自定义解析器，网上也有一些类似的实现案例。我也记录下相应的解决方案。
+参考资料 文档：Tools Attributes Reference</description></item><item><title>使用Gson解析含有动态未知键名的json数据</title><link>https://www.takuzen.me/posts/2017-09-05-dealing-with-ramdomly-generated-json-key-names-using-gson-md/</link><pubDate>Tue, 05 Sep 2017 14:16:06 +0000</pubDate><guid>https://www.takuzen.me/posts/2017-09-05-dealing-with-ramdomly-generated-json-key-names-using-gson-md/</guid><description>初学Android开发，最近在开发一个用来练手的android小项目，遇到了一个问题：在解析json时遇到了含有未知字段的json数据，此时不能通过Gson库的静态解析方式进行解析。文档上提到了可以自定义解析器，网上也有一些类似的实现案例。我也记录下相应的解决方案。
 我获取的json数据可简化为：
 // news { news_id: &amp;#34;id&amp;#34;, news_title: &amp;#34;title&amp;#34; } // monthJson { &amp;#34;2017-09-05&amp;#34;: [ { news_id: &amp;#34;id1&amp;#34;, news_title: &amp;#34;title1&amp;#34; }, { news_id: &amp;#34;id2&amp;#34;, news_title: &amp;#34;title2&amp;#34; } ], &amp;#34;2017-09-04&amp;#34;: [ { news_id: &amp;#34;id1&amp;#34;, news_title: &amp;#34;title1&amp;#34; }, { news_id: &amp;#34;id2&amp;#34;, news_title: &amp;#34;title2&amp;#34; } ] } 可建立如下模型（省略 getter 和 setter ）：
-public class News { @SerializedName(&amp;#34;news_id&amp;#34;) private String id; @SerializedName(&amp;#34;news_title&amp;#34;) private String title; } public class MonthNews { private Map&amp;lt;String, List&amp;lt;News&amp;gt;&amp;gt; monthNews; public MonthNews(Map&amp;lt;String, List&amp;lt;News&amp;gt;&amp;gt; monthNews) { this.</description>
-    </item>
-    
-  </channel>
-</rss>
+public class News { @SerializedName(&amp;#34;news_id&amp;#34;) private String id; @SerializedName(&amp;#34;news_title&amp;#34;) private String title; } public class MonthNews { private Map&amp;lt;String, List&amp;lt;News&amp;gt;&amp;gt; monthNews; public MonthNews(Map&amp;lt;String, List&amp;lt;News&amp;gt;&amp;gt; monthNews) { this.</description></item></channel></rss>
