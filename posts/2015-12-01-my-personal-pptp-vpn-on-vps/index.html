@@ -1,8 +1,13 @@
 <!doctype html><html lang=en-us>
 <head>
+<link rel=preload href=/lib/font-awesome/webfonts/fa-brands-400.woff2 as=font type=font/woff2 crossorigin=anonymous>
+<link rel=preload href=/lib/font-awesome/webfonts/fa-regular-400.woff2 as=font type=font/woff2 crossorigin=anonymous>
+<link rel=preload href=/lib/font-awesome/webfonts/fa-solid-900.woff2 as=font type=font/woff2 crossorigin=anonymous>
+<link rel=preload href=/lib/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2 as=font type=font/woff2 crossorigin=anonymous>
 <meta charset=utf-8>
 <meta http-equiv=x-ua-compatible content="IE=edge">
 <title> vps搭建私人pptp vpn,新姿势GET！ | マクロス</title>
+<link rel=canonical href=https://www.takuzen.me/posts/2015-12-01-my-personal-pptp-vpn-on-vps/>
 <meta name=description content="勉強中">
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=robots content="all,follow">
@@ -36,7 +41,7 @@ DigitalOcean购买VPS 在网上查了大家的经验攻略，自己看了下DO�
 修改DNS配置  # sudo nano /etc/ppp/pptpd-options  添加google的DNS
  ms-dns 8.8.8.8 ms-dns 8.8.4.4  这个文件里还开启了其他的一些选项，课根据需要开启我从别的大神那里复制来了一些资料：
  name pptpd（pptpd服务名，可以随便填写。） refuse-pap（拒绝pap身份认证模式。） refuse-chap（拒绝chap身份认证模式。） refuse-mschap（拒绝mschap身份认证模式。） require-mschap-v2（在端点进行连接握手时需要使用微软的 mschap-v2 进行自身验证。） require-mppe-128（MPPE 模块使用 128 位加密。） ms-dns 8.8.8.8 (ppp 为 Windows 客户端提供 DNS 服务器 IP 地址。) proxyarp (建立 ARP 代理键值。) nodefaultroute（不替换默认路由） debug（开启调试模式，相关信息记录在 /var/logs/message 中。现在默认是被注释掉的。） lock（锁定客户端 PTY 设备文件。） nobsdcomp (禁用 BSD 压缩模式。)">
-<link rel=stylesheet href=https://www.takuzen.me/css/style-white.css><!--[if lt IE 9]><script src=https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js></script>
+<link rel=stylesheet href=https://www.takuzen.me/css/styles.94f653e9e151e28067a7c5dbbc4600cbd5a3c721e79faaf971e523c40f3b249b8e4f20bb57810dfffa8d559ca5c140fd56eb4cd9c0853113ad08e66afdb08bdd.css integrity="sha512-lPZT6eFR4oBnp8XbvEYAy9WjxyHnn6r5ceUjxA87JJuOTyC7V4EN//qNVZylwUD9VutM2cCFMROtCOZq/bCL3Q=="><!--[if lt IE 9]><script src=https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js></script>
 <script src=https://oss.maxcdn.com/respond/1.4.2/respond.min.js></script><![endif]-->
 <link rel=icon type=image/png href=https://www.takuzen.me/images/favicon.ico>
 <script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','UA-83047470-2','auto'),ga('send','pageview'))</script>
@@ -375,4 +380,5 @@ Copyright &copy; 2021 呉
 <link rel=stylesheet href=/lib/font-awesome/css/all.min.css>
 <script src=/lib/jquery/jquery.min.js></script>
 <script src=/js/main.js></script>
+<script src=/js/code-copy.js></script>
 </html>

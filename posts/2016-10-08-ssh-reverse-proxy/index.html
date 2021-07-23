@@ -1,8 +1,13 @@
 <!doctype html><html lang=en-us>
 <head>
+<link rel=preload href=/lib/font-awesome/webfonts/fa-brands-400.woff2 as=font type=font/woff2 crossorigin=anonymous>
+<link rel=preload href=/lib/font-awesome/webfonts/fa-regular-400.woff2 as=font type=font/woff2 crossorigin=anonymous>
+<link rel=preload href=/lib/font-awesome/webfonts/fa-solid-900.woff2 as=font type=font/woff2 crossorigin=anonymous>
+<link rel=preload href=/lib/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2 as=font type=font/woff2 crossorigin=anonymous>
 <meta charset=utf-8>
 <meta http-equiv=x-ua-compatible content="IE=edge">
 <title> ssh反向代理实现内网穿透（比较失败( ˙灬˙ )） | マクロス</title>
+<link rel=canonical href=https://www.takuzen.me/posts/2016-10-08-ssh-reverse-proxy/>
 <meta name=description content="勉強中">
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=robots content="all,follow">
@@ -22,7 +27,7 @@ ssh -N -f -R 80:127.0.0.1:8001 root@123.45.67.89  -N 不执行远程命令 -f �
 对于内网主机想要外网访问，最简单的办法当然是在路由器上做手脚，但是在不能操作路由设备的时候（比如说学校的内网网段），想要实现外网访问可通过ssh隧道实现。只需要一条很简单的命令：
 ssh -N -f -R 80:127.0.0.1:8001 root@123.45.67.89  -N 不执行远程命令 -f 后台执行 -R remote_port:localhost:local_port 远程端口转发 上面的命令就表示连接到123.45.67.89，将本地的8001端口转发到123.45.67.89的80端口。公网主机的80端口转发必须使用root权限，用root角色去连接公网主机。  -g (GatewayPorts) option 先贴出一段鸟文：
  When you forward a TCP port (either locally or remotely), by default SSH only listens for connections to the forwarded port on the loopback address (localhost, 127.0.0.1). This means only other programs running on the same host as the listening side of the forwarding can connect to the forwarded port.">
-<link rel=stylesheet href=https://www.takuzen.me/css/style-white.css><!--[if lt IE 9]><script src=https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js></script>
+<link rel=stylesheet href=https://www.takuzen.me/css/styles.94f653e9e151e28067a7c5dbbc4600cbd5a3c721e79faaf971e523c40f3b249b8e4f20bb57810dfffa8d559ca5c140fd56eb4cd9c0853113ad08e66afdb08bdd.css integrity="sha512-lPZT6eFR4oBnp8XbvEYAy9WjxyHnn6r5ceUjxA87JJuOTyC7V4EN//qNVZylwUD9VutM2cCFMROtCOZq/bCL3Q=="><!--[if lt IE 9]><script src=https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js></script>
 <script src=https://oss.maxcdn.com/respond/1.4.2/respond.min.js></script><![endif]-->
 <link rel=icon type=image/png href=https://www.takuzen.me/images/favicon.ico>
 <script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','UA-83047470-2','auto'),ga('send','pageview'))</script>
@@ -295,4 +300,5 @@ Copyright &copy; 2021 呉
 <link rel=stylesheet href=/lib/font-awesome/css/all.min.css>
 <script src=/lib/jquery/jquery.min.js></script>
 <script src=/js/main.js></script>
+<script src=/js/code-copy.js></script>
 </html>

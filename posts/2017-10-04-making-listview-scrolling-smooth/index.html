@@ -1,8 +1,13 @@
 <!doctype html><html lang=en-us>
 <head>
+<link rel=preload href=/lib/font-awesome/webfonts/fa-brands-400.woff2 as=font type=font/woff2 crossorigin=anonymous>
+<link rel=preload href=/lib/font-awesome/webfonts/fa-regular-400.woff2 as=font type=font/woff2 crossorigin=anonymous>
+<link rel=preload href=/lib/font-awesome/webfonts/fa-solid-900.woff2 as=font type=font/woff2 crossorigin=anonymous>
+<link rel=preload href=/lib/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2 as=font type=font/woff2 crossorigin=anonymous>
 <meta charset=utf-8>
 <meta http-equiv=x-ua-compatible content="IE=edge">
 <title> 提升ListView的效率 | マクロス</title>
+<link rel=canonical href=https://www.takuzen.me/posts/2017-10-04-making-listview-scrolling-smooth/>
 <meta name=description content="勉強中">
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=robots content="all,follow">
@@ -20,7 +25,7 @@ class ViewHolder { TextView textView; ImageView imageView; // ... } public View 
 <meta name=twitter:description content="利用好getView中的convertView参数 getView()方法中有一个convertView参数用来缓存已经加载好的布局，从而我们可以在代码中对布局进行重用：
 public View getView(int position, View convertView, ViewGroup parent) { View view = convertView; if (view == null) view = LayoutInflater.from(getContext()).inflate(resorceId, parent, false); // ... } 使用ViewHolder 定义ViewHolder来存储已经获取的Views实例。
 class ViewHolder { TextView textView; ImageView imageView; // ... } public View getView(int position, View convertView, ViewGroup parent) { View view = convertView; VIewHolder holder; if (view == null) { view = LayoutInflater.from(getContext()).inflate(resorceId, parent, false); holder = new ViewHolder(); // save views to the holder.">
-<link rel=stylesheet href=https://www.takuzen.me/css/style-white.css><!--[if lt IE 9]><script src=https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js></script>
+<link rel=stylesheet href=https://www.takuzen.me/css/styles.94f653e9e151e28067a7c5dbbc4600cbd5a3c721e79faaf971e523c40f3b249b8e4f20bb57810dfffa8d559ca5c140fd56eb4cd9c0853113ad08e66afdb08bdd.css integrity="sha512-lPZT6eFR4oBnp8XbvEYAy9WjxyHnn6r5ceUjxA87JJuOTyC7V4EN//qNVZylwUD9VutM2cCFMROtCOZq/bCL3Q=="><!--[if lt IE 9]><script src=https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js></script>
 <script src=https://oss.maxcdn.com/respond/1.4.2/respond.min.js></script><![endif]-->
 <link rel=icon type=image/png href=https://www.takuzen.me/images/favicon.ico>
 <script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','UA-83047470-2','auto'),ga('send','pageview'))</script>
@@ -318,4 +323,5 @@ Copyright &copy; 2021 呉
 <link rel=stylesheet href=/lib/font-awesome/css/all.min.css>
 <script src=/lib/jquery/jquery.min.js></script>
 <script src=/js/main.js></script>
+<script src=/js/code-copy.js></script>
 </html>

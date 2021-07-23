@@ -1,8 +1,13 @@
 <!doctype html><html lang=en-us>
 <head>
+<link rel=preload href=/lib/font-awesome/webfonts/fa-brands-400.woff2 as=font type=font/woff2 crossorigin=anonymous>
+<link rel=preload href=/lib/font-awesome/webfonts/fa-regular-400.woff2 as=font type=font/woff2 crossorigin=anonymous>
+<link rel=preload href=/lib/font-awesome/webfonts/fa-solid-900.woff2 as=font type=font/woff2 crossorigin=anonymous>
+<link rel=preload href=/lib/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2 as=font type=font/woff2 crossorigin=anonymous>
 <meta charset=utf-8>
 <meta http-equiv=x-ua-compatible content="IE=edge">
 <title> 简记oath2.0 | マクロス</title>
+<link rel=canonical href=https://www.takuzen.me/posts/2016-04-22-understanding-oauth2/>
 <meta name=description content="勉強中">
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=robots content="all,follow">
@@ -22,7 +27,7 @@
 授权流程  客户端向用户提示授权 用户同意授权，向客户端提供授权许可（grant） 客户端向认证服务器发送认证请求，请求中包含用户提供的授权许可 认证成功后认证服务器向客户端发放令牌（token） 客户端使用令牌向服务器端请求资源 资源服务器验证令牌有效，答复请求  授权许可方式 在用户向客户端提供授权许可这一环节，OAuth2定义了四种类型：授权码模式（authorization code）、简化模式（implicit）、密码模式（resource owner password credentials）、客户端模式（client credentials）。
 授权码（authorization code） 这种模式中，客户端将用户引导到授权服务器上，用户同意授权后授权服务器将会令用户重定向至客户端指定的回调地址，并带有授权码。客户端收到授权码后便会自行请求认证服务器，认证服务器核对无误即会返回给客户端访问令牌和更新令牌。整个流程中用户实际上只是跟认证服务器提交了认证，并未与客户端分享任何登录信息。
 简化模式（implicit） （懒得简化了，先贴出来放在这=。=） The implicit grant is a simplified authorization code flow optimized for clients implemented in a browser using a scripting language such as JavaScript. In the implicit flow, instead of issuing the client an authorization code, the client is issued an access token directly (as the result of the resource owner authorization).">
-<link rel=stylesheet href=https://www.takuzen.me/css/style-white.css><!--[if lt IE 9]><script src=https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js></script>
+<link rel=stylesheet href=https://www.takuzen.me/css/styles.94f653e9e151e28067a7c5dbbc4600cbd5a3c721e79faaf971e523c40f3b249b8e4f20bb57810dfffa8d559ca5c140fd56eb4cd9c0853113ad08e66afdb08bdd.css integrity="sha512-lPZT6eFR4oBnp8XbvEYAy9WjxyHnn6r5ceUjxA87JJuOTyC7V4EN//qNVZylwUD9VutM2cCFMROtCOZq/bCL3Q=="><!--[if lt IE 9]><script src=https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js></script>
 <script src=https://oss.maxcdn.com/respond/1.4.2/respond.min.js></script><![endif]-->
 <link rel=icon type=image/png href=https://www.takuzen.me/images/favicon.ico>
 <script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','UA-83047470-2','auto'),ga('send','pageview'))</script>
@@ -324,4 +329,5 @@ Copyright &copy; 2021 呉
 <link rel=stylesheet href=/lib/font-awesome/css/all.min.css>
 <script src=/lib/jquery/jquery.min.js></script>
 <script src=/js/main.js></script>
+<script src=/js/code-copy.js></script>
 </html>

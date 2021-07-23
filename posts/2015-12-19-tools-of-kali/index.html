@@ -1,8 +1,13 @@
 <!doctype html><html lang=en-us>
 <head>
+<link rel=preload href=/lib/font-awesome/webfonts/fa-brands-400.woff2 as=font type=font/woff2 crossorigin=anonymous>
+<link rel=preload href=/lib/font-awesome/webfonts/fa-regular-400.woff2 as=font type=font/woff2 crossorigin=anonymous>
+<link rel=preload href=/lib/font-awesome/webfonts/fa-solid-900.woff2 as=font type=font/woff2 crossorigin=anonymous>
+<link rel=preload href=/lib/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2 as=font type=font/woff2 crossorigin=anonymous>
 <meta charset=utf-8>
 <meta http-equiv=x-ua-compatible content="IE=edge">
 <title> Kali的一些工具 | マクロス</title>
+<link rel=canonical href=https://www.takuzen.me/posts/2015-12-19-tools-of-kali/>
 <meta name=description content="勉強中">
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=robots content="all,follow">
@@ -16,7 +21,7 @@
 <meta name=twitter:card content="summary">
 <meta name=twitter:title content="Kali的一些工具">
 <meta name=twitter:description content="信息收集 DNS信息  host 查询/etc/resolv.conf中指定的DNS服务器 dig 可处理文件内的所有DNS指令 dnsenum 可通过google搜素子域名；课使用字典对子域名进行暴力破解； dnsdict6 IPv6子域名枚举 fierce 能对不连续的IP空间和主机名进行测试 DMitry 具有DNS分析和路由分析功能，可进行简单端口探测 Maltego 图形化综合工具  路由信息  tcptraceroute 利用TCP SYN数据包进行路由信息探测 tctrace -i -h  搜索引擎  theharvester 通过多个公共资源搜集所需信息（Email、用户名、主机名等） Metagoofil 通过google搜索目标域的文件的元数据信息，kali2默认貌似没有安装  目标识别 识别主机  ping 老朋友。。 ping6 用来ping IPv6 fping 可同时探测多个主机或者整个网段 arping 使用ARP请求检测局域网内主机是否在线，IP或者MAC地址都可作为目标 hping3 端口扫描、防火墙规则检测、IDS检测等，功能强大 nping 支持多种协议探测模式；可做压力测试、ARP中毒、Dos攻击 nbtscan 审计局域网内windows系统IP地址、NetBIOS信息等  识别操作系统  p0f 被动方式探测目标主机 nmap 神器之一  服务枚举 端口扫描  nmap 端口扫描；主机探测；服务/版本检测；操作系统检测；网络路由跟踪；脚本引擎  -sT TCP连接扫描 -sS SYN扫描（半开连接扫描） -sN NULL扫描（不设置任何控制位） -sF FIN扫描 -sM TCP Maimom扫描，常用于探测BSD衍生出来的操作系统 -sA TCP ACK扫描，能检测防火墙，确定定被屏蔽端口 -sW TCP窗口扫描 -sI 通过僵尸主机发动扫描 &ndash;scanflags 自定义URG、ACK、PSH、RST、SYN、FIN、ECE、CWR、ALL和NONE组合 -sU UDP扫描 -sV 服务版识别 -O 识别操作系统 -p 指定端口或端口范围 -F 快速扫描，近扫描常用100个端口 -r 顺序扫描 -oN 正常输出 -oX 将结果生成为XML文件 -A 强力扫描，相当于 -sV -O -sC &ndash;traceroute -sC 使用默认类的脚本进行扫描 相当于&ndash;script=default &ndash;script 根据指定文件名、类别名、目录名执行相应脚本 -f 使用小数据包，避免目标IDS识别 &ndash;mtu 调整数据包大小，必须是8的倍数 -D 在侦测数据包中掺杂一些假源IP的数据包。 -g 模拟源端口 &ndash;data-length 改变数据包默认长度 &ndash;scan-delay 控制发送探测数据的时间间隔   Unicornscna 扫描UDP端口性能卓越 zenmap nmap的图形化扫描工具 amap 检测指定端口上运行的应用程序信息  SNMP枚举  SNMP 简单网络管理协议，运行于161端口的应用层协议，用于网络设备运行状态的监控， SNMP协议有三个版本v1/v2/v3">
-<link rel=stylesheet href=https://www.takuzen.me/css/style-white.css><!--[if lt IE 9]><script src=https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js></script>
+<link rel=stylesheet href=https://www.takuzen.me/css/styles.94f653e9e151e28067a7c5dbbc4600cbd5a3c721e79faaf971e523c40f3b249b8e4f20bb57810dfffa8d559ca5c140fd56eb4cd9c0853113ad08e66afdb08bdd.css integrity="sha512-lPZT6eFR4oBnp8XbvEYAy9WjxyHnn6r5ceUjxA87JJuOTyC7V4EN//qNVZylwUD9VutM2cCFMROtCOZq/bCL3Q=="><!--[if lt IE 9]><script src=https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js></script>
 <script src=https://oss.maxcdn.com/respond/1.4.2/respond.min.js></script><![endif]-->
 <link rel=icon type=image/png href=https://www.takuzen.me/images/favicon.ico>
 <script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','UA-83047470-2','auto'),ga('send','pageview'))</script>
@@ -421,4 +426,5 @@ Copyright &copy; 2021 呉
 <link rel=stylesheet href=/lib/font-awesome/css/all.min.css>
 <script src=/lib/jquery/jquery.min.js></script>
 <script src=/js/main.js></script>
+<script src=/js/code-copy.js></script>
 </html>

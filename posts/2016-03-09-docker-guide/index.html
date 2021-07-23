@@ -1,8 +1,13 @@
 <!doctype html><html lang=en-us>
 <head>
+<link rel=preload href=/lib/font-awesome/webfonts/fa-brands-400.woff2 as=font type=font/woff2 crossorigin=anonymous>
+<link rel=preload href=/lib/font-awesome/webfonts/fa-regular-400.woff2 as=font type=font/woff2 crossorigin=anonymous>
+<link rel=preload href=/lib/font-awesome/webfonts/fa-solid-900.woff2 as=font type=font/woff2 crossorigin=anonymous>
+<link rel=preload href=/lib/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2 as=font type=font/woff2 crossorigin=anonymous>
 <meta charset=utf-8>
 <meta http-equiv=x-ua-compatible content="IE=edge">
 <title> docker基础简记 | マクロス</title>
+<link rel=canonical href=https://www.takuzen.me/posts/2016-03-09-docker-guide/>
 <meta name=description content="勉強中">
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=robots content="all,follow">
@@ -20,7 +25,7 @@ docker命令简记  run 启动  -t 在容器内指定一个终端 -i 允许对�
 <meta name=twitter:description content="Docker是什么  Docker allows you to package an application with all of its dependencies into a standardized unit for software development. &mdash;-What is Docker?
  Docker是近几年兴起的发展非常快速的开源项目，可用来创建非常轻量的“虚拟机”。在这里重要的两个概念是 镜像 和 容器 。
 docker命令简记  run 启动  -t 在容器内指定一个终端 -i 允许对容器内的STDIN进行交互 -d 在容器内已后台进程模式运行 -P 将容器内部使用的网络端口随机映射到主机高端口上 -p 指定要绑定的端口，具体用法见文档 -e KEY=value 设置环境变量 &ndash;name container_name 为容器命名 &ndash;rm 创建临时容器，停止后删除   ps 查看正在运行的容器  -l 显示最后启动容器的详细信息 -a 显示所有容器，包括已经停止的   logs container_name 查看容器内的标准输出  -f 保持活动状态，动态显示新添加的信息   stop 停止正在工作的容器 version 返回Docker 客户端和进程的版本信息 port container_name top 查看容器内部运行的进程 inspect 查看容器的底层信息（配置和状态），JSON格式  -f &lsquo;{{ obj.">
-<link rel=stylesheet href=https://www.takuzen.me/css/style-white.css><!--[if lt IE 9]><script src=https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js></script>
+<link rel=stylesheet href=https://www.takuzen.me/css/styles.94f653e9e151e28067a7c5dbbc4600cbd5a3c721e79faaf971e523c40f3b249b8e4f20bb57810dfffa8d559ca5c140fd56eb4cd9c0853113ad08e66afdb08bdd.css integrity="sha512-lPZT6eFR4oBnp8XbvEYAy9WjxyHnn6r5ceUjxA87JJuOTyC7V4EN//qNVZylwUD9VutM2cCFMROtCOZq/bCL3Q=="><!--[if lt IE 9]><script src=https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js></script>
 <script src=https://oss.maxcdn.com/respond/1.4.2/respond.min.js></script><![endif]-->
 <link rel=icon type=image/png href=https://www.takuzen.me/images/favicon.ico>
 <script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','UA-83047470-2','auto'),ga('send','pageview'))</script>
@@ -297,4 +302,5 @@ Copyright &copy; 2021 呉
 <link rel=stylesheet href=/lib/font-awesome/css/all.min.css>
 <script src=/lib/jquery/jquery.min.js></script>
 <script src=/js/main.js></script>
+<script src=/js/code-copy.js></script>
 </html>

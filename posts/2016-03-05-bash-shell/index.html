@@ -1,8 +1,13 @@
 <!doctype html><html lang=en-us>
 <head>
+<link rel=preload href=/lib/font-awesome/webfonts/fa-brands-400.woff2 as=font type=font/woff2 crossorigin=anonymous>
+<link rel=preload href=/lib/font-awesome/webfonts/fa-regular-400.woff2 as=font type=font/woff2 crossorigin=anonymous>
+<link rel=preload href=/lib/font-awesome/webfonts/fa-solid-900.woff2 as=font type=font/woff2 crossorigin=anonymous>
+<link rel=preload href=/lib/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2 as=font type=font/woff2 crossorigin=anonymous>
 <meta charset=utf-8>
 <meta http-equiv=x-ua-compatible content="IE=edge">
 <title> 基本的bash shell命令 | マクロス</title>
+<link rel=canonical href=https://www.takuzen.me/posts/2016-03-05-bash-shell/>
 <meta name=description content="勉強中">
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=robots content="all,follow">
@@ -16,7 +21,7 @@
 <meta name=twitter:card content="summary">
 <meta name=twitter:title content="基本的bash shell命令">
 <meta name=twitter:description content="基本的bash shell命令 处理文件和目录  ls 输出目录  -s 显示文件大小 -a 输出隐藏文件 -i 显示文件的索引值 -l 产生长列表的输出 -R 递归列出子目录内容   touch 创建新文件或者改变访问/修改时间  -a 只改变访问时间 -m 只改变修改时间 -t 指定时间戳   cp 复制文件  -f 强制覆盖不提示 -i 覆盖前提示 -r 递归的复制文件 -R 递归的复制目录 -l 创建文件链接（硬链接） -s 创建符号链接（软连接） -v 详细模式   mv 移动文件（重命名） rm 删除文件  -i 删除前提示 -f 强制删除不提示 -r 递归删除非空目录   mkdir 创建目录 stat 提供文件的所有状态信息 file 查看文件类型 cat 显示文本数据  -n 给所有行加上行号 -b 给有文本的行加上行号 -s 多个空白行压缩为一行 -T 用^I替换制表符   more 分页显示  空格 显示下一屏 ENTER 显示下一行 /expression 查找 n 查找下一处匹配的内容 ' 调到匹配的第一处内容 !">
-<link rel=stylesheet href=https://www.takuzen.me/css/style-white.css><!--[if lt IE 9]><script src=https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js></script>
+<link rel=stylesheet href=https://www.takuzen.me/css/styles.94f653e9e151e28067a7c5dbbc4600cbd5a3c721e79faaf971e523c40f3b249b8e4f20bb57810dfffa8d559ca5c140fd56eb4cd9c0853113ad08e66afdb08bdd.css integrity="sha512-lPZT6eFR4oBnp8XbvEYAy9WjxyHnn6r5ceUjxA87JJuOTyC7V4EN//qNVZylwUD9VutM2cCFMROtCOZq/bCL3Q=="><!--[if lt IE 9]><script src=https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js></script>
 <script src=https://oss.maxcdn.com/respond/1.4.2/respond.min.js></script><![endif]-->
 <link rel=icon type=image/png href=https://www.takuzen.me/images/favicon.ico>
 <script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','UA-83047470-2','auto'),ga('send','pageview'))</script>
@@ -600,4 +605,5 @@ Copyright &copy; 2021 呉
 <link rel=stylesheet href=/lib/font-awesome/css/all.min.css>
 <script src=/lib/jquery/jquery.min.js></script>
 <script src=/js/main.js></script>
+<script src=/js/code-copy.js></script>
 </html>
