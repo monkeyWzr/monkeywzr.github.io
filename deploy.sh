@@ -12,7 +12,7 @@ rm -rf public
 echo "Generating site"
 hugo
 
-echo "Updating master branch"
+echo "Updating main branch"
 cd public
 git init
 
@@ -21,7 +21,7 @@ git config --global user.email "${GitHubEMail}"
 git config --global user.name "${GitHubUser}"
 
 git add --all .
-git commit -m "Publishing to master (deploy.sh)"
+git commit -m "Publishing to main (deploy.sh)"
 
 echo "Pushing to github"
-git push --quiet --force https://${GitHubKEY}@github.com/${GitHubUser}/${GitHubRepo}.git master
+git push --quiet --force https://${GitHubKEY}@github.com/${GitHubUser}/${GitHubRepo}.git main
