@@ -6,4 +6,7 @@ charset-定义文档字符编码，常用值为utf-8 http-equiv-提供了名称/
 content-type: text/html charset:iso-8859-1 expires:31 Dec 2008 所有服务器都至少要发送一个：content-type:text/html，这将告诉浏览器准备接受一个 HTML 文档。
 其它实例：
 //定义文档关键词，用于搜索引擎 &amp;lt;meta name=&amp;quot;keywords&amp;quot; content=&amp;quot;HTML, CSS, XML, XHTML, JavaScript&amp;quot;&amp;gt; //每30秒刷新页面 &amp;lt;meta http-equiv=&amp;quot;refresh&amp;quot; content=&amp;quot;30&amp;quot;&amp;gt; //声明文档使用的字符编码 &amp;lt;meta charset='utf-8'&amp;gt; 还有一种lang属性写法：
-//简体中文 &amp;lt;html lang=&amp;quot;zh-cmn-Hans&amp;quot;&amp;gt; //繁体中文 &amp;lt;html lang=&amp;quot;zh-cmn-Hant&amp;quot;&amp;gt; //英文 &amp;lt;html lang=&amp;quot;en&amp;quot;&amp;gt; lang属性的取值应该遵循 BCP 47 - Tags for Identifying Languages</description></item></channel></rss>
+//简体中文 &amp;lt;html lang=&amp;quot;zh-cmn-Hans&amp;quot;&amp;gt; //繁体中文 &amp;lt;html lang=&amp;quot;zh-cmn-Hant&amp;quot;&amp;gt; //英文 &amp;lt;html lang=&amp;quot;en&amp;quot;&amp;gt; lang属性的取值应该遵循 BCP 47 - Tags for Identifying Languages
+详见知乎回答http://zhi.hu/XyIa
+另外，meta的巧妙使用可以对网站SEO优化，相关的常用name值有description``keywords``author``robots等。
+//页面描述 &amp;lt;meta name=&amp;quot;description&amp;quot; content=&amp;quot;不超过150个字符&amp;quot; /&amp;gt; //页面关键字 &amp;lt;meta name=&amp;quot;keywords&amp;quot; content=&amp;quot;&amp;quot;/&amp;gt; //网页作者 &amp;lt;meta name=&amp;quot;author&amp;quot; content=&amp;quot;name, email@gmail.</description></item></channel></rss>

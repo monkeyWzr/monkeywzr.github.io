@@ -5,4 +5,7 @@
 //继续使用上面的num1和num2 int num3; num3 = num1 ?? 10;//num3 = 10; num3 = num2 ?? 38;//num3 = 250; 引用类型 引用类型不包含储存在变量中的实际数据。内置的引用类型有object``dynamic``string
 对象(object)类型 object类型是c#通用类型系统CTS中所有数据的终极基类，可以分配任何类型的值。一个值类型转换为对象类型时称为__装箱__，反过来称为__拆箱__;
 object obj； obj = 100;//装箱 动态(Dynamic)类型 类型检查在运行时发生。
-dynamic a = 20; 字符串(String)类型 String是System.String类的别名，从对象类派生。有一个@分配方式（称作逐字字符串）。</description></item></channel></rss>
+dynamic a = 20; 字符串(String)类型 String是System.String类的别名，从对象类派生。有一个@分配方式（称作逐字字符串）。
+String str1 = &amp;quot;Hello world&amp;quot;; String str2 = @&amp;quot;C:\Windows&amp;quot;;//转义字符会当作普通字符看待 @字符串中所有的换行符缩进符等都计算在字符串长度内。
+指针类型 与c/c/c++有相同的类型；
+type* identifier; 参数传递 C#中有三种参数传递方式：值参数、引用参数、输出参数。</description></item></channel></rss>

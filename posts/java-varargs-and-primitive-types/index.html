@@ -1,493 +1,149 @@
-<!doctype html><html lang=en-us>
-<head>
-<link rel=preload href=/lib/font-awesome/webfonts/fa-brands-400.woff2 as=font type=font/woff2 crossorigin=anonymous>
-<link rel=preload href=/lib/font-awesome/webfonts/fa-regular-400.woff2 as=font type=font/woff2 crossorigin=anonymous>
-<link rel=preload href=/lib/font-awesome/webfonts/fa-solid-900.woff2 as=font type=font/woff2 crossorigin=anonymous>
-<link rel=preload href=/lib/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2 as=font type=font/woff2 crossorigin=anonymous>
-<meta charset=utf-8>
-<meta http-equiv=x-ua-compatible content="IE=edge">
-<title> JavaのArrays.asListのシグネチャーを始めとしてVarargsとバイトコードを調査した件 | マクロス</title>
-<link rel=canonical href=https://www.takuzen.me/posts/java-varargs-and-primitive-types/>
-<meta name=description content="勉強中">
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=robots content="all,follow">
-<meta name=googlebot content="index,follow,snippet,archive">
-<meta property="og:title" content="JavaのArrays.asListのシグネチャーを始めとしてVarargsとバイトコードを調査した件">
-<meta property="og:description" content="0. 課題 数日前、配列を出力したいので下記のようなコードを書いた
+<!doctype html><html lang=en-us><head><link rel=preload href=/lib/font-awesome/webfonts/fa-brands-400.woff2 as=font type=font/woff2 crossorigin=anonymous><link rel=preload href=/lib/font-awesome/webfonts/fa-regular-400.woff2 as=font type=font/woff2 crossorigin=anonymous><link rel=preload href=/lib/font-awesome/webfonts/fa-solid-900.woff2 as=font type=font/woff2 crossorigin=anonymous><link rel=preload href=/lib/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2 as=font type=font/woff2 crossorigin=anonymous><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><title>JavaのArrays.asListのシグネチャーを始めとしてVarargsとバイトコードを調査した件 | マクロス</title><link rel=canonical href=https://www.takuzen.me/posts/java-varargs-and-primitive-types/><meta name=description content="勉強中"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="all,follow"><meta name=googlebot content="index,follow,snippet,archive"><meta property="og:title" content="JavaのArrays.asListのシグネチャーを始めとしてVarargsとバイトコードを調査した件"><meta property="og:description" content="0. 課題 数日前、配列を出力したいので下記のようなコードを書いた
 public class Nani { public static void main(String[] args) { int[] nums = new int[]{1, 2, 3, 4}; Arrays.asList(nums).forEach(i -> System.out.println(i + &#34; &#34;)); } } Ideaコード補完の提示に従って書いたし、エラーもないけど実行すると1 2 3 4ではなく、 [I@5ba23b66というようなやつが出力された。オブジェクトとして出力されてることが分かてるけどこれ以上理解できなかった。
 友達からヒントをもらって、Integerにすると
 Integer[] nums2 = new Integer[]{1, 2, 3, 4}; Arrays.asList(nums2).forEach(i -> System.out.print(i + &#34; &#34;)); 1 2 3 4になった。Listとかジェネリクスとかプリミティブとかに関係あるだろうと思って色々調べてみた。
 結局、これらJavaの基本コンセプト:
- Varargs Autoboxing Generics  はいずれもよく把握してなかった。
+Varargs Autoboxing Generics はいずれもよく把握してなかった。
 ちなみに、Arrays#toStringで簡単に配列が出力できる1
-System.out.println(Arrays.toString(array)); // [1, 2, 3, 4] 1. 基本知識の明確 1.1 ジェネリクス「T」にはプリミティブ型が含まれていない.">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://www.takuzen.me/posts/java-varargs-and-primitive-types/"><meta property="article:section" content="posts">
-<meta property="article:published_time" content="2021-01-29T23:39:16+09:00">
-<meta property="article:modified_time" content="2021-01-29T23:39:16+09:00">
-<meta name=twitter:card content="summary">
-<meta name=twitter:title content="JavaのArrays.asListのシグネチャーを始めとしてVarargsとバイトコードを調査した件">
-<meta name=twitter:description content="0. 課題 数日前、配列を出力したいので下記のようなコードを書いた
+System.out.println(Arrays.toString(array)); // [1, 2, 3, 4] 1. 基本知識の明確 1.1 ジェネリクス「T」にはプリミティブ型が含まれていない. T = T extends Object 後ほどバイトコードを詳細した上、確認できた。"><meta property="og:type" content="article"><meta property="og:url" content="https://www.takuzen.me/posts/java-varargs-and-primitive-types/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2021-01-29T23:39:16+09:00"><meta property="article:modified_time" content="2021-01-29T23:39:16+09:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="JavaのArrays.asListのシグネチャーを始めとしてVarargsとバイトコードを調査した件"><meta name=twitter:description content="0. 課題 数日前、配列を出力したいので下記のようなコードを書いた
 public class Nani { public static void main(String[] args) { int[] nums = new int[]{1, 2, 3, 4}; Arrays.asList(nums).forEach(i -> System.out.println(i + &#34; &#34;)); } } Ideaコード補完の提示に従って書いたし、エラーもないけど実行すると1 2 3 4ではなく、 [I@5ba23b66というようなやつが出力された。オブジェクトとして出力されてることが分かてるけどこれ以上理解できなかった。
 友達からヒントをもらって、Integerにすると
 Integer[] nums2 = new Integer[]{1, 2, 3, 4}; Arrays.asList(nums2).forEach(i -> System.out.print(i + &#34; &#34;)); 1 2 3 4になった。Listとかジェネリクスとかプリミティブとかに関係あるだろうと思って色々調べてみた。
 結局、これらJavaの基本コンセプト:
- Varargs Autoboxing Generics  はいずれもよく把握してなかった。
+Varargs Autoboxing Generics はいずれもよく把握してなかった。
 ちなみに、Arrays#toStringで簡単に配列が出力できる1
-System.out.println(Arrays.toString(array)); // [1, 2, 3, 4] 1. 基本知識の明確 1.1 ジェネリクス「T」にはプリミティブ型が含まれていない.">
-<link rel=stylesheet href=https://www.takuzen.me/css/styles.94f653e9e151e28067a7c5dbbc4600cbd5a3c721e79faaf971e523c40f3b249b8e4f20bb57810dfffa8d559ca5c140fd56eb4cd9c0853113ad08e66afdb08bdd.css integrity="sha512-lPZT6eFR4oBnp8XbvEYAy9WjxyHnn6r5ceUjxA87JJuOTyC7V4EN//qNVZylwUD9VutM2cCFMROtCOZq/bCL3Q=="><!--[if lt IE 9]><script src=https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js></script>
-<script src=https://oss.maxcdn.com/respond/1.4.2/respond.min.js></script><![endif]-->
-<link rel=icon type=image/png href=https://www.takuzen.me/images/favicon.ico>
-<script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','UA-83047470-2','auto'),ga('send','pageview'))</script>
-<script async src=https://www.google-analytics.com/analytics.js></script>
-</head>
-<body class="max-width mx-auto px3 ltr">
-<div class="content index py4">
-<div id=header-post>
-<a id=menu-icon href=#><i class="fas fa-bars fa-lg"></i></a>
+System.out.println(Arrays.toString(array)); // [1, 2, 3, 4] 1. 基本知識の明確 1.1 ジェネリクス「T」にはプリミティブ型が含まれていない. T = T extends Object 後ほどバイトコードを詳細した上、確認できた。"><link rel=stylesheet href=https://www.takuzen.me/css/styles.94f653e9e151e28067a7c5dbbc4600cbd5a3c721e79faaf971e523c40f3b249b8e4f20bb57810dfffa8d559ca5c140fd56eb4cd9c0853113ad08e66afdb08bdd.css integrity="sha512-lPZT6eFR4oBnp8XbvEYAy9WjxyHnn6r5ceUjxA87JJuOTyC7V4EN//qNVZylwUD9VutM2cCFMROtCOZq/bCL3Q=="><!--[if lt IE 9]><script src=https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js></script>
+<script src=https://oss.maxcdn.com/respond/1.4.2/respond.min.js></script><![endif]--><link rel=icon type=image/png href=https://www.takuzen.me/images/favicon.ico><script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-83047470-2","auto"),ga("send","pageview"))</script><script async src=https://www.google-analytics.com/analytics.js></script></head><body class="max-width mx-auto px3 ltr"><div class="content index py4"><div id=header-post><a id=menu-icon href=#><i class="fas fa-bars fa-lg"></i></a>
 <a id=menu-icon-tablet href=#><i class="fas fa-bars fa-lg"></i></a>
-<a id=top-icon-tablet href=# onclick="$('html, body').animate({scrollTop:0},'fast')" style=display:none aria-label="Top of Page"><i class="fas fa-chevron-up fa-lg"></i></a>
-<span id=menu>
-<span id=nav>
-<ul>
-<li><a href=/>Home</a></li>
-<li><a href=/posts>Writings</a></li>
-<li><a href=/tags>Tags</a></li>
-<li><a href=/about>About</a></li>
-</ul>
-</span>
-<br>
-<span id=actions>
-<ul>
-<li>
-<a class=icon href=https://www.takuzen.me/posts/pretend-to-understand-getters-and-setting/ aria-label=Previous>
-<i class="fas fa-chevron-left" aria-hidden=true onmouseover="$('#i-prev').toggle()" onmouseout="$('#i-prev').toggle()"></i>
-</a>
-</li>
-<li>
-<a class=icon href=https://www.takuzen.me/posts/programming-typescript-notes-types/ aria-label=Next>
-<i class="fas fa-chevron-right" aria-hidden=true onmouseover="$('#i-next').toggle()" onmouseout="$('#i-next').toggle()"></i>
-</a>
-</li>
-<li>
-<a class=icon href=# onclick="$('html, body').animate({scrollTop:0},'fast')" aria-label="Top of Page">
-<i class="fas fa-chevron-up" aria-hidden=true onmouseover="$('#i-top').toggle()" onmouseout="$('#i-top').toggle()"></i>
-</a>
-</li>
-<li>
-<a class=icon href=# aria-label=Share>
-<i class="fas fa-share-alt" aria-hidden=true onmouseover="$('#i-share').toggle()" onmouseout="$('#i-share').toggle()" onclick="return $('#share').toggle(),!1"></i>
-</a>
-</li>
-</ul>
-<span id=i-prev class=info style=display:none>Previous post</span>
+<a id=top-icon-tablet href=# onclick='$("html, body").animate({scrollTop:0},"fast")' style=display:none aria-label="Top of Page"><i class="fas fa-chevron-up fa-lg"></i></a>
+<span id=menu><span id=nav><ul><li><a href=/>Home</a></li><li><a href=/posts>Writings</a></li><li><a href=/tags>Tags</a></li><li><a href=/about>About</a></li></ul></span><br><span id=actions><ul><li><a class=icon href=https://www.takuzen.me/posts/pretend-to-understand-getters-and-setting/ aria-label=Previous><i class="fas fa-chevron-left" aria-hidden=true onmouseover='$("#i-prev").toggle()' onmouseout='$("#i-prev").toggle()'></i></a></li><li><a class=icon href=https://www.takuzen.me/posts/programming-typescript-notes-types/ aria-label=Next><i class="fas fa-chevron-right" aria-hidden=true onmouseover='$("#i-next").toggle()' onmouseout='$("#i-next").toggle()'></i></a></li><li><a class=icon href=# onclick='$("html, body").animate({scrollTop:0},"fast")' aria-label="Top of Page"><i class="fas fa-chevron-up" aria-hidden=true onmouseover='$("#i-top").toggle()' onmouseout='$("#i-top").toggle()'></i></a></li><li><a class=icon href=# aria-label=Share><i class="fas fa-share-alt" aria-hidden=true onmouseover='$("#i-share").toggle()' onmouseout='$("#i-share").toggle()' onclick='return $("#share").toggle(),!1'></i></a></li></ul><span id=i-prev class=info style=display:none>Previous post</span>
 <span id=i-next class=info style=display:none>Next post</span>
 <span id=i-top class=info style=display:none>Back to top</span>
-<span id=i-share class=info style=display:none>Share post</span>
-</span>
-<br>
-<div id=share style=display:none>
-<ul>
-<li>
-<a class=icon href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fwww.takuzen.me%2fposts%2fjava-varargs-and-primitive-types%2f" aria-label=Facebook>
-<i class="fab fa-facebook" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="https://twitter.com/share?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fjava-varargs-and-primitive-types%2f&text=Java%e3%81%aeArrays.asList%e3%81%ae%e3%82%b7%e3%82%b0%e3%83%8d%e3%83%81%e3%83%a3%e3%83%bc%e3%82%92%e5%a7%8b%e3%82%81%e3%81%a8%e3%81%97%e3%81%a6Varargs%e3%81%a8%e3%83%90%e3%82%a4%e3%83%88%e3%82%b3%e3%83%bc%e3%83%89%e3%82%92%e8%aa%bf%e6%9f%bb%e3%81%97%e3%81%9f%e4%bb%b6" aria-label=Twitter>
-<i class="fab fa-twitter" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fjava-varargs-and-primitive-types%2f&title=Java%e3%81%aeArrays.asList%e3%81%ae%e3%82%b7%e3%82%b0%e3%83%8d%e3%83%81%e3%83%a3%e3%83%bc%e3%82%92%e5%a7%8b%e3%82%81%e3%81%a8%e3%81%97%e3%81%a6Varargs%e3%81%a8%e3%83%90%e3%82%a4%e3%83%88%e3%82%b3%e3%83%bc%e3%83%89%e3%82%92%e8%aa%bf%e6%9f%bb%e3%81%97%e3%81%9f%e4%bb%b6" aria-label=Linkedin>
-<i class="fab fa-linkedin" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fjava-varargs-and-primitive-types%2f&is_video=false&description=Java%e3%81%aeArrays.asList%e3%81%ae%e3%82%b7%e3%82%b0%e3%83%8d%e3%83%81%e3%83%a3%e3%83%bc%e3%82%92%e5%a7%8b%e3%82%81%e3%81%a8%e3%81%97%e3%81%a6Varargs%e3%81%a8%e3%83%90%e3%82%a4%e3%83%88%e3%82%b3%e3%83%bc%e3%83%89%e3%82%92%e8%aa%bf%e6%9f%bb%e3%81%97%e3%81%9f%e4%bb%b6" aria-label=Pinterest>
-<i class="fab fa-pinterest" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="mailto:?subject=Java%e3%81%aeArrays.asList%e3%81%ae%e3%82%b7%e3%82%b0%e3%83%8d%e3%83%81%e3%83%a3%e3%83%bc%e3%82%92%e5%a7%8b%e3%82%81%e3%81%a8%e3%81%97%e3%81%a6Varargs%e3%81%a8%e3%83%90%e3%82%a4%e3%83%88%e3%82%b3%e3%83%bc%e3%83%89%e3%82%92%e8%aa%bf%e6%9f%bb%e3%81%97%e3%81%9f%e4%bb%b6&body=Check out this article: https%3a%2f%2fwww.takuzen.me%2fposts%2fjava-varargs-and-primitive-types%2f" aria-label=Email>
-<i class="fas fa-envelope" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="https://getpocket.com/save?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fjava-varargs-and-primitive-types%2f&title=Java%e3%81%aeArrays.asList%e3%81%ae%e3%82%b7%e3%82%b0%e3%83%8d%e3%83%81%e3%83%a3%e3%83%bc%e3%82%92%e5%a7%8b%e3%82%81%e3%81%a8%e3%81%97%e3%81%a6Varargs%e3%81%a8%e3%83%90%e3%82%a4%e3%83%88%e3%82%b3%e3%83%bc%e3%83%89%e3%82%92%e8%aa%bf%e6%9f%bb%e3%81%97%e3%81%9f%e4%bb%b6" aria-label=Pocket>
-<i class="fab fa-get-pocket" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="http://reddit.com/submit?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fjava-varargs-and-primitive-types%2f&title=Java%e3%81%aeArrays.asList%e3%81%ae%e3%82%b7%e3%82%b0%e3%83%8d%e3%83%81%e3%83%a3%e3%83%bc%e3%82%92%e5%a7%8b%e3%82%81%e3%81%a8%e3%81%97%e3%81%a6Varargs%e3%81%a8%e3%83%90%e3%82%a4%e3%83%88%e3%82%b3%e3%83%bc%e3%83%89%e3%82%92%e8%aa%bf%e6%9f%bb%e3%81%97%e3%81%9f%e4%bb%b6" aria-label=reddit>
-<i class="fab fa-reddit" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="http://www.tumblr.com/share/link?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fjava-varargs-and-primitive-types%2f&name=Java%e3%81%aeArrays.asList%e3%81%ae%e3%82%b7%e3%82%b0%e3%83%8d%e3%83%81%e3%83%a3%e3%83%bc%e3%82%92%e5%a7%8b%e3%82%81%e3%81%a8%e3%81%97%e3%81%a6Varargs%e3%81%a8%e3%83%90%e3%82%a4%e3%83%88%e3%82%b3%e3%83%bc%e3%83%89%e3%82%92%e8%aa%bf%e6%9f%bb%e3%81%97%e3%81%9f%e4%bb%b6&description=0.%20%e8%aa%b2%e9%a1%8c%20%e6%95%b0%e6%97%a5%e5%89%8d%e3%80%81%e9%85%8d%e5%88%97%e3%82%92%e5%87%ba%e5%8a%9b%e3%81%97%e3%81%9f%e3%81%84%e3%81%ae%e3%81%a7%e4%b8%8b%e8%a8%98%e3%81%ae%e3%82%88%e3%81%86%e3%81%aa%e3%82%b3%e3%83%bc%e3%83%89%e3%82%92%e6%9b%b8%e3%81%84%e3%81%9f%0apublic%20class%20Nani%20%7b%20public%20static%20void%20main%28String%5b%5d%20args%29%20%7b%20int%5b%5d%20nums%20%3d%20new%20int%5b%5d%7b1%2c%202%2c%203%2c%204%7d%3b%20Arrays.asList%28nums%29.forEach%28i%20-%26gt%3b%20System.out.println%28i%20%2b%20%26%2334%3b%20%26%2334%3b%29%29%3b%20%7d%20%7d%20Idea%e3%82%b3%e3%83%bc%e3%83%89%e8%a3%9c%e5%ae%8c%e3%81%ae%e6%8f%90%e7%a4%ba%e3%81%ab%e5%be%93%e3%81%a3%e3%81%a6%e6%9b%b8%e3%81%84%e3%81%9f%e3%81%97%e3%80%81%e3%82%a8%e3%83%a9%e3%83%bc%e3%82%82%e3%81%aa%e3%81%84%e3%81%91%e3%81%a9%e5%ae%9f%e8%a1%8c%e3%81%99%e3%82%8b%e3%81%a81%202%203%204%e3%81%a7%e3%81%af%e3%81%aa%e3%81%8f%e3%80%81%20%5bI%405ba23b66%e3%81%a8%e3%81%84%e3%81%86%e3%82%88%e3%81%86%e3%81%aa%e3%82%84%e3%81%a4%e3%81%8c%e5%87%ba%e5%8a%9b%e3%81%95%e3%82%8c%e3%81%9f%e3%80%82%e3%82%aa%e3%83%96%e3%82%b8%e3%82%a7%e3%82%af%e3%83%88%e3%81%a8%e3%81%97%e3%81%a6%e5%87%ba%e5%8a%9b%e3%81%95%e3%82%8c%e3%81%a6%e3%82%8b%e3%81%93%e3%81%a8%e3%81%8c%e5%88%86%e3%81%8b%e3%81%a6%e3%82%8b%e3%81%91%e3%81%a9%e3%81%93%e3%82%8c%e4%bb%a5%e4%b8%8a%e7%90%86%e8%a7%a3%e3%81%a7%e3%81%8d%e3%81%aa%e3%81%8b%e3%81%a3%e3%81%9f%e3%80%82%0a%e5%8f%8b%e9%81%94%e3%81%8b%e3%82%89%e3%83%92%e3%83%b3%e3%83%88%e3%82%92%e3%82%82%e3%82%89%e3%81%a3%e3%81%a6%e3%80%81Integer%e3%81%ab%e3%81%99%e3%82%8b%e3%81%a8%0aInteger%5b%5d%20nums2%20%3d%20new%20Integer%5b%5d%7b1%2c%202%2c%203%2c%204%7d%3b%20Arrays.asList%28nums2%29.forEach%28i%20-%26gt%3b%20System.out.print%28i%20%2b%20%26%2334%3b%20%26%2334%3b%29%29%3b%201%202%203%204%e3%81%ab%e3%81%aa%e3%81%a3%e3%81%9f%e3%80%82List%e3%81%a8%e3%81%8b%e3%82%b8%e3%82%a7%e3%83%8d%e3%83%aa%e3%82%af%e3%82%b9%e3%81%a8%e3%81%8b%e3%83%97%e3%83%aa%e3%83%9f%e3%83%86%e3%82%a3%e3%83%96%e3%81%a8%e3%81%8b%e3%81%ab%e9%96%a2%e4%bf%82%e3%81%82%e3%82%8b%e3%81%a0%e3%82%8d%e3%81%86%e3%81%a8%e6%80%9d%e3%81%a3%e3%81%a6%e8%89%b2%e3%80%85%e8%aa%bf%e3%81%b9%e3%81%a6%e3%81%bf%e3%81%9f%e3%80%82%0a%e7%b5%90%e5%b1%80%e3%80%81%e3%81%93%e3%82%8c%e3%82%89Java%e3%81%ae%e5%9f%ba%e6%9c%ac%e3%82%b3%e3%83%b3%e3%82%bb%e3%83%97%e3%83%88%3a%0a%20Varargs%20Autoboxing%20Generics%20%20%e3%81%af%e3%81%84%e3%81%9a%e3%82%8c%e3%82%82%e3%82%88%e3%81%8f%e6%8a%8a%e6%8f%a1%e3%81%97%e3%81%a6%e3%81%aa%e3%81%8b%e3%81%a3%e3%81%9f%e3%80%82%0a%e3%81%a1%e3%81%aa%e3%81%bf%e3%81%ab%e3%80%81Arrays%23toString%e3%81%a7%e7%b0%a1%e5%8d%98%e3%81%ab%e9%85%8d%e5%88%97%e3%81%8c%e5%87%ba%e5%8a%9b%e3%81%a7%e3%81%8d%e3%82%8b1%0aSystem.out.println%28Arrays.toString%28array%29%29%3b%20%2f%2f%20%5b1%2c%202%2c%203%2c%204%5d%201.%20%e5%9f%ba%e6%9c%ac%e7%9f%a5%e8%ad%98%e3%81%ae%e6%98%8e%e7%a2%ba%201.1%20%e3%82%b8%e3%82%a7%e3%83%8d%e3%83%aa%e3%82%af%e3%82%b9%e3%80%8cT%e3%80%8d%e3%81%ab%e3%81%af%e3%83%97%e3%83%aa%e3%83%9f%e3%83%86%e3%82%a3%e3%83%96%e5%9e%8b%e3%81%8c%e5%90%ab%e3%81%be%e3%82%8c%e3%81%a6%e3%81%84%e3%81%aa%e3%81%84." aria-label=Tumblr>
-<i class="fab fa-tumblr" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fwww.takuzen.me%2fposts%2fjava-varargs-and-primitive-types%2f&t=Java%e3%81%aeArrays.asList%e3%81%ae%e3%82%b7%e3%82%b0%e3%83%8d%e3%83%81%e3%83%a3%e3%83%bc%e3%82%92%e5%a7%8b%e3%82%81%e3%81%a8%e3%81%97%e3%81%a6Varargs%e3%81%a8%e3%83%90%e3%82%a4%e3%83%88%e3%82%b3%e3%83%bc%e3%83%89%e3%82%92%e8%aa%bf%e6%9f%bb%e3%81%97%e3%81%9f%e4%bb%b6" aria-label="Hacker News">
-<i class="fab fa-hacker-news" aria-hidden=true></i>
-</a>
-</li>
-</ul>
-</div>
-<div id=toc>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#0-課題>0. 課題</a></li>
-<li><a href=#1-基本知識の明確>1. 基本知識の明確</a>
-<ul>
-<li><a href=#11-ジェネリクスtにはプリミティブ型が含まれていない-t--t-extends-object>1.1 ジェネリクス「T」にはプリミティブ型が含まれていない. T = T extends Object</a></li>
-<li><a href=#12-objectstringの出力内容の読み方基本知識なのか>1.2 Object.String()の出力内容の読み方　(基本知識なのか？)</a></li>
-<li><a href=#varargs可変長引数でいうのは糖衣構文だコンパイル時配列として扱う>Varargs(可変長引数)でいうのは？糖衣構文だ。コンパイル時配列として扱う</a></li>
-<li><a href=#autoboxing発生のタイミング>Autoboxing発生のタイミング</a></li>
-</ul>
-</li>
-<li><a href=#2-調査経緯>2. 調査経緯</a></li>
-<li><a href=#参考>参考</a></li>
-</ul>
-</nav>
-</div>
-</span>
-</div>
-<article class=post itemscope itemtype=http://schema.org/BlogPosting>
-<header>
-<h1 class=posttitle itemprop="name headline">
-JavaのArrays.asListのシグネチャーを始めとしてVarargsとバイトコードを調査した件
-</h1>
-<div class=meta>
-<div class=postdate>
-<time datetime="2021-01-29 23:39:16 +0900 +0900" itemprop=datePublished>2021-01-29</time>
-</div>
-<div class=article-category>
-<i class="fas fa-archive"></i>
-<a class=category-link href=/categories/notes>notes</a>
-</div>
-<div class=article-tag>
-<i class="fas fa-tag"></i>
-<a class=tag-link href=/tags/java rel=tag>Java</a>
-</div>
-</div>
-</header>
-<div class=content itemprop=articleBody>
-<h2 id=0-課題>0. 課題</h2>
-<p>数日前、配列を出力したいので下記のようなコードを書いた</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Nani</span> <span style=color:#f92672>{</span>
-    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>main</span><span style=color:#f92672>(</span>String<span style=color:#f92672>[]</span> args<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-
-        <span style=color:#66d9ef>int</span><span style=color:#f92672>[]</span> nums <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>int</span><span style=color:#f92672>[]{</span>1<span style=color:#f92672>,</span> 2<span style=color:#f92672>,</span> 3<span style=color:#f92672>,</span> 4<span style=color:#f92672>};</span>
-        Arrays<span style=color:#f92672>.</span><span style=color:#a6e22e>asList</span><span style=color:#f92672>(</span>nums<span style=color:#f92672>).</span><span style=color:#a6e22e>forEach</span><span style=color:#f92672>(</span>i <span style=color:#f92672>-&gt;</span> System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span>i <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34; &#34;</span><span style=color:#f92672>));</span>
-    <span style=color:#f92672>}</span>
-<span style=color:#f92672>}</span>
-</code></pre></div><p>Ideaコード補完の提示に従って書いたし、エラーもないけど実行すると<code>1 2 3 4</code>ではなく、
-<code>[I@5ba23b66</code>というようなやつが出力された。オブジェクトとして出力されてることが分かてるけどこれ以上理解できなかった。</p>
-<p>友達からヒントをもらって、<code>Integer</code>にすると</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>        Integer<span style=color:#f92672>[]</span> nums2 <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Integer<span style=color:#f92672>[]{</span>1<span style=color:#f92672>,</span> 2<span style=color:#f92672>,</span> 3<span style=color:#f92672>,</span> 4<span style=color:#f92672>};</span>
-        Arrays<span style=color:#f92672>.</span><span style=color:#a6e22e>asList</span><span style=color:#f92672>(</span>nums2<span style=color:#f92672>).</span><span style=color:#a6e22e>forEach</span><span style=color:#f92672>(</span>i <span style=color:#f92672>-&gt;</span> System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>print</span><span style=color:#f92672>(</span>i <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34; &#34;</span><span style=color:#f92672>));</span>
-</code></pre></div><p><code>1 2 3 4</code>になった。Listとかジェネリクスとかプリミティブとかに関係あるだろうと思って色々調べてみた。</p>
-<p>結局、これらJavaの基本コンセプト:</p>
-<ul>
-<li>Varargs</li>
-<li>Autoboxing</li>
-<li>Generics</li>
-</ul>
-<p>はいずれもよく把握してなかった。</p>
-<p>ちなみに、<code>Arrays#toString</code>で簡単に配列が出力できる<sup id=fnref:1><a href=#fn:1 class=footnote-ref role=doc-noteref>1</a></sup></p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span>Arrays<span style=color:#f92672>.</span><span style=color:#a6e22e>toString</span><span style=color:#f92672>(</span>array<span style=color:#f92672>));</span> <span style=color:#75715e>// [1, 2, 3, 4]
-</span></code></pre></div><h2 id=1-基本知識の明確>1. 基本知識の明確</h2>
-<h3 id=11-ジェネリクスtにはプリミティブ型が含まれていない-t--t-extends-object>1.1 ジェネリクス「T」にはプリミティブ型が含まれていない. T = T extends Object</h3>
-<p>後ほどバイトコードを詳細した上、確認できた。</p>
-<h3 id=12-objectstringの出力内容の読み方基本知識なのか>1.2 Object.String()の出力内容の読み方　(基本知識なのか？)</h3>
-<p>Objectクラスのディフォルト<code>toString</code>メソッド：</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> String <span style=color:#a6e22e>toString</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
-    <span style=color:#66d9ef>return</span> getClass<span style=color:#f92672>().</span><span style=color:#a6e22e>getName</span><span style=color:#f92672>()</span> <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34;@&#34;</span> <span style=color:#f92672>+</span> Integer<span style=color:#f92672>.</span><span style=color:#a6e22e>toHexString</span><span style=color:#f92672>(</span>hashCode<span style=color:#f92672>());</span>
-<span style=color:#f92672>}</span>
-</code></pre></div><p><code>[I@5ba23b66</code>のような構成は<sup id=fnref:2><a href=#fn:2 class=footnote-ref role=doc-noteref>2</a></sup>：</p>
-<ul>
-<li><code>[</code> 1次元配列 2次元の場合<code>[[</code>, 3次元は<code>[[[</code>、など</li>
-<li><code>I</code> プリミティブint型。floatの場合<code>F</code>, longの場合<code>J</code>, オブジェクトの場合<code>Ljava/lang/Object</code>など<sup id=fnref:3><a href=#fn:3 class=footnote-ref role=doc-noteref>3</a></sup></li>
-<li><code>@</code>以降の部分は対象オブジェクトのハッシュコード</li>
-</ul>
-<h3 id=varargs可変長引数でいうのは糖衣構文だコンパイル時配列として扱う>Varargs(可変長引数)でいうのは？糖衣構文だ。コンパイル時配列として扱う</h3>
-<p>同時に定義できない<sup id=fnref:4><a href=#fn:4 class=footnote-ref role=doc-noteref>4</a></sup></p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>    <span style=color:#75715e>// &#39;foo(String...)&#39; is already defined in &#39;Nani&#39;
-</span><span style=color:#75715e></span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>foo</span><span style=color:#f92672>(</span>String<span style=color:#f92672>...</span> args<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-
-    <span style=color:#f92672>}</span>
-
-    <span style=color:#75715e>// &#39;foo(String...)&#39; is already defined in &#39;Nani&#39;
-</span><span style=color:#75715e></span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>foo</span><span style=color:#f92672>(</span>String<span style=color:#f92672>[]</span> args<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-
-    <span style=color:#f92672>}</span>
-</code></pre></div><h3 id=autoboxing発生のタイミング>Autoboxing発生のタイミング</h3>
-<p>TODO</p>
-<h2 id=2-調査経緯>2. 調査経緯</h2>
-<p><code>java.util.Arrays#asList</code>の定義:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#f92672>&lt;</span>T<span style=color:#f92672>&gt;</span> List<span style=color:#f92672>&lt;</span>T<span style=color:#f92672>&gt;</span> <span style=color:#a6e22e>asList</span><span style=color:#f92672>(</span>T<span style=color:#f92672>...</span> a<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> ArrayList<span style=color:#f92672>&lt;&gt;(</span>a<span style=color:#f92672>);</span>
-    <span style=color:#f92672>}</span>
-</code></pre></div><p>引数はジェネリックなvarargsですね。渡されたパラメータがオブジェクトの配列<code>(T[])</code>にコンパイラされる。
+<span id=i-share class=info style=display:none>Share post</span></span><br><div id=share style=display:none><ul><li><a class=icon href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fwww.takuzen.me%2fposts%2fjava-varargs-and-primitive-types%2f" aria-label=Facebook><i class="fab fa-facebook" aria-hidden=true></i></a></li><li><a class=icon href="https://twitter.com/share?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fjava-varargs-and-primitive-types%2f&text=Java%e3%81%aeArrays.asList%e3%81%ae%e3%82%b7%e3%82%b0%e3%83%8d%e3%83%81%e3%83%a3%e3%83%bc%e3%82%92%e5%a7%8b%e3%82%81%e3%81%a8%e3%81%97%e3%81%a6Varargs%e3%81%a8%e3%83%90%e3%82%a4%e3%83%88%e3%82%b3%e3%83%bc%e3%83%89%e3%82%92%e8%aa%bf%e6%9f%bb%e3%81%97%e3%81%9f%e4%bb%b6" aria-label=Twitter><i class="fab fa-twitter" aria-hidden=true></i></a></li><li><a class=icon href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fjava-varargs-and-primitive-types%2f&title=Java%e3%81%aeArrays.asList%e3%81%ae%e3%82%b7%e3%82%b0%e3%83%8d%e3%83%81%e3%83%a3%e3%83%bc%e3%82%92%e5%a7%8b%e3%82%81%e3%81%a8%e3%81%97%e3%81%a6Varargs%e3%81%a8%e3%83%90%e3%82%a4%e3%83%88%e3%82%b3%e3%83%bc%e3%83%89%e3%82%92%e8%aa%bf%e6%9f%bb%e3%81%97%e3%81%9f%e4%bb%b6" aria-label=Linkedin><i class="fab fa-linkedin" aria-hidden=true></i></a></li><li><a class=icon href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fjava-varargs-and-primitive-types%2f&is_video=false&description=Java%e3%81%aeArrays.asList%e3%81%ae%e3%82%b7%e3%82%b0%e3%83%8d%e3%83%81%e3%83%a3%e3%83%bc%e3%82%92%e5%a7%8b%e3%82%81%e3%81%a8%e3%81%97%e3%81%a6Varargs%e3%81%a8%e3%83%90%e3%82%a4%e3%83%88%e3%82%b3%e3%83%bc%e3%83%89%e3%82%92%e8%aa%bf%e6%9f%bb%e3%81%97%e3%81%9f%e4%bb%b6" aria-label=Pinterest><i class="fab fa-pinterest" aria-hidden=true></i></a></li><li><a class=icon href="mailto:?subject=Java%e3%81%aeArrays.asList%e3%81%ae%e3%82%b7%e3%82%b0%e3%83%8d%e3%83%81%e3%83%a3%e3%83%bc%e3%82%92%e5%a7%8b%e3%82%81%e3%81%a8%e3%81%97%e3%81%a6Varargs%e3%81%a8%e3%83%90%e3%82%a4%e3%83%88%e3%82%b3%e3%83%bc%e3%83%89%e3%82%92%e8%aa%bf%e6%9f%bb%e3%81%97%e3%81%9f%e4%bb%b6&body=Check out this article: https%3a%2f%2fwww.takuzen.me%2fposts%2fjava-varargs-and-primitive-types%2f" aria-label=Email><i class="fas fa-envelope" aria-hidden=true></i></a></li><li><a class=icon href="https://getpocket.com/save?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fjava-varargs-and-primitive-types%2f&title=Java%e3%81%aeArrays.asList%e3%81%ae%e3%82%b7%e3%82%b0%e3%83%8d%e3%83%81%e3%83%a3%e3%83%bc%e3%82%92%e5%a7%8b%e3%82%81%e3%81%a8%e3%81%97%e3%81%a6Varargs%e3%81%a8%e3%83%90%e3%82%a4%e3%83%88%e3%82%b3%e3%83%bc%e3%83%89%e3%82%92%e8%aa%bf%e6%9f%bb%e3%81%97%e3%81%9f%e4%bb%b6" aria-label=Pocket><i class="fab fa-get-pocket" aria-hidden=true></i></a></li><li><a class=icon href="http://reddit.com/submit?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fjava-varargs-and-primitive-types%2f&title=Java%e3%81%aeArrays.asList%e3%81%ae%e3%82%b7%e3%82%b0%e3%83%8d%e3%83%81%e3%83%a3%e3%83%bc%e3%82%92%e5%a7%8b%e3%82%81%e3%81%a8%e3%81%97%e3%81%a6Varargs%e3%81%a8%e3%83%90%e3%82%a4%e3%83%88%e3%82%b3%e3%83%bc%e3%83%89%e3%82%92%e8%aa%bf%e6%9f%bb%e3%81%97%e3%81%9f%e4%bb%b6" aria-label=reddit><i class="fab fa-reddit" aria-hidden=true></i></a></li><li><a class=icon href="http://www.tumblr.com/share/link?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fjava-varargs-and-primitive-types%2f&name=Java%e3%81%aeArrays.asList%e3%81%ae%e3%82%b7%e3%82%b0%e3%83%8d%e3%83%81%e3%83%a3%e3%83%bc%e3%82%92%e5%a7%8b%e3%82%81%e3%81%a8%e3%81%97%e3%81%a6Varargs%e3%81%a8%e3%83%90%e3%82%a4%e3%83%88%e3%82%b3%e3%83%bc%e3%83%89%e3%82%92%e8%aa%bf%e6%9f%bb%e3%81%97%e3%81%9f%e4%bb%b6&description=0.%20%e8%aa%b2%e9%a1%8c%20%e6%95%b0%e6%97%a5%e5%89%8d%e3%80%81%e9%85%8d%e5%88%97%e3%82%92%e5%87%ba%e5%8a%9b%e3%81%97%e3%81%9f%e3%81%84%e3%81%ae%e3%81%a7%e4%b8%8b%e8%a8%98%e3%81%ae%e3%82%88%e3%81%86%e3%81%aa%e3%82%b3%e3%83%bc%e3%83%89%e3%82%92%e6%9b%b8%e3%81%84%e3%81%9f%0apublic%20class%20Nani%20%7b%20public%20static%20void%20main%28String%5b%5d%20args%29%20%7b%20int%5b%5d%20nums%20%3d%20new%20int%5b%5d%7b1%2c%202%2c%203%2c%204%7d%3b%20Arrays.asList%28nums%29.forEach%28i%20-%26gt%3b%20System.out.println%28i%20%2b%20%26%2334%3b%20%26%2334%3b%29%29%3b%20%7d%20%7d%20Idea%e3%82%b3%e3%83%bc%e3%83%89%e8%a3%9c%e5%ae%8c%e3%81%ae%e6%8f%90%e7%a4%ba%e3%81%ab%e5%be%93%e3%81%a3%e3%81%a6%e6%9b%b8%e3%81%84%e3%81%9f%e3%81%97%e3%80%81%e3%82%a8%e3%83%a9%e3%83%bc%e3%82%82%e3%81%aa%e3%81%84%e3%81%91%e3%81%a9%e5%ae%9f%e8%a1%8c%e3%81%99%e3%82%8b%e3%81%a81%202%203%204%e3%81%a7%e3%81%af%e3%81%aa%e3%81%8f%e3%80%81%20%5bI%405ba23b66%e3%81%a8%e3%81%84%e3%81%86%e3%82%88%e3%81%86%e3%81%aa%e3%82%84%e3%81%a4%e3%81%8c%e5%87%ba%e5%8a%9b%e3%81%95%e3%82%8c%e3%81%9f%e3%80%82%e3%82%aa%e3%83%96%e3%82%b8%e3%82%a7%e3%82%af%e3%83%88%e3%81%a8%e3%81%97%e3%81%a6%e5%87%ba%e5%8a%9b%e3%81%95%e3%82%8c%e3%81%a6%e3%82%8b%e3%81%93%e3%81%a8%e3%81%8c%e5%88%86%e3%81%8b%e3%81%a6%e3%82%8b%e3%81%91%e3%81%a9%e3%81%93%e3%82%8c%e4%bb%a5%e4%b8%8a%e7%90%86%e8%a7%a3%e3%81%a7%e3%81%8d%e3%81%aa%e3%81%8b%e3%81%a3%e3%81%9f%e3%80%82%0a%e5%8f%8b%e9%81%94%e3%81%8b%e3%82%89%e3%83%92%e3%83%b3%e3%83%88%e3%82%92%e3%82%82%e3%82%89%e3%81%a3%e3%81%a6%e3%80%81Integer%e3%81%ab%e3%81%99%e3%82%8b%e3%81%a8%0aInteger%5b%5d%20nums2%20%3d%20new%20Integer%5b%5d%7b1%2c%202%2c%203%2c%204%7d%3b%20Arrays.asList%28nums2%29.forEach%28i%20-%26gt%3b%20System.out.print%28i%20%2b%20%26%2334%3b%20%26%2334%3b%29%29%3b%201%202%203%204%e3%81%ab%e3%81%aa%e3%81%a3%e3%81%9f%e3%80%82List%e3%81%a8%e3%81%8b%e3%82%b8%e3%82%a7%e3%83%8d%e3%83%aa%e3%82%af%e3%82%b9%e3%81%a8%e3%81%8b%e3%83%97%e3%83%aa%e3%83%9f%e3%83%86%e3%82%a3%e3%83%96%e3%81%a8%e3%81%8b%e3%81%ab%e9%96%a2%e4%bf%82%e3%81%82%e3%82%8b%e3%81%a0%e3%82%8d%e3%81%86%e3%81%a8%e6%80%9d%e3%81%a3%e3%81%a6%e8%89%b2%e3%80%85%e8%aa%bf%e3%81%b9%e3%81%a6%e3%81%bf%e3%81%9f%e3%80%82%0a%e7%b5%90%e5%b1%80%e3%80%81%e3%81%93%e3%82%8c%e3%82%89Java%e3%81%ae%e5%9f%ba%e6%9c%ac%e3%82%b3%e3%83%b3%e3%82%bb%e3%83%97%e3%83%88%3a%0aVarargs%20Autoboxing%20Generics%20%e3%81%af%e3%81%84%e3%81%9a%e3%82%8c%e3%82%82%e3%82%88%e3%81%8f%e6%8a%8a%e6%8f%a1%e3%81%97%e3%81%a6%e3%81%aa%e3%81%8b%e3%81%a3%e3%81%9f%e3%80%82%0a%e3%81%a1%e3%81%aa%e3%81%bf%e3%81%ab%e3%80%81Arrays%23toString%e3%81%a7%e7%b0%a1%e5%8d%98%e3%81%ab%e9%85%8d%e5%88%97%e3%81%8c%e5%87%ba%e5%8a%9b%e3%81%a7%e3%81%8d%e3%82%8b1%0aSystem.out.println%28Arrays.toString%28array%29%29%3b%20%2f%2f%20%5b1%2c%202%2c%203%2c%204%5d%201.%20%e5%9f%ba%e6%9c%ac%e7%9f%a5%e8%ad%98%e3%81%ae%e6%98%8e%e7%a2%ba%201.1%20%e3%82%b8%e3%82%a7%e3%83%8d%e3%83%aa%e3%82%af%e3%82%b9%e3%80%8cT%e3%80%8d%e3%81%ab%e3%81%af%e3%83%97%e3%83%aa%e3%83%9f%e3%83%86%e3%82%a3%e3%83%96%e5%9e%8b%e3%81%8c%e5%90%ab%e3%81%be%e3%82%8c%e3%81%a6%e3%81%84%e3%81%aa%e3%81%84.%20T%20%3d%20T%20extends%20Object%20%e5%be%8c%e3%81%bb%e3%81%a9%e3%83%90%e3%82%a4%e3%83%88%e3%82%b3%e3%83%bc%e3%83%89%e3%82%92%e8%a9%b3%e7%b4%b0%e3%81%97%e3%81%9f%e4%b8%8a%e3%80%81%e7%a2%ba%e8%aa%8d%e3%81%a7%e3%81%8d%e3%81%9f%e3%80%82" aria-label=Tumblr><i class="fab fa-tumblr" aria-hidden=true></i></a></li><li><a class=icon href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fwww.takuzen.me%2fposts%2fjava-varargs-and-primitive-types%2f&t=Java%e3%81%aeArrays.asList%e3%81%ae%e3%82%b7%e3%82%b0%e3%83%8d%e3%83%81%e3%83%a3%e3%83%bc%e3%82%92%e5%a7%8b%e3%82%81%e3%81%a8%e3%81%97%e3%81%a6Varargs%e3%81%a8%e3%83%90%e3%82%a4%e3%83%88%e3%82%b3%e3%83%bc%e3%83%89%e3%82%92%e8%aa%bf%e6%9f%bb%e3%81%97%e3%81%9f%e4%bb%b6" aria-label="Hacker News"><i class="fab fa-hacker-news" aria-hidden=true></i></a></li></ul></div><div id=toc><nav id=TableOfContents><ul><li><a href=#0-課題>0. 課題</a></li><li><a href=#1-基本知識の明確>1. 基本知識の明確</a><ul><li><a href=#11-ジェネリクスtにはプリミティブ型が含まれていない-t--t-extends-object>1.1 ジェネリクス「T」にはプリミティブ型が含まれていない. T = T extends Object</a></li><li><a href=#12-objectstringの出力内容の読み方基本知識なのか>1.2 Object.String()の出力内容の読み方　(基本知識なのか？)</a></li><li><a href=#varargs可変長引数でいうのは糖衣構文だコンパイル時配列として扱う>Varargs(可変長引数)でいうのは？糖衣構文だ。コンパイル時配列として扱う</a></li><li><a href=#autoboxing発生のタイミング>Autoboxing発生のタイミング</a></li></ul></li><li><a href=#2-調査経緯>2. 調査経緯</a></li><li><a href=#参考>参考</a></li></ul></nav></div></span></div><article class=post itemscope itemtype=http://schema.org/BlogPosting><header><h1 class=posttitle itemprop="name headline">JavaのArrays.asListのシグネチャーを始めとしてVarargsとバイトコードを調査した件</h1><div class=meta><div class=postdate><time datetime="2021-01-29 23:39:16 +0900 +0900" itemprop=datePublished>2021-01-29</time></div><div class=article-category><i class="fas fa-archive"></i>
+<a class=category-link href=/categories/notes>notes</a></div><div class=article-tag><i class="fas fa-tag"></i>
+<a class=tag-link href=/tags/java rel=tag>Java</a></div></div></header><div class=content itemprop=articleBody><h2 id=0-課題>0. 課題</h2><p>数日前、配列を出力したいので下記のようなコードを書いた</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Nani</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>main</span><span style=color:#f92672>(</span>String<span style=color:#f92672>[]</span> args<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>int</span><span style=color:#f92672>[]</span> nums <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>int</span><span style=color:#f92672>[]{</span><span style=color:#ae81ff>1</span><span style=color:#f92672>,</span> <span style=color:#ae81ff>2</span><span style=color:#f92672>,</span> <span style=color:#ae81ff>3</span><span style=color:#f92672>,</span> <span style=color:#ae81ff>4</span><span style=color:#f92672>};</span>
+</span></span><span style=display:flex><span>        Arrays<span style=color:#f92672>.</span><span style=color:#a6e22e>asList</span><span style=color:#f92672>(</span>nums<span style=color:#f92672>).</span><span style=color:#a6e22e>forEach</span><span style=color:#f92672>(</span>i <span style=color:#f92672>-&gt;</span> System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span>i <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34; &#34;</span><span style=color:#f92672>));</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
+</span></span></code></pre></div><p>Ideaコード補完の提示に従って書いたし、エラーもないけど実行すると<code>1 2 3 4</code>ではなく、
+<code>[I@5ba23b66</code>というようなやつが出力された。オブジェクトとして出力されてることが分かてるけどこれ以上理解できなかった。</p><p>友達からヒントをもらって、<code>Integer</code>にすると</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span>        Integer<span style=color:#f92672>[]</span> nums2 <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Integer<span style=color:#f92672>[]{</span><span style=color:#ae81ff>1</span><span style=color:#f92672>,</span> <span style=color:#ae81ff>2</span><span style=color:#f92672>,</span> <span style=color:#ae81ff>3</span><span style=color:#f92672>,</span> <span style=color:#ae81ff>4</span><span style=color:#f92672>};</span>
+</span></span><span style=display:flex><span>        Arrays<span style=color:#f92672>.</span><span style=color:#a6e22e>asList</span><span style=color:#f92672>(</span>nums2<span style=color:#f92672>).</span><span style=color:#a6e22e>forEach</span><span style=color:#f92672>(</span>i <span style=color:#f92672>-&gt;</span> System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>print</span><span style=color:#f92672>(</span>i <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34; &#34;</span><span style=color:#f92672>));</span>
+</span></span></code></pre></div><p><code>1 2 3 4</code>になった。Listとかジェネリクスとかプリミティブとかに関係あるだろうと思って色々調べてみた。</p><p>結局、これらJavaの基本コンセプト:</p><ul><li>Varargs</li><li>Autoboxing</li><li>Generics</li></ul><p>はいずれもよく把握してなかった。</p><p>ちなみに、<code>Arrays#toString</code>で簡単に配列が出力できる<sup id=fnref:1><a href=#fn:1 class=footnote-ref role=doc-noteref>1</a></sup></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span>System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span>Arrays<span style=color:#f92672>.</span><span style=color:#a6e22e>toString</span><span style=color:#f92672>(</span>array<span style=color:#f92672>));</span> <span style=color:#75715e>// [1, 2, 3, 4]
+</span></span></span></code></pre></div><h2 id=1-基本知識の明確>1. 基本知識の明確</h2><h3 id=11-ジェネリクスtにはプリミティブ型が含まれていない-t--t-extends-object>1.1 ジェネリクス「T」にはプリミティブ型が含まれていない. T = T extends Object</h3><p>後ほどバイトコードを詳細した上、確認できた。</p><h3 id=12-objectstringの出力内容の読み方基本知識なのか>1.2 Object.String()の出力内容の読み方　(基本知識なのか？)</h3><p>Objectクラスのディフォルト<code>toString</code>メソッド：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#66d9ef>public</span> String <span style=color:#a6e22e>toString</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> getClass<span style=color:#f92672>().</span><span style=color:#a6e22e>getName</span><span style=color:#f92672>()</span> <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34;@&#34;</span> <span style=color:#f92672>+</span> Integer<span style=color:#f92672>.</span><span style=color:#a6e22e>toHexString</span><span style=color:#f92672>(</span>hashCode<span style=color:#f92672>());</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
+</span></span></code></pre></div><p><code>[I@5ba23b66</code>のような構成は<sup id=fnref:2><a href=#fn:2 class=footnote-ref role=doc-noteref>2</a></sup>：</p><ul><li><code>[</code> 1次元配列 2次元の場合<code>[[</code>, 3次元は<code>[[[</code>、など</li><li><code>I</code> プリミティブint型。floatの場合<code>F</code>, longの場合<code>J</code>, オブジェクトの場合<code>Ljava/lang/Object</code>など<sup id=fnref:3><a href=#fn:3 class=footnote-ref role=doc-noteref>3</a></sup></li><li><code>@</code>以降の部分は対象オブジェクトのハッシュコード</li></ul><h3 id=varargs可変長引数でいうのは糖衣構文だコンパイル時配列として扱う>Varargs(可変長引数)でいうのは？糖衣構文だ。コンパイル時配列として扱う</h3><p>同時に定義できない<sup id=fnref:4><a href=#fn:4 class=footnote-ref role=doc-noteref>4</a></sup></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span>    <span style=color:#75715e>// &#39;foo(String...)&#39; is already defined in &#39;Nani&#39;
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>foo</span><span style=color:#f92672>(</span>String<span style=color:#f92672>...</span> args<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// &#39;foo(String...)&#39; is already defined in &#39;Nani&#39;
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>foo</span><span style=color:#f92672>(</span>String<span style=color:#f92672>[]</span> args<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
+</span></span></code></pre></div><h3 id=autoboxing発生のタイミング>Autoboxing発生のタイミング</h3><p>TODO</p><h2 id=2-調査経緯>2. 調査経緯</h2><p><code>java.util.Arrays#asList</code>の定義:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#f92672>&lt;</span>T<span style=color:#f92672>&gt;</span> List<span style=color:#f92672>&lt;</span>T<span style=color:#f92672>&gt;</span> <span style=color:#a6e22e>asList</span><span style=color:#f92672>(</span>T<span style=color:#f92672>...</span> a<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> ArrayList<span style=color:#f92672>&lt;&gt;(</span>a<span style=color:#f92672>);</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
+</span></span></code></pre></div><p>引数はジェネリックなvarargsですね。渡されたパラメータがオブジェクトの配列<code>(T[])</code>にコンパイラされる。
 なので、<code>int[]</code>の場合、このプリミティブ型の配列自身はObjectであり、可変長引数の1つとして、(<code>int[][]</code>)にコンパイルされる。
-<code>Integer[]</code>の場合だと、すでにObjectの配列だから、そのまま引数配列として処理される。</p>
-<p>そして、Autoboxingのおかげで下記の例も正常に処理できる</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>    Arrays<span style=color:#f92672>.</span><span style=color:#a6e22e>asList</span><span style=color:#f92672>(</span>1<span style=color:#f92672>,</span>2<span style=color:#f92672>,</span>3<span style=color:#f92672>,</span>4<span style=color:#f92672>).</span><span style=color:#a6e22e>forEach</span><span style=color:#f92672>(</span>i <span style=color:#f92672>-&gt;</span> System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>print</span><span style=color:#f92672>(</span>i <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34; &#34;</span><span style=color:#f92672>));</span> <span style=color:#75715e>// 1 2 3 4
-</span></code></pre></div><p>下記もOK：</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>    Arrays<span style=color:#f92672>.</span><span style=color:#a6e22e>asList</span><span style=color:#f92672>(</span><span style=color:#66d9ef>true</span><span style=color:#f92672>,</span> 1<span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;1&#34;</span><span style=color:#f92672>,</span> <span style=color:#66d9ef>new</span> Object<span style=color:#f92672>());</span>
-</code></pre></div><p>Tは<code>Object</code>に推論されるだろう</p>
-<p>コンパイルの流れは下記の感じかな？</p>
-<ul>
-<li>オブジェクトの配列？　→</li>
-<li>プリミティブ型をwrapper型に変換(Autoboxing)</li>
-<li>引数を配列にする、Tの型を推論する</li>
-</ul>
-<p>バイトコードを無理やり確認してみた。
-varargについて、<code>javap　-v</code>でクラスファイルを確認する</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#f92672>&lt;</span>T<span style=color:#f92672>&gt;</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>asList</span><span style=color:#f92672>(</span>T<span style=color:#f92672>...</span> a<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-        System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span>a<span style=color:#f92672>.</span><span style=color:#a6e22e>length</span><span style=color:#f92672>);</span>
-    <span style=color:#f92672>}</span>
-</code></pre></div><p>下記のようにコンパイルされる：(<code>##</code>のコメントは追加しておいたやつ)</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#f92672>&lt;</span>T <span style=color:#66d9ef>extends</span> java<span style=color:#f92672>.</span><span style=color:#a6e22e>lang</span><span style=color:#f92672>.</span><span style=color:#a6e22e>Object</span><span style=color:#f92672>&gt;</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>asList</span><span style=color:#f92672>(</span>T<span style=color:#f92672>...);</span> <span style=color:#75715e>// ## T extends Object!
-</span><span style=color:#75715e></span>    descriptor<span style=color:#f92672>:</span> <span style=color:#f92672>([</span>Ljava<span style=color:#f92672>/</span>lang<span style=color:#f92672>/</span>Object<span style=color:#f92672>;)</span>V <span style=color:#75715e>// ## 配列
-</span><span style=color:#75715e></span>    flags<span style=color:#f92672>:</span> <span style=color:#f92672>(</span>0x0089<span style=color:#f92672>)</span> ACC_PUBLIC<span style=color:#f92672>,</span> ACC_STATIC<span style=color:#f92672>,</span> ACC_VARARGS
-    Code<span style=color:#f92672>:</span>
-      stack<span style=color:#f92672>=</span>2<span style=color:#f92672>,</span> locals<span style=color:#f92672>=</span>1<span style=color:#f92672>,</span> args_size<span style=color:#f92672>=</span>1
-         0<span style=color:#f92672>:</span> getstatic     <span style=color:#960050;background-color:#1e0010>#</span>2                  <span style=color:#75715e>// Field java/lang/System.out:Ljava/io/PrintStream;
-</span><span style=color:#75715e></span>         3<span style=color:#f92672>:</span> aload_0
-         4<span style=color:#f92672>:</span> arraylength
-         5<span style=color:#f92672>:</span> invokevirtual <span style=color:#960050;background-color:#1e0010>#</span>3                  <span style=color:#75715e>// Method java/io/PrintStream.println:(I)V
-</span><span style=color:#75715e></span>         8<span style=color:#f92672>:</span> <span style=color:#66d9ef>return</span>
-      LineNumberTable<span style=color:#f92672>:</span>
-        line 8<span style=color:#f92672>:</span> 0
-        line 9<span style=color:#f92672>:</span> 8
-      LocalVariableTable<span style=color:#f92672>:</span>
-        Start  Length  Slot  Name   Signature
-            0       9     0     a   <span style=color:#f92672>[</span>Ljava<span style=color:#f92672>/</span>lang<span style=color:#f92672>/</span>Object<span style=color:#f92672>;</span>
-      LocalVariableTypeTable<span style=color:#f92672>:</span>
-        Start  Length  Slot  Name   Signature
-            0       9     0     a   <span style=color:#f92672>[</span>TT<span style=color:#f92672>;</span>
-    Signature<span style=color:#f92672>:</span> <span style=color:#960050;background-color:#1e0010>#</span>27                          <span style=color:#75715e>// &lt;T:Ljava/lang/Object;&gt;([TT;)V
-</span><span style=color:#75715e></span>
-</code></pre></div><p>そして、配列を一旦定義する</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>    <span style=color:#66d9ef>int</span><span style=color:#f92672>[]</span> nums <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>int</span><span style=color:#f92672>[]{</span>1<span style=color:#f92672>,</span> 2<span style=color:#f92672>,</span> 3<span style=color:#f92672>,</span> 4<span style=color:#f92672>};</span>
-    Integer<span style=color:#f92672>[]</span> nums2 <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Integer<span style=color:#f92672>[]{</span>1<span style=color:#f92672>,</span> 2<span style=color:#f92672>,</span> 3<span style=color:#f92672>,</span> 4<span style=color:#f92672>};</span>
-</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>Arrays<span style=color:#f92672>.</span><span style=color:#a6e22e>asList</span><span style=color:#f92672>(</span>nums<span style=color:#f92672>);</span>
-</code></pre></div><p>は</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>    ICONST_1
-    ANEWARRAY <span style=color:#f92672>[</span>I <span style=color:#75715e>// なにか処理しているよう
-</span><span style=color:#75715e></span>    DUP
-    ICONST_0
-    ALOAD 1
-    AASTORE
-    INVOKESTATIC java<span style=color:#f92672>/</span>util<span style=color:#f92672>/</span>Arrays<span style=color:#f92672>.</span><span style=color:#a6e22e>asList</span> <span style=color:#f92672>([</span>Ljava<span style=color:#f92672>/</span>lang<span style=color:#f92672>/</span>Object<span style=color:#f92672>;)</span>Ljava<span style=color:#f92672>/</span>util<span style=color:#f92672>/</span>List<span style=color:#f92672>;</span>
-    POP
-</code></pre></div><p>そしてIntegerの方</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>    Arrays<span style=color:#f92672>.</span><span style=color:#a6e22e>asList</span><span style=color:#f92672>(</span>nums2<span style=color:#f92672>);</span>
-</code></pre></div><p>は下記になっている</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>    LINENUMBER 16 L3
-    ALOAD 2 <span style=color:#75715e>// なにかをそのまま使っているよう
-</span><span style=color:#75715e></span>    INVOKESTATIC java<span style=color:#f92672>/</span>util<span style=color:#f92672>/</span>Arrays<span style=color:#f92672>.</span><span style=color:#a6e22e>asList</span> <span style=color:#f92672>([</span>Ljava<span style=color:#f92672>/</span>lang<span style=color:#f92672>/</span>Object<span style=color:#f92672>;)</span>Ljava<span style=color:#f92672>/</span>util<span style=color:#f92672>/</span>List<span style=color:#f92672>;</span>
-    POP
-</code></pre></div><p>もう一個</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>    Arrays<span style=color:#f92672>.</span><span style=color:#a6e22e>asList</span><span style=color:#f92672>(</span>1<span style=color:#f92672>,</span>2<span style=color:#f92672>,</span>3<span style=color:#f92672>,</span>4<span style=color:#f92672>);</span>
-</code></pre></div><p>は</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>    ICONST_4
-    ANEWARRAY java<span style=color:#f92672>/</span>lang<span style=color:#f92672>/</span>Integer
-    DUP
-    ICONST_0
-    ICONST_1
-    INVOKESTATIC java<span style=color:#f92672>/</span>lang<span style=color:#f92672>/</span>Integer<span style=color:#f92672>.</span><span style=color:#a6e22e>valueOf</span> <span style=color:#f92672>(</span>I<span style=color:#f92672>)</span>Ljava<span style=color:#f92672>/</span>lang<span style=color:#f92672>/</span>Integer<span style=color:#f92672>;</span>
-    AASTORE
-    DUP
-    ICONST_1
-    ICONST_2
-    INVOKESTATIC java<span style=color:#f92672>/</span>lang<span style=color:#f92672>/</span>Integer<span style=color:#f92672>.</span><span style=color:#a6e22e>valueOf</span> <span style=color:#f92672>(</span>I<span style=color:#f92672>)</span>Ljava<span style=color:#f92672>/</span>lang<span style=color:#f92672>/</span>Integer<span style=color:#f92672>;</span>
-    AASTORE
-    DUP
-    ICONST_2
-    ICONST_3
-    INVOKESTATIC java<span style=color:#f92672>/</span>lang<span style=color:#f92672>/</span>Integer<span style=color:#f92672>.</span><span style=color:#a6e22e>valueOf</span> <span style=color:#f92672>(</span>I<span style=color:#f92672>)</span>Ljava<span style=color:#f92672>/</span>lang<span style=color:#f92672>/</span>Integer<span style=color:#f92672>;</span>
-    AASTORE
-    DUP
-    ICONST_3
-    ICONST_4
-    INVOKESTATIC java<span style=color:#f92672>/</span>lang<span style=color:#f92672>/</span>Integer<span style=color:#f92672>.</span><span style=color:#a6e22e>valueOf</span> <span style=color:#f92672>(</span>I<span style=color:#f92672>)</span>Ljava<span style=color:#f92672>/</span>lang<span style=color:#f92672>/</span>Integer<span style=color:#f92672>;</span>
-    AASTORE
-    INVOKESTATIC java<span style=color:#f92672>/</span>util<span style=color:#f92672>/</span>Arrays<span style=color:#f92672>.</span><span style=color:#a6e22e>asList</span> <span style=color:#f92672>([</span>Ljava<span style=color:#f92672>/</span>lang<span style=color:#f92672>/</span>Object<span style=color:#f92672>;)</span>Ljava<span style=color:#f92672>/</span>util<span style=color:#f92672>/</span>List<span style=color:#f92672>;</span>
-    POP
-</code></pre></div><p>最初にAutoboxingしているような処理がある。</p>
-<p>更に</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>    Arrays<span style=color:#f92672>.</span><span style=color:#a6e22e>asList</span><span style=color:#f92672>(</span><span style=color:#66d9ef>true</span><span style=color:#f92672>,</span> 1<span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;1&#34;</span><span style=color:#f92672>,</span> <span style=color:#66d9ef>new</span> Object<span style=color:#f92672>());</span>
-</code></pre></div><p>は</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>    ICONST_4
-    ANEWARRAY java<span style=color:#f92672>/</span>lang<span style=color:#f92672>/</span>Object <span style=color:#75715e>// ## 今回はオブジェクトを扱っているよう
-</span><span style=color:#75715e></span>    DUP
-    ICONST_0
-    ICONST_1
-    INVOKESTATIC java<span style=color:#f92672>/</span>lang<span style=color:#f92672>/</span>Boolean<span style=color:#f92672>.</span><span style=color:#a6e22e>valueOf</span> <span style=color:#f92672>(</span>Z<span style=color:#f92672>)</span>Ljava<span style=color:#f92672>/</span>lang<span style=color:#f92672>/</span>Boolean<span style=color:#f92672>;</span>
-    AASTORE
-    DUP
-    ICONST_1
-    ICONST_1
-    INVOKESTATIC java<span style=color:#f92672>/</span>lang<span style=color:#f92672>/</span>Integer<span style=color:#f92672>.</span><span style=color:#a6e22e>valueOf</span> <span style=color:#f92672>(</span>I<span style=color:#f92672>)</span>Ljava<span style=color:#f92672>/</span>lang<span style=color:#f92672>/</span>Integer<span style=color:#f92672>;</span>
-    AASTORE
-    DUP
-    ICONST_2
-    LDC <span style=color:#e6db74>&#34;1&#34;</span>
-    AASTORE
-    DUP
-    ICONST_3
-    NEW java<span style=color:#f92672>/</span>lang<span style=color:#f92672>/</span>Object
-    DUP
-    INVOKESPECIAL java<span style=color:#f92672>/</span>lang<span style=color:#f92672>/</span>Object<span style=color:#f92672>.&lt;</span>init<span style=color:#f92672>&gt;</span> <span style=color:#f92672>()</span>V
-    AASTORE
-    INVOKESTATIC java<span style=color:#f92672>/</span>util<span style=color:#f92672>/</span>Arrays<span style=color:#f92672>.</span><span style=color:#a6e22e>asList</span> <span style=color:#f92672>([</span>Ljava<span style=color:#f92672>/</span>lang<span style=color:#f92672>/</span>Object<span style=color:#f92672>;)</span>Ljava<span style=color:#f92672>/</span>util<span style=color:#f92672>/</span>List<span style=color:#f92672>;</span>
-    POP
-</code></pre></div><p>あんまり読めないので一旦ここまでだ。次はバイトコードの読み方を勉強する:</p>
-<p><a href=https://nagise.hatenablog.jp/entry/20100207/1265522562>Javaバイトコードの読み方</a></p>
-<p><a href=https://blog1.mammb.com/entry/2017/11/02/231509>知らなくても困らない Javaクラスのバイトコードの読み方</a></p>
-<h2 id=参考>参考</h2>
-<p><a href=https://aoking.hatenablog.jp/entry/20110415/1302824606>https://aoking.hatenablog.jp/entry/20110415/1302824606</a></p>
-<p><a href=https://qiita.com/nkojima/items/390282a0912aa560ad22>https://qiita.com/nkojima/items/390282a0912aa560ad22</a></p>
-<p><a href=http://www.ne.jp/asahi/hishidama/home/tech/java/varargs.html#h2_def_array>http://www.ne.jp/asahi/hishidama/home/tech/java/varargs.html#h2_def_array</a></p>
-<p><a href=https://stackoverflow.com/questions/29140402/how-do-i-print-my-java-object-without-getting-sometype2f92e0f4>https://stackoverflow.com/questions/29140402/how-do-i-print-my-java-object-without-getting-sometype2f92e0f4</a></p>
-<p><a href=https://www.ne.jp/asahi/hishidama/home/tech/java/generics.html>https://www.ne.jp/asahi/hishidama/home/tech/java/generics.html</a></p>
-<section class=footnotes role=doc-endnotes>
-<hr>
-<ol>
-<li id=fn:1 role=doc-endnote>
-<p><a href=https://stackoverflow.com/questions/29140402/how-do-i-print-my-java-object-without-getting-sometype2f92e0f4>https://stackoverflow.com/questions/29140402/how-do-i-print-my-java-object-without-getting-sometype2f92e0f4</a>&#160;<a href=#fnref:1 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p>
-</li>
-<li id=fn:2 role=doc-endnote>
-<p><a href=https://stackoverflow.com/a/3615757>https://stackoverflow.com/a/3615757</a>&#160;<a href=#fnref:2 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p>
-</li>
-<li id=fn:3 role=doc-endnote>
-<p><a href=https://blog1.mammb.com/entry/2017/11/02/231509>https://blog1.mammb.com/entry/2017/11/02/231509</a>&#160;<a href=#fnref:3 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p>
-</li>
-<li id=fn:4 role=doc-endnote>
-<p><a href=http://www.ne.jp/asahi/hishidama/home/tech/java/varargs.html#h2_def_array>http://www.ne.jp/asahi/hishidama/home/tech/java/varargs.html#h2_def_array</a>&#160;<a href=#fnref:4 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p>
-</li>
-</ol>
-</section>
-</div>
-</article>
-<div class=blog-post-comments>
-<div id=disqus_thread>
-<script type=text/javascript>(function(){var a=document.createElement('script'),b;a.type='text/javascript',a.async=!0,b='wzr',a.src='//'+b+'.disqus.com/embed.js',(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(a)})()</script>
-<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
-<a href=https://disqus.com/ class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a>
-</div>
-</div>
-<div id=footer-post-container>
-<div id=footer-post>
-<div id=nav-footer style=display:none>
-<ul>
-<li><a href=/>Home</a></li>
-<li><a href=/posts>Writings</a></li>
-<li><a href=/tags>Tags</a></li>
-<li><a href=/about>About</a></li>
-</ul>
-</div>
-<div id=toc-footer style=display:none>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#0-課題>0. 課題</a></li>
-<li><a href=#1-基本知識の明確>1. 基本知識の明確</a>
-<ul>
-<li><a href=#11-ジェネリクスtにはプリミティブ型が含まれていない-t--t-extends-object>1.1 ジェネリクス「T」にはプリミティブ型が含まれていない. T = T extends Object</a></li>
-<li><a href=#12-objectstringの出力内容の読み方基本知識なのか>1.2 Object.String()の出力内容の読み方　(基本知識なのか？)</a></li>
-<li><a href=#varargs可変長引数でいうのは糖衣構文だコンパイル時配列として扱う>Varargs(可変長引数)でいうのは？糖衣構文だ。コンパイル時配列として扱う</a></li>
-<li><a href=#autoboxing発生のタイミング>Autoboxing発生のタイミング</a></li>
-</ul>
-</li>
-<li><a href=#2-調査経緯>2. 調査経緯</a></li>
-<li><a href=#参考>参考</a></li>
-</ul>
-</nav>
-</div>
-<div id=share-footer style=display:none>
-<ul>
-<li>
-<a class=icon href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fwww.takuzen.me%2fposts%2fjava-varargs-and-primitive-types%2f" aria-label=Facebook>
-<i class="fab fa-facebook fa-lg" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="https://twitter.com/share?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fjava-varargs-and-primitive-types%2f&text=Java%e3%81%aeArrays.asList%e3%81%ae%e3%82%b7%e3%82%b0%e3%83%8d%e3%83%81%e3%83%a3%e3%83%bc%e3%82%92%e5%a7%8b%e3%82%81%e3%81%a8%e3%81%97%e3%81%a6Varargs%e3%81%a8%e3%83%90%e3%82%a4%e3%83%88%e3%82%b3%e3%83%bc%e3%83%89%e3%82%92%e8%aa%bf%e6%9f%bb%e3%81%97%e3%81%9f%e4%bb%b6" aria-label=Twitter>
-<i class="fab fa-twitter fa-lg" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fjava-varargs-and-primitive-types%2f&title=Java%e3%81%aeArrays.asList%e3%81%ae%e3%82%b7%e3%82%b0%e3%83%8d%e3%83%81%e3%83%a3%e3%83%bc%e3%82%92%e5%a7%8b%e3%82%81%e3%81%a8%e3%81%97%e3%81%a6Varargs%e3%81%a8%e3%83%90%e3%82%a4%e3%83%88%e3%82%b3%e3%83%bc%e3%83%89%e3%82%92%e8%aa%bf%e6%9f%bb%e3%81%97%e3%81%9f%e4%bb%b6" aria-label=Linkedin>
-<i class="fab fa-linkedin fa-lg" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fjava-varargs-and-primitive-types%2f&is_video=false&description=Java%e3%81%aeArrays.asList%e3%81%ae%e3%82%b7%e3%82%b0%e3%83%8d%e3%83%81%e3%83%a3%e3%83%bc%e3%82%92%e5%a7%8b%e3%82%81%e3%81%a8%e3%81%97%e3%81%a6Varargs%e3%81%a8%e3%83%90%e3%82%a4%e3%83%88%e3%82%b3%e3%83%bc%e3%83%89%e3%82%92%e8%aa%bf%e6%9f%bb%e3%81%97%e3%81%9f%e4%bb%b6" aria-label=Pinterest>
-<i class="fab fa-pinterest fa-lg" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="mailto:?subject=Java%e3%81%aeArrays.asList%e3%81%ae%e3%82%b7%e3%82%b0%e3%83%8d%e3%83%81%e3%83%a3%e3%83%bc%e3%82%92%e5%a7%8b%e3%82%81%e3%81%a8%e3%81%97%e3%81%a6Varargs%e3%81%a8%e3%83%90%e3%82%a4%e3%83%88%e3%82%b3%e3%83%bc%e3%83%89%e3%82%92%e8%aa%bf%e6%9f%bb%e3%81%97%e3%81%9f%e4%bb%b6&body=Check out this article: https%3a%2f%2fwww.takuzen.me%2fposts%2fjava-varargs-and-primitive-types%2f" aria-label=Email>
-<i class="fas fa-envelope fa-lg" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="https://getpocket.com/save?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fjava-varargs-and-primitive-types%2f&title=Java%e3%81%aeArrays.asList%e3%81%ae%e3%82%b7%e3%82%b0%e3%83%8d%e3%83%81%e3%83%a3%e3%83%bc%e3%82%92%e5%a7%8b%e3%82%81%e3%81%a8%e3%81%97%e3%81%a6Varargs%e3%81%a8%e3%83%90%e3%82%a4%e3%83%88%e3%82%b3%e3%83%bc%e3%83%89%e3%82%92%e8%aa%bf%e6%9f%bb%e3%81%97%e3%81%9f%e4%bb%b6" aria-label=Pocket>
-<i class="fab fa-get-pocket fa-lg" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="http://reddit.com/submit?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fjava-varargs-and-primitive-types%2f&title=Java%e3%81%aeArrays.asList%e3%81%ae%e3%82%b7%e3%82%b0%e3%83%8d%e3%83%81%e3%83%a3%e3%83%bc%e3%82%92%e5%a7%8b%e3%82%81%e3%81%a8%e3%81%97%e3%81%a6Varargs%e3%81%a8%e3%83%90%e3%82%a4%e3%83%88%e3%82%b3%e3%83%bc%e3%83%89%e3%82%92%e8%aa%bf%e6%9f%bb%e3%81%97%e3%81%9f%e4%bb%b6" aria-label=reddit>
-<i class="fab fa-reddit fa-lg" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="http://www.tumblr.com/share/link?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fjava-varargs-and-primitive-types%2f&name=Java%e3%81%aeArrays.asList%e3%81%ae%e3%82%b7%e3%82%b0%e3%83%8d%e3%83%81%e3%83%a3%e3%83%bc%e3%82%92%e5%a7%8b%e3%82%81%e3%81%a8%e3%81%97%e3%81%a6Varargs%e3%81%a8%e3%83%90%e3%82%a4%e3%83%88%e3%82%b3%e3%83%bc%e3%83%89%e3%82%92%e8%aa%bf%e6%9f%bb%e3%81%97%e3%81%9f%e4%bb%b6&description=0.%20%e8%aa%b2%e9%a1%8c%20%e6%95%b0%e6%97%a5%e5%89%8d%e3%80%81%e9%85%8d%e5%88%97%e3%82%92%e5%87%ba%e5%8a%9b%e3%81%97%e3%81%9f%e3%81%84%e3%81%ae%e3%81%a7%e4%b8%8b%e8%a8%98%e3%81%ae%e3%82%88%e3%81%86%e3%81%aa%e3%82%b3%e3%83%bc%e3%83%89%e3%82%92%e6%9b%b8%e3%81%84%e3%81%9f%0apublic%20class%20Nani%20%7b%20public%20static%20void%20main%28String%5b%5d%20args%29%20%7b%20int%5b%5d%20nums%20%3d%20new%20int%5b%5d%7b1%2c%202%2c%203%2c%204%7d%3b%20Arrays.asList%28nums%29.forEach%28i%20-%26gt%3b%20System.out.println%28i%20%2b%20%26%2334%3b%20%26%2334%3b%29%29%3b%20%7d%20%7d%20Idea%e3%82%b3%e3%83%bc%e3%83%89%e8%a3%9c%e5%ae%8c%e3%81%ae%e6%8f%90%e7%a4%ba%e3%81%ab%e5%be%93%e3%81%a3%e3%81%a6%e6%9b%b8%e3%81%84%e3%81%9f%e3%81%97%e3%80%81%e3%82%a8%e3%83%a9%e3%83%bc%e3%82%82%e3%81%aa%e3%81%84%e3%81%91%e3%81%a9%e5%ae%9f%e8%a1%8c%e3%81%99%e3%82%8b%e3%81%a81%202%203%204%e3%81%a7%e3%81%af%e3%81%aa%e3%81%8f%e3%80%81%20%5bI%405ba23b66%e3%81%a8%e3%81%84%e3%81%86%e3%82%88%e3%81%86%e3%81%aa%e3%82%84%e3%81%a4%e3%81%8c%e5%87%ba%e5%8a%9b%e3%81%95%e3%82%8c%e3%81%9f%e3%80%82%e3%82%aa%e3%83%96%e3%82%b8%e3%82%a7%e3%82%af%e3%83%88%e3%81%a8%e3%81%97%e3%81%a6%e5%87%ba%e5%8a%9b%e3%81%95%e3%82%8c%e3%81%a6%e3%82%8b%e3%81%93%e3%81%a8%e3%81%8c%e5%88%86%e3%81%8b%e3%81%a6%e3%82%8b%e3%81%91%e3%81%a9%e3%81%93%e3%82%8c%e4%bb%a5%e4%b8%8a%e7%90%86%e8%a7%a3%e3%81%a7%e3%81%8d%e3%81%aa%e3%81%8b%e3%81%a3%e3%81%9f%e3%80%82%0a%e5%8f%8b%e9%81%94%e3%81%8b%e3%82%89%e3%83%92%e3%83%b3%e3%83%88%e3%82%92%e3%82%82%e3%82%89%e3%81%a3%e3%81%a6%e3%80%81Integer%e3%81%ab%e3%81%99%e3%82%8b%e3%81%a8%0aInteger%5b%5d%20nums2%20%3d%20new%20Integer%5b%5d%7b1%2c%202%2c%203%2c%204%7d%3b%20Arrays.asList%28nums2%29.forEach%28i%20-%26gt%3b%20System.out.print%28i%20%2b%20%26%2334%3b%20%26%2334%3b%29%29%3b%201%202%203%204%e3%81%ab%e3%81%aa%e3%81%a3%e3%81%9f%e3%80%82List%e3%81%a8%e3%81%8b%e3%82%b8%e3%82%a7%e3%83%8d%e3%83%aa%e3%82%af%e3%82%b9%e3%81%a8%e3%81%8b%e3%83%97%e3%83%aa%e3%83%9f%e3%83%86%e3%82%a3%e3%83%96%e3%81%a8%e3%81%8b%e3%81%ab%e9%96%a2%e4%bf%82%e3%81%82%e3%82%8b%e3%81%a0%e3%82%8d%e3%81%86%e3%81%a8%e6%80%9d%e3%81%a3%e3%81%a6%e8%89%b2%e3%80%85%e8%aa%bf%e3%81%b9%e3%81%a6%e3%81%bf%e3%81%9f%e3%80%82%0a%e7%b5%90%e5%b1%80%e3%80%81%e3%81%93%e3%82%8c%e3%82%89Java%e3%81%ae%e5%9f%ba%e6%9c%ac%e3%82%b3%e3%83%b3%e3%82%bb%e3%83%97%e3%83%88%3a%0a%20Varargs%20Autoboxing%20Generics%20%20%e3%81%af%e3%81%84%e3%81%9a%e3%82%8c%e3%82%82%e3%82%88%e3%81%8f%e6%8a%8a%e6%8f%a1%e3%81%97%e3%81%a6%e3%81%aa%e3%81%8b%e3%81%a3%e3%81%9f%e3%80%82%0a%e3%81%a1%e3%81%aa%e3%81%bf%e3%81%ab%e3%80%81Arrays%23toString%e3%81%a7%e7%b0%a1%e5%8d%98%e3%81%ab%e9%85%8d%e5%88%97%e3%81%8c%e5%87%ba%e5%8a%9b%e3%81%a7%e3%81%8d%e3%82%8b1%0aSystem.out.println%28Arrays.toString%28array%29%29%3b%20%2f%2f%20%5b1%2c%202%2c%203%2c%204%5d%201.%20%e5%9f%ba%e6%9c%ac%e7%9f%a5%e8%ad%98%e3%81%ae%e6%98%8e%e7%a2%ba%201.1%20%e3%82%b8%e3%82%a7%e3%83%8d%e3%83%aa%e3%82%af%e3%82%b9%e3%80%8cT%e3%80%8d%e3%81%ab%e3%81%af%e3%83%97%e3%83%aa%e3%83%9f%e3%83%86%e3%82%a3%e3%83%96%e5%9e%8b%e3%81%8c%e5%90%ab%e3%81%be%e3%82%8c%e3%81%a6%e3%81%84%e3%81%aa%e3%81%84." aria-label=Tumblr>
-<i class="fab fa-tumblr fa-lg" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fwww.takuzen.me%2fposts%2fjava-varargs-and-primitive-types%2f&t=Java%e3%81%aeArrays.asList%e3%81%ae%e3%82%b7%e3%82%b0%e3%83%8d%e3%83%81%e3%83%a3%e3%83%bc%e3%82%92%e5%a7%8b%e3%82%81%e3%81%a8%e3%81%97%e3%81%a6Varargs%e3%81%a8%e3%83%90%e3%82%a4%e3%83%88%e3%82%b3%e3%83%bc%e3%83%89%e3%82%92%e8%aa%bf%e6%9f%bb%e3%81%97%e3%81%9f%e4%bb%b6" aria-label="Hacker News">
-<i class="fab fa-hacker-news fa-lg" aria-hidden=true></i>
-</a>
-</li>
-</ul>
-</div>
-<div id=actions-footer>
-<a id=menu-toggle class=icon href=# onclick="return $('#nav-footer').toggle(),!1" aria-label=Menu>
-<i class="fas fa-bars fa-lg" aria-hidden=true></i> Menu</a>
-<a id=toc-toggle class=icon href=# onclick="return $('#toc-footer').toggle(),!1" aria-label=TOC>
-<i class="fas fa-list fa-lg" aria-hidden=true></i> TOC</a>
-<a id=share-toggle class=icon href=# onclick="return $('#share-footer').toggle(),!1" aria-label=Share>
-<i class="fas fa-share-alt fa-lg" aria-hidden=true></i> share</a>
-<a id=top style=display:none class=icon href=# onclick="$('html, body').animate({scrollTop:0},'fast')" aria-label="Top of Page">
-<i class="fas fa-chevron-up fa-lg" aria-hidden=true></i> Top</a>
-</div>
-</div>
-</div>
-<footer id=footer>
-<div class=footer-left>
-Copyright &copy; 2021 呉
-</div>
-<div class=footer-right>
-<nav>
-<ul>
-<li><a href=/>Home</a></li>
-<li><a href=/posts>Writings</a></li>
-<li><a href=/tags>Tags</a></li>
-<li><a href=/about>About</a></li>
-</ul>
-</nav>
-</div>
-</footer>
-</div>
-</body>
-<link rel=stylesheet href=/lib/font-awesome/css/all.min.css>
-<script src=/lib/jquery/jquery.min.js></script>
+<code>Integer[]</code>の場合だと、すでにObjectの配列だから、そのまま引数配列として処理される。</p><p>そして、Autoboxingのおかげで下記の例も正常に処理できる</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span>    Arrays<span style=color:#f92672>.</span><span style=color:#a6e22e>asList</span><span style=color:#f92672>(</span><span style=color:#ae81ff>1</span><span style=color:#f92672>,</span><span style=color:#ae81ff>2</span><span style=color:#f92672>,</span><span style=color:#ae81ff>3</span><span style=color:#f92672>,</span><span style=color:#ae81ff>4</span><span style=color:#f92672>).</span><span style=color:#a6e22e>forEach</span><span style=color:#f92672>(</span>i <span style=color:#f92672>-&gt;</span> System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>print</span><span style=color:#f92672>(</span>i <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34; &#34;</span><span style=color:#f92672>));</span> <span style=color:#75715e>// 1 2 3 4
+</span></span></span></code></pre></div><p>下記もOK：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span>    Arrays<span style=color:#f92672>.</span><span style=color:#a6e22e>asList</span><span style=color:#f92672>(</span><span style=color:#66d9ef>true</span><span style=color:#f92672>,</span> <span style=color:#ae81ff>1</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;1&#34;</span><span style=color:#f92672>,</span> <span style=color:#66d9ef>new</span> Object<span style=color:#f92672>());</span>
+</span></span></code></pre></div><p>Tは<code>Object</code>に推論されるだろう</p><p>コンパイルの流れは下記の感じかな？</p><ul><li>オブジェクトの配列？　→</li><li>プリミティブ型をwrapper型に変換(Autoboxing)</li><li>引数を配列にする、Tの型を推論する</li></ul><p>バイトコードを無理やり確認してみた。
+varargについて、<code>javap　-v</code>でクラスファイルを確認する</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#f92672>&lt;</span>T<span style=color:#f92672>&gt;</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>asList</span><span style=color:#f92672>(</span>T<span style=color:#f92672>...</span> a<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>        System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span>a<span style=color:#f92672>.</span><span style=color:#a6e22e>length</span><span style=color:#f92672>);</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
+</span></span></code></pre></div><p>下記のようにコンパイルされる：(<code>##</code>のコメントは追加しておいたやつ)</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#f92672>&lt;</span>T <span style=color:#66d9ef>extends</span> java<span style=color:#f92672>.</span><span style=color:#a6e22e>lang</span><span style=color:#f92672>.</span><span style=color:#a6e22e>Object</span><span style=color:#f92672>&gt;</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>asList</span><span style=color:#f92672>(</span>T<span style=color:#f92672>...);</span> <span style=color:#75715e>// ## T extends Object!
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    descriptor<span style=color:#f92672>:</span> <span style=color:#f92672>([</span>Ljava<span style=color:#f92672>/</span>lang<span style=color:#f92672>/</span>Object<span style=color:#f92672>;)</span>V <span style=color:#75715e>// ## 配列
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    flags<span style=color:#f92672>:</span> <span style=color:#f92672>(</span><span style=color:#ae81ff>0x0089</span><span style=color:#f92672>)</span> ACC_PUBLIC<span style=color:#f92672>,</span> ACC_STATIC<span style=color:#f92672>,</span> ACC_VARARGS
+</span></span><span style=display:flex><span>    Code<span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>      stack<span style=color:#f92672>=</span><span style=color:#ae81ff>2</span><span style=color:#f92672>,</span> locals<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span><span style=color:#f92672>,</span> args_size<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>         <span style=color:#ae81ff>0</span><span style=color:#f92672>:</span> getstatic     <span style=color:#960050;background-color:#1e0010>#</span><span style=color:#ae81ff>2</span>                  <span style=color:#75715e>// Field java/lang/System.out:Ljava/io/PrintStream;
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>         <span style=color:#ae81ff>3</span><span style=color:#f92672>:</span> aload_0
+</span></span><span style=display:flex><span>         <span style=color:#ae81ff>4</span><span style=color:#f92672>:</span> arraylength
+</span></span><span style=display:flex><span>         <span style=color:#ae81ff>5</span><span style=color:#f92672>:</span> invokevirtual <span style=color:#960050;background-color:#1e0010>#</span><span style=color:#ae81ff>3</span>                  <span style=color:#75715e>// Method java/io/PrintStream.println:(I)V
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>         <span style=color:#ae81ff>8</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>return</span>
+</span></span><span style=display:flex><span>      LineNumberTable<span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>        line <span style=color:#ae81ff>8</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>        line <span style=color:#ae81ff>9</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>8</span>
+</span></span><span style=display:flex><span>      LocalVariableTable<span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>        Start  Length  Slot  Name   Signature
+</span></span><span style=display:flex><span>            <span style=color:#ae81ff>0</span>       <span style=color:#ae81ff>9</span>     <span style=color:#ae81ff>0</span>     a   <span style=color:#f92672>[</span>Ljava<span style=color:#f92672>/</span>lang<span style=color:#f92672>/</span>Object<span style=color:#f92672>;</span>
+</span></span><span style=display:flex><span>      LocalVariableTypeTable<span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>        Start  Length  Slot  Name   Signature
+</span></span><span style=display:flex><span>            <span style=color:#ae81ff>0</span>       <span style=color:#ae81ff>9</span>     <span style=color:#ae81ff>0</span>     a   <span style=color:#f92672>[</span>TT<span style=color:#f92672>;</span>
+</span></span><span style=display:flex><span>    Signature<span style=color:#f92672>:</span> <span style=color:#960050;background-color:#1e0010>#</span><span style=color:#ae81ff>27</span>                          <span style=color:#75715e>// &lt;T:Ljava/lang/Object;&gt;([TT;)V
+</span></span></span></code></pre></div><p>そして、配列を一旦定義する</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span>    <span style=color:#66d9ef>int</span><span style=color:#f92672>[]</span> nums <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>int</span><span style=color:#f92672>[]{</span><span style=color:#ae81ff>1</span><span style=color:#f92672>,</span> <span style=color:#ae81ff>2</span><span style=color:#f92672>,</span> <span style=color:#ae81ff>3</span><span style=color:#f92672>,</span> <span style=color:#ae81ff>4</span><span style=color:#f92672>};</span>
+</span></span><span style=display:flex><span>    Integer<span style=color:#f92672>[]</span> nums2 <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Integer<span style=color:#f92672>[]{</span><span style=color:#ae81ff>1</span><span style=color:#f92672>,</span> <span style=color:#ae81ff>2</span><span style=color:#f92672>,</span> <span style=color:#ae81ff>3</span><span style=color:#f92672>,</span> <span style=color:#ae81ff>4</span><span style=color:#f92672>};</span>
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span>Arrays<span style=color:#f92672>.</span><span style=color:#a6e22e>asList</span><span style=color:#f92672>(</span>nums<span style=color:#f92672>);</span>
+</span></span></code></pre></div><p>は</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span>    ICONST_1
+</span></span><span style=display:flex><span>    ANEWARRAY <span style=color:#f92672>[</span>I <span style=color:#75715e>// なにか処理しているよう
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    DUP
+</span></span><span style=display:flex><span>    ICONST_0
+</span></span><span style=display:flex><span>    ALOAD <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>    AASTORE
+</span></span><span style=display:flex><span>    INVOKESTATIC java<span style=color:#f92672>/</span>util<span style=color:#f92672>/</span>Arrays<span style=color:#f92672>.</span><span style=color:#a6e22e>asList</span> <span style=color:#f92672>([</span>Ljava<span style=color:#f92672>/</span>lang<span style=color:#f92672>/</span>Object<span style=color:#f92672>;)</span>Ljava<span style=color:#f92672>/</span>util<span style=color:#f92672>/</span>List<span style=color:#f92672>;</span>
+</span></span><span style=display:flex><span>    POP
+</span></span></code></pre></div><p>そしてIntegerの方</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span>    Arrays<span style=color:#f92672>.</span><span style=color:#a6e22e>asList</span><span style=color:#f92672>(</span>nums2<span style=color:#f92672>);</span>
+</span></span></code></pre></div><p>は下記になっている</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span>    LINENUMBER <span style=color:#ae81ff>16</span> L3
+</span></span><span style=display:flex><span>    ALOAD <span style=color:#ae81ff>2</span> <span style=color:#75715e>// なにかをそのまま使っているよう
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    INVOKESTATIC java<span style=color:#f92672>/</span>util<span style=color:#f92672>/</span>Arrays<span style=color:#f92672>.</span><span style=color:#a6e22e>asList</span> <span style=color:#f92672>([</span>Ljava<span style=color:#f92672>/</span>lang<span style=color:#f92672>/</span>Object<span style=color:#f92672>;)</span>Ljava<span style=color:#f92672>/</span>util<span style=color:#f92672>/</span>List<span style=color:#f92672>;</span>
+</span></span><span style=display:flex><span>    POP
+</span></span></code></pre></div><p>もう一個</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span>    Arrays<span style=color:#f92672>.</span><span style=color:#a6e22e>asList</span><span style=color:#f92672>(</span><span style=color:#ae81ff>1</span><span style=color:#f92672>,</span><span style=color:#ae81ff>2</span><span style=color:#f92672>,</span><span style=color:#ae81ff>3</span><span style=color:#f92672>,</span><span style=color:#ae81ff>4</span><span style=color:#f92672>);</span>
+</span></span></code></pre></div><p>は</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span>    ICONST_4
+</span></span><span style=display:flex><span>    ANEWARRAY java<span style=color:#f92672>/</span>lang<span style=color:#f92672>/</span>Integer
+</span></span><span style=display:flex><span>    DUP
+</span></span><span style=display:flex><span>    ICONST_0
+</span></span><span style=display:flex><span>    ICONST_1
+</span></span><span style=display:flex><span>    INVOKESTATIC java<span style=color:#f92672>/</span>lang<span style=color:#f92672>/</span>Integer<span style=color:#f92672>.</span><span style=color:#a6e22e>valueOf</span> <span style=color:#f92672>(</span>I<span style=color:#f92672>)</span>Ljava<span style=color:#f92672>/</span>lang<span style=color:#f92672>/</span>Integer<span style=color:#f92672>;</span>
+</span></span><span style=display:flex><span>    AASTORE
+</span></span><span style=display:flex><span>    DUP
+</span></span><span style=display:flex><span>    ICONST_1
+</span></span><span style=display:flex><span>    ICONST_2
+</span></span><span style=display:flex><span>    INVOKESTATIC java<span style=color:#f92672>/</span>lang<span style=color:#f92672>/</span>Integer<span style=color:#f92672>.</span><span style=color:#a6e22e>valueOf</span> <span style=color:#f92672>(</span>I<span style=color:#f92672>)</span>Ljava<span style=color:#f92672>/</span>lang<span style=color:#f92672>/</span>Integer<span style=color:#f92672>;</span>
+</span></span><span style=display:flex><span>    AASTORE
+</span></span><span style=display:flex><span>    DUP
+</span></span><span style=display:flex><span>    ICONST_2
+</span></span><span style=display:flex><span>    ICONST_3
+</span></span><span style=display:flex><span>    INVOKESTATIC java<span style=color:#f92672>/</span>lang<span style=color:#f92672>/</span>Integer<span style=color:#f92672>.</span><span style=color:#a6e22e>valueOf</span> <span style=color:#f92672>(</span>I<span style=color:#f92672>)</span>Ljava<span style=color:#f92672>/</span>lang<span style=color:#f92672>/</span>Integer<span style=color:#f92672>;</span>
+</span></span><span style=display:flex><span>    AASTORE
+</span></span><span style=display:flex><span>    DUP
+</span></span><span style=display:flex><span>    ICONST_3
+</span></span><span style=display:flex><span>    ICONST_4
+</span></span><span style=display:flex><span>    INVOKESTATIC java<span style=color:#f92672>/</span>lang<span style=color:#f92672>/</span>Integer<span style=color:#f92672>.</span><span style=color:#a6e22e>valueOf</span> <span style=color:#f92672>(</span>I<span style=color:#f92672>)</span>Ljava<span style=color:#f92672>/</span>lang<span style=color:#f92672>/</span>Integer<span style=color:#f92672>;</span>
+</span></span><span style=display:flex><span>    AASTORE
+</span></span><span style=display:flex><span>    INVOKESTATIC java<span style=color:#f92672>/</span>util<span style=color:#f92672>/</span>Arrays<span style=color:#f92672>.</span><span style=color:#a6e22e>asList</span> <span style=color:#f92672>([</span>Ljava<span style=color:#f92672>/</span>lang<span style=color:#f92672>/</span>Object<span style=color:#f92672>;)</span>Ljava<span style=color:#f92672>/</span>util<span style=color:#f92672>/</span>List<span style=color:#f92672>;</span>
+</span></span><span style=display:flex><span>    POP
+</span></span></code></pre></div><p>最初にAutoboxingしているような処理がある。</p><p>更に</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span>    Arrays<span style=color:#f92672>.</span><span style=color:#a6e22e>asList</span><span style=color:#f92672>(</span><span style=color:#66d9ef>true</span><span style=color:#f92672>,</span> <span style=color:#ae81ff>1</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;1&#34;</span><span style=color:#f92672>,</span> <span style=color:#66d9ef>new</span> Object<span style=color:#f92672>());</span>
+</span></span></code></pre></div><p>は</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span>    ICONST_4
+</span></span><span style=display:flex><span>    ANEWARRAY java<span style=color:#f92672>/</span>lang<span style=color:#f92672>/</span>Object <span style=color:#75715e>// ## 今回はオブジェクトを扱っているよう
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    DUP
+</span></span><span style=display:flex><span>    ICONST_0
+</span></span><span style=display:flex><span>    ICONST_1
+</span></span><span style=display:flex><span>    INVOKESTATIC java<span style=color:#f92672>/</span>lang<span style=color:#f92672>/</span>Boolean<span style=color:#f92672>.</span><span style=color:#a6e22e>valueOf</span> <span style=color:#f92672>(</span>Z<span style=color:#f92672>)</span>Ljava<span style=color:#f92672>/</span>lang<span style=color:#f92672>/</span>Boolean<span style=color:#f92672>;</span>
+</span></span><span style=display:flex><span>    AASTORE
+</span></span><span style=display:flex><span>    DUP
+</span></span><span style=display:flex><span>    ICONST_1
+</span></span><span style=display:flex><span>    ICONST_1
+</span></span><span style=display:flex><span>    INVOKESTATIC java<span style=color:#f92672>/</span>lang<span style=color:#f92672>/</span>Integer<span style=color:#f92672>.</span><span style=color:#a6e22e>valueOf</span> <span style=color:#f92672>(</span>I<span style=color:#f92672>)</span>Ljava<span style=color:#f92672>/</span>lang<span style=color:#f92672>/</span>Integer<span style=color:#f92672>;</span>
+</span></span><span style=display:flex><span>    AASTORE
+</span></span><span style=display:flex><span>    DUP
+</span></span><span style=display:flex><span>    ICONST_2
+</span></span><span style=display:flex><span>    LDC <span style=color:#e6db74>&#34;1&#34;</span>
+</span></span><span style=display:flex><span>    AASTORE
+</span></span><span style=display:flex><span>    DUP
+</span></span><span style=display:flex><span>    ICONST_3
+</span></span><span style=display:flex><span>    NEW java<span style=color:#f92672>/</span>lang<span style=color:#f92672>/</span>Object
+</span></span><span style=display:flex><span>    DUP
+</span></span><span style=display:flex><span>    INVOKESPECIAL java<span style=color:#f92672>/</span>lang<span style=color:#f92672>/</span>Object<span style=color:#f92672>.&lt;</span>init<span style=color:#f92672>&gt;</span> <span style=color:#f92672>()</span>V
+</span></span><span style=display:flex><span>    AASTORE
+</span></span><span style=display:flex><span>    INVOKESTATIC java<span style=color:#f92672>/</span>util<span style=color:#f92672>/</span>Arrays<span style=color:#f92672>.</span><span style=color:#a6e22e>asList</span> <span style=color:#f92672>([</span>Ljava<span style=color:#f92672>/</span>lang<span style=color:#f92672>/</span>Object<span style=color:#f92672>;)</span>Ljava<span style=color:#f92672>/</span>util<span style=color:#f92672>/</span>List<span style=color:#f92672>;</span>
+</span></span><span style=display:flex><span>    POP
+</span></span></code></pre></div><p>あんまり読めないので一旦ここまでだ。次はバイトコードの読み方を勉強する:</p><p><a href=https://nagise.hatenablog.jp/entry/20100207/1265522562>Javaバイトコードの読み方</a></p><p><a href=https://blog1.mammb.com/entry/2017/11/02/231509>知らなくても困らない Javaクラスのバイトコードの読み方</a></p><h2 id=参考>参考</h2><p><a href=https://aoking.hatenablog.jp/entry/20110415/1302824606>https://aoking.hatenablog.jp/entry/20110415/1302824606</a></p><p><a href=https://qiita.com/nkojima/items/390282a0912aa560ad22>https://qiita.com/nkojima/items/390282a0912aa560ad22</a></p><p><a href=http://www.ne.jp/asahi/hishidama/home/tech/java/varargs.html#h2_def_array>http://www.ne.jp/asahi/hishidama/home/tech/java/varargs.html#h2_def_array</a></p><p><a href=https://stackoverflow.com/questions/29140402/how-do-i-print-my-java-object-without-getting-sometype2f92e0f4>https://stackoverflow.com/questions/29140402/how-do-i-print-my-java-object-without-getting-sometype2f92e0f4</a></p><p><a href=https://www.ne.jp/asahi/hishidama/home/tech/java/generics.html>https://www.ne.jp/asahi/hishidama/home/tech/java/generics.html</a></p><div class=footnotes role=doc-endnotes><hr><ol><li id=fn:1><p><a href=https://stackoverflow.com/questions/29140402/how-do-i-print-my-java-object-without-getting-sometype2f92e0f4>https://stackoverflow.com/questions/29140402/how-do-i-print-my-java-object-without-getting-sometype2f92e0f4</a>&#160;<a href=#fnref:1 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:2><p><a href=https://stackoverflow.com/a/3615757>https://stackoverflow.com/a/3615757</a>&#160;<a href=#fnref:2 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:3><p><a href=https://blog1.mammb.com/entry/2017/11/02/231509>https://blog1.mammb.com/entry/2017/11/02/231509</a>&#160;<a href=#fnref:3 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:4><p><a href=http://www.ne.jp/asahi/hishidama/home/tech/java/varargs.html#h2_def_array>http://www.ne.jp/asahi/hishidama/home/tech/java/varargs.html#h2_def_array</a>&#160;<a href=#fnref:4 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li></ol></div></div></article><div class=blog-post-comments><div id=disqus_thread><script type=text/javascript>(function(){var t,e=document.createElement("script");e.type="text/javascript",e.async=!0,t="wzr",e.src="//"+t+".disqus.com/embed.js",(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)})()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com/ class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div></div><div id=footer-post-container><div id=footer-post><div id=nav-footer style=display:none><ul><li><a href=/>Home</a></li><li><a href=/posts>Writings</a></li><li><a href=/tags>Tags</a></li><li><a href=/about>About</a></li></ul></div><div id=toc-footer style=display:none><nav id=TableOfContents><ul><li><a href=#0-課題>0. 課題</a></li><li><a href=#1-基本知識の明確>1. 基本知識の明確</a><ul><li><a href=#11-ジェネリクスtにはプリミティブ型が含まれていない-t--t-extends-object>1.1 ジェネリクス「T」にはプリミティブ型が含まれていない. T = T extends Object</a></li><li><a href=#12-objectstringの出力内容の読み方基本知識なのか>1.2 Object.String()の出力内容の読み方　(基本知識なのか？)</a></li><li><a href=#varargs可変長引数でいうのは糖衣構文だコンパイル時配列として扱う>Varargs(可変長引数)でいうのは？糖衣構文だ。コンパイル時配列として扱う</a></li><li><a href=#autoboxing発生のタイミング>Autoboxing発生のタイミング</a></li></ul></li><li><a href=#2-調査経緯>2. 調査経緯</a></li><li><a href=#参考>参考</a></li></ul></nav></div><div id=share-footer style=display:none><ul><li><a class=icon href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fwww.takuzen.me%2fposts%2fjava-varargs-and-primitive-types%2f" aria-label=Facebook><i class="fab fa-facebook fa-lg" aria-hidden=true></i></a></li><li><a class=icon href="https://twitter.com/share?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fjava-varargs-and-primitive-types%2f&text=Java%e3%81%aeArrays.asList%e3%81%ae%e3%82%b7%e3%82%b0%e3%83%8d%e3%83%81%e3%83%a3%e3%83%bc%e3%82%92%e5%a7%8b%e3%82%81%e3%81%a8%e3%81%97%e3%81%a6Varargs%e3%81%a8%e3%83%90%e3%82%a4%e3%83%88%e3%82%b3%e3%83%bc%e3%83%89%e3%82%92%e8%aa%bf%e6%9f%bb%e3%81%97%e3%81%9f%e4%bb%b6" aria-label=Twitter><i class="fab fa-twitter fa-lg" aria-hidden=true></i></a></li><li><a class=icon href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fjava-varargs-and-primitive-types%2f&title=Java%e3%81%aeArrays.asList%e3%81%ae%e3%82%b7%e3%82%b0%e3%83%8d%e3%83%81%e3%83%a3%e3%83%bc%e3%82%92%e5%a7%8b%e3%82%81%e3%81%a8%e3%81%97%e3%81%a6Varargs%e3%81%a8%e3%83%90%e3%82%a4%e3%83%88%e3%82%b3%e3%83%bc%e3%83%89%e3%82%92%e8%aa%bf%e6%9f%bb%e3%81%97%e3%81%9f%e4%bb%b6" aria-label=Linkedin><i class="fab fa-linkedin fa-lg" aria-hidden=true></i></a></li><li><a class=icon href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fjava-varargs-and-primitive-types%2f&is_video=false&description=Java%e3%81%aeArrays.asList%e3%81%ae%e3%82%b7%e3%82%b0%e3%83%8d%e3%83%81%e3%83%a3%e3%83%bc%e3%82%92%e5%a7%8b%e3%82%81%e3%81%a8%e3%81%97%e3%81%a6Varargs%e3%81%a8%e3%83%90%e3%82%a4%e3%83%88%e3%82%b3%e3%83%bc%e3%83%89%e3%82%92%e8%aa%bf%e6%9f%bb%e3%81%97%e3%81%9f%e4%bb%b6" aria-label=Pinterest><i class="fab fa-pinterest fa-lg" aria-hidden=true></i></a></li><li><a class=icon href="mailto:?subject=Java%e3%81%aeArrays.asList%e3%81%ae%e3%82%b7%e3%82%b0%e3%83%8d%e3%83%81%e3%83%a3%e3%83%bc%e3%82%92%e5%a7%8b%e3%82%81%e3%81%a8%e3%81%97%e3%81%a6Varargs%e3%81%a8%e3%83%90%e3%82%a4%e3%83%88%e3%82%b3%e3%83%bc%e3%83%89%e3%82%92%e8%aa%bf%e6%9f%bb%e3%81%97%e3%81%9f%e4%bb%b6&body=Check out this article: https%3a%2f%2fwww.takuzen.me%2fposts%2fjava-varargs-and-primitive-types%2f" aria-label=Email><i class="fas fa-envelope fa-lg" aria-hidden=true></i></a></li><li><a class=icon href="https://getpocket.com/save?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fjava-varargs-and-primitive-types%2f&title=Java%e3%81%aeArrays.asList%e3%81%ae%e3%82%b7%e3%82%b0%e3%83%8d%e3%83%81%e3%83%a3%e3%83%bc%e3%82%92%e5%a7%8b%e3%82%81%e3%81%a8%e3%81%97%e3%81%a6Varargs%e3%81%a8%e3%83%90%e3%82%a4%e3%83%88%e3%82%b3%e3%83%bc%e3%83%89%e3%82%92%e8%aa%bf%e6%9f%bb%e3%81%97%e3%81%9f%e4%bb%b6" aria-label=Pocket><i class="fab fa-get-pocket fa-lg" aria-hidden=true></i></a></li><li><a class=icon href="http://reddit.com/submit?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fjava-varargs-and-primitive-types%2f&title=Java%e3%81%aeArrays.asList%e3%81%ae%e3%82%b7%e3%82%b0%e3%83%8d%e3%83%81%e3%83%a3%e3%83%bc%e3%82%92%e5%a7%8b%e3%82%81%e3%81%a8%e3%81%97%e3%81%a6Varargs%e3%81%a8%e3%83%90%e3%82%a4%e3%83%88%e3%82%b3%e3%83%bc%e3%83%89%e3%82%92%e8%aa%bf%e6%9f%bb%e3%81%97%e3%81%9f%e4%bb%b6" aria-label=reddit><i class="fab fa-reddit fa-lg" aria-hidden=true></i></a></li><li><a class=icon href="http://www.tumblr.com/share/link?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fjava-varargs-and-primitive-types%2f&name=Java%e3%81%aeArrays.asList%e3%81%ae%e3%82%b7%e3%82%b0%e3%83%8d%e3%83%81%e3%83%a3%e3%83%bc%e3%82%92%e5%a7%8b%e3%82%81%e3%81%a8%e3%81%97%e3%81%a6Varargs%e3%81%a8%e3%83%90%e3%82%a4%e3%83%88%e3%82%b3%e3%83%bc%e3%83%89%e3%82%92%e8%aa%bf%e6%9f%bb%e3%81%97%e3%81%9f%e4%bb%b6&description=0.%20%e8%aa%b2%e9%a1%8c%20%e6%95%b0%e6%97%a5%e5%89%8d%e3%80%81%e9%85%8d%e5%88%97%e3%82%92%e5%87%ba%e5%8a%9b%e3%81%97%e3%81%9f%e3%81%84%e3%81%ae%e3%81%a7%e4%b8%8b%e8%a8%98%e3%81%ae%e3%82%88%e3%81%86%e3%81%aa%e3%82%b3%e3%83%bc%e3%83%89%e3%82%92%e6%9b%b8%e3%81%84%e3%81%9f%0apublic%20class%20Nani%20%7b%20public%20static%20void%20main%28String%5b%5d%20args%29%20%7b%20int%5b%5d%20nums%20%3d%20new%20int%5b%5d%7b1%2c%202%2c%203%2c%204%7d%3b%20Arrays.asList%28nums%29.forEach%28i%20-%26gt%3b%20System.out.println%28i%20%2b%20%26%2334%3b%20%26%2334%3b%29%29%3b%20%7d%20%7d%20Idea%e3%82%b3%e3%83%bc%e3%83%89%e8%a3%9c%e5%ae%8c%e3%81%ae%e6%8f%90%e7%a4%ba%e3%81%ab%e5%be%93%e3%81%a3%e3%81%a6%e6%9b%b8%e3%81%84%e3%81%9f%e3%81%97%e3%80%81%e3%82%a8%e3%83%a9%e3%83%bc%e3%82%82%e3%81%aa%e3%81%84%e3%81%91%e3%81%a9%e5%ae%9f%e8%a1%8c%e3%81%99%e3%82%8b%e3%81%a81%202%203%204%e3%81%a7%e3%81%af%e3%81%aa%e3%81%8f%e3%80%81%20%5bI%405ba23b66%e3%81%a8%e3%81%84%e3%81%86%e3%82%88%e3%81%86%e3%81%aa%e3%82%84%e3%81%a4%e3%81%8c%e5%87%ba%e5%8a%9b%e3%81%95%e3%82%8c%e3%81%9f%e3%80%82%e3%82%aa%e3%83%96%e3%82%b8%e3%82%a7%e3%82%af%e3%83%88%e3%81%a8%e3%81%97%e3%81%a6%e5%87%ba%e5%8a%9b%e3%81%95%e3%82%8c%e3%81%a6%e3%82%8b%e3%81%93%e3%81%a8%e3%81%8c%e5%88%86%e3%81%8b%e3%81%a6%e3%82%8b%e3%81%91%e3%81%a9%e3%81%93%e3%82%8c%e4%bb%a5%e4%b8%8a%e7%90%86%e8%a7%a3%e3%81%a7%e3%81%8d%e3%81%aa%e3%81%8b%e3%81%a3%e3%81%9f%e3%80%82%0a%e5%8f%8b%e9%81%94%e3%81%8b%e3%82%89%e3%83%92%e3%83%b3%e3%83%88%e3%82%92%e3%82%82%e3%82%89%e3%81%a3%e3%81%a6%e3%80%81Integer%e3%81%ab%e3%81%99%e3%82%8b%e3%81%a8%0aInteger%5b%5d%20nums2%20%3d%20new%20Integer%5b%5d%7b1%2c%202%2c%203%2c%204%7d%3b%20Arrays.asList%28nums2%29.forEach%28i%20-%26gt%3b%20System.out.print%28i%20%2b%20%26%2334%3b%20%26%2334%3b%29%29%3b%201%202%203%204%e3%81%ab%e3%81%aa%e3%81%a3%e3%81%9f%e3%80%82List%e3%81%a8%e3%81%8b%e3%82%b8%e3%82%a7%e3%83%8d%e3%83%aa%e3%82%af%e3%82%b9%e3%81%a8%e3%81%8b%e3%83%97%e3%83%aa%e3%83%9f%e3%83%86%e3%82%a3%e3%83%96%e3%81%a8%e3%81%8b%e3%81%ab%e9%96%a2%e4%bf%82%e3%81%82%e3%82%8b%e3%81%a0%e3%82%8d%e3%81%86%e3%81%a8%e6%80%9d%e3%81%a3%e3%81%a6%e8%89%b2%e3%80%85%e8%aa%bf%e3%81%b9%e3%81%a6%e3%81%bf%e3%81%9f%e3%80%82%0a%e7%b5%90%e5%b1%80%e3%80%81%e3%81%93%e3%82%8c%e3%82%89Java%e3%81%ae%e5%9f%ba%e6%9c%ac%e3%82%b3%e3%83%b3%e3%82%bb%e3%83%97%e3%83%88%3a%0aVarargs%20Autoboxing%20Generics%20%e3%81%af%e3%81%84%e3%81%9a%e3%82%8c%e3%82%82%e3%82%88%e3%81%8f%e6%8a%8a%e6%8f%a1%e3%81%97%e3%81%a6%e3%81%aa%e3%81%8b%e3%81%a3%e3%81%9f%e3%80%82%0a%e3%81%a1%e3%81%aa%e3%81%bf%e3%81%ab%e3%80%81Arrays%23toString%e3%81%a7%e7%b0%a1%e5%8d%98%e3%81%ab%e9%85%8d%e5%88%97%e3%81%8c%e5%87%ba%e5%8a%9b%e3%81%a7%e3%81%8d%e3%82%8b1%0aSystem.out.println%28Arrays.toString%28array%29%29%3b%20%2f%2f%20%5b1%2c%202%2c%203%2c%204%5d%201.%20%e5%9f%ba%e6%9c%ac%e7%9f%a5%e8%ad%98%e3%81%ae%e6%98%8e%e7%a2%ba%201.1%20%e3%82%b8%e3%82%a7%e3%83%8d%e3%83%aa%e3%82%af%e3%82%b9%e3%80%8cT%e3%80%8d%e3%81%ab%e3%81%af%e3%83%97%e3%83%aa%e3%83%9f%e3%83%86%e3%82%a3%e3%83%96%e5%9e%8b%e3%81%8c%e5%90%ab%e3%81%be%e3%82%8c%e3%81%a6%e3%81%84%e3%81%aa%e3%81%84.%20T%20%3d%20T%20extends%20Object%20%e5%be%8c%e3%81%bb%e3%81%a9%e3%83%90%e3%82%a4%e3%83%88%e3%82%b3%e3%83%bc%e3%83%89%e3%82%92%e8%a9%b3%e7%b4%b0%e3%81%97%e3%81%9f%e4%b8%8a%e3%80%81%e7%a2%ba%e8%aa%8d%e3%81%a7%e3%81%8d%e3%81%9f%e3%80%82" aria-label=Tumblr><i class="fab fa-tumblr fa-lg" aria-hidden=true></i></a></li><li><a class=icon href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fwww.takuzen.me%2fposts%2fjava-varargs-and-primitive-types%2f&t=Java%e3%81%aeArrays.asList%e3%81%ae%e3%82%b7%e3%82%b0%e3%83%8d%e3%83%81%e3%83%a3%e3%83%bc%e3%82%92%e5%a7%8b%e3%82%81%e3%81%a8%e3%81%97%e3%81%a6Varargs%e3%81%a8%e3%83%90%e3%82%a4%e3%83%88%e3%82%b3%e3%83%bc%e3%83%89%e3%82%92%e8%aa%bf%e6%9f%bb%e3%81%97%e3%81%9f%e4%bb%b6" aria-label="Hacker News"><i class="fab fa-hacker-news fa-lg" aria-hidden=true></i></a></li></ul></div><div id=actions-footer><a id=menu-toggle class=icon href=# onclick='return $("#nav-footer").toggle(),!1' aria-label=Menu><i class="fas fa-bars fa-lg" aria-hidden=true></i> Menu</a>
+<a id=toc-toggle class=icon href=# onclick='return $("#toc-footer").toggle(),!1' aria-label=TOC><i class="fas fa-list fa-lg" aria-hidden=true></i> TOC</a>
+<a id=share-toggle class=icon href=# onclick='return $("#share-footer").toggle(),!1' aria-label=Share><i class="fas fa-share-alt fa-lg" aria-hidden=true></i> share</a>
+<a id=top style=display:none class=icon href=# onclick='$("html, body").animate({scrollTop:0},"fast")' aria-label="Top of Page"><i class="fas fa-chevron-up fa-lg" aria-hidden=true></i> Top</a></div></div></div><footer id=footer><div class=footer-left>Copyright &copy; 2023 呉</div><div class=footer-right><nav><ul><li><a href=/>Home</a></li><li><a href=/posts>Writings</a></li><li><a href=/tags>Tags</a></li><li><a href=/about>About</a></li></ul></nav></div></footer></div></body><link rel=stylesheet href=/lib/font-awesome/css/all.min.css><script src=/lib/jquery/jquery.min.js></script>
 <script src=/js/main.js></script>
-<script src=/js/code-copy.js></script>
-</html>
+<script src=/js/code-copy.js></script></html>

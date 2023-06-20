@@ -14,4 +14,5 @@ This is H1 ========== This is H2 ---------- 类atx形式 也可以写成前后�
 ``` 代码区块 ``` 将产生相同效果。但是此种方法并非标准markdown语法，有时可能会解析不正确。 在代码区块中可以方便的插入HTML原始码，Markdown会自动将&amp;lt;``&amp;amp;等转换为HTML实体。
 4. 列表 无序列表
 * red + green - yellow 三种形式等同。
-red green yellow 有序列表</description></item></channel></rss>
+red green yellow 有序列表
+1. 吃 2. 粑粑 吃 粑粑 句点后要有空格。数字是多少都无所谓，产生的效果相同。</description></item></channel></rss>

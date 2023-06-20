@@ -1,547 +1,206 @@
-<!doctype html><html lang=en-us>
-<head>
-<link rel=preload href=/lib/font-awesome/webfonts/fa-brands-400.woff2 as=font type=font/woff2 crossorigin=anonymous>
-<link rel=preload href=/lib/font-awesome/webfonts/fa-regular-400.woff2 as=font type=font/woff2 crossorigin=anonymous>
-<link rel=preload href=/lib/font-awesome/webfonts/fa-solid-900.woff2 as=font type=font/woff2 crossorigin=anonymous>
-<link rel=preload href=/lib/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2 as=font type=font/woff2 crossorigin=anonymous>
-<meta charset=utf-8>
-<meta http-equiv=x-ua-compatible content="IE=edge">
-<title> プログラミングTypeScriptの読書メモ | マクロス</title>
-<link rel=canonical href=https://www.takuzen.me/posts/programming-typescript-notes/>
-<meta name=description content="勉強中">
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=robots content="all,follow">
-<meta name=googlebot content="index,follow,snippet,archive">
-<meta property="og:title" content="プログラミングTypeScriptの読書メモ">
-<meta property="og:description" content="リテラル let a = 1 // number let c : 3 = 3; // リテラル型 3 const b = 2 // リテラル型 2 const d: number = 4 // number 構造的型付け(structural typing) ダックタイピング
+<!doctype html><html lang=en-us><head><link rel=preload href=/lib/font-awesome/webfonts/fa-brands-400.woff2 as=font type=font/woff2 crossorigin=anonymous><link rel=preload href=/lib/font-awesome/webfonts/fa-regular-400.woff2 as=font type=font/woff2 crossorigin=anonymous><link rel=preload href=/lib/font-awesome/webfonts/fa-solid-900.woff2 as=font type=font/woff2 crossorigin=anonymous><link rel=preload href=/lib/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2 as=font type=font/woff2 crossorigin=anonymous><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><title>プログラミングTypeScriptの読書メモ | マクロス</title><link rel=canonical href=https://www.takuzen.me/posts/programming-typescript-notes/><meta name=description content="勉強中"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="all,follow"><meta name=googlebot content="index,follow,snippet,archive"><meta property="og:title" content="プログラミングTypeScriptの読書メモ"><meta property="og:description" content="リテラル let a = 1 // number let c : 3 = 3; // リテラル型 3 const b = 2 // リテラル型 2 const d: number = 4 // number 構造的型付け(structural typing) ダックタイピング
 →名前的型付け
 インデックスシグネチャ { [key: T]: U } オブジェクトについて 空のオブジェクトリテラル表記{}とオブジェクトプロトタイプ表記Objectはできるだけ避けてください。
-let foo: {} foo = 1; foo = {a: 1}; foo = []; foo = 'abc'; let bar : Object; bar = 1; bar = {a: 1} bar = [] bar = 'abc' foo = {toString() {return 1}} // OK bar = {toString() {return 1}} // Error: Type ‘() => number’ is not assignable to type ‘() => string’.">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://www.takuzen.me/posts/programming-typescript-notes/"><meta property="article:section" content="posts">
-<meta property="article:published_time" content="2021-01-01T17:01:34+09:00">
-<meta property="article:modified_time" content="2021-01-01T17:01:34+09:00">
-<meta name=twitter:card content="summary">
-<meta name=twitter:title content="プログラミングTypeScriptの読書メモ">
-<meta name=twitter:description content="リテラル let a = 1 // number let c : 3 = 3; // リテラル型 3 const b = 2 // リテラル型 2 const d: number = 4 // number 構造的型付け(structural typing) ダックタイピング
+let foo: {} foo = 1; foo = {a: 1}; foo = []; foo = 'abc'; let bar : Object; bar = 1; bar = {a: 1} bar = [] bar = 'abc' foo = {toString() {return 1}} // OK bar = {toString() {return 1}} // Error: Type ‘() => number’ is not assignable to type ‘() => string’."><meta property="og:type" content="article"><meta property="og:url" content="https://www.takuzen.me/posts/programming-typescript-notes/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2021-01-01T17:01:34+09:00"><meta property="article:modified_time" content="2021-01-01T17:01:34+09:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="プログラミングTypeScriptの読書メモ"><meta name=twitter:description content="リテラル let a = 1 // number let c : 3 = 3; // リテラル型 3 const b = 2 // リテラル型 2 const d: number = 4 // number 構造的型付け(structural typing) ダックタイピング
 →名前的型付け
 インデックスシグネチャ { [key: T]: U } オブジェクトについて 空のオブジェクトリテラル表記{}とオブジェクトプロトタイプ表記Objectはできるだけ避けてください。
-let foo: {} foo = 1; foo = {a: 1}; foo = []; foo = 'abc'; let bar : Object; bar = 1; bar = {a: 1} bar = [] bar = 'abc' foo = {toString() {return 1}} // OK bar = {toString() {return 1}} // Error: Type ‘() => number’ is not assignable to type ‘() => string’.">
-<link rel=stylesheet href=https://www.takuzen.me/css/styles.94f653e9e151e28067a7c5dbbc4600cbd5a3c721e79faaf971e523c40f3b249b8e4f20bb57810dfffa8d559ca5c140fd56eb4cd9c0853113ad08e66afdb08bdd.css integrity="sha512-lPZT6eFR4oBnp8XbvEYAy9WjxyHnn6r5ceUjxA87JJuOTyC7V4EN//qNVZylwUD9VutM2cCFMROtCOZq/bCL3Q=="><!--[if lt IE 9]><script src=https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js></script>
-<script src=https://oss.maxcdn.com/respond/1.4.2/respond.min.js></script><![endif]-->
-<link rel=icon type=image/png href=https://www.takuzen.me/images/favicon.ico>
-<script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','UA-83047470-2','auto'),ga('send','pageview'))</script>
-<script async src=https://www.google-analytics.com/analytics.js></script>
-</head>
-<body class="max-width mx-auto px3 ltr">
-<div class="content index py4">
-<div id=header-post>
-<a id=menu-icon href=#><i class="fas fa-bars fa-lg"></i></a>
+let foo: {} foo = 1; foo = {a: 1}; foo = []; foo = 'abc'; let bar : Object; bar = 1; bar = {a: 1} bar = [] bar = 'abc' foo = {toString() {return 1}} // OK bar = {toString() {return 1}} // Error: Type ‘() => number’ is not assignable to type ‘() => string’."><link rel=stylesheet href=https://www.takuzen.me/css/styles.94f653e9e151e28067a7c5dbbc4600cbd5a3c721e79faaf971e523c40f3b249b8e4f20bb57810dfffa8d559ca5c140fd56eb4cd9c0853113ad08e66afdb08bdd.css integrity="sha512-lPZT6eFR4oBnp8XbvEYAy9WjxyHnn6r5ceUjxA87JJuOTyC7V4EN//qNVZylwUD9VutM2cCFMROtCOZq/bCL3Q=="><!--[if lt IE 9]><script src=https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js></script>
+<script src=https://oss.maxcdn.com/respond/1.4.2/respond.min.js></script><![endif]--><link rel=icon type=image/png href=https://www.takuzen.me/images/favicon.ico><script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-83047470-2","auto"),ga("send","pageview"))</script><script async src=https://www.google-analytics.com/analytics.js></script></head><body class="max-width mx-auto px3 ltr"><div class="content index py4"><div id=header-post><a id=menu-icon href=#><i class="fas fa-bars fa-lg"></i></a>
 <a id=menu-icon-tablet href=#><i class="fas fa-bars fa-lg"></i></a>
-<a id=top-icon-tablet href=# onclick="$('html, body').animate({scrollTop:0},'fast')" style=display:none aria-label="Top of Page"><i class="fas fa-chevron-up fa-lg"></i></a>
-<span id=menu>
-<span id=nav>
-<ul>
-<li><a href=/>Home</a></li>
-<li><a href=/posts>Writings</a></li>
-<li><a href=/tags>Tags</a></li>
-<li><a href=/about>About</a></li>
-</ul>
-</span>
-<br>
-<span id=actions>
-<ul>
-<li>
-<a class=icon href=https://www.takuzen.me/posts/jest-axios-network-error/ aria-label=Previous>
-<i class="fas fa-chevron-left" aria-hidden=true onmouseover="$('#i-prev').toggle()" onmouseout="$('#i-prev').toggle()"></i>
-</a>
-</li>
-<li>
-<a class=icon href=https://www.takuzen.me/posts/spring-handle-request-arguments/ aria-label=Next>
-<i class="fas fa-chevron-right" aria-hidden=true onmouseover="$('#i-next').toggle()" onmouseout="$('#i-next').toggle()"></i>
-</a>
-</li>
-<li>
-<a class=icon href=# onclick="$('html, body').animate({scrollTop:0},'fast')" aria-label="Top of Page">
-<i class="fas fa-chevron-up" aria-hidden=true onmouseover="$('#i-top').toggle()" onmouseout="$('#i-top').toggle()"></i>
-</a>
-</li>
-<li>
-<a class=icon href=# aria-label=Share>
-<i class="fas fa-share-alt" aria-hidden=true onmouseover="$('#i-share').toggle()" onmouseout="$('#i-share').toggle()" onclick="return $('#share').toggle(),!1"></i>
-</a>
-</li>
-</ul>
-<span id=i-prev class=info style=display:none>Previous post</span>
+<a id=top-icon-tablet href=# onclick='$("html, body").animate({scrollTop:0},"fast")' style=display:none aria-label="Top of Page"><i class="fas fa-chevron-up fa-lg"></i></a>
+<span id=menu><span id=nav><ul><li><a href=/>Home</a></li><li><a href=/posts>Writings</a></li><li><a href=/tags>Tags</a></li><li><a href=/about>About</a></li></ul></span><br><span id=actions><ul><li><a class=icon href=https://www.takuzen.me/posts/jest-axios-network-error/ aria-label=Previous><i class="fas fa-chevron-left" aria-hidden=true onmouseover='$("#i-prev").toggle()' onmouseout='$("#i-prev").toggle()'></i></a></li><li><a class=icon href=https://www.takuzen.me/posts/spring-handle-request-arguments/ aria-label=Next><i class="fas fa-chevron-right" aria-hidden=true onmouseover='$("#i-next").toggle()' onmouseout='$("#i-next").toggle()'></i></a></li><li><a class=icon href=# onclick='$("html, body").animate({scrollTop:0},"fast")' aria-label="Top of Page"><i class="fas fa-chevron-up" aria-hidden=true onmouseover='$("#i-top").toggle()' onmouseout='$("#i-top").toggle()'></i></a></li><li><a class=icon href=# aria-label=Share><i class="fas fa-share-alt" aria-hidden=true onmouseover='$("#i-share").toggle()' onmouseout='$("#i-share").toggle()' onclick='return $("#share").toggle(),!1'></i></a></li></ul><span id=i-prev class=info style=display:none>Previous post</span>
 <span id=i-next class=info style=display:none>Next post</span>
 <span id=i-top class=info style=display:none>Back to top</span>
-<span id=i-share class=info style=display:none>Share post</span>
-</span>
-<br>
-<div id=share style=display:none>
-<ul>
-<li>
-<a class=icon href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes%2f" aria-label=Facebook>
-<i class="fab fa-facebook" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="https://twitter.com/share?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes%2f&text=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2" aria-label=Twitter>
-<i class="fab fa-twitter" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes%2f&title=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2" aria-label=Linkedin>
-<i class="fab fa-linkedin" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes%2f&is_video=false&description=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2" aria-label=Pinterest>
-<i class="fab fa-pinterest" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="mailto:?subject=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2&body=Check out this article: https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes%2f" aria-label=Email>
-<i class="fas fa-envelope" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="https://getpocket.com/save?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes%2f&title=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2" aria-label=Pocket>
-<i class="fab fa-get-pocket" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="http://reddit.com/submit?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes%2f&title=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2" aria-label=reddit>
-<i class="fab fa-reddit" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="http://www.tumblr.com/share/link?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes%2f&name=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2&description=%e3%83%aa%e3%83%86%e3%83%a9%e3%83%ab%20let%20a%20%3d%201%20%2f%2f%20number%20let%20c%20%3a%203%20%3d%203%3b%20%2f%2f%20%e3%83%aa%e3%83%86%e3%83%a9%e3%83%ab%e5%9e%8b%203%20const%20b%20%3d%202%20%2f%2f%20%e3%83%aa%e3%83%86%e3%83%a9%e3%83%ab%e5%9e%8b%202%20const%20d%3a%20number%20%3d%204%20%2f%2f%20number%20%e6%a7%8b%e9%80%a0%e7%9a%84%e5%9e%8b%e4%bb%98%e3%81%91%28structural%20typing%29%20%e3%83%80%e3%83%83%e3%82%af%e3%82%bf%e3%82%a4%e3%83%94%e3%83%b3%e3%82%b0%0a%e2%86%92%e5%90%8d%e5%89%8d%e7%9a%84%e5%9e%8b%e4%bb%98%e3%81%91%0a%e3%82%a4%e3%83%b3%e3%83%87%e3%83%83%e3%82%af%e3%82%b9%e3%82%b7%e3%82%b0%e3%83%8d%e3%83%81%e3%83%a3%20%7b%20%5bkey%3a%20T%5d%3a%20U%20%7d%20%e3%82%aa%e3%83%96%e3%82%b8%e3%82%a7%e3%82%af%e3%83%88%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6%20%e7%a9%ba%e3%81%ae%e3%82%aa%e3%83%96%e3%82%b8%e3%82%a7%e3%82%af%e3%83%88%e3%83%aa%e3%83%86%e3%83%a9%e3%83%ab%e8%a1%a8%e8%a8%98%7b%7d%e3%81%a8%e3%82%aa%e3%83%96%e3%82%b8%e3%82%a7%e3%82%af%e3%83%88%e3%83%97%e3%83%ad%e3%83%88%e3%82%bf%e3%82%a4%e3%83%97%e8%a1%a8%e8%a8%98Object%e3%81%af%e3%81%a7%e3%81%8d%e3%82%8b%e3%81%a0%e3%81%91%e9%81%bf%e3%81%91%e3%81%a6%e3%81%8f%e3%81%a0%e3%81%95%e3%81%84%e3%80%82%0alet%20foo%3a%20%7b%7d%20foo%20%3d%201%3b%20foo%20%3d%20%7ba%3a%201%7d%3b%20foo%20%3d%20%5b%5d%3b%20foo%20%3d%20%26%2339%3babc%26%2339%3b%3b%20let%20bar%20%3a%20Object%3b%20bar%20%3d%201%3b%20bar%20%3d%20%7ba%3a%201%7d%20bar%20%3d%20%5b%5d%20bar%20%3d%20%26%2339%3babc%26%2339%3b%20foo%20%3d%20%7btoString%28%29%20%7breturn%201%7d%7d%20%2f%2f%20OK%20bar%20%3d%20%7btoString%28%29%20%7breturn%201%7d%7d%20%2f%2f%20Error%3a%20Type%20%e2%80%98%28%29%20%3d%26gt%3b%20number%e2%80%99%20is%20not%20assignable%20to%20type%20%e2%80%98%28%29%20%3d%26gt%3b%20string%e2%80%99." aria-label=Tumblr>
-<i class="fab fa-tumblr" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes%2f&t=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2" aria-label="Hacker News">
-<i class="fab fa-hacker-news" aria-hidden=true></i>
-</a>
-</li>
-</ul>
-</div>
-<div id=toc>
-<nav id=TableOfContents>
-<ul>
-<li>
-<ul>
-<li><a href=#リテラル>リテラル</a></li>
-<li><a href=#構造的型付けstructural-typing>構造的型付け(structural typing)</a></li>
-<li><a href=#インデックスシグネチャ>インデックスシグネチャ</a></li>
-<li><a href=#オブジェクトについて>オブジェクトについて</a></li>
-</ul>
-</li>
-<li><a href=#呼び出しシグネチャcall-signature>呼び出しシグネチャ(call signature)</a></li>
-<li><a href=#文脈的型付けcontextual-typing>文脈的型付け(contextual typing)</a></li>
-<li><a href=#ジェネリック型総称型>ジェネリック型（総称型）</a>
-<ul>
-<li><a href=#ディフォルトの型>ディフォルトの型</a></li>
-</ul>
-</li>
-<li><a href=#クラスとインタフェース>クラスとインタフェース</a>
-<ul>
-<li><a href=#戻り値としてthisが使える>戻り値としてthisが使える</a></li>
-<li><a href=#interface>Interface</a></li>
-<li><a href=#インスタンス側とコンストラクタ側のことを考えつく>インスタンス側とコンストラクタ側のことを考えつく</a></li>
-<li><a href=#ポリモーフィズム>ポリモーフィズム</a></li>
-<li><a href=#ミックスイン>ミックスイン</a></li>
-<li><a href=#privateコンストラクタとファクトリーメソッドでfinalクラスを定義する>privateコンストラクタとファクトリーメソッドでfinalクラスを定義する</a></li>
-<li><a href=#より型安全なビルダーパターンの実装>より型安全なビルダーパターンの実装</a></li>
-</ul>
-</li>
-</ul>
-</nav>
-</div>
-</span>
-</div>
-<article class=post itemscope itemtype=http://schema.org/BlogPosting>
-<header>
-<h1 class=posttitle itemprop="name headline">
-プログラミングTypeScriptの読書メモ
-</h1>
-<div class=meta>
-<div class=postdate>
-<time datetime="2021-01-01 17:01:34 +0900 +0900" itemprop=datePublished>2021-01-01</time>
-</div>
-<div class=article-category>
-<i class="fas fa-archive"></i>
-<a class=category-link href=/categories/notes>notes</a>
-</div>
-<div class=article-tag>
-<i class="fas fa-tag"></i>
+<span id=i-share class=info style=display:none>Share post</span></span><br><div id=share style=display:none><ul><li><a class=icon href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes%2f" aria-label=Facebook><i class="fab fa-facebook" aria-hidden=true></i></a></li><li><a class=icon href="https://twitter.com/share?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes%2f&text=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2" aria-label=Twitter><i class="fab fa-twitter" aria-hidden=true></i></a></li><li><a class=icon href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes%2f&title=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2" aria-label=Linkedin><i class="fab fa-linkedin" aria-hidden=true></i></a></li><li><a class=icon href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes%2f&is_video=false&description=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2" aria-label=Pinterest><i class="fab fa-pinterest" aria-hidden=true></i></a></li><li><a class=icon href="mailto:?subject=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2&body=Check out this article: https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes%2f" aria-label=Email><i class="fas fa-envelope" aria-hidden=true></i></a></li><li><a class=icon href="https://getpocket.com/save?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes%2f&title=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2" aria-label=Pocket><i class="fab fa-get-pocket" aria-hidden=true></i></a></li><li><a class=icon href="http://reddit.com/submit?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes%2f&title=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2" aria-label=reddit><i class="fab fa-reddit" aria-hidden=true></i></a></li><li><a class=icon href="http://www.tumblr.com/share/link?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes%2f&name=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2&description=%e3%83%aa%e3%83%86%e3%83%a9%e3%83%ab%20let%20a%20%3d%201%20%2f%2f%20number%20let%20c%20%3a%203%20%3d%203%3b%20%2f%2f%20%e3%83%aa%e3%83%86%e3%83%a9%e3%83%ab%e5%9e%8b%203%20const%20b%20%3d%202%20%2f%2f%20%e3%83%aa%e3%83%86%e3%83%a9%e3%83%ab%e5%9e%8b%202%20const%20d%3a%20number%20%3d%204%20%2f%2f%20number%20%e6%a7%8b%e9%80%a0%e7%9a%84%e5%9e%8b%e4%bb%98%e3%81%91%28structural%20typing%29%20%e3%83%80%e3%83%83%e3%82%af%e3%82%bf%e3%82%a4%e3%83%94%e3%83%b3%e3%82%b0%0a%e2%86%92%e5%90%8d%e5%89%8d%e7%9a%84%e5%9e%8b%e4%bb%98%e3%81%91%0a%e3%82%a4%e3%83%b3%e3%83%87%e3%83%83%e3%82%af%e3%82%b9%e3%82%b7%e3%82%b0%e3%83%8d%e3%83%81%e3%83%a3%20%7b%20%5bkey%3a%20T%5d%3a%20U%20%7d%20%e3%82%aa%e3%83%96%e3%82%b8%e3%82%a7%e3%82%af%e3%83%88%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6%20%e7%a9%ba%e3%81%ae%e3%82%aa%e3%83%96%e3%82%b8%e3%82%a7%e3%82%af%e3%83%88%e3%83%aa%e3%83%86%e3%83%a9%e3%83%ab%e8%a1%a8%e8%a8%98%7b%7d%e3%81%a8%e3%82%aa%e3%83%96%e3%82%b8%e3%82%a7%e3%82%af%e3%83%88%e3%83%97%e3%83%ad%e3%83%88%e3%82%bf%e3%82%a4%e3%83%97%e8%a1%a8%e8%a8%98Object%e3%81%af%e3%81%a7%e3%81%8d%e3%82%8b%e3%81%a0%e3%81%91%e9%81%bf%e3%81%91%e3%81%a6%e3%81%8f%e3%81%a0%e3%81%95%e3%81%84%e3%80%82%0alet%20foo%3a%20%7b%7d%20foo%20%3d%201%3b%20foo%20%3d%20%7ba%3a%201%7d%3b%20foo%20%3d%20%5b%5d%3b%20foo%20%3d%20%26%2339%3babc%26%2339%3b%3b%20let%20bar%20%3a%20Object%3b%20bar%20%3d%201%3b%20bar%20%3d%20%7ba%3a%201%7d%20bar%20%3d%20%5b%5d%20bar%20%3d%20%26%2339%3babc%26%2339%3b%20foo%20%3d%20%7btoString%28%29%20%7breturn%201%7d%7d%20%2f%2f%20OK%20bar%20%3d%20%7btoString%28%29%20%7breturn%201%7d%7d%20%2f%2f%20Error%3a%20Type%20%e2%80%98%28%29%20%3d%26gt%3b%20number%e2%80%99%20is%20not%20assignable%20to%20type%20%e2%80%98%28%29%20%3d%26gt%3b%20string%e2%80%99." aria-label=Tumblr><i class="fab fa-tumblr" aria-hidden=true></i></a></li><li><a class=icon href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes%2f&t=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2" aria-label="Hacker News"><i class="fab fa-hacker-news" aria-hidden=true></i></a></li></ul></div><div id=toc><nav id=TableOfContents><ul><li><ul><li><a href=#リテラル>リテラル</a></li><li><a href=#構造的型付けstructural-typing>構造的型付け(structural typing)</a></li><li><a href=#インデックスシグネチャ>インデックスシグネチャ</a></li><li><a href=#オブジェクトについて>オブジェクトについて</a></li></ul></li><li><a href=#呼び出しシグネチャcall-signature>呼び出しシグネチャ(call signature)</a></li><li><a href=#文脈的型付けcontextual-typing>文脈的型付け(contextual typing)</a></li><li><a href=#ジェネリック型総称型>ジェネリック型（総称型）</a><ul><li><a href=#ディフォルトの型>ディフォルトの型</a></li></ul></li><li><a href=#クラスとインタフェース>クラスとインタフェース</a><ul><li><a href=#戻り値としてthisが使える>戻り値としてthisが使える</a></li><li><a href=#interface>Interface</a></li><li><a href=#インスタンス側とコンストラクタ側のことを考えつく>インスタンス側とコンストラクタ側のことを考えつく</a></li><li><a href=#ポリモーフィズム>ポリモーフィズム</a></li><li><a href=#ミックスイン>ミックスイン</a></li><li><a href=#privateコンストラクタとファクトリーメソッドでfinalクラスを定義する>privateコンストラクタとファクトリーメソッドでfinalクラスを定義する</a></li><li><a href=#より型安全なビルダーパターンの実装>より型安全なビルダーパターンの実装</a></li></ul></li></ul></nav></div></span></div><article class=post itemscope itemtype=http://schema.org/BlogPosting><header><h1 class=posttitle itemprop="name headline">プログラミングTypeScriptの読書メモ</h1><div class=meta><div class=postdate><time datetime="2021-01-01 17:01:34 +0900 +0900" itemprop=datePublished>2021-01-01</time></div><div class=article-category><i class="fas fa-archive"></i>
+<a class=category-link href=/categories/notes>notes</a></div><div class=article-tag><i class="fas fa-tag"></i>
 <a class=tag-link href=/tags/javascript rel=tag>javascript</a>
 ,
-<a class=tag-link href=/tags/typescript rel=tag>typescript</a>
-</div>
-</div>
-</header>
-<div class=content itemprop=articleBody>
-<h3 id=リテラル>リテラル</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>a</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span> <span style=color:#75715e>// number
-</span><span style=color:#75715e></span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>c</span> : <span style=color:#66d9ef>3</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>3</span>; <span style=color:#75715e>// リテラル型 3
-</span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>b</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>2</span> <span style=color:#75715e>// リテラル型 2
-</span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>d</span>: <span style=color:#66d9ef>number</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>4</span> <span style=color:#75715e>// number
-</span></code></pre></div><h3 id=構造的型付けstructural-typing>構造的型付け(structural typing)</h3>
-<p>ダックタイピング</p>
-<p>→名前的型付け</p>
-<h3 id=インデックスシグネチャ>インデックスシグネチャ</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript>{
-    [<span style=color:#a6e22e>key</span>: <span style=color:#66d9ef>T</span>]<span style=color:#f92672>:</span> <span style=color:#a6e22e>U</span>
-}
-</code></pre></div><h3 id=オブジェクトについて>オブジェクトについて</h3>
-<p><strong>空のオブジェクトリテラル表記<code>{}</code>とオブジェクトプロトタイプ表記<code>Object</code>はできるだけ避けてください。</strong></p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>foo</span><span style=color:#f92672>:</span> {}
-<span style=color:#a6e22e>foo</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
-<span style=color:#a6e22e>foo</span> <span style=color:#f92672>=</span> {<span style=color:#a6e22e>a</span>: <span style=color:#66d9ef>1</span>};
-<span style=color:#a6e22e>foo</span> <span style=color:#f92672>=</span> [];
-<span style=color:#a6e22e>foo</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;abc&#39;</span>;
-
-<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>bar</span> : <span style=color:#66d9ef>Object</span>;
-<span style=color:#a6e22e>bar</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
-<span style=color:#a6e22e>bar</span> <span style=color:#f92672>=</span> {<span style=color:#a6e22e>a</span>: <span style=color:#66d9ef>1</span>}
-<span style=color:#a6e22e>bar</span> <span style=color:#f92672>=</span> []
-<span style=color:#a6e22e>bar</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;abc&#39;</span>
-
-<span style=color:#a6e22e>foo</span> <span style=color:#f92672>=</span> {<span style=color:#a6e22e>toString() {</span><span style=color:#66d9ef>return</span>  <span style=color:#ae81ff>1</span>}} <span style=color:#75715e>// OK
-</span><span style=color:#75715e></span><span style=color:#a6e22e>bar</span> <span style=color:#f92672>=</span> {<span style=color:#a6e22e>toString() {</span><span style=color:#66d9ef>return</span> <span style=color:#ae81ff>1</span>}} <span style=color:#75715e>// Error: Type ‘() =&gt; number’ is not assignable to type ‘() =&gt; string’. Type ‘nubmer’ is not assignable to type ‘string’
-</span></code></pre></div><p>良い宣言：</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>foo</span><span style=color:#f92672>:</span> {<span style=color:#a6e22e>a</span>: <span style=color:#66d9ef>string</span>}
-<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>bar</span>: <span style=color:#66d9ef>object</span>
-</code></pre></div><h2 id=呼び出しシグネチャcall-signature>呼び出しシグネチャ(call signature)</h2>
-<p>関数の型を表す構文です。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#75715e>// 省略記法
-</span><span style=color:#75715e></span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>foo</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>name</span>: <span style=color:#66d9ef>string</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>string</span>
-
-<span style=color:#75715e>// 完全な呼び出しシグネチャ。オーバロードも表せる
-</span><span style=color:#75715e></span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>bar</span> <span style=color:#f92672>=</span> {
-    (<span style=color:#a6e22e>name</span>: <span style=color:#66d9ef>string</span>)<span style=color:#f92672>:</span> <span style=color:#66d9ef>string</span>,
-    (<span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>number</span>, <span style=color:#a6e22e>addr</span>: <span style=color:#66d9ef>string</span>)<span style=color:#f92672>:</span> <span style=color:#66d9ef>string</span>,
-    (<span style=color:#a6e22e>sex</span>: <span style=color:#66d9ef>string</span>)<span style=color:#f92672>:</span> <span style=color:#66d9ef>void</span>
-}
-</code></pre></div><h2 id=文脈的型付けcontextual-typing>文脈的型付け(contextual typing)</h2>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>foo</span> (
-    <span style=color:#a6e22e>bar</span><span style=color:#f92672>:</span> (<span style=color:#a6e22e>index</span>: <span style=color:#66d9ef>number</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>void</span>
-) {
-    <span style=color:#a6e22e>bar</span>(<span style=color:#ae81ff>1</span>)
-}
-
-<span style=color:#a6e22e>foo</span>(<span style=color:#a6e22e>n</span> <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>n</span>)) <span style=color:#75715e>// OK when inline
-</span><span style=color:#75715e></span>
-<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>bah</span>(<span style=color:#a6e22e>n</span>) { <span style=color:#75715e>// Error: parameter ‘n’ implicitly has an ‘any’ type
-</span><span style=color:#75715e></span>    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>n</span>)
-}
-</code></pre></div><p>上記インラインのの場合、<code>n => console.log(n)</code>のnが<code>number</code>であると、文脈から推論できる。インラインでないと当然エラーになる。</p>
-<h2 id=ジェネリック型総称型>ジェネリック型（総称型）</h2>
-<p>それぞれの宣言方法</p>
-<ul>
-<li>一つのシグネチャに限られる。呼び出す時文脈的に推論され、具体的な型にバインドされる</li>
-</ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>type</span>  <span style=color:#a6e22e>Filter1</span> <span style=color:#f92672>=</span> {
-    &lt;<span style=color:#f92672>T</span>&gt;(<span style=color:#a6e22e>array</span>: <span style=color:#66d9ef>T</span>[], <span style=color:#a6e22e>f</span><span style=color:#f92672>:</span> (<span style=color:#a6e22e>item</span>: <span style=color:#66d9ef>T</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>boolean</span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>T</span>[]
-}
-
-<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>filter1</span>:<span style=color:#66d9ef>Filter1</span>
-<span style=color:#a6e22e>filter1</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>array</span>, <span style=color:#a6e22e>f</span>) <span style=color:#f92672>=&gt;</span> {
-    <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>res</span> <span style=color:#f92672>=</span> [];
-    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>i</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; <span style=color:#a6e22e>i</span> <span style=color:#f92672>&lt;</span> <span style=color:#a6e22e>array</span>.<span style=color:#a6e22e>length</span>; <span style=color:#a6e22e>i</span><span style=color:#f92672>++</span>) {
-        <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>f</span>(<span style=color:#a6e22e>array</span>[<span style=color:#a6e22e>i</span>])) <span style=color:#a6e22e>res</span>[<span style=color:#a6e22e>i</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>array</span>[<span style=color:#a6e22e>i</span>]
-    }
-    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>res</span>
-} 
-
-<span style=color:#66d9ef>type</span>  <span style=color:#a6e22e>Filter2</span> <span style=color:#f92672>=</span> &lt;<span style=color:#f92672>T</span>&gt;(<span style=color:#a6e22e>array</span>: <span style=color:#66d9ef>T</span>[], <span style=color:#a6e22e>f</span><span style=color:#f92672>:</span> (<span style=color:#a6e22e>item</span>: <span style=color:#66d9ef>T</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>boolean</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>T</span>[]
-<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>filter2</span>:<span style=color:#66d9ef>Filter2</span>
-<span style=color:#75715e>// ...
-</span></code></pre></div><ul>
-<li>全体のシグネチャに制限する</li>
-</ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>type</span>  <span style=color:#a6e22e>Filter3</span>&lt;<span style=color:#f92672>T</span>&gt; <span style=color:#f92672>=</span> {
-    (<span style=color:#a6e22e>array</span>: <span style=color:#66d9ef>T</span>[], <span style=color:#a6e22e>f</span><span style=color:#f92672>:</span> (<span style=color:#a6e22e>item</span>: <span style=color:#66d9ef>T</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>boolean</span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>T</span>[]
-} 
-<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>filter3</span>:<span style=color:#66d9ef>Filter3</span>&lt;<span style=color:#f92672>number</span>&gt;;
-<span style=color:#75715e>// ...
-</span><span style=color:#75715e></span>
-<span style=color:#66d9ef>type</span>  <span style=color:#a6e22e>Filter4</span>&lt;<span style=color:#f92672>T</span>&gt; <span style=color:#f92672>=</span> (<span style=color:#a6e22e>array</span>: <span style=color:#66d9ef>T</span>[], <span style=color:#a6e22e>f</span><span style=color:#f92672>:</span> (<span style=color:#a6e22e>item</span>: <span style=color:#66d9ef>T</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>boolean</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>T</span>[]
-<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>filter4</span>:<span style=color:#66d9ef>Filter4</span>&lt;<span style=color:#f92672>number</span>&gt;;
-<span style=color:#75715e>// ...
-</span></code></pre></div><ul>
-<li>名前付き関数。呼び出す時具体的な型に推論できる</li>
-</ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>filter5</span>&lt;<span style=color:#f92672>T</span>&gt;(<span style=color:#a6e22e>array</span>: <span style=color:#66d9ef>T</span>[], <span style=color:#a6e22e>f</span><span style=color:#f92672>:</span> (<span style=color:#a6e22e>item</span>: <span style=color:#66d9ef>T</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>boolean</span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>T</span>[] {
-    <span style=color:#66d9ef>return</span> []
-}
-<span style=color:#a6e22e>filter5</span>([<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>2</span>,<span style=color:#ae81ff>3</span>], <span style=color:#a6e22e>item</span> <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>item</span> <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span>);
-</code></pre></div><p>参考：typescriptの標準Arrayインタフェース定義。Array.filter, Array.map</p>
-<h3 id=ディフォルトの型>ディフォルトの型</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Foo</span>&lt;<span style=color:#f92672>T</span><span style=color:#960050;background-color:#1e0010>=</span><span style=color:#a6e22e>string</span>&gt; <span style=color:#f92672>=</span> {
-    <span style=color:#a6e22e>name</span>: <span style=color:#66d9ef>T</span>
-} 
-<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>foo</span>:<span style=color:#66d9ef>Foo</span>
-
-<span style=color:#66d9ef>type</span>  <span style=color:#a6e22e>A</span> <span style=color:#f92672>=</span> { <span style=color:#a6e22e>a</span>: <span style=color:#66d9ef>string</span> }
-<span style=color:#66d9ef>type</span>  <span style=color:#a6e22e>C</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>A</span> <span style=color:#f92672>&amp;</span> { <span style=color:#a6e22e>b</span>: <span style=color:#66d9ef>number</span> }
-<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Bar</span>&lt;<span style=color:#f92672>T</span>  <span style=color:#a6e22e>extends</span>  <span style=color:#a6e22e>A </span><span style=color:#f92672>=</span> <span style=color:#a6e22e>C</span>&gt; <span style=color:#f92672>=</span> {
-    <span style=color:#a6e22e>target</span>: <span style=color:#66d9ef>T</span>
-}
-<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>bar</span>:<span style=color:#66d9ef>Bar</span>
-</code></pre></div><h2 id=クラスとインタフェース>クラスとインタフェース</h2>
-<h3 id=戻り値としてthisが使える>戻り値としてthisが使える</h3>
-<p>チェイン呼び出されるAPIを定義する場合に便利です。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript>  <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>DataList</span> {
-      <span style=color:#a6e22e>add</span>(<span style=color:#a6e22e>value</span>: <span style=color:#66d9ef>number</span>)<span style=color:#f92672>:</span> <span style=color:#66d9ef>this</span> { <span style=color:#75715e>// use this as return type instead of Set
-</span><span style=color:#75715e></span>          <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>this</span>;
-      }
-  }
-
-  <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>MutableDataList</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>DataList</span> {
-      <span style=color:#66d9ef>delete</span>(<span style=color:#a6e22e>value</span>: <span style=color:#66d9ef>number</span>) <span style=color:#f92672>:</span> <span style=color:#66d9ef>void</span> {
-          <span style=color:#75715e>// do something
-</span><span style=color:#75715e></span>      }
-
-      <span style=color:#75715e>// no need to override add method
-</span><span style=color:#75715e></span>  }
-</code></pre></div><h3 id=interface>Interface</h3>
-<p>open ended.参照：<a href=https://basarat.gitbook.io/typescript/type-system/interfaces>TypeScript Deep Dive</a>
-宣言のマージ。（第１０章）</p>
-<h3 id=インスタンス側とコンストラクタ側のことを考えつく>インスタンス側とコンストラクタ側のことを考えつく</h3>
-<p>公式ドキュメント[^1]により、インスタンス側(instance side)と静的側(staic side)も言われる。</p>
-<blockquote>
-<p>Another way to think of each class is that there is an instance side and a static side.</p>
-</blockquote>
-<h3 id=ポリモーフィズム>ポリモーフィズム</h3>
-<p><a href=#%E3%82%A4%E3%83%B3%E3%82%B9%E3%82%BF%E3%83%B3%E3%82%B9%E5%81%B4%E3%81%A8%E3%82%B3%E3%83%B3%E3%82%B9%E3%83%88%E3%83%A9%E3%82%AF%E3%82%BF%E5%81%B4%E3%81%AE%E3%81%93%E3%81%A8%E3%82%92%E8%80%83%E3%81%88%E3%81%A4%E3%81%8F>インスタンス側とコンストラクタ側のことを考えつく</a>のは必要です。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>MyMap</span>&lt;<span style=color:#f92672>K</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>V</span>&gt; { <span style=color:#75715e>// generic declaration at class scope
-</span><span style=color:#75715e></span>    <span style=color:#66d9ef>set</span>(<span style=color:#a6e22e>k</span>: <span style=color:#66d9ef>K</span>, <span style=color:#a6e22e>v</span>: <span style=color:#66d9ef>V</span>) { <span style=color:#75715e>// can access the generic type
-</span><span style=color:#75715e></span>        <span style=color:#75715e>// ...
-</span><span style=color:#75715e></span>    }
-    <span style=color:#a6e22e>merge</span>&lt;<span style=color:#f92672>K1</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>V1</span>&gt;(<span style=color:#a6e22e>map</span>: <span style=color:#66d9ef>MyMap</span>&lt;<span style=color:#f92672>K1</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>V1</span>&gt;)<span style=color:#f92672>:</span> <span style=color:#a6e22e>MyMap</span>&lt;<span style=color:#f92672>K</span> <span style=color:#960050;background-color:#1e0010>|</span> <span style=color:#a6e22e>K1</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>V</span> <span style=color:#960050;background-color:#1e0010>|</span> <span style=color:#a6e22e>V1</span>&gt; { <span style=color:#75715e>// can declare new generic types
-</span><span style=color:#75715e></span>        <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>temp</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>MyMap</span>&lt;<span style=color:#f92672>K</span> <span style=color:#960050;background-color:#1e0010>|</span> <span style=color:#a6e22e>K1</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>V</span> <span style=color:#960050;background-color:#1e0010>|</span> <span style=color:#a6e22e>V1</span>&gt;();
-        <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>temp</span>
-    }
-
-    <span style=color:#75715e>// static side cannot access the generic types so these errors will be raised:
-</span><span style=color:#75715e></span>    <span style=color:#75715e>// Static members cannot reference class type parameters.(2302)
-</span><span style=color:#75715e></span>    <span style=color:#75715e>// Parameter &#39;m&#39; of public static method from exported class has or is using private name &#39;K&#39;.(4070)
-</span><span style=color:#75715e></span>    <span style=color:#75715e>// static copyFrom(m: MyMap&lt;K, V&gt;) { // error
-</span><span style=color:#75715e></span>    <span style=color:#75715e>//     let temp = new MyMap&lt;K, V&gt;(); // error
-</span><span style=color:#75715e></span>    <span style=color:#75715e>//     // copy
-</span><span style=color:#75715e></span>    <span style=color:#75715e>//     return temp
-</span><span style=color:#75715e></span>    <span style=color:#75715e>// }
-</span><span style=color:#75715e></span>    <span style=color:#75715e>// So we need to declare the generic types we want at the method scope
-</span><span style=color:#75715e></span>    <span style=color:#75715e>// K, V here is different things to those above
-</span><span style=color:#75715e></span>    <span style=color:#66d9ef>static</span> <span style=color:#a6e22e>copyFrom</span>&lt;<span style=color:#f92672>K</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>V</span>&gt;(<span style=color:#a6e22e>m</span>: <span style=color:#66d9ef>MyMap</span>&lt;<span style=color:#f92672>K</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>V</span>&gt;) {
-        <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>temp</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>MyMap</span>&lt;<span style=color:#f92672>K</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>V</span>&gt;();
-        <span style=color:#75715e>// copy
-</span><span style=color:#75715e></span>        <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>temp</span>
-    }
-    <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>of</span>&lt;<span style=color:#f92672>K</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>V</span>&gt;(<span style=color:#a6e22e>k</span>: <span style=color:#66d9ef>K</span>, <span style=color:#a6e22e>v</span>: <span style=color:#66d9ef>V</span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>MyMap</span>&lt;<span style=color:#f92672>K</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>V</span>&gt; {
-        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>MyMap</span>&lt;<span style=color:#f92672>K</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>V</span>&gt;();
-    }
-}
-
-</code></pre></div><h3 id=ミックスイン>ミックスイン</h3>
-<p>役割指向プログラミング(role-orientend programming)</p>
-<h3 id=privateコンストラクタとファクトリーメソッドでfinalクラスを定義する>privateコンストラクタとファクトリーメソッドでfinalクラスを定義する</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>FinalFoo</span> {
-    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>constructor</span>() {
-        <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;constructor&#34;</span>)
-    }
-    <span style=color:#66d9ef>static</span> <span style=color:#a6e22e>create() {</span>
-        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>FinalFoo</span>()
-    }
-}
-
-<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ExtendedFoo</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>FinalFoo</span> {} <span style=color:#75715e>// Error: Cannot extend a class &#39;FinalFoo&#39;. Class constructor is marked as private.(2675)
-</span><span style=color:#75715e></span>
-<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>foo</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>FinalFoo</span>() <span style=color:#75715e>// Error: Constructor of class &#39;FinalFoo&#39; is private and only accessible within the class declaration.(2673)
-</span><span style=color:#75715e></span>
-<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>foooo</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>FinalFoo</span>.<span style=color:#a6e22e>create</span>() <span style=color:#75715e>// OK
-</span></code></pre></div><h3 id=より型安全なビルダーパターンの実装>より型安全なビルダーパターンの実装</h3>
-<p>第５章の練習４</p>
-<p>a. setUrl &ndash;> setMethod &ndash;> sendの順で固定する</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>RequestBuilder</span> {
-    <span style=color:#66d9ef>protected</span> <span style=color:#a6e22e>data</span>: <span style=color:#66d9ef>object</span> <span style=color:#f92672>|</span> <span style=color:#66d9ef>null</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>null</span>
-
-    <span style=color:#a6e22e>setURL</span>(<span style=color:#a6e22e>url</span>:<span style=color:#66d9ef>string</span>) {
-        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>RequestBuilderWithUrl</span>(<span style=color:#a6e22e>url</span>).<span style=color:#a6e22e>setData</span>(<span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>data</span>)
-    }
-
-    <span style=color:#a6e22e>setData</span>(<span style=color:#a6e22e>data</span>: <span style=color:#66d9ef>object</span> <span style=color:#f92672>|</span> <span style=color:#66d9ef>null</span>) {
-        <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>data</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>data</span>
-        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>this</span>
-    }
-}
-
-<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>RequestBuilderWithUrl</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>RequestBuilder</span> {
-    <span style=color:#66d9ef>protected</span> <span style=color:#a6e22e>url</span>: <span style=color:#66d9ef>string</span>
-    <span style=color:#66d9ef>constructor</span>(<span style=color:#a6e22e>url</span>: <span style=color:#66d9ef>string</span>) {
-        <span style=color:#66d9ef>super</span>()
-        <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>url</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>url</span>
-    }
-    <span style=color:#a6e22e>setMethod</span>(<span style=color:#a6e22e>method</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;get&#39;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#39;post&#39;</span>) {
-        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>RequestBuilderWithUrlAndMethod</span>(<span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>url</span>, <span style=color:#a6e22e>method</span>).<span style=color:#a6e22e>setData</span>(<span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>data</span>)
-    }
-}
-
-<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>RequestBuilderWithUrlAndMethod</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>RequestBuilderWithUrl</span> {
-    <span style=color:#66d9ef>protected</span> <span style=color:#a6e22e>method</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;get&#39;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#39;post&#39;</span>
-    
-    <span style=color:#66d9ef>constructor</span>(<span style=color:#a6e22e>url</span>: <span style=color:#66d9ef>string</span>, <span style=color:#a6e22e>method</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;get&#39;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#39;post&#39;</span>) {
-        <span style=color:#66d9ef>super</span>(<span style=color:#a6e22e>url</span>)
-        <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>method</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>method</span>
-    }
-    <span style=color:#a6e22e>send() {</span>
-        <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>url</span>)
-        <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>method</span>)
-        <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>data</span>)
-        <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;send&#39;</span>)
-    }
-}
-
-<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>builder</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>RequestBuilder</span>()
-<span style=color:#a6e22e>builder</span>.<span style=color:#a6e22e>setURL</span>(<span style=color:#e6db74>&#39;&#39;</span>)
-    .<span style=color:#a6e22e>setMethod</span>(<span style=color:#e6db74>&#39;get&#39;</span>)
-    .<span style=color:#a6e22e>setData</span>({}) <span style=color:#75715e>// 省略可
-</span><span style=color:#75715e></span>    .<span style=color:#a6e22e>send</span>()
-</code></pre></div><p><a href=https://www.typescriptlang.org/docs/handbook/classes.html#advanced-techniques>^1</a>[</p>
-</div>
-</article>
-<div class=blog-post-comments>
-<div id=disqus_thread>
-<script type=text/javascript>(function(){var a=document.createElement('script'),b;a.type='text/javascript',a.async=!0,b='wzr',a.src='//'+b+'.disqus.com/embed.js',(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(a)})()</script>
-<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
-<a href=https://disqus.com/ class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a>
-</div>
-</div>
-<div id=footer-post-container>
-<div id=footer-post>
-<div id=nav-footer style=display:none>
-<ul>
-<li><a href=/>Home</a></li>
-<li><a href=/posts>Writings</a></li>
-<li><a href=/tags>Tags</a></li>
-<li><a href=/about>About</a></li>
-</ul>
-</div>
-<div id=toc-footer style=display:none>
-<nav id=TableOfContents>
-<ul>
-<li>
-<ul>
-<li><a href=#リテラル>リテラル</a></li>
-<li><a href=#構造的型付けstructural-typing>構造的型付け(structural typing)</a></li>
-<li><a href=#インデックスシグネチャ>インデックスシグネチャ</a></li>
-<li><a href=#オブジェクトについて>オブジェクトについて</a></li>
-</ul>
-</li>
-<li><a href=#呼び出しシグネチャcall-signature>呼び出しシグネチャ(call signature)</a></li>
-<li><a href=#文脈的型付けcontextual-typing>文脈的型付け(contextual typing)</a></li>
-<li><a href=#ジェネリック型総称型>ジェネリック型（総称型）</a>
-<ul>
-<li><a href=#ディフォルトの型>ディフォルトの型</a></li>
-</ul>
-</li>
-<li><a href=#クラスとインタフェース>クラスとインタフェース</a>
-<ul>
-<li><a href=#戻り値としてthisが使える>戻り値としてthisが使える</a></li>
-<li><a href=#interface>Interface</a></li>
-<li><a href=#インスタンス側とコンストラクタ側のことを考えつく>インスタンス側とコンストラクタ側のことを考えつく</a></li>
-<li><a href=#ポリモーフィズム>ポリモーフィズム</a></li>
-<li><a href=#ミックスイン>ミックスイン</a></li>
-<li><a href=#privateコンストラクタとファクトリーメソッドでfinalクラスを定義する>privateコンストラクタとファクトリーメソッドでfinalクラスを定義する</a></li>
-<li><a href=#より型安全なビルダーパターンの実装>より型安全なビルダーパターンの実装</a></li>
-</ul>
-</li>
-</ul>
-</nav>
-</div>
-<div id=share-footer style=display:none>
-<ul>
-<li>
-<a class=icon href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes%2f" aria-label=Facebook>
-<i class="fab fa-facebook fa-lg" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="https://twitter.com/share?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes%2f&text=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2" aria-label=Twitter>
-<i class="fab fa-twitter fa-lg" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes%2f&title=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2" aria-label=Linkedin>
-<i class="fab fa-linkedin fa-lg" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes%2f&is_video=false&description=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2" aria-label=Pinterest>
-<i class="fab fa-pinterest fa-lg" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="mailto:?subject=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2&body=Check out this article: https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes%2f" aria-label=Email>
-<i class="fas fa-envelope fa-lg" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="https://getpocket.com/save?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes%2f&title=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2" aria-label=Pocket>
-<i class="fab fa-get-pocket fa-lg" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="http://reddit.com/submit?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes%2f&title=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2" aria-label=reddit>
-<i class="fab fa-reddit fa-lg" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="http://www.tumblr.com/share/link?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes%2f&name=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2&description=%e3%83%aa%e3%83%86%e3%83%a9%e3%83%ab%20let%20a%20%3d%201%20%2f%2f%20number%20let%20c%20%3a%203%20%3d%203%3b%20%2f%2f%20%e3%83%aa%e3%83%86%e3%83%a9%e3%83%ab%e5%9e%8b%203%20const%20b%20%3d%202%20%2f%2f%20%e3%83%aa%e3%83%86%e3%83%a9%e3%83%ab%e5%9e%8b%202%20const%20d%3a%20number%20%3d%204%20%2f%2f%20number%20%e6%a7%8b%e9%80%a0%e7%9a%84%e5%9e%8b%e4%bb%98%e3%81%91%28structural%20typing%29%20%e3%83%80%e3%83%83%e3%82%af%e3%82%bf%e3%82%a4%e3%83%94%e3%83%b3%e3%82%b0%0a%e2%86%92%e5%90%8d%e5%89%8d%e7%9a%84%e5%9e%8b%e4%bb%98%e3%81%91%0a%e3%82%a4%e3%83%b3%e3%83%87%e3%83%83%e3%82%af%e3%82%b9%e3%82%b7%e3%82%b0%e3%83%8d%e3%83%81%e3%83%a3%20%7b%20%5bkey%3a%20T%5d%3a%20U%20%7d%20%e3%82%aa%e3%83%96%e3%82%b8%e3%82%a7%e3%82%af%e3%83%88%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6%20%e7%a9%ba%e3%81%ae%e3%82%aa%e3%83%96%e3%82%b8%e3%82%a7%e3%82%af%e3%83%88%e3%83%aa%e3%83%86%e3%83%a9%e3%83%ab%e8%a1%a8%e8%a8%98%7b%7d%e3%81%a8%e3%82%aa%e3%83%96%e3%82%b8%e3%82%a7%e3%82%af%e3%83%88%e3%83%97%e3%83%ad%e3%83%88%e3%82%bf%e3%82%a4%e3%83%97%e8%a1%a8%e8%a8%98Object%e3%81%af%e3%81%a7%e3%81%8d%e3%82%8b%e3%81%a0%e3%81%91%e9%81%bf%e3%81%91%e3%81%a6%e3%81%8f%e3%81%a0%e3%81%95%e3%81%84%e3%80%82%0alet%20foo%3a%20%7b%7d%20foo%20%3d%201%3b%20foo%20%3d%20%7ba%3a%201%7d%3b%20foo%20%3d%20%5b%5d%3b%20foo%20%3d%20%26%2339%3babc%26%2339%3b%3b%20let%20bar%20%3a%20Object%3b%20bar%20%3d%201%3b%20bar%20%3d%20%7ba%3a%201%7d%20bar%20%3d%20%5b%5d%20bar%20%3d%20%26%2339%3babc%26%2339%3b%20foo%20%3d%20%7btoString%28%29%20%7breturn%201%7d%7d%20%2f%2f%20OK%20bar%20%3d%20%7btoString%28%29%20%7breturn%201%7d%7d%20%2f%2f%20Error%3a%20Type%20%e2%80%98%28%29%20%3d%26gt%3b%20number%e2%80%99%20is%20not%20assignable%20to%20type%20%e2%80%98%28%29%20%3d%26gt%3b%20string%e2%80%99." aria-label=Tumblr>
-<i class="fab fa-tumblr fa-lg" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes%2f&t=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2" aria-label="Hacker News">
-<i class="fab fa-hacker-news fa-lg" aria-hidden=true></i>
-</a>
-</li>
-</ul>
-</div>
-<div id=actions-footer>
-<a id=menu-toggle class=icon href=# onclick="return $('#nav-footer').toggle(),!1" aria-label=Menu>
-<i class="fas fa-bars fa-lg" aria-hidden=true></i> Menu</a>
-<a id=toc-toggle class=icon href=# onclick="return $('#toc-footer').toggle(),!1" aria-label=TOC>
-<i class="fas fa-list fa-lg" aria-hidden=true></i> TOC</a>
-<a id=share-toggle class=icon href=# onclick="return $('#share-footer').toggle(),!1" aria-label=Share>
-<i class="fas fa-share-alt fa-lg" aria-hidden=true></i> share</a>
-<a id=top style=display:none class=icon href=# onclick="$('html, body').animate({scrollTop:0},'fast')" aria-label="Top of Page">
-<i class="fas fa-chevron-up fa-lg" aria-hidden=true></i> Top</a>
-</div>
-</div>
-</div>
-<footer id=footer>
-<div class=footer-left>
-Copyright &copy; 2021 呉
-</div>
-<div class=footer-right>
-<nav>
-<ul>
-<li><a href=/>Home</a></li>
-<li><a href=/posts>Writings</a></li>
-<li><a href=/tags>Tags</a></li>
-<li><a href=/about>About</a></li>
-</ul>
-</nav>
-</div>
-</footer>
-</div>
-</body>
-<link rel=stylesheet href=/lib/font-awesome/css/all.min.css>
-<script src=/lib/jquery/jquery.min.js></script>
+<a class=tag-link href=/tags/typescript rel=tag>typescript</a></div></div></header><div class=content itemprop=articleBody><h3 id=リテラル>リテラル</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>a</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span> <span style=color:#75715e>// number
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>c</span> : <span style=color:#66d9ef>3</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>3</span>; <span style=color:#75715e>// リテラル型 3
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>b</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>2</span> <span style=color:#75715e>// リテラル型 2
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>d</span>: <span style=color:#66d9ef>number</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>4</span> <span style=color:#75715e>// number
+</span></span></span></code></pre></div><h3 id=構造的型付けstructural-typing>構造的型付け(structural typing)</h3><p>ダックタイピング</p><p>→名前的型付け</p><h3 id=インデックスシグネチャ>インデックスシグネチャ</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    [<span style=color:#a6e22e>key</span>: <span style=color:#66d9ef>T</span>]<span style=color:#f92672>:</span> <span style=color:#a6e22e>U</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=オブジェクトについて>オブジェクトについて</h3><p><strong>空のオブジェクトリテラル表記<code>{}</code>とオブジェクトプロトタイプ表記<code>Object</code>はできるだけ避けてください。</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>foo</span><span style=color:#f92672>:</span> {}
+</span></span><span style=display:flex><span><span style=color:#a6e22e>foo</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
+</span></span><span style=display:flex><span><span style=color:#a6e22e>foo</span> <span style=color:#f92672>=</span> {<span style=color:#a6e22e>a</span>: <span style=color:#66d9ef>1</span>};
+</span></span><span style=display:flex><span><span style=color:#a6e22e>foo</span> <span style=color:#f92672>=</span> [];
+</span></span><span style=display:flex><span><span style=color:#a6e22e>foo</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;abc&#39;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>bar</span> : <span style=color:#66d9ef>Object</span>;
+</span></span><span style=display:flex><span><span style=color:#a6e22e>bar</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
+</span></span><span style=display:flex><span><span style=color:#a6e22e>bar</span> <span style=color:#f92672>=</span> {<span style=color:#a6e22e>a</span>: <span style=color:#66d9ef>1</span>}
+</span></span><span style=display:flex><span><span style=color:#a6e22e>bar</span> <span style=color:#f92672>=</span> []
+</span></span><span style=display:flex><span><span style=color:#a6e22e>bar</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;abc&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>foo</span> <span style=color:#f92672>=</span> {<span style=color:#a6e22e>toString() {</span><span style=color:#66d9ef>return</span>  <span style=color:#ae81ff>1</span>}} <span style=color:#75715e>// OK
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>bar</span> <span style=color:#f92672>=</span> {<span style=color:#a6e22e>toString() {</span><span style=color:#66d9ef>return</span> <span style=color:#ae81ff>1</span>}} <span style=color:#75715e>// Error: Type ‘() =&gt; number’ is not assignable to type ‘() =&gt; string’. Type ‘nubmer’ is not assignable to type ‘string’
+</span></span></span></code></pre></div><p>良い宣言：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>foo</span><span style=color:#f92672>:</span> {<span style=color:#a6e22e>a</span>: <span style=color:#66d9ef>string</span>}
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>bar</span>: <span style=color:#66d9ef>object</span>
+</span></span></code></pre></div><h2 id=呼び出しシグネチャcall-signature>呼び出しシグネチャ(call signature)</h2><p>関数の型を表す構文です。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#75715e>// 省略記法
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>foo</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>name</span>: <span style=color:#66d9ef>string</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>string</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// 完全な呼び出しシグネチャ。オーバロードも表せる
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>bar</span> <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>    (<span style=color:#a6e22e>name</span>: <span style=color:#66d9ef>string</span>)<span style=color:#f92672>:</span> <span style=color:#66d9ef>string</span>,
+</span></span><span style=display:flex><span>    (<span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>number</span>, <span style=color:#a6e22e>addr</span>: <span style=color:#66d9ef>string</span>)<span style=color:#f92672>:</span> <span style=color:#66d9ef>string</span>,
+</span></span><span style=display:flex><span>    (<span style=color:#a6e22e>sex</span>: <span style=color:#66d9ef>string</span>)<span style=color:#f92672>:</span> <span style=color:#66d9ef>void</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h2 id=文脈的型付けcontextual-typing>文脈的型付け(contextual typing)</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>foo</span> (
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>bar</span><span style=color:#f92672>:</span> (<span style=color:#a6e22e>index</span>: <span style=color:#66d9ef>number</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>void</span>
+</span></span><span style=display:flex><span>) {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>bar</span>(<span style=color:#ae81ff>1</span>)
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>foo</span>(<span style=color:#a6e22e>n</span> <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>n</span>)) <span style=color:#75715e>// OK when inline
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>bah</span>(<span style=color:#a6e22e>n</span>) { <span style=color:#75715e>// Error: parameter ‘n’ implicitly has an ‘any’ type
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>n</span>)
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>上記インラインのの場合、<code>n => console.log(n)</code>のnが<code>number</code>であると、文脈から推論できる。インラインでないと当然エラーになる。</p><h2 id=ジェネリック型総称型>ジェネリック型（総称型）</h2><p>それぞれの宣言方法</p><ul><li>一つのシグネチャに限られる。呼び出す時文脈的に推論され、具体的な型にバインドされる</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#66d9ef>type</span>  <span style=color:#a6e22e>Filter1</span> <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>    &lt;<span style=color:#f92672>T</span>&gt;(<span style=color:#a6e22e>array</span>: <span style=color:#66d9ef>T</span>[], <span style=color:#a6e22e>f</span><span style=color:#f92672>:</span> (<span style=color:#a6e22e>item</span>: <span style=color:#66d9ef>T</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>boolean</span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>T</span>[]
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>filter1</span>:<span style=color:#66d9ef>Filter1</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>filter1</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>array</span>, <span style=color:#a6e22e>f</span>) <span style=color:#f92672>=&gt;</span> {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>res</span> <span style=color:#f92672>=</span> [];
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>i</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; <span style=color:#a6e22e>i</span> <span style=color:#f92672>&lt;</span> <span style=color:#a6e22e>array</span>.<span style=color:#a6e22e>length</span>; <span style=color:#a6e22e>i</span><span style=color:#f92672>++</span>) {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>f</span>(<span style=color:#a6e22e>array</span>[<span style=color:#a6e22e>i</span>])) <span style=color:#a6e22e>res</span>[<span style=color:#a6e22e>i</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>array</span>[<span style=color:#a6e22e>i</span>]
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>res</span>
+</span></span><span style=display:flex><span>} 
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>type</span>  <span style=color:#a6e22e>Filter2</span> <span style=color:#f92672>=</span> &lt;<span style=color:#f92672>T</span>&gt;(<span style=color:#a6e22e>array</span>: <span style=color:#66d9ef>T</span>[], <span style=color:#a6e22e>f</span><span style=color:#f92672>:</span> (<span style=color:#a6e22e>item</span>: <span style=color:#66d9ef>T</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>boolean</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>T</span>[]
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>filter2</span>:<span style=color:#66d9ef>Filter2</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// ...
+</span></span></span></code></pre></div><ul><li>全体のシグネチャに制限する</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#66d9ef>type</span>  <span style=color:#a6e22e>Filter3</span>&lt;<span style=color:#f92672>T</span>&gt; <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>    (<span style=color:#a6e22e>array</span>: <span style=color:#66d9ef>T</span>[], <span style=color:#a6e22e>f</span><span style=color:#f92672>:</span> (<span style=color:#a6e22e>item</span>: <span style=color:#66d9ef>T</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>boolean</span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>T</span>[]
+</span></span><span style=display:flex><span>} 
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>filter3</span>:<span style=color:#66d9ef>Filter3</span>&lt;<span style=color:#f92672>number</span>&gt;;
+</span></span><span style=display:flex><span><span style=color:#75715e>// ...
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>type</span>  <span style=color:#a6e22e>Filter4</span>&lt;<span style=color:#f92672>T</span>&gt; <span style=color:#f92672>=</span> (<span style=color:#a6e22e>array</span>: <span style=color:#66d9ef>T</span>[], <span style=color:#a6e22e>f</span><span style=color:#f92672>:</span> (<span style=color:#a6e22e>item</span>: <span style=color:#66d9ef>T</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>boolean</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>T</span>[]
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>filter4</span>:<span style=color:#66d9ef>Filter4</span>&lt;<span style=color:#f92672>number</span>&gt;;
+</span></span><span style=display:flex><span><span style=color:#75715e>// ...
+</span></span></span></code></pre></div><ul><li>名前付き関数。呼び出す時具体的な型に推論できる</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>filter5</span>&lt;<span style=color:#f92672>T</span>&gt;(<span style=color:#a6e22e>array</span>: <span style=color:#66d9ef>T</span>[], <span style=color:#a6e22e>f</span><span style=color:#f92672>:</span> (<span style=color:#a6e22e>item</span>: <span style=color:#66d9ef>T</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>boolean</span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>T</span>[] {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> []
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=color:#a6e22e>filter5</span>([<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>2</span>,<span style=color:#ae81ff>3</span>], <span style=color:#a6e22e>item</span> <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>item</span> <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span>);
+</span></span></code></pre></div><p>参考：typescriptの標準Arrayインタフェース定義。Array.filter, Array.map</p><h3 id=ディフォルトの型>ディフォルトの型</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Foo</span>&lt;<span style=color:#f92672>T</span><span style=color:#960050;background-color:#1e0010>=</span><span style=color:#a6e22e>string</span>&gt; <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>name</span>: <span style=color:#66d9ef>T</span>
+</span></span><span style=display:flex><span>} 
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>foo</span>:<span style=color:#66d9ef>Foo</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>type</span>  <span style=color:#a6e22e>A</span> <span style=color:#f92672>=</span> { <span style=color:#a6e22e>a</span>: <span style=color:#66d9ef>string</span> }
+</span></span><span style=display:flex><span><span style=color:#66d9ef>type</span>  <span style=color:#a6e22e>C</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>A</span> <span style=color:#f92672>&amp;</span> { <span style=color:#a6e22e>b</span>: <span style=color:#66d9ef>number</span> }
+</span></span><span style=display:flex><span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Bar</span>&lt;<span style=color:#f92672>T</span>  <span style=color:#a6e22e>extends</span>  <span style=color:#a6e22e>A </span><span style=color:#f92672>=</span> <span style=color:#a6e22e>C</span>&gt; <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>target</span>: <span style=color:#66d9ef>T</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>bar</span>:<span style=color:#66d9ef>Bar</span>
+</span></span></code></pre></div><h2 id=クラスとインタフェース>クラスとインタフェース</h2><h3 id=戻り値としてthisが使える>戻り値としてthisが使える</h3><p>チェイン呼び出されるAPIを定義する場合に便利です。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=display:flex><span>  <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>DataList</span> {
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>add</span>(<span style=color:#a6e22e>value</span>: <span style=color:#66d9ef>number</span>)<span style=color:#f92672>:</span> <span style=color:#66d9ef>this</span> { <span style=color:#75715e>// use this as return type instead of Set
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>          <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>this</span>;
+</span></span><span style=display:flex><span>      }
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>MutableDataList</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>DataList</span> {
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>delete</span>(<span style=color:#a6e22e>value</span>: <span style=color:#66d9ef>number</span>) <span style=color:#f92672>:</span> <span style=color:#66d9ef>void</span> {
+</span></span><span style=display:flex><span>          <span style=color:#75715e>// do something
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>      }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>      <span style=color:#75715e>// no need to override add method
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  }
+</span></span></code></pre></div><h3 id=interface>Interface</h3><p>open ended.参照：<a href=https://basarat.gitbook.io/typescript/type-system/interfaces>TypeScript Deep Dive</a>
+宣言のマージ。（第１０章）</p><h3 id=インスタンス側とコンストラクタ側のことを考えつく>インスタンス側とコンストラクタ側のことを考えつく</h3><p>公式ドキュメント[^1]により、インスタンス側(instance side)と静的側(staic side)も言われる。</p><blockquote><p>Another way to think of each class is that there is an instance side and a static side.</p></blockquote><h3 id=ポリモーフィズム>ポリモーフィズム</h3><p><a href=#%E3%82%A4%E3%83%B3%E3%82%B9%E3%82%BF%E3%83%B3%E3%82%B9%E5%81%B4%E3%81%A8%E3%82%B3%E3%83%B3%E3%82%B9%E3%83%88%E3%83%A9%E3%82%AF%E3%82%BF%E5%81%B4%E3%81%AE%E3%81%93%E3%81%A8%E3%82%92%E8%80%83%E3%81%88%E3%81%A4%E3%81%8F>インスタンス側とコンストラクタ側のことを考えつく</a>のは必要です。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>MyMap</span>&lt;<span style=color:#f92672>K</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>V</span>&gt; { <span style=color:#75715e>// generic declaration at class scope
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#66d9ef>set</span>(<span style=color:#a6e22e>k</span>: <span style=color:#66d9ef>K</span>, <span style=color:#a6e22e>v</span>: <span style=color:#66d9ef>V</span>) { <span style=color:#75715e>// can access the generic type
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>        <span style=color:#75715e>// ...
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    }
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>merge</span>&lt;<span style=color:#f92672>K1</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>V1</span>&gt;(<span style=color:#a6e22e>map</span>: <span style=color:#66d9ef>MyMap</span>&lt;<span style=color:#f92672>K1</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>V1</span>&gt;)<span style=color:#f92672>:</span> <span style=color:#a6e22e>MyMap</span>&lt;<span style=color:#f92672>K</span> <span style=color:#960050;background-color:#1e0010>|</span> <span style=color:#a6e22e>K1</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>V</span> <span style=color:#960050;background-color:#1e0010>|</span> <span style=color:#a6e22e>V1</span>&gt; { <span style=color:#75715e>// can declare new generic types
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>        <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>temp</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>MyMap</span>&lt;<span style=color:#f92672>K</span> <span style=color:#960050;background-color:#1e0010>|</span> <span style=color:#a6e22e>K1</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>V</span> <span style=color:#960050;background-color:#1e0010>|</span> <span style=color:#a6e22e>V1</span>&gt;();
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>temp</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// static side cannot access the generic types so these errors will be raised:
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#75715e>// Static members cannot reference class type parameters.(2302)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#75715e>// Parameter &#39;m&#39; of public static method from exported class has or is using private name &#39;K&#39;.(4070)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#75715e>// static copyFrom(m: MyMap&lt;K, V&gt;) { // error
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#75715e>//     let temp = new MyMap&lt;K, V&gt;(); // error
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#75715e>//     // copy
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#75715e>//     return temp
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#75715e>// }
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#75715e>// So we need to declare the generic types we want at the method scope
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#75715e>// K, V here is different things to those above
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#66d9ef>static</span> <span style=color:#a6e22e>copyFrom</span>&lt;<span style=color:#f92672>K</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>V</span>&gt;(<span style=color:#a6e22e>m</span>: <span style=color:#66d9ef>MyMap</span>&lt;<span style=color:#f92672>K</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>V</span>&gt;) {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>temp</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>MyMap</span>&lt;<span style=color:#f92672>K</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>V</span>&gt;();
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// copy
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>        <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>temp</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>of</span>&lt;<span style=color:#f92672>K</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>V</span>&gt;(<span style=color:#a6e22e>k</span>: <span style=color:#66d9ef>K</span>, <span style=color:#a6e22e>v</span>: <span style=color:#66d9ef>V</span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>MyMap</span>&lt;<span style=color:#f92672>K</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>V</span>&gt; {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>MyMap</span>&lt;<span style=color:#f92672>K</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>V</span>&gt;();
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=ミックスイン>ミックスイン</h3><p>役割指向プログラミング(role-orientend programming)</p><h3 id=privateコンストラクタとファクトリーメソッドでfinalクラスを定義する>privateコンストラクタとファクトリーメソッドでfinalクラスを定義する</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>FinalFoo</span> {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>constructor</span>() {
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;constructor&#34;</span>)
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>static</span> <span style=color:#a6e22e>create() {</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>FinalFoo</span>()
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ExtendedFoo</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>FinalFoo</span> {} <span style=color:#75715e>// Error: Cannot extend a class &#39;FinalFoo&#39;. Class constructor is marked as private.(2675)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>foo</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>FinalFoo</span>() <span style=color:#75715e>// Error: Constructor of class &#39;FinalFoo&#39; is private and only accessible within the class declaration.(2673)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>foooo</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>FinalFoo</span>.<span style=color:#a6e22e>create</span>() <span style=color:#75715e>// OK
+</span></span></span></code></pre></div><h3 id=より型安全なビルダーパターンの実装>より型安全なビルダーパターンの実装</h3><p>第５章の練習４</p><p>a. setUrl &ndash;> setMethod &ndash;> sendの順で固定する</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>RequestBuilder</span> {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>protected</span> <span style=color:#a6e22e>data</span>: <span style=color:#66d9ef>object</span> <span style=color:#f92672>|</span> <span style=color:#66d9ef>null</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>null</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>setURL</span>(<span style=color:#a6e22e>url</span>:<span style=color:#66d9ef>string</span>) {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>RequestBuilderWithUrl</span>(<span style=color:#a6e22e>url</span>).<span style=color:#a6e22e>setData</span>(<span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>data</span>)
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>setData</span>(<span style=color:#a6e22e>data</span>: <span style=color:#66d9ef>object</span> <span style=color:#f92672>|</span> <span style=color:#66d9ef>null</span>) {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>data</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>data</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>this</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>RequestBuilderWithUrl</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>RequestBuilder</span> {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>protected</span> <span style=color:#a6e22e>url</span>: <span style=color:#66d9ef>string</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>constructor</span>(<span style=color:#a6e22e>url</span>: <span style=color:#66d9ef>string</span>) {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>super</span>()
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>url</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>url</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>setMethod</span>(<span style=color:#a6e22e>method</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;get&#39;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#39;post&#39;</span>) {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>RequestBuilderWithUrlAndMethod</span>(<span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>url</span>, <span style=color:#a6e22e>method</span>).<span style=color:#a6e22e>setData</span>(<span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>data</span>)
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>RequestBuilderWithUrlAndMethod</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>RequestBuilderWithUrl</span> {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>protected</span> <span style=color:#a6e22e>method</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;get&#39;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#39;post&#39;</span>
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>constructor</span>(<span style=color:#a6e22e>url</span>: <span style=color:#66d9ef>string</span>, <span style=color:#a6e22e>method</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;get&#39;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#39;post&#39;</span>) {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>super</span>(<span style=color:#a6e22e>url</span>)
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>method</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>method</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>send() {</span>
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>url</span>)
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>method</span>)
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>data</span>)
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;send&#39;</span>)
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>builder</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>RequestBuilder</span>()
+</span></span><span style=display:flex><span><span style=color:#a6e22e>builder</span>.<span style=color:#a6e22e>setURL</span>(<span style=color:#e6db74>&#39;&#39;</span>)
+</span></span><span style=display:flex><span>    .<span style=color:#a6e22e>setMethod</span>(<span style=color:#e6db74>&#39;get&#39;</span>)
+</span></span><span style=display:flex><span>    .<span style=color:#a6e22e>setData</span>({}) <span style=color:#75715e>// 省略可
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    .<span style=color:#a6e22e>send</span>()
+</span></span></code></pre></div><p><a href=https://www.typescriptlang.org/docs/handbook/classes.html#advanced-techniques>^1</a>[</p></div></article><div class=blog-post-comments><div id=disqus_thread><script type=text/javascript>(function(){var t,e=document.createElement("script");e.type="text/javascript",e.async=!0,t="wzr",e.src="//"+t+".disqus.com/embed.js",(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)})()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com/ class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div></div><div id=footer-post-container><div id=footer-post><div id=nav-footer style=display:none><ul><li><a href=/>Home</a></li><li><a href=/posts>Writings</a></li><li><a href=/tags>Tags</a></li><li><a href=/about>About</a></li></ul></div><div id=toc-footer style=display:none><nav id=TableOfContents><ul><li><ul><li><a href=#リテラル>リテラル</a></li><li><a href=#構造的型付けstructural-typing>構造的型付け(structural typing)</a></li><li><a href=#インデックスシグネチャ>インデックスシグネチャ</a></li><li><a href=#オブジェクトについて>オブジェクトについて</a></li></ul></li><li><a href=#呼び出しシグネチャcall-signature>呼び出しシグネチャ(call signature)</a></li><li><a href=#文脈的型付けcontextual-typing>文脈的型付け(contextual typing)</a></li><li><a href=#ジェネリック型総称型>ジェネリック型（総称型）</a><ul><li><a href=#ディフォルトの型>ディフォルトの型</a></li></ul></li><li><a href=#クラスとインタフェース>クラスとインタフェース</a><ul><li><a href=#戻り値としてthisが使える>戻り値としてthisが使える</a></li><li><a href=#interface>Interface</a></li><li><a href=#インスタンス側とコンストラクタ側のことを考えつく>インスタンス側とコンストラクタ側のことを考えつく</a></li><li><a href=#ポリモーフィズム>ポリモーフィズム</a></li><li><a href=#ミックスイン>ミックスイン</a></li><li><a href=#privateコンストラクタとファクトリーメソッドでfinalクラスを定義する>privateコンストラクタとファクトリーメソッドでfinalクラスを定義する</a></li><li><a href=#より型安全なビルダーパターンの実装>より型安全なビルダーパターンの実装</a></li></ul></li></ul></nav></div><div id=share-footer style=display:none><ul><li><a class=icon href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes%2f" aria-label=Facebook><i class="fab fa-facebook fa-lg" aria-hidden=true></i></a></li><li><a class=icon href="https://twitter.com/share?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes%2f&text=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2" aria-label=Twitter><i class="fab fa-twitter fa-lg" aria-hidden=true></i></a></li><li><a class=icon href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes%2f&title=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2" aria-label=Linkedin><i class="fab fa-linkedin fa-lg" aria-hidden=true></i></a></li><li><a class=icon href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes%2f&is_video=false&description=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2" aria-label=Pinterest><i class="fab fa-pinterest fa-lg" aria-hidden=true></i></a></li><li><a class=icon href="mailto:?subject=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2&body=Check out this article: https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes%2f" aria-label=Email><i class="fas fa-envelope fa-lg" aria-hidden=true></i></a></li><li><a class=icon href="https://getpocket.com/save?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes%2f&title=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2" aria-label=Pocket><i class="fab fa-get-pocket fa-lg" aria-hidden=true></i></a></li><li><a class=icon href="http://reddit.com/submit?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes%2f&title=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2" aria-label=reddit><i class="fab fa-reddit fa-lg" aria-hidden=true></i></a></li><li><a class=icon href="http://www.tumblr.com/share/link?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes%2f&name=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2&description=%e3%83%aa%e3%83%86%e3%83%a9%e3%83%ab%20let%20a%20%3d%201%20%2f%2f%20number%20let%20c%20%3a%203%20%3d%203%3b%20%2f%2f%20%e3%83%aa%e3%83%86%e3%83%a9%e3%83%ab%e5%9e%8b%203%20const%20b%20%3d%202%20%2f%2f%20%e3%83%aa%e3%83%86%e3%83%a9%e3%83%ab%e5%9e%8b%202%20const%20d%3a%20number%20%3d%204%20%2f%2f%20number%20%e6%a7%8b%e9%80%a0%e7%9a%84%e5%9e%8b%e4%bb%98%e3%81%91%28structural%20typing%29%20%e3%83%80%e3%83%83%e3%82%af%e3%82%bf%e3%82%a4%e3%83%94%e3%83%b3%e3%82%b0%0a%e2%86%92%e5%90%8d%e5%89%8d%e7%9a%84%e5%9e%8b%e4%bb%98%e3%81%91%0a%e3%82%a4%e3%83%b3%e3%83%87%e3%83%83%e3%82%af%e3%82%b9%e3%82%b7%e3%82%b0%e3%83%8d%e3%83%81%e3%83%a3%20%7b%20%5bkey%3a%20T%5d%3a%20U%20%7d%20%e3%82%aa%e3%83%96%e3%82%b8%e3%82%a7%e3%82%af%e3%83%88%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6%20%e7%a9%ba%e3%81%ae%e3%82%aa%e3%83%96%e3%82%b8%e3%82%a7%e3%82%af%e3%83%88%e3%83%aa%e3%83%86%e3%83%a9%e3%83%ab%e8%a1%a8%e8%a8%98%7b%7d%e3%81%a8%e3%82%aa%e3%83%96%e3%82%b8%e3%82%a7%e3%82%af%e3%83%88%e3%83%97%e3%83%ad%e3%83%88%e3%82%bf%e3%82%a4%e3%83%97%e8%a1%a8%e8%a8%98Object%e3%81%af%e3%81%a7%e3%81%8d%e3%82%8b%e3%81%a0%e3%81%91%e9%81%bf%e3%81%91%e3%81%a6%e3%81%8f%e3%81%a0%e3%81%95%e3%81%84%e3%80%82%0alet%20foo%3a%20%7b%7d%20foo%20%3d%201%3b%20foo%20%3d%20%7ba%3a%201%7d%3b%20foo%20%3d%20%5b%5d%3b%20foo%20%3d%20%26%2339%3babc%26%2339%3b%3b%20let%20bar%20%3a%20Object%3b%20bar%20%3d%201%3b%20bar%20%3d%20%7ba%3a%201%7d%20bar%20%3d%20%5b%5d%20bar%20%3d%20%26%2339%3babc%26%2339%3b%20foo%20%3d%20%7btoString%28%29%20%7breturn%201%7d%7d%20%2f%2f%20OK%20bar%20%3d%20%7btoString%28%29%20%7breturn%201%7d%7d%20%2f%2f%20Error%3a%20Type%20%e2%80%98%28%29%20%3d%26gt%3b%20number%e2%80%99%20is%20not%20assignable%20to%20type%20%e2%80%98%28%29%20%3d%26gt%3b%20string%e2%80%99." aria-label=Tumblr><i class="fab fa-tumblr fa-lg" aria-hidden=true></i></a></li><li><a class=icon href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes%2f&t=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2" aria-label="Hacker News"><i class="fab fa-hacker-news fa-lg" aria-hidden=true></i></a></li></ul></div><div id=actions-footer><a id=menu-toggle class=icon href=# onclick='return $("#nav-footer").toggle(),!1' aria-label=Menu><i class="fas fa-bars fa-lg" aria-hidden=true></i> Menu</a>
+<a id=toc-toggle class=icon href=# onclick='return $("#toc-footer").toggle(),!1' aria-label=TOC><i class="fas fa-list fa-lg" aria-hidden=true></i> TOC</a>
+<a id=share-toggle class=icon href=# onclick='return $("#share-footer").toggle(),!1' aria-label=Share><i class="fas fa-share-alt fa-lg" aria-hidden=true></i> share</a>
+<a id=top style=display:none class=icon href=# onclick='$("html, body").animate({scrollTop:0},"fast")' aria-label="Top of Page"><i class="fas fa-chevron-up fa-lg" aria-hidden=true></i> Top</a></div></div></div><footer id=footer><div class=footer-left>Copyright &copy; 2023 呉</div><div class=footer-right><nav><ul><li><a href=/>Home</a></li><li><a href=/posts>Writings</a></li><li><a href=/tags>Tags</a></li><li><a href=/about>About</a></li></ul></nav></div></footer></div></body><link rel=stylesheet href=/lib/font-awesome/css/all.min.css><script src=/lib/jquery/jquery.min.js></script>
 <script src=/js/main.js></script>
-<script src=/js/code-copy.js></script>
-</html>
+<script src=/js/code-copy.js></script></html>

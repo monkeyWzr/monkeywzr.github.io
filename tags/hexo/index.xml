@@ -7,4 +7,4 @@ skip_render 博客建立完之后想提交readme，结果放在source文件夹�
 skip_render: readme.md 生成sitemap 先安装：
 npm install hexo-generator-sitemap --save 然后再根目录的_config.yml里设置：
 sitemap: path: sitemap.xml 多终端同步 平时kubuntu+windows经常切换，两个系统上都有写字的需要。hexo使用自带的d命令部署，提交到github上的是解析之后的文件。网上参考了几种方法，感觉都不太满意。最后我决定创建额外的分支来提交源文件。
-git checkout -b src git add . git commit -m &amp;quot;source branch&amp;quot; git push origin src 根据自己的需要修改.gitignore文件。 在另外的终端下直接clone仓库进行部署就好。然后平时直接在src分支下工作，使用hexo d -g会直接发布到master分支，源文件就通过正常的提交方式提交，两者互不冲突。 当然，写新文字前记着git pull把另外一台机器之前提交的内容更新下来。</description></item></channel></rss>
+git checkout -b src git add . git commit -m &amp;#34;source branch&amp;#34; git push origin src 根据自己的需要修改.gitignore文件。 在另外的终端下直接clone仓库进行部署就好。然后平时直接在src分支下工作，使用hexo d -g会直接发布到master分支，源文件就通过正常的提交方式提交，两者互不冲突。 当然，写新文字前记着git pull把另外一台机器之前提交的内容更新下来。</description></item></channel></rss>

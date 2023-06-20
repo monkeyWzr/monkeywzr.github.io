@@ -2,4 +2,4 @@
 i 不区分大小写 /s 忽略转义回车 /U 匹配字符域 [char list] 匹配方括号内的任意字符集，包括空格。此例即匹配c、h、a、r、空格、l、i、s、t中的任一字符 [^char list] 不匹配方括号内的字符，也可用! [a-z] 匹配字符a-z, 还有几个&amp;ndash;忘了叫啥了的&amp;ndash;
 \w 相当与[A-Za-z0-9] \s 匹配空白字符，相当与[\t\r\n] \d 匹配数字，[0-9] \b backspace (0x08) (only if in a range specification) 注：大写效果与小写相反 实例1：
 //下面两种效果相同 //匹配由字母数字下划线连字符组成，长度在3-15的用户名 //注意连字符需要转义 /^[\w_\-]{3,15}$/ /^[A-Za-z0-9_\-]{3,15}$/ 实例2：
-//匹配email地址 //本地部分包含A-Za-z0-9等，不包含括号，#@;等 /^([\w!</description></item></channel></rss>
+//匹配email地址 //本地部分包含A-Za-z0-9等，不包含括号，#@;等 /^([\w!#@$&amp;amp;&amp;#39;*+\/=?^&amp;#39;{|}~.\-]+)@([\w]+\.)</description></item></channel></rss>

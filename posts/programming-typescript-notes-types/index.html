@@ -1,524 +1,178 @@
-<!doctype html><html lang=en-us>
-<head>
-<link rel=preload href=/lib/font-awesome/webfonts/fa-brands-400.woff2 as=font type=font/woff2 crossorigin=anonymous>
-<link rel=preload href=/lib/font-awesome/webfonts/fa-regular-400.woff2 as=font type=font/woff2 crossorigin=anonymous>
-<link rel=preload href=/lib/font-awesome/webfonts/fa-solid-900.woff2 as=font type=font/woff2 crossorigin=anonymous>
-<link rel=preload href=/lib/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2 as=font type=font/woff2 crossorigin=anonymous>
-<meta charset=utf-8>
-<meta http-equiv=x-ua-compatible content="IE=edge">
-<title> プログラミングTypeScriptの読書メモ - 型 | マクロス</title>
-<link rel=canonical href=https://www.takuzen.me/posts/programming-typescript-notes-types/>
-<meta name=description content="勉強中">
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=robots content="all,follow">
-<meta name=googlebot content="index,follow,snippet,archive">
-<meta property="og:title" content="プログラミングTypeScriptの読書メモ - 型">
-<meta property="og:description" content="難しすぎて、一回3−4ページ文しか進められてない、、
+<!doctype html><html lang=en-us><head><link rel=preload href=/lib/font-awesome/webfonts/fa-brands-400.woff2 as=font type=font/woff2 crossorigin=anonymous><link rel=preload href=/lib/font-awesome/webfonts/fa-regular-400.woff2 as=font type=font/woff2 crossorigin=anonymous><link rel=preload href=/lib/font-awesome/webfonts/fa-solid-900.woff2 as=font type=font/woff2 crossorigin=anonymous><link rel=preload href=/lib/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2 as=font type=font/woff2 crossorigin=anonymous><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><title>プログラミングTypeScriptの読書メモ - 型 | マクロス</title><link rel=canonical href=https://www.takuzen.me/posts/programming-typescript-notes-types/><meta name=description content="勉強中"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="all,follow"><meta name=googlebot content="index,follow,snippet,archive"><meta property="og:title" content="プログラミングTypeScriptの読書メモ - 型"><meta property="og:description" content="難しすぎて、一回3−4ページ文しか進められてない、、
 よく自分に聞く：Is this something about TYPEScript(exists only during compile time) or not(to be dealt at runtime)?
 聞きながら勉強すると大変助かります。
-高度な型 サブタイプとスーパータイプ  anyはすべての型のスーパータイプ neverはすべての型のサブタイプ  変性  不変性(invariance) 共変性(covariance) 反変性(contravariance) 双変性(bivariance)  ディフォルトでTypescriptの型に関して共変です。 {&#34;strictFunctionTypes&#34;: true}の場合、関数型にはそのパラメータの型が反変にと扱うようにする。具体は下記を参照ください。
+高度な型 サブタイプとスーパータイプ anyはすべての型のスーパータイプ neverはすべての型のサブタイプ 変性 不変性(invariance) 共変性(covariance) 反変性(contravariance) 双変性(bivariance) ディフォルトでTypescriptの型に関して共変です。 {&#34;strictFunctionTypes&#34;: true}の場合、関数型にはそのパラメータの型が反変にと扱うようにする。具体は下記を参照ください。
 関数型の関係と反変 class Animal {} class Bird extends Animal { chirp() {} } class Crow extends Bird { caw() {} } function clone (f: (b:Bird) => Bird): void { } clone関数は、関数型のパラメータを期待する。(b: Bird) => Bird型の関数、とそのサブタイプの関数を渡すことができる。 ここまでは普通の共変であり、反変に関係ない。
-ではどんな関数は(b: Bird) => Birdのサブタイプでしょうか">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://www.takuzen.me/posts/programming-typescript-notes-types/"><meta property="article:section" content="posts">
-<meta property="article:published_time" content="2021-03-22T16:31:57+09:00">
-<meta property="article:modified_time" content="2021-03-22T16:31:57+09:00">
-<meta name=twitter:card content="summary">
-<meta name=twitter:title content="プログラミングTypeScriptの読書メモ - 型">
-<meta name=twitter:description content="難しすぎて、一回3−4ページ文しか進められてない、、
+ではどんな関数は(b: Bird) => Birdのサブタイプでしょうか
+// これをベースとして考えてみる function bToB(b: Bird) : Bird { return new Bird(); }; function bToC(b: Bird) : Crow { return new Crow(); } function bToA(b:Bird) : Animal{ return new Animal() } function aToB(a:Animal) : Bird { return new Bird(); } function cToB(c: Crow) : Bird { return new Bird() } clone(bToB) // OK clone(bToC) // OK clone(bToA) // Error 2345 clone(aToB) // OK clone(cToB) // Error 2345 (b: Bird) : Crowは(b: Bird) => Birdのサブタイプであり、(b:Bird) : Animalはサブタイプではない。この戻り値の振舞いはまだ共変です。（戻り値はサブタイプの関係　→　関数はサブタイプの関係）"><meta property="og:type" content="article"><meta property="og:url" content="https://www.takuzen.me/posts/programming-typescript-notes-types/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2021-03-22T16:31:57+09:00"><meta property="article:modified_time" content="2021-03-22T16:31:57+09:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="プログラミングTypeScriptの読書メモ - 型"><meta name=twitter:description content="難しすぎて、一回3−4ページ文しか進められてない、、
 よく自分に聞く：Is this something about TYPEScript(exists only during compile time) or not(to be dealt at runtime)?
 聞きながら勉強すると大変助かります。
-高度な型 サブタイプとスーパータイプ  anyはすべての型のスーパータイプ neverはすべての型のサブタイプ  変性  不変性(invariance) 共変性(covariance) 反変性(contravariance) 双変性(bivariance)  ディフォルトでTypescriptの型に関して共変です。 {&#34;strictFunctionTypes&#34;: true}の場合、関数型にはそのパラメータの型が反変にと扱うようにする。具体は下記を参照ください。
+高度な型 サブタイプとスーパータイプ anyはすべての型のスーパータイプ neverはすべての型のサブタイプ 変性 不変性(invariance) 共変性(covariance) 反変性(contravariance) 双変性(bivariance) ディフォルトでTypescriptの型に関して共変です。 {&#34;strictFunctionTypes&#34;: true}の場合、関数型にはそのパラメータの型が反変にと扱うようにする。具体は下記を参照ください。
 関数型の関係と反変 class Animal {} class Bird extends Animal { chirp() {} } class Crow extends Bird { caw() {} } function clone (f: (b:Bird) => Bird): void { } clone関数は、関数型のパラメータを期待する。(b: Bird) => Bird型の関数、とそのサブタイプの関数を渡すことができる。 ここまでは普通の共変であり、反変に関係ない。
-ではどんな関数は(b: Bird) => Birdのサブタイプでしょうか">
-<link rel=stylesheet href=https://www.takuzen.me/css/styles.94f653e9e151e28067a7c5dbbc4600cbd5a3c721e79faaf971e523c40f3b249b8e4f20bb57810dfffa8d559ca5c140fd56eb4cd9c0853113ad08e66afdb08bdd.css integrity="sha512-lPZT6eFR4oBnp8XbvEYAy9WjxyHnn6r5ceUjxA87JJuOTyC7V4EN//qNVZylwUD9VutM2cCFMROtCOZq/bCL3Q=="><!--[if lt IE 9]><script src=https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js></script>
-<script src=https://oss.maxcdn.com/respond/1.4.2/respond.min.js></script><![endif]-->
-<link rel=icon type=image/png href=https://www.takuzen.me/images/favicon.ico>
-<script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','UA-83047470-2','auto'),ga('send','pageview'))</script>
-<script async src=https://www.google-analytics.com/analytics.js></script>
-</head>
-<body class="max-width mx-auto px3 ltr">
-<div class="content index py4">
-<div id=header-post>
-<a id=menu-icon href=#><i class="fas fa-bars fa-lg"></i></a>
+ではどんな関数は(b: Bird) => Birdのサブタイプでしょうか
+// これをベースとして考えてみる function bToB(b: Bird) : Bird { return new Bird(); }; function bToC(b: Bird) : Crow { return new Crow(); } function bToA(b:Bird) : Animal{ return new Animal() } function aToB(a:Animal) : Bird { return new Bird(); } function cToB(c: Crow) : Bird { return new Bird() } clone(bToB) // OK clone(bToC) // OK clone(bToA) // Error 2345 clone(aToB) // OK clone(cToB) // Error 2345 (b: Bird) : Crowは(b: Bird) => Birdのサブタイプであり、(b:Bird) : Animalはサブタイプではない。この戻り値の振舞いはまだ共変です。（戻り値はサブタイプの関係　→　関数はサブタイプの関係）"><link rel=stylesheet href=https://www.takuzen.me/css/styles.94f653e9e151e28067a7c5dbbc4600cbd5a3c721e79faaf971e523c40f3b249b8e4f20bb57810dfffa8d559ca5c140fd56eb4cd9c0853113ad08e66afdb08bdd.css integrity="sha512-lPZT6eFR4oBnp8XbvEYAy9WjxyHnn6r5ceUjxA87JJuOTyC7V4EN//qNVZylwUD9VutM2cCFMROtCOZq/bCL3Q=="><!--[if lt IE 9]><script src=https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js></script>
+<script src=https://oss.maxcdn.com/respond/1.4.2/respond.min.js></script><![endif]--><link rel=icon type=image/png href=https://www.takuzen.me/images/favicon.ico><script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-83047470-2","auto"),ga("send","pageview"))</script><script async src=https://www.google-analytics.com/analytics.js></script></head><body class="max-width mx-auto px3 ltr"><div class="content index py4"><div id=header-post><a id=menu-icon href=#><i class="fas fa-bars fa-lg"></i></a>
 <a id=menu-icon-tablet href=#><i class="fas fa-bars fa-lg"></i></a>
-<a id=top-icon-tablet href=# onclick="$('html, body').animate({scrollTop:0},'fast')" style=display:none aria-label="Top of Page"><i class="fas fa-chevron-up fa-lg"></i></a>
-<span id=menu>
-<span id=nav>
-<ul>
-<li><a href=/>Home</a></li>
-<li><a href=/posts>Writings</a></li>
-<li><a href=/tags>Tags</a></li>
-<li><a href=/about>About</a></li>
-</ul>
-</span>
-<br>
-<span id=actions>
-<ul>
-<li>
-<a class=icon href=https://www.takuzen.me/posts/java-varargs-and-primitive-types/ aria-label=Previous>
-<i class="fas fa-chevron-left" aria-hidden=true onmouseover="$('#i-prev').toggle()" onmouseout="$('#i-prev').toggle()"></i>
-</a>
-</li>
-<li>
-<a class=icon href=# onclick="$('html, body').animate({scrollTop:0},'fast')" aria-label="Top of Page">
-<i class="fas fa-chevron-up" aria-hidden=true onmouseover="$('#i-top').toggle()" onmouseout="$('#i-top').toggle()"></i>
-</a>
-</li>
-<li>
-<a class=icon href=# aria-label=Share>
-<i class="fas fa-share-alt" aria-hidden=true onmouseover="$('#i-share').toggle()" onmouseout="$('#i-share').toggle()" onclick="return $('#share').toggle(),!1"></i>
-</a>
-</li>
-</ul>
-<span id=i-prev class=info style=display:none>Previous post</span>
+<a id=top-icon-tablet href=# onclick='$("html, body").animate({scrollTop:0},"fast")' style=display:none aria-label="Top of Page"><i class="fas fa-chevron-up fa-lg"></i></a>
+<span id=menu><span id=nav><ul><li><a href=/>Home</a></li><li><a href=/posts>Writings</a></li><li><a href=/tags>Tags</a></li><li><a href=/about>About</a></li></ul></span><br><span id=actions><ul><li><a class=icon href=https://www.takuzen.me/posts/java-varargs-and-primitive-types/ aria-label=Previous><i class="fas fa-chevron-left" aria-hidden=true onmouseover='$("#i-prev").toggle()' onmouseout='$("#i-prev").toggle()'></i></a></li><li><a class=icon href=# onclick='$("html, body").animate({scrollTop:0},"fast")' aria-label="Top of Page"><i class="fas fa-chevron-up" aria-hidden=true onmouseover='$("#i-top").toggle()' onmouseout='$("#i-top").toggle()'></i></a></li><li><a class=icon href=# aria-label=Share><i class="fas fa-share-alt" aria-hidden=true onmouseover='$("#i-share").toggle()' onmouseout='$("#i-share").toggle()' onclick='return $("#share").toggle(),!1'></i></a></li></ul><span id=i-prev class=info style=display:none>Previous post</span>
 <span id=i-next class=info style=display:none>Next post</span>
 <span id=i-top class=info style=display:none>Back to top</span>
-<span id=i-share class=info style=display:none>Share post</span>
-</span>
-<br>
-<div id=share style=display:none>
-<ul>
-<li>
-<a class=icon href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes-types%2f" aria-label=Facebook>
-<i class="fab fa-facebook" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="https://twitter.com/share?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes-types%2f&text=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2%20-%20%e5%9e%8b" aria-label=Twitter>
-<i class="fab fa-twitter" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes-types%2f&title=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2%20-%20%e5%9e%8b" aria-label=Linkedin>
-<i class="fab fa-linkedin" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes-types%2f&is_video=false&description=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2%20-%20%e5%9e%8b" aria-label=Pinterest>
-<i class="fab fa-pinterest" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="mailto:?subject=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2%20-%20%e5%9e%8b&body=Check out this article: https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes-types%2f" aria-label=Email>
-<i class="fas fa-envelope" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="https://getpocket.com/save?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes-types%2f&title=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2%20-%20%e5%9e%8b" aria-label=Pocket>
-<i class="fab fa-get-pocket" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="http://reddit.com/submit?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes-types%2f&title=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2%20-%20%e5%9e%8b" aria-label=reddit>
-<i class="fab fa-reddit" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="http://www.tumblr.com/share/link?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes-types%2f&name=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2%20-%20%e5%9e%8b&description=%e9%9b%a3%e3%81%97%e3%81%99%e3%81%8e%e3%81%a6%e3%80%81%e4%b8%80%e5%9b%9e3%e2%88%924%e3%83%9a%e3%83%bc%e3%82%b8%e6%96%87%e3%81%97%e3%81%8b%e9%80%b2%e3%82%81%e3%82%89%e3%82%8c%e3%81%a6%e3%81%aa%e3%81%84%e3%80%81%e3%80%81%0a%e3%82%88%e3%81%8f%e8%87%aa%e5%88%86%e3%81%ab%e8%81%9e%e3%81%8f%ef%bc%9aIs%20this%20something%20about%20TYPEScript%28exists%20only%20during%20compile%20time%29%20or%20not%28to%20be%20dealt%20at%20runtime%29%3f%0a%e8%81%9e%e3%81%8d%e3%81%aa%e3%81%8c%e3%82%89%e5%8b%89%e5%bc%b7%e3%81%99%e3%82%8b%e3%81%a8%e5%a4%a7%e5%a4%89%e5%8a%a9%e3%81%8b%e3%82%8a%e3%81%be%e3%81%99%e3%80%82%0a%e9%ab%98%e5%ba%a6%e3%81%aa%e5%9e%8b%20%e3%82%b5%e3%83%96%e3%82%bf%e3%82%a4%e3%83%97%e3%81%a8%e3%82%b9%e3%83%bc%e3%83%91%e3%83%bc%e3%82%bf%e3%82%a4%e3%83%97%20%20any%e3%81%af%e3%81%99%e3%81%b9%e3%81%a6%e3%81%ae%e5%9e%8b%e3%81%ae%e3%82%b9%e3%83%bc%e3%83%91%e3%83%bc%e3%82%bf%e3%82%a4%e3%83%97%20never%e3%81%af%e3%81%99%e3%81%b9%e3%81%a6%e3%81%ae%e5%9e%8b%e3%81%ae%e3%82%b5%e3%83%96%e3%82%bf%e3%82%a4%e3%83%97%20%20%e5%a4%89%e6%80%a7%20%20%e4%b8%8d%e5%a4%89%e6%80%a7%28invariance%29%20%e5%85%b1%e5%a4%89%e6%80%a7%28covariance%29%20%e5%8f%8d%e5%a4%89%e6%80%a7%28contravariance%29%20%e5%8f%8c%e5%a4%89%e6%80%a7%28bivariance%29%20%20%e3%83%87%e3%82%a3%e3%83%95%e3%82%a9%e3%83%ab%e3%83%88%e3%81%a7Typescript%e3%81%ae%e5%9e%8b%e3%81%ab%e9%96%a2%e3%81%97%e3%81%a6%e5%85%b1%e5%a4%89%e3%81%a7%e3%81%99%e3%80%82%20%7b%26quot%3bstrictFunctionTypes%26quot%3b%3a%20true%7d%e3%81%ae%e5%a0%b4%e5%90%88%e3%80%81%e9%96%a2%e6%95%b0%e5%9e%8b%e3%81%ab%e3%81%af%e3%81%9d%e3%81%ae%e3%83%91%e3%83%a9%e3%83%a1%e3%83%bc%e3%82%bf%e3%81%ae%e5%9e%8b%e3%81%8c%e5%8f%8d%e5%a4%89%e3%81%ab%e3%81%a8%e6%89%b1%e3%81%86%e3%82%88%e3%81%86%e3%81%ab%e3%81%99%e3%82%8b%e3%80%82%e5%85%b7%e4%bd%93%e3%81%af%e4%b8%8b%e8%a8%98%e3%82%92%e5%8f%82%e7%85%a7%e3%81%8f%e3%81%a0%e3%81%95%e3%81%84%e3%80%82%0a%e9%96%a2%e6%95%b0%e5%9e%8b%e3%81%ae%e9%96%a2%e4%bf%82%e3%81%a8%e5%8f%8d%e5%a4%89%20class%20Animal%20%7b%7d%20class%20Bird%20extends%20Animal%20%7b%20chirp%28%29%20%7b%7d%20%7d%20class%20Crow%20extends%20Bird%20%7b%20caw%28%29%20%7b%7d%20%7d%20function%20clone%20%28f%3a%20%28b%3aBird%29%20%3d%26gt%3b%20Bird%29%3a%20void%20%7b%20%7d%20clone%e9%96%a2%e6%95%b0%e3%81%af%e3%80%81%e9%96%a2%e6%95%b0%e5%9e%8b%e3%81%ae%e3%83%91%e3%83%a9%e3%83%a1%e3%83%bc%e3%82%bf%e3%82%92%e6%9c%9f%e5%be%85%e3%81%99%e3%82%8b%e3%80%82%28b%3a%20Bird%29%20%3d%26gt%3b%20Bird%e5%9e%8b%e3%81%ae%e9%96%a2%e6%95%b0%e3%80%81%e3%81%a8%e3%81%9d%e3%81%ae%e3%82%b5%e3%83%96%e3%82%bf%e3%82%a4%e3%83%97%e3%81%ae%e9%96%a2%e6%95%b0%e3%82%92%e6%b8%a1%e3%81%99%e3%81%93%e3%81%a8%e3%81%8c%e3%81%a7%e3%81%8d%e3%82%8b%e3%80%82%20%e3%81%93%e3%81%93%e3%81%be%e3%81%a7%e3%81%af%e6%99%ae%e9%80%9a%e3%81%ae%e5%85%b1%e5%a4%89%e3%81%a7%e3%81%82%e3%82%8a%e3%80%81%e5%8f%8d%e5%a4%89%e3%81%ab%e9%96%a2%e4%bf%82%e3%81%aa%e3%81%84%e3%80%82%0a%e3%81%a7%e3%81%af%e3%81%a9%e3%82%93%e3%81%aa%e9%96%a2%e6%95%b0%e3%81%af%28b%3a%20Bird%29%20%3d%26gt%3b%20Bird%e3%81%ae%e3%82%b5%e3%83%96%e3%82%bf%e3%82%a4%e3%83%97%e3%81%a7%e3%81%97%e3%82%87%e3%81%86%e3%81%8b" aria-label=Tumblr>
-<i class="fab fa-tumblr" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes-types%2f&t=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2%20-%20%e5%9e%8b" aria-label="Hacker News">
-<i class="fab fa-hacker-news" aria-hidden=true></i>
-</a>
-</li>
-</ul>
-</div>
-<div id=toc>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#高度な型>高度な型</a>
-<ul>
-<li><a href=#サブタイプとスーパータイプ>サブタイプとスーパータイプ</a></li>
-<li><a href=#変性>変性</a></li>
-<li><a href=#関数型の関係と反変>関数型の関係と反変</a></li>
-<li><a href=#過剰プロパティチェックexcess-property-checking>過剰プロパティチェック(excess property checking)</a></li>
-<li><a href=#タグ付き合併型>タグ付き合併型</a></li>
-<li><a href=#完全性noimplicitreturns>完全性(noImplicitReturns)</a></li>
-<li><a href=#ルックアップ型>ルックアップ型</a></li>
-<li><a href=#keyof演算子>keyof演算子</a></li>
-<li><a href=#レコードrecord型>レコード(Record)型</a></li>
-<li><a href=#map型>Map型</a></li>
-</ul>
-</li>
-<li><a href=#関数にまつわる型>関数にまつわる型</a>
-<ul>
-<li><a href=#tupleの型推論>Tupleの型推論</a></li>
-<li><a href=#型ガイド>型ガイド</a></li>
-</ul>
-</li>
-<li><a href=#条件型>条件型</a>
-<ul>
-<li><a href=#分配法則>分配法則</a></li>
-<li><a href=#inferキーワードで型変数を宣言する>inferキーワードで型変数を宣言する</a></li>
-<li><a href=#明確な割立てアサーション>明確な割立てアサーション</a></li>
-<li><a href=#名前的型>名前的型</a></li>
-</ul>
-</li>
-</ul>
-</nav>
-</div>
-</span>
-</div>
-<article class=post itemscope itemtype=http://schema.org/BlogPosting>
-<header>
-<h1 class=posttitle itemprop="name headline">
-プログラミングTypeScriptの読書メモ - 型
-</h1>
-<div class=meta>
-<div class=postdate>
-<time datetime="2021-03-22 16:31:57 +0900 +0900" itemprop=datePublished>2021-03-22</time>
-</div>
-<div class=article-category>
-<i class="fas fa-archive"></i>
-<a class=category-link href=/categories/notes>notes</a>
-</div>
-<div class=article-tag>
-<i class="fas fa-tag"></i>
+<span id=i-share class=info style=display:none>Share post</span></span><br><div id=share style=display:none><ul><li><a class=icon href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes-types%2f" aria-label=Facebook><i class="fab fa-facebook" aria-hidden=true></i></a></li><li><a class=icon href="https://twitter.com/share?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes-types%2f&text=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2%20-%20%e5%9e%8b" aria-label=Twitter><i class="fab fa-twitter" aria-hidden=true></i></a></li><li><a class=icon href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes-types%2f&title=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2%20-%20%e5%9e%8b" aria-label=Linkedin><i class="fab fa-linkedin" aria-hidden=true></i></a></li><li><a class=icon href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes-types%2f&is_video=false&description=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2%20-%20%e5%9e%8b" aria-label=Pinterest><i class="fab fa-pinterest" aria-hidden=true></i></a></li><li><a class=icon href="mailto:?subject=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2%20-%20%e5%9e%8b&body=Check out this article: https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes-types%2f" aria-label=Email><i class="fas fa-envelope" aria-hidden=true></i></a></li><li><a class=icon href="https://getpocket.com/save?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes-types%2f&title=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2%20-%20%e5%9e%8b" aria-label=Pocket><i class="fab fa-get-pocket" aria-hidden=true></i></a></li><li><a class=icon href="http://reddit.com/submit?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes-types%2f&title=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2%20-%20%e5%9e%8b" aria-label=reddit><i class="fab fa-reddit" aria-hidden=true></i></a></li><li><a class=icon href="http://www.tumblr.com/share/link?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes-types%2f&name=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2%20-%20%e5%9e%8b&description=%e9%9b%a3%e3%81%97%e3%81%99%e3%81%8e%e3%81%a6%e3%80%81%e4%b8%80%e5%9b%9e3%e2%88%924%e3%83%9a%e3%83%bc%e3%82%b8%e6%96%87%e3%81%97%e3%81%8b%e9%80%b2%e3%82%81%e3%82%89%e3%82%8c%e3%81%a6%e3%81%aa%e3%81%84%e3%80%81%e3%80%81%0a%e3%82%88%e3%81%8f%e8%87%aa%e5%88%86%e3%81%ab%e8%81%9e%e3%81%8f%ef%bc%9aIs%20this%20something%20about%20TYPEScript%28exists%20only%20during%20compile%20time%29%20or%20not%28to%20be%20dealt%20at%20runtime%29%3f%0a%e8%81%9e%e3%81%8d%e3%81%aa%e3%81%8c%e3%82%89%e5%8b%89%e5%bc%b7%e3%81%99%e3%82%8b%e3%81%a8%e5%a4%a7%e5%a4%89%e5%8a%a9%e3%81%8b%e3%82%8a%e3%81%be%e3%81%99%e3%80%82%0a%e9%ab%98%e5%ba%a6%e3%81%aa%e5%9e%8b%20%e3%82%b5%e3%83%96%e3%82%bf%e3%82%a4%e3%83%97%e3%81%a8%e3%82%b9%e3%83%bc%e3%83%91%e3%83%bc%e3%82%bf%e3%82%a4%e3%83%97%20any%e3%81%af%e3%81%99%e3%81%b9%e3%81%a6%e3%81%ae%e5%9e%8b%e3%81%ae%e3%82%b9%e3%83%bc%e3%83%91%e3%83%bc%e3%82%bf%e3%82%a4%e3%83%97%20never%e3%81%af%e3%81%99%e3%81%b9%e3%81%a6%e3%81%ae%e5%9e%8b%e3%81%ae%e3%82%b5%e3%83%96%e3%82%bf%e3%82%a4%e3%83%97%20%e5%a4%89%e6%80%a7%20%e4%b8%8d%e5%a4%89%e6%80%a7%28invariance%29%20%e5%85%b1%e5%a4%89%e6%80%a7%28covariance%29%20%e5%8f%8d%e5%a4%89%e6%80%a7%28contravariance%29%20%e5%8f%8c%e5%a4%89%e6%80%a7%28bivariance%29%20%e3%83%87%e3%82%a3%e3%83%95%e3%82%a9%e3%83%ab%e3%83%88%e3%81%a7Typescript%e3%81%ae%e5%9e%8b%e3%81%ab%e9%96%a2%e3%81%97%e3%81%a6%e5%85%b1%e5%a4%89%e3%81%a7%e3%81%99%e3%80%82%20%7b%26quot%3bstrictFunctionTypes%26quot%3b%3a%20true%7d%e3%81%ae%e5%a0%b4%e5%90%88%e3%80%81%e9%96%a2%e6%95%b0%e5%9e%8b%e3%81%ab%e3%81%af%e3%81%9d%e3%81%ae%e3%83%91%e3%83%a9%e3%83%a1%e3%83%bc%e3%82%bf%e3%81%ae%e5%9e%8b%e3%81%8c%e5%8f%8d%e5%a4%89%e3%81%ab%e3%81%a8%e6%89%b1%e3%81%86%e3%82%88%e3%81%86%e3%81%ab%e3%81%99%e3%82%8b%e3%80%82%e5%85%b7%e4%bd%93%e3%81%af%e4%b8%8b%e8%a8%98%e3%82%92%e5%8f%82%e7%85%a7%e3%81%8f%e3%81%a0%e3%81%95%e3%81%84%e3%80%82%0a%e9%96%a2%e6%95%b0%e5%9e%8b%e3%81%ae%e9%96%a2%e4%bf%82%e3%81%a8%e5%8f%8d%e5%a4%89%20class%20Animal%20%7b%7d%20class%20Bird%20extends%20Animal%20%7b%20chirp%28%29%20%7b%7d%20%7d%20class%20Crow%20extends%20Bird%20%7b%20caw%28%29%20%7b%7d%20%7d%20function%20clone%20%28f%3a%20%28b%3aBird%29%20%3d%26gt%3b%20Bird%29%3a%20void%20%7b%20%7d%20clone%e9%96%a2%e6%95%b0%e3%81%af%e3%80%81%e9%96%a2%e6%95%b0%e5%9e%8b%e3%81%ae%e3%83%91%e3%83%a9%e3%83%a1%e3%83%bc%e3%82%bf%e3%82%92%e6%9c%9f%e5%be%85%e3%81%99%e3%82%8b%e3%80%82%28b%3a%20Bird%29%20%3d%26gt%3b%20Bird%e5%9e%8b%e3%81%ae%e9%96%a2%e6%95%b0%e3%80%81%e3%81%a8%e3%81%9d%e3%81%ae%e3%82%b5%e3%83%96%e3%82%bf%e3%82%a4%e3%83%97%e3%81%ae%e9%96%a2%e6%95%b0%e3%82%92%e6%b8%a1%e3%81%99%e3%81%93%e3%81%a8%e3%81%8c%e3%81%a7%e3%81%8d%e3%82%8b%e3%80%82%20%e3%81%93%e3%81%93%e3%81%be%e3%81%a7%e3%81%af%e6%99%ae%e9%80%9a%e3%81%ae%e5%85%b1%e5%a4%89%e3%81%a7%e3%81%82%e3%82%8a%e3%80%81%e5%8f%8d%e5%a4%89%e3%81%ab%e9%96%a2%e4%bf%82%e3%81%aa%e3%81%84%e3%80%82%0a%e3%81%a7%e3%81%af%e3%81%a9%e3%82%93%e3%81%aa%e9%96%a2%e6%95%b0%e3%81%af%28b%3a%20Bird%29%20%3d%26gt%3b%20Bird%e3%81%ae%e3%82%b5%e3%83%96%e3%82%bf%e3%82%a4%e3%83%97%e3%81%a7%e3%81%97%e3%82%87%e3%81%86%e3%81%8b%0a%2f%2f%20%e3%81%93%e3%82%8c%e3%82%92%e3%83%99%e3%83%bc%e3%82%b9%e3%81%a8%e3%81%97%e3%81%a6%e8%80%83%e3%81%88%e3%81%a6%e3%81%bf%e3%82%8b%20function%20bToB%28b%3a%20Bird%29%20%3a%20Bird%20%7b%20return%20new%20Bird%28%29%3b%20%7d%3b%20function%20bToC%28b%3a%20Bird%29%20%3a%20Crow%20%7b%20return%20new%20Crow%28%29%3b%20%7d%20function%20bToA%28b%3aBird%29%20%3a%20Animal%7b%20return%20new%20Animal%28%29%20%7d%20function%20aToB%28a%3aAnimal%29%20%3a%20Bird%20%7b%20return%20new%20Bird%28%29%3b%20%7d%20function%20cToB%28c%3a%20Crow%29%20%3a%20Bird%20%7b%20return%20new%20Bird%28%29%20%7d%20clone%28bToB%29%20%2f%2f%20OK%20clone%28bToC%29%20%2f%2f%20OK%20clone%28bToA%29%20%2f%2f%20Error%202345%20clone%28aToB%29%20%2f%2f%20OK%20clone%28cToB%29%20%2f%2f%20Error%202345%20%28b%3a%20Bird%29%20%3a%20Crow%e3%81%af%28b%3a%20Bird%29%20%3d%26gt%3b%20Bird%e3%81%ae%e3%82%b5%e3%83%96%e3%82%bf%e3%82%a4%e3%83%97%e3%81%a7%e3%81%82%e3%82%8a%e3%80%81%28b%3aBird%29%20%3a%20Animal%e3%81%af%e3%82%b5%e3%83%96%e3%82%bf%e3%82%a4%e3%83%97%e3%81%a7%e3%81%af%e3%81%aa%e3%81%84%e3%80%82%e3%81%93%e3%81%ae%e6%88%bb%e3%82%8a%e5%80%a4%e3%81%ae%e6%8c%af%e8%88%9e%e3%81%84%e3%81%af%e3%81%be%e3%81%a0%e5%85%b1%e5%a4%89%e3%81%a7%e3%81%99%e3%80%82%ef%bc%88%e6%88%bb%e3%82%8a%e5%80%a4%e3%81%af%e3%82%b5%e3%83%96%e3%82%bf%e3%82%a4%e3%83%97%e3%81%ae%e9%96%a2%e4%bf%82%e3%80%80%e2%86%92%e3%80%80%e9%96%a2%e6%95%b0%e3%81%af%e3%82%b5%e3%83%96%e3%82%bf%e3%82%a4%e3%83%97%e3%81%ae%e9%96%a2%e4%bf%82%ef%bc%89" aria-label=Tumblr><i class="fab fa-tumblr" aria-hidden=true></i></a></li><li><a class=icon href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes-types%2f&t=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2%20-%20%e5%9e%8b" aria-label="Hacker News"><i class="fab fa-hacker-news" aria-hidden=true></i></a></li></ul></div><div id=toc><nav id=TableOfContents><ul><li><a href=#高度な型>高度な型</a><ul><li><a href=#サブタイプとスーパータイプ>サブタイプとスーパータイプ</a></li><li><a href=#変性>変性</a></li><li><a href=#関数型の関係と反変>関数型の関係と反変</a></li><li><a href=#過剰プロパティチェックexcess-property-checking>過剰プロパティチェック(excess property checking)</a></li><li><a href=#タグ付き合併型>タグ付き合併型</a></li><li><a href=#完全性noimplicitreturns>完全性(noImplicitReturns)</a></li><li><a href=#ルックアップ型>ルックアップ型</a></li><li><a href=#keyof演算子>keyof演算子</a></li><li><a href=#レコードrecord型>レコード(Record)型</a></li><li><a href=#map型>Map型</a></li></ul></li><li><a href=#関数にまつわる型>関数にまつわる型</a><ul><li><a href=#tupleの型推論>Tupleの型推論</a></li><li><a href=#型ガイド>型ガイド</a></li></ul></li><li><a href=#条件型>条件型</a><ul><li><a href=#分配法則>分配法則</a></li><li><a href=#inferキーワードで型変数を宣言する>inferキーワードで型変数を宣言する</a></li><li><a href=#明確な割立てアサーション>明確な割立てアサーション</a></li><li><a href=#名前的型>名前的型</a></li></ul></li></ul></nav></div></span></div><article class=post itemscope itemtype=http://schema.org/BlogPosting><header><h1 class=posttitle itemprop="name headline">プログラミングTypeScriptの読書メモ - 型</h1><div class=meta><div class=postdate><time datetime="2021-03-22 16:31:57 +0900 +0900" itemprop=datePublished>2021-03-22</time></div><div class=article-category><i class="fas fa-archive"></i>
+<a class=category-link href=/categories/notes>notes</a></div><div class=article-tag><i class="fas fa-tag"></i>
 <a class=tag-link href=/tags/javascript rel=tag>javascript</a>
 ,
-<a class=tag-link href=/tags/typescript rel=tag>typescript</a>
-</div>
-</div>
-</header>
-<div class=content itemprop=articleBody>
-<p>難しすぎて、一回3−4ページ文しか進められてない、、</p>
-<p><strong>よく自分に聞く：Is this something about TYPEScript(exists only during compile time) or not(to be dealt at runtime)?</strong></p>
-<p>聞きながら勉強すると大変助かります。</p>
-<h2 id=高度な型>高度な型</h2>
-<h3 id=サブタイプとスーパータイプ>サブタイプとスーパータイプ</h3>
-<ul>
-<li>anyはすべての型のスーパータイプ</li>
-<li>neverはすべての型のサブタイプ</li>
-</ul>
-<h3 id=変性>変性</h3>
-<ul>
-<li>不変性(invariance)</li>
-<li>共変性(covariance)</li>
-<li>反変性(contravariance)</li>
-<li>双変性(bivariance)</li>
-</ul>
-<p>ディフォルトでTypescriptの型に関して共変です。
-<code>{"strictFunctionTypes": true}</code>の場合、関数型にはそのパラメータの型が反変にと扱うようにする。具体は<a href=#%E9%96%A2%E6%95%B0%E5%9E%8B%E3%81%AE%E9%96%A2%E4%BF%82%E3%81%A8%E5%8F%8D%E5%A4%89>下記</a>を参照ください。</p>
-<h3 id=関数型の関係と反変>関数型の関係と反変</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Animal</span> {}
-<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Bird</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>Animal</span> {
-    <span style=color:#a6e22e>chirp() {</span>}
-}
-<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Crow</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>Bird</span> {
-    <span style=color:#a6e22e>caw() {</span>}
-}
-
-<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>clone</span> (<span style=color:#a6e22e>f</span><span style=color:#f92672>:</span> (<span style=color:#a6e22e>b</span>:<span style=color:#66d9ef>Bird</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>Bird</span>)<span style=color:#f92672>:</span> <span style=color:#66d9ef>void</span> {
-
-}
-</code></pre></div><p>clone関数は、関数型のパラメータを期待する。<code>(b: Bird) => Bird</code>型の関数、とそのサブタイプの関数を渡すことができる。
-ここまでは普通の共変であり、反変に関係ない。</p>
-<p>ではどんな関数は<code>(b: Bird) => Bird</code>のサブタイプでしょうか</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#75715e>// これをベースとして考えてみる
-</span><span style=color:#75715e></span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>bToB</span>(<span style=color:#a6e22e>b</span>: <span style=color:#66d9ef>Bird</span>) <span style=color:#f92672>:</span> <span style=color:#a6e22e>Bird</span> {
-    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Bird</span>();
-};
-
-<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>bToC</span>(<span style=color:#a6e22e>b</span>: <span style=color:#66d9ef>Bird</span>) <span style=color:#f92672>:</span> <span style=color:#a6e22e>Crow</span> {
-    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Crow</span>();
-}
-
-<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>bToA</span>(<span style=color:#a6e22e>b</span>:<span style=color:#66d9ef>Bird</span>) <span style=color:#f92672>:</span> <span style=color:#a6e22e>Animal</span>{
-    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Animal</span>()
-}
-
-<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>aToB</span>(<span style=color:#a6e22e>a</span>:<span style=color:#66d9ef>Animal</span>) <span style=color:#f92672>:</span> <span style=color:#a6e22e>Bird</span> {
-    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Bird</span>();
-}
-
-<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>cToB</span>(<span style=color:#a6e22e>c</span>: <span style=color:#66d9ef>Crow</span>) <span style=color:#f92672>:</span> <span style=color:#a6e22e>Bird</span> {
-    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Bird</span>()
-}
-
-<span style=color:#a6e22e>clone</span>(<span style=color:#a6e22e>bToB</span>) <span style=color:#75715e>// OK
-</span><span style=color:#75715e></span>
-<span style=color:#a6e22e>clone</span>(<span style=color:#a6e22e>bToC</span>) <span style=color:#75715e>// OK
-</span><span style=color:#75715e></span>
-<span style=color:#a6e22e>clone</span>(<span style=color:#a6e22e>bToA</span>) <span style=color:#75715e>// Error 2345
-</span><span style=color:#75715e></span>
-<span style=color:#a6e22e>clone</span>(<span style=color:#a6e22e>aToB</span>) <span style=color:#75715e>// OK
-</span><span style=color:#75715e></span>
-<span style=color:#a6e22e>clone</span>(<span style=color:#a6e22e>cToB</span>) <span style=color:#75715e>// Error 2345
-</span></code></pre></div><p><code>(b: Bird) : Crow</code>は<code>(b: Bird) => Bird</code>のサブタイプであり、<code>(b:Bird) : Animal</code>はサブタイプではない。この戻り値の振舞いはまだ共変です。（戻り値はサブタイプの関係　→　関数はサブタイプの関係）</p>
-<p><code>(a:Animal) : Bird</code>は<code>(b: Bird) => Bird</code>のサブタイプであり、<code>(c: Crow) : Bird</code>はサブタイプではない。このパラメータ部分の振舞いは<strong>反変</strong>です。（パラメータはスーパータイプの関係　→　関数はサブタイプの関係）</p>
-<h3 id=過剰プロパティチェックexcess-property-checking>過剰プロパティチェック(excess property checking)</h3>
-<p>6.1.4.2</p>
-<h3 id=タグ付き合併型>タグ付き合併型</h3>
-<p><strong>TODO: 本の例が理解できてない</strong></p>
-<p>typeofで型を絞り込んでも、型が十分に推論できない場合がある</p>
-<p>下記の推論はなぜ？？</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Cat</span> <span style=color:#f92672>=</span> { <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>number</span>, <span style=color:#a6e22e>purrs</span>: <span style=color:#66d9ef>boolean</span>, <span style=color:#a6e22e>eat</span>: <span style=color:#66d9ef>boolean</span> }
-<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Dog</span> <span style=color:#f92672>=</span> { <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>string</span>, <span style=color:#a6e22e>bark</span>: <span style=color:#66d9ef>boolean</span>, <span style=color:#a6e22e>eat</span><span style=color:#f92672>:</span> () <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>void</span> }
-<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Pet</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>Cat</span> <span style=color:#f92672>|</span> <span style=color:#a6e22e>Dog</span>
-
-<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>playWith</span>(<span style=color:#a6e22e>pet</span>: <span style=color:#66d9ef>Pet</span>) {
-    <span style=color:#66d9ef>if</span> (<span style=color:#66d9ef>typeof</span> <span style=color:#a6e22e>pet</span>.<span style=color:#a6e22e>id</span> <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;number&#34;</span>) {
-        <span style=color:#a6e22e>pet</span>.<span style=color:#a6e22e>eat</span> <span style=color:#75715e>// (property) eat: boolean | (() =&gt; void)
-</span><span style=color:#75715e></span>        <span style=color:#66d9ef>return</span>
-    }
-    <span style=color:#a6e22e>pet</span>.<span style=color:#a6e22e>eat</span> <span style=color:#75715e>// (property) eat: boolean | (() =&gt; void)
-</span><span style=color:#75715e></span>}
-</code></pre></div><p>本によると、「合併型のメンバーは型が重複する可能性があるので」、Unionのどちらは推論できない。
-具体の場合は思いつかないT.T. TODO</p>
-<p>一意であるリテラル型を使ってタグ付けをすると、その分岐を特定できる</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Cat</span> <span style=color:#f92672>=</span> { <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;nyan&#39;</span>, <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>number</span>, <span style=color:#a6e22e>purrs</span>: <span style=color:#66d9ef>boolean</span>, <span style=color:#a6e22e>eat</span>: <span style=color:#66d9ef>boolean</span> }
-<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Dog</span> <span style=color:#f92672>=</span> { <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;wan&#39;</span>, <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>string</span>, <span style=color:#a6e22e>bark</span>: <span style=color:#66d9ef>boolean</span>, <span style=color:#a6e22e>eat</span><span style=color:#f92672>:</span> () <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>void</span> }
-<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Pet</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>Cat</span> <span style=color:#f92672>|</span> <span style=color:#a6e22e>Dog</span>
-
-<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>playWith</span>(<span style=color:#a6e22e>pet</span>: <span style=color:#66d9ef>Pet</span>) {
-    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>pet</span>.<span style=color:#66d9ef>type</span> <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;nyan&#34;</span>) {
-        <span style=color:#a6e22e>pet</span>.<span style=color:#a6e22e>eat</span> <span style=color:#75715e>// (property) eat: boolean
-</span><span style=color:#75715e></span>        <span style=color:#66d9ef>return</span>
-    }
-    <span style=color:#a6e22e>pet</span>.<span style=color:#a6e22e>eat</span> <span style=color:#75715e>// (property) eat: (() =&gt; void)
-</span><span style=color:#75715e></span>}
-</code></pre></div><h3 id=完全性noimplicitreturns>完全性(noImplicitReturns)</h3>
-<p><code>noImplicitReturns</code>オプションはstrictフラグに含まれないため、有効したい場合は明示的に指定する必要がある</p>
-<h3 id=ルックアップ型>ルックアップ型</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>User</span> <span style=color:#f92672>=</span> {
-    <span style=color:#a6e22e>name</span>: <span style=color:#66d9ef>string</span>,
-    <span style=color:#a6e22e>friendList</span><span style=color:#f92672>:</span> {
-        <span style=color:#a6e22e>count</span>: <span style=color:#66d9ef>number</span>,
-        <span style=color:#a6e22e>friends</span><span style=color:#f92672>:</span> {
-            <span style=color:#a6e22e>name</span>: <span style=color:#66d9ef>string</span>
-        }[]
-    }
-}
-
-<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>FriendList</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>User</span>[<span style=color:#e6db74>&#39;friendList&#39;</span>]
-<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>FriendInfo</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>User</span>[<span style=color:#e6db74>&#39;friendList&#39;</span>][<span style=color:#e6db74>&#39;friends&#39;</span>][<span style=color:#66d9ef>number</span>] <span style=color:#75715e>// note this!
-</span></code></pre></div><h3 id=keyof演算子>keyof演算子</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>keys</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>keyof</span> {<span style=color:#a6e22e>a</span>: <span style=color:#66d9ef>string</span>, <span style=color:#a6e22e>b</span>: <span style=color:#66d9ef>number</span>, <span style=color:#a6e22e>c</span>: <span style=color:#66d9ef>boolean</span>} <span style=color:#75715e>// type keys = &#34;a&#34; | &#34;b&#34; | &#34;c&#34;
-</span></code></pre></div><h3 id=レコードrecord型>レコード(Record)型</h3>
-<p>One of <a href=https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeystype>Utility Types</a>.
-→　<a href=#Map%E5%9E%8B>Map型</a></p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>r</span>: <span style=color:#66d9ef>Record</span><span style=color:#f92672>&lt;</span><span style=color:#e6db74>&#39;a&#39;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#39;b&#39;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#39;c&#39;</span>, <span style=color:#66d9ef>string</span><span style=color:#f92672>&gt;</span> <span style=color:#f92672>=</span> { <span style=color:#75715e>// Error: Property &#39;c&#39; is missing in type &#39;{ a: string; b: string; }&#39; but required in type &#39;Record&lt;&#34;a&#34; | &#34;b&#34; | &#34;c&#34;, string&gt;&#39;.
-</span><span style=color:#75715e></span>    <span style=color:#a6e22e>a</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;&#34;</span>,
-    <span style=color:#a6e22e>b</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;&#34;</span>
-}
-</code></pre></div><h3 id=map型>Map型</h3>
-<p><a href=https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeystype>Utility Types</a>.</p>
-<p>汎用なユーティリティ機能です。強い!
-マイナス演算子<code>-</code>で省略可能、readonlyなど制約の撤去ができる</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>OptionalUser</span> <span style=color:#f92672>=</span> {
-    [<span style=color:#a6e22e>K</span> <span style=color:#66d9ef>in</span> <span style=color:#66d9ef>keyof</span> <span style=color:#a6e22e>User</span>]<span style=color:#f92672>?:</span> <span style=color:#a6e22e>User</span>[<span style=color:#a6e22e>K</span>]
-}
-
-<span style=color:#75715e>// ! we can remove optional constraint
-</span><span style=color:#75715e></span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>RequiredUser</span> <span style=color:#f92672>=</span> {
-    [<span style=color:#a6e22e>K</span> <span style=color:#66d9ef>in</span> <span style=color:#66d9ef>keyof</span> <span style=color:#a6e22e>OptionalUser</span>]<span style=color:#f92672>-?:</span> <span style=color:#a6e22e>User</span>[<span style=color:#a6e22e>K</span>]
-}
-
-<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>NullableUser</span> <span style=color:#f92672>=</span> {
-    [<span style=color:#a6e22e>K</span> <span style=color:#66d9ef>in</span> <span style=color:#66d9ef>keyof</span> <span style=color:#a6e22e>User</span>]<span style=color:#f92672>:</span> <span style=color:#a6e22e>User</span>[<span style=color:#a6e22e>K</span>] <span style=color:#f92672>|</span> <span style=color:#66d9ef>null</span>
-}
-<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>ReadonlyUser</span> <span style=color:#f92672>=</span> {
-    <span style=color:#66d9ef>readonly</span> [<span style=color:#a6e22e>K</span> <span style=color:#66d9ef>in</span> <span style=color:#66d9ef>keyof</span> <span style=color:#a6e22e>User</span>]<span style=color:#f92672>:</span> <span style=color:#a6e22e>User</span>[<span style=color:#a6e22e>K</span>]
-}
-
-<span style=color:#75715e>// ! we can remove readonly constraint
-</span><span style=color:#75715e></span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>ModifiableUser</span> <span style=color:#f92672>=</span> {
-    <span style=color:#f92672>-</span><span style=color:#66d9ef>readonly</span> [<span style=color:#a6e22e>K</span> <span style=color:#66d9ef>in</span> <span style=color:#66d9ef>keyof</span> <span style=color:#a6e22e>User</span>]<span style=color:#f92672>:</span> <span style=color:#a6e22e>User</span>[<span style=color:#a6e22e>K</span>]
-}
-</code></pre></div><h2 id=関数にまつわる型>関数にまつわる型</h2>
-<h3 id=tupleの型推論>Tupleの型推論</h3>
-<p>マジックだこれ。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>a</span> <span style=color:#f92672>=</span> [<span style=color:#ae81ff>1</span>, <span style=color:#66d9ef>true</span>] <span style=color:#75715e>// a is (number | boolean)[]
-</span><span style=color:#75715e></span>
-<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>tuple</span>&lt;<span style=color:#f92672>T</span> <span style=color:#a6e22e>extends</span> <span style=color:#a6e22e>unknown</span><span style=color:#960050;background-color:#1e0010>[]</span>&gt;(...<span style=color:#a6e22e>t</span>: <span style=color:#66d9ef>T</span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>T</span> {
-    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>t</span>
-}
-
-<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>b</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>tuple</span>(<span style=color:#ae81ff>1</span>, <span style=color:#66d9ef>true</span>) <span style=color:#75715e>// b is [number, boolean]
-</span></code></pre></div><h3 id=型ガイド>型ガイド</h3>
-<p>面白い</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#75715e>// this works at runtime so TypeScript do not know the type at compile type
-</span><span style=color:#75715e></span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>isString</span>(<span style=color:#a6e22e>p</span>: <span style=color:#66d9ef>unknown</span>)<span style=color:#f92672>:</span> <span style=color:#66d9ef>boolean</span> {
-    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>typeof</span> <span style=color:#a6e22e>p</span> <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;string&#39;</span>
-}
-
-<span style=color:#75715e>// now TypeScript knows the type is string when this function return true
-</span><span style=color:#75715e></span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>isStringType</span>(<span style=color:#a6e22e>p</span>: <span style=color:#66d9ef>unknown</span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>p</span> <span style=color:#66d9ef>is</span> <span style=color:#66d9ef>string</span> {
-    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>typeof</span> <span style=color:#a6e22e>p</span> <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;string&#39;</span>
-}
-</code></pre></div><h2 id=条件型>条件型</h2>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>x</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>string</span>
-<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>A</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>x</span> <span style=color:#66d9ef>extends</span> <span style=color:#66d9ef>string</span> <span style=color:#f92672>?</span> <span style=color:#66d9ef>true</span> <span style=color:#f92672>:</span> <span style=color:#66d9ef>false</span> <span style=color:#75715e>// type of A is true
-</span><span style=color:#75715e></span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>B</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>x</span> <span style=color:#66d9ef>extends</span> <span style=color:#66d9ef>number</span> <span style=color:#f92672>?</span> <span style=color:#66d9ef>true</span> <span style=color:#f92672>:</span> <span style=color:#66d9ef>false</span> <span style=color:#75715e>// type of B is false
-</span></code></pre></div><h3 id=分配法則>分配法則</h3>
-<p>本の例<code>Without&lt;T, U></code>について、分配法則がなかったとする場合の推論が間違ったようだ。
-<a href=https://github.com/oreilly-japan/programming-typescript-ja/wiki/errata#%E7%AC%AC1%E5%88%B7>『プログラミングTypeScript』の正誤表</a></p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#75715e>// type of C is boolean | number | string, which is T.
-</span><span style=color:#75715e></span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>T</span> <span style=color:#f92672>=</span> (<span style=color:#66d9ef>boolean</span> <span style=color:#f92672>|</span> <span style=color:#66d9ef>number</span> <span style=color:#f92672>|</span> <span style=color:#66d9ef>string</span>)
-<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>C</span> <span style=color:#f92672>=</span>  <span style=color:#a6e22e>T</span> <span style=color:#66d9ef>extends</span> <span style=color:#66d9ef>boolean</span> <span style=color:#f92672>?</span> <span style=color:#a6e22e>T</span> : <span style=color:#66d9ef>never</span>
-
-<span style=color:#75715e>// type of E is boolean !!
-</span><span style=color:#75715e></span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Select</span>&lt;<span style=color:#f92672>T</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>U</span>&gt; <span style=color:#f92672>=</span> <span style=color:#a6e22e>T</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>U</span> <span style=color:#f92672>?</span> <span style=color:#a6e22e>T</span> : <span style=color:#66d9ef>never</span>
-<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>E</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>Select</span>&lt;<span style=color:#f92672>boolean</span> <span style=color:#960050;background-color:#1e0010>|</span> <span style=color:#a6e22e>number</span> <span style=color:#960050;background-color:#1e0010>|</span> <span style=color:#a6e22e>string</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>boolean</span>&gt;
-<span style=color:#75715e>// because it is the same as Select&lt;boolean&gt; | Select&lt;number&gt; | Select&lt;string&gt;
-</span></code></pre></div><h3 id=inferキーワードで型変数を宣言する>inferキーワードで型変数を宣言する</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>ElementType</span>&lt;<span style=color:#f92672>T</span>&gt; <span style=color:#f92672>=</span> <span style=color:#a6e22e>T</span> <span style=color:#66d9ef>extends</span> (<span style=color:#66d9ef>infer</span> <span style=color:#a6e22e>U</span>)[] <span style=color:#f92672>?</span> <span style=color:#a6e22e>U</span> : <span style=color:#66d9ef>T</span>
-</code></pre></div><h3 id=明確な割立てアサーション>明確な割立てアサーション</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript>
-<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>userId</span>: <span style=color:#66d9ef>string</span>
-
-<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>fetchUser() {</span>
-    <span style=color:#a6e22e>userId</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;abc&#39;</span>
-}
-
-<span style=color:#a6e22e>fetchUser</span>()
-
-<span style=color:#a6e22e>userId</span>.<span style=color:#a6e22e>toUpperCase</span>(); <span style=color:#75715e>// Error: Variable &#39;userId&#39; is used before being assigned.
-</span></code></pre></div><p>To fix this,</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>userId</span><span style=color:#f92672>!:</span> <span style=color:#66d9ef>string</span>
-<span style=color:#75715e>// OR
-</span><span style=color:#75715e></span><span style=color:#a6e22e>userId</span><span style=color:#f92672>!</span>.<span style=color:#a6e22e>toUpperCase</span>()
-</code></pre></div><h3 id=名前的型>名前的型</h3>
-<p>TypeScriptの型は構造的なので、型のブランド化というテクニックで名前的な型を作る</p>
-<p><a href=https://qiita.com/suin/items/ae9ed911ebab48c98835>https://qiita.com/suin/items/ae9ed911ebab48c98835</a>
+<a class=tag-link href=/tags/typescript rel=tag>typescript</a></div></div></header><div class=content itemprop=articleBody><p>難しすぎて、一回3−4ページ文しか進められてない、、</p><p><strong>よく自分に聞く：Is this something about TYPEScript(exists only during compile time) or not(to be dealt at runtime)?</strong></p><p>聞きながら勉強すると大変助かります。</p><h2 id=高度な型>高度な型</h2><h3 id=サブタイプとスーパータイプ>サブタイプとスーパータイプ</h3><ul><li>anyはすべての型のスーパータイプ</li><li>neverはすべての型のサブタイプ</li></ul><h3 id=変性>変性</h3><ul><li>不変性(invariance)</li><li>共変性(covariance)</li><li>反変性(contravariance)</li><li>双変性(bivariance)</li></ul><p>ディフォルトでTypescriptの型に関して共変です。
+<code>{"strictFunctionTypes": true}</code>の場合、関数型にはそのパラメータの型が反変にと扱うようにする。具体は<a href=#%E9%96%A2%E6%95%B0%E5%9E%8B%E3%81%AE%E9%96%A2%E4%BF%82%E3%81%A8%E5%8F%8D%E5%A4%89>下記</a>を参照ください。</p><h3 id=関数型の関係と反変>関数型の関係と反変</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Animal</span> {}
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Bird</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>Animal</span> {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>chirp() {</span>}
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Crow</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>Bird</span> {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>caw() {</span>}
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>clone</span> (<span style=color:#a6e22e>f</span><span style=color:#f92672>:</span> (<span style=color:#a6e22e>b</span>:<span style=color:#66d9ef>Bird</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>Bird</span>)<span style=color:#f92672>:</span> <span style=color:#66d9ef>void</span> {
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>clone関数は、関数型のパラメータを期待する。<code>(b: Bird) => Bird</code>型の関数、とそのサブタイプの関数を渡すことができる。
+ここまでは普通の共変であり、反変に関係ない。</p><p>ではどんな関数は<code>(b: Bird) => Bird</code>のサブタイプでしょうか</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#75715e>// これをベースとして考えてみる
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>bToB</span>(<span style=color:#a6e22e>b</span>: <span style=color:#66d9ef>Bird</span>) <span style=color:#f92672>:</span> <span style=color:#a6e22e>Bird</span> {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Bird</span>();
+</span></span><span style=display:flex><span>};
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>bToC</span>(<span style=color:#a6e22e>b</span>: <span style=color:#66d9ef>Bird</span>) <span style=color:#f92672>:</span> <span style=color:#a6e22e>Crow</span> {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Crow</span>();
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>bToA</span>(<span style=color:#a6e22e>b</span>:<span style=color:#66d9ef>Bird</span>) <span style=color:#f92672>:</span> <span style=color:#a6e22e>Animal</span>{
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Animal</span>()
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>aToB</span>(<span style=color:#a6e22e>a</span>:<span style=color:#66d9ef>Animal</span>) <span style=color:#f92672>:</span> <span style=color:#a6e22e>Bird</span> {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Bird</span>();
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>cToB</span>(<span style=color:#a6e22e>c</span>: <span style=color:#66d9ef>Crow</span>) <span style=color:#f92672>:</span> <span style=color:#a6e22e>Bird</span> {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Bird</span>()
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>clone</span>(<span style=color:#a6e22e>bToB</span>) <span style=color:#75715e>// OK
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>clone</span>(<span style=color:#a6e22e>bToC</span>) <span style=color:#75715e>// OK
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>clone</span>(<span style=color:#a6e22e>bToA</span>) <span style=color:#75715e>// Error 2345
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>clone</span>(<span style=color:#a6e22e>aToB</span>) <span style=color:#75715e>// OK
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>clone</span>(<span style=color:#a6e22e>cToB</span>) <span style=color:#75715e>// Error 2345
+</span></span></span></code></pre></div><p><code>(b: Bird) : Crow</code>は<code>(b: Bird) => Bird</code>のサブタイプであり、<code>(b:Bird) : Animal</code>はサブタイプではない。この戻り値の振舞いはまだ共変です。（戻り値はサブタイプの関係　→　関数はサブタイプの関係）</p><p><code>(a:Animal) : Bird</code>は<code>(b: Bird) => Bird</code>のサブタイプであり、<code>(c: Crow) : Bird</code>はサブタイプではない。このパラメータ部分の振舞いは<strong>反変</strong>です。（パラメータはスーパータイプの関係　→　関数はサブタイプの関係）</p><h3 id=過剰プロパティチェックexcess-property-checking>過剰プロパティチェック(excess property checking)</h3><p>6.1.4.2</p><h3 id=タグ付き合併型>タグ付き合併型</h3><p><strong>TODO: 本の例が理解できてない</strong></p><p>typeofで型を絞り込んでも、型が十分に推論できない場合がある</p><p>下記の推論はなぜ？？</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Cat</span> <span style=color:#f92672>=</span> { <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>number</span>, <span style=color:#a6e22e>purrs</span>: <span style=color:#66d9ef>boolean</span>, <span style=color:#a6e22e>eat</span>: <span style=color:#66d9ef>boolean</span> }
+</span></span><span style=display:flex><span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Dog</span> <span style=color:#f92672>=</span> { <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>string</span>, <span style=color:#a6e22e>bark</span>: <span style=color:#66d9ef>boolean</span>, <span style=color:#a6e22e>eat</span><span style=color:#f92672>:</span> () <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>void</span> }
+</span></span><span style=display:flex><span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Pet</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>Cat</span> <span style=color:#f92672>|</span> <span style=color:#a6e22e>Dog</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>playWith</span>(<span style=color:#a6e22e>pet</span>: <span style=color:#66d9ef>Pet</span>) {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (<span style=color:#66d9ef>typeof</span> <span style=color:#a6e22e>pet</span>.<span style=color:#a6e22e>id</span> <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;number&#34;</span>) {
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>pet</span>.<span style=color:#a6e22e>eat</span> <span style=color:#75715e>// (property) eat: boolean | (() =&gt; void)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>        <span style=color:#66d9ef>return</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>pet</span>.<span style=color:#a6e22e>eat</span> <span style=color:#75715e>// (property) eat: boolean | (() =&gt; void)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>}
+</span></span></code></pre></div><p>本によると、「合併型のメンバーは型が重複する可能性があるので」、Unionのどちらは推論できない。
+具体の場合は思いつかないT.T. TODO</p><p>一意であるリテラル型を使ってタグ付けをすると、その分岐を特定できる</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Cat</span> <span style=color:#f92672>=</span> { <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;nyan&#39;</span>, <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>number</span>, <span style=color:#a6e22e>purrs</span>: <span style=color:#66d9ef>boolean</span>, <span style=color:#a6e22e>eat</span>: <span style=color:#66d9ef>boolean</span> }
+</span></span><span style=display:flex><span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Dog</span> <span style=color:#f92672>=</span> { <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;wan&#39;</span>, <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>string</span>, <span style=color:#a6e22e>bark</span>: <span style=color:#66d9ef>boolean</span>, <span style=color:#a6e22e>eat</span><span style=color:#f92672>:</span> () <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>void</span> }
+</span></span><span style=display:flex><span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Pet</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>Cat</span> <span style=color:#f92672>|</span> <span style=color:#a6e22e>Dog</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>playWith</span>(<span style=color:#a6e22e>pet</span>: <span style=color:#66d9ef>Pet</span>) {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>pet</span>.<span style=color:#66d9ef>type</span> <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;nyan&#34;</span>) {
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>pet</span>.<span style=color:#a6e22e>eat</span> <span style=color:#75715e>// (property) eat: boolean
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>        <span style=color:#66d9ef>return</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>pet</span>.<span style=color:#a6e22e>eat</span> <span style=color:#75715e>// (property) eat: (() =&gt; void)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>}
+</span></span></code></pre></div><h3 id=完全性noimplicitreturns>完全性(noImplicitReturns)</h3><p><code>noImplicitReturns</code>オプションはstrictフラグに含まれないため、有効したい場合は明示的に指定する必要がある</p><h3 id=ルックアップ型>ルックアップ型</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>User</span> <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>name</span>: <span style=color:#66d9ef>string</span>,
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>friendList</span><span style=color:#f92672>:</span> {
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>count</span>: <span style=color:#66d9ef>number</span>,
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>friends</span><span style=color:#f92672>:</span> {
+</span></span><span style=display:flex><span>            <span style=color:#a6e22e>name</span>: <span style=color:#66d9ef>string</span>
+</span></span><span style=display:flex><span>        }[]
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>FriendList</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>User</span>[<span style=color:#e6db74>&#39;friendList&#39;</span>]
+</span></span><span style=display:flex><span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>FriendInfo</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>User</span>[<span style=color:#e6db74>&#39;friendList&#39;</span>][<span style=color:#e6db74>&#39;friends&#39;</span>][<span style=color:#66d9ef>number</span>] <span style=color:#75715e>// note this!
+</span></span></span></code></pre></div><h3 id=keyof演算子>keyof演算子</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>keys</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>keyof</span> {<span style=color:#a6e22e>a</span>: <span style=color:#66d9ef>string</span>, <span style=color:#a6e22e>b</span>: <span style=color:#66d9ef>number</span>, <span style=color:#a6e22e>c</span>: <span style=color:#66d9ef>boolean</span>} <span style=color:#75715e>// type keys = &#34;a&#34; | &#34;b&#34; | &#34;c&#34;
+</span></span></span></code></pre></div><h3 id=レコードrecord型>レコード(Record)型</h3><p>One of <a href=https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeystype>Utility Types</a>.
+→　<a href=#Map%E5%9E%8B>Map型</a></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>r</span>: <span style=color:#66d9ef>Record</span><span style=color:#f92672>&lt;</span><span style=color:#e6db74>&#39;a&#39;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#39;b&#39;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#39;c&#39;</span>, <span style=color:#66d9ef>string</span><span style=color:#f92672>&gt;</span> <span style=color:#f92672>=</span> { <span style=color:#75715e>// Error: Property &#39;c&#39; is missing in type &#39;{ a: string; b: string; }&#39; but required in type &#39;Record&lt;&#34;a&#34; | &#34;b&#34; | &#34;c&#34;, string&gt;&#39;.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#a6e22e>a</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>b</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;&#34;</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=map型>Map型</h3><p><a href=https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeystype>Utility Types</a>.</p><p>汎用なユーティリティ機能です。強い!
+マイナス演算子<code>-</code>で省略可能、readonlyなど制約の撤去ができる</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>OptionalUser</span> <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>    [<span style=color:#a6e22e>K</span> <span style=color:#66d9ef>in</span> <span style=color:#66d9ef>keyof</span> <span style=color:#a6e22e>User</span>]<span style=color:#f92672>?:</span> <span style=color:#a6e22e>User</span>[<span style=color:#a6e22e>K</span>]
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// ! we can remove optional constraint
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>RequiredUser</span> <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>    [<span style=color:#a6e22e>K</span> <span style=color:#66d9ef>in</span> <span style=color:#66d9ef>keyof</span> <span style=color:#a6e22e>OptionalUser</span>]<span style=color:#f92672>-?:</span> <span style=color:#a6e22e>User</span>[<span style=color:#a6e22e>K</span>]
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>NullableUser</span> <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>    [<span style=color:#a6e22e>K</span> <span style=color:#66d9ef>in</span> <span style=color:#66d9ef>keyof</span> <span style=color:#a6e22e>User</span>]<span style=color:#f92672>:</span> <span style=color:#a6e22e>User</span>[<span style=color:#a6e22e>K</span>] <span style=color:#f92672>|</span> <span style=color:#66d9ef>null</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>ReadonlyUser</span> <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>readonly</span> [<span style=color:#a6e22e>K</span> <span style=color:#66d9ef>in</span> <span style=color:#66d9ef>keyof</span> <span style=color:#a6e22e>User</span>]<span style=color:#f92672>:</span> <span style=color:#a6e22e>User</span>[<span style=color:#a6e22e>K</span>]
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// ! we can remove readonly constraint
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>ModifiableUser</span> <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>    <span style=color:#f92672>-</span><span style=color:#66d9ef>readonly</span> [<span style=color:#a6e22e>K</span> <span style=color:#66d9ef>in</span> <span style=color:#66d9ef>keyof</span> <span style=color:#a6e22e>User</span>]<span style=color:#f92672>:</span> <span style=color:#a6e22e>User</span>[<span style=color:#a6e22e>K</span>]
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h2 id=関数にまつわる型>関数にまつわる型</h2><h3 id=tupleの型推論>Tupleの型推論</h3><p>マジックだこれ。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>a</span> <span style=color:#f92672>=</span> [<span style=color:#ae81ff>1</span>, <span style=color:#66d9ef>true</span>] <span style=color:#75715e>// a is (number | boolean)[]
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>tuple</span>&lt;<span style=color:#f92672>T</span> <span style=color:#a6e22e>extends</span> <span style=color:#a6e22e>unknown</span><span style=color:#960050;background-color:#1e0010>[]</span>&gt;(...<span style=color:#a6e22e>t</span>: <span style=color:#66d9ef>T</span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>T</span> {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>t</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>b</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>tuple</span>(<span style=color:#ae81ff>1</span>, <span style=color:#66d9ef>true</span>) <span style=color:#75715e>// b is [number, boolean]
+</span></span></span></code></pre></div><h3 id=型ガイド>型ガイド</h3><p>面白い</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#75715e>// this works at runtime so TypeScript do not know the type at compile type
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>isString</span>(<span style=color:#a6e22e>p</span>: <span style=color:#66d9ef>unknown</span>)<span style=color:#f92672>:</span> <span style=color:#66d9ef>boolean</span> {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>typeof</span> <span style=color:#a6e22e>p</span> <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;string&#39;</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// now TypeScript knows the type is string when this function return true
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>isStringType</span>(<span style=color:#a6e22e>p</span>: <span style=color:#66d9ef>unknown</span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>p</span> <span style=color:#66d9ef>is</span> <span style=color:#66d9ef>string</span> {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>typeof</span> <span style=color:#a6e22e>p</span> <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;string&#39;</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h2 id=条件型>条件型</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>x</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>string</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>A</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>x</span> <span style=color:#66d9ef>extends</span> <span style=color:#66d9ef>string</span> <span style=color:#f92672>?</span> <span style=color:#66d9ef>true</span> <span style=color:#f92672>:</span> <span style=color:#66d9ef>false</span> <span style=color:#75715e>// type of A is true
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>B</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>x</span> <span style=color:#66d9ef>extends</span> <span style=color:#66d9ef>number</span> <span style=color:#f92672>?</span> <span style=color:#66d9ef>true</span> <span style=color:#f92672>:</span> <span style=color:#66d9ef>false</span> <span style=color:#75715e>// type of B is false
+</span></span></span></code></pre></div><h3 id=分配法則>分配法則</h3><p>本の例<code>Without&lt;T, U></code>について、分配法則がなかったとする場合の推論が間違ったようだ。
+<a href=https://github.com/oreilly-japan/programming-typescript-ja/wiki/errata#%E7%AC%AC1%E5%88%B7>『プログラミングTypeScript』の正誤表</a></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#75715e>// type of C is boolean | number | string, which is T.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>T</span> <span style=color:#f92672>=</span> (<span style=color:#66d9ef>boolean</span> <span style=color:#f92672>|</span> <span style=color:#66d9ef>number</span> <span style=color:#f92672>|</span> <span style=color:#66d9ef>string</span>)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>C</span> <span style=color:#f92672>=</span>  <span style=color:#a6e22e>T</span> <span style=color:#66d9ef>extends</span> <span style=color:#66d9ef>boolean</span> <span style=color:#f92672>?</span> <span style=color:#a6e22e>T</span> : <span style=color:#66d9ef>never</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// type of E is boolean !!
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Select</span>&lt;<span style=color:#f92672>T</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>U</span>&gt; <span style=color:#f92672>=</span> <span style=color:#a6e22e>T</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>U</span> <span style=color:#f92672>?</span> <span style=color:#a6e22e>T</span> : <span style=color:#66d9ef>never</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>E</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>Select</span>&lt;<span style=color:#f92672>boolean</span> <span style=color:#960050;background-color:#1e0010>|</span> <span style=color:#a6e22e>number</span> <span style=color:#960050;background-color:#1e0010>|</span> <span style=color:#a6e22e>string</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>boolean</span>&gt;
+</span></span><span style=display:flex><span><span style=color:#75715e>// because it is the same as Select&lt;boolean&gt; | Select&lt;number&gt; | Select&lt;string&gt;
+</span></span></span></code></pre></div><h3 id=inferキーワードで型変数を宣言する>inferキーワードで型変数を宣言する</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>ElementType</span>&lt;<span style=color:#f92672>T</span>&gt; <span style=color:#f92672>=</span> <span style=color:#a6e22e>T</span> <span style=color:#66d9ef>extends</span> (<span style=color:#66d9ef>infer</span> <span style=color:#a6e22e>U</span>)[] <span style=color:#f92672>?</span> <span style=color:#a6e22e>U</span> : <span style=color:#66d9ef>T</span>
+</span></span></code></pre></div><h3 id=明確な割立てアサーション>明確な割立てアサーション</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>userId</span>: <span style=color:#66d9ef>string</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>fetchUser() {</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>userId</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;abc&#39;</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>fetchUser</span>()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>userId</span>.<span style=color:#a6e22e>toUpperCase</span>(); <span style=color:#75715e>// Error: Variable &#39;userId&#39; is used before being assigned.
+</span></span></span></code></pre></div><p>To fix this,</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>userId</span><span style=color:#f92672>!:</span> <span style=color:#66d9ef>string</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// OR
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>userId</span><span style=color:#f92672>!</span>.<span style=color:#a6e22e>toUpperCase</span>()
+</span></span></code></pre></div><h3 id=名前的型>名前的型</h3><p>TypeScriptの型は構造的なので、型のブランド化というテクニックで名前的な型を作る</p><p><a href=https://qiita.com/suin/items/ae9ed911ebab48c98835>https://qiita.com/suin/items/ae9ed911ebab48c98835</a>
 <a href=https://qiita.com/suin/items/57cfc0ec9bb1a6995aa5>https://qiita.com/suin/items/57cfc0ec9bb1a6995aa5</a>
-<a href=https://typescript-jp.gitbook.io/deep-dive/main-1/nominaltyping>https://typescript-jp.gitbook.io/deep-dive/main-1/nominaltyping</a></p>
-</div>
-</article>
-<div class=blog-post-comments>
-<div id=disqus_thread>
-<script type=text/javascript>(function(){var a=document.createElement('script'),b;a.type='text/javascript',a.async=!0,b='wzr',a.src='//'+b+'.disqus.com/embed.js',(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(a)})()</script>
-<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
-<a href=https://disqus.com/ class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a>
-</div>
-</div>
-<div id=footer-post-container>
-<div id=footer-post>
-<div id=nav-footer style=display:none>
-<ul>
-<li><a href=/>Home</a></li>
-<li><a href=/posts>Writings</a></li>
-<li><a href=/tags>Tags</a></li>
-<li><a href=/about>About</a></li>
-</ul>
-</div>
-<div id=toc-footer style=display:none>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#高度な型>高度な型</a>
-<ul>
-<li><a href=#サブタイプとスーパータイプ>サブタイプとスーパータイプ</a></li>
-<li><a href=#変性>変性</a></li>
-<li><a href=#関数型の関係と反変>関数型の関係と反変</a></li>
-<li><a href=#過剰プロパティチェックexcess-property-checking>過剰プロパティチェック(excess property checking)</a></li>
-<li><a href=#タグ付き合併型>タグ付き合併型</a></li>
-<li><a href=#完全性noimplicitreturns>完全性(noImplicitReturns)</a></li>
-<li><a href=#ルックアップ型>ルックアップ型</a></li>
-<li><a href=#keyof演算子>keyof演算子</a></li>
-<li><a href=#レコードrecord型>レコード(Record)型</a></li>
-<li><a href=#map型>Map型</a></li>
-</ul>
-</li>
-<li><a href=#関数にまつわる型>関数にまつわる型</a>
-<ul>
-<li><a href=#tupleの型推論>Tupleの型推論</a></li>
-<li><a href=#型ガイド>型ガイド</a></li>
-</ul>
-</li>
-<li><a href=#条件型>条件型</a>
-<ul>
-<li><a href=#分配法則>分配法則</a></li>
-<li><a href=#inferキーワードで型変数を宣言する>inferキーワードで型変数を宣言する</a></li>
-<li><a href=#明確な割立てアサーション>明確な割立てアサーション</a></li>
-<li><a href=#名前的型>名前的型</a></li>
-</ul>
-</li>
-</ul>
-</nav>
-</div>
-<div id=share-footer style=display:none>
-<ul>
-<li>
-<a class=icon href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes-types%2f" aria-label=Facebook>
-<i class="fab fa-facebook fa-lg" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="https://twitter.com/share?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes-types%2f&text=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2%20-%20%e5%9e%8b" aria-label=Twitter>
-<i class="fab fa-twitter fa-lg" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes-types%2f&title=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2%20-%20%e5%9e%8b" aria-label=Linkedin>
-<i class="fab fa-linkedin fa-lg" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes-types%2f&is_video=false&description=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2%20-%20%e5%9e%8b" aria-label=Pinterest>
-<i class="fab fa-pinterest fa-lg" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="mailto:?subject=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2%20-%20%e5%9e%8b&body=Check out this article: https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes-types%2f" aria-label=Email>
-<i class="fas fa-envelope fa-lg" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="https://getpocket.com/save?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes-types%2f&title=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2%20-%20%e5%9e%8b" aria-label=Pocket>
-<i class="fab fa-get-pocket fa-lg" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="http://reddit.com/submit?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes-types%2f&title=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2%20-%20%e5%9e%8b" aria-label=reddit>
-<i class="fab fa-reddit fa-lg" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="http://www.tumblr.com/share/link?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes-types%2f&name=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2%20-%20%e5%9e%8b&description=%e9%9b%a3%e3%81%97%e3%81%99%e3%81%8e%e3%81%a6%e3%80%81%e4%b8%80%e5%9b%9e3%e2%88%924%e3%83%9a%e3%83%bc%e3%82%b8%e6%96%87%e3%81%97%e3%81%8b%e9%80%b2%e3%82%81%e3%82%89%e3%82%8c%e3%81%a6%e3%81%aa%e3%81%84%e3%80%81%e3%80%81%0a%e3%82%88%e3%81%8f%e8%87%aa%e5%88%86%e3%81%ab%e8%81%9e%e3%81%8f%ef%bc%9aIs%20this%20something%20about%20TYPEScript%28exists%20only%20during%20compile%20time%29%20or%20not%28to%20be%20dealt%20at%20runtime%29%3f%0a%e8%81%9e%e3%81%8d%e3%81%aa%e3%81%8c%e3%82%89%e5%8b%89%e5%bc%b7%e3%81%99%e3%82%8b%e3%81%a8%e5%a4%a7%e5%a4%89%e5%8a%a9%e3%81%8b%e3%82%8a%e3%81%be%e3%81%99%e3%80%82%0a%e9%ab%98%e5%ba%a6%e3%81%aa%e5%9e%8b%20%e3%82%b5%e3%83%96%e3%82%bf%e3%82%a4%e3%83%97%e3%81%a8%e3%82%b9%e3%83%bc%e3%83%91%e3%83%bc%e3%82%bf%e3%82%a4%e3%83%97%20%20any%e3%81%af%e3%81%99%e3%81%b9%e3%81%a6%e3%81%ae%e5%9e%8b%e3%81%ae%e3%82%b9%e3%83%bc%e3%83%91%e3%83%bc%e3%82%bf%e3%82%a4%e3%83%97%20never%e3%81%af%e3%81%99%e3%81%b9%e3%81%a6%e3%81%ae%e5%9e%8b%e3%81%ae%e3%82%b5%e3%83%96%e3%82%bf%e3%82%a4%e3%83%97%20%20%e5%a4%89%e6%80%a7%20%20%e4%b8%8d%e5%a4%89%e6%80%a7%28invariance%29%20%e5%85%b1%e5%a4%89%e6%80%a7%28covariance%29%20%e5%8f%8d%e5%a4%89%e6%80%a7%28contravariance%29%20%e5%8f%8c%e5%a4%89%e6%80%a7%28bivariance%29%20%20%e3%83%87%e3%82%a3%e3%83%95%e3%82%a9%e3%83%ab%e3%83%88%e3%81%a7Typescript%e3%81%ae%e5%9e%8b%e3%81%ab%e9%96%a2%e3%81%97%e3%81%a6%e5%85%b1%e5%a4%89%e3%81%a7%e3%81%99%e3%80%82%20%7b%26quot%3bstrictFunctionTypes%26quot%3b%3a%20true%7d%e3%81%ae%e5%a0%b4%e5%90%88%e3%80%81%e9%96%a2%e6%95%b0%e5%9e%8b%e3%81%ab%e3%81%af%e3%81%9d%e3%81%ae%e3%83%91%e3%83%a9%e3%83%a1%e3%83%bc%e3%82%bf%e3%81%ae%e5%9e%8b%e3%81%8c%e5%8f%8d%e5%a4%89%e3%81%ab%e3%81%a8%e6%89%b1%e3%81%86%e3%82%88%e3%81%86%e3%81%ab%e3%81%99%e3%82%8b%e3%80%82%e5%85%b7%e4%bd%93%e3%81%af%e4%b8%8b%e8%a8%98%e3%82%92%e5%8f%82%e7%85%a7%e3%81%8f%e3%81%a0%e3%81%95%e3%81%84%e3%80%82%0a%e9%96%a2%e6%95%b0%e5%9e%8b%e3%81%ae%e9%96%a2%e4%bf%82%e3%81%a8%e5%8f%8d%e5%a4%89%20class%20Animal%20%7b%7d%20class%20Bird%20extends%20Animal%20%7b%20chirp%28%29%20%7b%7d%20%7d%20class%20Crow%20extends%20Bird%20%7b%20caw%28%29%20%7b%7d%20%7d%20function%20clone%20%28f%3a%20%28b%3aBird%29%20%3d%26gt%3b%20Bird%29%3a%20void%20%7b%20%7d%20clone%e9%96%a2%e6%95%b0%e3%81%af%e3%80%81%e9%96%a2%e6%95%b0%e5%9e%8b%e3%81%ae%e3%83%91%e3%83%a9%e3%83%a1%e3%83%bc%e3%82%bf%e3%82%92%e6%9c%9f%e5%be%85%e3%81%99%e3%82%8b%e3%80%82%28b%3a%20Bird%29%20%3d%26gt%3b%20Bird%e5%9e%8b%e3%81%ae%e9%96%a2%e6%95%b0%e3%80%81%e3%81%a8%e3%81%9d%e3%81%ae%e3%82%b5%e3%83%96%e3%82%bf%e3%82%a4%e3%83%97%e3%81%ae%e9%96%a2%e6%95%b0%e3%82%92%e6%b8%a1%e3%81%99%e3%81%93%e3%81%a8%e3%81%8c%e3%81%a7%e3%81%8d%e3%82%8b%e3%80%82%20%e3%81%93%e3%81%93%e3%81%be%e3%81%a7%e3%81%af%e6%99%ae%e9%80%9a%e3%81%ae%e5%85%b1%e5%a4%89%e3%81%a7%e3%81%82%e3%82%8a%e3%80%81%e5%8f%8d%e5%a4%89%e3%81%ab%e9%96%a2%e4%bf%82%e3%81%aa%e3%81%84%e3%80%82%0a%e3%81%a7%e3%81%af%e3%81%a9%e3%82%93%e3%81%aa%e9%96%a2%e6%95%b0%e3%81%af%28b%3a%20Bird%29%20%3d%26gt%3b%20Bird%e3%81%ae%e3%82%b5%e3%83%96%e3%82%bf%e3%82%a4%e3%83%97%e3%81%a7%e3%81%97%e3%82%87%e3%81%86%e3%81%8b" aria-label=Tumblr>
-<i class="fab fa-tumblr fa-lg" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes-types%2f&t=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2%20-%20%e5%9e%8b" aria-label="Hacker News">
-<i class="fab fa-hacker-news fa-lg" aria-hidden=true></i>
-</a>
-</li>
-</ul>
-</div>
-<div id=actions-footer>
-<a id=menu-toggle class=icon href=# onclick="return $('#nav-footer').toggle(),!1" aria-label=Menu>
-<i class="fas fa-bars fa-lg" aria-hidden=true></i> Menu</a>
-<a id=toc-toggle class=icon href=# onclick="return $('#toc-footer').toggle(),!1" aria-label=TOC>
-<i class="fas fa-list fa-lg" aria-hidden=true></i> TOC</a>
-<a id=share-toggle class=icon href=# onclick="return $('#share-footer').toggle(),!1" aria-label=Share>
-<i class="fas fa-share-alt fa-lg" aria-hidden=true></i> share</a>
-<a id=top style=display:none class=icon href=# onclick="$('html, body').animate({scrollTop:0},'fast')" aria-label="Top of Page">
-<i class="fas fa-chevron-up fa-lg" aria-hidden=true></i> Top</a>
-</div>
-</div>
-</div>
-<footer id=footer>
-<div class=footer-left>
-Copyright &copy; 2021 呉
-</div>
-<div class=footer-right>
-<nav>
-<ul>
-<li><a href=/>Home</a></li>
-<li><a href=/posts>Writings</a></li>
-<li><a href=/tags>Tags</a></li>
-<li><a href=/about>About</a></li>
-</ul>
-</nav>
-</div>
-</footer>
-</div>
-</body>
-<link rel=stylesheet href=/lib/font-awesome/css/all.min.css>
-<script src=/lib/jquery/jquery.min.js></script>
+<a href=https://typescript-jp.gitbook.io/deep-dive/main-1/nominaltyping>https://typescript-jp.gitbook.io/deep-dive/main-1/nominaltyping</a></p></div></article><div class=blog-post-comments><div id=disqus_thread><script type=text/javascript>(function(){var t,e=document.createElement("script");e.type="text/javascript",e.async=!0,t="wzr",e.src="//"+t+".disqus.com/embed.js",(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)})()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com/ class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div></div><div id=footer-post-container><div id=footer-post><div id=nav-footer style=display:none><ul><li><a href=/>Home</a></li><li><a href=/posts>Writings</a></li><li><a href=/tags>Tags</a></li><li><a href=/about>About</a></li></ul></div><div id=toc-footer style=display:none><nav id=TableOfContents><ul><li><a href=#高度な型>高度な型</a><ul><li><a href=#サブタイプとスーパータイプ>サブタイプとスーパータイプ</a></li><li><a href=#変性>変性</a></li><li><a href=#関数型の関係と反変>関数型の関係と反変</a></li><li><a href=#過剰プロパティチェックexcess-property-checking>過剰プロパティチェック(excess property checking)</a></li><li><a href=#タグ付き合併型>タグ付き合併型</a></li><li><a href=#完全性noimplicitreturns>完全性(noImplicitReturns)</a></li><li><a href=#ルックアップ型>ルックアップ型</a></li><li><a href=#keyof演算子>keyof演算子</a></li><li><a href=#レコードrecord型>レコード(Record)型</a></li><li><a href=#map型>Map型</a></li></ul></li><li><a href=#関数にまつわる型>関数にまつわる型</a><ul><li><a href=#tupleの型推論>Tupleの型推論</a></li><li><a href=#型ガイド>型ガイド</a></li></ul></li><li><a href=#条件型>条件型</a><ul><li><a href=#分配法則>分配法則</a></li><li><a href=#inferキーワードで型変数を宣言する>inferキーワードで型変数を宣言する</a></li><li><a href=#明確な割立てアサーション>明確な割立てアサーション</a></li><li><a href=#名前的型>名前的型</a></li></ul></li></ul></nav></div><div id=share-footer style=display:none><ul><li><a class=icon href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes-types%2f" aria-label=Facebook><i class="fab fa-facebook fa-lg" aria-hidden=true></i></a></li><li><a class=icon href="https://twitter.com/share?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes-types%2f&text=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2%20-%20%e5%9e%8b" aria-label=Twitter><i class="fab fa-twitter fa-lg" aria-hidden=true></i></a></li><li><a class=icon href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes-types%2f&title=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2%20-%20%e5%9e%8b" aria-label=Linkedin><i class="fab fa-linkedin fa-lg" aria-hidden=true></i></a></li><li><a class=icon href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes-types%2f&is_video=false&description=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2%20-%20%e5%9e%8b" aria-label=Pinterest><i class="fab fa-pinterest fa-lg" aria-hidden=true></i></a></li><li><a class=icon href="mailto:?subject=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2%20-%20%e5%9e%8b&body=Check out this article: https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes-types%2f" aria-label=Email><i class="fas fa-envelope fa-lg" aria-hidden=true></i></a></li><li><a class=icon href="https://getpocket.com/save?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes-types%2f&title=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2%20-%20%e5%9e%8b" aria-label=Pocket><i class="fab fa-get-pocket fa-lg" aria-hidden=true></i></a></li><li><a class=icon href="http://reddit.com/submit?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes-types%2f&title=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2%20-%20%e5%9e%8b" aria-label=reddit><i class="fab fa-reddit fa-lg" aria-hidden=true></i></a></li><li><a class=icon href="http://www.tumblr.com/share/link?url=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes-types%2f&name=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2%20-%20%e5%9e%8b&description=%e9%9b%a3%e3%81%97%e3%81%99%e3%81%8e%e3%81%a6%e3%80%81%e4%b8%80%e5%9b%9e3%e2%88%924%e3%83%9a%e3%83%bc%e3%82%b8%e6%96%87%e3%81%97%e3%81%8b%e9%80%b2%e3%82%81%e3%82%89%e3%82%8c%e3%81%a6%e3%81%aa%e3%81%84%e3%80%81%e3%80%81%0a%e3%82%88%e3%81%8f%e8%87%aa%e5%88%86%e3%81%ab%e8%81%9e%e3%81%8f%ef%bc%9aIs%20this%20something%20about%20TYPEScript%28exists%20only%20during%20compile%20time%29%20or%20not%28to%20be%20dealt%20at%20runtime%29%3f%0a%e8%81%9e%e3%81%8d%e3%81%aa%e3%81%8c%e3%82%89%e5%8b%89%e5%bc%b7%e3%81%99%e3%82%8b%e3%81%a8%e5%a4%a7%e5%a4%89%e5%8a%a9%e3%81%8b%e3%82%8a%e3%81%be%e3%81%99%e3%80%82%0a%e9%ab%98%e5%ba%a6%e3%81%aa%e5%9e%8b%20%e3%82%b5%e3%83%96%e3%82%bf%e3%82%a4%e3%83%97%e3%81%a8%e3%82%b9%e3%83%bc%e3%83%91%e3%83%bc%e3%82%bf%e3%82%a4%e3%83%97%20any%e3%81%af%e3%81%99%e3%81%b9%e3%81%a6%e3%81%ae%e5%9e%8b%e3%81%ae%e3%82%b9%e3%83%bc%e3%83%91%e3%83%bc%e3%82%bf%e3%82%a4%e3%83%97%20never%e3%81%af%e3%81%99%e3%81%b9%e3%81%a6%e3%81%ae%e5%9e%8b%e3%81%ae%e3%82%b5%e3%83%96%e3%82%bf%e3%82%a4%e3%83%97%20%e5%a4%89%e6%80%a7%20%e4%b8%8d%e5%a4%89%e6%80%a7%28invariance%29%20%e5%85%b1%e5%a4%89%e6%80%a7%28covariance%29%20%e5%8f%8d%e5%a4%89%e6%80%a7%28contravariance%29%20%e5%8f%8c%e5%a4%89%e6%80%a7%28bivariance%29%20%e3%83%87%e3%82%a3%e3%83%95%e3%82%a9%e3%83%ab%e3%83%88%e3%81%a7Typescript%e3%81%ae%e5%9e%8b%e3%81%ab%e9%96%a2%e3%81%97%e3%81%a6%e5%85%b1%e5%a4%89%e3%81%a7%e3%81%99%e3%80%82%20%7b%26quot%3bstrictFunctionTypes%26quot%3b%3a%20true%7d%e3%81%ae%e5%a0%b4%e5%90%88%e3%80%81%e9%96%a2%e6%95%b0%e5%9e%8b%e3%81%ab%e3%81%af%e3%81%9d%e3%81%ae%e3%83%91%e3%83%a9%e3%83%a1%e3%83%bc%e3%82%bf%e3%81%ae%e5%9e%8b%e3%81%8c%e5%8f%8d%e5%a4%89%e3%81%ab%e3%81%a8%e6%89%b1%e3%81%86%e3%82%88%e3%81%86%e3%81%ab%e3%81%99%e3%82%8b%e3%80%82%e5%85%b7%e4%bd%93%e3%81%af%e4%b8%8b%e8%a8%98%e3%82%92%e5%8f%82%e7%85%a7%e3%81%8f%e3%81%a0%e3%81%95%e3%81%84%e3%80%82%0a%e9%96%a2%e6%95%b0%e5%9e%8b%e3%81%ae%e9%96%a2%e4%bf%82%e3%81%a8%e5%8f%8d%e5%a4%89%20class%20Animal%20%7b%7d%20class%20Bird%20extends%20Animal%20%7b%20chirp%28%29%20%7b%7d%20%7d%20class%20Crow%20extends%20Bird%20%7b%20caw%28%29%20%7b%7d%20%7d%20function%20clone%20%28f%3a%20%28b%3aBird%29%20%3d%26gt%3b%20Bird%29%3a%20void%20%7b%20%7d%20clone%e9%96%a2%e6%95%b0%e3%81%af%e3%80%81%e9%96%a2%e6%95%b0%e5%9e%8b%e3%81%ae%e3%83%91%e3%83%a9%e3%83%a1%e3%83%bc%e3%82%bf%e3%82%92%e6%9c%9f%e5%be%85%e3%81%99%e3%82%8b%e3%80%82%28b%3a%20Bird%29%20%3d%26gt%3b%20Bird%e5%9e%8b%e3%81%ae%e9%96%a2%e6%95%b0%e3%80%81%e3%81%a8%e3%81%9d%e3%81%ae%e3%82%b5%e3%83%96%e3%82%bf%e3%82%a4%e3%83%97%e3%81%ae%e9%96%a2%e6%95%b0%e3%82%92%e6%b8%a1%e3%81%99%e3%81%93%e3%81%a8%e3%81%8c%e3%81%a7%e3%81%8d%e3%82%8b%e3%80%82%20%e3%81%93%e3%81%93%e3%81%be%e3%81%a7%e3%81%af%e6%99%ae%e9%80%9a%e3%81%ae%e5%85%b1%e5%a4%89%e3%81%a7%e3%81%82%e3%82%8a%e3%80%81%e5%8f%8d%e5%a4%89%e3%81%ab%e9%96%a2%e4%bf%82%e3%81%aa%e3%81%84%e3%80%82%0a%e3%81%a7%e3%81%af%e3%81%a9%e3%82%93%e3%81%aa%e9%96%a2%e6%95%b0%e3%81%af%28b%3a%20Bird%29%20%3d%26gt%3b%20Bird%e3%81%ae%e3%82%b5%e3%83%96%e3%82%bf%e3%82%a4%e3%83%97%e3%81%a7%e3%81%97%e3%82%87%e3%81%86%e3%81%8b%0a%2f%2f%20%e3%81%93%e3%82%8c%e3%82%92%e3%83%99%e3%83%bc%e3%82%b9%e3%81%a8%e3%81%97%e3%81%a6%e8%80%83%e3%81%88%e3%81%a6%e3%81%bf%e3%82%8b%20function%20bToB%28b%3a%20Bird%29%20%3a%20Bird%20%7b%20return%20new%20Bird%28%29%3b%20%7d%3b%20function%20bToC%28b%3a%20Bird%29%20%3a%20Crow%20%7b%20return%20new%20Crow%28%29%3b%20%7d%20function%20bToA%28b%3aBird%29%20%3a%20Animal%7b%20return%20new%20Animal%28%29%20%7d%20function%20aToB%28a%3aAnimal%29%20%3a%20Bird%20%7b%20return%20new%20Bird%28%29%3b%20%7d%20function%20cToB%28c%3a%20Crow%29%20%3a%20Bird%20%7b%20return%20new%20Bird%28%29%20%7d%20clone%28bToB%29%20%2f%2f%20OK%20clone%28bToC%29%20%2f%2f%20OK%20clone%28bToA%29%20%2f%2f%20Error%202345%20clone%28aToB%29%20%2f%2f%20OK%20clone%28cToB%29%20%2f%2f%20Error%202345%20%28b%3a%20Bird%29%20%3a%20Crow%e3%81%af%28b%3a%20Bird%29%20%3d%26gt%3b%20Bird%e3%81%ae%e3%82%b5%e3%83%96%e3%82%bf%e3%82%a4%e3%83%97%e3%81%a7%e3%81%82%e3%82%8a%e3%80%81%28b%3aBird%29%20%3a%20Animal%e3%81%af%e3%82%b5%e3%83%96%e3%82%bf%e3%82%a4%e3%83%97%e3%81%a7%e3%81%af%e3%81%aa%e3%81%84%e3%80%82%e3%81%93%e3%81%ae%e6%88%bb%e3%82%8a%e5%80%a4%e3%81%ae%e6%8c%af%e8%88%9e%e3%81%84%e3%81%af%e3%81%be%e3%81%a0%e5%85%b1%e5%a4%89%e3%81%a7%e3%81%99%e3%80%82%ef%bc%88%e6%88%bb%e3%82%8a%e5%80%a4%e3%81%af%e3%82%b5%e3%83%96%e3%82%bf%e3%82%a4%e3%83%97%e3%81%ae%e9%96%a2%e4%bf%82%e3%80%80%e2%86%92%e3%80%80%e9%96%a2%e6%95%b0%e3%81%af%e3%82%b5%e3%83%96%e3%82%bf%e3%82%a4%e3%83%97%e3%81%ae%e9%96%a2%e4%bf%82%ef%bc%89" aria-label=Tumblr><i class="fab fa-tumblr fa-lg" aria-hidden=true></i></a></li><li><a class=icon href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fwww.takuzen.me%2fposts%2fprogramming-typescript-notes-types%2f&t=%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0TypeScript%e3%81%ae%e8%aa%ad%e6%9b%b8%e3%83%a1%e3%83%a2%20-%20%e5%9e%8b" aria-label="Hacker News"><i class="fab fa-hacker-news fa-lg" aria-hidden=true></i></a></li></ul></div><div id=actions-footer><a id=menu-toggle class=icon href=# onclick='return $("#nav-footer").toggle(),!1' aria-label=Menu><i class="fas fa-bars fa-lg" aria-hidden=true></i> Menu</a>
+<a id=toc-toggle class=icon href=# onclick='return $("#toc-footer").toggle(),!1' aria-label=TOC><i class="fas fa-list fa-lg" aria-hidden=true></i> TOC</a>
+<a id=share-toggle class=icon href=# onclick='return $("#share-footer").toggle(),!1' aria-label=Share><i class="fas fa-share-alt fa-lg" aria-hidden=true></i> share</a>
+<a id=top style=display:none class=icon href=# onclick='$("html, body").animate({scrollTop:0},"fast")' aria-label="Top of Page"><i class="fas fa-chevron-up fa-lg" aria-hidden=true></i> Top</a></div></div></div><footer id=footer><div class=footer-left>Copyright &copy; 2023 呉</div><div class=footer-right><nav><ul><li><a href=/>Home</a></li><li><a href=/posts>Writings</a></li><li><a href=/tags>Tags</a></li><li><a href=/about>About</a></li></ul></nav></div></footer></div></body><link rel=stylesheet href=/lib/font-awesome/css/all.min.css><script src=/lib/jquery/jquery.min.js></script>
 <script src=/js/main.js></script>
-<script src=/js/code-copy.js></script>
-</html>
+<script src=/js/code-copy.js></script></html>

@@ -5,7 +5,7 @@ Integer[] nums2 = new Integer[]{1, 2, 3, 4}; Arrays.asList(nums2).forEach(i -&am
 結局、これらJavaの基本コンセプト:
 Varargs Autoboxing Generics はいずれもよく把握してなかった。
 ちなみに、Arrays#toStringで簡単に配列が出力できる1
-System.out.println(Arrays.toString(array)); // [1, 2, 3, 4] 1. 基本知識の明確 1.1 ジェネリクス「T」にはプリミティブ型が含まれていない.</description></item><item><title>思考せずに毎日gettersとsettersを実装している私、その理由が分からない</title><link>https://www.takuzen.me/posts/pretend-to-understand-getters-and-setting/</link><pubDate>Sun, 17 Jan 2021 18:05:32 +0900</pubDate><guid>https://www.takuzen.me/posts/pretend-to-understand-getters-and-setting/</guid><description>最近lombokを使って下記のようなやつを結構実装していた
+System.out.println(Arrays.toString(array)); // [1, 2, 3, 4] 1. 基本知識の明確 1.1 ジェネリクス「T」にはプリミティブ型が含まれていない. T = T extends Object 後ほどバイトコードを詳細した上、確認できた。</description></item><item><title>思考せずに毎日gettersとsettersを実装している私、その理由が分からない</title><link>https://www.takuzen.me/posts/pretend-to-understand-getters-and-setting/</link><pubDate>Sun, 17 Jan 2021 18:05:32 +0900</pubDate><guid>https://www.takuzen.me/posts/pretend-to-understand-getters-and-setting/</guid><description>最近lombokを使って下記のようなやつを結構実装していた
 @Getter @Setter // @Dataもよく使ってる public class Foo { private String name; private int id; } ある日、考えずに動いてる俺は突然目覚めた：上記のような処理せずフィールドの値の参照と設定だけの場合、fieldのアクセス修飾子をpublicにして直接使ったらいいんじゃない？lombokを使ってgettersとsettersを生成する目的は何だっけ？gettersとsettersは何だっけ？
 いつからgetters/settersを使うことを習慣になるのか、どこから学んだのか全然覚えてないので、調査してみた。
 TL;DR 関係あるキーワード:
@@ -55,7 +55,7 @@ webview.loadData(article.getContent(), &amp;#34;text/html&amp;#34;, &amp;#34;UTF
 contentText.loadData(article.getContent(), &amp;#34;text/html; charset=UTF-8&amp;#34;, &amp;#34;UTF-8&amp;#34;); 我处理的文本是含有日语的html文本，这个方法是有效的。
 另外，也可以使用WebView.loadDataWithBaseURL()代替WebView.loadData()。
 webview.loadDataWithBaseURL(null, article.getContent(), &amp;#34;text/html&amp;#34;, &amp;#34;UTF-8&amp;#34;, null); 网上还有这样的方法：
-if (Build.VERSION.SDK_INT &amp;gt;= Build.VERSION_CODES.FROYO) { String base64 = Base64.encodeToString(htmlString.getBytes(), Base64.DEFAULT); myWebView.loadData(base64, &amp;quot;text/html; charset=utf-8&amp;quot;, &amp;quot;base64&amp;quot;); } 如代码中所见，该方法适用于Android 4+的场景。不过我并没有进行实际测试这种方式。
+if (Build.VERSION.SDK_INT &amp;gt;= Build.VERSION_CODES.FROYO) { String base64 = Base64.encodeToString(htmlString.getBytes(), Base64.DEFAULT); myWebView.loadData(base64, &amp;#34;text/html; charset=utf-8&amp;#34;, &amp;#34;base64&amp;#34;); } 如代码中所见，该方法适用于Android 4+的场景。不过我并没有进行实际测试这种方式。
 参考资料 stackoverflow - Android. WebView and loadData Android Developers</description></item><item><title>使用Tools Attributes Reference</title><link>https://www.takuzen.me/posts/2017-09-23-use-tools-attributes-reference-in-android-studio/</link><pubDate>Sat, 23 Sep 2017 19:55:32 +0000</pubDate><guid>https://www.takuzen.me/posts/2017-09-23-use-tools-attributes-reference-in-android-studio/</guid><description>Android Studio 提供了一系列工具属性用于开发过程中，如预览布局效果等。构建应用时会自动删除掉所有此类属性。灵活应用这些属性可以给开发带来很大的快感。
 为启用此类属性，加入toolsNs即可。
 &amp;lt;RootTag xmlns:android=&amp;#34;http://schemas.android.com/apk/res/android&amp;#34; xmlns:tools=&amp;#34;http://schemas.android.com/tools&amp;#34; &amp;gt; 使用tools:前缀代替android: 由于经常会在代码中对布局进行更改，无法通过IDE的预览功能直观的查看到效果。这时可使用tools:前缀代替android:来插入简单的数据，如tools:text tools:src等。

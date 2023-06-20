@@ -1,412 +1,69 @@
-<!doctype html><html lang=en-us>
-<head>
-<link rel=preload href=/lib/font-awesome/webfonts/fa-brands-400.woff2 as=font type=font/woff2 crossorigin=anonymous>
-<link rel=preload href=/lib/font-awesome/webfonts/fa-regular-400.woff2 as=font type=font/woff2 crossorigin=anonymous>
-<link rel=preload href=/lib/font-awesome/webfonts/fa-solid-900.woff2 as=font type=font/woff2 crossorigin=anonymous>
-<link rel=preload href=/lib/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2 as=font type=font/woff2 crossorigin=anonymous>
-<meta charset=utf-8>
-<meta http-equiv=x-ua-compatible content="IE=edge">
-<title> Algorithms - Maxflow and Mincut | マクロス</title>
-<link rel=canonical href=https://www.takuzen.me/posts/2020-05-20-maxflow-mincut/>
-<meta name=description content="勉強中">
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=robots content="all,follow">
-<meta name=googlebot content="index,follow,snippet,archive">
-<meta property="og:title" content="Algorithms - Maxflow and Mincut">
-<meta property="og:description" content="Model We use a flow network model which is an edge-weighted digraph with positive edge weights referred to as capacities. An st-flow network has two identified vertices, a source s and a sink t.
-Minimum Cut problem An st-cut is a partition of the vertices into two disjoint sets, which s in one set A and t in the other set B. Its capacity is the sum of the capacities of the edges from A to B.">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://www.takuzen.me/posts/2020-05-20-maxflow-mincut/"><meta property="article:section" content="posts">
-<meta property="article:published_time" content="2020-05-20T09:00:00+00:00">
-<meta property="article:modified_time" content="2020-05-20T09:00:00+00:00">
-<meta name=twitter:card content="summary">
-<meta name=twitter:title content="Algorithms - Maxflow and Mincut">
-<meta name=twitter:description content="Model We use a flow network model which is an edge-weighted digraph with positive edge weights referred to as capacities. An st-flow network has two identified vertices, a source s and a sink t.
-Minimum Cut problem An st-cut is a partition of the vertices into two disjoint sets, which s in one set A and t in the other set B. Its capacity is the sum of the capacities of the edges from A to B.">
-<link rel=stylesheet href=https://www.takuzen.me/css/styles.94f653e9e151e28067a7c5dbbc4600cbd5a3c721e79faaf971e523c40f3b249b8e4f20bb57810dfffa8d559ca5c140fd56eb4cd9c0853113ad08e66afdb08bdd.css integrity="sha512-lPZT6eFR4oBnp8XbvEYAy9WjxyHnn6r5ceUjxA87JJuOTyC7V4EN//qNVZylwUD9VutM2cCFMROtCOZq/bCL3Q=="><!--[if lt IE 9]><script src=https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js></script>
-<script src=https://oss.maxcdn.com/respond/1.4.2/respond.min.js></script><![endif]-->
-<link rel=icon type=image/png href=https://www.takuzen.me/images/favicon.ico>
-<script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','UA-83047470-2','auto'),ga('send','pageview'))</script>
-<script async src=https://www.google-analytics.com/analytics.js></script>
-</head>
-<body class="max-width mx-auto px3 ltr">
-<div class="content index py4">
-<div id=header-post>
-<a id=menu-icon href=#><i class="fas fa-bars fa-lg"></i></a>
+<!doctype html><html lang=en-us><head><link rel=preload href=/lib/font-awesome/webfonts/fa-brands-400.woff2 as=font type=font/woff2 crossorigin=anonymous><link rel=preload href=/lib/font-awesome/webfonts/fa-regular-400.woff2 as=font type=font/woff2 crossorigin=anonymous><link rel=preload href=/lib/font-awesome/webfonts/fa-solid-900.woff2 as=font type=font/woff2 crossorigin=anonymous><link rel=preload href=/lib/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2 as=font type=font/woff2 crossorigin=anonymous><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><title>Algorithms - Maxflow and Mincut | マクロス</title><link rel=canonical href=https://www.takuzen.me/posts/2020-05-20-maxflow-mincut/><meta name=description content="勉強中"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="all,follow"><meta name=googlebot content="index,follow,snippet,archive"><meta property="og:title" content="Algorithms - Maxflow and Mincut"><meta property="og:description" content="Model We use a flow network model which is an edge-weighted digraph with positive edge weights referred to as capacities. An st-flow network has two identified vertices, a source s and a sink t.
+Minimum Cut problem An st-cut is a partition of the vertices into two disjoint sets, which s in one set A and t in the other set B. Its capacity is the sum of the capacities of the edges from A to B."><meta property="og:type" content="article"><meta property="og:url" content="https://www.takuzen.me/posts/2020-05-20-maxflow-mincut/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2020-05-20T09:00:00+00:00"><meta property="article:modified_time" content="2020-05-20T09:00:00+00:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="Algorithms - Maxflow and Mincut"><meta name=twitter:description content="Model We use a flow network model which is an edge-weighted digraph with positive edge weights referred to as capacities. An st-flow network has two identified vertices, a source s and a sink t.
+Minimum Cut problem An st-cut is a partition of the vertices into two disjoint sets, which s in one set A and t in the other set B. Its capacity is the sum of the capacities of the edges from A to B."><link rel=stylesheet href=https://www.takuzen.me/css/styles.94f653e9e151e28067a7c5dbbc4600cbd5a3c721e79faaf971e523c40f3b249b8e4f20bb57810dfffa8d559ca5c140fd56eb4cd9c0853113ad08e66afdb08bdd.css integrity="sha512-lPZT6eFR4oBnp8XbvEYAy9WjxyHnn6r5ceUjxA87JJuOTyC7V4EN//qNVZylwUD9VutM2cCFMROtCOZq/bCL3Q=="><!--[if lt IE 9]><script src=https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js></script>
+<script src=https://oss.maxcdn.com/respond/1.4.2/respond.min.js></script><![endif]--><link rel=icon type=image/png href=https://www.takuzen.me/images/favicon.ico><script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-83047470-2","auto"),ga("send","pageview"))</script><script async src=https://www.google-analytics.com/analytics.js></script></head><body class="max-width mx-auto px3 ltr"><div class="content index py4"><div id=header-post><a id=menu-icon href=#><i class="fas fa-bars fa-lg"></i></a>
 <a id=menu-icon-tablet href=#><i class="fas fa-bars fa-lg"></i></a>
-<a id=top-icon-tablet href=# onclick="$('html, body').animate({scrollTop:0},'fast')" style=display:none aria-label="Top of Page"><i class="fas fa-chevron-up fa-lg"></i></a>
-<span id=menu>
-<span id=nav>
-<ul>
-<li><a href=/>Home</a></li>
-<li><a href=/posts>Writings</a></li>
-<li><a href=/tags>Tags</a></li>
-<li><a href=/about>About</a></li>
-</ul>
-</span>
-<br>
-<span id=actions>
-<ul>
-<li>
-<a class=icon href=https://www.takuzen.me/posts/2020-05-01-algorithms-graphs/ aria-label=Previous>
-<i class="fas fa-chevron-left" aria-hidden=true onmouseover="$('#i-prev').toggle()" onmouseout="$('#i-prev').toggle()"></i>
-</a>
-</li>
-<li>
-<a class=icon href=https://www.takuzen.me/posts/2020-06-05-string-sorts/ aria-label=Next>
-<i class="fas fa-chevron-right" aria-hidden=true onmouseover="$('#i-next').toggle()" onmouseout="$('#i-next').toggle()"></i>
-</a>
-</li>
-<li>
-<a class=icon href=# onclick="$('html, body').animate({scrollTop:0},'fast')" aria-label="Top of Page">
-<i class="fas fa-chevron-up" aria-hidden=true onmouseover="$('#i-top').toggle()" onmouseout="$('#i-top').toggle()"></i>
-</a>
-</li>
-<li>
-<a class=icon href=# aria-label=Share>
-<i class="fas fa-share-alt" aria-hidden=true onmouseover="$('#i-share').toggle()" onmouseout="$('#i-share').toggle()" onclick="return $('#share').toggle(),!1"></i>
-</a>
-</li>
-</ul>
-<span id=i-prev class=info style=display:none>Previous post</span>
+<a id=top-icon-tablet href=# onclick='$("html, body").animate({scrollTop:0},"fast")' style=display:none aria-label="Top of Page"><i class="fas fa-chevron-up fa-lg"></i></a>
+<span id=menu><span id=nav><ul><li><a href=/>Home</a></li><li><a href=/posts>Writings</a></li><li><a href=/tags>Tags</a></li><li><a href=/about>About</a></li></ul></span><br><span id=actions><ul><li><a class=icon href=https://www.takuzen.me/posts/2020-05-01-algorithms-graphs/ aria-label=Previous><i class="fas fa-chevron-left" aria-hidden=true onmouseover='$("#i-prev").toggle()' onmouseout='$("#i-prev").toggle()'></i></a></li><li><a class=icon href=https://www.takuzen.me/posts/2020-06-05-string-sorts/ aria-label=Next><i class="fas fa-chevron-right" aria-hidden=true onmouseover='$("#i-next").toggle()' onmouseout='$("#i-next").toggle()'></i></a></li><li><a class=icon href=# onclick='$("html, body").animate({scrollTop:0},"fast")' aria-label="Top of Page"><i class="fas fa-chevron-up" aria-hidden=true onmouseover='$("#i-top").toggle()' onmouseout='$("#i-top").toggle()'></i></a></li><li><a class=icon href=# aria-label=Share><i class="fas fa-share-alt" aria-hidden=true onmouseover='$("#i-share").toggle()' onmouseout='$("#i-share").toggle()' onclick='return $("#share").toggle(),!1'></i></a></li></ul><span id=i-prev class=info style=display:none>Previous post</span>
 <span id=i-next class=info style=display:none>Next post</span>
 <span id=i-top class=info style=display:none>Back to top</span>
-<span id=i-share class=info style=display:none>Share post</span>
-</span>
-<br>
-<div id=share style=display:none>
-<ul>
-<li>
-<a class=icon href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fwww.takuzen.me%2fposts%2f2020-05-20-maxflow-mincut%2f" aria-label=Facebook>
-<i class="fab fa-facebook" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="https://twitter.com/share?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2020-05-20-maxflow-mincut%2f&text=Algorithms%20-%20Maxflow%20and%20Mincut" aria-label=Twitter>
-<i class="fab fa-twitter" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2020-05-20-maxflow-mincut%2f&title=Algorithms%20-%20Maxflow%20and%20Mincut" aria-label=Linkedin>
-<i class="fab fa-linkedin" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2020-05-20-maxflow-mincut%2f&is_video=false&description=Algorithms%20-%20Maxflow%20and%20Mincut" aria-label=Pinterest>
-<i class="fab fa-pinterest" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="mailto:?subject=Algorithms%20-%20Maxflow%20and%20Mincut&body=Check out this article: https%3a%2f%2fwww.takuzen.me%2fposts%2f2020-05-20-maxflow-mincut%2f" aria-label=Email>
-<i class="fas fa-envelope" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="https://getpocket.com/save?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2020-05-20-maxflow-mincut%2f&title=Algorithms%20-%20Maxflow%20and%20Mincut" aria-label=Pocket>
-<i class="fab fa-get-pocket" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="http://reddit.com/submit?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2020-05-20-maxflow-mincut%2f&title=Algorithms%20-%20Maxflow%20and%20Mincut" aria-label=reddit>
-<i class="fab fa-reddit" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="http://www.tumblr.com/share/link?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2020-05-20-maxflow-mincut%2f&name=Algorithms%20-%20Maxflow%20and%20Mincut&description=Model%20We%20use%20a%20flow%20network%20model%20which%20is%20an%20edge-weighted%20digraph%20with%20positive%20edge%20weights%20referred%20to%20as%20capacities.%20An%20st-flow%20network%20has%20two%20identified%20vertices%2c%20a%20source%20s%20and%20a%20sink%20t.%0aMinimum%20Cut%20problem%20An%20st-cut%20is%20a%20partition%20of%20the%20vertices%20into%20two%20disjoint%20sets%2c%20which%20s%20in%20one%20set%20A%20and%20t%20in%20the%20other%20set%20B.%20Its%20capacity%20is%20the%20sum%20of%20the%20capacities%20of%20the%20edges%20from%20A%20to%20B." aria-label=Tumblr>
-<i class="fab fa-tumblr" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fwww.takuzen.me%2fposts%2f2020-05-20-maxflow-mincut%2f&t=Algorithms%20-%20Maxflow%20and%20Mincut" aria-label="Hacker News">
-<i class="fab fa-hacker-news" aria-hidden=true></i>
-</a>
-</li>
-</ul>
-</div>
-<div id=toc>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#model>Model</a>
-<ul>
-<li><a href=#minimum-cut-problem>Minimum Cut problem</a></li>
-<li><a href=#maximum-flow-problem>Maximum Flow problem</a></li>
-</ul>
-</li>
-<li><a href=#maxflow-and-mincut-are-dual>Maxflow and Mincut are dual!</a></li>
-<li><a href=#ford-fulkerson-algorithm>Ford-Fulkerson algorithm</a>
-<ul>
-<li><a href=#representation>Representation</a></li>
-<li><a href=#applications>Applications</a></li>
-</ul>
-</li>
-</ul>
-</nav>
-</div>
-</span>
-</div>
-<article class=post itemscope itemtype=http://schema.org/BlogPosting>
-<header>
-<h1 class=posttitle itemprop="name headline">
-Algorithms - Maxflow and Mincut
-</h1>
-<div class=meta>
-<div class=postdate>
-<time datetime="2020-05-20 09:00:00 +0000 UTC" itemprop=datePublished>2020-05-20</time>
-</div>
-<div class=article-tag>
-<i class="fas fa-tag"></i>
-<a class=tag-link href=/tags/algorithms rel=tag>Algorithms</a>
-</div>
-</div>
-</header>
-<div class=content itemprop=articleBody>
-<h2 id=model>Model</h2>
-<p>We use a flow network model which is an edge-weighted digraph with positive edge weights referred to as <strong>capacities</strong>. An st-flow network has two identified vertices, a source s and a sink t.</p>
-<h3 id=minimum-cut-problem>Minimum Cut problem</h3>
-<p>An st-cut is a partition of the vertices into two disjoint sets, which s in one set A and t in the other set B. Its capacity is the sum of the capacities of the edges from A to B.</p>
-<p>The minimum st-cut plobem is to find a cut of minimum capacity.</p>
-<h3 id=maximum-flow-problem>Maximum Flow problem</h3>
-<p>An st-flow is an assignment of values to the edges such that:</p>
-<ul>
-<li>Capacity constraint* 0 &lt;= edges&rsquo;s capacity.</li>
-<li>Local equilibrium: inflow = outflow at every vertex (except s and t).</li>
-</ul>
-<p>The value of a flow is the inflow at t.</p>
-<p>The Maximum st-flow problem is to find a flow of maximum value.</p>
-<h2 id=maxflow-and-mincut-are-dual>Maxflow and Mincut are dual!</h2>
-<ul>
-<li>The <strong>net flow across</strong> a cut (A,B) is the sum of the flows on its edges from A to B minus the flows on its edges from B to A.</li>
-<li><strong>Flow-value lemma</strong>: Let $f$ be any flow and let (A,B) be any cut. Then the net flow across (A,B) equals the values of $f$.</li>
-<li><strong>Weak duality</strong>: Let f be any flow and let (A,B) be any cut. Then the value of the flow &lt;= the capacity of the cut.</li>
-<li><strong>Argumenting path theorem</strong>: A flow $f$ is a maxflow iff no argumenting paths.</li>
-<li><strong>Maxflow-mincut theorem</strong>: Value of the maxflow = capacity of mincut. Three equivalent conditions:
-<ul>
-<li>There exists a cut whose capacity equals the values of the value of the flow f.</li>
-<li>f is a maxflow.</li>
-<li>There is no augmenting path with respect to f.</li>
-</ul>
-</li>
-<li>To compute a mincut from maxflow f, compute A = set of vertices connected to s by an undirected path with no full forward or empty backward edges</li>
-</ul>
-<h2 id=ford-fulkerson-algorithm>Ford-Fulkerson algorithm</h2>
-<ul>
-<li>An <strong>argumenting path</strong> is an undirected path from s to t such that
-<ul>
-<li>Can increase flow on forward edges (not full)</li>
-<li>Can decrease flow on backward edge (not empty)</li>
-</ul>
-</li>
-<li>The <strong>termination</strong> is when all paths from s to t are blocked by either a
-<ul>
-<li>Full forward edge</li>
-<li>Empty backward edge</li>
-</ul>
-</li>
-</ul>
-<pre><code>Start with 0 flow.
+<span id=i-share class=info style=display:none>Share post</span></span><br><div id=share style=display:none><ul><li><a class=icon href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fwww.takuzen.me%2fposts%2f2020-05-20-maxflow-mincut%2f" aria-label=Facebook><i class="fab fa-facebook" aria-hidden=true></i></a></li><li><a class=icon href="https://twitter.com/share?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2020-05-20-maxflow-mincut%2f&text=Algorithms%20-%20Maxflow%20and%20Mincut" aria-label=Twitter><i class="fab fa-twitter" aria-hidden=true></i></a></li><li><a class=icon href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2020-05-20-maxflow-mincut%2f&title=Algorithms%20-%20Maxflow%20and%20Mincut" aria-label=Linkedin><i class="fab fa-linkedin" aria-hidden=true></i></a></li><li><a class=icon href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2020-05-20-maxflow-mincut%2f&is_video=false&description=Algorithms%20-%20Maxflow%20and%20Mincut" aria-label=Pinterest><i class="fab fa-pinterest" aria-hidden=true></i></a></li><li><a class=icon href="mailto:?subject=Algorithms%20-%20Maxflow%20and%20Mincut&body=Check out this article: https%3a%2f%2fwww.takuzen.me%2fposts%2f2020-05-20-maxflow-mincut%2f" aria-label=Email><i class="fas fa-envelope" aria-hidden=true></i></a></li><li><a class=icon href="https://getpocket.com/save?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2020-05-20-maxflow-mincut%2f&title=Algorithms%20-%20Maxflow%20and%20Mincut" aria-label=Pocket><i class="fab fa-get-pocket" aria-hidden=true></i></a></li><li><a class=icon href="http://reddit.com/submit?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2020-05-20-maxflow-mincut%2f&title=Algorithms%20-%20Maxflow%20and%20Mincut" aria-label=reddit><i class="fab fa-reddit" aria-hidden=true></i></a></li><li><a class=icon href="http://www.tumblr.com/share/link?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2020-05-20-maxflow-mincut%2f&name=Algorithms%20-%20Maxflow%20and%20Mincut&description=Model%20We%20use%20a%20flow%20network%20model%20which%20is%20an%20edge-weighted%20digraph%20with%20positive%20edge%20weights%20referred%20to%20as%20capacities.%20An%20st-flow%20network%20has%20two%20identified%20vertices%2c%20a%20source%20s%20and%20a%20sink%20t.%0aMinimum%20Cut%20problem%20An%20st-cut%20is%20a%20partition%20of%20the%20vertices%20into%20two%20disjoint%20sets%2c%20which%20s%20in%20one%20set%20A%20and%20t%20in%20the%20other%20set%20B.%20Its%20capacity%20is%20the%20sum%20of%20the%20capacities%20of%20the%20edges%20from%20A%20to%20B." aria-label=Tumblr><i class="fab fa-tumblr" aria-hidden=true></i></a></li><li><a class=icon href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fwww.takuzen.me%2fposts%2f2020-05-20-maxflow-mincut%2f&t=Algorithms%20-%20Maxflow%20and%20Mincut" aria-label="Hacker News"><i class="fab fa-hacker-news" aria-hidden=true></i></a></li></ul></div><div id=toc><nav id=TableOfContents><ul><li><a href=#model>Model</a><ul><li><a href=#minimum-cut-problem>Minimum Cut problem</a></li><li><a href=#maximum-flow-problem>Maximum Flow problem</a></li></ul></li><li><a href=#maxflow-and-mincut-are-dual>Maxflow and Mincut are dual!</a></li><li><a href=#ford-fulkerson-algorithm>Ford-Fulkerson algorithm</a><ul><li><a href=#representation>Representation</a></li><li><a href=#applications>Applications</a></li></ul></li></ul></nav></div></span></div><article class=post itemscope itemtype=http://schema.org/BlogPosting><header><h1 class=posttitle itemprop="name headline">Algorithms - Maxflow and Mincut</h1><div class=meta><div class=postdate><time datetime="2020-05-20 09:00:00 +0000 UTC" itemprop=datePublished>2020-05-20</time></div><div class=article-tag><i class="fas fa-tag"></i>
+<a class=tag-link href=/tags/algorithms rel=tag>Algorithms</a></div></div></header><div class=content itemprop=articleBody><h2 id=model>Model</h2><p>We use a flow network model which is an edge-weighted digraph with positive edge weights referred to as <strong>capacities</strong>. An st-flow network has two identified vertices, a source s and a sink t.</p><h3 id=minimum-cut-problem>Minimum Cut problem</h3><p>An st-cut is a partition of the vertices into two disjoint sets, which s in one set A and t in the other set B. Its capacity is the sum of the capacities of the edges from A to B.</p><p>The minimum st-cut plobem is to find a cut of minimum capacity.</p><h3 id=maximum-flow-problem>Maximum Flow problem</h3><p>An st-flow is an assignment of values to the edges such that:</p><ul><li>Capacity constraint* 0 &lt;= edges&rsquo;s capacity.</li><li>Local equilibrium: inflow = outflow at every vertex (except s and t).</li></ul><p>The value of a flow is the inflow at t.</p><p>The Maximum st-flow problem is to find a flow of maximum value.</p><h2 id=maxflow-and-mincut-are-dual>Maxflow and Mincut are dual!</h2><ul><li>The <strong>net flow across</strong> a cut (A,B) is the sum of the flows on its edges from A to B minus the flows on its edges from B to A.</li><li><strong>Flow-value lemma</strong>: Let $f$ be any flow and let (A,B) be any cut. Then the net flow across (A,B) equals the values of $f$.</li><li><strong>Weak duality</strong>: Let f be any flow and let (A,B) be any cut. Then the value of the flow &lt;= the capacity of the cut.</li><li><strong>Argumenting path theorem</strong>: A flow $f$ is a maxflow iff no argumenting paths.</li><li><strong>Maxflow-mincut theorem</strong>: Value of the maxflow = capacity of mincut. Three equivalent conditions:<ul><li>There exists a cut whose capacity equals the values of the value of the flow f.</li><li>f is a maxflow.</li><li>There is no augmenting path with respect to f.</li></ul></li><li>To compute a mincut from maxflow f, compute A = set of vertices connected to s by an undirected path with no full forward or empty backward edges</li></ul><h2 id=ford-fulkerson-algorithm>Ford-Fulkerson algorithm</h2><ul><li>An <strong>argumenting path</strong> is an undirected path from s to t such that<ul><li>Can increase flow on forward edges (not full)</li><li>Can decrease flow on backward edge (not empty)</li></ul></li><li>The <strong>termination</strong> is when all paths from s to t are blocked by either a<ul><li>Full forward edge</li><li>Empty backward edge</li></ul></li></ul><pre tabindex=0><code>Start with 0 flow.
 While there exists an augmenting path:
     - find an augmenting path
     - compute bottleneck capacity
     - increase flow on that path by bottleneck capacity
-</code></pre><h3 id=representation>Representation</h3>
-<ul>
-<li>Flow edge data type: Associate flow $f_e$ and capacity $c_e$</li>
-<li>Residual capacity:
-<ul>
-<li>Forward edge: residual capacity = $c_e - f_e$</li>
-<li>Backward edge: residual capacity = $f_e$</li>
-</ul>
-</li>
-<li>Argument flow:
-<ul>
-<li>Forward edge: add $\varDelta$</li>
-<li>Backward edge: subtract $\varDelta$</li>
-</ul>
-</li>
-<li>Residual network: Argumenting path in original network is equivalent to directed path in residual network.
-<ul>
-<li>backward edge: <strong>not empty</strong></li>
-<li>forward edge: <strong>not full</strong></li>
-</ul>
-</li>
-</ul>
-<p>Flow edge implementation:
-<a href=https://algs4.cs.princeton.edu/code/edu/princeton/cs/algs4/FlowEdge.java.html>https://algs4.cs.princeton.edu/code/edu/princeton/cs/algs4/FlowEdge.java.html</a></p>
-<p>Flow network implementation (adjacency-lists representation):
-<a href=https://algs4.cs.princeton.edu/code/edu/princeton/cs/algs4/FlowNetwork.java.html>https://algs4.cs.princeton.edu/code/edu/princeton/cs/algs4/FlowNetwork.java.html</a></p>
-<p>Ford-Fulkerson implementation:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-Java data-lang=Java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>FordFulkerson</span> <span style=color:#f92672>{</span>
-
-  <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>boolean</span><span style=color:#f92672>[]</span> marked<span style=color:#f92672>;</span>
-  <span style=color:#66d9ef>private</span> FlowEdge<span style=color:#f92672>[]</span> edgeTo<span style=color:#f92672>;</span>
-  <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>double</span> value<span style=color:#f92672>;</span>
-
-  <span style=color:#66d9ef>public</span> <span style=color:#a6e22e>FordFulkerson</span><span style=color:#f92672>(</span>FlowNetwork G<span style=color:#f92672>,</span> <span style=color:#66d9ef>int</span> s<span style=color:#f92672>,</span> <span style=color:#66d9ef>int</span> t<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-    value <span style=color:#f92672>=</span> 0<span style=color:#f92672>.</span><span style=color:#a6e22e>0</span><span style=color:#f92672>;</span>
-    <span style=color:#66d9ef>while</span><span style=color:#f92672>(</span>hasAugmentingPath<span style=color:#f92672>(</span>G<span style=color:#f92672>,</span> s<span style=color:#f92672>,</span> t<span style=color:#f92672>))</span> <span style=color:#f92672>{</span>
-      <span style=color:#66d9ef>double</span> bottle <span style=color:#f92672>=</span> Double<span style=color:#f92672>.</span><span style=color:#a6e22e>POSITICE_INFINITY</span><span style=color:#f92672>;</span>
-      <span style=color:#75715e>// calculate the bottleneck residual capacity to t
-</span><span style=color:#75715e></span>      <span style=color:#66d9ef>for</span> <span style=color:#f92672>(</span><span style=color:#66d9ef>int</span> v <span style=color:#f92672>=</span> t<span style=color:#f92672>;</span> v <span style=color:#f92672>!=</span> s<span style=color:#f92672>;</span> v <span style=color:#f92672>=</span> edgeTo<span style=color:#f92672>[</span>v<span style=color:#f92672>].</span><span style=color:#a6e22e>other</span><span style=color:#f92672>(</span>v<span style=color:#f92672>))</span> <span style=color:#f92672>{</span>
-        bottle <span style=color:#f92672>=</span> Math<span style=color:#f92672>.</span><span style=color:#a6e22e>min</span><span style=color:#f92672>(</span>bottle<span style=color:#f92672>,</span> edgeTo<span style=color:#f92672>[</span>v<span style=color:#f92672>].</span><span style=color:#a6e22e>residualCapacityTo</span><span style=color:#f92672>(</span>v<span style=color:#f92672>));</span>
-      <span style=color:#f92672>}</span>
-
-      <span style=color:#75715e>// increase flow by the bottleneck
-</span><span style=color:#75715e></span>      <span style=color:#66d9ef>for</span> <span style=color:#f92672>(</span><span style=color:#66d9ef>int</span> v <span style=color:#f92672>=</span> t<span style=color:#f92672>;</span> v <span style=color:#f92672>!=</span> s<span style=color:#f92672>;</span> v <span style=color:#f92672>=</span> edgeTo<span style=color:#f92672>[</span>v<span style=color:#f92672>].</span><span style=color:#a6e22e>other</span><span style=color:#f92672>(</span>v<span style=color:#f92672>))</span> <span style=color:#f92672>{</span>
-        edgeTo<span style=color:#f92672>[</span>v<span style=color:#f92672>].</span><span style=color:#a6e22e>addResidualFlowTo</span><span style=color:#f92672>(</span>v<span style=color:#f92672>,</span> bottle<span style=color:#f92672>);</span>
-      <span style=color:#f92672>}</span>
-
-      value <span style=color:#f92672>+=</span> bottle<span style=color:#f92672>;</span>
-    <span style=color:#f92672>}</span>
-  <span style=color:#f92672>}</span>
-
-  <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>boolean</span> <span style=color:#a6e22e>hasAugmentingPath</span><span style=color:#f92672>(</span>FlowNetwork G<span style=color:#f92672>,</span> <span style=color:#66d9ef>int</span> s<span style=color:#f92672>,</span> <span style=color:#66d9ef>int</span> t<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-    edgeTo <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> FlowEdge<span style=color:#f92672>[</span>G<span style=color:#f92672>.</span><span style=color:#a6e22e>V</span><span style=color:#f92672>()];</span>
-    marked <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>boolean</span><span style=color:#f92672>[</span>G<span style=color:#f92672>.</span><span style=color:#a6e22e>V</span><span style=color:#f92672>()];</span>
-
-    Queue<span style=color:#f92672>&lt;</span>Integer<span style=color:#f92672>&gt;</span> queue <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Queue<span style=color:#f92672>&lt;</span>Integer<span style=color:#f92672>&gt;();</span>
-    queue<span style=color:#f92672>.</span><span style=color:#a6e22e>enqueue</span><span style=color:#f92672>(</span>s<span style=color:#f92672>);</span>
-    marked<span style=color:#f92672>[</span>s<span style=color:#f92672>]</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>true</span><span style=color:#f92672>;</span>
-    <span style=color:#66d9ef>while</span><span style=color:#f92672>(!</span>queue<span style=color:#f92672>.</span><span style=color:#a6e22e>isEmpty</span><span style=color:#f92672>())</span> <span style=color:#f92672>{</span>
-      <span style=color:#66d9ef>int</span> v <span style=color:#f92672>=</span> queue<span style=color:#f92672>.</span><span style=color:#a6e22e>dequeue</span><span style=color:#f92672>();</span>
-      <span style=color:#66d9ef>for</span> <span style=color:#f92672>(</span>FlowEdge e <span style=color:#f92672>:</span> G<span style=color:#f92672>.</span><span style=color:#a6e22e>adj</span><span style=color:#f92672>(</span>v<span style=color:#f92672>)){</span>
-        <span style=color:#66d9ef>int</span> w <span style=color:#f92672>=</span> e<span style=color:#f92672>.</span><span style=color:#a6e22e>other</span><span style=color:#f92672>();</span>
-        <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>e<span style=color:#f92672>.</span><span style=color:#a6e22e>residualCapacityTo</span><span style=color:#f92672>(</span>w<span style=color:#f92672>)</span> <span style=color:#f92672>&gt;</span> 0 <span style=color:#f92672>&amp;&amp;</span> <span style=color:#f92672>!</span>marked<span style=color:#f92672>[</span>w<span style=color:#f92672>])</span> <span style=color:#f92672>{</span>
-          edgeTo<span style=color:#f92672>[</span>w<span style=color:#f92672>]</span> <span style=color:#f92672>=</span> e<span style=color:#f92672>;</span>
-          marked<span style=color:#f92672>[</span>w<span style=color:#f92672>]</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>true</span><span style=color:#f92672>;</span>
-          queue<span style=color:#f92672>.</span><span style=color:#a6e22e>enqueue</span><span style=color:#f92672>(</span>w<span style=color:#f92672>);</span>
-        <span style=color:#f92672>}</span>
-      <span style=color:#f92672>}</span>
-    <span style=color:#f92672>}</span>
-    <span style=color:#66d9ef>return</span> marked<span style=color:#f92672>[</span>t<span style=color:#f92672>];</span>
-  <span style=color:#f92672>}</span>
-<span style=color:#f92672>}</span>
-</code></pre></div><h3 id=applications>Applications</h3>
-<p>Some applications:</p>
-<ul>
-<li>Bipartite matching</li>
-<li>Baseball elemination</li>
-<li>&mldr;</li>
-</ul>
-</div>
-</article>
-<div class=blog-post-comments>
-<div id=disqus_thread>
-<script type=text/javascript>(function(){var a=document.createElement('script'),b;a.type='text/javascript',a.async=!0,b='wzr',a.src='//'+b+'.disqus.com/embed.js',(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(a)})()</script>
-<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
-<a href=https://disqus.com/ class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a>
-</div>
-</div>
-<div id=footer-post-container>
-<div id=footer-post>
-<div id=nav-footer style=display:none>
-<ul>
-<li><a href=/>Home</a></li>
-<li><a href=/posts>Writings</a></li>
-<li><a href=/tags>Tags</a></li>
-<li><a href=/about>About</a></li>
-</ul>
-</div>
-<div id=toc-footer style=display:none>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#model>Model</a>
-<ul>
-<li><a href=#minimum-cut-problem>Minimum Cut problem</a></li>
-<li><a href=#maximum-flow-problem>Maximum Flow problem</a></li>
-</ul>
-</li>
-<li><a href=#maxflow-and-mincut-are-dual>Maxflow and Mincut are dual!</a></li>
-<li><a href=#ford-fulkerson-algorithm>Ford-Fulkerson algorithm</a>
-<ul>
-<li><a href=#representation>Representation</a></li>
-<li><a href=#applications>Applications</a></li>
-</ul>
-</li>
-</ul>
-</nav>
-</div>
-<div id=share-footer style=display:none>
-<ul>
-<li>
-<a class=icon href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fwww.takuzen.me%2fposts%2f2020-05-20-maxflow-mincut%2f" aria-label=Facebook>
-<i class="fab fa-facebook fa-lg" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="https://twitter.com/share?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2020-05-20-maxflow-mincut%2f&text=Algorithms%20-%20Maxflow%20and%20Mincut" aria-label=Twitter>
-<i class="fab fa-twitter fa-lg" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2020-05-20-maxflow-mincut%2f&title=Algorithms%20-%20Maxflow%20and%20Mincut" aria-label=Linkedin>
-<i class="fab fa-linkedin fa-lg" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2020-05-20-maxflow-mincut%2f&is_video=false&description=Algorithms%20-%20Maxflow%20and%20Mincut" aria-label=Pinterest>
-<i class="fab fa-pinterest fa-lg" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="mailto:?subject=Algorithms%20-%20Maxflow%20and%20Mincut&body=Check out this article: https%3a%2f%2fwww.takuzen.me%2fposts%2f2020-05-20-maxflow-mincut%2f" aria-label=Email>
-<i class="fas fa-envelope fa-lg" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="https://getpocket.com/save?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2020-05-20-maxflow-mincut%2f&title=Algorithms%20-%20Maxflow%20and%20Mincut" aria-label=Pocket>
-<i class="fab fa-get-pocket fa-lg" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="http://reddit.com/submit?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2020-05-20-maxflow-mincut%2f&title=Algorithms%20-%20Maxflow%20and%20Mincut" aria-label=reddit>
-<i class="fab fa-reddit fa-lg" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="http://www.tumblr.com/share/link?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2020-05-20-maxflow-mincut%2f&name=Algorithms%20-%20Maxflow%20and%20Mincut&description=Model%20We%20use%20a%20flow%20network%20model%20which%20is%20an%20edge-weighted%20digraph%20with%20positive%20edge%20weights%20referred%20to%20as%20capacities.%20An%20st-flow%20network%20has%20two%20identified%20vertices%2c%20a%20source%20s%20and%20a%20sink%20t.%0aMinimum%20Cut%20problem%20An%20st-cut%20is%20a%20partition%20of%20the%20vertices%20into%20two%20disjoint%20sets%2c%20which%20s%20in%20one%20set%20A%20and%20t%20in%20the%20other%20set%20B.%20Its%20capacity%20is%20the%20sum%20of%20the%20capacities%20of%20the%20edges%20from%20A%20to%20B." aria-label=Tumblr>
-<i class="fab fa-tumblr fa-lg" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fwww.takuzen.me%2fposts%2f2020-05-20-maxflow-mincut%2f&t=Algorithms%20-%20Maxflow%20and%20Mincut" aria-label="Hacker News">
-<i class="fab fa-hacker-news fa-lg" aria-hidden=true></i>
-</a>
-</li>
-</ul>
-</div>
-<div id=actions-footer>
-<a id=menu-toggle class=icon href=# onclick="return $('#nav-footer').toggle(),!1" aria-label=Menu>
-<i class="fas fa-bars fa-lg" aria-hidden=true></i> Menu</a>
-<a id=toc-toggle class=icon href=# onclick="return $('#toc-footer').toggle(),!1" aria-label=TOC>
-<i class="fas fa-list fa-lg" aria-hidden=true></i> TOC</a>
-<a id=share-toggle class=icon href=# onclick="return $('#share-footer').toggle(),!1" aria-label=Share>
-<i class="fas fa-share-alt fa-lg" aria-hidden=true></i> share</a>
-<a id=top style=display:none class=icon href=# onclick="$('html, body').animate({scrollTop:0},'fast')" aria-label="Top of Page">
-<i class="fas fa-chevron-up fa-lg" aria-hidden=true></i> Top</a>
-</div>
-</div>
-</div>
-<footer id=footer>
-<div class=footer-left>
-Copyright &copy; 2021 呉
-</div>
-<div class=footer-right>
-<nav>
-<ul>
-<li><a href=/>Home</a></li>
-<li><a href=/posts>Writings</a></li>
-<li><a href=/tags>Tags</a></li>
-<li><a href=/about>About</a></li>
-</ul>
-</nav>
-</div>
-</footer>
-</div>
-</body>
-<link rel=stylesheet href=/lib/font-awesome/css/all.min.css>
-<script src=/lib/jquery/jquery.min.js></script>
+</code></pre><h3 id=representation>Representation</h3><ul><li>Flow edge data type: Associate flow $f_e$ and capacity $c_e$</li><li>Residual capacity:<ul><li>Forward edge: residual capacity = $c_e - f_e$</li><li>Backward edge: residual capacity = $f_e$</li></ul></li><li>Argument flow:<ul><li>Forward edge: add $\varDelta$</li><li>Backward edge: subtract $\varDelta$</li></ul></li><li>Residual network: Argumenting path in original network is equivalent to directed path in residual network.<ul><li>backward edge: <strong>not empty</strong></li><li>forward edge: <strong>not full</strong></li></ul></li></ul><p>Flow edge implementation:
+<a href=https://algs4.cs.princeton.edu/code/edu/princeton/cs/algs4/FlowEdge.java.html>https://algs4.cs.princeton.edu/code/edu/princeton/cs/algs4/FlowEdge.java.html</a></p><p>Flow network implementation (adjacency-lists representation):
+<a href=https://algs4.cs.princeton.edu/code/edu/princeton/cs/algs4/FlowNetwork.java.html>https://algs4.cs.princeton.edu/code/edu/princeton/cs/algs4/FlowNetwork.java.html</a></p><p>Ford-Fulkerson implementation:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-Java data-lang=Java><span style=display:flex><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>FordFulkerson</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>boolean</span><span style=color:#f92672>[]</span> marked<span style=color:#f92672>;</span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>private</span> FlowEdge<span style=color:#f92672>[]</span> edgeTo<span style=color:#f92672>;</span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>double</span> value<span style=color:#f92672>;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>public</span> <span style=color:#a6e22e>FordFulkerson</span><span style=color:#f92672>(</span>FlowNetwork G<span style=color:#f92672>,</span> <span style=color:#66d9ef>int</span> s<span style=color:#f92672>,</span> <span style=color:#66d9ef>int</span> t<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>    value <span style=color:#f92672>=</span> <span style=color:#ae81ff>0.0</span><span style=color:#f92672>;</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>while</span><span style=color:#f92672>(</span>hasAugmentingPath<span style=color:#f92672>(</span>G<span style=color:#f92672>,</span> s<span style=color:#f92672>,</span> t<span style=color:#f92672>))</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>double</span> bottle <span style=color:#f92672>=</span> Double<span style=color:#f92672>.</span><span style=color:#a6e22e>POSITICE_INFINITY</span><span style=color:#f92672>;</span>
+</span></span><span style=display:flex><span>      <span style=color:#75715e>// calculate the bottleneck residual capacity to t
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>      <span style=color:#66d9ef>for</span> <span style=color:#f92672>(</span><span style=color:#66d9ef>int</span> v <span style=color:#f92672>=</span> t<span style=color:#f92672>;</span> v <span style=color:#f92672>!=</span> s<span style=color:#f92672>;</span> v <span style=color:#f92672>=</span> edgeTo<span style=color:#f92672>[</span>v<span style=color:#f92672>].</span><span style=color:#a6e22e>other</span><span style=color:#f92672>(</span>v<span style=color:#f92672>))</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>        bottle <span style=color:#f92672>=</span> Math<span style=color:#f92672>.</span><span style=color:#a6e22e>min</span><span style=color:#f92672>(</span>bottle<span style=color:#f92672>,</span> edgeTo<span style=color:#f92672>[</span>v<span style=color:#f92672>].</span><span style=color:#a6e22e>residualCapacityTo</span><span style=color:#f92672>(</span>v<span style=color:#f92672>));</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>      <span style=color:#75715e>// increase flow by the bottleneck
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>      <span style=color:#66d9ef>for</span> <span style=color:#f92672>(</span><span style=color:#66d9ef>int</span> v <span style=color:#f92672>=</span> t<span style=color:#f92672>;</span> v <span style=color:#f92672>!=</span> s<span style=color:#f92672>;</span> v <span style=color:#f92672>=</span> edgeTo<span style=color:#f92672>[</span>v<span style=color:#f92672>].</span><span style=color:#a6e22e>other</span><span style=color:#f92672>(</span>v<span style=color:#f92672>))</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>        edgeTo<span style=color:#f92672>[</span>v<span style=color:#f92672>].</span><span style=color:#a6e22e>addResidualFlowTo</span><span style=color:#f92672>(</span>v<span style=color:#f92672>,</span> bottle<span style=color:#f92672>);</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>      value <span style=color:#f92672>+=</span> bottle<span style=color:#f92672>;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>boolean</span> <span style=color:#a6e22e>hasAugmentingPath</span><span style=color:#f92672>(</span>FlowNetwork G<span style=color:#f92672>,</span> <span style=color:#66d9ef>int</span> s<span style=color:#f92672>,</span> <span style=color:#66d9ef>int</span> t<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>    edgeTo <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> FlowEdge<span style=color:#f92672>[</span>G<span style=color:#f92672>.</span><span style=color:#a6e22e>V</span><span style=color:#f92672>()];</span>
+</span></span><span style=display:flex><span>    marked <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>boolean</span><span style=color:#f92672>[</span>G<span style=color:#f92672>.</span><span style=color:#a6e22e>V</span><span style=color:#f92672>()];</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    Queue<span style=color:#f92672>&lt;</span>Integer<span style=color:#f92672>&gt;</span> queue <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Queue<span style=color:#f92672>&lt;</span>Integer<span style=color:#f92672>&gt;();</span>
+</span></span><span style=display:flex><span>    queue<span style=color:#f92672>.</span><span style=color:#a6e22e>enqueue</span><span style=color:#f92672>(</span>s<span style=color:#f92672>);</span>
+</span></span><span style=display:flex><span>    marked<span style=color:#f92672>[</span>s<span style=color:#f92672>]</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>true</span><span style=color:#f92672>;</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>while</span><span style=color:#f92672>(!</span>queue<span style=color:#f92672>.</span><span style=color:#a6e22e>isEmpty</span><span style=color:#f92672>())</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>int</span> v <span style=color:#f92672>=</span> queue<span style=color:#f92672>.</span><span style=color:#a6e22e>dequeue</span><span style=color:#f92672>();</span>
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>for</span> <span style=color:#f92672>(</span>FlowEdge e <span style=color:#f92672>:</span> G<span style=color:#f92672>.</span><span style=color:#a6e22e>adj</span><span style=color:#f92672>(</span>v<span style=color:#f92672>)){</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>int</span> w <span style=color:#f92672>=</span> e<span style=color:#f92672>.</span><span style=color:#a6e22e>other</span><span style=color:#f92672>();</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>e<span style=color:#f92672>.</span><span style=color:#a6e22e>residualCapacityTo</span><span style=color:#f92672>(</span>w<span style=color:#f92672>)</span> <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>&amp;&amp;</span> <span style=color:#f92672>!</span>marked<span style=color:#f92672>[</span>w<span style=color:#f92672>])</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>          edgeTo<span style=color:#f92672>[</span>w<span style=color:#f92672>]</span> <span style=color:#f92672>=</span> e<span style=color:#f92672>;</span>
+</span></span><span style=display:flex><span>          marked<span style=color:#f92672>[</span>w<span style=color:#f92672>]</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>true</span><span style=color:#f92672>;</span>
+</span></span><span style=display:flex><span>          queue<span style=color:#f92672>.</span><span style=color:#a6e22e>enqueue</span><span style=color:#f92672>(</span>w<span style=color:#f92672>);</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> marked<span style=color:#f92672>[</span>t<span style=color:#f92672>];</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
+</span></span></code></pre></div><h3 id=applications>Applications</h3><p>Some applications:</p><ul><li>Bipartite matching</li><li>Baseball elemination</li><li>&mldr;</li></ul></div></article><div class=blog-post-comments><div id=disqus_thread><script type=text/javascript>(function(){var t,e=document.createElement("script");e.type="text/javascript",e.async=!0,t="wzr",e.src="//"+t+".disqus.com/embed.js",(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)})()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com/ class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div></div><div id=footer-post-container><div id=footer-post><div id=nav-footer style=display:none><ul><li><a href=/>Home</a></li><li><a href=/posts>Writings</a></li><li><a href=/tags>Tags</a></li><li><a href=/about>About</a></li></ul></div><div id=toc-footer style=display:none><nav id=TableOfContents><ul><li><a href=#model>Model</a><ul><li><a href=#minimum-cut-problem>Minimum Cut problem</a></li><li><a href=#maximum-flow-problem>Maximum Flow problem</a></li></ul></li><li><a href=#maxflow-and-mincut-are-dual>Maxflow and Mincut are dual!</a></li><li><a href=#ford-fulkerson-algorithm>Ford-Fulkerson algorithm</a><ul><li><a href=#representation>Representation</a></li><li><a href=#applications>Applications</a></li></ul></li></ul></nav></div><div id=share-footer style=display:none><ul><li><a class=icon href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fwww.takuzen.me%2fposts%2f2020-05-20-maxflow-mincut%2f" aria-label=Facebook><i class="fab fa-facebook fa-lg" aria-hidden=true></i></a></li><li><a class=icon href="https://twitter.com/share?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2020-05-20-maxflow-mincut%2f&text=Algorithms%20-%20Maxflow%20and%20Mincut" aria-label=Twitter><i class="fab fa-twitter fa-lg" aria-hidden=true></i></a></li><li><a class=icon href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2020-05-20-maxflow-mincut%2f&title=Algorithms%20-%20Maxflow%20and%20Mincut" aria-label=Linkedin><i class="fab fa-linkedin fa-lg" aria-hidden=true></i></a></li><li><a class=icon href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2020-05-20-maxflow-mincut%2f&is_video=false&description=Algorithms%20-%20Maxflow%20and%20Mincut" aria-label=Pinterest><i class="fab fa-pinterest fa-lg" aria-hidden=true></i></a></li><li><a class=icon href="mailto:?subject=Algorithms%20-%20Maxflow%20and%20Mincut&body=Check out this article: https%3a%2f%2fwww.takuzen.me%2fposts%2f2020-05-20-maxflow-mincut%2f" aria-label=Email><i class="fas fa-envelope fa-lg" aria-hidden=true></i></a></li><li><a class=icon href="https://getpocket.com/save?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2020-05-20-maxflow-mincut%2f&title=Algorithms%20-%20Maxflow%20and%20Mincut" aria-label=Pocket><i class="fab fa-get-pocket fa-lg" aria-hidden=true></i></a></li><li><a class=icon href="http://reddit.com/submit?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2020-05-20-maxflow-mincut%2f&title=Algorithms%20-%20Maxflow%20and%20Mincut" aria-label=reddit><i class="fab fa-reddit fa-lg" aria-hidden=true></i></a></li><li><a class=icon href="http://www.tumblr.com/share/link?url=https%3a%2f%2fwww.takuzen.me%2fposts%2f2020-05-20-maxflow-mincut%2f&name=Algorithms%20-%20Maxflow%20and%20Mincut&description=Model%20We%20use%20a%20flow%20network%20model%20which%20is%20an%20edge-weighted%20digraph%20with%20positive%20edge%20weights%20referred%20to%20as%20capacities.%20An%20st-flow%20network%20has%20two%20identified%20vertices%2c%20a%20source%20s%20and%20a%20sink%20t.%0aMinimum%20Cut%20problem%20An%20st-cut%20is%20a%20partition%20of%20the%20vertices%20into%20two%20disjoint%20sets%2c%20which%20s%20in%20one%20set%20A%20and%20t%20in%20the%20other%20set%20B.%20Its%20capacity%20is%20the%20sum%20of%20the%20capacities%20of%20the%20edges%20from%20A%20to%20B." aria-label=Tumblr><i class="fab fa-tumblr fa-lg" aria-hidden=true></i></a></li><li><a class=icon href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fwww.takuzen.me%2fposts%2f2020-05-20-maxflow-mincut%2f&t=Algorithms%20-%20Maxflow%20and%20Mincut" aria-label="Hacker News"><i class="fab fa-hacker-news fa-lg" aria-hidden=true></i></a></li></ul></div><div id=actions-footer><a id=menu-toggle class=icon href=# onclick='return $("#nav-footer").toggle(),!1' aria-label=Menu><i class="fas fa-bars fa-lg" aria-hidden=true></i> Menu</a>
+<a id=toc-toggle class=icon href=# onclick='return $("#toc-footer").toggle(),!1' aria-label=TOC><i class="fas fa-list fa-lg" aria-hidden=true></i> TOC</a>
+<a id=share-toggle class=icon href=# onclick='return $("#share-footer").toggle(),!1' aria-label=Share><i class="fas fa-share-alt fa-lg" aria-hidden=true></i> share</a>
+<a id=top style=display:none class=icon href=# onclick='$("html, body").animate({scrollTop:0},"fast")' aria-label="Top of Page"><i class="fas fa-chevron-up fa-lg" aria-hidden=true></i> Top</a></div></div></div><footer id=footer><div class=footer-left>Copyright &copy; 2023 呉</div><div class=footer-right><nav><ul><li><a href=/>Home</a></li><li><a href=/posts>Writings</a></li><li><a href=/tags>Tags</a></li><li><a href=/about>About</a></li></ul></nav></div></footer></div></body><link rel=stylesheet href=/lib/font-awesome/css/all.min.css><script src=/lib/jquery/jquery.min.js></script>
 <script src=/js/main.js></script>
 <script src=/js/code-copy.js></script>
-<script>MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']]},svg:{fontCache:'global'}}</script>
-<script type=text/javascript id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script>
-</html>
+<script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]},svg:{fontCache:"global"}}</script><script type=text/javascript id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script></html>

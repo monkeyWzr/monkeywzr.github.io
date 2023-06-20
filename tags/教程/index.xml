@@ -5,7 +5,10 @@
 //继续使用上面的num1和num2 int num3; num3 = num1 ?? 10;//num3 = 10; num3 = num2 ?? 38;//num3 = 250; 引用类型 引用类型不包含储存在变量中的实际数据。内置的引用类型有object``dynamic``string
 对象(object)类型 object类型是c#通用类型系统CTS中所有数据的终极基类，可以分配任何类型的值。一个值类型转换为对象类型时称为__装箱__，反过来称为__拆箱__;
 object obj； obj = 100;//装箱 动态(Dynamic)类型 类型检查在运行时发生。
-dynamic a = 20; 字符串(String)类型 String是System.String类的别名，从对象类派生。有一个@分配方式（称作逐字字符串）。</description></item><item><title>jQury基础笔记</title><link>https://www.takuzen.me/posts/2015-10-01-jqury-notes/</link><pubDate>Thu, 01 Oct 2015 09:00:00 +0000</pubDate><guid>https://www.takuzen.me/posts/2015-10-01-jqury-notes/</guid><description>安装 1.从jqury.com下载
+dynamic a = 20; 字符串(String)类型 String是System.String类的别名，从对象类派生。有一个@分配方式（称作逐字字符串）。
+String str1 = &amp;quot;Hello world&amp;quot;; String str2 = @&amp;quot;C:\Windows&amp;quot;;//转义字符会当作普通字符看待 @字符串中所有的换行符缩进符等都计算在字符串长度内。
+指针类型 与c/c/c++有相同的类型；
+type* identifier; 参数传递 C#中有三种参数传递方式：值参数、引用参数、输出参数。</description></item><item><title>jQury基础笔记</title><link>https://www.takuzen.me/posts/2015-10-01-jqury-notes/</link><pubDate>Thu, 01 Oct 2015 09:00:00 +0000</pubDate><guid>https://www.takuzen.me/posts/2015-10-01-jqury-notes/</guid><description>安装 1.从jqury.com下载
 2.CDN
 Baidu CDN:http://libs.baidu.com/jquery/1.10.2/jquery.min.js 又拍云 CDN:http://upcdn.b0.upaiyun.com/libs/jquery/jquery-2.0.2.min.js 新浪 CDN:http://lib.sinaapp.com/js/jquery/2.0.2/jquery-2.0.2.min.js Google CDN:http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js Microsoft CDN:http://ajax.htmlnetcdn.com/ajax/jQuery/jquery-1.10.2.min.js 语法 基础语法： $(selector).action()
 选择器 jquery选择器基于已存在的css选择器
@@ -15,7 +18,7 @@ $(&amp;quot;tr:even&amp;quot;) - 选取奇数位置的&amp;lt;tr&amp;gt;，偶�
 i 不区分大小写 /s 忽略转义回车 /U 匹配字符域 [char list] 匹配方括号内的任意字符集，包括空格。此例即匹配c、h、a、r、空格、l、i、s、t中的任一字符 [^char list] 不匹配方括号内的字符，也可用! [a-z] 匹配字符a-z, 还有几个&amp;ndash;忘了叫啥了的&amp;ndash;
 \w 相当与[A-Za-z0-9] \s 匹配空白字符，相当与[\t\r\n] \d 匹配数字，[0-9] \b backspace (0x08) (only if in a range specification) 注：大写效果与小写相反 实例1：
 //下面两种效果相同 //匹配由字母数字下划线连字符组成，长度在3-15的用户名 //注意连字符需要转义 /^[\w_\-]{3,15}$/ /^[A-Za-z0-9_\-]{3,15}$/ 实例2：
-//匹配email地址 //本地部分包含A-Za-z0-9等，不包含括号，#@;等 /^([\w!</description></item><item><title>markdown语法简记</title><link>https://www.takuzen.me/posts/2015-08-03-markdown-notes/</link><pubDate>Mon, 03 Aug 2015 09:00:00 +0000</pubDate><guid>https://www.takuzen.me/posts/2015-08-03-markdown-notes/</guid><description>0. 反斜杠 反斜杠可以将在markdown中有特殊意义的字符作为正常字符插入。
+//匹配email地址 //本地部分包含A-Za-z0-9等，不包含括号，#@;等 /^([\w!#@$&amp;amp;&amp;#39;*+\/=?^&amp;#39;{|}~.\-]+)@([\w]+\.)</description></item><item><title>markdown语法简记</title><link>https://www.takuzen.me/posts/2015-08-03-markdown-notes/</link><pubDate>Mon, 03 Aug 2015 09:00:00 +0000</pubDate><guid>https://www.takuzen.me/posts/2015-08-03-markdown-notes/</guid><description>0. 反斜杠 反斜杠可以将在markdown中有特殊意义的字符作为正常字符插入。
 1. 标题 类Setext形式 =和-的数量随意，效果效果是相同的。
 This is H1 ========== This is H2 ---------- 类atx形式 也可以写成前后对称的形式。
 # H1 ## H2 ###### H6 注意在#与标题间必须存在至少一个空格或制表符
@@ -31,4 +34,5 @@ This is H1 ========== This is H2 ---------- 类atx形式 也可以写成前后�
 ``` 代码区块 ``` 将产生相同效果。但是此种方法并非标准markdown语法，有时可能会解析不正确。 在代码区块中可以方便的插入HTML原始码，Markdown会自动将&amp;lt;``&amp;amp;等转换为HTML实体。
 4. 列表 无序列表
 * red + green - yellow 三种形式等同。
-red green yellow 有序列表</description></item></channel></rss>
+red green yellow 有序列表
+1. 吃 2. 粑粑 吃 粑粑 句点后要有空格。数字是多少都无所谓，产生的效果相同。</description></item></channel></rss>
