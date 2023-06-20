@@ -1,4 +1,4 @@
-baseURL = "https://www.takuzen.me"
+baseURL = "https://takuzen.me"
 languageCode = "en-us"
 title = "マクロス"
 theme = "hugo-theme-cactus"
